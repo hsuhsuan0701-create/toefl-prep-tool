@@ -141,7 +141,9 @@ describe("a completed Reading Attempt", () => {
 });
 
 describe("a Reading Attempt still in progress", () => {
-  it("puts no question or option text on the page before the Attempt is complete", async () => {
+  // The Response is named as the run showed it, by letter and text: the User picked that option, so
+  // it is no key. The stem, the other options, the key and the Explanation still wait for completion.
+  it("names the Response by its letter and text, and shows nothing the review withholds", async () => {
     const base = readingDetail();
     await renderReview({
       ...base,
@@ -150,10 +152,48 @@ describe("a Reading Attempt still in progress", () => {
       deterministicReview: undefined,
     });
     const row = screen.getByTestId("item-q1");
-    expect(row).toHaveTextContent("Your Response: Option A");
+    expect(row).toHaveTextContent("Your Response: A. To sell a bicycle");
     expect(row).not.toHaveTextContent("Why does Mia write?");
-    expect(screen.queryByText(/To sell a bicycle/)).toBeNull();
+    expect(row).not.toHaveTextContent("Key:");
+    expect(screen.queryByText(/To ask for a ride|To cancel a meeting|To book a room/)).toBeNull();
+    expect(screen.queryByText("她想搭便車。")).toBeNull();
     expect(screen.getByText(/appear once this Attempt is complete/)).toBeInTheDocument();
+  });
+
+  // Option ids are internal ("o3", "lcr-r1-a"); the letter comes from the option's place in the
+  // question, never from its id.
+  it("takes the letter from the option's place, not from its id", async () => {
+    const options = OPTIONS.map((o, i) => ({ ...o, id: `lcr-r1-${"wxyz"[i]}` }));
+    vi.mocked(getSet).mockResolvedValue({
+      ...SERVED_READING,
+      router: { ...SERVED_READING.router, dailyLife: [{ ...SERVED_READING.router.dailyLife[0], questions: [{ id: "q1", stem: "Why does Mia write?", options }] }] },
+    } as never);
+    const base = readingDetail();
+    await renderReview({
+      ...base,
+      attempt: { ...base.attempt, status: "in_progress", completedAt: null },
+      items: [scored("q1", "daily_life", false, "lcr-r1-y")],
+      bandStatus: { status: "unfinished" },
+      deterministicReview: undefined,
+    });
+    expect(screen.getByTestId("item-q1")).toHaveTextContent("Your Response: C. To cancel a meeting");
+    expect(screen.queryByText(/LCR-R1|lcr-r1/)).toBeNull();
+  });
+
+  // The Set is best-effort: without it the row still renders, and an internal id is no name.
+  it("still renders a Response whose Set cannot be read, without its option id", async () => {
+    vi.mocked(getSet).mockRejectedValue(new Error("gone"));
+    const base = readingDetail();
+    await renderReview({
+      ...base,
+      attempt: { ...base.attempt, status: "in_progress", completedAt: null },
+      items: [scored("q1", "daily_life", false, "o3")],
+      bandStatus: { status: "unfinished" },
+      deterministicReview: undefined,
+    });
+    const row = screen.getByTestId("item-q1");
+    expect(row).toHaveTextContent("Your Response: An option that can no longer be shown");
+    expect(row).not.toHaveTextContent(/o3/i);
   });
 
   // The prefix was printed in the paragraph the User read, so it is no key: a gap's Response reads
@@ -174,6 +214,53 @@ describe("a Reading Attempt still in progress", () => {
   });
 });
 
+const SERVED_LISTENING = {
+  id: "lsn-1",
+  kind: "listening",
+  router: {
+    timeLimitSec: 600,
+    listenChoose: [],
+    conversations: [
+      {
+        id: "conv-1",
+        taskType: "conversation",
+        setting: "a campus mailroom",
+        questions: [{ id: "cq1", stem: "What does the student want?", options: OPTIONS.map((o, i) => ({ ...o, id: `o${i + 1}` })) }],
+      },
+    ],
+    announcements: [],
+    academicTalks: [],
+  },
+  lowerModule: { timeLimitSec: 400, listenChoose: [], conversations: [], announcements: [], academicTalks: [] },
+  upperModule: { timeLimitSec: 400, listenChoose: [], conversations: [], announcements: [], academicTalks: [] },
+};
+
+describe("a Listening Simulation still in progress", () => {
+  it("names the Response by its letter and text, not as its option id", async () => {
+    vi.mocked(getSet).mockResolvedValue(SERVED_LISTENING as never);
+    vi.mocked(getAttempt).mockResolvedValue({
+      ...readingDetail(),
+      attempt: { ...readingDetail().attempt, kind: "listening", mode: "simulation", setId: "lsn-1", status: "in_progress", completedAt: null },
+      items: [scored("cq1", "conversation", true, "o3")],
+      bandStatus: { status: "unfinished" },
+      deterministicReview: undefined,
+    });
+    render(
+      <MemoryRouter initialEntries={["/attempts/att-1"]}>
+        <Routes>
+          <Route path="/attempts/:id" element={<AttemptReview />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+    await waitFor(() => expect(vi.mocked(getSet)).toHaveBeenCalledWith("lsn-1"));
+    await act(async () => {});
+    const row = screen.getByTestId("item-cq1");
+    expect(row).toHaveTextContent("Your Response: C. To cancel a meeting");
+    expect(row).not.toHaveTextContent("Option O3");
+    expect(row).not.toHaveTextContent("What does the student want?");
+  });
+});
+
 describe("a discarded Reading Attempt", () => {
   // The server builds the key review only for a completed Attempt, and a discard is never undone.
   it("says its key and Explanations are not shown, rather than promising them", async () => {
@@ -186,6 +273,9 @@ describe("a discarded Reading Attempt", () => {
     });
     expect(screen.getByText("This Attempt was discarded, so its key and Explanations are not shown.")).toBeInTheDocument();
     expect(screen.queryByText(/appear once this Attempt is complete/)).toBeNull();
-    expect(screen.queryByText(/To sell a bicycle/)).toBeNull();
+    // The option the User picked is theirs to see; the key (B) is not.
+    expect(screen.getByTestId("item-q1")).toHaveTextContent("Your Response: A. To sell a bicycle");
+    expect(screen.queryByText(/To ask for a ride/)).toBeNull();
+    expect(screen.queryByText("她想搭便車。")).toBeNull();
   });
 });

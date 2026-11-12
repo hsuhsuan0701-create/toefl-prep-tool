@@ -36,11 +36,19 @@ function stimulusRuns(items: readonly IndexedItem[], setSnapshot: AttemptSetSnap
   return runs;
 }
 
-function optionText(question: QuestionSnapshot | undefined, optionId: string): string {
+/**
+ * An option as the run showed it: its letter by its place in the question, then its text. Null when
+ * the Set no longer has it (it could not be read, or the option is gone): an option id is internal
+ * ("o3", "lcr-r1-a") and was never what the User saw.
+ */
+function optionText(question: QuestionSnapshot | undefined, optionId: string): string | null {
   const index = question?.options.findIndex((o) => o.id === optionId) ?? -1;
-  if (!question || index < 0) return `Option ${optionId.toUpperCase()}`;
+  if (!question || index < 0) return null;
   return `${String.fromCharCode(65 + index)}. ${question.options[index].text}`;
 }
+
+/** A Response whose option the Set can no longer name. */
+const OPTION_NOT_SHOWN = "An option that can no longer be shown";
 
 export type DeterministicModuleGroupProps = {
   items: IndexedItem[];
@@ -97,10 +105,12 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
 
 /**
  * One Reading or Listening Item: the User's Response, the key when it differs, and the Explanation
- * (錯題解析). Question text and option text are shown only beside a review — i.e. once the Attempt
- * is complete — so an unfinished Listening Attempt never puts options into the page early. A
- * Complete the Words prefix is the exception: the User saw it in the passage, and it is no key. A Listen
- * and Choose a Response utterance is never shown as text at all; the server does not send it.
+ * (錯題解析). The question's stem and the key are shown only beside a review — i.e. once the
+ * Attempt is complete. The Response is written out as the run showed it, letter and text, whether
+ * or not the Attempt is complete: the User picked that option, so it is no key, and nothing else of
+ * the question comes with it. A Complete the Words prefix is the same: the User saw it in the
+ * passage. A Listen and Choose a Response utterance is never shown as text at all; the server does
+ * not send it.
  */
 function DeterministicRow({ item, position, question, review }: { item: ItemVM; position: number; question?: QuestionSnapshot; review?: DeterministicReviewItemVM }) {
   const score = item.scoringStatus === "scored" && isDeterministicScoreJson(item.scoreJson) ? item.scoreJson : null;
@@ -117,7 +127,7 @@ function DeterministicRow({ item, position, question, review }: { item: ItemVM; 
       ? "No Response"
       : isGap
         ? `${prefix}${score.answer}`
-        : optionText(shown, score.answer);
+        : (optionText(question, score.answer) ?? OPTION_NOT_SHOWN);
   const keyText = review?.key === undefined ? null : isGap ? `${prefix}${review.key}` : optionText(shown, review.key);
 
   const line = (
