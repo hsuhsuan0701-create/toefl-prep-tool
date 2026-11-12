@@ -157,7 +157,7 @@ describe("/progress", () => {
     );
     expect(
       await screen.findByText(
-        "Percent correct on each skill in your 120 most recently scored Reading and Listening Items, weakest first. Drills and Simulations both count.",
+        "Percent correct on each skill in your 120 most recently scored multiple-choice Reading and Listening Items, weakest first. A Complete the Words gap has no skill, so it is not counted. Drills and Simulations both count.",
       ),
     ).toBeInTheDocument();
   });
