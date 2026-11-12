@@ -1,6 +1,6 @@
 import { MCQ_UNANSWERED_SENTINEL, type DeterministicReviewItemVM, type ItemVM } from "@toefl-prep/shared";
 import { taskTypeLabel } from "../../lib/taskTypes";
-import { questionFor, stimulusAudioFor, stimulusContentFor, type AttemptSetSnapshot, type QuestionSnapshot } from "../../pages/attemptSetSnapshot";
+import { questionFor, stimulusAudioFor, stimulusContentFor, stimulusFor, type AttemptSetSnapshot, type QuestionSnapshot, type SnapshotModule } from "../../pages/attemptSetSnapshot";
 import StimulusReplay from "../StimulusReplay";
 import { Card } from "../../ui/Card";
 import { ChoiceList } from "../../ui/ChoiceList";
@@ -15,20 +15,27 @@ import ReviewStimulus, { type ReviewedGap } from "./ReviewStimulus";
 import { isDeterministicScoreJson } from "./reviewItems";
 import { capitalise, correctSummary, type IndexedItem } from "./reviewText";
 
-type StimulusRun = { key: string; taskType: string; name: string | null; stimulusId: string | null; items: IndexedItem[] };
+type StimulusRun = {
+  key: string;
+  taskType: string;
+  name: string | null;
+  /** The run's own Stimulus, by its Module and id; null for a Listen and Choose a Response run or without the Set. */
+  stimulus: { module: SnapshotModule; id: string } | null;
+  items: IndexedItem[];
+};
 
 /**
  * One Module's Items cut into the Stimuli they were answered against, in test order. Without the
  * Set (it could not be read), Items fall back to one run per Task Type. Listen and Choose a Response
  * Items are each their own Stimulus, so consecutive ones share a card rather than taking one each.
+ * Each Stimulus is looked up in its Item's own Module: a Stimulus id may repeat across Modules.
  */
 function stimulusRuns(items: readonly IndexedItem[], setSnapshot: AttemptSetSnapshot | null): StimulusRun[] {
-  const names = new Map((setSnapshot?.stimuli ?? []).map((s) => [s.id, s.name]));
   const runs: StimulusRun[] = [];
   for (const entry of items) {
     const { item } = entry;
     const question = questionFor(setSnapshot, item.itemId);
-    const key = question && item.taskType !== "listen_choose" ? `stimulus-${question.stimulusId}` : `type-${item.taskType}`;
+    const key = question && item.taskType !== "listen_choose" ? `stimulus-${question.module}-${question.stimulusId}` : `type-${item.taskType}`;
     const last = runs[runs.length - 1];
     if (last && last.key === key) {
       last.items.push(entry);
@@ -38,8 +45,8 @@ function stimulusRuns(items: readonly IndexedItem[], setSnapshot: AttemptSetSnap
     runs.push({
       key,
       taskType: item.taskType,
-      name: own ? (names.get(question.stimulusId) ?? null) : null,
-      stimulusId: own ? question.stimulusId : null,
+      name: own ? (stimulusFor(setSnapshot, question.module, question.stimulusId)?.name ?? null) : null,
+      stimulus: own ? { module: question.module, id: question.stimulusId } : null,
       items: [entry],
     });
   }
@@ -109,10 +116,10 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
           run.taskType === "listen_choose" ? undefined : run.items.map(({ item }) => reviewByItemId.get(item.itemId)?.transcript).find((t) => t !== undefined);
         const headingId = `${run.key}-${run.items[0].item.itemId}`;
         const shows = showStimulus || run.items.some(({ item }) => reviewByItemId.has(item.itemId));
-        const content = shows && run.stimulusId !== null ? stimulusContentFor(setSnapshot, run.stimulusId) : undefined;
+        const content = shows && run.stimulus ? stimulusContentFor(setSnapshot, run.stimulus.module, run.stimulus.id) : undefined;
         // A Listen and Choose a Response run has no one Stimulus (each Item is its own), so its
         // replay is on each Item's row instead.
-        const audio = shows && run.stimulusId !== null ? stimulusAudioFor(setSnapshot, run.stimulusId) : undefined;
+        const audio = shows && run.stimulus ? stimulusAudioFor(setSnapshot, run.stimulus.module, run.stimulus.id) : undefined;
         return (
           <Card key={headingId} as="section" padding="none" aria-labelledby={headingId} className="min-w-0">
             <header className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-rule px-4 py-3">
@@ -147,18 +154,23 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
               </div>
             )}
             <ol className="divide-y divide-rule">
-              {run.items.map(({ item, position }) => (
-                <DeterministicRow
-                  key={item.itemId}
-                  item={item}
-                  position={position}
-                  question={questionFor(setSnapshot, item.itemId)}
-                  review={reviewByItemId.get(item.itemId)}
-                  replayAudio={
-                    (showStimulus || reviewByItemId.has(item.itemId)) && item.taskType === "listen_choose" ? stimulusAudioFor(setSnapshot, item.itemId) : undefined
-                  }
-                />
-              ))}
+              {run.items.map(({ item, position }) => {
+                const question = questionFor(setSnapshot, item.itemId);
+                return (
+                  <DeterministicRow
+                    key={item.itemId}
+                    item={item}
+                    position={position}
+                    question={question}
+                    review={reviewByItemId.get(item.itemId)}
+                    replayAudio={
+                      question && (showStimulus || reviewByItemId.has(item.itemId)) && item.taskType === "listen_choose"
+                        ? stimulusAudioFor(setSnapshot, question.module, question.stimulusId)
+                        : undefined
+                    }
+                  />
+                );
+              })}
             </ol>
             {transcript && (
               <div className="border-t border-rule px-4 py-3">

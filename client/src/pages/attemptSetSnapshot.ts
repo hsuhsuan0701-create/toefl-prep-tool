@@ -47,7 +47,8 @@ export type StimulusSnapshot = Readonly<{
   content: StimulusContentSnapshot | null;
   /**
    * A Listening Stimulus's audio path under `/api/audio/`, as served; null for Reading, or when the
-   * Set lacks it. Played again only in a completed Attempt's review.
+   * Set lacks it. Played again only beside a key review (a completed Attempt, or a Drill's scored
+   * Stimulus).
    */
   audio: string | null;
 }>;
@@ -70,9 +71,11 @@ export type StimulusContentSnapshot =
 /**
  * What a Reading or Listening Item showed the User: a question's stem and options, or a Complete
  * the Words gap's visible prefix. The served Set carries neither key nor Explanation; those come
- * only from the Attempt detail, and only once the Attempt is complete.
+ * only from the Attempt detail's key review.
  */
 export type QuestionSnapshot = Readonly<{
+  /** The Module the Item sits in: a Stimulus id is unique only within its Module. */
+  module: SnapshotModule;
   stimulusId: string;
   stem: string | null;
   options: readonly Readonly<{ id: string; text: string }>[];
@@ -136,14 +139,25 @@ export function questionFor(snapshot: AttemptSetSnapshot | null, itemId: string)
   return snapshot ? ownEntry(snapshot.questionsByItemId, itemId) : undefined;
 }
 
+/**
+ * One Stimulus of one Module, or undefined without a snapshot or for an id that Module lacks. No
+ * schema makes a Stimulus id unique across the Router, Lower and Upper Modules, so a lookup by id
+ * alone could show one Module's passage or audio against another Module's Items. Pass the Module
+ * of the Item it is for ({@link QuestionSnapshot.module}). Item ids need no such care: a Set that
+ * repeats one is refused at scoring, so none of its Items reaches a review.
+ */
+export function stimulusFor(snapshot: AttemptSetSnapshot | null, module: SnapshotModule, stimulusId: string): StimulusSnapshot | undefined {
+  return snapshot?.stimuli.find((s) => s.module === module && s.id === stimulusId);
+}
+
 /** What a Stimulus showed the User, or undefined without a snapshot, for an unknown id, or with no text. */
-export function stimulusContentFor(snapshot: AttemptSetSnapshot | null, stimulusId: string): StimulusContentSnapshot | undefined {
-  return snapshot?.stimuli.find((s) => s.id === stimulusId)?.content ?? undefined;
+export function stimulusContentFor(snapshot: AttemptSetSnapshot | null, module: SnapshotModule, stimulusId: string): StimulusContentSnapshot | undefined {
+  return stimulusFor(snapshot, module, stimulusId)?.content ?? undefined;
 }
 
 /** A Listening Stimulus's audio path, or undefined without a snapshot, for an unknown id, or with no audio. */
-export function stimulusAudioFor(snapshot: AttemptSetSnapshot | null, stimulusId: string): string | undefined {
-  return snapshot?.stimuli.find((s) => s.id === stimulusId)?.audio ?? undefined;
+export function stimulusAudioFor(snapshot: AttemptSetSnapshot | null, module: SnapshotModule, stimulusId: string): string | undefined {
+  return stimulusFor(snapshot, module, stimulusId)?.audio ?? undefined;
 }
 
 /** The task an Email or Academic Discussion Item set, or undefined. */
@@ -352,18 +366,18 @@ function snapshotStimuli(set: UntrustedServedSet): {
     taskType: string,
     id: unknown,
     name: string | null,
-    items: QuestionSnapshot[],
+    items: Omit<QuestionSnapshot, "module">[],
     itemIds: string[],
     content: StimulusContentSnapshot | null = null,
     audio: unknown = null,
   ) => {
     if (typeof id !== "string" || itemIds.length === 0) return;
     stimuli.push(Object.freeze({ id, module, taskType, name, itemIds: Object.freeze(itemIds), content, audio: text(audio) }));
-    itemIds.forEach((itemId, i) => (questions[itemId] = Object.freeze(items[i])));
+    itemIds.forEach((itemId, i) => (questions[itemId] = Object.freeze({ ...items[i], module })));
   };
   const mcqs = (stimulusId: unknown, list: unknown) => {
     const ids: string[] = [];
-    const items: QuestionSnapshot[] = [];
+    const items: Omit<QuestionSnapshot, "module">[] = [];
     if (typeof stimulusId !== "string" || !Array.isArray(list)) return { ids, items };
     for (const q of list as LooseQuestion[]) {
       if (typeof q?.id !== "string") continue;
@@ -383,7 +397,7 @@ function snapshotStimuli(set: UntrustedServedSet): {
       if (!m) continue;
       each<{ id?: unknown; topic?: unknown; gaps?: unknown; segments?: unknown }>(m.ctwPassages, (p) => {
         const ids: string[] = [];
-        const items: QuestionSnapshot[] = [];
+        const items: Omit<QuestionSnapshot, "module">[] = [];
         const prefixes: Record<string, string> = {};
         each<{ id?: unknown; prefix?: unknown }>(p.gaps, (g) => {
           if (typeof g.id !== "string" || typeof p.id !== "string") return;
