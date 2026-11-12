@@ -159,6 +159,8 @@ describe("Dashboard — first run", () => {
     renderDashboard();
     const start = await screen.findByRole("region", { name: "Start here" });
     expect(within(start).getByRole("link", { name: "Start Reading Simulation" })).toHaveAttribute("href", "/simulate/reading");
+    // The Listening warm-up opens the Set list on its Listening tab, not on Reading.
+    expect(within(start).getByRole("link", { name: "Choose a Listening Set" })).toHaveAttribute("href", "/sets?section=listening");
     // No Overall on a first run, and no second primary from the suggestion block.
     expect(screen.queryByText("Overall")).toBeNull();
     expect(screen.queryByText("Suggested next")).toBeNull();
@@ -239,6 +241,26 @@ describe("Dashboard — after the first Attempt", () => {
     expect(screen.queryByRole("list", { name: "Setup checks" })).not.toBeVisible();
     await userEvent.click(button);
     expect(screen.getByRole("list", { name: "Setup checks" })).toBeVisible();
+  });
+
+  it("scrolls to Setup only once its checklist has opened, so the page is tall enough to bring the heading to the top", async () => {
+    setUp({ summary: summary([band("reading", 6), band("listening", 5.5)], null), setup: { ...FRESH } });
+    // jsdom has no layout, so record what the page looked like at the moment the scroll was asked for.
+    const openWhenScrolled: boolean[] = [];
+    const scrollIntoView = vi.fn(function (this: Element) {
+      openWhenScrolled.push(this.querySelector("details")?.open ?? false);
+    });
+    Element.prototype.scrollIntoView = scrollIntoView;
+    try {
+      renderDashboard();
+      await userEvent.click(await screen.findByRole("button", { name: "See what's missing" }));
+      await waitFor(() => expect(scrollIntoView).toHaveBeenCalledTimes(1));
+      expect(scrollIntoView.mock.contexts[0]).toHaveAttribute("id", "setup");
+      expect(openWhenScrolled).toEqual([true]);
+      expect(document.activeElement).toHaveAttribute("id", "setup");
+    } finally {
+      delete (Element.prototype as Partial<Element>).scrollIntoView;
+    }
   });
 
   it("keeps Setup reachable but collapsed, behind what this machine can't do yet", async () => {

@@ -114,12 +114,20 @@ export default function Dashboard() {
     await loadSummary();
   }
 
+  // "See what's missing" opens the checklist and brings it into view. The scroll waits for the render
+  // that opens it: measured before, the page is still short by the checklist's height and the scroll
+  // is clamped well short of the heading.
+  const [setupScrollRequest, setSetupScrollRequest] = useState(0);
   function showSetup() {
     setSetupOpen(true);
+    setSetupScrollRequest((n) => n + 1);
+  }
+  useEffect(() => {
+    if (setupScrollRequest === 0) return;
     const target = document.getElementById("setup");
     target?.scrollIntoView?.({ behavior: "smooth", block: "start" });
     target?.focus({ preventScroll: true });
-  }
+  }, [setupScrollRequest]);
 
   const estimates = new Map((summary?.sections ?? []).map((s) => [s.section, s]));
   const scorability = Object.fromEntries(TEST_ORDER.map((s) => [s, sectionScorability(s, setup.status)])) as Record<Section, Scorability>;

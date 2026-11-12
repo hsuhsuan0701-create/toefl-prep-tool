@@ -40,7 +40,7 @@ export function StartHere({ writing, speaking, onShowSetup }: StartHereProps) {
           n={2}
           title="Or warm up with a Listening Drill"
           body="Shorter, with the key and an Explanation after every Stimulus. Drills never produce a band."
-          action={<ButtonLink to="/sets">Choose a Listening Set</ButtonLink>}
+          action={<ButtonLink to="/sets?section=listening">Choose a Listening Set</ButtonLink>}
         />
         {ready(writing) && ready(speaking) ? (
           <Step
