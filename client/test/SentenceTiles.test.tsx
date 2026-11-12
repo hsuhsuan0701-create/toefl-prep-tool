@@ -4,7 +4,7 @@ import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import SentenceTiles, { type BuildSentenceItem } from "../src/components/buildSentence/SentenceTiles";
 import { emptySlotsForFrame, tileIdOf, type SlotFill } from "../src/components/buildSentence/sentenceSlotFill";
-import { dragTile, dragTilesIntoBlanks, installTileDragLayout } from "./buildSentenceDrag";
+import { TILE_DRAG_LAYOUT, dragTile, dragTilesIntoBlanks, installTileDragLayout } from "./buildSentenceDrag";
 
 // The project's own reference Item (server/test/fixtures/build-a-sentence-reference-item.json): six
 // blanks, seven tiles, "was" the distractor. The drop arithmetic is covered in
@@ -123,6 +123,52 @@ describe("SentenceTiles", () => {
     await dragTile(user, "who", "tray");
     expect(screen.getByLabelText("Blank 2, empty")).toBeInTheDocument();
     expect(within(screen.getByTestId("bas-tray")).getByRole("button", { name: "who" })).toBeInTheDocument();
+  });
+
+  // The zone under the pointer decides, not the zone whose centre is nearest the tile: the tray is
+  // wide, so its centre is often farther from a point inside it than a blank's centre is.
+  it("returns a tile released anywhere inside the tray, even nearer a blank's centre than the tray's", async () => {
+    const user = userEvent.setup();
+    render(<ControlledTiles item={REFERENCE_ITEM} />);
+    const { tray } = TILE_DRAG_LAYOUT;
+
+    await dragTile(user, "who", { blank: 5 });
+    await dragTile(user, "who", { clientX: tray.right - 10, clientY: tray.bottom - 5 });
+    expect(screen.getByLabelText("Blank 6, empty")).toBeInTheDocument();
+    expect(within(screen.getByTestId("bas-tray")).getByRole("button", { name: "who" })).toBeInTheDocument();
+
+    await dragTile(user, "who", { blank: 3 });
+    await dragTile(user, "who", { clientX: tray.left + 5, clientY: tray.bottom - 5 });
+    expect(screen.getByLabelText("Blank 4, empty")).toBeInTheDocument();
+    expect(screen.getByLabelText("Blank 1, empty")).toBeInTheDocument();
+    expect(within(screen.getByTestId("bas-tray")).getByRole("button", { name: "who" })).toBeInTheDocument();
+  });
+
+  it("places nothing when a drag starts and ends inside the tray", async () => {
+    const user = userEvent.setup();
+    const onSlotsChange = vi.fn();
+    render(<ControlledTiles item={REFERENCE_ITEM} onSlotsChange={onSlotsChange} />);
+    const { tileCentre } = TILE_DRAG_LAYOUT;
+
+    // A 12 px nudge: past the 8 px activation distance, so it is a drag, but it never leaves the tray.
+    await dragTile(user, "were", { clientX: tileCentre.clientX + 12, clientY: tileCentre.clientY });
+
+    expect(onSlotsChange).not.toHaveBeenCalledWith(expect.arrayContaining([WERE]));
+    expect(screen.getByLabelText("Blank 1, empty")).toBeInTheDocument();
+    expect(within(screen.getByTestId("bas-tray")).getByRole("button", { name: "were" })).toBeInTheDocument();
+  });
+
+  it("leaves the arrangement as it was when a tile is released outside the sentence and the tray", async () => {
+    const user = userEvent.setup();
+    render(<ControlledTiles item={REFERENCE_ITEM} />);
+    await dragTile(user, "who", { blank: 2 });
+
+    await dragTile(user, "who", { clientX: 900, clientY: 600 }); // a placed tile
+    await dragTile(user, "were", { clientX: 900, clientY: 600 }); // a tray tile
+
+    expect(screen.getByTestId("bas-blank-2")).toHaveTextContent("who");
+    for (const blank of [1, 2, 4, 5, 6]) expect(screen.getByLabelText(`Blank ${blank}, empty`)).toBeInTheDocument();
+    expect(within(screen.getByTestId("bas-tray")).getByRole("button", { name: "were" })).toBeInTheDocument();
   });
 
   // The real exam places tiles by dragging and offers no tap, and tapping is a speed habit that

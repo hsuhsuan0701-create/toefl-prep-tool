@@ -4,11 +4,13 @@ import {
   KeyboardSensor,
   PointerSensor,
   closestCenter,
+  pointerWithin,
   useDraggable,
   useDroppable,
   useSensor,
   useSensors,
   type Announcements,
+  type CollisionDetection,
   type DragEndEvent,
 } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
@@ -70,6 +72,16 @@ const ANNOUNCEMENTS: Announcements = {
     over ? `Dropped ${tileTextOf(String(active.id))} on ${zoneName(String(over.id))}.` : `${tileTextOf(String(active.id))} went back.`,
   onDragCancel: ({ active }) => `Put ${tileTextOf(String(active.id))} back where it was.`,
 };
+
+/**
+ * Which zone a drag is over: the blank or tray under the pointer, and none when the pointer is over
+ * neither, so a release outside the sentence and the tray changes nothing and a press that never
+ * leaves the tray puts nothing anywhere. Nearest-centre would let a blank win over most of the
+ * tray, whose centre sits far from its ends. The keyboard sensor has no pointer, so a keyboard drag
+ * keeps the nearest-centre rule, carrying the tile 25 px per arrow press until a zone is closest.
+ */
+const zoneUnderPointer: CollisionDetection = (args) =>
+  args.pointerCoordinates ? pointerWithin(args) : closestCenter(args);
 
 const KEYBOARD_INSTRUCTIONS =
   "Press Space to pick up a tile. Use the arrow keys to move it onto a blank, then press Space to drop it, or Escape to put it back.";
@@ -146,7 +158,7 @@ export default function SentenceTiles({ item, slots, onSlotsChange, onSkip }: Se
     <div className="group space-y-5">
       <DndContext
         sensors={sensors}
-        collisionDetection={closestCenter}
+        collisionDetection={zoneUnderPointer}
         onDragEnd={handleDragEnd}
         accessibility={{ announcements: ANNOUNCEMENTS, screenReaderInstructions: { draggable: KEYBOARD_INSTRUCTIONS } }}
       >
