@@ -52,3 +52,25 @@ describe("TimedEditor clock", () => {
     expect(screen.getByRole("timer")).toHaveTextContent("1:35");
   });
 });
+
+// jsdom lays nothing out, so this reads what decides whether the guidance fits beside Submit on a
+// phone (issue #26): that nothing truncates it, so it wraps. The pixels were measured in a browser.
+describe("TimedEditor word guidance", () => {
+  it("wraps the guidance beside Submit rather than cutting off the range", () => {
+    render(
+      <TimedEditor
+        task="email"
+        materials={emailMaterials}
+        seconds={420}
+        initialText="one two three four five six seven eight nine ten eleven twelve"
+        onSubmit={vi.fn()}
+        chrome={CHROME}
+      />,
+    );
+    const footer = screen.getByRole("contentinfo");
+    const guidance = [...footer.querySelectorAll("p")].find((p) => p.textContent === "12 words · 68 short of 80–120");
+    expect(guidance).toBeDefined();
+    expect(guidance!.closest(".truncate")).toBeNull();
+    expect(screen.getByRole("button", { name: "Submit Email" })).toHaveClass("shrink-0");
+  });
+});
