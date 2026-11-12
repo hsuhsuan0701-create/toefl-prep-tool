@@ -1,7 +1,10 @@
 import { isSkippedItemScoreJson, type ItemVM } from "@toefl-prep/shared";
 import type { ScoringJobState } from "../../hooks/useScoringJob";
 import { taskTypeLabel } from "../../lib/taskTypes";
+import { Button } from "../../ui/Button";
 import { Disclosure } from "../../ui/Disclosure";
+import { asSentence } from "../../ui/format";
+import { RESCORE_FAILED } from "../../ui/labels";
 import { Notice } from "../../ui/Notice";
 import ScoringProgress from "../ScoringProgress";
 import { RescoreAction } from "./ReviewParts";
@@ -31,6 +34,25 @@ export type ScoringOutcomeProps = {
  * with an ordinary Score Report and no job over it.
  */
 export function ScoringOutcome({ item, jobView, taskBusy, canRescore, rescoreCount, onRescore, settled, discarded }: ScoringOutcomeProps) {
+  // A failed re-score of a scored Item committed nothing, and the Score Report beneath still shows
+  // the committed score, so the notice says the Re-score failed rather than that scoring did.
+  if (jobView?.status === "failed" && item.scoringStatus === "scored") {
+    return (
+      <Notice
+        tone="critical"
+        live="assertive"
+        title={RESCORE_FAILED.label}
+        action={
+          <Button size="sm" onClick={jobView.retry}>
+            Retry scoring
+          </Button>
+        }
+      >
+        {jobView.error && <p>{asSentence(jobView.error)}</p>}
+        <p>{RESCORE_FAILED.hint}</p>
+      </Notice>
+    );
+  }
   if (jobView) return <ScoringProgress job={jobView} onRetry={jobView.retry} />;
 
   const rescore = (

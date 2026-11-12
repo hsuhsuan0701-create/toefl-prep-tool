@@ -48,7 +48,7 @@ export default function EssayItemReview({
   const judges = judgesForItem(judgeReports, item.itemId);
   const cautions = report ? scoreCautions(report, judges) : [];
   const task = essayTaskFor(setSnapshot, item.itemId);
-  const inPlace = jobViewInPlaceOfItem(jobView);
+  const inPlace = jobViewInPlaceOfItem(jobView, item);
   const showReport = report && !inPlace;
 
   return (

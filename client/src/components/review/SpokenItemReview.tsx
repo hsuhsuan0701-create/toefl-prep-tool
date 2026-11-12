@@ -68,7 +68,7 @@ export default function SpokenItemReview({
   const judges = judgesForItem(judgeReports, item.itemId);
   const noSpeech = report?.noSpeechDetected === true;
   const cautions = report ? scoreCautions(report, judges) : [];
-  const inPlace = jobViewInPlaceOfItem(jobView);
+  const inPlace = jobViewInPlaceOfItem(jobView, item);
   const showReport = report !== null && !inPlace;
   const delivery = parseDeliveryReport(item.deliveryReport);
   const replaySrc = item.responseAudioPath ? `/api/audio/responses/${attemptId}/${item.itemId}.webm` : null;

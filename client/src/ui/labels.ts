@@ -494,6 +494,14 @@ export const NOT_TRANSCRIBED: StatusPresentation = {
   hint: "The recording was saved, but nothing is transcribing it, so it has no score.",
 };
 
+/** A Re-score of an Item that already had a score failed: the committed score stands (the server keeps it). */
+export const RESCORE_FAILED: StatusPresentation & { hint: string } = {
+  label: "Re-score failed",
+  tone: "critical",
+  glyph: "cross",
+  hint: "The score below still stands: nothing from the Re-score was saved.",
+};
+
 /** A Judge by its family (CONTEXT.md, Judge). */
 export const JUDGE_LABEL: Record<"gemini" | "openai", string> = { gemini: "Gemini", openai: "OpenAI" };
 
