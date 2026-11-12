@@ -12,6 +12,7 @@ import type {
 import type { AttemptRow, FullTestRunRow, ScoringJobRow } from "../db/rows.js";
 import { sqliteTimestampToIso } from "../db/timestamps.js";
 import { readPersistedEstimate, type EstimateReadStore } from "../services/sectionEstimates.js";
+import { requiredTaskTypes } from "../services/bandEstimator.js";
 import { setStore, type SetStore } from "../services/setStore.js";
 import { setTitleFor } from "../services/setTitle.js";
 
@@ -46,15 +47,31 @@ export function toAttemptVM(row: AttemptRow, setTitle: string | null): AttemptVM
 export function toAttemptListItemVM(
   row: AttemptRow,
   setTitle: string | null,
-  repo: EstimateReadStore & { getFullTestRunForAttempt(attemptId: string): FullTestRunRow | undefined },
+  repo: EstimateReadStore & ItemTaskTypesStore & { getFullTestRunForAttempt(attemptId: string): FullTestRunRow | undefined },
 ): AttemptListItemVM {
   const estimate = readPersistedEstimate(repo, row.id);
   const run = repo.getFullTestRunForAttempt(row.id);
   return {
     ...toAttemptVM(row, setTitle),
     estimate: estimate ? { band: estimate.band, method: estimate.method } : null,
+    bandExpected: bandExpected(row, repo),
     fullTestRun: run ? { id: run.id, status: run.status as FullTestRunStatus } : null,
   };
+}
+
+type ItemTaskTypesStore = { getAttempt(id: string): { items: readonly { task_type: string }[] } | undefined };
+
+/**
+ * Whether an Attempt is meant to give a Band Estimate (AttemptListItemVM.bandExpected). A Simulation
+ * always is, whatever became of it. A Drill is when it is Speaking or Writing and took every Task
+ * Type its section needs; a Drill of one Task Type gives no band by the User's own choice. Items are
+ * read only for such a Drill, so most rows cost no further query.
+ */
+function bandExpected(row: AttemptRow, repo: ItemTaskTypesStore): boolean {
+  if (row.mode === "simulation") return true;
+  if (row.kind !== "speaking" && row.kind !== "writing") return false;
+  const present = new Set((repo.getAttempt(row.id)?.items ?? []).map((item) => item.task_type));
+  return requiredTaskTypes(row.kind, null).every((taskType) => present.has(taskType));
 }
 
 export function toScoringJobVM(job: ScoringJobRow): ScoringJobVM {

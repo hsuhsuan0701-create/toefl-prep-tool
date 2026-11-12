@@ -60,6 +60,7 @@ const ONE_ATTEMPT: AttemptListVM = {
       captureFinishedAt: null,
       flagged: false,
       estimate: null,
+      bandExpected: true,
       fullTestRun: null,
     },
   ],

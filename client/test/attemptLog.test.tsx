@@ -27,6 +27,8 @@ function attempt(over: Partial<AttemptListItemVM> = {}): AttemptListItemVM {
     modulePath: null,
     routerRaw: null,
     estimate: null,
+    // A Simulation is always meant to give a band; a Drill only when it took the whole section.
+    bandExpected: (over.mode ?? "simulation") === "simulation",
     fullTestRun: null,
     ...over,
   };
@@ -75,6 +77,32 @@ describe("an Attempt row", () => {
     expect(within(drill).getByText("Completed")).toBeInTheDocument();
     expect(within(drill).getByText("Drills give no band")).toBeInTheDocument();
     expect(screen.queryByText(/in_progress|aborted/)).toBeNull();
+  });
+
+  // A completed Simulation whose scoring failed has no band; "Completed" alone would read as if it
+  // went fine. Only an Attempt meant to give a band is marked (`bandExpected`): never a Reading or
+  // Listening Drill, a Drill of one Task Type, a Repeat, an unfinished Attempt, or one with its band.
+  it("marks a completed Attempt that should have a band and has none", () => {
+    renderLog({
+      items: [
+        attempt({ id: "w-sim" }),
+        attempt({ id: "s-drill", kind: "speaking", mode: "drill", bandExpected: true }),
+        attempt({ id: "l-sim", kind: "listening", estimate: { band: 4.5, method: "table3-v1" } }),
+        attempt({ id: "r-drill", kind: "reading", mode: "drill" }),
+        attempt({ id: "w-email", kind: "writing", mode: "drill" }),
+        attempt({ id: "r-repeat", kind: "reading", isRepeat: true }),
+        attempt({ id: "s-open", kind: "speaking", status: "in_progress", completedAt: null }),
+      ],
+      total: 7,
+    });
+    const row = (name: string) => screen.getByRole("link", { name }).closest("li")!;
+    for (const name of ["Writing Simulation", "Speaking Drill"]) {
+      expect(within(row(name)).getByText("Completed")).toBeInTheDocument();
+      expect(within(row(name)).getByText("No band")).toBeInTheDocument();
+    }
+    for (const name of ["Listening Simulation", "Reading Drill", "Writing Drill", "Reading Simulation", "Speaking Simulation"]) {
+      expect(within(row(name)).queryByText("No band")).toBeNull();
+    }
   });
 
   // The flag is raised by a tab switch and by a prompt that would not play alike, so the chip says

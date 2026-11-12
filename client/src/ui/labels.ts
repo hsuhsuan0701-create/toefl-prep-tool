@@ -513,6 +513,18 @@ export const NOT_TRANSCRIBED: StatusPresentation = {
   hint: "The recording was saved, but nothing is transcribing it, so it has no score.",
 };
 
+/**
+ * A completed Attempt that was expected to give a band and has none: an Item failed, is still
+ * scoring, was never transcribed, or is missing. Beside its "Completed" status on an Attempt row, so
+ * the row stops implying all went well; the review says which Item and why.
+ */
+export const NO_BAND: StatusPresentation & { hint: string } = {
+  label: "No band",
+  tone: "caution",
+  glyph: "caution",
+  hint: "Completed without a Band Estimate: an Item is unscored or missing. Open it to see which.",
+};
+
 /** A Re-score of an Item that already had a score failed: the committed score stands (the server keeps it). */
 export const RESCORE_FAILED: StatusPresentation & { hint: string } = {
   label: "Re-score failed",

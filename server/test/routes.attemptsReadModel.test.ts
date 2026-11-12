@@ -69,9 +69,33 @@ describe("GET / — the Attempt log", () => {
       modulePath: null,
       routerRaw: null,
       estimate: null,
+      bandExpected: false,
       fullTestRun: null,
     });
     expect(page.items[0].isRepeat).toBe(true);
+  });
+
+  // The log marks a completed Attempt that should have a band and has none. A Simulation always
+  // should; a Drill only when it is Speaking or Writing and took every Task Type its section needs,
+  // since a Drill of the email alone gives no band by the User's own choice.
+  it("says which Attempts are meant to give a band", async () => {
+    const { r, app } = harness();
+    r.createAttempt({ id: "sim", kind: "writing", mode: "simulation", setId: SET_ID, isRepeat: false });
+    r.createAttempt({ id: "email-only", kind: "writing", mode: "drill", setId: SET_ID, isRepeat: false });
+    r.insertItemResult({ attemptId: "email-only", itemId: "email-1", taskType: "email" });
+    r.createAttempt({ id: "whole", kind: "writing", mode: "drill", setId: SET_ID, isRepeat: false });
+    for (const taskType of ["build_sentence", "email", "discussion"]) {
+      r.insertItemResult({ attemptId: "whole", itemId: `${taskType}-1`, taskType });
+    }
+    r.createAttempt({ id: "rd-drill", kind: "reading", mode: "drill", setId: "rd-elsewhere", isRepeat: false });
+
+    const page = await getJson<AttemptListVM>(app, "/");
+    expect(Object.fromEntries(page.items.map((a) => [a.id, a.bandExpected]))).toEqual({
+      sim: true,
+      "email-only": false,
+      whole: true,
+      "rd-drill": false,
+    });
   });
 
   it("pages with limit and offset while total keeps counting the whole log", async () => {
