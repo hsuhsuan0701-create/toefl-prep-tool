@@ -231,11 +231,11 @@ async function readCaptureFinishedHints(c: Context): Promise<CaptureFinishedHint
   return parsed.success ? { uploadFailedItemIds: parsed.data.uploadFailedItemIds } : {};
 }
 
-// Re-derives the key and Explanation (錯題解析) for every scored Reading or Listening Item of a
-// completed Attempt, walking the Set the same way scoreDeterministicItems does
-// (indexDeterministicItems). Neither field is persisted to item_results, so the review has nowhere
-// else to read them from. The caller gates this on the Attempt being completed: a Simulation's keys
-// and Explanations reach the client only after the whole Attempt is done.
+// Re-derives the key and Explanation (錯題解析) for each of `items` (Reading or Listening), walking
+// the Set the same way scoreDeterministicItems does (indexDeterministicItems). Neither field is
+// persisted to item_results, so the review has nowhere else to read them from. The caller chooses
+// the Items: all of a completed Attempt's, or only the scored ones of an unfinished or discarded
+// Drill. A Simulation's keys and Explanations reach the client only after the whole Attempt is done.
 function buildDeterministicReview(set: AnySet, items: ItemVM[]): DeterministicReviewItemVM[] | undefined {
   if (set.kind !== "reading" && set.kind !== "listening") return undefined;
   const index = indexDeterministicItems(set);
@@ -960,12 +960,22 @@ export function buildAttemptsRoutes(deps: AttemptsRouteDeps) {
         transcriptionStatuses: [...transcriptionJobs.values()].map((job) => job.status),
       });
 
-      // The key and Explanation review, for a completed Reading or Listening Attempt only, in either
-      // mode. A missing or unreadable Set omits the field rather than failing the readback.
+      // The key and Explanation review of a Reading or Listening Attempt: every Item once it is
+      // completed, in either mode. A Drill that is unfinished or discarded gets it for its scored
+      // Items only, each of which its own score response has already shown with its key and
+      // Explanation; an Item it never scored, and an unfinished Simulation, get nothing (CLAUDE.md,
+      // "Sets and answers"). A missing or unreadable Set omits the field rather than failing the
+      // readback.
+      const reviewItems =
+        attempt.status === "completed" ? items : attempt.mode === "drill" ? items.filter((item) => item.scoringStatus === "scored") : [];
       let deterministicReview: DeterministicReviewItemVM[] | undefined;
-      if (set && attempt.status === "completed" && (attempt.kind === "reading" || attempt.kind === "listening")) {
+      if (
+        set &&
+        (attempt.status === "completed" || reviewItems.length > 0) &&
+        (attempt.kind === "reading" || attempt.kind === "listening")
+      ) {
         try {
-          deterministicReview = buildDeterministicReview(set, items);
+          deterministicReview = buildDeterministicReview(set, reviewItems);
         } catch (err) {
           // Two Items sharing an id: either key could be shown against either Response, so the
           // review is left out rather than risk teaching a wrong answer.

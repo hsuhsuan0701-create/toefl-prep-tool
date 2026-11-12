@@ -140,14 +140,14 @@ describe("a completed Reading Attempt", () => {
   });
 });
 
-describe("a Reading Attempt still in progress", () => {
+describe("a Reading Simulation still in progress", () => {
   // The Response is named as the run showed it, by letter and text: the User picked that option, so
   // it is no key. The stem, the other options, the key and the Explanation still wait for completion.
   it("names the Response by its letter and text, and shows nothing the review withholds", async () => {
     const base = readingDetail();
     await renderReview({
       ...base,
-      attempt: { ...base.attempt, status: "in_progress", completedAt: null },
+      attempt: { ...base.attempt, mode: "simulation", status: "in_progress", completedAt: null },
       bandStatus: { status: "unfinished" },
       deterministicReview: undefined,
     });
@@ -171,7 +171,7 @@ describe("a Reading Attempt still in progress", () => {
     const base = readingDetail();
     await renderReview({
       ...base,
-      attempt: { ...base.attempt, status: "in_progress", completedAt: null },
+      attempt: { ...base.attempt, mode: "simulation", status: "in_progress", completedAt: null },
       items: [scored("q1", "daily_life", false, "lcr-r1-y")],
       bandStatus: { status: "unfinished" },
       deterministicReview: undefined,
@@ -186,7 +186,7 @@ describe("a Reading Attempt still in progress", () => {
     const base = readingDetail();
     await renderReview({
       ...base,
-      attempt: { ...base.attempt, status: "in_progress", completedAt: null },
+      attempt: { ...base.attempt, mode: "simulation", status: "in_progress", completedAt: null },
       items: [scored("q1", "daily_life", false, "o3")],
       bandStatus: { status: "unfinished" },
       deterministicReview: undefined,
@@ -202,7 +202,7 @@ describe("a Reading Attempt still in progress", () => {
     const base = readingDetail();
     await renderReview({
       ...base,
-      attempt: { ...base.attempt, status: "in_progress", completedAt: null },
+      attempt: { ...base.attempt, mode: "simulation", status: "in_progress", completedAt: null },
       bandStatus: { status: "unfinished" },
       deterministicReview: undefined,
     });
@@ -261,13 +261,14 @@ describe("a Listening Simulation still in progress", () => {
   });
 });
 
-describe("a discarded Reading Attempt", () => {
-  // The server builds the key review only for a completed Attempt, and a discard is never undone.
+describe("a discarded Reading Simulation", () => {
+  // The server builds a Simulation's key review only once it is completed, and a discard is never
+  // undone.
   it("says its key and Explanations are not shown, rather than promising them", async () => {
     const base = readingDetail();
     await renderReview({
       ...base,
-      attempt: { ...base.attempt, status: "aborted", completedAt: null },
+      attempt: { ...base.attempt, mode: "simulation", status: "aborted", completedAt: null },
       bandStatus: { status: "discarded" },
       deterministicReview: undefined,
     });
@@ -414,7 +415,7 @@ describe("a completed Reading Attempt's Stimuli", () => {
 
   it("shows none of it while the Attempt is unfinished", async () => {
     const base = textsDetail();
-    await renderReview({ ...base, attempt: { ...base.attempt, status: "in_progress", completedAt: null }, bandStatus: { status: "unfinished" }, deterministicReview: undefined });
+    await renderReview({ ...base, attempt: { ...base.attempt, mode: "simulation", status: "in_progress", completedAt: null }, bandStatus: { status: "unfinished" }, deterministicReview: undefined });
     expect(screen.getByTestId("item-g2")).toHaveTextContent("Your Response: grass");
     expect(screen.queryByTestId("gap-g2")).toBeNull();
     expect(screen.queryByText(/crews haul/)).toBeNull();
@@ -425,7 +426,7 @@ describe("a completed Reading Attempt's Stimuli", () => {
 
   it("shows none of it for a discarded Attempt", async () => {
     const base = textsDetail();
-    await renderReview({ ...base, attempt: { ...base.attempt, status: "aborted", completedAt: null }, bandStatus: { status: "discarded" }, deterministicReview: undefined });
+    await renderReview({ ...base, attempt: { ...base.attempt, mode: "simulation", status: "aborted", completedAt: null }, bandStatus: { status: "discarded" }, deterministicReview: undefined });
     expect(screen.queryByTestId("gap-g1")).toBeNull();
     expect(screen.queryByText(/crews haul/)).toBeNull();
     expect(screen.queryByText(/Can you drive me|Beavers build dams/)).toBeNull();
@@ -557,7 +558,7 @@ describe("a completed Listening Attempt's Stimuli", () => {
 
   const unfinished: [string, Partial<AttemptDetailVM>][] = [
     ["an unfinished Simulation", { attempt: { ...listeningDetail().attempt, mode: "simulation", status: "in_progress", completedAt: null }, bandStatus: { status: "unfinished" } }],
-    ["a discarded Attempt", { attempt: { ...listeningDetail().attempt, status: "aborted", completedAt: null }, bandStatus: { status: "discarded" } }],
+    ["a discarded Simulation", { attempt: { ...listeningDetail().attempt, mode: "simulation", status: "aborted", completedAt: null }, bandStatus: { status: "discarded" } }],
   ];
   for (const [label, over] of unfinished) {
     it(`gains nothing for ${label}`, async () => {
@@ -568,4 +569,77 @@ describe("a completed Listening Attempt's Stimuli", () => {
       expect(screen.getByTestId("item-cq1")).toHaveTextContent("Your Response: A. To sell a bicycle");
     });
   }
+});
+
+// Issue #52: an unfinished or discarded Drill's review shows, for each Item it scored, what the
+// Drill already showed when it was checked: the stem, every option, the key and the Explanation,
+// and the Stimulus with them. The server sends the review for those Items only, so an Item never
+// scored shows nothing more than before.
+function unscored(itemId: string, taskType: string): ItemVM {
+  return { ...scored(itemId, taskType, false, ""), score: null, scoreJson: null, scoringStatus: "pending" };
+}
+
+describe("an unfinished or discarded Drill's scored Items", () => {
+  beforeEach(() => {
+    vi.mocked(getSet).mockResolvedValue(SERVED_READING_TEXTS as never);
+  });
+
+  const states: [string, "in_progress" | "aborted", "unfinished" | "discarded"][] = [
+    ["unfinished", "in_progress", "unfinished"],
+    ["discarded", "aborted", "discarded"],
+  ];
+  for (const [label, status, band] of states) {
+    it(`a ${label} Reading Drill shows stem, options, key and Explanation for a scored Item, and nothing for one never scored`, async () => {
+      const base = textsDetail();
+      await renderReview({
+        ...base,
+        attempt: { ...base.attempt, mode: "drill", status, completedAt: null },
+        bandStatus: { status: band },
+        items: [
+          scored("g1", "complete_words", true, "th"),
+          scored("g2", "complete_words", false, "ass"),
+          scored("g3", "complete_words", false, ""),
+          scored("q1", "daily_life", false, "a"),
+          unscored("q2", "academic_passage"),
+          unscored("q3", "academic_passage"),
+        ],
+        deterministicReview: base.deterministicReview!.filter((r) => ["g1", "g2", "g3", "q1"].includes(r.itemId)),
+      });
+
+      const q1 = screen.getByTestId("item-q1");
+      expect(q1).toHaveTextContent("Why does Mia write?");
+      expect(q1).toHaveTextContent("Key: B. To ask for a ride");
+      expect(within(within(q1).getByRole("radiogroup", { name: "Options" })).getAllByRole("radio")).toHaveLength(4);
+      expect(within(q1).getByText("她想搭便車。")).toBeInTheDocument();
+      // The text it was asked about, and the filled-in passage, as a completed review shows them.
+      expect(within(screen.getByRole("region", { name: "Text-message chain" })).getByText("The text")).toBeInTheDocument();
+      expect(screen.getByTestId("gap-g2")).toHaveTextContent("Item 2: grass Incorrect The word is gravel");
+
+      // The passage nobody checked: no text, no stem, no key, no Explanation, no options.
+      const academic = screen.getByRole("region", { name: "Beavers as engineers" });
+      expect(within(academic).queryByText("The passage")).toBeNull();
+      expect(academic).not.toHaveTextContent(/What do the ponds store\?|Key:|沉積物。|水壩。/);
+      expect(within(academic).queryByRole("radiogroup")).toBeNull();
+      // The review is there, so the page does not say it is withheld.
+      expect(screen.queryByText(/appear once this Attempt is complete|so its key and Explanations are not shown/)).toBeNull();
+    });
+  }
+
+  it("an unfinished Listening Drill can replay a scored Stimulus, and nothing it did not score", async () => {
+    const { container } = await renderListeningReview(
+      listeningDetail({
+        attempt: { ...listeningDetail().attempt, mode: "drill", status: "in_progress", completedAt: null },
+        bandStatus: { status: "unfinished" },
+        items: [scored("lc-1", "listen_choose", false, "l2"), unscored("lc-2", "listen_choose"), scored("cq1", "conversation", false, "o1"), unscored("aq1", "announcement")],
+        deterministicReview: listeningDetail().deterministicReview!.filter((r) => r.itemId === "lc-1" || r.itemId === "cq1"),
+      }),
+    );
+    expect(srcOf(screen.getByTestId("item-lc-1"))).toEqual(["/api/audio/stimuli/lsn-1/lc-1.mp3"]);
+    expect(srcOf(screen.getByRole("region", { name: "A campus mailroom" }))).toEqual(["/api/audio/stimuli/lsn-1/conv-1.mp3"]);
+    expect(container.querySelectorAll("audio")).toHaveLength(2);
+    expect(srcOf(screen.getByTestId("item-lc-2"))).toEqual([]);
+    expect(srcOf(screen.getByRole("region", { name: "A dormitory" }))).toEqual([]);
+    expect(within(screen.getByTestId("item-cq1")).getByRole("radiogroup", { name: "Options" })).toBeInTheDocument();
+    expect(container.textContent).not.toContain("Did we run out of coffee?");
+  });
 });

@@ -377,9 +377,11 @@ describe("GET /:id — deterministicReview for Listening", () => {
     await postScore(app, attemptId, { taskType: "announcement", items: [{ itemId: "ann-1-q1", selectedOptionId: "c" }] }); // correct
     await postScore(app, attemptId, { taskType: "academic_talk", items: [{ itemId: "talk-1-q1", selectedOptionId: "b" }] }); // correct
 
+    // An unfinished Drill already carries its scored Items' review, the transcript rule included.
     const before = await app.request(`/${attemptId}`);
-    const beforeBody = (await before.json()) as { deterministicReview?: unknown };
-    expect(beforeBody.deterministicReview).toBeUndefined();
+    const beforeBody = (await before.json()) as { deterministicReview?: Array<{ itemId: string; key?: string; transcript?: string }> };
+    expect(beforeBody.deterministicReview!.map((i) => i.itemId).sort()).toEqual(["ann-1-q1", "conv-1-q1", "conv-1-q2", "lcr-1", "talk-1-q1"]);
+    expect(Object.hasOwn(beforeBody.deterministicReview!.find((i) => i.itemId === "lcr-1")!, "transcript")).toBe(false);
 
     const completeRes = await postComplete(app, attemptId);
     expect(completeRes.status).toBe(200);
@@ -417,5 +419,15 @@ describe("GET /:id — deterministicReview for Listening", () => {
       transcript:
         "Today we will look at how tidal pools support a surprising range of organisms despite their harsh, constantly changing conditions.",
     });
+  });
+
+  it("is absent for an unfinished Simulation that has scored Items: keys wait for completion", async () => {
+    const { app } = buildTestApp();
+    const { attemptId } = await createAttempt(app, { kind: "listening", mode: "simulation", setId: SET_ID });
+    const scored = await postScore(app, attemptId, { taskType: "listen_choose", items: [{ itemId: "lcr-1", selectedOptionId: "a" }] });
+    expect(scored.status).toBe(200);
+    const body = (await (await app.request(`/${attemptId}`)).json()) as { items: { itemId: string }[]; deterministicReview?: unknown };
+    expect(body.items.map((i) => i.itemId)).toContain("lcr-1");
+    expect(body).not.toHaveProperty("deterministicReview");
   });
 });

@@ -246,9 +246,10 @@ export type BuildSentenceScoreVM =
   | { taskType: "build_sentence"; items: BuildSentenceDrillScoreItemVM[] }
   | { taskType: "build_sentence"; items: BuildSentenceSimulationScoreItemVM[] };
 
-// One reviewable Reading/Listening Item of a completed Attempt: its key and Explanation (錯題解析),
-// re-derived from the Set. They are never stored, and before the Attempt completes only a Drill's own
-// inline score response shows them. `correct` is read from item_results.score, not from what the client
+// One reviewable Reading/Listening Item: its key and Explanation (錯題解析), re-derived from the Set.
+// They are never stored. Sent for every Item of a completed Attempt, and for the scored Items of an
+// unfinished or discarded Drill (whose own score response already showed them); never for an
+// unfinished Simulation. `correct` is read from item_results.score, not from what the client
 // submitted.
 export interface DeterministicReviewItemVM {
   itemId: string;

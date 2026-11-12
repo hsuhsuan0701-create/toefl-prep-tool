@@ -756,18 +756,57 @@ describe("a routed Simulation finished before its second Module", () => {
   });
 });
 
-// GET /:id attaches deterministicReview (each scored Item's key and 錯題解析, re-derived from the
-// Set) only once the Attempt is completed: before that, no key or Explanation reaches the client.
+// GET /:id attaches deterministicReview (each Item's key and 錯題解析, re-derived from the Set) for
+// every Item once the Attempt is completed. Before that, a Drill gets it for the Items it has
+// scored (its own score responses showed them already), and a Simulation gets none: its keys and
+// Explanations reach the client only after the Attempt completes.
 describe("GET /:id — deterministicReview", () => {
-  it("is absent while the attempt is still in_progress, and attaches key + 錯題解析 once completed", async () => {
+  it("is absent for an in-progress Drill with nothing scored, and for an unfinished Simulation", async () => {
     const { app } = buildTestApp();
+    const { attemptId: drillId } = await createAttempt(app, { kind: "reading", mode: "drill", setId: SET_ID });
+    const drillBody = (await (await app.request(`/${drillId}`)).json()) as { deterministicReview?: unknown };
+    expect(drillBody).not.toHaveProperty("deterministicReview");
+
+    const { attemptId: simId } = await createAttempt(app, { kind: "reading", mode: "simulation", setId: SET_ID });
+    const scored = await postScore(app, simId, { taskType: "daily_life", items: [{ itemId: "dl-1-q1", selectedOptionId: "b" }] });
+    expect(scored.status).toBe(200);
+    const simBody = (await (await app.request(`/${simId}`)).json()) as AttemptDetailVM;
+    expect(simBody.items.map((item) => item.itemId)).toContain("dl-1-q1");
+    expect(simBody).not.toHaveProperty("deterministicReview");
+
+    // A discarded Simulation stays without it too.
+    expect((await app.request(`/${simId}/abort`, { method: "POST" })).status).toBe(200);
+    const abortedBody = (await (await app.request(`/${simId}`)).json()) as AttemptDetailVM;
+    expect(abortedBody.attempt.status).toBe("aborted");
+    expect(abortedBody).not.toHaveProperty("deterministicReview");
+  });
+
+  it("covers an unfinished Drill's scored Items only, and every Item once completed", async () => {
+    const { app, repo } = buildTestApp();
     const { attemptId } = await createAttempt(app, { kind: "reading", mode: "drill", setId: SET_ID });
     await postScore(app, attemptId, { taskType: "daily_life", items: [{ itemId: "dl-1-q1", selectedOptionId: "b" }] }); // wrong (key is "a")
     await postScore(app, attemptId, { taskType: "complete_words", items: [{ itemId: "ctw-1-g1", typed: "ght" }] }); // correct
+    // An Item of the Set that has a row but no score: its key and Explanation were never shown.
+    const unscored = READING_FIXTURE.router.academic[0].questions[0].id;
+    repo.insertItemResult({ attemptId, itemId: unscored, taskType: "academic_passage", scoringStatus: "pending" });
 
     const before = await app.request(`/${attemptId}`);
-    const beforeBody = (await before.json()) as { deterministicReview?: unknown };
-    expect(beforeBody.deterministicReview).toBeUndefined();
+    const beforeBody = (await before.json()) as AttemptDetailVM;
+    expect(beforeBody.attempt.status).toBe("in_progress");
+    expect(beforeBody.items.map((item) => item.itemId)).toContain(unscored);
+    expect(beforeBody.deterministicReview!.map((i) => i.itemId).sort()).toEqual(["ctw-1-g1", "dl-1-q1"]);
+    const reviewBefore = new Map(beforeBody.deterministicReview!.map((i) => [i.itemId, i]));
+    expect(reviewBefore.get("dl-1-q1")).toMatchObject({ taskType: "daily_life", correct: false, key: "a" });
+    expect(reviewBefore.get("dl-1-q1")!.explanationZh).toMatch(/題目/);
+    expect(JSON.stringify(beforeBody)).not.toContain(READING_FIXTURE.router.academic[0].questions[0].explanationZh);
+
+    // The same holds once the Drill is discarded: what it scored stays reviewable.
+    const { attemptId: discardedId } = await createAttempt(app, { kind: "reading", mode: "drill", setId: SET_ID });
+    await postScore(app, discardedId, { taskType: "daily_life", items: [{ itemId: "dl-1-q1", selectedOptionId: "a" }] });
+    expect((await app.request(`/${discardedId}/abort`, { method: "POST" })).status).toBe(200);
+    const discarded = (await (await app.request(`/${discardedId}`)).json()) as AttemptDetailVM;
+    expect(discarded.attempt.status).toBe("aborted");
+    expect(discarded.deterministicReview).toEqual([expect.objectContaining({ itemId: "dl-1-q1", correct: true, key: "a" })]);
 
     const completeRes = await postComplete(app, attemptId);
     expect(completeRes.status).toBe(200);

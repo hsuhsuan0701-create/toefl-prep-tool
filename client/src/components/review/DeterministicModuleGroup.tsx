@@ -66,12 +66,17 @@ const OPTION_NOT_SHOWN = "An option that can no longer be shown";
 export type DeterministicModuleGroupProps = {
   items: IndexedItem[];
   setSnapshot: AttemptSetSnapshot | null;
-  /** The key and Explanation per Item, present only once the Attempt is complete. */
+  /**
+   * The key and Explanation per Item: every Item of a completed Attempt, and only the scored Items
+   * of an unfinished or discarded Drill (which already showed them). None for an unfinished
+   * Simulation.
+   */
   reviewByItemId: ReadonlyMap<string, DeterministicReviewItemVM>;
   /**
    * Show each Stimulus under its heading, its text (Reading) or a control to play it again
-   * (Listening): only for a completed Attempt, the one whose keys and Explanations have reached the
-   * client. An unfinished or discarded Attempt's review shows the Items alone.
+   * (Listening): for a completed Attempt, the one whose keys and Explanations have all reached the
+   * client. Otherwise only a Stimulus with a reviewed Item shows it (a Drill's scored Stimulus,
+   * whose review the server sends); the rest show the Items alone.
    */
   showStimulus: boolean;
 };
@@ -103,10 +108,11 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
         const transcript =
           run.taskType === "listen_choose" ? undefined : run.items.map(({ item }) => reviewByItemId.get(item.itemId)?.transcript).find((t) => t !== undefined);
         const headingId = `${run.key}-${run.items[0].item.itemId}`;
-        const content = showStimulus && run.stimulusId !== null ? stimulusContentFor(setSnapshot, run.stimulusId) : undefined;
+        const shows = showStimulus || run.items.some(({ item }) => reviewByItemId.has(item.itemId));
+        const content = shows && run.stimulusId !== null ? stimulusContentFor(setSnapshot, run.stimulusId) : undefined;
         // A Listen and Choose a Response run has no one Stimulus (each Item is its own), so its
         // replay is on each Item's row instead.
-        const audio = showStimulus && run.stimulusId !== null ? stimulusAudioFor(setSnapshot, run.stimulusId) : undefined;
+        const audio = shows && run.stimulusId !== null ? stimulusAudioFor(setSnapshot, run.stimulusId) : undefined;
         return (
           <Card key={headingId} as="section" padding="none" aria-labelledby={headingId} className="min-w-0">
             <header className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-rule px-4 py-3">
@@ -148,7 +154,9 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
                   position={position}
                   question={questionFor(setSnapshot, item.itemId)}
                   review={reviewByItemId.get(item.itemId)}
-                  replayAudio={showStimulus && item.taskType === "listen_choose" ? stimulusAudioFor(setSnapshot, item.itemId) : undefined}
+                  replayAudio={
+                    (showStimulus || reviewByItemId.has(item.itemId)) && item.taskType === "listen_choose" ? stimulusAudioFor(setSnapshot, item.itemId) : undefined
+                  }
                 />
               ))}
             </ol>
@@ -171,7 +179,7 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
 /**
  * One Reading or Listening Item: the User's Response, the key when it differs, and the Explanation
  * (錯題解析). The question's stem and the key are shown only beside a review — i.e. once the
- * Attempt is complete. The Response is written out as the run showed it, letter and text, whether
+ * Attempt is complete, or for an Item a Drill has scored. The Response is written out as the run showed it, letter and text, whether
  * or not the Attempt is complete: the User picked that option, so it is no key, and nothing else of
  * the question comes with it. A Complete the Words prefix is the same: the User saw it in the
  * passage. A Listen and Choose a Response utterance is never shown as text at all; the server does
