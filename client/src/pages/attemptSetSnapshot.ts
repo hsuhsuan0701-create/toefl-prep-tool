@@ -99,6 +99,12 @@ export type AttemptSetSnapshot = Readonly<{
    * in the Set. Read through {@link spokenNumberFor}.
    */
   spokenNumbersByItemId: Readonly<Record<string, number>>;
+  /**
+   * Each Listen and Repeat sentence's and Interview question's prompt audio by id: the clip the run
+   * played, so a review can play it again beside the recording. Audio only: the served Set carries
+   * neither the sentence nor the question as text. Read through {@link spokenPromptAudioFor}.
+   */
+  spokenPromptAudioByItemId: Readonly<Record<string, string>>;
 }>;
 
 export function snapshotAttemptSet(setId: string, value: unknown): AttemptSetSnapshot {
@@ -112,6 +118,7 @@ export function snapshotAttemptSet(setId: string, value: unknown): AttemptSetSna
     questionsByItemId,
     essayTasksByItemId: snapshotEssayTasks(set),
     spokenNumbersByItemId: snapshotSpokenNumbers(set),
+    spokenPromptAudioByItemId: snapshotSpokenPromptAudio(set),
   });
 }
 
@@ -141,6 +148,14 @@ export function essayTaskFor(snapshot: AttemptSetSnapshot | null, itemId: string
  */
 export function spokenNumberFor(snapshot: AttemptSetSnapshot | null, itemId: string): number | undefined {
   return snapshot ? ownEntry(snapshot.spokenNumbersByItemId, itemId) : undefined;
+}
+
+/**
+ * A spoken Item's prompt audio path under /api/audio/ (its own sentence or question, never the
+ * Interview's introduction), or undefined without a snapshot or for an id the Set does not carry.
+ */
+export function spokenPromptAudioFor(snapshot: AttemptSetSnapshot | null, itemId: string): string | undefined {
+  return snapshot ? ownEntry(snapshot.spokenPromptAudioByItemId, itemId) : undefined;
 }
 
 /** A Build a Sentence Item's prompt as served today, or undefined. */
@@ -238,6 +253,18 @@ function snapshotSpokenNumbers(set: UntrustedServedSet): Readonly<Record<string,
     list.forEach((item: { id?: unknown } | null | undefined, i) => {
       if (typeof item?.id === "string") byId[item.id] = i + 1;
     });
+  }
+  return Object.freeze(byId);
+}
+
+function snapshotSpokenPromptAudio(set: UntrustedServedSet): Readonly<Record<string, string>> {
+  if (set.kind !== "speaking") return Object.freeze({});
+  const byId: Record<string, string> = {};
+  for (const list of [set.listenAndRepeat?.items, set.interview?.questions]) {
+    if (!Array.isArray(list)) continue;
+    for (const item of list as ({ id?: unknown; audio?: unknown } | null | undefined)[]) {
+      if (typeof item?.id === "string" && typeof item.audio === "string" && item.audio !== "") byId[item.id] = item.audio;
+    }
   }
   return Object.freeze(byId);
 }

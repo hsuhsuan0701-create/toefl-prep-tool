@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildSentenceComposition, sentenceFrameFor, snapshotAttemptSet } from "../src/pages/attemptSetSnapshot";
+import { buildSentenceComposition, sentenceFrameFor, snapshotAttemptSet, spokenPromptAudioFor } from "../src/pages/attemptSetSnapshot";
 
 // What GET /api/sets/:id serves for a Writing Set: stripAnswers drops `answers` (and
 // `generationPlan`) and keeps everything else, `frame` included, so the frame reaches the client on
@@ -118,6 +118,46 @@ describe("snapshotAttemptSet — the Listen and Repeat scene it already carried"
     expect(snapshotAttemptSet("wri-ref", writingSet).scene).toBeNull();
     expect(snapshotAttemptSet("spk-2", { kind: "speaking", listenAndRepeat: { items: [] } }).scene).toBeNull();
     expect(snapshotAttemptSet("spk-3", null).scene).toBeNull();
+  });
+});
+
+// What GET /api/sets/:id serves for a Speaking Set: each sentence's and question's audio, with the
+// `sentence` and `question` text stripped. Review plays the audio again; it never has the text.
+describe("spokenPromptAudioFor — a spoken Item's prompt to play again", () => {
+  const served = {
+    id: "spk-1",
+    kind: "speaking",
+    listenAndRepeat: {
+      introAudio: "stimuli/spk-1/intro.mp3",
+      items: [
+        { id: "lr-1", audio: "stimuli/spk-1/lr-1.mp3", responseWindowSec: 8 },
+        { id: "lr-2", audio: "stimuli/spk-1/lr-2.mp3", responseWindowSec: 8 },
+      ],
+    },
+    interview: {
+      introAudio: "stimuli/spk-1/interview-intro.mp3",
+      questions: [
+        { id: "int-1", audio: "stimuli/spk-1/int-1.mp3", responseWindowSec: 45 },
+        { id: "int-2", audio: "stimuli/spk-1/int-2.mp3", responseWindowSec: 45 },
+      ],
+    },
+  };
+
+  it("maps each sentence and each question to its own clip, never the introduction", () => {
+    const snapshot = snapshotAttemptSet("spk-1", served);
+    expect(spokenPromptAudioFor(snapshot, "lr-2")).toBe("stimuli/spk-1/lr-2.mp3");
+    expect(spokenPromptAudioFor(snapshot, "int-1")).toBe("stimuli/spk-1/int-1.mp3");
+    expect(Object.values(snapshot.spokenPromptAudioByItemId)).not.toContain("stimuli/spk-1/interview-intro.mp3");
+  });
+
+  it("has nothing without a readable Set, for an unknown or inherited id, or for a malformed Item", () => {
+    expect(spokenPromptAudioFor(null, "lr-1")).toBeUndefined();
+    const snapshot = snapshotAttemptSet("spk-1", served);
+    expect(spokenPromptAudioFor(snapshot, "lr-9")).toBeUndefined();
+    expect(spokenPromptAudioFor(snapshot, "constructor")).toBeUndefined();
+    const malformed = snapshotAttemptSet("spk-2", { kind: "speaking", listenAndRepeat: { items: [{ id: "lr-1" }, null, { id: "lr-3", audio: 7 }] }, interview: { questions: "nope" } });
+    expect(malformed.spokenPromptAudioByItemId).toEqual({});
+    expect(snapshotAttemptSet("wri-ref", writingSet).spokenPromptAudioByItemId).toEqual({});
   });
 });
 

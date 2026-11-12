@@ -157,7 +157,9 @@ describe("spoken Item numbers in Attempt review", () => {
     const sentences = screen.getByRole("region", { name: "Listen and Repeat" });
     await waitFor(() => expect(titles(sentences)).toEqual(["Sentence 2", "Sentence 3"]));
     expect(players(sentences)).toEqual([
+      ["The sentence you heard, Sentence 2", "/api/audio/lr-2.mp3"],
       ["Your recording, Listen and Repeat 2", "/api/audio/responses/att-1/lr-2.webm"],
+      ["The sentence you heard, Sentence 3", "/api/audio/lr-3.mp3"],
       ["Your recording, Listen and Repeat 3", "/api/audio/responses/att-1/lr-3.webm"],
     ]);
     expect(titles(screen.getByRole("region", { name: "Interview" }))).toEqual(["Question 1", "Question 3"]);
@@ -176,6 +178,81 @@ describe("spoken Item numbers in Attempt review", () => {
     const sentences = screen.getByRole("region", { name: "Listen and Repeat" });
     expect(titles(sentences)).toEqual(["Sentence 1", "Sentence 2"]);
     expect(players(sentences).map(([name]) => name)).toEqual(["Your recording, Listen and Repeat 1", "Your recording, Listen and Repeat 2"]);
+  });
+});
+
+// A spoken Item's prompt, played again beside the recording once the Attempt is over, whether or not
+// the Item was scored. Audio only: the served Set carries neither the sentence nor the question.
+describe("a spoken Item's prompt audio in Attempt review", () => {
+  const players = (card: HTMLElement) =>
+    Array.from(card.querySelectorAll("audio")).map((a) => [a.getAttribute("aria-label"), a.getAttribute("src")]);
+  const withInterview = {
+    ...SERVED_SPEAKING,
+    interview: {
+      ...SERVED_SPEAKING.interview,
+      introAudio: "int-intro.mp3",
+      questions: [1, 2, 3, 4].map((n) => ({ id: `int-${n}`, audio: `int-${n}.mp3`, responseWindowSec: 45 })),
+    },
+  };
+  const scored = (itemId: string, taskType: "listen_repeat" | "interview", meta: Record<string, unknown>) =>
+    item({
+      itemId,
+      taskType,
+      transcript: "we open at six",
+      responseAudioPath: `responses/att-1/${itemId}.webm`,
+      scoringStatus: "scored",
+      score: 4,
+      scoreJson: { itemId, taskType, finalScore: 4, maxScore: 5, dimensions: [], deductions: [], feedbackZh: "好", meta },
+    });
+  const untranscribed = item({
+    itemId: "int-2",
+    taskType: "interview",
+    responseAudioPath: "responses/att-1/int-2.webm",
+    scoringStatus: "failed",
+    scoreJson: { error: "transcription failed" },
+    transcriptionJob: { jobId: "tj-1", status: "failed", automaticAttempts: 1, nextRetryAt: null, failureKind: "configuration", error: null, scoreJobId: null },
+  });
+
+  it("offers a scored sentence's and a scored question's prompt beside the recording, labelled apart", async () => {
+    vi.mocked(getSet).mockResolvedValue(withInterview as never);
+    await renderReview(speaking([scored("lr-1", "listen_repeat", { target: "We open at six." }), scored("int-1", "interview", { question: "What do you study?" })]));
+    await waitFor(() => expect(players(screen.getByTestId("item-lr-1"))[0]).toEqual(["The sentence you heard, Sentence 1", "/api/audio/lr-1.mp3"]));
+    expect(players(screen.getByTestId("item-lr-1"))).toEqual([
+      ["The sentence you heard, Sentence 1", "/api/audio/lr-1.mp3"],
+      ["Your recording, Listen and Repeat 1", "/api/audio/responses/att-1/lr-1.webm"],
+    ]);
+    expect(players(screen.getByTestId("item-int-1"))).toEqual([
+      ["The question you heard, Question 1", "/api/audio/int-1.mp3"],
+      ["Your recording, Interview 1", "/api/audio/responses/att-1/int-1.webm"],
+    ]);
+    expect(within(screen.getByTestId("item-int-1")).getByText("The question you heard")).toBeInTheDocument();
+  });
+
+  it("offers the question of an Item whose transcription failed, and adds no text of it", async () => {
+    vi.mocked(getSet).mockResolvedValue(withInterview as never);
+    await renderReview(speaking([untranscribed]));
+    const card = screen.getByTestId("item-int-2");
+    await waitFor(() => expect(players(card)).toEqual([
+      ["The question you heard, Question 2", "/api/audio/int-2.mp3"],
+      ["Your recording, Interview 2", "/api/audio/responses/att-1/int-2.webm"],
+    ]));
+    // The served Set has no question text to add, and the card shows no heading for one.
+    expect(within(card).queryByText("The question")).not.toBeInTheDocument();
+  });
+
+  it("offers no prompt before the Attempt completes", async () => {
+    vi.mocked(getSet).mockResolvedValue(withInterview as never);
+    const body = speaking([scored("lr-1", "listen_repeat", { target: "We open at six." }), untranscribed]);
+    await renderReview({ ...body, attempt: { ...body.attempt, status: "in_progress", completedAt: null } });
+    await waitFor(() => expect(screen.getByRole("heading", { name: "Question 2" })).toBeInTheDocument());
+    expect(players(screen.getByTestId("item-lr-1")).map(([name]) => name)).toEqual(["Your recording, Listen and Repeat 1"]);
+    expect(players(screen.getByTestId("item-int-2")).map(([name]) => name)).toEqual(["Your recording, Interview 2"]);
+  });
+
+  it("renders as before when the Set cannot be read", async () => {
+    vi.mocked(getSet).mockRejectedValue(new Error("404: not found"));
+    await renderReview(speaking([untranscribed]));
+    expect(players(screen.getByTestId("item-int-2"))).toEqual([["Your recording, Interview 1", "/api/audio/responses/att-1/int-2.webm"]]);
   });
 });
 

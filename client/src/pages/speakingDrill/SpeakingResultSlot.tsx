@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, type ReactNode } from "react";
 import { scoreTask } from "../../lib/api";
 import { TASK_TYPES } from "../../lib/taskTypes";
 import { scoringInterrupted } from "../../lib/progressUtils";
@@ -8,12 +8,16 @@ import SceneImage from "../../components/SceneImage";
 import { ScoreCautionChips, ScoreCautionNotes, ScoreReport } from "../../components/ScoreCard";
 import { scoreCautions } from "../../components/scoreCautions";
 import { ItemCard } from "../../components/review/ReviewParts";
+import { SpokenPromptAudio } from "../../components/review/SpokenPromptAudio";
 import ScoringProgress from "../../components/ScoringProgress";
 import TranscriptDiff from "../../components/TranscriptDiff";
+import type { RunnableItem } from "../../components/ItemRecorder";
 import { ScoreFigure } from "../../ui/BandFigure";
+import { StatusChip } from "../../ui/Chip";
 import { Kicker, SectionHeader } from "../../ui/Heading";
 import { Notice } from "../../ui/Notice";
 import { Prose } from "../../ui/Prose";
+import { ITEM_SCORING_STATUS, type StatusPresentation } from "../../ui/labels";
 import {
   judgesForItem,
   type SpeakingScoreResult,
@@ -88,17 +92,88 @@ export default function SpeakingResultSlot({
     return <CompletedSpeakingStage spec={spec} result={job.result as SpeakingScoreResult} attemptId={attemptId} />;
   }
 
+  // A job that ended without scores still leaves each Item's prompt and recording to listen to: the
+  // Drill is over, and nothing else on this screen says what those recordings answered.
+  const unscored = job.status === "failed" || scoringInterrupted(job.status, job.cancellationReason);
   return (
     <section aria-label={title} className="space-y-4">
       <SectionHeader title={title} />
       <ScoringProgress job={job} onRetry={handleRetry} section="speaking" />
+      {unscored && (
+        <div className="space-y-6">
+          {items.map((item, i) => (
+            <UnscoredSpokenItem
+              key={item.id}
+              item={item}
+              kind={kind}
+              number={spec.numberByItemId[item.id] ?? i + 1}
+              total={Object.keys(spec.numberByItemId).length || items.length}
+              attemptId={attemptId}
+              status={ITEM_SCORING_STATUS.failed}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 }
 
 /**
+ * One spoken Item of the Drill with no score on this screen (its scoring failed, or its recording
+ * went to background transcription): its prompt to play again, and the User's recording.
+ */
+export function UnscoredSpokenItem({
+  item,
+  kind,
+  number,
+  total,
+  attemptId,
+  status,
+  kickerPrefix,
+  children,
+}: {
+  item: RunnableItem;
+  kind: SpeakingTaskKind;
+  number: number;
+  total: number;
+  attemptId: string | null;
+  status: StatusPresentation;
+  /** Names the Task when the card is not inside its Task's own section. */
+  kickerPrefix?: string;
+  children?: ReactNode;
+}) {
+  const isRepeat = kind === "listen_repeat";
+  const title = isRepeat ? `Sentence ${number}` : `Question ${number}`;
+  return (
+    <ItemCard
+      itemId={item.id}
+      kicker={`${kickerPrefix ? `${kickerPrefix} · ` : ""}Item ${number} of ${total}`}
+      title={title}
+      headingLevel="h3"
+      chips={<StatusChip status={status} />}
+    >
+      {children}
+      <div className="space-y-2">
+        <SpokenPromptAudio audio={item.audio} isRepeat={isRepeat} title={title} />
+        {attemptId && <RecordingPlayer attemptId={attemptId} itemId={item.id} title={title} />}
+      </div>
+    </ItemCard>
+  );
+}
+
+function RecordingPlayer({ attemptId, itemId, title }: { attemptId: string; itemId: string; title: string }) {
+  return (
+    <div className="space-y-1">
+      <Kicker as="p">Your recording</Kicker>
+      <audio src={`/api/audio/responses/${attemptId}/${itemId}.webm`} controls className="w-full max-w-measure" aria-label={`Your recording, ${title}`} />
+    </div>
+  );
+}
+
+/**
  * A scored Task, drawn the way Attempt review draws it: the Listen and Repeat scene once for the
- * Task, then one card per Item with what was asked, the recording and its Score Report.
+ * Task, then one card per Item with what was asked (the prompt to play again, and its text from the
+ * scoring job's meta), the recording and its Score Report.
  */
 function CompletedSpeakingStage({
   spec,
@@ -133,14 +208,23 @@ function CompletedSpeakingStage({
           const meta = result.items.find((m) => m.itemId === item.id);
           const reportItem = result.report.items.find((r) => r.itemId === item.id);
           const transcript = transcripts[item.id] ?? "";
-          const replaySrc = attemptId ? `/api/audio/responses/${attemptId}/${item.id}.webm` : undefined;
           const title = isRepeat ? `Sentence ${itemNumber}` : `Question ${itemNumber}`;
 
           if (!reportItem) {
             return (
-              <Notice key={item.id} tone="critical" title={`${title}: scoring failed`}>
-                No score is available for this Item.
-              </Notice>
+              <UnscoredSpokenItem
+                key={item.id}
+                item={item}
+                kind={kind}
+                number={itemNumber}
+                total={total}
+                attemptId={attemptId}
+                status={ITEM_SCORING_STATUS.failed}
+              >
+                <Notice tone="critical" title={`${title}: scoring failed`}>
+                  No score is available for this Item.
+                </Notice>
+              </UnscoredSpokenItem>
             );
           }
 
@@ -163,12 +247,10 @@ function CompletedSpeakingStage({
                   <Prose size="body">{prompt}</Prose>
                 </div>
               )}
-              {replaySrc && (
-                <div className="space-y-1">
-                  <Kicker as="p">Your recording</Kicker>
-                  <audio src={replaySrc} controls className="w-full max-w-measure" aria-label={`Your recording, ${title}`} />
-                </div>
-              )}
+              <div className="space-y-2">
+                <SpokenPromptAudio audio={item.audio} isRepeat={isRepeat} title={title} />
+                {attemptId && <RecordingPlayer attemptId={attemptId} itemId={item.id} title={title} />}
+              </div>
               <ScoreCautionNotes cautions={cautions} />
               <ScoreReport
                 item={reportItem}

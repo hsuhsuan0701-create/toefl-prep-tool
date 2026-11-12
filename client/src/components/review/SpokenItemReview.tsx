@@ -12,6 +12,7 @@ import { scoreCautions } from "../scoreCautions";
 import { ItemCard, RescoreAction } from "./ReviewParts";
 import { ScoringOutcome } from "./ScoringOutcome";
 import { itemStatusChip } from "./reviewText";
+import { SpokenPromptAudio } from "./SpokenPromptAudio";
 import TranscriptionJobPanel from "./TranscriptionJobPanel";
 import {
   isManualRescoreItem,
@@ -38,6 +39,11 @@ export type SpokenItemReviewProps = {
   onTranscriptionRetried: () => Promise<void>;
   settled: boolean;
   discarded: boolean;
+  /**
+   * The prompt's audio path, from the Set, to play again beside the recording; scored or not. The
+   * page passes it only for a completed Attempt, and it is absent when the Set cannot be read.
+   */
+  promptAudio?: string;
 };
 
 /**
@@ -45,7 +51,7 @@ export type SpokenItemReviewProps = {
  * transcription state, and its Score Report — the transcript marked in red pen, and for Listen and
  * Repeat the word-by-word comparison with the target. The sentence and the question come from the
  * Score Report's `meta`: the served Set withholds both, so an Item with no Score Report cannot show
- * them. The Listen and Repeat scene is the group's, shown once above the sentences (AttemptReview).
+ * them as text; its prompt audio (`promptAudio`) plays for any Item. The Listen and Repeat scene is the group's, shown once above the sentences (AttemptReview).
  */
 export default function SpokenItemReview({
   item,
@@ -61,6 +67,7 @@ export default function SpokenItemReview({
   onTranscriptionRetried,
   settled,
   discarded,
+  promptAudio,
 }: SpokenItemReviewProps) {
   const isRepeat = item.taskType === "listen_repeat";
   const report = item.scoringStatus === "scored" && isPersistedScoreItem(item.scoreJson) ? item.scoreJson : null;
@@ -74,12 +81,13 @@ export default function SpokenItemReview({
   const replaySrc = item.responseAudioPath ? `/api/audio/responses/${attemptId}/${item.itemId}.webm` : null;
   const transcript = item.transcript ?? "";
   const prompt = isRepeat ? meta?.target : meta?.question;
+  const title = isRepeat ? `Sentence ${ordinal}` : `Question ${ordinal}`;
 
   return (
     <ItemCard
       itemId={item.itemId}
       kicker={`Item ${position} of ${total}`}
-      title={isRepeat ? `Sentence ${ordinal}` : `Question ${ordinal}`}
+      title={title}
       headingLevel="h3"
       chips={
         <>
@@ -96,8 +104,9 @@ export default function SpokenItemReview({
         </div>
       )}
 
-      {(replaySrc || delivery) && (
+      {(promptAudio || replaySrc || delivery) && (
         <div className="space-y-2">
+          {promptAudio && <SpokenPromptAudio audio={promptAudio} isRepeat={isRepeat} title={title} />}
           {replaySrc && (
             <div className="space-y-1">
               <Kicker as="p">Your recording</Kicker>

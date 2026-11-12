@@ -23,7 +23,7 @@ import InterviewIntro from "../components/InterviewIntro";
 import ItemRecorder, { type RunnableItem } from "../components/ItemRecorder";
 import { armBeepCue } from "../components/beepCue";
 import SceneImage from "../components/SceneImage";
-import SpeakingResultSlot from "./speakingDrill/SpeakingResultSlot";
+import SpeakingResultSlot, { UnscoredSpokenItem } from "./speakingDrill/SpeakingResultSlot";
 import UploadsSettling from "./speakingDrill/UploadsSettling";
 import {
   allSettled,
@@ -37,10 +37,10 @@ import { cx } from "../ui/cx";
 import { EmptyState } from "../ui/EmptyState";
 import { ExamSetLine } from "../ui/ExamIntro";
 import { ExamExit, ExamShell } from "../ui/ExamShell";
-import { Kicker } from "../ui/Heading";
+import { Kicker, SectionHeader } from "../ui/Heading";
 import { IconArrowLeft } from "../ui/icons";
 import { Notice } from "../ui/Notice";
-import { TRANSCRIPTION_JOB_STATUS } from "../ui/labels";
+import { ITEM_SCORING_STATUS, TRANSCRIPTION_JOB_STATUS } from "../ui/labels";
 
 // The Speaking Drill's run body: the mic check, the intro that starts the run, then each Item's
 // prompt -> beep -> recording -> countdown, uploaded as soon as it is recorded. A Task is handed to
@@ -491,6 +491,15 @@ export default function SpeakingDrill() {
   const retryingCount = recoveryStates.filter((r) => r === "retrying").length;
   const retryableCount = recoveryStates.filter((r) => r === "retryable").length;
   const unrecoverableCount = recoveryStates.filter((r) => r === "unrecoverable").length;
+  // The Items taken for recovery, in the order they were sat, each numbered in its Task. No result
+  // slot carries them, so without these cards nothing here says what those recordings answered.
+  const unscoredItems = taskQueue.flatMap((taskKind) => {
+    const list: RunnableItem[] = taskKind === "listen_repeat" ? set.listenAndRepeat.items : set.interview.questions;
+    return list.flatMap((item, i) => {
+      const state = recoveryPendingItemIds.get(item.id);
+      return state ? [{ taskKind, item, number: i + 1, total: list.length, state }] : [];
+    });
+  });
   return (
     <ExamShell
       section="Speaking"
@@ -566,6 +575,25 @@ export default function SpeakingDrill() {
           </EmptyState>
         )}
         {slots(false)}
+        {unscoredItems.length > 0 && (
+          <section aria-label="Not scored in this Drill" className="space-y-4">
+            <SectionHeader title="Not scored in this Drill" description="Each prompt to play again, beside what you recorded." />
+            <div className="space-y-6">
+              {unscoredItems.map(({ taskKind, item, number, total, state }) => (
+                <UnscoredSpokenItem
+                  key={item.id}
+                  item={item}
+                  kind={taskKind}
+                  number={number}
+                  total={total}
+                  attemptId={attemptId}
+                  kickerPrefix={TASK_TYPES[taskKind].label}
+                  status={state === "retrying" ? ITEM_SCORING_STATUS.transcription_pending : TRANSCRIPTION_JOB_STATUS.failed}
+                />
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </ExamShell>
   );

@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { FakeAudioElement, endAudio } from "./fakeAudio";
-import { screen, waitFor } from "@testing-library/react";
+import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderRoutes } from "./dataRouter";
 import SpeakingDrill from "../src/pages/SpeakingDrill";
@@ -25,6 +25,9 @@ vi.mock("../src/lib/api", () => ({
   uploadItemAudio: vi.fn(async () => ({ ok: true, data: { transcript: "a transcript" } })),
 }));
 
+// What the mocked job ends with: done with no result unless a test sets one.
+const scoringJobEnd = vi.hoisted(() => ({ status: "done" as string, result: null as unknown }));
+
 // Terminal from the start: the job's own lifecycle is useScoringJob's business, and a job stuck
 // "running" would only gate the Finish button.
 //
@@ -43,7 +46,7 @@ vi.mock("../src/hooks/useScoringJob", async () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return {
-    status: "done",
+    status: scoringJobEnd.status,
     stage: null,
     judgesDone: [],
     judgesFailed: [],
@@ -52,7 +55,7 @@ vi.mock("../src/hooks/useScoringJob", async () => {
     fallbackFrom: null,
     queuePosition: null,
     elapsedMs: 0,
-    result: null,
+    result: scoringJobEnd.result,
     error: null,
     cancellationRequestedAt: null,
     terminalAt: null,
@@ -128,6 +131,11 @@ async function startInterview(user: ReturnType<typeof userEvent.setup>) {
  * therefore find none yet, and a request that only fires as the test is torn down lands in the next
  * test's calls instead.
  */
+/** Every player in `root`, as its accessible name and its source. */
+function players(root: HTMLElement) {
+  return Array.from(root.querySelectorAll("audio")).map((a) => [a.getAttribute("aria-label"), a.getAttribute("src")]);
+}
+
 async function sentScoreRequest(api: typeof import("../src/lib/api")) {
   await waitFor(() => expect(api.scoreTask).toHaveBeenCalledTimes(1));
   return (api.scoreTask as any).mock.calls[0][1];
@@ -179,6 +187,8 @@ beforeEach(async () => {
 });
 
 afterEach(() => {
+  scoringJobEnd.status = "done";
+  scoringJobEnd.result = null;
   vi.unstubAllGlobals();
   vi.clearAllMocks();
 });
@@ -304,6 +314,77 @@ describe("the Speaking Drill run body: recordings out, one scoring job back", ()
     expect(screen.getByText(/1 recording was saved, but its transcription failed/)).toHaveTextContent(/Nothing retries it by itself/);
     expect(screen.getByText(/1 recording can't be transcribed/)).toHaveTextContent(/in a new Attempt is the only way/);
     expect(screen.getByText("Every recording went to background transcription. Your Attempt report shows them.")).toBeInTheDocument();
+  });
+
+  it("offers each failed recording's prompt beside it on the results, and no text of it", async () => {
+    const api = await import("../src/lib/api");
+    (api.uploadItemAudio as any).mockImplementation(async () => ({
+      ok: false,
+      kind: "recovery-pending",
+      message: "failed",
+      job: { jobId: "tj", status: "failed", automaticAttempts: 1, nextRetryAt: null, failureKind: "configuration", error: null, scoreJobId: null },
+    }));
+    const user = userEvent.setup();
+    await startInterview(user);
+    await user.click(await screen.findByRole("button", { name: "finish iv-1" }));
+    await user.click(await screen.findByRole("button", { name: "finish iv-2" }));
+    await screen.findByRole("heading", { name: "Results" });
+
+    const unscored = screen.getByRole("region", { name: "Not scored in this Drill" });
+    expect(players(unscored)).toEqual([
+      ["The question you heard, Question 1", "/api/audio/stimuli/spk-1/iv-1.mp3"],
+      [`Your recording, Question 1`, `/api/audio/responses/${attemptId}/iv-1.webm`],
+      ["The question you heard, Question 2", "/api/audio/stimuli/spk-1/iv-2.mp3"],
+      [`Your recording, Question 2`, `/api/audio/responses/${attemptId}/iv-2.webm`],
+    ]);
+    // Never the introduction, which is not any Item's prompt.
+    expect(players(unscored).flat()).not.toContain("/api/audio/stimuli/spk-1/int-intro.mp3");
+    expect(within(unscored).getAllByText("Transcription failed")).toHaveLength(2);
+  });
+
+  it("offers the prompt of a scored Item and of an Item its scoring left out", async () => {
+    const reportItem = { itemId: "iv-1", ownScore: 4, finalScore: 4, maxScore: 5, dimensions: [], deductions: [], reconciliationNote: "", feedbackZh: "好" };
+    scoringJobEnd.result = {
+      taskType: "interview",
+      report: { taskType: "interview", items: [reportItem] },
+      judges: [],
+      judgesFailed: [],
+      items: [{ itemId: "iv-1", question: "What do you study?" }],
+    };
+    const user = userEvent.setup();
+    await startInterview(user);
+    await user.click(await screen.findByRole("button", { name: "finish iv-1" }));
+    await user.click(await screen.findByRole("button", { name: "finish iv-2" }));
+    await screen.findByRole("heading", { name: "Results" });
+
+    const scoredCard = await screen.findByTestId("item-iv-1");
+    expect(players(scoredCard)).toEqual([
+      ["The question you heard, Question 1", "/api/audio/stimuli/spk-1/iv-1.mp3"],
+      [`Your recording, Question 1`, `/api/audio/responses/${attemptId}/iv-1.webm`],
+    ]);
+    const leftOut = screen.getByTestId("item-iv-2");
+    expect(within(leftOut).getByText("Question 2: scoring failed")).toBeInTheDocument();
+    expect(players(leftOut)).toEqual([
+      ["The question you heard, Question 2", "/api/audio/stimuli/spk-1/iv-2.mp3"],
+      [`Your recording, Question 2`, `/api/audio/responses/${attemptId}/iv-2.webm`],
+    ]);
+  });
+
+  it("offers each Item's prompt when the Task's scoring failed", async () => {
+    scoringJobEnd.status = "failed";
+    const user = userEvent.setup();
+    await startInterview(user);
+    await user.click(await screen.findByRole("button", { name: "finish iv-1" }));
+    await user.click(await screen.findByRole("button", { name: "finish iv-2" }));
+    await screen.findByRole("heading", { name: "Results" });
+
+    const task = screen.getByRole("region", { name: "Interview" });
+    expect(players(task).map(([name]) => name)).toEqual([
+      "The question you heard, Question 1",
+      "Your recording, Question 1",
+      "The question you heard, Question 2",
+      "Your recording, Question 2",
+    ]);
   });
 
   it("holds the queue on a failed upload and offers a retry for that Item alone", async () => {
