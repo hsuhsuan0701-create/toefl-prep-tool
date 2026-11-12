@@ -160,7 +160,7 @@ export type AttemptsRouteStore =
   & RecordingStore
   & DeterministicScoreStore
   & BuildSentenceScoreStore
-  & Pick<TranscriptionJobStore, "getTranscriptionJob">;
+  & Pick<TranscriptionJobStore, "getTranscriptionJob" | "getCurrentTranscriptionJobs">;
 
 export type AttemptsRouteDeps = Omit<ScoreDeps, "repo"> & {
   repo: AttemptsRouteStore;

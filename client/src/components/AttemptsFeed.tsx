@@ -46,16 +46,6 @@ function rowSummary(a: AttemptListItemVM): string | undefined {
 }
 
 /**
- * A completed Attempt that was meant to give a band and has none: its scoring failed, an Item was
- * never transcribed or never captured. A Reading or Listening Drill, or a Drill of fewer Task Types,
- * gives no band by design (`bandExpected`), and a Repeat never becomes a headline band, so neither
- * is marked.
- */
-function missingBand(a: AttemptListItemVM): boolean {
-  return a.status === "completed" && a.estimate === null && !a.isRepeat && a.bandExpected;
-}
-
-/**
  * The Attempt log as AttemptRows: each named by what it was ("Writing Simulation"), its Set and
  * when, with its own Band Estimate or its status in words. The Practice page shows the last few
  * (`limit` + `seeAllHref`); /progress pages through the whole log (`onLoadMore`).
@@ -161,7 +151,11 @@ export default function AttemptsFeed({
               modulePath={a.modulePath}
               repeat={a.isRepeat}
               flagged={a.flagged}
-              noBand={missingBand(a)}
+              // A completed Attempt meant to give a band and with none reads "Still scoring" while
+              // the server says its scoring is on its way, and "No band" once it has settled. The
+              // server decides both by the rule the Attempt review uses (`missingBand`), and leaves
+              // it null for a Reading or Listening Drill, a Drill of fewer Task Types and a Repeat.
+              missingBand={a.missingBand}
               summary={rowSummary(a)}
               actions={
                 liveFullTestRunId(a) ? (

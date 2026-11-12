@@ -538,9 +538,21 @@ export const NOT_TRANSCRIBED: StatusPresentation = {
 };
 
 /**
- * A completed Attempt that was expected to give a band and has none: an Item failed, is still
- * scoring, was never transcribed, or is missing. Beside its "Completed" status on an Attempt row, so
- * the row stops implying all went well; the review says which Item and why.
+ * A completed Attempt that was expected to give a band and has none while its scoring is still on its
+ * way (a Judge has yet to finish, or a recording is still being transcribed). Beside its "Completed"
+ * status on an Attempt row, in the words the Attempt review and the Full-Test Run report use.
+ */
+export const STILL_SCORING: StatusPresentation & { hint: string } = {
+  label: "Still scoring",
+  tone: "accent",
+  glyph: "progress",
+  hint: "Completed, and still being scored. The band appears when scoring finishes.",
+};
+
+/**
+ * A completed Attempt that was expected to give a band and has none, with its scoring settled: an
+ * Item failed, was never transcribed, or is missing. Beside its "Completed" status on an Attempt row,
+ * so the row stops implying all went well; the review says which Item and why.
  */
 export const NO_BAND: StatusPresentation & { hint: string } = {
   label: "No band",

@@ -57,7 +57,7 @@ function attempt(over: Partial<AttemptListItemVM> & Pick<AttemptListItemVM, "id"
     captureFinishedAt: null,
     flagged: false,
     estimate: null,
-    bandExpected: false,
+    missingBand: null,
     fullTestRun: null,
     ...over,
   };

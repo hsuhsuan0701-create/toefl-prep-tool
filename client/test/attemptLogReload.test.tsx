@@ -37,7 +37,7 @@ function attempt(n: number, over: Partial<AttemptListItemVM> = {}): AttemptListI
     modulePath: null,
     routerRaw: null,
     estimate: null,
-    bandExpected: true,
+    missingBand: null,
     fullTestRun: null,
     ...over,
   };

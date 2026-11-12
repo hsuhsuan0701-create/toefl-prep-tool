@@ -128,6 +128,9 @@ export function attemptsRouteStore(s: SqliteStores): AttemptsRouteStore {
     getFullTestRunForAttempt: s.fullTests.getFullTestRunForAttempt,
     ...s.recording,
     getTranscriptionJob: s.transcription.getTranscriptionJob,
+    // The Attempt log asks whether a completed Attempt with no band is still scoring, by the rule the
+    // Attempt review and a Full-Test Run's section use (liveScoringOutstanding).
+    getCurrentTranscriptionJobs: s.transcription.getCurrentTranscriptionJobs,
   };
 }
 

@@ -48,12 +48,20 @@ export interface AttemptVM {
 export interface AttemptListItemVM extends AttemptVM {
   estimate: { band: number; method: string } | null;
   /**
-   * Whether this Attempt is meant to give a Band Estimate: every Simulation, and a Speaking or
-   * Writing Drill holding an Item of every Task Type its section needs. A Reading or Listening Drill
-   * never is, nor a Drill of fewer Task Types. The log marks a completed one with no band, so a
-   * sitting whose scoring failed does not read as one that went fine.
+   * Why a completed Attempt that is meant to give a Band Estimate has none. Meant to give one: every
+   * Simulation, and a Speaking or Writing Drill holding an Item of every Task Type its section needs
+   * (never a Reading or Listening Drill, nor a Drill of fewer Task Types).
+   *
+   * - `"scoring"`: scoring is still on its way (a queued or running scoring job, or a transcription
+   *   with work left), so the band may yet come. The Attempt review's band status reads "scoring"
+   *   then too, by the same rule (`liveScoringOutstanding`).
+   * - `"incomplete"`: scoring has settled and there is still no band: an Item failed, was never
+   *   transcribed or captured, or is missing. The review says which.
+   * - `null` in every other case: the Attempt has its band, is not completed, is a Repeat (never a
+   *   headline band), or is not meant to give one. It is worked out only for a completed, non-Repeat
+   *   Attempt with no Band Estimate, when the page is read.
    */
-  bandExpected: boolean;
+  missingBand: "scoring" | "incomplete" | null;
   /**
    * The Full-Test Run that has this Attempt as one of its sections, or null. A section restarted
    * after a reload leaves its old Attempt pointed at by no Run, so that one is null too. While the

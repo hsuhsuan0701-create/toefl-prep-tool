@@ -13,6 +13,7 @@ import type { AttemptRow, FullTestRunRow, ScoringJobRow } from "../db/rows.js";
 import { sqliteTimestampToIso } from "../db/timestamps.js";
 import { readPersistedEstimate, type EstimateReadStore } from "../services/sectionEstimates.js";
 import { requiredTaskTypes } from "../services/bandEstimator.js";
+import { currentTranscriptionStatuses, liveScoringOutstanding } from "../services/liveScoring.js";
 import { setStore, type SetStore } from "../services/setStore.js";
 import { setTitleFor } from "../services/setTitle.js";
 
@@ -47,31 +48,46 @@ export function toAttemptVM(row: AttemptRow, setTitle: string | null): AttemptVM
 export function toAttemptListItemVM(
   row: AttemptRow,
   setTitle: string | null,
-  repo: EstimateReadStore & ItemTaskTypesStore & { getFullTestRunForAttempt(attemptId: string): FullTestRunRow | undefined },
+  repo: EstimateReadStore & MissingBandStore & { getFullTestRunForAttempt(attemptId: string): FullTestRunRow | undefined },
 ): AttemptListItemVM {
   const estimate = readPersistedEstimate(repo, row.id);
   const run = repo.getFullTestRunForAttempt(row.id);
   return {
     ...toAttemptVM(row, setTitle),
     estimate: estimate ? { band: estimate.band, method: estimate.method } : null,
-    bandExpected: bandExpected(row, repo),
+    // Worked out only where the log shows it: a completed, non-Repeat Attempt with no band.
+    missingBand: row.status === "completed" && !estimate && row.is_repeat !== 1 ? missingBand(row, repo) : null,
     fullTestRun: run ? { id: run.id, status: run.status as FullTestRunStatus } : null,
   };
 }
 
-type ItemTaskTypesStore = { getAttempt(id: string): { items: readonly { task_type: string }[] } | undefined };
+type MissingBandStore = {
+  getAttempt(id: string): { items: readonly { item_id: string; task_type: string; scoring_status: string }[] } | undefined;
+  listActiveJobs(attemptId: string): readonly ScoringJobRow[];
+  getCurrentTranscriptionJobs(attemptId: string): readonly { item_id: string; status: string }[];
+};
 
 /**
- * Whether an Attempt is meant to give a Band Estimate (AttemptListItemVM.bandExpected). A Simulation
- * always is, whatever became of it. A Drill is when it is Speaking or Writing and took every Task
- * Type its section needs; a Drill of one Task Type gives no band by the User's own choice. Items are
- * read only for such a Drill, so most rows cost no further query.
+ * AttemptListItemVM.missingBand for a completed Attempt with no band. A Simulation is always meant to
+ * give one, whatever became of it. A Drill is when it is Speaking or Writing and took every Task
+ * Type its section needs; a Drill of one Task Type gives no band by the User's own choice. Whether
+ * the band is still on its way is liveScoringOutstanding's call, the one the Attempt review
+ * (attemptBandStatus) and a Full-Test Run's section make, so the log never says "No band" over a
+ * sitting the review says is still scoring.
  */
-function bandExpected(row: AttemptRow, repo: ItemTaskTypesStore): boolean {
-  if (row.mode === "simulation") return true;
-  if (row.kind !== "speaking" && row.kind !== "writing") return false;
-  const present = new Set((repo.getAttempt(row.id)?.items ?? []).map((item) => item.task_type));
-  return requiredTaskTypes(row.kind, null).every((taskType) => present.has(taskType));
+function missingBand(row: AttemptRow, repo: MissingBandStore): "scoring" | "incomplete" | null {
+  if (row.mode !== "simulation" && row.kind !== "speaking" && row.kind !== "writing") return null;
+  const items = repo.getAttempt(row.id)?.items ?? [];
+  if (row.mode !== "simulation") {
+    const present = new Set(items.map((item) => item.task_type));
+    if (!requiredTaskTypes(row.kind as "speaking" | "writing", null).every((taskType) => present.has(taskType))) return null;
+  }
+  const outstanding = liveScoringOutstanding({
+    attempt: { status: row.status, capture_finished_at: row.capture_finished_at, items },
+    activeJobs: repo.listActiveJobs(row.id).map((job) => ({ itemIds: parseItemIds(job.item_ids) })),
+    transcriptionStatuses: currentTranscriptionStatuses(repo, row.id),
+  });
+  return outstanding ? "scoring" : "incomplete";
 }
 
 export function toScoringJobVM(job: ScoringJobRow): ScoringJobVM {

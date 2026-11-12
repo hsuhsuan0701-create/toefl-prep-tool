@@ -49,3 +49,16 @@ export function liveScoringOutstanding(facts: LiveScoringFacts): { taskType: str
     attempt.items.filter((item) => !isDeterministicTaskType(item.task_type) && (UNSCORED.has(item.scoring_status) || covered.has(item.item_id))),
   );
 }
+
+/**
+ * The status of each Item's current transcription job: the newest one not superseded (the rows come
+ * oldest first), as the Attempt review's transcription snapshot reads it.
+ */
+export function currentTranscriptionStatuses(
+  repo: { getCurrentTranscriptionJobs(attemptId: string): readonly { item_id: string; status: string }[] },
+  attemptId: string,
+): TranscriptionJobStatus[] {
+  const newest = new Map<string, TranscriptionJobStatus>();
+  for (const job of repo.getCurrentTranscriptionJobs(attemptId)) newest.set(job.item_id, job.status as TranscriptionJobStatus);
+  return [...newest.values()];
+}

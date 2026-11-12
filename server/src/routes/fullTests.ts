@@ -8,7 +8,6 @@ import {
   type FullTestSection,
   type FullTestSectionState,
   type FullTestSectionVM,
-  type TranscriptionJobStatus,
 } from "@toefl-prep/shared";
 import { config } from "../lib/config.js";
 import { sqliteTimestamp, sqliteTimestampToIso, type SqliteTimestamp } from "../db/timestamps.js";
@@ -26,6 +25,7 @@ import {
   pickFullTestSets,
   type SelectableSet,
 } from "../services/fullTestRun.js";
+import { currentTranscriptionStatuses } from "../services/liveScoring.js";
 import { computeSectionEstimate, readPersistedEstimate, type EstimateReadStore } from "../services/sectionEstimates.js";
 import { pageParam, toScoringJobVM } from "./attemptViewModels.js";
 import type { ScoringJobStore } from "../services/scoringJobs.js";
@@ -169,15 +169,6 @@ function sectionStates(
   return statesOf(sectionAttempts(repo, row));
 }
 
-/**
- * The status of each Item's current transcription job: the newest one not superseded (the rows come
- * oldest first), as the Attempt review's transcription snapshot reads it.
- */
-function currentTranscriptionStatuses(repo: Pick<Repo, "getCurrentTranscriptionJobs">, attemptId: string): TranscriptionJobStatus[] {
-  const newest = new Map<string, TranscriptionJobStatus>();
-  for (const job of repo.getCurrentTranscriptionJobs(attemptId)) newest.set(job.item_id, job.status as TranscriptionJobStatus);
-  return [...newest.values()];
-}
 
 /**
  * The one place a Run row becomes a response. Every section's state is derived here from its linked

@@ -121,7 +121,7 @@ const SOME_ATTEMPTS: AttemptListVM = {
       captureFinishedAt: null,
       flagged: false,
       estimate: { band: 6, method: "table3-v1" },
-      bandExpected: true,
+      missingBand: null,
       fullTestRun: null,
     },
   ],

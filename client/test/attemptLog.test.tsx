@@ -27,8 +27,7 @@ function attempt(over: Partial<AttemptListItemVM> = {}): AttemptListItemVM {
     modulePath: null,
     routerRaw: null,
     estimate: null,
-    // A Simulation is always meant to give a band; a Drill only when it took the whole section.
-    bandExpected: (over.mode ?? "simulation") === "simulation",
+    missingBand: null,
     fullTestRun: null,
     ...over,
   };
@@ -80,13 +79,14 @@ describe("an Attempt row", () => {
   });
 
   // A completed Simulation whose scoring failed has no band; "Completed" alone would read as if it
-  // went fine. Only an Attempt meant to give a band is marked (`bandExpected`): never a Reading or
-  // Listening Drill, a Drill of one Task Type, a Repeat, an unfinished Attempt, or one with its band.
+  // went fine. The server marks only an Attempt meant to give a band (`missingBand`), and leaves a
+  // Reading or Listening Drill, a Drill of one Task Type, a Repeat, an unfinished Attempt and one
+  // with its band unmarked (routes.attemptsReadModel.test.ts).
   it("marks a completed Attempt that should have a band and has none", () => {
     renderLog({
       items: [
-        attempt({ id: "w-sim" }),
-        attempt({ id: "s-drill", kind: "speaking", mode: "drill", bandExpected: true }),
+        attempt({ id: "w-sim", missingBand: "incomplete" }),
+        attempt({ id: "s-drill", kind: "speaking", mode: "drill", missingBand: "incomplete" }),
         attempt({ id: "l-sim", kind: "listening", estimate: { band: 4.5, method: "table3-v1" } }),
         attempt({ id: "r-drill", kind: "reading", mode: "drill" }),
         attempt({ id: "w-email", kind: "writing", mode: "drill" }),
@@ -102,7 +102,27 @@ describe("an Attempt row", () => {
     }
     for (const name of ["Listening Simulation", "Reading Drill", "Writing Drill", "Reading Simulation", "Speaking Simulation"]) {
       expect(within(row(name)).queryByText("No band")).toBeNull();
+      expect(within(row(name)).queryByText("Still scoring")).toBeNull();
     }
+  });
+
+  // A Writing Simulation completes while both essay jobs are still queued; for the minutes the
+  // Judges take, nothing is wrong with it. Its row says it is still scoring, in the words the review
+  // uses, and only once scoring has settled with no band does it read "No band".
+  it("says a completed Attempt whose scoring is still on its way is still scoring, not that it has no band", () => {
+    const { rerender } = renderLog({ items: [attempt({ missingBand: "scoring" })], total: 1 });
+    const row = () => screen.getByRole("link", { name: "Writing Simulation" }).closest("li")!;
+    expect(within(row()).getByText("Completed")).toBeInTheDocument();
+    expect(within(row()).getByText("Still scoring")).toBeInTheDocument();
+    expect(within(row()).queryByText("No band")).toBeNull();
+
+    rerender(
+      <MemoryRouter>
+        <AttemptsFeed attempts={{ items: [attempt({ missingBand: "incomplete" })], total: 1 }} onChanged={() => {}} />
+      </MemoryRouter>,
+    );
+    expect(within(row()).getByText("No band")).toBeInTheDocument();
+    expect(within(row()).queryByText("Still scoring")).toBeNull();
   });
 
   // The flag is raised by a tab switch and by a prompt that would not play alike, so the chip says
