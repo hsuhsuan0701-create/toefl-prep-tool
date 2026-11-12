@@ -34,10 +34,13 @@ export function ExamShell({ section, part, clock, exit, progress, footer, childr
   return (
     <div className="flex min-h-dvh flex-col bg-paper">
       <header className="sticky top-0 z-20 border-b border-rule bg-paper">
-        <div className="mx-auto grid min-h-14 max-w-exam grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 px-gutter py-2">
+        {/* Below sm the label takes whatever the clock and exit leave, since equal side columns would
+            hold it to the width of "Exit…"; from sm up the side columns are equal so the clock sits
+            in the centre. The part line wraps rather than truncates: it is where the User is. */}
+        <div className="mx-auto grid min-h-14 max-w-exam grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-3 px-gutter py-2 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
           <div className="min-w-0">
             <p className="text-ui font-semibold text-ink">{section}</p>
-            {part && <p className="truncate text-meta text-graphite">{part}</p>}
+            {part && <p className="break-words text-meta text-graphite">{part}</p>}
           </div>
           <div className="justify-self-center">{clock}</div>
           <div className="flex justify-end">{exit}</div>

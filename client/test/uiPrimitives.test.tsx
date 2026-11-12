@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from "vitest";
 import { BandFigure } from "../src/ui/BandFigure";
 import { Button } from "../src/ui/Button";
 import { ConfirmDialog } from "../src/ui/ConfirmDialog";
-import { ExamClock } from "../src/ui/ExamShell";
+import { ExamClock, ExamShell } from "../src/ui/ExamShell";
 import { AttemptRow, List } from "../src/ui/ListRow";
 import { SegmentedControl } from "../src/ui/Segmented";
 
@@ -40,6 +40,28 @@ describe("ExamClock", () => {
     rerender(<ExamClock secondsLeft={42} />);
     expect(screen.getByText("Under 1 min")).toBeInTheDocument();
     expect(screen.getByText("Under 1 min left.")).toBeInTheDocument();
+  });
+});
+
+// jsdom lays nothing out, so this reads the two things that decide whether the part line fits at
+// phone width (issue #25): its column's share of the header grid, and whether it may wrap. The
+// pixels were measured in a browser.
+describe("ExamShell header", () => {
+  it("gives the part line what the clock and exit leave below sm, and wraps it rather than cut it", () => {
+    render(
+      <ExamShell section="Reading" part="Upper Module · Read an Academic Passage" clock={<ExamClock secondsLeft={600} />} exit={<button>Exit…</button>}>
+        <p>Stimulus</p>
+      </ExamShell>,
+    );
+    const part = screen.getByText("Upper Module · Read an Academic Passage");
+    expect(part.closest(".truncate")).toBeNull();
+    const grid = part.parentElement!.parentElement!;
+    const classes = grid.className.split(/\s+/);
+    // Equal side columns only from sm up, where there is room to keep the clock centred.
+    expect(classes).toContain("grid-cols-[minmax(0,1fr)_auto_auto]");
+    expect(classes).toContain("sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]");
+    expect(within(grid).getByRole("timer")).toBeInTheDocument();
+    expect(within(grid).getByRole("button", { name: "Exit…" })).toBeInTheDocument();
   });
 });
 
