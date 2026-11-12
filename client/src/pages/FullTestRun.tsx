@@ -41,21 +41,34 @@ import { readWritingSession } from "./simulation/writingDrafts";
 const EXPECTED_ENVELOPE = "about 1 h 23 min – 1 h 29 min";
 
 /**
+ * Milliseconds until formatDuration's text for an elapsed `ms` next changes. Under a minute it shows
+ * rounded seconds, which roll over at each half second; from a minute on, rounded minutes, which roll
+ * over at each half minute.
+ */
+function msUntilElapsedTextChanges(ms: number): number {
+  const s = Math.round(ms / 1000);
+  const nextMs = s < 60 ? (s + 0.5) * 1000 : (Math.round(s / 60) * 60 + 29.5) * 1000;
+  return Math.max(1, nextMs - ms);
+}
+
+/**
  * How long this sitting has been open: wall clock from the Run's creation to now, or to its
- * completion. Ticks every 30 s, since the display is in whole minutes. Wall clock, not time on
- * task: a Run left overnight reads as a very long sitting, which is the truth about it.
+ * completion. While the Run is open it re-renders exactly when the shown text would change: every
+ * second for its first minute, then once a minute. Wall clock, not time on task: a Run left
+ * overnight reads as a very long sitting, which is the truth about it.
  */
 function useRunElapsed(createdAt: string, completedAt: string | null): string {
+  const startMs = new Date(createdAt).getTime();
   const endMs = completedAt ? new Date(completedAt).getTime() : null;
   const [nowMs, setNowMs] = useState(() => Date.now());
   useEffect(() => {
     if (endMs !== null) return;
-    const t = setInterval(() => setNowMs(Date.now()), 30_000);
-    return () => clearInterval(t);
-  }, [endMs]);
+    const t = setTimeout(() => setNowMs(Date.now()), msUntilElapsedTextChanges(Math.max(0, nowMs - startMs)));
+    return () => clearTimeout(t);
+  }, [endMs, nowMs, startMs]);
   // formatDuration, as the Dashboard's Full-Test Run panel uses, so a sitting reads the same length
   // in both places.
-  return formatDuration(Math.max(0, (endMs ?? nowMs) - new Date(createdAt).getTime()) / 1000);
+  return formatDuration(Math.max(0, (endMs ?? nowMs) - startMs) / 1000);
 }
 
 /** What a section still waiting on scoring is waiting for, in plain words. */

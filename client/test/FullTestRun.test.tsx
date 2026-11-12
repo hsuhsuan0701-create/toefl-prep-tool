@@ -208,6 +208,29 @@ describe("the full-test run page", () => {
     expect(screen.getByText(/1 h 23 min – 1 h 29 min/)).toBeInTheDocument();
   });
 
+  // Under a minute the elapsed time is in seconds, so it has to move every second, not sit frozen
+  // between coarse ticks.
+  it("counts a sitting's first minute second by second, then in minutes", async () => {
+    // The fake clock also moves with real time, so findBy can wait for the page to load; the count is
+    // read back rather than assumed for the same reason.
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    const shownSeconds = () => Number(/Elapsed (\d+) s/.exec(screen.getByText(/Elapsed \d+ s/).textContent ?? "")?.[1]);
+    try {
+      renderRun(run({ createdAt: new Date(Date.now() - 4_000).toISOString() }));
+      await screen.findByText(/Elapsed \d+ s/);
+      // Let the page's effects run, so its next tick is scheduled before the clock is moved.
+      await act(async () => {});
+      const first = shownSeconds();
+      await act(async () => vi.advanceTimersByTime(1_000));
+      expect(shownSeconds()).toBeGreaterThan(first);
+      // A second at a time: each tick schedules the next once React has rendered it.
+      for (let i = 0; i < 60; i += 1) await act(async () => vi.advanceTimersByTime(1_000));
+      expect(screen.getByText(/Elapsed 1 min/)).toBeInTheDocument();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
   it("shows Reading complete with its Band Estimate and a link to its report after the section is sat", async () => {
     // Exactly what a reload after finishing Reading fetches: the Run, with Reading's state and band
     // derived server-side from the Attempt it recorded.
