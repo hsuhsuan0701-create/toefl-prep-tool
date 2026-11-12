@@ -5,6 +5,7 @@ import { act, fireEvent, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderRoutes, unload } from "./dataRouter";
 import { useFakeTimersInTest } from "./fakeTimers";
+import { afterFeedbackHold } from "./feedbackHold";
 import ReadingDrill from "../src/pages/ReadingDrill";
 import ListeningDrill from "../src/pages/ListeningDrill";
 import WritingDrill from "../src/pages/WritingDrill";
@@ -222,7 +223,9 @@ const CASES: DrillCase[] = [
       await user.click(await screen.findByText("Read in Daily Life"));
       await user.click(screen.getByRole("button", { name: "Start Reading Drill" }));
       await user.click(await screen.findByRole("button", { name: "Check Response" }));
-      await user.click(await screen.findByRole("button", { name: "See results" }));
+      const seeResults = await screen.findByRole("button", { name: "See results" });
+      await afterFeedbackHold();
+      await user.click(seeResults);
     },
   },
   {
@@ -243,7 +246,9 @@ const CASES: DrillCase[] = [
       // Nothing answerable exists until the Stimulus audio ends, so the run waits for it.
       await endAudio("lc-1.mp3");
       await user.click(await screen.findByRole("button", { name: "Check Response" }));
-      await user.click(await screen.findByRole("button", { name: "See results" }));
+      const seeResults = await screen.findByRole("button", { name: "See results" });
+      await afterFeedbackHold();
+      await user.click(seeResults);
     },
   },
   {
@@ -508,6 +513,81 @@ describe("the Drill shell: a completion that fails", () => {
     await user.click(screen.getByRole("button", { name: c.finishLabel }));
     expect(await screen.findByText("dashboard")).toBeInTheDocument();
     expect((api.completeAttempt as any).mock.calls).toHaveLength(1);
+  });
+});
+
+describe("the Reading and Listening Drill: a double activation of Check Responses", () => {
+  // Checking a Stimulus and moving on are one button in one place, and scoring answers at once, so
+  // the second press of a double click (or a second Enter or Space) lands on "See results" (or
+  // "Next Stimulus"). It must not leave the Stimulus: the feedback stays until a separate press.
+  const DRILLS: Array<[DrillCase, (user: User) => Promise<void>]> = [
+    [
+      CASES[0],
+      async (user) => {
+        await user.click(await screen.findByText("Read in Daily Life"));
+        await user.click(screen.getByRole("button", { name: "Start Reading Drill" }));
+      },
+    ],
+    [
+      CASES[1],
+      async (user) => {
+        await user.click(await screen.findByText("Listen and Choose a Response"));
+        await user.click(screen.getByRole("button", { name: "Start Listening Drill" }));
+        await endAudio("lc-1.mp3");
+      },
+    ],
+  ];
+  const ACTIVATIONS: Array<[string, (user: User, button: HTMLElement) => Promise<void>]> = [
+    ["a click", (user, button) => user.click(button)],
+    [
+      "Enter",
+      async (user, button) => {
+        button.focus();
+        await user.keyboard("{Enter}");
+      },
+    ],
+    [
+      "Space",
+      async (user, button) => {
+        button.focus();
+        await user.keyboard(" ");
+      },
+    ],
+  ];
+  const cases = DRILLS.flatMap(([c, toCheck]) =>
+    ACTIVATIONS.map(([activation, press]) => ({ name: c.name, c, toCheck, activation, press })),
+  );
+
+  it.each(cases)("$activation twice scores once and keeps the feedback on screen — $name", async ({ c, toCheck, press }) => {
+    const api = await import("../src/lib/api");
+    (api.getSet as any).mockResolvedValue(c.fixture);
+    (api.createAttempt as any).mockResolvedValue({ attemptId: "att-1", isRepeat: false });
+    (api.scoreDeterministicTask as any).mockImplementation(async (_attemptId: string, req: any) => ({
+      taskType: req.taskType,
+      items: req.items.map((i: any) => ({ itemId: i.itemId, correct: true, key: "o1", explanationZh: "因為 A 是對的。" })),
+    }));
+    const user = userEvent.setup();
+    renderCase(c);
+    await toCheck(user);
+
+    const check = await screen.findByRole("button", { name: "Check Response" });
+    await press(user, check);
+    // The second press lands once the feedback is in and the button has become "See results".
+    const seeResults = await screen.findByRole("button", { name: "See results" });
+    await press(user, seeResults);
+
+    expect((api.scoreDeterministicTask as any).mock.calls).toHaveLength(1);
+    expect(screen.getByText("因為 A 是對的。")).toBeInTheDocument();
+    expect(screen.getByText("Stimulus 1 of 1")).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Results" })).toBeNull();
+    // Nothing about the button changed: it keeps its name and the focus.
+    expect(seeResults).toBeInTheDocument();
+    expect(seeResults).toHaveFocus();
+
+    // A separate press after the hold moves on, as it always did.
+    await afterFeedbackHold();
+    await press(user, seeResults);
+    expect(await screen.findByRole("heading", { name: "Results" })).toBeInTheDocument();
   });
 });
 

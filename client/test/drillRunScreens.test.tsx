@@ -3,6 +3,7 @@ import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { ServedReadingStimulus } from "@toefl-prep/shared";
 import StimulusQueueRun, { StimulusQueueResults } from "../src/pages/drill/StimulusQueueRun";
+import { afterFeedbackHold } from "./feedbackHold";
 
 // The Reading and Listening Drill's run body as the User meets it: immediate feedback that says
 // right or wrong in words and a glyph (and "No Response" when nothing was chosen), focus that moves
@@ -84,6 +85,7 @@ describe("Drill feedback", () => {
     // Feedback arriving keeps focus on the one button, now "Next Stimulus".
     const next = await screen.findByRole("button", { name: "Next Stimulus" });
     expect(next).toHaveFocus();
+    await afterFeedbackHold();
     await user.click(next);
 
     const question = await screen.findByRole("group", { name: "Where do salmon spawn?" });

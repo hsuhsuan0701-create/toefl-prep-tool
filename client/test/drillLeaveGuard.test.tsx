@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import ReadingDrill from "../src/pages/ReadingDrill";
 import WritingDrill from "../src/pages/WritingDrill";
 import { findLeavePrompt, renderRoutes, unload } from "./dataRouter";
+import { afterFeedbackHold } from "./feedbackHold";
 
 // Leaving a Drill works the way leaving a Simulation does: once its Attempt exists, the screen's
 // Exit, the browser's Back and a reload all ask first, in LeaveGuardHost's one dialog, and the
@@ -134,7 +135,9 @@ describe("leaving a Drill", () => {
     await user.click(await screen.findByText("Read in Daily Life"));
     await user.click(screen.getByRole("button", { name: "Start Reading Drill" }));
     await user.click(await screen.findByRole("button", { name: "Check Response" }));
-    await user.click(await screen.findByRole("button", { name: "See results" }));
+    const seeResults = await screen.findByRole("button", { name: "See results" });
+    await afterFeedbackHold();
+    await user.click(seeResults);
     await user.click(await screen.findByRole("button", { name: "Back to Practice" }));
 
     expect(await screen.findByText("dashboard")).toBeInTheDocument();

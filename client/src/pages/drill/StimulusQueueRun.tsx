@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import StimulusQuestions, {
   ListeningStimulusQuestions,
   type QuestionedStimulus,
@@ -16,7 +16,7 @@ import { IconArrowRight } from "../../ui/icons";
 import { Notice } from "../../ui/Notice";
 import { DrillCompletionFailed } from "./DrillScreens";
 import type { DrillCompletion } from "./drillShell";
-import { deterministicScoreRequest, isListeningStimulus } from "./stimulusQueue";
+import { FEEDBACK_HOLD_MS, deterministicScoreRequest, isListeningStimulus } from "./stimulusQueue";
 
 // ---------------------------------------------------------------------------
 // The deterministic Stimulus-queue run body, for both the Reading and the Listening Drill. Hand it
@@ -70,6 +70,15 @@ export default function StimulusQueueRun({ stimuli, attemptId, onComplete, exitT
   const [audioFailed, setAudioFailed] = useState(false);
 
   const current: QuestionedStimulus | undefined = stimuli[index];
+  // When the current Stimulus's feedback arrived (performance.now()), so the press that checked it
+  // cannot also leave it: see FEEDBACK_HOLD_MS.
+  const feedbackAtRef = useRef<number | null>(null);
+
+  const showFeedback = useCallback((items: StimulusItemResult[]) => {
+    feedbackAtRef.current = performance.now();
+    setResults(items);
+    setAllResults((prev) => [...prev, ...items]);
+  }, []);
 
   const handleSubmit = useCallback(async () => {
     if (!attemptId || !current) return;
@@ -78,25 +87,28 @@ export default function StimulusQueueRun({ stimuli, attemptId, onComplete, exitT
     const request = deterministicScoreRequest(current, answers);
     try {
       const res = await scoreDeterministicTask(attemptId, request);
-      setResults(res.items);
-      setAllResults((prev) => [...prev, ...res.items]);
+      showFeedback(res.items);
     } catch (e) {
       if (e instanceof DeterministicAlreadyScoredError) {
         // An earlier check landed and only its response was lost: the server already has this
         // Stimulus's Responses. That is success (as in a Simulation's Module submit), so show what
         // the server recorded and move on. The key and the Explanation then wait for the report.
-        const recorded = await recordedResults(attemptId, request.items.map((item) => item.itemId));
-        setResults(recorded);
-        setAllResults((prev) => [...prev, ...recorded]);
+        showFeedback(await recordedResults(attemptId, request.items.map((item) => item.itemId)));
       } else {
         setErrorMsg(requestErrorMessage(e));
       }
     } finally {
       setSubmitting(false);
     }
-  }, [attemptId, current, answers]);
+  }, [attemptId, current, answers, showFeedback]);
 
   const handleNext = useCallback(() => {
+    // The tail of the activation that checked this Stimulus (a double click, a second Enter or
+    // Space) lands here once the label has swapped. Ignore it, so the feedback stays on screen until
+    // a separate press. The button stays as it is, focus and name included.
+    const feedbackAt = feedbackAtRef.current;
+    if (feedbackAt !== null && performance.now() - feedbackAt < FEEDBACK_HOLD_MS) return;
+    feedbackAtRef.current = null;
     setResults(null);
     setAnswers(new Map());
     setAudioDone(false);
@@ -119,8 +131,9 @@ export default function StimulusQueueRun({ stimuli, attemptId, onComplete, exitT
 
   // The Drill's own controls: one button that checks the Stimulus, then moves on. Both branches are
   // a Button in the same place, so React keeps one element and changes only its label: keyboard
-  // focus stays on it when the feedback arrives. Rendered inside the gate for a Listening Stimulus
-  // (as `children`) and in ExamShell's footer for a Reading one.
+  // focus stays on it when the feedback arrives. It is also why "Next Stimulus" ignores a press for
+  // FEEDBACK_HOLD_MS after that (handleNext). Rendered inside the gate for a Listening Stimulus (as
+  // `children`) and in ExamShell's footer for a Reading one.
   const action = !results ? (
     <Button variant="primary" onClick={() => void handleSubmit()} loading={submitting}>
       {itemCount === 1 ? "Check Response" : "Check Responses"}

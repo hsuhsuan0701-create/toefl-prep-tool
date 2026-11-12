@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { FakeAudioElement, dispatchAudio, endAudio } from "./fakeAudio";
+import { afterFeedbackHold } from "./feedbackHold";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { ServedListeningStimulus, ServedReadingStimulus } from "@toefl-prep/shared";
@@ -188,6 +189,7 @@ describe("the Reading queue: one Stimulus at a time, submitted whole", () => {
     // Still on Stimulus 1 with its feedback; the queue only moves when the User says so.
     await screen.findByRole("button", { name: "Next Stimulus" });
     expect(screen.getByText("Stimulus 1 of 2")).toBeInTheDocument();
+    await afterFeedbackHold();
     await user.click(screen.getByRole("button", { name: "Next Stimulus" }));
 
     expect(await screen.findByText("Stimulus 2 of 2")).toBeInTheDocument();
@@ -196,7 +198,9 @@ describe("the Reading queue: one Stimulus at a time, submitted whole", () => {
     await user.click(screen.getByRole("button", { name: "Check Responses" }));
 
     // The last Stimulus says so, rather than offering a Stimulus that is not there.
-    await user.click(await screen.findByRole("button", { name: "See results" }));
+    const seeResults = await screen.findByRole("button", { name: "See results" });
+    await afterFeedbackHold();
+    await user.click(seeResults);
 
     const calls = (api.scoreDeterministicTask as any).mock.calls;
     expect(calls).toHaveLength(2);
@@ -216,6 +220,29 @@ describe("the Reading queue: one Stimulus at a time, submitted whole", () => {
     // computed from exactly this.
     expect(onComplete).toHaveBeenCalledTimes(1);
     expect(onComplete.mock.calls[0][0].map((r: any) => r.itemId)).toEqual(["g1", "dl-1-q1", "dl-1-q2"]);
+  });
+
+  it("keeps a middle Stimulus's feedback through a double click, and moves on at a separate press", async () => {
+    const api = await import("../src/lib/api");
+    (api.scoreDeterministicTask as any).mockImplementation(scoredEcho(false));
+    const onComplete = vi.fn();
+    const user = userEvent.setup();
+
+    render(<StimulusQueueRun stimuli={[dailyLifeStimulus, ctwStimulus]} attemptId="att-1" onComplete={onComplete} />);
+
+    const check = screen.getByRole("button", { name: "Check Responses" });
+    await user.click(check);
+    // The second click of the double click lands on the same button, now "Next Stimulus".
+    await user.click(await screen.findByRole("button", { name: "Next Stimulus" }));
+
+    expect(screen.getByText("Stimulus 1 of 2")).toBeInTheDocument();
+    expect(screen.getByText("dl-1-q1 的解析")).toBeInTheDocument();
+    expect((api.scoreDeterministicTask as any).mock.calls).toHaveLength(1);
+
+    await afterFeedbackHold();
+    await user.click(screen.getByRole("button", { name: "Next Stimulus" }));
+    expect(await screen.findByText("Stimulus 2 of 2")).toBeInTheDocument();
+    expect(onComplete).not.toHaveBeenCalled();
   });
 
   it("keeps the key and the 錯題解析 out of the DOM until the Item is scored", async () => {
@@ -307,7 +334,9 @@ describe("the Listening queue: the same queue, through the leak gate", () => {
 
     await endAudio("lc-1.mp3");
     await user.click(await screen.findByRole("button", { name: "Check Response" }));
-    await user.click(await screen.findByRole("button", { name: "Next Stimulus" }));
+    const next = await screen.findByRole("button", { name: "Next Stimulus" });
+    await afterFeedbackHold();
+    await user.click(next);
 
     // The second Stimulus starts behind its own gate — advancing must not inherit the first one's
     // "audio already finished" state.
@@ -356,7 +385,9 @@ describe("a resubmit the server already has", () => {
     await user.click(screen.getByRole("radio", { name: "At six" }));
     await user.click(screen.getByRole("button", { name: "Check Responses" }));
 
-    await user.click(await screen.findByRole("button", { name: "See results" }));
+    const seeResults = await screen.findByRole("button", { name: "See results" });
+    await afterFeedbackHold();
+    await user.click(seeResults);
     expect(screen.queryByText(/already scored/)).toBeNull();
     expect(onComplete.mock.calls[0][0]).toEqual([
       { itemId: "dl-1-q1", correct: true },
