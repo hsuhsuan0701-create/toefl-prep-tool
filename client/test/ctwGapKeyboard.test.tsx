@@ -85,3 +85,74 @@ describe("Complete the Words, by keyboard", () => {
     expect(gap("ca").value).toBe("");
   });
 });
+
+// The opening of rd-170e6bf3's first passage: "When t[he] queue gr[ows] past a fixed li[mit], the
+// plat[form] automatically shi[fts] extra ...".
+const proseSegments: PublicCtwSegment[] = [
+  { type: "text", text: "When " },
+  { type: "gap", gapId: "p1" },
+  { type: "text", text: " queue " },
+  { type: "gap", gapId: "p2" },
+  { type: "text", text: " past a fixed " },
+  { type: "gap", gapId: "p3" },
+  { type: "text", text: ", the " },
+  { type: "gap", gapId: "p4" },
+  { type: "text", text: " automatically " },
+  { type: "gap", gapId: "p5" },
+  { type: "text", text: " extra traffic." },
+];
+const proseGaps = [
+  { id: "p1", prefix: "t", blankLength: 2 },
+  { id: "p2", prefix: "gr", blankLength: 3 },
+  { id: "p3", prefix: "li", blankLength: 3 },
+  { id: "p4", prefix: "plat", blankLength: 4 },
+  { id: "p5", prefix: "shi", blankLength: 3 },
+];
+
+describe("Complete the Words, typed like prose", () => {
+  it("lets no space into a gap, so words typed with spaces between them land one per gap", async () => {
+    const user = userEvent.setup();
+    const onChange = vi.fn();
+    render(<CtwGapInput segments={proseSegments} gaps={proseGaps} onChange={onChange} />);
+
+    await user.click(gap("t"));
+    await user.keyboard("he ows mit form");
+    expect([gap("t"), gap("gr"), gap("li"), gap("plat")].map((g) => g.value)).toEqual(["he", "ows", "mit", "form"]);
+    expect(gap("shi").value).toBe("");
+    expect(gap("shi")).toHaveFocus();
+    expect(onChange).toHaveBeenLastCalledWith(new Map([["p1", "he"], ["p2", "ows"], ["p3", "mit"], ["p4", "form"]]));
+  });
+
+  it("takes a space typed into a gap that is not yet full as nothing: no slot, no move", async () => {
+    const user = userEvent.setup();
+    render(<CtwGapInput segments={proseSegments} gaps={proseGaps} onChange={vi.fn()} />);
+
+    await user.click(gap("gr"));
+    await user.keyboard("ow ");
+    expect(gap("gr").value).toBe("ow");
+    expect(gap("gr")).toHaveFocus();
+    await user.keyboard("s");
+    expect(gap("gr").value).toBe("ows");
+    expect(gap("li")).toHaveFocus();
+  });
+
+  it("drops the whitespace from a paste and keeps every letter", async () => {
+    const user = userEvent.setup();
+    const onChange = vi.fn();
+    render(<CtwGapInput segments={proseSegments} gaps={proseGaps} onChange={onChange} />);
+
+    await user.click(gap("gr"));
+    await user.paste("o w s");
+    expect(gap("gr").value).toBe("ows");
+    expect(onChange).toHaveBeenLastCalledWith(new Map([["p2", "ows"]]));
+  });
+
+  it("keeps any other character as typed: a digit or a wrong letter is the User's own Response", async () => {
+    const user = userEvent.setup();
+    render(<CtwGapInput segments={proseSegments} gaps={proseGaps} onChange={vi.fn()} />);
+
+    await user.click(gap("gr"));
+    await user.keyboard("o3x");
+    expect(gap("gr").value).toBe("o3x");
+  });
+});
