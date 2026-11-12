@@ -1,8 +1,9 @@
 import { lazy, Suspense } from "react";
-import { createBrowserRouter, Outlet, RouterProvider, type RouteObject } from "react-router-dom";
-import AppErrorBoundary from "./components/AppErrorBoundary";
+import { createBrowserRouter, isRouteErrorResponse, Outlet, RouterProvider, useRouteError, type RouteObject } from "react-router-dom";
+import AppErrorBoundary, { PageErrorScreen } from "./components/AppErrorBoundary";
 import LeaveGuardHost from "./components/LeaveGuardHost";
 import RouteFallback from "./components/RouteFallback";
+import NotFound from "./pages/NotFound";
 
 // Every page is its own chunk, loaded when its route is first visited, so the Dashboard does not
 // ship the trend charts, Build a Sentence's drag-and-drop or any exam screen. The one Suspense
@@ -45,13 +46,35 @@ const routes: RouteObject[] = [
   { path: "/full-test/:runId/:section", element: <FullTestSectionRun /> },
   // The design system's living reference, for contributors (docs/design-system.md).
   { path: "/design-preview", element: <DesignPreview /> },
+  // Any other path. Without it the router answers a no-match with its own bare 404 page, which has
+  // no navigation and no way back.
+  { path: "*", element: <NotFound /> },
 ];
+
+/**
+ * The root route's error element. The boundary below catches a page's render error; this catches
+ * what the router catches before it can (an error in the root route itself, or a loader's), so
+ * that too ends on the app's error screen and never on the router's default page. The router keeps
+ * the error until the next navigation, so "Try again" reloads.
+ */
+function RouteError() {
+  const caught = useRouteError();
+  const error = isRouteErrorResponse(caught)
+    ? new Error(`${caught.status} ${caught.statusText}`)
+    : caught instanceof Error
+      ? caught
+      : new Error(String(caught));
+  return <PageErrorScreen error={error} onRetry={() => window.location.reload()} />;
+}
 
 // Every route renders inside the app's error boundary. It has to sit inside the router: a boundary
 // placed around <RouterProvider> never sees a route's render error, because the router catches it
-// first and shows its own default error page. LeaveGuardHost sits there too: it draws the one
-// "Leave …?" dialog every running Drill and Simulation asks through.
-const router = createBrowserRouter([
+// first. LeaveGuardHost sits there too: it draws the one "Leave …?" dialog every running Drill and
+// Simulation asks through.
+//
+// Exported so a test mounts this same table in a memory router (test/appRoutes.test.tsx).
+// oxlint-disable-next-line react/only-export-components -- the route table is data, not a component
+export const appRoutes: RouteObject[] = [
   {
     element: (
       <AppErrorBoundary>
@@ -62,10 +85,15 @@ const router = createBrowserRouter([
         </LeaveGuardHost>
       </AppErrorBoundary>
     ),
+    errorElement: <RouteError />,
     children: routes,
   },
-]);
+];
+
+// Created on first render rather than on import, so importing the route table starts no router.
+let router: ReturnType<typeof createBrowserRouter> | undefined;
 
 export default function App() {
+  router ??= createBrowserRouter(appRoutes);
   return <RouterProvider router={router} />;
 }
