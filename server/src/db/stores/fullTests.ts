@@ -57,6 +57,21 @@ export function createSqliteFullTestStore(db: Database.Database) {
           ORDER BY created_at DESC, rowid DESC LIMIT 1`
       ).get(attemptId) as FullTestRunRow | undefined;
     },
+    // getFullTestRunForAttempt for a page of the Attempt log in one statement: each Attempt's Run, the
+    // newest when (in rows older than the link rule) more than one names it. Attempts no Run names
+    // are absent from the map.
+    listFullTestRunsForAttempts(attemptIds: readonly string[]): Map<string, { id: string; status: string }> {
+      const rows = db.prepare(
+        `SELECT a.value AS attempt_id, r.id, r.status
+           FROM json_each(?) a
+           JOIN full_test_runs r
+             ON a.value IN (r.reading_attempt_id, r.listening_attempt_id, r.writing_attempt_id, r.speaking_attempt_id)
+          ORDER BY r.created_at DESC, r.rowid DESC`
+      ).all(JSON.stringify(attemptIds)) as { attempt_id: string; id: string; status: string }[];
+      const runs = new Map<string, { id: string; status: string }>();
+      for (const row of rows) if (!runs.has(row.attempt_id)) runs.set(row.attempt_id, { id: row.id, status: row.status });
+      return runs;
+    },
     // Filtered by status, the listing is unbounded unless the caller pages it: the in-progress Runs
     // are the practice page's only route back to a half-sat sitting, and there are few of them.
     listFullTestRuns(q: { limit?: number; status?: FullTestRunStatus } = {}): FullTestRunRow[] {

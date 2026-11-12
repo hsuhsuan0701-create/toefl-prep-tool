@@ -9,7 +9,8 @@ import type {
   ScoringJobStatus,
   ScoringJobVM,
 } from "@toefl-prep/shared";
-import type { AttemptRow, FullTestRunRow, ScoringJobRow } from "../db/rows.js";
+import type { AttemptRow, ScoringJobRow } from "../db/rows.js";
+import type { FullTestRunStore } from "./fullTests.js";
 import { sqliteTimestampToIso } from "../db/timestamps.js";
 import { readPersistedEstimate, type EstimateReadStore } from "../services/sectionEstimates.js";
 import { requiredTaskTypes } from "../services/bandEstimator.js";
@@ -41,28 +42,32 @@ export function toAttemptVM(row: AttemptRow, setTitle: string | null): AttemptVM
 /**
  * One row of the Attempt log. The band goes through readPersistedEstimate, the reader the Attempt
  * review and the Full-Test Run use, so a stored row that is not a band (short coverage, unreadable
- * detail) is null here exactly as it is there. One indexed lookup per row, and one over the few
- * Full-Test Runs for the Run the Attempt is a section of; a page is at most ATTEMPT_PAGE_MAX (100)
- * rows.
+ * detail) is null here exactly as it is there. The page is at most ATTEMPT_PAGE_MAX (100) rows, and
+ * reads only what it shows: one indexed estimate lookup per row, one read for the whole page of the
+ * Full-Test Runs its Attempts are sections of, and the band state's few small reads only for a
+ * completed, non-Repeat row with no band.
  */
-export function toAttemptListItemVM(
-  row: AttemptRow,
-  setTitle: string | null,
-  repo: EstimateReadStore & MissingBandStore & { getFullTestRunForAttempt(attemptId: string): FullTestRunRow | undefined },
-): AttemptListItemVM {
-  const estimate = readPersistedEstimate(repo, row.id);
-  const run = repo.getFullTestRunForAttempt(row.id);
-  return {
-    ...toAttemptVM(row, setTitle),
-    estimate: estimate ? { band: estimate.band, method: estimate.method } : null,
-    // Worked out only where the log shows it: a completed, non-Repeat Attempt with no band.
-    missingBand: row.status === "completed" && !estimate && row.is_repeat !== 1 ? missingBand(row, repo) : null,
-    fullTestRun: run ? { id: run.id, status: run.status as FullTestRunStatus } : null,
-  };
+export function toAttemptListItemVMs(
+  rows: readonly AttemptRow[],
+  setTitles: ReadonlyMap<string, string | null>,
+  repo: EstimateReadStore & MissingBandStore & Pick<FullTestRunStore, "listFullTestRunsForAttempts">,
+): AttemptListItemVM[] {
+  const runs = rows.length > 0 ? repo.listFullTestRunsForAttempts(rows.map((row) => row.id)) : new Map<string, { id: string; status: string }>();
+  return rows.map((row) => {
+    const estimate = readPersistedEstimate(repo, row.id);
+    const run = runs.get(row.id);
+    return {
+      ...toAttemptVM(row, setTitles.get(row.set_id) ?? null),
+      estimate: estimate ? { band: estimate.band, method: estimate.method } : null,
+      // Worked out only where the log shows it: a completed, non-Repeat Attempt with no band.
+      missingBand: row.status === "completed" && !estimate && row.is_repeat !== 1 ? missingBand(row, repo) : null,
+      fullTestRun: run ? { id: run.id, status: run.status as FullTestRunStatus } : null,
+    };
+  });
 }
 
 type MissingBandStore = {
-  getAttempt(id: string): { items: readonly { item_id: string; task_type: string; scoring_status: string }[] } | undefined;
+  listItemScoringStates(attemptId: string): readonly { item_id: string; task_type: string; scoring_status: string }[];
   listActiveJobs(attemptId: string): readonly ScoringJobRow[];
   getCurrentTranscriptionJobs(attemptId: string): readonly { item_id: string; status: string }[];
 };
@@ -77,7 +82,7 @@ type MissingBandStore = {
  */
 function missingBand(row: AttemptRow, repo: MissingBandStore): "scoring" | "incomplete" | null {
   if (row.mode !== "simulation" && row.kind !== "speaking" && row.kind !== "writing") return null;
-  const items = repo.getAttempt(row.id)?.items ?? [];
+  const items = repo.listItemScoringStates(row.id);
   if (row.mode !== "simulation") {
     const present = new Set(items.map((item) => item.task_type));
     if (!requiredTaskTypes(row.kind as "speaking" | "writing", null).every((taskType) => present.has(taskType))) return null;

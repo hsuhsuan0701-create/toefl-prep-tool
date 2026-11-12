@@ -123,9 +123,10 @@ export function attemptsRouteStore(s: SqliteStores): AttemptsRouteStore {
     // Read on this route's behalf by `checkFullTestLink`, which refuses a link the Run's own rules
     // do not allow BEFORE the Attempt row exists.
     getFullTestRun: s.fullTests.getFullTestRun,
-    // The Attempt log names the Run a section belongs to, and abort refuses the section a Run in
-    // progress is sitting.
+    // Abort refuses the section a Run in progress is sitting, and the Attempt log names the Run each
+    // section on its page belongs to, in one read for the page.
     getFullTestRunForAttempt: s.fullTests.getFullTestRunForAttempt,
+    listFullTestRunsForAttempts: s.fullTests.listFullTestRunsForAttempts,
     ...s.recording,
     getTranscriptionJob: s.transcription.getTranscriptionJob,
     // The Attempt log asks whether a completed Attempt with no band is still scoring, by the rule the

@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import { afterAll, beforeAll, describe, expect, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
+import type Database from "better-sqlite3";
 import { framelessWritingSet } from "./helpers/setFixtures.js";
 import type { AttemptDetailVM, AttemptListVM, ScoringJobDetailVM } from "@toefl-prep/shared";
 import { openDb } from "../src/db/db.js";
@@ -34,6 +35,31 @@ function harness() {
     onScoringTerminal: async () => undefined,
   } as never);
   return { r, db, app };
+}
+
+/** Counts the statements run on `db` from now until `stop`, at the seam every store goes through. */
+function countStatements(db: Database.Database) {
+  const prepare = db.prepare.bind(db);
+  let count = 0;
+  let counting = true;
+  db.prepare = ((sql: string) => {
+    const statement = prepare(sql);
+    for (const method of ["get", "all", "run", "iterate"] as const) {
+      const original = statement[method].bind(statement) as (...args: unknown[]) => unknown;
+      (statement as unknown as Record<string, unknown>)[method] = (...args: unknown[]) => {
+        if (counting) count++;
+        return original(...args);
+      };
+    }
+    return statement;
+  }) as typeof db.prepare;
+  return {
+    count: () => count,
+    stop: () => {
+      counting = false;
+      db.prepare = prepare;
+    },
+  };
 }
 
 async function getJson<T>(app: ReturnType<typeof harness>["app"], url: string): Promise<T> {
@@ -146,6 +172,51 @@ describe("GET / — the Attempt log", () => {
     const settled = await getJson<AttemptListVM>(app, "/");
     expect(settled.items[0].missingBand).toBe("incomplete");
     expect((await getJson<AttemptDetailVM>(app, "/sim")).bandStatus.status).toBe("incomplete");
+  });
+
+  // A page is measured by the statements it runs, on a bank shaped like a real one: Simulations and
+  // whole-section Drills whose scoring failed, Drills of one Task Type, Reading Drills, unfinished
+  // Attempts and a Full-Test Run's section. Each Item carries a long Response the log never shows.
+  it("reads a page of a hundred Attempts without the whole-Attempt read", async () => {
+    const { r, db, app } = harness();
+    for (let i = 0; i < 100; i++) {
+      const id = `att-${String(i).padStart(3, "0")}`;
+      const shape = i % 5;
+      const kind = shape === 2 ? "speaking" : shape === 3 ? "reading" : "writing";
+      const mode = shape === 0 ? "simulation" : "drill";
+      r.createAttempt({ id, kind, mode, setId: kind === "writing" ? SET_ID : `${kind}-elsewhere`, isRepeat: false });
+      const taskTypes = shape === 2 ? ["interview"] : shape === 3 ? ["complete_words"] : ["build_sentence", "email", "discussion"];
+      for (const taskType of taskTypes) {
+        r.insertItemResult({ attemptId: id, itemId: `${taskType}-1`, taskType, responseText: "x".repeat(2000), scoringStatus: "failed" });
+      }
+      if (shape !== 4) r.completeAttempt(id);
+    }
+    r.createFullTestRun({ id: "run-1", currentSection: "writing", setIds: { writing: SET_ID } });
+    r.linkFullTestAttempt("run-1", "writing", "att-000");
+
+    const getAttempt = vi.spyOn(r, "getAttempt");
+    const runForAttempt = vi.spyOn(r, "getFullTestRunForAttempt");
+    const itemStates = vi.spyOn(r, "listItemScoringStates");
+    const statements = countStatements(db);
+    const page = await getJson<AttemptListVM>(app, "/?limit=100");
+    statements.stop();
+
+    expect(page.items).toHaveLength(100);
+    expect(page.items.find((a) => a.id === "att-000")?.fullTestRun).toEqual({ id: "run-1", status: "in-progress" });
+    expect(page.items.filter((a) => a.fullTestRun !== null)).toHaveLength(1);
+    expect(page.items.filter((a) => a.missingBand === "incomplete")).toHaveLength(40);
+    // No Item's Response, transcript or Score Report is read, and the Runs are read once for the page.
+    expect(getAttempt).not.toHaveBeenCalled();
+    expect(runForAttempt).not.toHaveBeenCalled();
+    // The band state is worked out only for a completed row with no band: never for a Reading Drill or
+    // an unfinished Attempt.
+    expect(new Set(itemStates.mock.calls.map(([id]) => Number(id.slice(4)) % 5))).toEqual(new Set([0, 1, 2]));
+    expect(itemStates).toHaveBeenCalledTimes(60);
+    // The page, its total and the Runs (3), one estimate lookup per row (100), the Task Types of the
+    // twenty one-Task-Type Speaking Drills (20), and the Task Types, active scoring jobs and
+    // transcriptions of the forty rows meant to give a band (120). Before: 322, with sixty whole-Attempt
+    // reads.
+    expect(statements.count()).toBeLessThanOrEqual(243);
   });
 
   it("pages with limit and offset while total keeps counting the whole log", async () => {

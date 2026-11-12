@@ -64,6 +64,8 @@ export type FullTestRunStore = {
   getFullTestRun(id: string): FullTestRunRow | undefined;
   /** The Run one of whose sections points at this Attempt, if any. */
   getFullTestRunForAttempt(attemptId: string): FullTestRunRow | undefined;
+  /** getFullTestRunForAttempt for many Attempts in one read, keyed by Attempt id; one no Run names is absent. */
+  listFullTestRunsForAttempts(attemptIds: readonly string[]): Map<string, { id: string; status: string }>;
   listFullTestRuns(q?: { limit?: number; status?: FullTestRunStatus }): FullTestRunRow[];
   listFullTestSetIds(): string[];
   linkFullTestAttempt(runId: string, section: FullTestSection, attemptId: string): boolean;

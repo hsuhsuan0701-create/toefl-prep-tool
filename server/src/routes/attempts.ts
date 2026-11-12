@@ -23,7 +23,7 @@ import {
   readSetForDisplay,
   setTitleOrNull,
   setTitlesById,
-  toAttemptListItemVM,
+  toAttemptListItemVMs,
   toAttemptVM,
   toScoringJobVM,
 } from "./attemptViewModels.js";
@@ -134,9 +134,10 @@ function findSpeakingItem(set: SpeakingSet, itemId: string): SpeakingItemLookup 
  *   write-once capture    CaptureStore's combined seam is the only writer of the capture marker and
  *                         the missing-Item placeholders; the SetUnavailable branches below use it
  *                         with an empty placeholder list.
- *   Full-Test Runs        Only `linkFullTestAttempt`, the reads `checkFullTestLink` needs, and
- *                         `getFullTestRunForAttempt` (the log names a section's Run, and abort
- *                         refuses the section a Run in progress is sitting); the rest of a Run's
+ *   Full-Test Runs        Only `linkFullTestAttempt`, the reads `checkFullTestLink` needs,
+ *                         `getFullTestRunForAttempt` (abort refuses the section a Run in progress
+ *                         is sitting) and `listFullTestRunsForAttempts` (the log names a section's
+ *                         Run, one read per page); the rest of a Run's
  *                         lifecycle belongs to routes/fullTests.ts.
  *   Set supersession      `supersedeSet` is not in scope: retiring a Set belongs to the generation
  *                         runner that published its replacement.
@@ -155,7 +156,7 @@ export type AttemptsRouteStore =
   & Omit<ScoreStore, "getAttempt" | "getScoringJob">
   & Omit<ScoringStore, "getAttempt">
   & Omit<EstimateStore, "getAttempt">
-  & Pick<FullTestRunStore, "linkFullTestAttempt" | "getFullTestRunForAttempt">
+  & Pick<FullTestRunStore, "linkFullTestAttempt" | "getFullTestRunForAttempt" | "listFullTestRunsForAttempts">
   & FullTestLinkCheckStore
   & RecordingStore
   & DeterministicScoreStore
@@ -859,7 +860,7 @@ export function buildAttemptsRoutes(deps: AttemptsRouteDeps) {
       const rows = deps.repo.listAttempts({ kind, setId, limit, offset });
       const titles = setTitlesById(rows.map((row) => row.set_id));
       return c.json({
-        items: rows.map((row) => toAttemptListItemVM(row, titles.get(row.set_id) ?? null, deps.repo)),
+        items: toAttemptListItemVMs(rows, titles, deps.repo),
         total: deps.repo.countAttempts({ kind, setId }),
       } satisfies AttemptListVM);
     })

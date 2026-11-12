@@ -187,6 +187,12 @@ export function createSqliteAttemptStore(db: Database.Database) {
       db.prepare("UPDATE attempts SET module_path=?, router_raw=? WHERE id=?").run(path, routerRaw, attemptId);
     },
     getAttempt,
+    // An Attempt's Items as the Attempt log's band state reads them: which Item, its Task Type and its
+    // scoring status, and none of the Response, transcript or Score Report getAttempt carries.
+    listItemScoringStates(attemptId: string) {
+      return db.prepare("SELECT item_id, task_type, scoring_status FROM item_results WHERE attempt_id=? ORDER BY created_at, rowid")
+        .all(attemptId) as { item_id: string; task_type: string; scoring_status: string }[];
+    },
     // Newest first. Without an explicit `limit`, the whole-log listing stops at 50 rows while a
     // per-Set listing is unbounded (a Set's own Attempts stay few however long the log grows).
     // GET /api/attempts always passes `limit` and `offset` and states `countAttempts` beside the
