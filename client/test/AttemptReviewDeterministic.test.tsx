@@ -375,17 +375,18 @@ describe("a completed Reading Attempt's Stimuli", () => {
     expect(within(card).getByTestId("item-g2")).toHaveTextContent("Item 2");
   });
 
-  it("opens a Read in Daily Life text and an Academic passage under their headings", async () => {
+  it("shows a Read in Daily Life text and an Academic passage open under their headings", async () => {
     await renderReview(textsDetail());
     const daily = screen.getByRole("region", { name: "Text-message chain" });
     const dailyToggle = within(daily).getByText("The text").closest("details")!;
-    expect(dailyToggle).not.toHaveAttribute("open");
+    // Open to begin with: the questions below are checked against it.
+    expect(dailyToggle).toHaveAttribute("open");
     // The text's own line breaks are kept, as the run keeps them.
     expect(within(dailyToggle).getByText(/Mia: Can you drive me/).textContent).toBe("Mia: Can you drive me to the fair?\nSam: Sure, at nine.");
 
     const academic = screen.getByRole("region", { name: "Beavers as engineers" });
     const academicToggle = within(academic).getByText("The passage").closest("details")!;
-    expect(academicToggle).not.toHaveAttribute("open");
+    expect(academicToggle).toHaveAttribute("open");
     expect(within(academicToggle).getByText("ecology")).toBeInTheDocument();
     expect(within(academicToggle).getByText("Beavers build dams that slow a river.").tagName).toBe("P");
     expect(within(academicToggle).getByText("The ponds behind them store sediment.").tagName).toBe("P");

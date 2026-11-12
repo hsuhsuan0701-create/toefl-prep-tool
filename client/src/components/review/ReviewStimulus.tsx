@@ -31,8 +31,10 @@ export default function ReviewStimulus({ content, gaps, summary = "The text" }: 
   if (content.kind === "gapped") {
     return <FilledPassage segments={content.segments} prefixesByGapId={content.prefixesByGapId} gaps={gaps ?? new Map()} />;
   }
+  // Open to begin with: the questions under it are checked against the text, so it is what the
+  // User needs first. It can still be folded away to bring the Items up.
   return (
-    <Disclosure summary={summary}>
+    <Disclosure summary={summary} defaultOpen>
       <PassagePane label={content.label ?? undefined} text={content.text} preserveLines={content.preserveLines} className="mt-2 mb-1" />
     </Disclosure>
   );

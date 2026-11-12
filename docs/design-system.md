@@ -311,7 +311,8 @@ Recipes, as the pages are built.
     a Reading Stimulus's own text sits under its heading (`review/ReviewStimulus`): a Complete the
     Words passage in full, in mono, each gap numbered by its Item and filled with what was typed,
     marked, with the correct word beside a wrong or empty one; a Read in Daily Life text or an
-    Academic passage in a `Disclosure` ("The text", "The passage"), set as `PassagePane`. A
+    Academic passage in a `Disclosure` ("The text", "The passage") that starts open, set as
+    `PassagePane`. A
     Listening Stimulus can be played again from under its heading (`StimulusReplay`), a Listen and
     Choose a Response from its own opened row, never as text. An opened question lists its options
     (`ChoiceList`, locked) with the Response and the key marked.
