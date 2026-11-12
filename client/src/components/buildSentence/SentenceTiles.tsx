@@ -1,10 +1,13 @@
 import { useMemo, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import {
   DndContext,
+  DragOverlay,
   KeyboardSensor,
   PointerSensor,
   closestCenter,
   pointerWithin,
+  useDndContext,
   useDraggable,
   useDroppable,
   useSensor,
@@ -13,7 +16,6 @@ import {
   type CollisionDetection,
   type DragEndEvent,
 } from "@dnd-kit/core";
-import { CSS } from "@dnd-kit/utilities";
 import { Button } from "../../ui/Button";
 import { cx } from "../../ui/cx";
 import { Kicker } from "../../ui/Heading";
@@ -185,6 +187,8 @@ export default function SentenceTiles({ item, slots, onSlotsChange, onSkip }: Se
             )}
           </DropZone>
         </div>
+
+        <DraggedTile slots={slots} />
       </DndContext>
 
       <div className="space-y-1 text-meta text-graphite">
@@ -261,26 +265,68 @@ function Blank({ index, tileId }: { index: number; tileId: string | null }) {
  * TouchSensor is needed. The blanks and the tray are `useDroppable` only and need none of this.
  */
 function Tile({ id, placed }: { id: string; placed: boolean }) {
-  const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({ id });
-  const style = { transform: CSS.Translate.toString(transform) };
+  const { attributes, listeners, setNodeRef, isDragging } = useDraggable({ id });
 
   return (
     <button
       ref={setNodeRef}
-      style={style}
       {...attributes}
       {...listeners}
       type="button"
       data-testid={`bas-tile-${id}`}
       className={cx(
-        "touch-none inline-flex min-h-10 cursor-grab select-none items-center gap-1.5 rounded-control border py-1.5 pr-3 pl-2 text-stimulus leading-none text-ink active:cursor-grabbing pointer-coarse:min-h-11",
+        "touch-none cursor-grab active:cursor-grabbing",
+        tileFaceClasses(placed),
         "transition-colors duration-(--duration-quick) ease-quiet",
-        placed ? "border-accent-rule bg-accent-wash hover:border-accent" : "border-rule-strong bg-field hover:border-graphite",
-        isDragging && "relative z-10 shadow-overlay",
+        // The tile itself stays where it was while `DraggedTile` follows the pointer, so the spot
+        // it was taken from stays visible and nothing around it reflows mid-drag.
+        isDragging && "opacity-40",
       )}
     >
       <IconGrip size={14} className="shrink-0 text-faint" />
       {tileTextOf(id)}
     </button>
+  );
+}
+
+/** How a tile looks, in the tray or a blank, and lifted under the pointer. */
+function tileFaceClasses(placed: boolean): string {
+  return cx(
+    "inline-flex min-h-10 select-none items-center gap-1.5 rounded-control border py-1.5 pr-3 pl-2 text-stimulus leading-none text-ink pointer-coarse:min-h-11",
+    placed ? "border-accent-rule bg-accent-wash hover:border-accent" : "border-rule-strong bg-field hover:border-graphite",
+  );
+}
+
+/**
+ * The tile under the pointer during a drag: a copy drawn in dnd-kit's `DragOverlay`, which is
+ * `position: fixed`, portalled to the body so no ancestor can become its containing block.
+ *
+ * Not the dragged tile moved by a transform on itself: a transformed tile still counts towards the
+ * page's scrollable size, so a tile held at the right or bottom edge overhung the window, dnd-kit's
+ * auto-scroll scrolled into the overhang, the tile followed the pointer, and the page grew without
+ * limit. A fixed element adds nothing to the page's size, so auto-scroll stops at the end of the
+ * content, while it still carries a tile to a blank that is off screen on a short phone.
+ *
+ * `aria-hidden` and not a button: the real tile keeps focus and the screen-reader announcements,
+ * and this copy is only what the eye follows. No drop animation, so the tile appears in its new
+ * place the moment it is released, as every other arrangement change does.
+ */
+function DraggedTile({ slots }: { slots: SlotFill }) {
+  const { active } = useDndContext();
+  const id = active ? String(active.id) : null;
+  return createPortal(
+    <DragOverlay dropAnimation={null}>
+      {id ? (
+        <span
+          aria-hidden="true"
+          data-testid="bas-drag-overlay"
+          className={cx(tileFaceClasses(slots.includes(id)), "cursor-grabbing shadow-overlay")}
+        >
+          <IconGrip size={14} className="shrink-0 text-faint" />
+          {tileTextOf(id)}
+        </span>
+      ) : null}
+    </DragOverlay>,
+    document.body,
   );
 }

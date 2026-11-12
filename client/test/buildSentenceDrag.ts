@@ -64,7 +64,9 @@ function syntheticRect(element: Element): DOMRect {
   if (testId === "bas-tray") return rect(0, TRAY_TOP, 700, 60);
   // Every tile reports the same rect wherever it is, so a drag always starts at TILE_CENTRE and the
   // pointer's delta carries the tile's collision box exactly onto the target's centre.
-  if (testId.startsWith("bas-tile-")) return rect(10, TRAY_TOP + 10, 60, 20);
+  // The copy drawn under the pointer during a drag starts where its tile was, so it reports the tile's
+  // rect too; a keyboard drag measures it to find the nearest zone.
+  if (testId.startsWith("bas-tile-") || testId === "bas-drag-overlay") return rect(10, TRAY_TOP + 10, 60, 20);
   return realGetBoundingClientRect.call(element);
 }
 
@@ -107,14 +109,31 @@ export async function dragTile(
   tile: string | HTMLElement,
   target: TileDropTarget,
 ): Promise<void> {
+  await pickUpTile(user, tile, target);
+  await releaseTile(user);
+}
+
+/**
+ * The first half of {@link dragTile}: presses the tile and carries it to `target` without letting
+ * go, for a test about what a drag in progress draws. End it with {@link releaseTile}.
+ */
+export async function pickUpTile(
+  user: ReturnType<typeof userEvent.setup>,
+  tile: string | HTMLElement,
+  target: TileDropTarget,
+): Promise<void> {
   const element = typeof tile === "string" ? screen.getByRole("button", { name: tile }) : tile;
   const to = centreOf(target);
   await user.pointer([
     { keys: "[MouseLeft>]", target: element, coords: TILE_CENTRE },
     { target: element, coords: { clientX: TILE_CENTRE.clientX + 20, clientY: TILE_CENTRE.clientY } },
     { target: element, coords: to },
-    { keys: "[/MouseLeft]", target: element, coords: to },
   ]);
+}
+
+/** Lets go of the tile {@link pickUpTile} is carrying, where the pointer is. */
+export async function releaseTile(user: ReturnType<typeof userEvent.setup>): Promise<void> {
+  await user.pointer({ keys: "[/MouseLeft]" });
   await settleDrag();
 }
 

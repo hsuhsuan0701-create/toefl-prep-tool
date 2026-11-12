@@ -4,7 +4,14 @@ import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import SentenceTiles, { type BuildSentenceItem } from "../src/components/buildSentence/SentenceTiles";
 import { emptySlotsForFrame, tileIdOf, type SlotFill } from "../src/components/buildSentence/sentenceSlotFill";
-import { TILE_DRAG_LAYOUT, dragTile, dragTilesIntoBlanks, installTileDragLayout } from "./buildSentenceDrag";
+import {
+  TILE_DRAG_LAYOUT,
+  dragTile,
+  dragTilesIntoBlanks,
+  installTileDragLayout,
+  pickUpTile,
+  releaseTile,
+} from "./buildSentenceDrag";
 
 // The project's own reference Item (server/test/fixtures/build-a-sentence-reference-item.json): six
 // blanks, seven tiles, "was" the distractor. The drop arithmetic is covered in
@@ -242,6 +249,28 @@ describe("SentenceTiles", () => {
     // Including the one sitting in a blank, which is the same component in the other place.
     expect(within(screen.getByTestId("bas-blank-0")).getByTestId(`bas-tile-${VOLUNTEERS}`).className)
       .toContain("touch-none");
+  });
+
+  // A tile moved by a transform on itself counts towards the page's scrollable size, so one held at
+  // the window's right or bottom edge let auto-scroll grow the page without limit. jsdom has no
+  // layout to scroll, so this checks the structure that prevents it: the tile under the pointer is a
+  // fixed copy outside the component's own tree, and the tile itself does not move.
+  it("draws the tile under the pointer as a fixed copy outside the page flow, not by moving the tile", async () => {
+    const user = userEvent.setup();
+    const { container } = render(<ControlledTiles item={REFERENCE_ITEM} />);
+
+    await pickUpTile(user, "who", { blank: 1 });
+
+    const copy = screen.getByTestId("bas-drag-overlay");
+    expect(copy).toHaveTextContent("who");
+    expect(copy).toHaveAttribute("aria-hidden", "true");
+    expect(container).not.toContainElement(copy);
+    expect(copy.parentElement).toHaveStyle({ position: "fixed" });
+    expect(screen.getByTestId(`bas-tile-${WHO}`).style.transform).toBe("");
+
+    await releaseTile(user);
+    expect(screen.queryByTestId("bas-drag-overlay")).not.toBeInTheDocument();
+    expect(screen.getByTestId("bas-blank-1")).toHaveTextContent("who");
   });
 
   // The Response itself is produced when the Task commits (buildSentenceRun.ts, via blankOrderTexts);
