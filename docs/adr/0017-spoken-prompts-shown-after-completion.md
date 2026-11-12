@@ -20,8 +20,8 @@ scored"; the Items left out were exactly the ones a User most needs to understan
 
 ## Decision
 
-**A spoken prompt's text is withheld while an Attempt can still be answered, and is sent with the
-detail of a completed Attempt, for every Item, scored or not.**
+**An Item with no Score Report gets its prompt as text only once its Attempt is completed: the
+detail of a completed Attempt carries the text for every Item, scored or not.**
 
 - `GET /api/attempts/:id` for a completed Speaking Attempt, Drill or Simulation (a Full-Test Run's
   Speaking section included), carries `spokenPrompts`: for each spoken Item of the Attempt, the
@@ -30,8 +30,11 @@ detail of a completed Attempt, for every Item, scored or not.**
 - The text is read from the Set on disk at request time, as `deterministicReview` reads a Reading or
   Listening key and Explanation, and is never stored. A Set that can no longer be read omits the
   field; the readback still succeeds.
-- For an in-progress, unfinished or discarded Attempt the field is absent. The review page holds to
-  the same rule.
+- For an in-progress, unfinished or discarded Attempt the field is absent, and the review page
+  holds to the same rule, so an Item that has not been scored shows no text there.
+- A scored Item's Score Report still carries its own sentence or question in `meta`, as it did
+  before this record and whatever the Attempt's status. That Item has been answered and scored, and
+  its text says nothing about the Items still to come.
 - On the review, a scored Item keeps showing the text from its Score Report; an Item with none shows
   the text from `spokenPrompts`, under the same heading and in the same place. Both name the same
   sentence or question, so it is shown once.
@@ -53,7 +56,8 @@ What this does not change:
 
 - **The served Set.** `GET /api/sets/:id` still strips every sentence and question, and
   `servedSetTripwire.test.ts` still guards it.
-- **An unfinished Simulation**, or any Attempt that can still take a Response, gets no text. A
+- **An unfinished Simulation**, or any Attempt that can still take a Response, gets no
+  `spokenPrompts`, so no Item that has yet to be scored is shown as text. A
   restarted Full-Test Run section replaces an in-progress Attempt, which never carried it; a
   completed Full-Test section is never sat again (`checkFullTestLink` refuses it).
 - **The Drill Lab's own rule.** `/drill-lab` still serves Listen and Repeat sentences in cleartext

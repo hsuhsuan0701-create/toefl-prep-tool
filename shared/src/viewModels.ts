@@ -356,8 +356,9 @@ export interface AttemptDetailVM {
   deterministicReview?: DeterministicReviewItemVM[];
   // Present only for a completed Speaking Attempt, Drill or Simulation (a Full-Test Run's Speaking
   // section included), whose Set can still be read: one entry per spoken Item of the Attempt that
-  // the Set carries. Absent, not empty, for an in-progress or discarded Attempt, so nothing that can
-  // still be answered sees its prompt as text (docs/adr/0017).
+  // the Set carries. Absent, not empty, for an in-progress or discarded Attempt, so an Item with no
+  // Score Report gets its prompt as text only once the Attempt is completed. A scored Item's own
+  // Score Report carries it in `meta` whatever the status (docs/adr/0017).
   spokenPrompts?: SpokenPromptVM[];
 }
 
