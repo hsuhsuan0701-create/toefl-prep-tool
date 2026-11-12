@@ -16,6 +16,7 @@ import {
   type ScoringJobDetailVM,
   type ScoringProgressDetail,
   type SpeakingSet,
+  type SpokenPromptVM,
   type TranscriptionJobVM,
 } from "@toefl-prep/shared";
 import {
@@ -262,6 +263,22 @@ function buildDeterministicReview(set: AnySet, items: ItemVM[]): DeterministicRe
     }
   }
   return out;
+}
+
+// Each spoken Item's prompt as text, read from the Set: the Listen and Repeat sentence, or the
+// Item's own Interview question (never the introduction, which the served Set already carries).
+// Neither is persisted with an unscored Item, and the served Set strips both, so this is the one
+// place an Item with no Score Report can get them. The caller sends it only for a completed Attempt
+// (docs/adr/0017). An Item the Set no longer carries is left out.
+function buildSpokenPrompts(set: AnySet, items: ItemVM[]): SpokenPromptVM[] | undefined {
+  if (set.kind !== "speaking") return undefined;
+  const byId = new Map<string, SpokenPromptVM>();
+  for (const item of set.listenAndRepeat.items) byId.set(item.id, { itemId: item.id, taskType: "listen_repeat", text: item.sentence });
+  for (const question of set.interview.questions) byId.set(question.id, { itemId: question.id, taskType: "interview", text: question.question });
+  return items.flatMap((item) => {
+    const prompt = byId.get(item.itemId);
+    return prompt && prompt.taskType === item.taskType ? [prompt] : [];
+  });
 }
 
 // A Build a Sentence score_json without its key (`correctAnswers`): correctness and the frame stay,
@@ -984,6 +1001,12 @@ export function buildAttemptsRoutes(deps: AttemptsRouteDeps) {
         }
       }
 
+      // The text of each spoken Item's prompt, for a completed Speaking Attempt only: while an
+      // Attempt can still be answered its sentences and questions stay withheld, as the served Set
+      // withholds them (docs/adr/0017). A missing or unreadable Set omits the field.
+      const spokenPrompts =
+        set && attempt.status === "completed" && attempt.kind === "speaking" ? buildSpokenPrompts(set, items) : undefined;
+
       return c.json({
         attempt: attemptVM,
         items,
@@ -992,6 +1015,7 @@ export function buildAttemptsRoutes(deps: AttemptsRouteDeps) {
         bandStatus,
         activeJobs,
         ...(deterministicReview ? { deterministicReview } : {}),
+        ...(spokenPrompts ? { spokenPrompts } : {}),
       } satisfies AttemptDetailVM);
     });
 }

@@ -44,14 +44,22 @@ export type SpokenItemReviewProps = {
    * page passes it only for a completed Attempt, and it is absent when the Set cannot be read.
    */
   promptAudio?: string;
+  /**
+   * The sentence or question as text, from the Attempt detail's `spokenPrompts`: the server sends it
+   * only for a completed Attempt, scored or not (docs/adr/0017). Shown when the Score Report carries
+   * none, so an Item whose transcription or scoring failed still says what was asked.
+   */
+  promptText?: string;
 };
 
 /**
  * A Listen and Repeat sentence or an Interview question: what was asked, the recording, its
  * transcription state, and its Score Report — the transcript marked in red pen, and for Listen and
  * Repeat the word-by-word comparison with the target. The sentence and the question come from the
- * Score Report's `meta`: the served Set withholds both, so an Item with no Score Report cannot show
- * them as text; its prompt audio (`promptAudio`) plays for any Item. The Listen and Repeat scene is the group's, shown once above the sentences (AttemptReview).
+ * Score Report's `meta`, or, for an Item with no Score Report, from `promptText`, which only a
+ * completed Attempt carries: the served Set withholds both. Its prompt audio (`promptAudio`) plays
+ * for any Item. The Listen and Repeat scene is the group's, shown once above the sentences
+ * (AttemptReview).
  */
 export default function SpokenItemReview({
   item,
@@ -68,6 +76,7 @@ export default function SpokenItemReview({
   settled,
   discarded,
   promptAudio,
+  promptText,
 }: SpokenItemReviewProps) {
   const isRepeat = item.taskType === "listen_repeat";
   const report = item.scoringStatus === "scored" && isPersistedScoreItem(item.scoreJson) ? item.scoreJson : null;
@@ -80,7 +89,9 @@ export default function SpokenItemReview({
   const delivery = parseDeliveryReport(item.deliveryReport);
   const replaySrc = item.responseAudioPath ? `/api/audio/responses/${attemptId}/${item.itemId}.webm` : null;
   const transcript = item.transcript ?? "";
-  const prompt = isRepeat ? meta?.target : meta?.question;
+  // Both name the same sentence or question when both exist; the Score Report's is preferred, as it
+  // is what the Item was scored against.
+  const prompt = (isRepeat ? meta?.target : meta?.question) || promptText;
   const title = isRepeat ? `Sentence ${ordinal}` : `Question ${ordinal}`;
 
   return (

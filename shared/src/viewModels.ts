@@ -264,6 +264,19 @@ export interface DeterministicReviewItemVM {
 }
 
 /**
+ * What a spoken Item asked, as text: the sentence to repeat for Listen and Repeat, the Item's own
+ * question for Take an Interview (never the Interview's introduction). Re-derived from the Set on
+ * each read and never stored. The served Set withholds both while an Attempt can still be answered;
+ * a completed Attempt's detail carries them for every Item, scored or not, so an Item with no Score
+ * Report still says what was asked (docs/adr/0017).
+ */
+export interface SpokenPromptVM {
+  itemId: string;
+  taskType: "listen_repeat" | "interview";
+  text: string;
+}
+
+/**
  * What stands between a settled Attempt and a Band Estimate, as counts a surface puts in the User's
  * words. A band needs every Item of the section's Task Types scored — a deliberate skip is a scored
  * 0 and counts — and every Task Type the section requires present (docs/adr/0010).
@@ -341,6 +354,11 @@ export interface AttemptDetailVM {
   // Present only for a completed Reading or Listening Attempt, Drill or Simulation; absent, not empty,
   // otherwise.
   deterministicReview?: DeterministicReviewItemVM[];
+  // Present only for a completed Speaking Attempt, Drill or Simulation (a Full-Test Run's Speaking
+  // section included), whose Set can still be read: one entry per spoken Item of the Attempt that
+  // the Set carries. Absent, not empty, for an in-progress or discarded Attempt, so nothing that can
+  // still be answered sees its prompt as text (docs/adr/0017).
+  spokenPrompts?: SpokenPromptVM[];
 }
 
 /**

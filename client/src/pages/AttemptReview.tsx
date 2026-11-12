@@ -98,12 +98,15 @@ export default function AttemptReview() {
     );
   }
 
-  const { attempt, items, judgeReports, estimate, bandStatus, deterministicReview } = detail;
+  const { attempt, items, judgeReports, estimate, bandStatus, deterministicReview, spokenPrompts } = detail;
   const reasons = pollReasons(detail);
   const settled = !reasons.transcriptionActive && !reasons.scoringActive && !reasons.captureFinalizing;
   const section = SECTION_LABEL[attempt.kind];
   const groups = reviewGroups(items, (taskType) => taskTypeEntry(taskType)?.review);
   const reviewByItemId = new Map((deterministicReview ?? []).map((r) => [r.itemId, r]));
+  // The server sends these only with a completed Speaking Attempt (docs/adr/0017); the page holds to
+  // the same rule, as it does for the prompt audio, so a sentence still being answered is never shown.
+  const spokenPromptByItemId = new Map(attempt.status === "completed" ? (spokenPrompts ?? []).map((p) => [p.itemId, p.text]) : []);
   const deterministic = attempt.kind === "reading" || attempt.kind === "listening";
 
   const judgedProps = (item: ItemVM) => ({
@@ -254,6 +257,7 @@ export default function AttemptReview() {
                         // Played again only once the Attempt is over: before that, a prompt plays
                         // as its run decides, and a sentence still being answered stays unheard.
                         promptAudio={attempt.status === "completed" ? spokenPromptAudioFor(setSnapshot, item.itemId) : undefined}
+                        promptText={spokenPromptByItemId.get(item.itemId)}
                         onTranscriptionRetried={review.refresh}
                         {...judgedProps(item)}
                       />

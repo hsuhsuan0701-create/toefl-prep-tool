@@ -74,6 +74,9 @@ One npm workspace repo, one process per side:
    points, and only when every Item of the Attempt is scored and every Task Type has one (ADR 0010).
    An Item that failed, is still unscored or never arrived leaves the Attempt without a band until
    it is re-scored.
+5. **Review.** A completed Speaking Attempt's detail (`GET /api/attempts/:id`) carries each Item's
+   sentence or question as text, re-read from the Set, so an Item with no Score Report still says
+   what was asked. Before completion it carries none (ADR 0017).
 
 A recording with no speech in it scores a deterministic 0 with a "no speech detected" marker; it is
 never sent to the Judges.
