@@ -39,6 +39,11 @@ const MCQ_TASK_TYPES: readonly string[] = [
 // the weakness breakdown's window may hold.
 const JUDGED_TASK_TYPES: readonly string[] = AnyTaskType.options.filter((t) => !isDeterministicTaskType(t));
 
+// Whether an `item_results` row (alias `ir`) holds the deliberate-skip marker, in SQL: the test
+// isSkippedItemScoreJson (shared/src/schemas/scoring.ts) makes on a parsed value. json_valid guards
+// json_extract, which raises on a corrupt column rather than answering false.
+const SKIPPED_ITEM_SQL = `(CASE WHEN json_valid(ir.score_json) THEN json_extract(ir.score_json, '$.skipped') IS 1 ELSE 0 END)`;
+
 // The item_results upsert, shared so its writers cannot drift apart: insertItemResult, the scored
 // batches below (writeScoredItems), and stores/transcription.ts's
 // persistFreshTranscriptAndFinishJob, which runs it in one transaction with its own
@@ -280,7 +285,10 @@ export function createSqliteAttemptStore(db: Database.Database) {
     // The most recently SCORED judged Items — feeds the stats/summary weakness breakdown
     // (deduction-category counts over the last N). Scoped to judge-scored Task Types IN the query,
     // before the LIMIT: one Reading Simulation scores dozens of right-or-wrong Items at once, and a
-    // window that admitted them would hold no Deductions at all. Ordered by scored_at (scoring
+    // window that admitted them would hold no Deductions at all. Likewise only a Response with a Score
+    // Report (a `deductions` array, empty for a recording with no speech) takes a slot: a skip
+    // placeholder is a scored 0 but no Response, and a Speaking Simulation left early writes one for
+    // every Item it never reached, which would push real Responses out. Ordered by scored_at (scoring
     // time), NOT created_at (upload time, which never moves on a rescore), with rowid DESC as the
     // tiebreak for same-second scoring passes. scoring_status/score_json are belt-and-suspenders
     // filters alongside `scored_at IS NOT NULL`, the real "currently scored" signal (see
@@ -291,6 +299,7 @@ export function createSqliteAttemptStore(db: Database.Database) {
         `SELECT score_json AS scoreJson FROM item_results
          WHERE scoring_status = 'scored' AND score_json IS NOT NULL AND scored_at IS NOT NULL
            AND task_type IN (${placeholders})
+           AND (CASE WHEN json_valid(score_json) THEN json_type(score_json, '$.deductions') END) = 'array'
          ORDER BY scored_at DESC, rowid DESC LIMIT ?`
       ).all(...JUDGED_TASK_TYPES, limit) as { scoreJson: string }[];
     },
@@ -308,19 +317,25 @@ export function createSqliteAttemptStore(db: Database.Database) {
          ORDER BY scored_at DESC, rowid DESC LIMIT ?`
       ).all(...MCQ_TASK_TYPES, limit) as { scoreJson: string; taskType: string }[];
     },
-    // One point per completed Attempt with at least one scored Item of this Task Type: the mean of
-    // those scores. In-progress and aborted Attempts are not points. Repeats are included, flagged by
-    // isRepeat, for the client to draw distinctly. Ties break on the Attempt's insertion order
-    // (a.rowid), since ids are random UUIDs; it is single-valued per group.
+    // One point per completed Attempt whose Items of this Task Type are all scored, the band rule's
+    // test (sectionEstimates.ts, ADR 0010) taken per Task Type: the mean of those scores, a skip
+    // counted as the 0 it scores. An Attempt with one of them failed, pending or untranscribed gives
+    // no point, since a mean of its scored siblings alone is not its result. Nor does one whose Items
+    // of this Task Type are all skips: a Speaking Simulation left early has a skip placeholder for
+    // every Item it never reached, and a point made of placeholders alone would plot 0 for a Task
+    // Type the User never answered. In-progress and aborted Attempts are not points. Repeats are
+    // included, flagged by isRepeat, for the client to draw distinctly. Ties break on the Attempt's
+    // insertion order (a.rowid), since ids are random UUIDs; it is single-valued per group.
     trendPoints(taskType: string): TrendRow[] {
       return db.prepare(
         `SELECT ir.attempt_id AS attemptId, a.mode AS mode, a.is_repeat AS isRepeat,
                 a.started_at AS startedAt, a.completed_at AS completedAt, AVG(ir.score) AS avgScore
          FROM item_results ir
          JOIN attempts a ON a.id = ir.attempt_id
-         WHERE ir.task_type = ? AND ir.scoring_status = 'scored' AND ir.score IS NOT NULL
-           AND a.status = 'completed'
+         WHERE ir.task_type = ? AND a.status = 'completed'
          GROUP BY ir.attempt_id
+         HAVING SUM(ir.scoring_status <> 'scored' OR ir.score IS NULL) = 0
+            AND SUM(NOT ${SKIPPED_ITEM_SQL}) > 0
          ORDER BY COALESCE(a.completed_at, a.started_at) ASC, a.rowid ASC`
       ).all(taskType) as TrendRow[];
     },

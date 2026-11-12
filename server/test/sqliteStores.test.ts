@@ -645,7 +645,7 @@ describe("the SQLite stores", () => {
     r.createAttempt({ id: "att-sa", kind: "writing", mode: "drill", setId: "wri-1", isRepeat: false });
     r.insertItemResult({ attemptId: "att-sa", itemId: "em1", taskType: "email" });
 
-    r.updateItemScore({ attemptId: "att-sa", itemId: "em1", score: 3, scoreJson: "{}", scoringStatus: "scored" });
+    r.updateItemScore({ attemptId: "att-sa", itemId: "em1", score: 3, scoreJson: '{"deductions":[]}', scoringStatus: "scored" });
     expect(r.getAttempt("att-sa")?.items[0].scored_at).toEqual(expect.any(String));
     expect(r.recentScoredItemResults(10)).toHaveLength(1);
 
@@ -659,16 +659,16 @@ describe("the SQLite stores", () => {
     const r = sqliteStores(db);
     r.createAttempt({ id: "att-ord", kind: "writing", mode: "drill", setId: "wri-1", isRepeat: false });
     r.insertItemResult({ attemptId: "att-ord", itemId: "item-a", taskType: "email" });
-    r.updateItemScore({ attemptId: "att-ord", itemId: "item-a", score: 3, scoreJson: '{"tag":"a-first-score"}', scoringStatus: "scored" });
+    r.updateItemScore({ attemptId: "att-ord", itemId: "item-a", score: 3, scoreJson: '{"tag":"a-first-score","deductions":[]}', scoringStatus: "scored" });
     r.insertItemResult({ attemptId: "att-ord", itemId: "item-b", taskType: "email" });
-    r.updateItemScore({ attemptId: "att-ord", itemId: "item-b", score: 4, scoreJson: '{"tag":"b"}', scoringStatus: "scored" });
+    r.updateItemScore({ attemptId: "att-ord", itemId: "item-b", score: 4, scoreJson: '{"tag":"b","deductions":[]}', scoringStatus: "scored" });
 
     // item-a was submitted (created_at) and scored before item-b.
     db.prepare("UPDATE item_results SET created_at='2026-01-01 00:00:00', scored_at='2026-01-01 00:00:01' WHERE attempt_id='att-ord' AND item_id='item-a'").run();
     db.prepare("UPDATE item_results SET created_at='2026-01-02 00:00:00', scored_at='2026-01-02 00:00:01' WHERE attempt_id='att-ord' AND item_id='item-b'").run();
 
     // A re-score of item-a moves its scored_at after item-b's, while its created_at stays the older.
-    r.updateItemScore({ attemptId: "att-ord", itemId: "item-a", score: 3.5, scoreJson: '{"tag":"a-rescored"}', scoringStatus: "scored" });
+    r.updateItemScore({ attemptId: "att-ord", itemId: "item-a", score: 3.5, scoreJson: '{"tag":"a-rescored","deductions":[]}', scoringStatus: "scored" });
     db.prepare("UPDATE item_results SET scored_at='2026-01-03 00:00:00' WHERE attempt_id='att-ord' AND item_id='item-a'").run();
 
     const recent = r.recentScoredItemResults(10);

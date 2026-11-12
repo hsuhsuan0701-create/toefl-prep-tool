@@ -155,6 +155,30 @@ describe("GET /trends", () => {
     expect(body[0].avgScore).toBeCloseTo(0.5);
   });
 
+  // The band rule per Task Type (ADR 0010): a point only when every Item of the Task Type is scored,
+  // a deliberate skip being a scored 0.
+  it("counts a skip as 0 in an Attempt whose Items of the Task Type are all scored", async () => {
+    completedAttempt(ctx, { id: "att-1", kind: "speaking", mode: "simulation", setId: "spk-1", isRepeat: false });
+    for (let i = 1; i <= 6; i++) scoreItem(ctx, "att-1", `lr-${i}`, "listen_repeat", 3.5, { deductions: [] });
+    scoreItem(ctx, "att-1", "lr-7", "listen_repeat", 0, { skipped: true, reason: "No recording was made for this item." });
+
+    const body = (await (await ctx.app.request("/trends?taskType=listen_repeat")).json()) as TrendPointVM[];
+    expect(body.map((p) => p.attemptId)).toEqual(["att-1"]);
+    expect(body[0].avgScore).toBeCloseTo(3);
+  });
+
+  it("gives no point for an Attempt with an Item of the Task Type that is not scored, and ignores other Task Types' Items", async () => {
+    completedAttempt(ctx, { id: "att-1", kind: "speaking", mode: "drill", setId: "spk-1", isRepeat: false });
+    scoreItem(ctx, "att-1", "lr-1", "listen_repeat", 4, { deductions: [] });
+    scoreItem(ctx, "att-1", "int-1", "interview", 4, { deductions: [] });
+    ctx.repo.insertItemResult({ attemptId: "att-1", itemId: "int-2", taskType: "interview", scoringStatus: "transcription_pending" });
+    ctx.repo.insertItemResult({ attemptId: "att-1", itemId: "int-3", taskType: "interview" });
+    ctx.repo.updateItemScore({ attemptId: "att-1", itemId: "int-3", score: null, scoreJson: JSON.stringify({ error: "judges failed" }), scoringStatus: "failed" });
+
+    const body = (await (await ctx.app.request("/trends?taskType=listen_repeat,interview")).json()) as TrendPointVM[];
+    expect(body.map((p) => [p.taskType, p.avgScore])).toEqual([["listen_repeat", 4]]);
+  });
+
   it("orders deterministically by attempt insertion order (not attempt id) when two attempts share an identical completed_at", async () => {
     // Ids chosen so alphabetical order is the reverse of creation order: a tiebreak on attempt_id
     // (a random UUID in production) would put "aaa-created-second" first. Only an insertion-order
