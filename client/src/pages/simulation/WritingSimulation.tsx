@@ -28,6 +28,7 @@ import {
   fallbackSetTitle,
   findListedSet,
   pickSimulationSet,
+  predictRepeat,
   repeatNoticeText,
   sleep,
   useFlagOnHidden,
@@ -349,14 +350,16 @@ export default function WritingSimulation({ fullTest }: { fullTest?: FullTestSec
       }
       // Inside a Run the Set is the one the Run drew for this section; standalone, a stored section
       // keeps its own Set, and otherwise one is picked automatically. A Set named either way is
-      // looked up in the bank only for its title and `attempted` flag.
+      // looked up in the bank only for its title and `attempted` flag. A resumed Attempt carries its
+      // own tag, and a restarted Run section the tag of the Attempt it replaces (predictRepeat).
       const named = stored?.setId ?? fullTestSetId;
       const entry = named ? await findListedSet(named) : await pickSimulationSet("writing");
       const served = expectServedSet("writing", await getSet(named ?? entry!.id));
+      const repeat = await predictRepeat(entry, stored?.attemptId ?? fullTestAttemptId);
       if (!current()) return;
       setSet(served);
       setListing(entry);
-      setIsRepeat(entry?.attempted ?? false);
+      setIsRepeat(repeat);
       if (stored) resume(served, stored);
       else setStage("intro");
     } catch (e) {

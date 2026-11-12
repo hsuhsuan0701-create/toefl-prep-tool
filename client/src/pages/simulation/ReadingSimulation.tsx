@@ -31,6 +31,7 @@ import {
   leaveBeforeCompletedMessage,
   leaveRestartsSectionMessage,
   pickSimulationSet,
+  predictRepeat,
   repeatNoticeText,
   sleep,
   useAttemptCompletion,
@@ -56,10 +57,11 @@ const hasResponse = (answers: ReadonlyMap<string, string>, itemId: string) => (a
 
 
 export default function ReadingSimulation({ fullTest }: { fullTest?: FullTestSectionContext }) {
-  // Read out once so the hooks below can depend on the two primitives rather than on an object
-  // identity the caller re-creates on every render.
+  // Read out once so the hooks below can depend on primitives rather than on an object identity
+  // the caller re-creates on every render.
   const fullTestRunId = fullTest?.runId;
   const fullTestSetId = fullTest?.setId;
+  const fullTestAttemptId = fullTest?.attemptId;
   const exitTo = fullTestRunId ? `/full-test/${fullTestRunId}` : "/";
 
   const [pageStage, setPageStage] = useState<"loading" | "error" | "ready">("loading");
@@ -105,14 +107,15 @@ export default function ReadingSimulation({ fullTest }: { fullTest?: FullTestSec
     try {
       // Inside a Full-Test Run the Set is the one the Run drew (the server refuses any other),
       // looked up in the bank only for its title and `attempted` flag; standalone, the automatic
-      // pick. Either way the listing's `attempted` lets the intro disclose a Repeat before the User
-      // commits about 30 minutes.
+      // pick. predictRepeat lets the intro disclose a Repeat before the User commits about 30
+      // minutes.
       const entry = fullTestSetId ? await findListedSet(fullTestSetId) : await pickSimulationSet("reading");
       const s = await getSet(fullTestSetId ?? entry!.id);
+      const repeat = await predictRepeat(entry, fullTestAttemptId);
       if (!mountedRef.current) return;
       setSet(expectServedSet("reading", s));
       setListing(entry);
-      setIsRepeat(entry?.attempted ?? false);
+      setIsRepeat(repeat);
       setPageStage("ready");
     } catch (e) {
       if (!mountedRef.current) return;
@@ -120,7 +123,7 @@ export default function ReadingSimulation({ fullTest }: { fullTest?: FullTestSec
       retryRef.current = () => void loadSet();
       setPageStage("error");
     }
-  }, [fullTestSetId]);
+  }, [fullTestSetId, fullTestAttemptId]);
 
   useEffect(() => {
     void loadSet();

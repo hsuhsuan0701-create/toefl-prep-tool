@@ -30,6 +30,7 @@ import {
   leaveBeforeCompletedMessage,
   leaveRestartsSectionMessage,
   pickSimulationSet,
+  predictRepeat,
   repeatNoticeText,
   sleep,
   useAttemptCompletion,
@@ -56,6 +57,7 @@ export default function ListeningSimulation({ fullTest }: { fullTest?: FullTestS
   // Read out once so the hooks below depend on primitives, not an object the caller re-creates.
   const fullTestRunId = fullTest?.runId;
   const fullTestSetId = fullTest?.setId;
+  const fullTestAttemptId = fullTest?.attemptId;
   const exitTo = fullTestRunId ? `/full-test/${fullTestRunId}` : "/";
 
   const [pageStage, setPageStage] = useState<"loading" | "error" | "ready">("loading");
@@ -103,14 +105,14 @@ export default function ListeningSimulation({ fullTest }: { fullTest?: FullTestS
     try {
       // Inside a Full-Test Run the Set is the one the Run drew (the server refuses any other),
       // looked up in the bank only for its title and `attempted` flag; standalone, the automatic
-      // pick. Either way the listing's `attempted` lets the intro disclose a Repeat before the User
-      // starts.
+      // pick. predictRepeat lets the intro disclose a Repeat before the User starts.
       const entry = fullTestSetId ? await findListedSet(fullTestSetId) : await pickSimulationSet("listening");
       const s = await getSet(fullTestSetId ?? entry!.id);
+      const repeat = await predictRepeat(entry, fullTestAttemptId);
       if (!mountedRef.current) return;
       setSet(expectServedSet("listening", s));
       setListing(entry);
-      setIsRepeat(entry?.attempted ?? false);
+      setIsRepeat(repeat);
       setPageStage("ready");
     } catch (e) {
       if (!mountedRef.current) return;
@@ -118,7 +120,7 @@ export default function ListeningSimulation({ fullTest }: { fullTest?: FullTestS
       retryRef.current = () => void loadSet();
       setPageStage("error");
     }
-  }, [fullTestSetId]);
+  }, [fullTestSetId, fullTestAttemptId]);
 
   useEffect(() => {
     void loadSet();

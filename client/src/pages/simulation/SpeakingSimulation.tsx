@@ -30,6 +30,7 @@ import {
   leaveRestartsSectionMessage,
   markSpeakingCaptureFinished,
   pickSimulationSet,
+  predictRepeat,
   repeatNoticeText,
   sleep,
   useFlagOnHidden,
@@ -100,6 +101,7 @@ export default function SpeakingSimulation({ fullTest }: { fullTest?: FullTestSe
   // Read out once so the hooks below depend on primitives, not an object the caller re-creates.
   const fullTestRunId = fullTest?.runId;
   const fullTestSetId = fullTest?.setId;
+  const fullTestAttemptId = fullTest?.attemptId;
 
   const [stage, setStage] = useState<SpeakingSimStage>("loading");
   const [set, setSet] = useState<ServedSpeakingSet | null>(null);
@@ -164,13 +166,15 @@ export default function SpeakingSimulation({ fullTest }: { fullTest?: FullTestSe
     setErrorMsg(null);
     try {
       // Inside a Full-Test Run the Set is the one the Run drew (the server refuses any other), looked
-      // up in the bank only for its title and Repeat flag; standalone, the automatic pick.
+      // up in the bank only for its title and `attempted` flag; standalone, the automatic pick.
+      // predictRepeat lets the intro disclose a Repeat before the User starts.
       const entry = fullTestSetId ? await findListedSet(fullTestSetId) : await pickSimulationSet("speaking");
       const s = await getSet(fullTestSetId ?? entry!.id);
+      const repeat = await predictRepeat(entry, fullTestAttemptId);
       if (!mountedRef.current) return;
       setSet(expectServedSet("speaking", s));
       setListing(entry);
-      setIsRepeat(entry?.attempted ?? false);
+      setIsRepeat(repeat);
       setStage("intro");
     } catch (e) {
       if (!mountedRef.current) return;
@@ -178,7 +182,7 @@ export default function SpeakingSimulation({ fullTest }: { fullTest?: FullTestSe
       retryRef.current = () => void loadSet();
       setStage("error");
     }
-  }, [fullTestSetId]);
+  }, [fullTestSetId, fullTestAttemptId]);
 
   useEffect(() => {
     void loadSet();
