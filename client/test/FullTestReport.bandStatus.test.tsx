@@ -163,6 +163,28 @@ describe("a Writing section whose essay scoring failed", () => {
     const pending = screen.getByTestId("overall-pending");
     expect(pending).toHaveTextContent(/No Overall for this sitting: Writing has no band and will not get one/);
     expect(pending).not.toHaveTextContent(/No band yet/);
+    // The shortfall alone settles it, so the page neither reads the Attempt nor says it is checking.
+    expect(noBand).not.toHaveTextContent(/Checking/);
+    expect(vi.mocked(fetch).mock.calls.map(([input]) => String(input))).not.toContainEqual(expect.stringContaining("/api/attempts/"));
+  });
+});
+
+describe("a Speaking section whose Attempt cannot be read", () => {
+  it("keeps the reasons, says the report could not be read, and promises nothing", async () => {
+    const shortfall: BandShortfallVM = { unscored: [{ taskType: "interview", failed: 0, pending: 4, notCaptured: 0 }], absent: [] };
+    // No Attempt answers: GET /api/attempts/att-speaking is a 404.
+    renderRun(completedRun(sectionVM("writing", { status: "estimated" }, 5), sectionVM("speaking", { status: "no-band", ...shortfall })));
+    const speaking = (await sectionRows())[3];
+    const noBand = within(speaking).getByTestId("section-no-band-speaking");
+    await waitFor(() => expect(noBand).toHaveTextContent(/could not be read/));
+    expect(noBand).toHaveTextContent(
+      "4 Interview Responses were never scored. This section's report could not be read, so where each of them stands is not known here. " +
+        "Not found. The link may be out of date, or what it points to has been removed. Refresh to try again.",
+    );
+    expect(noBand).not.toHaveTextContent(/No band yet|Retry|Re-score|Checking/);
+    const pending = screen.getByTestId("overall-pending");
+    expect(pending).toHaveTextContent(/The report of Speaking could not be read here; Refresh to try again/);
+    expect(pending).not.toHaveTextContent(/No band yet|will not get one|Checking/);
   });
 });
 

@@ -688,15 +688,19 @@ describe("a finished sitting's section with no band", () => {
     expect(overall).not.toHaveTextContent(/yet|can still/);
   });
 
-  it("promises nothing until the section's Attempt has loaded, then the Retry its review offers", async () => {
+  // Three states, told apart: checking (nothing promised, no conclusion the answer may change),
+  // read (the review's decision), and unreadable (below).
+  it("says it is checking the section's report until its Attempt is read, then the Retry its review offers", async () => {
     const attempt = deferred();
     renderRun(runWithNoBand("speaking", LR_PENDING), { "att-speaking": attempt.promise });
     const noBand = within((await sectionRows())[3]).getByTestId("section-no-band-speaking");
     const overall = screen.getByTestId("overall-pending");
-    expect(noBand).toHaveTextContent("2 Listen and Repeat Responses were never scored. This section's report shows where each of them stands.");
-    expect(noBand).not.toHaveTextContent(/yet|Retry|Re-score|can still/);
-    expect(overall).toHaveTextContent(/No Overall: Speaking has no band, and that section's report says where its unscored Items stand/);
-    expect(overall).not.toHaveTextContent(/yet|can still|will not get one/);
+    expect(noBand).toHaveTextContent("2 Listen and Repeat Responses were never scored. Checking this section's report for where each of them stands.");
+    expect(noBand).toHaveAttribute("aria-busy", "true");
+    expect(noBand).not.toHaveTextContent(/yet|Retry|Re-score|can still|shows where/);
+    // The Overall waits too, rather than read "No Overall: ..." and then change its mind.
+    expect(overall).toHaveTextContent(/Checking the report of Speaking for where its unscored Items stand/);
+    expect(overall).not.toHaveTextContent(/No Overall|yet|can still|will not get one/);
 
     await act(async () => attempt.resolve(attemptDetail("speaking", LR_PENDING, [untranscribed(RETRYABLE), untranscribed(RETRYABLE)])));
     await waitFor(() =>
@@ -705,14 +709,18 @@ describe("a finished sitting's section with no band", () => {
       ),
     );
     expect(noBand).toHaveTextContent(/No band yet/);
+    expect(noBand).toHaveAttribute("aria-busy", "false");
     expect(overall).toHaveTextContent(/No Overall yet: Speaking has no band until its unscored Items are scored/);
+    expect(overall).not.toHaveTextContent(/Checking/);
   });
 
   it("promises the Re-score its review offers for a failed essay, once the Attempt has loaded", async () => {
     const attempt = deferred();
     renderRun(runWithNoBand("writing", EMAIL_FAILED), { "att-writing": attempt.promise });
     const noBand = within((await sectionRows())[2]).getByTestId("section-no-band-writing");
+    expect(noBand).toHaveTextContent("1 Write an Email Item failed scoring. Checking this section's report for where each of them stands.");
     expect(noBand).not.toHaveTextContent(/yet|Re-score/);
+    expect(screen.getByTestId("overall-pending")).toHaveTextContent(/Checking the report of Writing/);
 
     await act(async () =>
       attempt.resolve(attemptDetail("writing", EMAIL_FAILED, [
@@ -733,18 +741,40 @@ describe("a finished sitting's section with no band", () => {
       ]),
     });
     const noBand = within((await sectionRows())[3]).getByTestId("section-no-band-speaking");
-    // Let the Attempt load; what it decides must still be no promise.
-    await act(async () => {});
-    expect(noBand).toHaveTextContent(/This section's report shows where each of them stands/);
-    expect(noBand).not.toHaveTextContent(/yet|Retry|can still/);
-    expect(screen.getByTestId("overall-pending")).not.toHaveTextContent(/yet|can still|will not get one/);
+    // Once the Attempt is read, what it decides must still be no promise.
+    await waitFor(() => expect(noBand).toHaveTextContent(/This section's report shows where each of them stands/));
+    expect(noBand).not.toHaveTextContent(/yet|Retry|can still|Checking|could not be read/);
+    const overall = screen.getByTestId("overall-pending");
+    expect(overall).toHaveTextContent(/No Overall: Speaking has no band, and that section's report says where its unscored Items stand/);
+    expect(overall).not.toHaveTextContent(/yet|can still|will not get one|Checking|could not be read/);
   });
 
-  it("promises nothing when the section's Attempt cannot be loaded", async () => {
-    renderRun(runWithNoBand("writing", EMAIL_FAILED), { "att-writing": "unavailable" });
-    const noBand = within((await sectionRows())[2]).getByTestId("section-no-band-writing");
-    await act(async () => {});
-    expect(noBand).toHaveTextContent("1 Write an Email Item failed scoring. This section's report shows where each of them stands.");
-    expect(noBand).not.toHaveTextContent(/yet|Re-score|can still/);
+  it("says the section's report could not be read when its Attempt cannot be, and reads it again on Refresh", async () => {
+    const attempts: Record<string, AttemptDetailVM | "unavailable"> = { "att-writing": "unavailable" };
+    renderRun(runWithNoBand("writing", EMAIL_FAILED), attempts);
+    const writing = (await sectionRows())[2];
+    const noBand = within(writing).getByTestId("section-no-band-writing");
+    await waitFor(() =>
+      expect(noBand).toHaveTextContent(
+        "1 Write an Email Item failed scoring. This section's report could not be read, so where each of them stands is not known here. " +
+          "The server hit an error (HTTP 503). Its terminal shows what went wrong. Refresh to try again.",
+      ),
+    );
+    expect(noBand).toHaveTextContent(/No band(?! yet)/);
+    expect(noBand).not.toHaveTextContent(/yet|Re-score|can still|Checking/);
+    // The reasons stand, and so does the way to the section's own report.
+    expect(within(writing).getByRole("link", { name: "View this section's report" })).toHaveAttribute("href", "/attempts/att-writing");
+    const overall = screen.getByTestId("overall-pending");
+    expect(overall).toHaveTextContent(/No Overall: Writing has no band.*The report of Writing could not be read here; Refresh to try again\./);
+    expect(overall).not.toHaveTextContent(/yet|can still|will not get one|Checking/);
+
+    // The page's Refresh is the way to try again: it reads the Attempt afresh.
+    attempts["att-writing"] = attemptDetail("writing", EMAIL_FAILED, [
+      { taskType: "email", responseText: "Dear Dr Lee,", scoringStatus: "failed", scoreJson: { error: "scoring interrupted" } },
+    ]);
+    await act(async () => screen.getByRole("button", { name: "Refresh" }).click());
+    await waitFor(() => expect(noBand).toHaveTextContent("1 Write an Email Item failed scoring. Re-score it from this section's report to get a band."));
+    expect(noBand).not.toHaveTextContent(/could not be read/);
+    expect(overall).toHaveTextContent(/No Overall yet: Writing has no band until its unscored Items are scored/);
   });
 });
