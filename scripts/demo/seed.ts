@@ -554,7 +554,11 @@ async function writeHistory(s: Seeder): Promise<void> {
   await s.deterministic("listening", { label: "d10-listening-sim", mode: "simulation", setId: "lsn-ac7788d4", start: s.at(10, "20:05"), router: 0.76, second: 0.72, flagged: true });
   await s.writing({ label: "d9-writing-sim", mode: "simulation", setId: "wri-7024b060", start: s.at(9, "21:00"), buildSentence: 6, essays: "both" });
   await s.speaking({ label: "d8-speaking-sim", mode: "simulation", content: SPEAKING.exerciseSimulation, start: s.at(8, "20:15") });
-  await s.deterministic("reading", { label: "d7-reading-drill", mode: "drill", setId: "rd-35c68bb3", start: s.at(7, "19:50"), router: 0.76 });
+  // The Reading Drill goes back over the Set of the first Reading Simulation, so it is a Repeat
+  // and one live Reading Set (rd-35c68bb3) stays new: a Reading Simulation started in the demo is a
+  // first sitting and can become the headline. After that Simulation, never before it, or the
+  // Simulation would be the Repeat and lose its band.
+  await s.deterministic("reading", { label: "d7-reading-drill", mode: "drill", setId: "rd-1d6486b7", start: s.at(7, "19:50"), router: 0.76 });
 
   // Week three: a whole Full-Test Run one afternoon, more practice, and a second Run started last
   // night and left after the Listening Router Module.

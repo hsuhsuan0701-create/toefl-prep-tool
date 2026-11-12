@@ -64,7 +64,7 @@ CEFR level beside each.
 
 | Section | Drills | Simulations | Notes |
 |---|---|---|---|
-| Reading | 1 | 4 | Module Paths: one Lower, three Upper. |
+| Reading | 1 | 4 | Module Paths: one Lower, three Upper. The Drill is a Repeat of the first Simulation's Set, so one Reading Set is still new and a Reading Simulation you start counts toward the band. |
 | Listening | 2 | 4 | One Lower, two Upper, and one left after routing (in the Full-Test Run in progress). One flagged for leaving the tab. |
 | Writing | 3 | 4 | Build a Sentence, emails and discussion posts; one Drill left unfinished, one Drill with the email only. |
 | Speaking | 3 | 3 | Listen and Repeat and Interview; one Drill is a Repeat of an earlier Set. |
@@ -86,7 +86,7 @@ states each appear at least once:
 | Skipped Item, scored 0 | Speaking Simulation, 14 days before: Sentence 6 |
 | Item whose scoring failed, so the Attempt has no band | Writing Simulation, 4 days before: the discussion post |
 | Transcription that failed every retry, with Retry offered | Speaking Drill, 11 days before: Question 2 |
-| Repeat | Speaking Drill, 3 days before |
+| Repeat | Speaking Drill, 3 days before, and Reading Drill, 7 days before |
 | Attempt left unfinished | Writing Drill, 13 days before, and the in-progress Run's Listening section |
 | Flagged for leaving the tab | Listening Simulation, 10 days before |
 
@@ -135,8 +135,9 @@ place in the history right after it is written.
 
 `server/test/demoData.test.ts` seeds a data directory and reads it back through the route handlers.
 It checks the Dashboard summary, the Attempt list, every Attempt's review (each report against its
-schema, each Deduction quote against its Response), each state in the table above, that every date
-is before `today`, that the server's boot recovery leaves the seeded database unchanged, and that
+schema, each Deduction quote against its Response), each state in the table above, that a live
+Reading Set is left unattempted so a Reading Simulation started in the demo is not a Repeat, that
+every date is before `today`, that the server's boot recovery leaves the seeded database unchanged, and that
 seeding twice gives the same rows. If a schema or a store changes in a way the demo no longer fits,
 that test fails.
 
