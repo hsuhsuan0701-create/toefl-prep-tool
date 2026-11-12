@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider, type RouteObject } from "react-router-dom";
 import { appRoutes } from "../src/App";
 
@@ -28,6 +28,55 @@ describe("an unmatched path", () => {
   });
 });
 
+describe("document titles", () => {
+  // Every route the table can match, with a sample value for each param.
+  function leafRoutes(routes: RouteObject[]): RouteObject[] {
+    return routes.flatMap((r) => (r.children ? leafRoutes(r.children) : [r]));
+  }
+  const SAMPLE_PARAMS = { setId: "rd-1", id: "att-1", kind: "reading", runId: "ftr-1", section: "listening" };
+
+  it("every route in the table names its page", () => {
+    const leaves = leafRoutes(appRoutes);
+    expect(leaves.length).toBeGreaterThan(10);
+    for (const route of leaves) {
+      const title: unknown = (route.handle as { title?: unknown } | undefined)?.title;
+      const page = typeof title === "function" ? title(SAMPLE_PARAMS) : title;
+      expect(typeof page === "string" && page.trim().length > 0, `route ${route.path} has no title`).toBe(true);
+    }
+    const titles = leaves.map((r) => {
+      const title = (r.handle as { title: string | ((p: object) => string) }).title;
+      return typeof title === "function" ? title(SAMPLE_PARAMS) : title;
+    });
+    expect(new Set(titles).size).toBe(titles.length);
+  });
+
+  it("names the page first and follows navigation, Back and Forward included", async () => {
+    document.title = "unchanged";
+    const router = mount(appRoutes, "/nope");
+    await screen.findByRole("heading", { level: 1, name: "Page not found" });
+    await waitFor(() => expect(document.title).toBe("Page not found · TOEFL Prep Tool"));
+
+    await act(() => router.navigate("/simulate/reading-ish"));
+    await screen.findByText(/Unknown simulation kind/);
+    await waitFor(() => expect(document.title).toBe("Simulation · TOEFL Prep Tool"));
+
+    await act(() => router.navigate(-1));
+    await screen.findByRole("heading", { level: 1, name: "Page not found" });
+    await waitFor(() => expect(document.title).toBe("Page not found · TOEFL Prep Tool"));
+
+    await act(() => router.navigate(1));
+    await screen.findByText(/Unknown simulation kind/);
+    await waitFor(() => expect(document.title).toBe("Simulation · TOEFL Prep Tool"));
+  });
+
+  it("titles a section's Simulation by its section, never by its Set", () => {
+    const simulate = leafRoutes(appRoutes).find((r) => r.path === "/simulate/:kind")!;
+    const title = (simulate.handle as { title: (p: object) => string }).title;
+    expect(title({ kind: "reading" })).toBe("Reading Simulation");
+    expect(title({ kind: "speaking" })).toBe("Speaking Simulation");
+  });
+});
+
 describe("an error the router catches itself", () => {
   it("ends on the app's error screen, not the router's default page", async () => {
     vi.spyOn(console, "error").mockImplementation(() => {});
@@ -48,5 +97,6 @@ describe("an error the router catches itself", () => {
     expect(screen.getByText("the loader broke")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Back to Practice" })).toHaveAttribute("href", "/");
     expect(document.body).not.toHaveTextContent(ROUTER_DEFAULT_TEXT);
+    await waitFor(() => expect(document.title).toBe("Something went wrong · TOEFL Prep Tool"));
   });
 });
