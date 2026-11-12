@@ -17,6 +17,7 @@ import {
 } from "./drill/DrillScreens";
 import { fallbackSetTitle } from "./simulation/simulationShell";
 import MicCheck from "../components/MicCheck";
+import { ScoringSetupNotice } from "../components/setup/ScoringSetupNotice";
 import SpeakingScenarioBriefing from "../components/SpeakingScenarioBriefing";
 import InterviewIntro from "../components/InterviewIntro";
 import ItemRecorder, { type RunnableItem } from "../components/ItemRecorder";
@@ -317,6 +318,7 @@ export default function SpeakingDrill() {
         setTitle={setTitle}
         meta={<ExamSetLine source={set.source} createdAt={set.createdAt} setId={set.id} />}
         subtitle="Choose what to practise. You check your microphone first, and each Task is scored as soon as its recordings are sent."
+        notice={<ScoringSetupNotice section="speaking" />}
         options={TASK_OPTIONS.map((opt) => ({
           label: opt.label,
           detail:
@@ -367,6 +369,7 @@ export default function SpeakingDrill() {
         notice={
           <>
             <Notice tone="positive" title="Your microphone works" />
+            <ScoringSetupNotice section="speaking" />
             {errorMsg && (
               <Notice tone="critical" live="assertive" title="The Drill didn't start">
                 {errorMsg}

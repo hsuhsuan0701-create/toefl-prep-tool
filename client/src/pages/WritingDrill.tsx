@@ -15,6 +15,7 @@ import {
 } from "./drill/DrillScreens";
 import { BUILD_A_SENTENCE_BUDGET_CLOCK, BuildSentenceTask, type BuildSentenceResponse } from "../components/buildSentence";
 import TimedEditor from "../components/TimedEditor";
+import { ScoringSetupNotice } from "../components/setup/ScoringSetupNotice";
 import { CompletedStageView, type CompletedStage, type EssayKind, type SubmittedAnswer } from "./WritingDrillResults";
 import { Button } from "../ui/Button";
 import { ExamSetLine, type ExamIntroFact } from "../ui/ExamIntro";
@@ -83,6 +84,10 @@ export default function WritingDrill() {
   // results screen's Finish waits on these, so completing the Attempt — which computes its Band
   // Estimate — happens only once whatever was still in flight has settled.
   const [inFlightEssays, setInFlightEssays] = useState<Set<EssayKind>>(new Set());
+  // Essay Tasks whose scoring ended without a score (failed, or interrupted). Their Responses are
+  // stored, so the results screen's Finish opens the Attempt's report, where they are read and
+  // Re-scored, rather than going home.
+  const [unscoredEssays, setUnscoredEssays] = useState<Set<EssayKind>>(new Set());
 
   // Build a Sentence is scored synchronously (deterministic, no Judges); this holds a failed commit
   // so the error screen's Retry can send it again.
@@ -117,6 +122,7 @@ export default function WritingDrill() {
       await beginAttempt();
       setCompleted([]);
       setInFlightEssays(new Set());
+      setUnscoredEssays(new Set());
       setQueueIndex(0);
       startTask(taskQueue[0]);
     } catch (e) {
@@ -182,15 +188,16 @@ export default function WritingDrill() {
     [taskQueue, queueIndex, set, advanceQueue],
   );
 
-  const handleEssayStatusChange = useCallback((kind: EssayKind, inFlight: boolean) => {
-    setInFlightEssays((prev) => {
-      const already = prev.has(kind);
-      if (inFlight === already) return prev;
+  const handleEssayStatusChange = useCallback((kind: EssayKind, inFlight: boolean, unscored: boolean) => {
+    const toggle = (on: boolean) => (prev: Set<EssayKind>) => {
+      if (on === prev.has(kind)) return prev;
       const next = new Set(prev);
-      if (inFlight) next.add(kind);
+      if (on) next.add(kind);
       else next.delete(kind);
       return next;
-    });
+    };
+    setInFlightEssays(toggle(inFlight));
+    setUnscoredEssays(toggle(unscored));
   }, []);
 
   // The error screen's Retry: back to the run first, so the "Scoring…" screen replaces the button
@@ -227,6 +234,7 @@ export default function WritingDrill() {
         setTitle={setTitle}
         meta={<ExamSetLine source={set.source} createdAt={set.createdAt} setId={set.id} />}
         subtitle="Choose what to practise. Each Task is scored as you hand it in."
+        notice={<ScoringSetupNotice section="writing" buildSentence />}
         options={TASK_OPTIONS.map((opt) => ({
           label: opt.label,
           detail:
@@ -247,6 +255,12 @@ export default function WritingDrill() {
         onBack={() => setStage("picker")}
         onStart={handleStart}
         facts={introFacts(taskQueue, set)}
+        // Only the essays need setup: a Build a Sentence run alone is scored here against the key.
+        notice={
+          taskQueue.some((k) => k !== "build_sentence") ? (
+            <ScoringSetupNotice section="writing" buildSentence={taskQueue.includes("build_sentence")} />
+          ) : null
+        }
       />
     );
   }
@@ -316,6 +330,7 @@ export default function WritingDrill() {
 
   // stage === "drill-done"
   const stillScoring = inFlightEssays.size > 0;
+  const openReport = unscoredEssays.size > 0 && attemptId !== null;
   return (
     <ExamShell
       section="Writing"
@@ -332,11 +347,11 @@ export default function WritingDrill() {
           </div>
           <Button
             variant="primary"
-            onClick={() => finish()}
+            onClick={() => finish(openReport ? `/attempts/${attemptId}` : "/")}
             disabled={stillScoring}
             loading={drill.completion.status === "finishing"}
           >
-            Back to Practice
+            {openReport ? "Finish and open the report" : "Back to Practice"}
           </Button>
         </>
       }

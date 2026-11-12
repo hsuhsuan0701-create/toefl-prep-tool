@@ -487,6 +487,19 @@ export const SETUP_CHECK_STATE: Record<SetupCheckState, StatusPresentation> = {
   checking: { label: "Checking", tone: "neutral", glyph: "pending", hint: "The server has not finished checking this yet." },
 };
 
+/**
+ * A section whose scoring this machine cannot do, as the setup status reports it (`sectionScorability`
+ * in pages/dashboard/suggestNext.ts says `blocked`). It names a capability, never a provider: which
+ * piece is missing is the Setup checklist's to say.
+ */
+export const SCORING_NOT_SET_UP = {
+  label: "Scoring isn't set up on this machine",
+  tone: "caution",
+  glyph: "caution",
+  /** The way to the Setup checklist, wherever the notice links to it. */
+  setupLink: "See what's missing",
+} as const;
+
 // Attempt review: Deductions, Judges, and the cautions a Score Report can carry.
 
 /** A Deduction's `category` (DeductionCategory, shared/src/schemas/scoring.ts), as its chip reads. */

@@ -50,7 +50,7 @@ export function CompletedStageView({
   attemptId: string | null;
   /** One line while the Drill is still running; the full results on the results screen. */
   compact: boolean;
-  onEssayStatusChange: (kind: EssayKind, inFlight: boolean) => void;
+  onEssayStatusChange: (kind: EssayKind, inFlight: boolean, unscored: boolean) => void;
 }) {
   if (stage.kind === "build_sentence") {
     return compact ? <BuildSentenceStatusLine stage={stage} /> : <BuildSentenceResults stage={stage} />;
@@ -153,7 +153,7 @@ function EssayResultSlot({
   userText: string;
   secondsUsed: number;
   compact: boolean;
-  onStatusChange: (kind: EssayKind, inFlight: boolean) => void;
+  onStatusChange: (kind: EssayKind, inFlight: boolean, unscored: boolean) => void;
 }) {
   const key = scoringJobKey(attemptId, kind);
   const start = useCallback(
@@ -175,9 +175,13 @@ function EssayResultSlot({
   }, [key, retry]);
 
   const settled = job.status === "done" || job.status === "failed" || job.status === "cancelled";
+  const unscored = job.status === "failed" || scoringInterrupted(job.status, job.cancellationReason);
   useEffect(() => {
-    onStatusChange(kind, !settled);
-  }, [settled, kind, onStatusChange]);
+    onStatusChange(kind, !settled, unscored);
+  }, [settled, unscored, kind, onStatusChange]);
+  // A job the server reported on exists, and the essay is written before its job is: so it is
+  // stored. A POST /score that never produced a job proves nothing either way, and says nothing.
+  const stored = job.itemIds !== null;
 
   const title = TASK_TYPES[kind].label;
 
@@ -202,7 +206,14 @@ function EssayResultSlot({
       {job.status === "done" && job.result ? (
         <ScoreCard result={job.result as EssayScoreResult} userText={userText} />
       ) : (
-        <ScoringProgress job={job} onRetry={handleRetry} />
+        <>
+          <ScoringProgress job={job} onRetry={handleRetry} section="writing" />
+          {unscored && stored && (
+            <p className="text-ui text-ink-soft">
+              Your Response is saved with this Attempt. Finish and open the report to read it, and Re-score it there.
+            </p>
+          )}
+        </>
       )}
     </section>
   );

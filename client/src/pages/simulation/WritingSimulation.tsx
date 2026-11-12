@@ -11,6 +11,7 @@ import {
   type BuildSentenceResponse,
 } from "../../components/buildSentence";
 import TimedEditor from "../../components/TimedEditor";
+import { ScoringSetupNotice } from "../../components/setup/ScoringSetupNotice";
 import { Button } from "../../ui/Button";
 import { ExamIntro, ExamSetLine } from "../../ui/ExamIntro";
 import { ExamExit, ExamShell } from "../../ui/ExamShell";
@@ -504,7 +505,12 @@ export default function WritingSimulation({ fullTest }: { fullTest?: FullTestSec
               <ExamSetLine source={set.source} createdAt={set.createdAt} setId={set.id} />
             </>
           }
-          notice={isRepeat ? <Notice tone="caution">{repeatNoticeText("Writing")}</Notice> : null}
+          notice={
+            <>
+              {isRepeat && <Notice tone="caution">{repeatNoticeText("Writing")}</Notice>}
+              <ScoringSetupNotice section="writing" buildSentence />
+            </>
+          }
           facts={[
             {
               term: "Time",

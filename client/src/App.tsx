@@ -3,6 +3,7 @@ import { createBrowserRouter, isRouteErrorResponse, Outlet, RouterProvider, useR
 import AppErrorBoundary, { PageErrorScreen } from "./components/AppErrorBoundary";
 import LeaveGuardHost from "./components/LeaveGuardHost";
 import RouteFallback from "./components/RouteFallback";
+import { SetupStatusProvider } from "./components/setup/SetupStatusProvider";
 import NotFound from "./pages/NotFound";
 import { documentTitle, sectionParamLabel, useRouteDocumentTitle, type RouteHandle } from "./routeTitle";
 
@@ -93,15 +94,19 @@ function RouteError() {
 // Every route renders inside the app's error boundary. It has to sit inside the router: a boundary
 // placed around <RouterProvider> never sees a route's render error, because the router catches it
 // first. LeaveGuardHost sits there too: it draws the one "Leave …?" dialog every running Drill and
-// Simulation asks through. The document title is set here, from the matched route's handle.
+// Simulation asks through. The document title is set here, from the matched route's handle. The
+// setup status the Speaking and Writing screens warn from is held here too, so moving between them
+// keeps the last answer while a fresh one is asked for.
 function AppRoot() {
   useRouteDocumentTitle();
   return (
     <AppErrorBoundary>
       <LeaveGuardHost>
-        <Suspense fallback={<RouteFallback />}>
-          <Outlet />
-        </Suspense>
+        <SetupStatusProvider>
+          <Suspense fallback={<RouteFallback />}>
+            <Outlet />
+          </Suspense>
+        </SetupStatusProvider>
       </LeaveGuardHost>
     </AppErrorBoundary>
   );

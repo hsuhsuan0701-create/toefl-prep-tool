@@ -9,6 +9,7 @@ import { useRecorder } from "../../hooks/useRecorder";
 import { useLeaveGuard } from "../../hooks/useLeaveGuard";
 import { useStageEntry } from "../../hooks/useStageEntry";
 import MicCheck from "../../components/MicCheck";
+import { ScoringSetupNotice } from "../../components/setup/ScoringSetupNotice";
 import SpeakingScenarioBriefing from "../../components/SpeakingScenarioBriefing";
 import InterviewIntro from "../../components/InterviewIntro";
 import SceneImage from "../../components/SceneImage";
@@ -411,6 +412,8 @@ export default function SpeakingSimulation({ fullTest }: { fullTest?: FullTestSe
   };
   const introPart = fullTestRunId ? "Full-Test Run" : "Simulation";
   const repeatNotice = isRepeat ? <Notice tone="caution">{repeatNoticeText("Speaking")}</Notice> : null;
+  // Said on the first screen and again on the last one before recording starts: never blocking.
+  const scoringNotice = <ScoringSetupNotice section="speaking" />;
   const lrCount = set.listenAndRepeat.items.length;
   const questionCount = set.interview.questions.length;
 
@@ -419,7 +422,12 @@ export default function SpeakingSimulation({ fullTest }: { fullTest?: FullTestSe
       <ExamShell section="Speaking" part={introPart} exit={plainExit}>
         <ExamIntro
           {...introHeading}
-          notice={repeatNotice}
+          notice={
+            <>
+              {repeatNotice}
+              {scoringNotice}
+            </>
+          }
           facts={[
             { term: "Time", detail: "About 6 to 9 min, without a break." },
             {
@@ -475,6 +483,7 @@ export default function SpeakingSimulation({ fullTest }: { fullTest?: FullTestSe
             <>
               <Notice tone="positive" title="Your microphone works" />
               {repeatNotice}
+              {scoringNotice}
               {errorMsg && (
                 <Notice tone="critical" live="assertive" title="The Simulation didn't start">
                   {errorMsg}

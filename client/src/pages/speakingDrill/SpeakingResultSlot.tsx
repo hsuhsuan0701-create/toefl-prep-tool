@@ -91,7 +91,7 @@ export default function SpeakingResultSlot({
   return (
     <section aria-label={title} className="space-y-4">
       <SectionHeader title={title} />
-      <ScoringProgress job={job} onRetry={handleRetry} />
+      <ScoringProgress job={job} onRetry={handleRetry} section="speaking" />
     </section>
   );
 }

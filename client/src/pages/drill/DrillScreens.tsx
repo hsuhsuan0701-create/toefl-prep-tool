@@ -112,7 +112,8 @@ export type DrillPickerOption = {
  *
  * `notice` is a slot rather than a flag: Reading and Listening put `DrillBandEstimateNotice` here
  * (a Drill never produces a Band Estimate for those sections — CONTEXT.md's Simulation entry), and
- * the other two put nothing.
+ * Speaking and Writing put `ScoringSetupNotice`, which shows only on a machine that cannot score
+ * them.
  */
 export function DrillPickerScreen({
   section,
@@ -140,7 +141,7 @@ export function DrillPickerScreen({
         <h1 className="mt-1 font-serif text-title font-semibold text-ink text-balance">{setTitle}</h1>
         {meta && <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-meta text-graphite">{meta}</div>}
         <p className="mt-3 text-body text-ink-soft text-pretty">{subtitle}</p>
-        {notice && <div className="mt-5">{notice}</div>}
+        {notice && <div className="mt-5 empty:hidden">{notice}</div>}
         <ul className="mt-6 grid gap-3 sm:grid-cols-2">
           {options.map((opt) => (
             <li key={opt.label} className="min-w-0">
