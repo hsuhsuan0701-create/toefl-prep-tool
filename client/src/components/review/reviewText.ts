@@ -47,7 +47,10 @@ export function joinOr(parts: readonly string[]): string {
   return parts.length <= 1 ? (parts[0] ?? "") : `${parts.slice(0, -1).join(", ")} or ${parts[parts.length - 1]}`;
 }
 
-/** `final`: no band will come of this Attempt as it stands, so "yet" would be a promise. */
+/**
+ * `final`: nothing on this page can bring a band to this Attempt as it stands, so "yet" would be a
+ * promise.
+ */
 export type BandExplanation = { reason: string; action: string | null; final: boolean };
 
 /** What Attempt review says, in place of a Re-score, on an Attempt the User discarded. */
@@ -117,41 +120,77 @@ export function bandExplanation(status: AttemptBandStatusVM, section: Section, i
     case "incomplete": {
       const reasons = shortfallReasons(status);
       if (reasons.length === 0) return { reason: "No Band Estimate was recorded for this Attempt.", action: null, final: true };
-      return { reason: reasons.join(" "), ...shortfallAction(status, items) };
+      return { reason: reasons.join(" "), ...shortfallAction(shortfallRemedy(status, items)) };
     }
   }
 }
 
 /**
- * What the User can do about a shortfall from this page. Each unscored Item is either re-scorable,
- * waiting on a transcription its Retry can restart, or neither; a recording that never arrived, a
- * failed Item with nothing to re-score and a Task Type with no Item at all can only be made up by a
- * new Attempt, so the page promises a band only when every unscored Item can be scored from here.
+ * What an Attempt review can do about a settled shortfall, decided once for every page that words it
+ * (Attempt review says "below", the Full-Test Run report "from this section's report"):
+ *
+ *   can-still-come  every unscored Item can be scored from the review: `rescore` Items by a Re-score,
+ *                   and, when `retry`, recordings by retrying their transcription;
+ *   lost            only a new Attempt can have a band: a Task Type or Module with no Item, a failed
+ *                   Item nothing can re-score (a recording that never arrived), or a transcription
+ *                   that failed for good. `rescorable` says whether a Re-score still shows Score
+ *                   Reports;
+ *   unknown         an unscored Item has nothing working on it and nothing on the review to start it
+ *                   (a recording or an essay with no job), so the review promises nothing either way.
  */
-function shortfallAction(shortfall: BandShortfallVM, items: readonly ItemVM[]): Omit<BandExplanation, "reason"> {
+export type ShortfallRemedy =
+  | { outlook: "can-still-come"; rescore: number; retry: boolean }
+  | { outlook: "lost"; rescorable: boolean }
+  | { outlook: "unknown" };
+
+/**
+ * The review's decision for a shortfall, Item by Item. Without `items` (an Attempt not loaded) it
+ * decides only what the shortfall alone settles, a Task Type or Module with no Item at all, and
+ * otherwise says `unknown`: counts cannot tell a retryable transcription from a lost one.
+ */
+export function shortfallRemedy(shortfall: BandShortfallVM, items: readonly ItemVM[] | null): ShortfallRemedy {
   const short = new Set(shortfall.unscored.map((u) => u.taskType));
-  const unscored = items.filter((item) => short.has(item.taskType) && item.scoringStatus !== "scored");
+  const unscored = (items ?? []).filter((item) => short.has(item.taskType) && item.scoringStatus !== "scored");
   const rescorable = unscored.filter((item) => isManualRescoreItem(item));
+  // A Module short of Items is as final as an absent Task Type: nothing on the review can add them.
+  // With no unscored Item either, every Item is scored and there is still no band: nothing to score.
+  if (shortfall.absent.length > 0 || (shortfall.moduleShortfalls?.length ?? 0) > 0 || shortfall.unscored.length === 0) {
+    return { outlook: "lost", rescorable: rescorable.length > 0 };
+  }
+  if (items === null) return { outlook: "unknown" };
+
   const retryable = unscored.filter(
     (item) => item.transcriptionJob?.status === "failed" && !isTerminalTranscriptionFailure(item.transcriptionJob),
   );
   const stuck = unscored.filter((item) => !rescorable.includes(item) && !retryable.includes(item));
-  // A Module short of Items is as final as an absent Task Type: nothing on this page can add them.
-  const lost =
-    shortfall.absent.length > 0 || (shortfall.moduleShortfalls?.length ?? 0) > 0 || stuck.some((item) => item.scoringStatus === "failed");
+  // A failed Item nothing can re-score, or a recording whose transcription failed for good (the
+  // review offers no Retry for it and says only a new Attempt can score it), is lost.
+  const lost = stuck.some(
+    (item) => item.scoringStatus === "failed" || (item.transcriptionJob !== undefined && isTerminalTranscriptionFailure(item.transcriptionJob)),
+  );
+  if (lost) return { outlook: "lost", rescorable: rescorable.length > 0 };
+  if (stuck.length > 0) return { outlook: "unknown" };
+  return { outlook: "can-still-come", rescore: rescorable.length, retry: retryable.length > 0 };
+}
 
-  if (lost) {
-    return {
-      action: rescorable.length > 0
-        ? "Re-scoring the failed Items below still shows their Score Reports, but only a new Attempt can have a band."
-        : "Only a new Attempt can have a band.",
-      final: true,
-    };
+/** The remedy in Attempt review's words, which point at the Items "below". */
+function shortfallAction(remedy: ShortfallRemedy): Omit<BandExplanation, "reason"> {
+  switch (remedy.outlook) {
+    case "lost":
+      return {
+        action: remedy.rescorable
+          ? "Re-scoring the failed Items below still shows their Score Reports, but only a new Attempt can have a band."
+          : "Only a new Attempt can have a band.",
+        final: true,
+      };
+    // Nothing here can start what the Item waits on, so "yet" would be a promise this page cannot keep.
+    case "unknown":
+      return { action: null, final: true };
+    case "can-still-come":
+      if (!remedy.retry) return { action: `Re-score ${remedy.rescore === 1 ? "it" : "them"} below to get a band.`, final: false };
+      if (remedy.rescore === 0) return { action: "Retry the transcription below; the band follows once it is scored.", final: false };
+      return { action: "Re-score the failed Items and retry the transcription below to get a band.", final: false };
   }
-  if (stuck.length > 0) return { action: null, final: false };
-  if (retryable.length === 0) return { action: `Re-score ${rescorable.length === 1 ? "it" : "them"} below to get a band.`, final: false };
-  if (rescorable.length === 0) return { action: "Retry the transcription below; the band follows once it is scored.", final: false };
-  return { action: "Re-score the failed Items and retry the transcription below to get a band.", final: false };
 }
 
 const KNOWN_FAILURES: Record<string, string> = {

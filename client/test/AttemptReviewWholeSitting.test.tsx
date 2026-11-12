@@ -147,6 +147,30 @@ describe("why a settled Attempt has no band", () => {
     expect(why).not.toHaveTextContent("to get a band");
   });
 
+  // The Item's panel says only a new Attempt can score a recording Ears refused for good, and offers
+  // no Retry, so the band does not say "yet" either.
+  it("says only a new Attempt can have a band when a transcription failed for good", async () => {
+    await renderReview(
+      speaking(
+        [
+          item({
+            itemId: "lr-1",
+            taskType: "listen_repeat",
+            responseAudioPath: "recordings/lr-1.webm",
+            scoringStatus: "transcription_pending",
+            transcriptionJob: { jobId: "tj-1", status: "failed", automaticAttempts: 1, nextRetryAt: null, failureKind: "unsupported-audio", error: "audio format not supported", scoreJobId: null },
+          }),
+        ],
+        { status: "incomplete", unscored: [{ taskType: "listen_repeat", failed: 0, pending: 1, notCaptured: 0 }], absent: [] },
+      ),
+    );
+    const band = screen.getByTestId("band-summary");
+    expect(within(band).getByText("No band")).toBeInTheDocument();
+    expect(within(band).getByTestId("band-missing")).toHaveTextContent(
+      "1 Listen and Repeat Response was never scored. Only a new Attempt can have a band.",
+    );
+  });
+
   it("names Responses never scored and Task Types never recorded", async () => {
     await renderReview(
       speaking(

@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import type { FullTestRunVM, FullTestSection, FullTestSectionBandVM, FullTestSectionVM } from "@toefl-prep/shared";
+import type { AttemptDetailVM, BandShortfallVM, FullTestRunVM, FullTestSection, FullTestSectionBandVM, FullTestSectionVM, ItemVM } from "@toefl-prep/shared";
 import FullTestRun from "../src/pages/FullTestRun";
 
 // A Full-Test Run's report renders each section from the server's band status: a section still
@@ -49,12 +49,36 @@ function completedRun(writing: FullTestSectionVM, speaking: FullTestSectionVM = 
   };
 }
 
-function renderRun(body: FullTestRunVM) {
+/**
+ * A section's Attempt as its review loads it: the page reads it to decide, Item by Item and by the
+ * review's own rule, whether a band can still come.
+ */
+function sectionAttempt(name: FullTestSection, shortfall: BandShortfallVM, items: Partial<ItemVM>[]): AttemptDetailVM {
+  return {
+    attempt: {
+      id: `att-${name}`, kind: name, mode: "simulation", setId: `set-${name}`, setTitle: null, isRepeat: false, status: "completed",
+      startedAt: "2026-08-23T02:00:00.000Z", completedAt: "2026-08-23T03:00:00.000Z", captureFinishedAt: null, flagged: false,
+    },
+    items: items.map((over, i) => ({
+      attemptId: `att-${name}`, itemId: `item-${i + 1}`, taskType: "email", responseText: null, responseAudioPath: null, transcript: null,
+      score: null, scoreJson: null, scoringStatus: "pending", deliveryReport: null, createdAt: "2026-08-23T02:10:00.000Z", ...over,
+    })),
+    judgeReports: [],
+    estimate: null,
+    bandStatus: { status: "incomplete", ...shortfall },
+    activeJobs: [],
+  };
+}
+
+function renderRun(body: FullTestRunVM, attempts: AttemptDetailVM[] = []) {
   vi.stubGlobal(
     "fetch",
-    vi.fn(() =>
-      Promise.resolve(new Response(JSON.stringify(body), { status: 200, headers: { "Content-Type": "application/json" } })),
-    ) as unknown as typeof fetch,
+    vi.fn((input: RequestInfo | URL) => {
+      const url = typeof input === "string" ? input : input.toString();
+      const attempt = attempts.find((a) => url.endsWith(`/api/attempts/${a.attempt.id}`));
+      const [status, payload] = url.includes("/api/full-tests/") ? [200, body] : attempt ? [200, attempt] : [404, { error: "not found" }];
+      return Promise.resolve(new Response(JSON.stringify(payload), { status, headers: { "Content-Type": "application/json" } }));
+    }) as unknown as typeof fetch,
   );
   render(
     <MemoryRouter initialEntries={[`/full-test/${RUN_ID}`]}>
@@ -98,20 +122,25 @@ describe("a Writing section whose essays are still being scored", () => {
 
 describe("a Writing section whose essay scoring failed", () => {
   it("says scoring failed and that a Re-score can still give it a band, instead of showing a Build-a-Sentence-only band", async () => {
-    renderRun(completedRun(sectionVM("writing", {
-      status: "no-band",
+    const shortfall: BandShortfallVM = {
       unscored: [
         { taskType: "email", failed: 1, pending: 0, notCaptured: 0 },
         { taskType: "discussion", failed: 1, pending: 0, notCaptured: 0 },
       ],
       absent: [],
-    })));
+    };
+    renderRun(completedRun(sectionVM("writing", { status: "no-band", ...shortfall })), [
+      sectionAttempt("writing", shortfall, [
+        { taskType: "email", responseText: "Dear Dr Lee,", scoringStatus: "failed", scoreJson: { error: "scoring interrupted" } },
+        { taskType: "discussion", responseText: "I agree.", scoringStatus: "failed", scoreJson: { error: "scoring interrupted" } },
+      ]),
+    ]);
 
     const writing = (await sectionRows())[2];
     const noBand = within(writing).getByTestId("section-no-band-writing");
-    expect(noBand).toHaveTextContent(
+    await waitFor(() => expect(noBand).toHaveTextContent(
       "1 Write an Email Item and 1 Academic Discussion Item failed scoring. Re-score them from this section's report to get a band.",
-    );
+    ));
     expect(noBand).toHaveTextContent(/No band yet/);
     expect(within(writing).queryByTestId("section-band-writing")).toBeNull();
 
@@ -139,19 +168,27 @@ describe("a Writing section whose essay scoring failed", () => {
 
 describe("a Speaking section whose recordings were never transcribed", () => {
   it("says the Responses were never scored and to retry the transcription, as the Attempt review does", async () => {
-    renderRun(completedRun(
-      sectionVM("writing", { status: "estimated" }, 5),
-      sectionVM("speaking", {
-        status: "no-band",
-        unscored: [
-          { taskType: "listen_repeat", failed: 0, pending: 7, notCaptured: 0 },
-          { taskType: "interview", failed: 0, pending: 4, notCaptured: 0 },
-        ],
-        absent: [],
-      }),
-    ));
+    const shortfall: BandShortfallVM = {
+      unscored: [
+        { taskType: "listen_repeat", failed: 0, pending: 7, notCaptured: 0 },
+        { taskType: "interview", failed: 0, pending: 4, notCaptured: 0 },
+      ],
+      absent: [],
+    };
+    // Every transcription failed for want of a key: retryable, so the review offers Retry.
+    const untranscribed = (taskType: string): Partial<ItemVM> => ({
+      taskType,
+      responseAudioPath: "recordings/take.webm",
+      scoringStatus: "transcription_pending",
+      transcriptionJob: { jobId: "tj", status: "failed", automaticAttempts: 0, nextRetryAt: null, failureKind: "configuration", error: "no key", scoreJobId: null },
+    });
+    renderRun(
+      completedRun(sectionVM("writing", { status: "estimated" }, 5), sectionVM("speaking", { status: "no-band", ...shortfall })),
+      [sectionAttempt("speaking", shortfall, [...Array(7).fill(untranscribed("listen_repeat")), ...Array(4).fill(untranscribed("interview"))])],
+    );
     const speaking = (await sectionRows())[3];
     const noBand = within(speaking).getByTestId("section-no-band-speaking");
+    await waitFor(() => expect(noBand).toHaveTextContent(/No band yet/));
     expect(noBand).toHaveTextContent(
       "7 Listen and Repeat Responses and 4 Interview Responses were never scored. Retry the transcription from this section's report; the band follows once it is scored.",
     );
