@@ -430,6 +430,7 @@ export default function ReadingSimulation({ fullTest }: { fullTest?: FullTestSec
           answers={simState.answers}
           onAnswer={(itemId, value) => dispatch({ type: "answer", itemId, value })}
           autoFocus
+          newlyShown={simState.previousStimulusIdx !== current.stimulusIdx}
         />
         <ConfirmDialog
           open={confirmingSubmit}

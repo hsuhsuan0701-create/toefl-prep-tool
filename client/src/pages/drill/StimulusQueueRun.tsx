@@ -232,6 +232,7 @@ export default function StimulusQueueRun({ stimuli, attemptId, onComplete, exitT
             submitting={submitting}
             onAnswer={onAnswer}
             autoFocus
+            newlyShown
           />
           {error}
         </div>

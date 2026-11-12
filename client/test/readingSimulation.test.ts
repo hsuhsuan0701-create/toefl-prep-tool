@@ -108,11 +108,12 @@ describe("reduceReadingSim", () => {
     expect(answered).toEqual({ stage: "module", module: "router", deadlineMs: 5000, answers: new Map([["ctw-r1-g1", "t"]]), visitedStimulusIdx: 0 });
 
     const navigated = reduceReadingSim(answered, { type: "navigate", stimulusIdx: 3 });
-    expect(navigated).toEqual({ ...answered, visitedStimulusIdx: 3, visitedQuestionIdx: 0 });
+    expect(navigated).toEqual({ ...answered, visitedStimulusIdx: 3, visitedQuestionIdx: 0, previousStimulusIdx: 0 });
 
-    // A question within the Stimulus is part of where the User is.
-    const toQuestion = reduceReadingSim(answered, { type: "navigate", stimulusIdx: 2, questionIdx: 1 });
-    expect(toQuestion).toEqual({ ...answered, visitedStimulusIdx: 2, visitedQuestionIdx: 1 });
+    // A question within the Stimulus is part of where the User is, and so is the Stimulus they came
+    // from: the screen opens a text at its top only when it was not already on screen.
+    const toQuestion = reduceReadingSim(navigated, { type: "navigate", stimulusIdx: 3, questionIdx: 1 });
+    expect(toQuestion).toEqual({ ...answered, visitedStimulusIdx: 3, visitedQuestionIdx: 1, previousStimulusIdx: 3 });
   });
 
   it("routed moves the router's submitting stage to path-reveal", () => {

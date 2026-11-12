@@ -314,10 +314,12 @@ describe("a new Reading text opens at its top", () => {
 
   afterEach(() => vi.restoreAllMocks());
 
-  function renderScreen(reveal: QuestionReveal) {
+  function renderScreen(reveal: QuestionReveal, newlyShown = true) {
     const scrollTo = vi.spyOn(window, "scrollTo");
     const focus = vi.spyOn(HTMLElement.prototype, "focus");
-    render(<StimulusQuestions stimulus={passage} reveal={reveal} answers={new Map()} onAnswer={noop} autoFocus />);
+    render(
+      <StimulusQuestions stimulus={passage} reveal={reveal} answers={new Map()} onAnswer={noop} autoFocus newlyShown={newlyShown} />,
+    );
     return { scrollTo, focus };
   }
 
@@ -339,5 +341,14 @@ describe("a new Reading text opens at its top", () => {
     expect(scrollTo).not.toHaveBeenCalled();
     expect(focus).toHaveBeenCalledWith(undefined);
     expect(document.activeElement?.textContent).toContain("ap stem 2?");
+  });
+
+  // Back, or the question navigator, to the first question of the text already on screen: the User
+  // has been reading it, so the question is brought into view and the page is not sent to the top.
+  it("a return to the first question of a text already on screen is focused as before, and the page is left alone", () => {
+    const { scrollTo, focus } = renderScreen({ policy: "one-at-a-time", questionIdx: 0 }, false);
+    expect(scrollTo).not.toHaveBeenCalled();
+    expect(focus).toHaveBeenCalledWith(undefined);
+    expect(document.activeElement?.textContent).toContain("ap stem 1?");
   });
 });

@@ -76,6 +76,12 @@ export type StimulusQuestionsProps = {
    * lands on whatever just came into view.
    */
   autoFocus?: boolean;
+  /**
+   * The Stimulus was not on screen just before this mount: a Drill's next Stimulus, or a Simulation
+   * that arrived from another Stimulus or opened its Module here. Only the caller knows what was on
+   * screen before, so absent means the text was already there (the User came back to it).
+   */
+  newlyShown?: boolean;
 };
 
 /** What McqQuestion needs for one Item, however the owning Stimulus happens to name it. */
@@ -122,14 +128,17 @@ export default function StimulusQuestions({
   results,
   submitting,
   autoFocus,
+  newlyShown,
 }: StimulusQuestionsProps) {
-  // A Reading text opening on its first question is a text the User has not read yet. At phone
-  // width the question sits below the whole text, so the screen starts at the top, where the text
-  // does, and the question takes focus without scrolling to itself. A further question on the same
-  // text is focused, and scrolled into view, as before. On mount only: the call site keys this
-  // component per Stimulus and per question.
+  // A Reading text newly on screen, opening on its first question, is a text the User has not read
+  // yet. At phone width the question sits below the whole text, so the screen starts at the top,
+  // where the text does, and the question takes focus without scrolling to itself. A further
+  // question on the same text, or a return to its first one (Back, the question navigator), is
+  // focused, and scrolled into view, as before. On mount only: the call site keys this component
+  // per Stimulus and per question.
   const opensText =
     Boolean(autoFocus) &&
+    Boolean(newlyShown) &&
     (stimulus.taskType === "daily_life" || stimulus.taskType === "academic_passage") &&
     (reveal.policy === "all-at-once" || reveal.questionIdx === 0);
   useLayoutEffect(() => {
