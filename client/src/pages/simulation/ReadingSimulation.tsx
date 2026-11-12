@@ -400,10 +400,13 @@ export default function ReadingSimulation({ fullTest }: { fullTest?: FullTestSec
         }}
         footer={
           <>
+            {/* Three labelled buttons need about 340px of row, and a phone narrower than 375px has 328
+                or less: there Back is its arrow alone, still named for a screen reader. */}
             <Button icon={<IconArrowLeft size={16} />} onClick={() => go(screenIdx - 1)} disabled={screenIdx === 0}>
-              Back
+              <span className="max-[375px]:sr-only">Back</span>
             </Button>
-            <div className="flex items-center gap-2">
+            {/* ml-auto keeps the pair at the right when the footer has to wrap under Back. */}
+            <div className="ml-auto flex items-center gap-1 sm:gap-2">
               <Button variant={isLast ? "primary" : "quiet"} onClick={() => setConfirmingSubmit(true)}>
                 Submit Module…
               </Button>

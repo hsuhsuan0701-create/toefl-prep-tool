@@ -65,6 +65,31 @@ describe("ExamShell header", () => {
   });
 });
 
+// The footer's buttons are a fixed width, so on the narrowest phones they are wider than the screen
+// (issue #49): the row has to be allowed to wrap. The pixels were measured in a browser.
+describe("ExamShell footer", () => {
+  it("wraps its buttons rather than make the page wider than the screen", () => {
+    render(
+      <ExamShell
+        section="Reading"
+        part="Router Module"
+        exit={<button>Exit…</button>}
+        footer={
+          <>
+            <button>Back</button>
+            <button>Next</button>
+          </>
+        }
+      >
+        <p>Stimulus</p>
+      </ExamShell>,
+    );
+    const row = screen.getByRole("button", { name: "Back" }).parentElement!;
+    expect(row.closest("footer")).not.toBeNull();
+    expect(row.className.split(/\s+/)).toContain("flex-wrap");
+  });
+});
+
 describe("Button", () => {
   it("stays focusable while loading and ignores clicks", () => {
     const onClick = vi.fn();

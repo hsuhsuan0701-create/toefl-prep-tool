@@ -59,7 +59,8 @@ export function ExamShell({ section, part, clock, exit, progress, footer, childr
       <main className="mx-auto w-full max-w-exam flex-1 px-gutter py-6 sm:py-8">{children}</main>
       {footer && (
         <footer className="sticky bottom-0 z-20 border-t border-rule bg-paper">
-          <div className="mx-auto flex max-w-exam items-center justify-between gap-3 px-gutter py-3">{footer}</div>
+          {/* Wraps rather than widen the page: three buttons are a few pixels too many for the narrowest phones. */}
+          <div className="mx-auto flex max-w-exam flex-wrap items-center justify-between gap-2 px-gutter py-3 sm:gap-3">{footer}</div>
         </footer>
       )}
     </div>
