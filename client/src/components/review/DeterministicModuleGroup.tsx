@@ -1,7 +1,8 @@
 import { MCQ_UNANSWERED_SENTINEL, type DeterministicReviewItemVM, type ItemVM } from "@toefl-prep/shared";
 import { taskTypeLabel } from "../../lib/taskTypes";
-import { questionFor, type AttemptSetSnapshot, type QuestionSnapshot } from "../../pages/attemptSetSnapshot";
+import { questionFor, stimulusContentFor, type AttemptSetSnapshot, type QuestionSnapshot } from "../../pages/attemptSetSnapshot";
 import { Card } from "../../ui/Card";
+import { ChoiceList } from "../../ui/ChoiceList";
 import { StatusChip } from "../../ui/Chip";
 import { Disclosure } from "../../ui/Disclosure";
 import { Kicker } from "../../ui/Heading";
@@ -9,10 +10,11 @@ import { IconChevronRight } from "../../ui/icons";
 import { Prose } from "../../ui/Prose";
 import { itemScoringStatus } from "../../ui/labels";
 import { ResultMark } from "./ReviewParts";
+import ReviewStimulus, { type ReviewedGap } from "./ReviewStimulus";
 import { isDeterministicScoreJson } from "./reviewItems";
 import { capitalise, correctSummary, type IndexedItem } from "./reviewText";
 
-type StimulusRun = { key: string; taskType: string; name: string | null; items: IndexedItem[] };
+type StimulusRun = { key: string; taskType: string; name: string | null; stimulusId: string | null; items: IndexedItem[] };
 
 /**
  * One Module's Items cut into the Stimuli they were answered against, in test order. Without the
@@ -31,7 +33,14 @@ function stimulusRuns(items: readonly IndexedItem[], setSnapshot: AttemptSetSnap
       last.items.push(entry);
       continue;
     }
-    runs.push({ key, taskType: item.taskType, name: question && item.taskType !== "listen_choose" ? (names.get(question.stimulusId) ?? null) : null, items: [entry] });
+    const own = question && item.taskType !== "listen_choose";
+    runs.push({
+      key,
+      taskType: item.taskType,
+      name: own ? (names.get(question.stimulusId) ?? null) : null,
+      stimulusId: own ? question.stimulusId : null,
+      items: [entry],
+    });
   }
   return runs;
 }
@@ -47,6 +56,9 @@ function optionText(question: QuestionSnapshot | undefined, optionId: string): s
   return `${String.fromCharCode(65 + index)}. ${question.options[index].text}`;
 }
 
+/** Reading's multiple-choice Task Types, whose opened row lists every option of the question. */
+const READING_QUESTION_TYPES = new Set(["daily_life", "academic_passage"]);
+
 /** A Response whose option the Set can no longer name. */
 const OPTION_NOT_SHOWN = "An option that can no longer be shown";
 
@@ -55,14 +67,40 @@ export type DeterministicModuleGroupProps = {
   setSnapshot: AttemptSetSnapshot | null;
   /** The key and Explanation per Item, present only once the Attempt is complete. */
   reviewByItemId: ReadonlyMap<string, DeterministicReviewItemVM>;
+  /**
+   * Show each Stimulus's own text under its heading: only for a completed Attempt, the one whose
+   * keys and Explanations have reached the client. An unfinished or discarded Attempt's review
+   * shows the Items alone.
+   */
+  showStimulus: boolean;
 };
 
-export default function DeterministicModuleGroup({ items, setSnapshot, reviewByItemId }: DeterministicModuleGroupProps) {
+/** Each Complete the Words gap of a run, filled in from its Item: what was typed, right or wrong, and the word. */
+function reviewedGaps(run: StimulusRun, setSnapshot: AttemptSetSnapshot | null, reviewByItemId: ReadonlyMap<string, DeterministicReviewItemVM>): Map<string, ReviewedGap> {
+  const gaps = new Map<string, ReviewedGap>();
+  for (const { item, position } of run.items) {
+    const score = item.scoringStatus === "scored" && isDeterministicScoreJson(item.scoreJson) ? item.scoreJson : null;
+    const key = reviewByItemId.get(item.itemId)?.key;
+    const typed = !score || score.answer === MCQ_UNANSWERED_SENTINEL ? "" : score.answer;
+    gaps.set(item.itemId, {
+      number: position,
+      typed,
+      correct: score ? score.correct : null,
+      ...(key === undefined ? {} : { completion: `${questionFor(setSnapshot, item.itemId)?.prefix ?? ""}${key}` }),
+    });
+  }
+  return gaps;
+}
+
+const STIMULUS_SUMMARY: Record<string, string> = { daily_life: "The text", academic_passage: "The passage" };
+
+export default function DeterministicModuleGroup({ items, setSnapshot, reviewByItemId, showStimulus }: DeterministicModuleGroupProps) {
   return (
     <div className="space-y-4">
       {stimulusRuns(items, setSnapshot).map((run) => {
         const transcript = run.items.map(({ item }) => reviewByItemId.get(item.itemId)?.transcript).find((t) => t !== undefined);
         const headingId = `${run.key}-${run.items[0].item.itemId}`;
+        const content = showStimulus && run.stimulusId !== null ? stimulusContentFor(setSnapshot, run.stimulusId) : undefined;
         return (
           <Card key={headingId} as="section" padding="none" aria-labelledby={headingId} className="min-w-0">
             <header className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-rule px-4 py-3">
@@ -82,6 +120,15 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
               </div>
               <p className="text-meta text-graphite">{correctSummary(run.items)}</p>
             </header>
+            {content && (
+              <div className="min-w-0 border-b border-rule px-4 py-3">
+                <ReviewStimulus
+                  content={content}
+                  gaps={content.kind === "gapped" ? reviewedGaps(run, setSnapshot, reviewByItemId) : undefined}
+                  summary={STIMULUS_SUMMARY[run.taskType]}
+                />
+              </div>
+            )}
             <ol className="divide-y divide-rule">
               {run.items.map(({ item, position }) => (
                 <DeterministicRow key={item.itemId} item={item} position={position} question={questionFor(setSnapshot, item.itemId)} review={reviewByItemId.get(item.itemId)} />
@@ -129,6 +176,9 @@ function DeterministicRow({ item, position, question, review }: { item: ItemVM; 
         ? `${prefix}${score.answer}`
         : (optionText(question, score.answer) ?? OPTION_NOT_SHOWN);
   const keyText = review?.key === undefined ? null : isGap ? `${prefix}${review.key}` : optionText(shown, review.key);
+  // Reading's questions only, for now: what a Listening question's review shows is still open
+  // (the Listening half of issue #42).
+  const showsOptions = READING_QUESTION_TYPES.has(item.taskType) && (shown?.options.length ?? 0) > 0;
 
   const line = (
     <>
@@ -179,6 +229,20 @@ function DeterministicRow({ item, position, question, review }: { item: ItemVM; 
           {line}
         </summary>
         <div className="space-y-1 pr-4 pb-3 pl-4 sm:pl-[6.875rem]">
+          {showsOptions && shown && (
+            // Every option the question offered, as the run listed them, with the User's pick and
+            // the key marked: a Reading question is checked against all four, not only the two.
+            <div className="max-w-measure pb-2">
+              <ChoiceList
+                label="Options"
+                choices={shown.options.map((o) => ({ id: o.id, label: o.text }))}
+                value={score && !unanswered ? score.answer : null}
+                disabled
+                reveal={review.key === undefined ? undefined : { correctId: review.key }}
+                revealLabels={{ key: "Key", pick: "Your Response" }}
+              />
+            </div>
+          )}
           <p className="text-meta font-medium text-graphite">Explanation</p>
           <Prose lang="zh-Hant" size="body">
             {review.explanationZh}

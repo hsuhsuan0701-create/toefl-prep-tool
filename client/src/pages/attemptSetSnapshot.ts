@@ -43,7 +43,24 @@ export type StimulusSnapshot = Readonly<{
   taskType: string;
   name: string | null;
   itemIds: readonly string[];
+  /** What the User read, for a Reading Stimulus; null for Listening, or when the Set lacks it. */
+  content: StimulusContentSnapshot | null;
 }>;
+
+/** One run of a Complete the Words passage: words as printed, or the gap an Item fills. */
+export type GappedSegmentSnapshot = Readonly<{ type: "text"; text: string } | { type: "gap"; gapId: string }>;
+
+/**
+ * The text a Reading Stimulus showed, as served (it carries no key: a gap is only its id, and the
+ * served gap only its visible prefix).
+ *
+ * `gapped`: a Complete the Words passage, its words and gaps in order, and each gap's prefix by id.
+ * `text`: a Read in Daily Life text (its own line breaks kept) or a Read an Academic Passage
+ * passage (paragraphs), with the label the run printed over it.
+ */
+export type StimulusContentSnapshot =
+  | Readonly<{ kind: "gapped"; segments: readonly GappedSegmentSnapshot[]; prefixesByGapId: Readonly<Record<string, string>> }>
+  | Readonly<{ kind: "text"; label: string | null; text: string; preserveLines: boolean }>;
 
 /**
  * What a Reading or Listening Item showed the User: a question's stem and options, or a Complete
@@ -105,6 +122,11 @@ function ownEntry<T>(record: Readonly<Record<string, T>>, key: string): T | unde
 /** One Reading or Listening Item's question, or undefined without a snapshot or for an unknown id. */
 export function questionFor(snapshot: AttemptSetSnapshot | null, itemId: string): QuestionSnapshot | undefined {
   return snapshot ? ownEntry(snapshot.questionsByItemId, itemId) : undefined;
+}
+
+/** What a Stimulus showed the User, or undefined without a snapshot, for an unknown id, or with no text. */
+export function stimulusContentFor(snapshot: AttemptSetSnapshot | null, stimulusId: string): StimulusContentSnapshot | undefined {
+  return snapshot?.stimuli.find((s) => s.id === stimulusId)?.content ?? undefined;
 }
 
 /** The task an Email or Academic Discussion Item set, or undefined. */
@@ -263,9 +285,17 @@ function snapshotStimuli(set: UntrustedServedSet): {
 } {
   const stimuli: StimulusSnapshot[] = [];
   const questions: Record<string, QuestionSnapshot> = {};
-  const add = (module: SnapshotModule, taskType: string, id: unknown, name: string | null, items: QuestionSnapshot[], itemIds: string[]) => {
+  const add = (
+    module: SnapshotModule,
+    taskType: string,
+    id: unknown,
+    name: string | null,
+    items: QuestionSnapshot[],
+    itemIds: string[],
+    content: StimulusContentSnapshot | null = null,
+  ) => {
     if (typeof id !== "string" || itemIds.length === 0) return;
-    stimuli.push(Object.freeze({ id, module, taskType, name, itemIds: Object.freeze(itemIds) }));
+    stimuli.push(Object.freeze({ id, module, taskType, name, itemIds: Object.freeze(itemIds), content }));
     itemIds.forEach((itemId, i) => (questions[itemId] = Object.freeze(items[i])));
   };
   const mcqs = (stimulusId: unknown, list: unknown) => {
@@ -288,23 +318,25 @@ function snapshotStimuli(set: UntrustedServedSet): {
     for (const [module, key] of modules) {
       const m = set[key as "router"];
       if (!m) continue;
-      each<{ id?: unknown; topic?: unknown; gaps?: unknown }>(m.ctwPassages, (p) => {
+      each<{ id?: unknown; topic?: unknown; gaps?: unknown; segments?: unknown }>(m.ctwPassages, (p) => {
         const ids: string[] = [];
         const items: QuestionSnapshot[] = [];
+        const prefixes: Record<string, string> = {};
         each<{ id?: unknown; prefix?: unknown }>(p.gaps, (g) => {
           if (typeof g.id !== "string" || typeof p.id !== "string") return;
           ids.push(g.id);
           items.push({ stimulusId: p.id, stem: null, options: [], prefix: text(g.prefix) });
+          prefixes[g.id] = typeof g.prefix === "string" ? g.prefix : "";
         });
-        add(module, "complete_words", p.id, text(p.topic), items, ids);
+        add(module, "complete_words", p.id, text(p.topic), items, ids, gappedContent(p.segments, prefixes));
       });
-      each<{ id?: unknown; genre?: unknown; questions?: unknown }>(m.dailyLife, (t) => {
+      each<{ id?: unknown; genre?: unknown; text?: unknown; questions?: unknown }>(m.dailyLife, (t) => {
         const { ids, items } = mcqs(t.id, t.questions);
-        add(module, "daily_life", t.id, text(t.genre), items, ids);
+        add(module, "daily_life", t.id, text(t.genre), items, ids, textContent(t.text, null, true));
       });
-      each<{ id?: unknown; title?: unknown; questions?: unknown }>(m.academic, (p) => {
+      each<{ id?: unknown; title?: unknown; discipline?: unknown; text?: unknown; questions?: unknown }>(m.academic, (p) => {
         const { ids, items } = mcqs(p.id, p.questions);
-        add(module, "academic_passage", p.id, text(p.title), items, ids);
+        add(module, "academic_passage", p.id, text(p.title), items, ids, textContent(p.text, text(p.discipline), false));
       });
     }
   } else if (set.kind === "listening") {
@@ -331,6 +363,28 @@ function snapshotStimuli(set: UntrustedServedSet): {
     }
   }
   return { stimuli: Object.freeze(stimuli), questionsByItemId: Object.freeze(questions) };
+}
+
+function textContent(value: unknown, label: string | null, preserveLines: boolean): StimulusContentSnapshot | null {
+  const body = text(value);
+  return body === null ? null : Object.freeze({ kind: "text", label, text: body, preserveLines });
+}
+
+/**
+ * A Complete the Words passage's runs, kept only when every one of them reads: a passage missing a
+ * run, or naming a gap its own list does not carry, would print the wrong words around a Response,
+ * so it is dropped whole and the review falls back to the list of Items alone.
+ */
+function gappedContent(value: unknown, prefixesByGapId: Record<string, string>): StimulusContentSnapshot | null {
+  if (!Array.isArray(value) || value.length === 0) return null;
+  const segments: GappedSegmentSnapshot[] = [];
+  for (const s of value as { type?: unknown; text?: unknown; gapId?: unknown }[]) {
+    if (s?.type === "text" && typeof s.text === "string") segments.push(Object.freeze({ type: "text", text: s.text }));
+    else if (s?.type === "gap" && typeof s.gapId === "string" && Object.prototype.hasOwnProperty.call(prefixesByGapId, s.gapId)) {
+      segments.push(Object.freeze({ type: "gap", gapId: s.gapId }));
+    } else return null;
+  }
+  return Object.freeze({ kind: "gapped", segments: Object.freeze(segments), prefixesByGapId: Object.freeze(prefixesByGapId) });
 }
 
 /** The Email and the Academic Discussion task, each as the lines that set it. */

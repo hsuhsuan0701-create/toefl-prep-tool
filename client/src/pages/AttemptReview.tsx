@@ -237,7 +237,7 @@ export default function AttemptReview() {
                 </div>
               )}
               {group.kind === "build_sentence" && <BuildSentenceGroup items={group.items} setSnapshot={setSnapshot} />}
-              {group.kind === "module" && <DeterministicModuleGroup items={group.items} setSnapshot={setSnapshot} reviewByItemId={reviewByItemId} />}
+              {group.kind === "module" && <DeterministicModuleGroup items={group.items} setSnapshot={setSnapshot} reviewByItemId={reviewByItemId} showStimulus={attempt.status === "completed"} />}
               {group.kind === "judged" && (
                 <div className="space-y-6">
                   {group.items.map(({ item, position }, i) =>

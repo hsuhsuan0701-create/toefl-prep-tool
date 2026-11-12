@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { act, render, screen, waitFor, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import type { AttemptDetailVM, ItemVM } from "@toefl-prep/shared";
+import { MCQ_UNANSWERED_SENTINEL, type AttemptDetailVM, type ItemVM } from "@toefl-prep/shared";
 import AttemptReview from "../src/pages/AttemptReview";
 import { getAttempt, getSet } from "../src/lib/api";
 
@@ -277,5 +277,179 @@ describe("a discarded Reading Attempt", () => {
     expect(screen.getByTestId("item-q1")).toHaveTextContent("Your Response: A. To sell a bicycle");
     expect(screen.queryByText(/To ask for a ride/)).toBeNull();
     expect(screen.queryByText("她想搭便車。")).toBeNull();
+  });
+});
+
+// Issue #42: a completed Reading Attempt's review shows each Stimulus's own text under its heading,
+// so a Response can be checked against what the User read. Nothing of it before completion.
+const SERVED_READING_TEXTS = {
+  ...SERVED_READING,
+  router: {
+    timeLimitSec: 1200,
+    ctwPassages: [
+      {
+        id: "ctw-1",
+        taskType: "complete_words",
+        topic: "river restoration",
+        segments: [
+          { type: "text", text: "Every " },
+          { type: "gap", gapId: "g1" },
+          { type: "text", text: ", crews haul " },
+          { type: "gap", gapId: "g2" },
+          { type: "text", text: " to the bank and " },
+          { type: "gap", gapId: "g3" },
+          { type: "text", text: " the old weir." },
+        ],
+        gaps: [
+          { id: "g1", prefix: "mon", blankLength: 2 },
+          { id: "g2", prefix: "gr", blankLength: 4 },
+          { id: "g3", prefix: "rem", blankLength: 3 },
+        ],
+      },
+    ],
+    dailyLife: [
+      { id: "dl-1", taskType: "daily_life", genre: "text-message chain", text: "Mia: Can you drive me to the fair?\nSam: Sure, at nine.", questions: [{ id: "q1", stem: "Why does Mia write?", options: OPTIONS }] },
+    ],
+    academic: [
+      {
+        id: "ac-1",
+        taskType: "academic_passage",
+        title: "Beavers as engineers",
+        discipline: "ecology",
+        text: "Beavers build dams that slow a river.\n\nThe ponds behind them store sediment.",
+        questions: [
+          { id: "q2", stem: "What do the ponds store?", options: OPTIONS.map((o, i) => ({ ...o, id: `p${i}` })) },
+          { id: "q3", stem: "What do beavers build?", options: OPTIONS.map((o, i) => ({ ...o, id: `r${i}` })) },
+        ],
+      },
+    ],
+  },
+};
+
+function textsDetail(over: Partial<AttemptDetailVM> = {}): AttemptDetailVM {
+  return readingDetail({
+    items: [
+      scored("g1", "complete_words", true, "th"),
+      scored("g2", "complete_words", false, "ass"),
+      scored("g3", "complete_words", false, ""),
+      scored("q1", "daily_life", false, "a"),
+      scored("q2", "academic_passage", true, "p2"),
+      scored("q3", "academic_passage", false, MCQ_UNANSWERED_SENTINEL),
+    ],
+    deterministicReview: [
+      { itemId: "g1", taskType: "complete_words", correct: true, key: "th", explanationZh: "月份。" },
+      { itemId: "g2", taskType: "complete_words", correct: false, key: "avel", explanationZh: "礫石。" },
+      { itemId: "g3", taskType: "complete_words", correct: false, key: "ove", explanationZh: "移除。" },
+      { itemId: "q1", taskType: "daily_life", correct: false, key: "b", explanationZh: "她想搭便車。" },
+      { itemId: "q2", taskType: "academic_passage", correct: true, key: "p2", explanationZh: "沉積物。" },
+      { itemId: "q3", taskType: "academic_passage", correct: false, key: "r0", explanationZh: "水壩。" },
+    ],
+    ...over,
+  });
+}
+
+describe("a completed Reading Attempt's Stimuli", () => {
+  beforeEach(() => {
+    vi.mocked(getSet).mockResolvedValue(SERVED_READING_TEXTS as never);
+  });
+
+  it("sets the Complete the Words passage out in full, each gap numbered by its Item, filled and marked", async () => {
+    await renderReview(textsDetail());
+    const card = screen.getByRole("region", { name: "River restoration" });
+    const right = within(card).getByTestId("gap-g1");
+    const passage = right.closest("p")!;
+    // Shown, not behind a Disclosure, in the run's monospace face, with the words around the gaps.
+    expect(passage.closest("details")).toBeNull();
+    expect(passage).toHaveClass("font-mono");
+    expect(passage).toHaveTextContent(/Every .*, crews haul .* to the bank and .* the old weir\./);
+
+    expect(right).toHaveTextContent("Item 1: month Correct,");
+    expect(right).not.toHaveTextContent("The word is");
+    // A wrong gap: what was typed, Incorrect, and the correct word beside it.
+    expect(within(card).getByTestId("gap-g2")).toHaveTextContent("Item 2: grass Incorrect The word is gravel");
+    // An empty gap reads as no Response, then the word: no empty box, no input at all.
+    expect(within(card).getByTestId("gap-g3")).toHaveTextContent("Item 3: rem No Response The word is remove");
+    expect(passage.querySelector("input")).toBeNull();
+    // The list under it numbers the same Items.
+    expect(within(card).getByTestId("item-g2")).toHaveTextContent("Item 2");
+  });
+
+  it("opens a Read in Daily Life text and an Academic passage under their headings", async () => {
+    await renderReview(textsDetail());
+    const daily = screen.getByRole("region", { name: "Text-message chain" });
+    const dailyToggle = within(daily).getByText("The text").closest("details")!;
+    expect(dailyToggle).not.toHaveAttribute("open");
+    // The text's own line breaks are kept, as the run keeps them.
+    expect(within(dailyToggle).getByText(/Mia: Can you drive me/).textContent).toBe("Mia: Can you drive me to the fair?\nSam: Sure, at nine.");
+
+    const academic = screen.getByRole("region", { name: "Beavers as engineers" });
+    const academicToggle = within(academic).getByText("The passage").closest("details")!;
+    expect(academicToggle).not.toHaveAttribute("open");
+    expect(within(academicToggle).getByText("ecology")).toBeInTheDocument();
+    expect(within(academicToggle).getByText("Beavers build dams that slow a river.").tagName).toBe("P");
+    expect(within(academicToggle).getByText("The ponds behind them store sediment.").tagName).toBe("P");
+  });
+
+  it("lists every option of a question with the key and the Response marked, right, wrong or unanswered", async () => {
+    await renderReview(textsDetail());
+    const group = (row: HTMLElement) => within(row).getByRole("radiogroup", { name: "Options" });
+
+    const wrong = screen.getByTestId("item-q1");
+    expect(within(group(wrong)).getAllByRole("radio")).toHaveLength(4);
+    expect(within(wrong).getByRole("radio", { name: "To sell a bicycle" })).toBeChecked();
+    expect(group(wrong)).toHaveTextContent(/To sell a bicycle.*Your Response.*To ask for a ride.*Key/);
+
+    const right = screen.getByTestId("item-q2");
+    expect(right).toHaveTextContent("What do the ponds store?");
+    expect(within(group(right)).getAllByRole("radio")).toHaveLength(4);
+    expect(within(right).getByRole("radio", { name: "To cancel a meeting" })).toBeChecked();
+    expect(group(right)).toHaveTextContent(/To cancel a meeting.*Key/);
+    expect(within(right).getByText("沉積物。")).toBeInTheDocument();
+
+    const none = screen.getByTestId("item-q3");
+    expect(none).toHaveTextContent("Your Response: No Response");
+    expect(none).toHaveTextContent("Key: A. To sell a bicycle");
+    expect(within(group(none)).getAllByRole("radio").some((r) => (r as HTMLInputElement).checked)).toBe(false);
+  });
+
+  it("shows none of it while the Attempt is unfinished", async () => {
+    const base = textsDetail();
+    await renderReview({ ...base, attempt: { ...base.attempt, status: "in_progress", completedAt: null }, bandStatus: { status: "unfinished" }, deterministicReview: undefined });
+    expect(screen.getByTestId("item-g2")).toHaveTextContent("Your Response: grass");
+    expect(screen.queryByTestId("gap-g2")).toBeNull();
+    expect(screen.queryByText(/crews haul/)).toBeNull();
+    expect(screen.queryByText("The text")).toBeNull();
+    expect(screen.queryByText(/Can you drive me|Beavers build dams/)).toBeNull();
+    expect(screen.queryByRole("radiogroup")).toBeNull();
+  });
+
+  it("shows none of it for a discarded Attempt", async () => {
+    const base = textsDetail();
+    await renderReview({ ...base, attempt: { ...base.attempt, status: "aborted", completedAt: null }, bandStatus: { status: "discarded" }, deterministicReview: undefined });
+    expect(screen.queryByTestId("gap-g1")).toBeNull();
+    expect(screen.queryByText(/crews haul/)).toBeNull();
+    expect(screen.queryByText(/Can you drive me|Beavers build dams/)).toBeNull();
+  });
+
+  it("renders as before, without the texts and without an error, when the Set cannot be read", async () => {
+    vi.mocked(getSet).mockRejectedValue(new Error("gone"));
+    await renderReview(textsDetail());
+    expect(screen.getByTestId("item-g2")).toHaveTextContent("Your Response: ass");
+    expect(screen.getByTestId("item-g2")).toHaveTextContent("Correct completion: avel");
+    expect(screen.queryByTestId("gap-g2")).toBeNull();
+    expect(screen.queryByText("The text")).toBeNull();
+    expect(screen.queryByText("The passage")).toBeNull();
+    expect(screen.queryByRole("alert")).toBeNull();
+  });
+
+  it("leaves out a passage whose runs no longer read, and keeps its Items", async () => {
+    const ctw = SERVED_READING_TEXTS.router.ctwPassages[0];
+    vi.mocked(getSet).mockResolvedValue({
+      ...SERVED_READING_TEXTS,
+      router: { ...SERVED_READING_TEXTS.router, ctwPassages: [{ ...ctw, segments: [...ctw.segments, { type: "gap", gapId: "g9" }] }] },
+    } as never);
+    await renderReview(textsDetail());
+    expect(screen.queryByTestId("gap-g1")).toBeNull();
+    expect(screen.getByTestId("item-g2")).toHaveTextContent("Correct completion: gravel");
   });
 });

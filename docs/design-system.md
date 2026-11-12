@@ -304,7 +304,12 @@ Recipes, as the pages are built.
     the `ScoreReport`: Summary (`Prose lang="zh-Hant"`), Your Response in red pen beside the Model
     Rewrite, numbered Deductions, By dimension, and Disclosures for the Arbiter and the Judges.
   - Reading and Listening Items group by Stimulus, each row with its `ResultMark` (Correct /
-    Incorrect / No Response) and the key and Explanation behind it.
+    Incorrect / No Response) and the key and Explanation behind it. Once the Attempt is complete,
+    a Reading Stimulus's own text sits under its heading (`review/ReviewStimulus`): a Complete the
+    Words passage in full, in mono, each gap numbered by its Item and filled with what was typed,
+    marked, with the correct word beside a wrong or empty one; a Read in Daily Life text or an
+    Academic passage in a `Disclosure` ("The text", "The passage"), set as `PassagePane`. An opened
+    Reading question lists its options (`ChoiceList`, locked) with the Response and the key marked.
 - **Full-Test Run** (`/full-test/:runId`): `PageShell` without navigation while sitting;
   `PageHeader` "Full-Test Run" with its time and status; once finished, the Overall `BandFigure
   size="lg"` (method in a `Disclosure`) or which sections are still pending, never an average of
