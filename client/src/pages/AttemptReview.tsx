@@ -22,6 +22,7 @@ import SceneImage from "../components/SceneImage";
 import TaskJobController from "../components/review/TaskJobController";
 import { rescoreCandidates } from "../components/review/reviewItems";
 import { correctSummary, judgedSummary, moduleName, reviewGroups, type ReviewGroup } from "../components/review/reviewText";
+import { spokenNumberFor } from "./attemptSetSnapshot";
 
 // Attempt review (/attempts/:id): what the User did, how it scored and what to do next, Item by Item
 // in test order. The page is composition only — state, polling and the scoring-job controllers live
@@ -223,7 +224,9 @@ export default function AttemptReview() {
                         item={item}
                         position={position}
                         total={items.length}
-                        ordinal={i + 1}
+                        // Its place in the Set, so an Item with no row leaves a gap rather than
+                        // renumbering the rest; the row position only when the Set can't be read.
+                        ordinal={spokenNumberFor(setSnapshot, item.itemId) ?? i + 1}
                         attemptId={attempt.id}
                         onTranscriptionRetried={review.refresh}
                         {...judgedProps(item)}

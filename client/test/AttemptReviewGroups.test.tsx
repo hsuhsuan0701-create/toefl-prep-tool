@@ -136,6 +136,49 @@ describe("a Task Type's failed Items in Attempt review", () => {
   });
 });
 
+// A spoken Item is numbered by its place in the Set, not among the rows the Attempt has: a prompt
+// that would not play and was skipped leaves no row, and the recordings after it must keep their own
+// numbers, or "Sentence 1" plays the second sentence's recording.
+describe("spoken Item numbers in Attempt review", () => {
+  const recorded = (itemId: string, taskType: "listen_repeat" | "interview") =>
+    item({ itemId, taskType, transcript: "we open at six", responseAudioPath: `responses/att-1/${itemId}.webm`, scoringStatus: "pending" });
+  const titles = (group: HTMLElement) => within(group).getAllByRole("heading", { level: 3 }).map((h) => h.textContent);
+  const players = (group: HTMLElement) =>
+    Array.from(group.querySelectorAll("audio")).map((a) => [a.getAttribute("aria-label"), a.getAttribute("src")]);
+  const withInterview = {
+    ...SERVED_SPEAKING,
+    interview: { ...SERVED_SPEAKING.interview, questions: [1, 2, 3, 4].map((n) => ({ id: `int-${n}`, audio: `int-${n}.mp3`, responseWindowSec: 45 })) },
+  };
+
+  it("keeps each recording's number in the Set when an earlier Item has no row", async () => {
+    vi.mocked(getSet).mockResolvedValue(withInterview as never);
+    await renderReview(speaking([recorded("lr-2", "listen_repeat"), recorded("lr-3", "listen_repeat"), recorded("int-1", "interview"), recorded("int-3", "interview")]));
+
+    const sentences = screen.getByRole("region", { name: "Listen and Repeat" });
+    await waitFor(() => expect(titles(sentences)).toEqual(["Sentence 2", "Sentence 3"]));
+    expect(players(sentences)).toEqual([
+      ["Your recording, Listen and Repeat 2", "/api/audio/responses/att-1/lr-2.webm"],
+      ["Your recording, Listen and Repeat 3", "/api/audio/responses/att-1/lr-3.webm"],
+    ]);
+    expect(titles(screen.getByRole("region", { name: "Interview" }))).toEqual(["Question 1", "Question 3"]);
+  });
+
+  it("numbers an Attempt with every Item present as it always has", async () => {
+    vi.mocked(getSet).mockResolvedValue(withInterview as never);
+    await renderReview(speaking([1, 2, 3].map((n) => recorded(`lr-${n}`, "listen_repeat")).concat([1, 2, 3, 4].map((n) => recorded(`int-${n}`, "interview")))));
+    expect(titles(screen.getByRole("region", { name: "Listen and Repeat" }))).toEqual(["Sentence 1", "Sentence 2", "Sentence 3"]);
+    expect(titles(screen.getByRole("region", { name: "Interview" }))).toEqual(["Question 1", "Question 2", "Question 3", "Question 4"]);
+  });
+
+  it("falls back to the order of the rows when the Set cannot be read", async () => {
+    vi.mocked(getSet).mockRejectedValue(new Error("404: not found"));
+    await renderReview(speaking([recorded("lr-2", "listen_repeat"), recorded("lr-3", "listen_repeat")]));
+    const sentences = screen.getByRole("region", { name: "Listen and Repeat" });
+    expect(titles(sentences)).toEqual(["Sentence 1", "Sentence 2"]);
+    expect(players(sentences).map(([name]) => name)).toEqual(["Your recording, Listen and Repeat 1", "Your recording, Listen and Repeat 2"]);
+  });
+});
+
 describe("the Listen and Repeat scene in Attempt review", () => {
   it("is shown once for the group, not on every sentence", async () => {
     await renderReview(speaking([failed("lr-1", "listen_repeat"), failed("lr-2", "listen_repeat"), failed("lr-3", "listen_repeat")]));

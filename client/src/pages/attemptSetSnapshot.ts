@@ -77,6 +77,11 @@ export type AttemptSetSnapshot = Readonly<{
   questionsByItemId: Readonly<Record<string, QuestionSnapshot>>;
   /** The Email and Academic Discussion task by Item id. Read through {@link essayTaskFor}. */
   essayTasksByItemId: Readonly<Record<string, EssayTaskSnapshot>>;
+  /**
+   * Each Listen and Repeat sentence and Interview question by id: its 1-based position in its Task
+   * in the Set. Read through {@link spokenNumberFor}.
+   */
+  spokenNumbersByItemId: Readonly<Record<string, number>>;
 }>;
 
 export function snapshotAttemptSet(setId: string, value: unknown): AttemptSetSnapshot {
@@ -89,6 +94,7 @@ export function snapshotAttemptSet(setId: string, value: unknown): AttemptSetSna
     stimuli,
     questionsByItemId,
     essayTasksByItemId: snapshotEssayTasks(set),
+    spokenNumbersByItemId: snapshotSpokenNumbers(set),
   });
 }
 
@@ -104,6 +110,15 @@ export function questionFor(snapshot: AttemptSetSnapshot | null, itemId: string)
 /** The task an Email or Academic Discussion Item set, or undefined. */
 export function essayTaskFor(snapshot: AttemptSetSnapshot | null, itemId: string): EssayTaskSnapshot | undefined {
   return snapshot ? ownEntry(snapshot.essayTasksByItemId, itemId) : undefined;
+}
+
+/**
+ * A spoken Item's position in its Task in the Set ("Sentence 2"), or undefined without a snapshot or
+ * for an id the Set does not carry. An Attempt can lack an Item (a prompt that would not play and was
+ * skipped, a lost upload), so its rows alone cannot number the Items after the gap.
+ */
+export function spokenNumberFor(snapshot: AttemptSetSnapshot | null, itemId: string): number | undefined {
+  return snapshot ? ownEntry(snapshot.spokenNumbersByItemId, itemId) : undefined;
 }
 
 /** A Build a Sentence Item's prompt as served today, or undefined. */
@@ -191,6 +206,18 @@ function snapshotScene(set: UntrustedServedSet): AttemptSceneSnapshot | null {
     file: listenAndRepeat.image.file,
     focusRegionsByItemId: Object.freeze(focusRegionsByItemId),
   });
+}
+
+function snapshotSpokenNumbers(set: UntrustedServedSet): Readonly<Record<string, number>> {
+  if (set.kind !== "speaking") return Object.freeze({});
+  const byId: Record<string, number> = {};
+  for (const list of [set.listenAndRepeat?.items, set.interview?.questions]) {
+    if (!Array.isArray(list)) continue;
+    list.forEach((item: { id?: unknown } | null | undefined, i) => {
+      if (typeof item?.id === "string") byId[item.id] = i + 1;
+    });
+  }
+  return Object.freeze(byId);
 }
 
 function snapshotSentenceItems(set: UntrustedServedSet): Readonly<Record<string, SentenceItemSnapshot>> {
