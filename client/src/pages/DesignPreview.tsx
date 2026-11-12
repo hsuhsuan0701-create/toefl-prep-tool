@@ -845,7 +845,7 @@ function ExamReadingView() {
         </div>
         <div className="mt-10 border-t border-rule pt-6">
           <Kicker as="p">A Complete the Words gap</Kicker>
-          <p className="mt-2 text-stimulus text-ink">
+          <p className="mt-2 font-mono text-stimulus text-ink">
             Gravel beds shelter the eggs from a strong{" "}
             <GapInput prefix="cur" length={4} value={gap} onChange={(value) => setGap(value)} label="Gap 4, starting cur" number={4} />.
           </p>
