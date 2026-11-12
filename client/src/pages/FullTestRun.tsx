@@ -18,7 +18,7 @@ import { IconArrowLeft } from "../ui/icons";
 import { Notice } from "../ui/Notice";
 import { PageShell } from "../ui/PageShell";
 import { Skeleton } from "../ui/Skeleton";
-import { coverageText, formatWhenRange, joinAnd } from "../ui/format";
+import { coverageText, formatDuration, formatWhenRange, joinAnd } from "../ui/format";
 import { FULL_TEST_RUN_STATUS, FULL_TEST_SECTION_STATE, SECTION_LABEL, estimateMethod } from "../ui/labels";
 import { readWritingSession } from "./simulation/writingDrafts";
 
@@ -40,13 +40,6 @@ import { readWritingSession } from "./simulation/writingDrafts";
  */
 const EXPECTED_ENVELOPE = "about 1 h 23 min – 1 h 29 min";
 
-function formatElapsed(ms: number): string {
-  const totalMinutes = Math.max(0, Math.floor(ms / 60_000));
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = totalMinutes % 60;
-  return hours > 0 ? `${hours} h ${minutes} min` : `${minutes} min`;
-}
-
 /**
  * How long this sitting has been open: wall clock from the Run's creation to now, or to its
  * completion. Ticks every 30 s, since the display is in whole minutes. Wall clock, not time on
@@ -60,7 +53,9 @@ function useRunElapsed(createdAt: string, completedAt: string | null): string {
     const t = setInterval(() => setNowMs(Date.now()), 30_000);
     return () => clearInterval(t);
   }, [endMs]);
-  return formatElapsed((endMs ?? nowMs) - new Date(createdAt).getTime());
+  // formatDuration, as the Dashboard's Full-Test Run panel uses, so a sitting reads the same length
+  // in both places.
+  return formatDuration(Math.max(0, (endMs ?? nowMs) - new Date(createdAt).getTime()) / 1000);
 }
 
 /** What a section still waiting on scoring is waiting for, in plain words. */

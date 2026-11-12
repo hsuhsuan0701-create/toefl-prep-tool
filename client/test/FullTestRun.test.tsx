@@ -309,6 +309,21 @@ describe("the full-test run page", () => {
     expect(screen.getByText(/Took 1 h 30 min/)).toBeInTheDocument();
   });
 
+  // The Dashboard's Full-Test Run panel rounds a sitting to the nearest minute; the report says the
+  // same length for the same sitting, not one that floors it a minute short.
+  it("reports a sitting's length rounded as the Dashboard panel does", async () => {
+    renderRun(
+      run({
+        status: "completed",
+        currentSection: null,
+        completedAt: "2026-08-23T03:27:59.000Z",
+        sections: completedSections({ reading: 4.5, listening: 5, writing: 5, speaking: 5 }),
+      }),
+    );
+
+    expect(await screen.findByText(/Took 1 h 28 min/)).toBeInTheDocument();
+  });
+
   // The handoff POST each section fires as it ends is best-effort; when it is the one that goes
   // missing the Run is left pointing at a section that is already done. This is the way out.
   it("offers to finish a handoff the section's own runner failed to record", async () => {

@@ -260,7 +260,9 @@ export function buildStatsRoutes(deps: StatsDeps) {
           method: est.method,
           attemptId: est.attemptId,
           mode: est.mode as AttemptMode,
-          attemptedAt: sqliteTimestampToIso(est.completedAt ?? est.startedAt),
+          // When the Attempt started, the time its row in the Attempt log names, so the card's
+          // "From your … Simulation, <when>" points at a row the User can find by eye.
+          attemptedAt: sqliteTimestampToIso(est.startedAt),
           target: settings.targets[section],
           // Present only for a routed Reading/Listening Simulation, the one place table3-v1 persists.
           ...(est.modulePath ? { modulePath: est.modulePath } : {}),

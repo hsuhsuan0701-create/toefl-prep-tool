@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import { describe, expect, it, vi } from "vitest";
-import type { AttemptDetailVM, AttemptListVM, FullTestRunVM, TrendPointVM } from "@toefl-prep/shared";
+import type { AttemptDetailVM, AttemptListVM, FullTestRunVM, StatsSummaryVM, TrendPointVM } from "@toefl-prep/shared";
 import { openDb } from "../src/db/db.js";
 import { sqliteStores } from "./helpers/sqliteStores.js";
 import { buildAttemptsRoutes } from "../src/routes/attempts.js";
@@ -8,6 +8,8 @@ import { buildGenerateRoutes } from "../src/routes/generate.js";
 import { buildStatsRoutes } from "../src/routes/stats.js";
 import { buildFullTestRoutes } from "../src/routes/fullTests.js";
 import { pinTimezone } from "./helpers/pinTimezone.js";
+import { wholeSittingItems } from "./helpers/wholeSitting.js";
+import { requiredTaskTypes } from "../src/services/bandEstimator.js";
 
 // Every timestamp a route hands the client is read out of a SQLite column written in
 // sqliteTimestamp()'s space form ("2026-08-22 12:50:10", no 'T', no 'Z'), which `new Date(...)`
@@ -166,6 +168,34 @@ describe("trend point dates cross the boundary as instants", () => {
 
     const points = (await (await app.request("/trends?taskType=email")).json()) as TrendPointVM[];
     expect(points[0].date).toBe(INSTANT);
+  });
+});
+
+describe("a headline band's attemptedAt crosses the boundary as an instant", () => {
+  // The Dashboard's section card names the Attempt behind its band by a time, and the Attempt log
+  // names the same Attempt by its startedAt. Both are the start, so the card's line can be matched
+  // to its row by eye; a card on the completion time would read 27 minutes later than its row.
+  it("GET /summary emits the backing Attempt's start, not its completion", async () => {
+    const db = openDb(":memory:");
+    const r = sqliteStores(db);
+    const app = buildStatsRoutes({ repo: r });
+    r.createAttempt({ id: "att", kind: "writing", mode: "simulation", setId: "wri-1", isRepeat: false });
+    for (const i of wholeSittingItems("writing")) {
+      r.insertItemResult({ attemptId: "att", itemId: i.itemId, taskType: i.taskType });
+      r.updateItemScore({ attemptId: "att", itemId: i.itemId, score: 4, scoreJson: i.scoreJson, scoringStatus: "scored" });
+    }
+    r.completeAttempt("att");
+    r.saveSectionEstimate({
+      attemptId: "att",
+      section: "writing",
+      rawDetail: JSON.stringify({ raw: 0.8, coverage: requiredTaskTypes("writing", null).map((taskType) => ({ taskType, itemCount: 1 })) }),
+      estimatedBand: 5,
+      method: "linear-v2",
+    });
+    db.prepare("UPDATE attempts SET started_at=?, completed_at=? WHERE id='att'").run(STORED, "2026-08-22 13:17:00");
+
+    const body = (await (await app.request("/summary")).json()) as StatsSummaryVM;
+    expect(body.sections.find((s) => s.section === "writing")?.attemptedAt).toBe(INSTANT);
   });
 });
 

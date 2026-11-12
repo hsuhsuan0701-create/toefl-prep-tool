@@ -390,7 +390,10 @@ export interface StatsSectionVM {
   method: string;
   attemptId: string;
   mode: AttemptMode;
-  /** When the backing Attempt finished (or began, if it never completed), as ISO-8601. */
+  /**
+   * When the backing Attempt started, as ISO-8601: the same moment its row in the Attempt log shows
+   * (`AttemptListItemVM.startedAt`), so the two read alike.
+   */
   attemptedAt: string;
   /** The User's Target for this section, the same number GET /api/stats/settings reports. */
   target: number;

@@ -217,7 +217,8 @@ describe("GET /summary", () => {
 
   it("surfaces the latest section estimate (band/method/attempt/when) plus its default Target; with three sections missing there is no overall band", async () => {
     ctx.repo.createAttempt({ id: "att-spk", kind: "speaking", mode: "simulation", setId: "spk-1", isRepeat: false });
-    ctx.repo.completeAttempt("att-spk", sqliteTimestamp(new Date(Date.UTC(2026, 7, 20, 3, 4, 5))));
+    ctx.repo.completeAttempt("att-spk", sqliteTimestamp(new Date(Date.UTC(2026, 7, 20, 3, 31, 0))));
+    ctx.db.prepare("UPDATE attempts SET started_at=? WHERE id='att-spk'").run(sqliteTimestamp(new Date(Date.UTC(2026, 7, 20, 3, 4, 5))));
     persistBand(ctx, { attemptId: "att-spk", section: "speaking", rawDetail: fullDetail("speaking"), estimatedBand: 4.5, method: "linear-v2" });
     // Stored by an older version; read as nothing.
     ctx.repo.setSetting("pin.reading", "5");
@@ -229,7 +230,8 @@ describe("GET /summary", () => {
     expect(body.sections).toEqual([
       {
         section: "speaking", band: 4.5, method: "linear-v2", attemptId: "att-spk", mode: "simulation", target: 5.5,
-        // Space-form UTC in the column, an ISO instant on the wire.
+        // When the Attempt started, as its row in the Attempt log says; space-form UTC in the
+        // column, an ISO instant on the wire.
         attemptedAt: "2026-08-20T03:04:05.000Z",
         recentSimulationRange: { min: 4.5, max: 4.5, count: 1 },
       },
