@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import type { Section, StatsSettingsVM, StatsSummaryVM } from "@toefl-prep/shared";
 import AttemptsFeed from "../components/AttemptsFeed";
 import BandCard from "../components/BandCard";
@@ -41,6 +42,11 @@ const FIRST_RUN_LEDE =
  * at the bottom, collapsed. Below either: the four sections' bands against their Targets, the next
  * unattempted Sets, Full-Test Runs and recent Attempts.
  */
+/** How long an arrival at /#setup keeps Setup at the top while the page above it loads. */
+const FOLLOW_SETUP_MS = 3000;
+/** What the User does to scroll the page themselves, which ends that. */
+const TAKES_OVER_SCROLL = ["wheel", "touchstart", "pointerdown", "keydown"] as const;
+
 export default function Dashboard() {
   const [summary, setSummary] = useState<StatsSummaryVM | null>(null);
   const [summaryError, setSummaryError] = useState<string | null>(null);
@@ -122,17 +128,44 @@ export default function Dashboard() {
     setSetupOpen(true);
     setSetupScrollRequest((n) => n + 1);
   }
+  // Set by an arrival at /#setup, where the rest of the page is still loading above Setup.
+  const followSetupRef = useRef(false);
   useEffect(() => {
     if (setupScrollRequest === 0) return;
     const target = document.getElementById("setup");
-    target?.scrollIntoView?.({ behavior: "smooth", block: "start" });
+    const follow = followSetupRef.current;
+    followSetupRef.current = false;
+    target?.scrollIntoView?.({ behavior: follow ? "auto" : "smooth", block: "start" });
     target?.focus({ preventScroll: true });
+    if (!target || !follow || typeof ResizeObserver === "undefined") return;
+    // Each part of the page that lands above Setup pushes it down after the scroll has been made, so
+    // Setup is put back at the top whenever the page changes height, until the page has had time to
+    // finish loading or the User takes over.
+    const observer = new ResizeObserver(() => target.scrollIntoView({ block: "start" }));
+    observer.observe(target.closest("main") ?? document.body);
+    const stop = () => {
+      observer.disconnect();
+      window.clearTimeout(timer);
+      for (const type of TAKES_OVER_SCROLL) window.removeEventListener(type, stop);
+    };
+    const timer = window.setTimeout(stop, FOLLOW_SETUP_MS);
+    for (const type of TAKES_OVER_SCROLL) window.addEventListener(type, stop, { passive: true });
+    return stop;
   }, [setupScrollRequest]);
 
   const estimates = new Map((summary?.sections ?? []).map((s) => [s.section, s]));
   const scorability = Object.fromEntries(TEST_ORDER.map((s) => [s, sectionScorability(s, setup.status)])) as Record<Section, Scorability>;
   const firstRun = practice.attempts !== null && practice.attempts.total === 0;
   const attemptsKnown = practice.attempts !== null || practice.errors.attempts !== undefined;
+  // A link from another page ("See what's missing" before a run this machine can't score) arrives as
+  // /#setup. Setup is rendered only once the Attempts are known, so the request waits for that.
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (hash !== "#setup" || !attemptsKnown) return;
+    followSetupRef.current = true;
+    setSetupOpen(true);
+    setSetupScrollRequest((n) => n + 1);
+  }, [hash, attemptsKnown]);
   const suggestion =
     summary && settings && setup.settled
       ? suggestNext({ bands: Object.fromEntries([...estimates].map(([s, e]) => [s, e.band])), targets: settings.targets, scorability })
