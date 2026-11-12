@@ -1,0 +1,234 @@
+{
+  "id": "spk-4a907eb5",
+  "source": "generated",
+  "createdAt": "2026-09-01T10:15:10.167Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Soil Sample Intake Orientation",
+    "scenarioDescription": "Listen to a senior lab technician orient a new intern at the soil sample intake bench, and repeat what the technician says. Repeat only once.",
+    "introAudio": "stimuli/spk-4a907eb5/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-4a907eb5.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Soil Sample Intake Orientation. Listen to a senior lab technician orient a new intern at the soil sample intake bench, and repeat what the technician says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- First, you'll open the intake log sheet.\n- Every sample gets a number and a timestamp.\n- We label each bag with the site name and the collection date.\n- You check the tray temperature, and you write it on the sheet.\n- Because contamination spreads fast, we screen every sample before shelving.\n- The moisture testing tray needs a quick temperature check before each batch.\n- The log sheet you just completed becomes the record other technicians rely on.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "First, you'll open the intake log sheet.",
+        "audio": "stimuli/spk-4a907eb5/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Every sample gets a number and a timestamp.",
+        "audio": "stimuli/spk-4a907eb5/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.289,
+          "y": 0.344,
+          "w": 0.084,
+          "h": 0.075
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "We label each bag with the site name and the collection date.",
+        "audio": "stimuli/spk-4a907eb5/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.441,
+          "y": 0.293,
+          "w": 0.142,
+          "h": 0.123
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "You check the tray temperature, and you write it on the sheet.",
+        "audio": "stimuli/spk-4a907eb5/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Because contamination spreads fast, we screen every sample before shelving.",
+        "audio": "stimuli/spk-4a907eb5/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.685,
+          "y": 0.152,
+          "w": 0.216,
+          "h": 0.25
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The moisture testing tray needs a quick temperature check before each batch.",
+        "audio": "stimuli/spk-4a907eb5/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.612,
+          "y": 0.642,
+          "w": 0.205,
+          "h": 0.139
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The log sheet you just completed becomes the record other technicians rely on.",
+        "audio": "stimuli/spk-4a907eb5/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.369,
+          "y": 0.772,
+          "w": 0.142,
+          "h": 0.114
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Organizing a Digital To-Do App",
+    "intro": "Thank you for taking a moment to speak with me. I'm a researcher studying how people manage everyday tasks, and I have four quick questions about how you organize your to-do list on your phone.",
+    "introAudio": "stimuli/spk-4a907eb5/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, what specific app or method do you currently use on your phone to keep track of your daily to-do items?",
+        "audio": "stimuli/spk-4a907eb5/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Can you tell me about a recent day when your reminders app either saved you from forgetting an important task, or let you down instead?",
+        "audio": "stimuli/spk-4a907eb5/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some people say a phone reminders app is more reliable than a handwritten to-do list, while others feel a paper list is easier to trust. Which side do you agree with, and why?",
+        "audio": "stimuli/spk-4a907eb5/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Do you think people in general should depend on a digital reminders app for their daily tasks, or is it better to rely on memory and habit instead?",
+        "audio": "stimuli/spk-4a907eb5/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 214.5,
+      "targetWpm": 184,
+      "minWpm": 156,
+      "maxWpm": 209
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 139.4,
+      "targetWpm": 184,
+      "minWpm": 156,
+      "maxWpm": 209
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "science-environment",
+      "noveltyKey": "soil-testing-lab-sample-intake-orientation",
+      "requiredConcepts": [
+        "soil sample intake log sheet",
+        "sample bags labeled by field site",
+        "moisture testing tray temperature check",
+        "contamination screening before shelving"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-ad012649",
+          "reason": "Existing set is a visitor greenhouse tour guide narrating to the public; this is a lab technician training an intern on sample intake, not a plant tour."
+        },
+        {
+          "setId": "spk-9dbd086f",
+          "reason": "Existing set trains a weather station observer on outdoor instrument readings; this trains a lab intern on indoor soil sample intake and labeling."
+        },
+        {
+          "setId": "spk-bbb69428",
+          "reason": "Existing set orients a greenhouse assistant on plant watering care; this orients a lab intern on soil sample logging and contamination screening."
+        }
+      ],
+      "setting": "environmental science laboratory sample intake bench",
+      "speakerRole": "senior laboratory technician training a newly hired intern",
+      "communicativePurpose": "orienting a new intern through the soil sample intake and labeling steps in order before the day's testing begins"
+    },
+    "interview": {
+      "domain": "technology-media",
+      "noveltyKey": "digital-reminders-app-organization-habit",
+      "requiredConcepts": [
+        "daily to-do app on a phone",
+        "checked-off tasks versus forgotten ones",
+        "reminder notification versus a paper list",
+        "trusting a reminders app over memory"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-507f4985",
+          "reason": "Existing set covers organizing photos on a phone; this covers organizing a to-do/reminders app for daily chores instead."
+        },
+        {
+          "setId": "spk-9dbd086f",
+          "reason": "Existing set covers deciding whether to install software updates; this covers a daily task-tracking habit, a different device use."
+        },
+        {
+          "setId": "spk-fb16d13c",
+          "reason": "Existing set covers managing notification alerts across apps; this covers using one app to track to-do items, not notification settings."
+        }
+      ],
+      "topic": "how the test taker keeps a personal digital to-do or reminders app organized for daily chores",
+      "premise": "a mobile productivity researcher makes a brief unannounced phone call asking how people organize a digital reminders app for everyday tasks",
+      "questionArc": [
+        "the specific app or method the test taker currently uses to track daily to-do items on a phone",
+        "a recent day the digital reminders app kept a task from being forgotten, or failed to",
+        "reliability of a digital reminders app compared with a handwritten to-do list",
+        "whether people should depend on a digital reminders app rather than memory for daily tasks"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Sadaltager",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Sulafat",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

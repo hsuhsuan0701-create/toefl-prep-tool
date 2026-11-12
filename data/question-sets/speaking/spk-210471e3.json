@@ -1,0 +1,209 @@
+{
+  "id": "spk-210471e3",
+  "source": "generated",
+  "createdAt": "2026-08-23T07:30:55.428Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Radio Station Control Room Orientation",
+    "scenarioDescription": "You're a new trainee at the campus radio station, getting ready for your first solo evening shift. The station's technical director walks you through the on-air control room and the equipment closet next door before the broadcast begins. Listen to the technical director and repeat what they say. Repeat only once.",
+    "introAudio": "stimuli/spk-210471e3/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-210471e3.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Radio Station Control Room Orientation. You're a new trainee at the campus radio station, getting ready for your first solo evening shift. The station's technical director walks you through the on-air control room and the equipment closet next door before the broadcast begins. Listen to the technical director and repeat what they say. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- This is the station's control room.\n- The mixing board and the digital playout screen sit here.\n- We check the fader levels and adjust them before every broadcast.\n- The morning host just left, but the evening lineup still needs loading.\n- After you load the playout queue, double-check the evening lineup order.\n- A fully charged backup microphone sits inside the equipment closet next door.\n- The on-air light that switches on during live segments warns everyone in the hallway.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "This is the station's control room.",
+        "audio": "stimuli/spk-210471e3/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The mixing board and the digital playout screen sit here.",
+        "audio": "stimuli/spk-210471e3/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.505,
+          "y": 0.388,
+          "w": 0.151,
+          "h": 0.129
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "We check the fader levels and adjust them before every broadcast.",
+        "audio": "stimuli/spk-210471e3/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.345,
+          "y": 0.45,
+          "w": 0.174,
+          "h": 0.106
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The morning host just left, but the evening lineup still needs loading.",
+        "audio": "stimuli/spk-210471e3/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.187,
+          "y": 0.27,
+          "w": 0.089,
+          "h": 0.1
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "After you load the playout queue, double-check the evening lineup order.",
+        "audio": "stimuli/spk-210471e3/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "A fully charged backup microphone sits inside the equipment closet next door.",
+        "audio": "stimuli/spk-210471e3/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.867,
+          "y": 0.521,
+          "w": 0.076,
+          "h": 0.134
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The on-air light that switches on during live segments warns everyone in the hallway.",
+        "audio": "stimuli/spk-210471e3/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.623,
+          "y": 0.158,
+          "w": 0.1,
+          "h": 0.088
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Following Town Council Decisions Survey",
+    "intro": "Hello, thank you for speaking with me today. I'm calling on behalf of a local civic-engagement program, and we're running a short survey about how residents like you follow town council decisions and public meetings. There are just four quick questions, and there's no need to prepare — please just answer with what comes to mind.",
+    "introAudio": "stimuli/spk-210471e3/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To begin, could you tell me about the most recent town council notice or update you noticed, and where you saw it — for example, on the bulletin board outside town hall, in the newspaper, or somewhere else entirely?",
+        "audio": "stimuli/spk-210471e3/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thank you. Could you describe one specific time you showed up to or closely followed a town council decision — for instance, when a neighbor circulated a petition about a proposed zoning change — and tell me what made you pay attention that particular time?",
+        "audio": "stimuli/spk-210471e3/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK, next I'd like to ask your opinion. Some residents say printed notices posted around town, like flyers on community boards, reach people better than messages sent directly to them. Others say a direct message, like a text or an email, works better because people don't always walk past a bulletin board. Which do you think works better for reaching residents, and why?",
+        "audio": "stimuli/spk-210471e3/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Some residents consistently miss public meetings and never see the notices at all. What would you recommend the town do differently to make sure those residents actually find out about upcoming decisions?",
+        "audio": "stimuli/spk-210471e3/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 180.9,
+      "targetWpm": 215,
+      "minWpm": 190,
+      "maxWpm": 240
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "technology-media",
+      "noveltyKey": "radio-station-broadcast-trainee-walkthrough",
+      "requiredConcepts": [
+        "mixing board fader levels checked before air",
+        "digital playout queue loaded with the evening lineup",
+        "backup microphone stored in the equipment closet",
+        "on-air light switched on during live segments"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-f22a5687",
+          "reason": "Catalog entry is a general facility tour of a media production center; this component is a control-room equipment orientation (fader levels, playout system, backup mic) before a live broadcast shift."
+        }
+      ],
+      "setting": "a college radio station's on-air control room and equipment closet before an evening broadcast shift",
+      "speakerRole": "the station's technical director orienting a newly hired broadcast trainee",
+      "communicativePurpose": "walk the trainee once through each piece of on-air media equipment and the digital playout system before their first solo shift"
+    },
+    "interview": {
+      "domain": "community-civic",
+      "noveltyKey": "town-council-notice-engagement-interview",
+      "requiredConcepts": [
+        "posted notice on the town hall bulletin board",
+        "neighbor petition about a proposed zoning change",
+        "paper notices versus direct messages for announcements",
+        "reaching residents who miss public meetings"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-7ed36c39",
+          "reason": "Catalog entry covers general neighborhood event participation; this component narrows to following and engaging with formal town council notices, meeting agendas, and a specific zoning decision."
+        }
+      ],
+      "topic": "how the test taker follows and engages with local town council decisions and public meeting notices",
+      "premise": "a local civic-engagement program is conducting a brief unannounced phone survey about how residents follow town council decisions and public meetings",
+      "questionArc": [
+        "Ask which specific public notice or town council update the respondent last noticed, and where they saw it.",
+        "Ask about one specific past occasion when they showed up to or followed a town decision, and what prompted them to pay attention that time.",
+        "Ask whether printed notices posted around town or messages sent directly to residents work better for reaching people, with a reason.",
+        "Ask for a recommendation on how the town should notify residents who consistently miss public meetings."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v4",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "australian",
+      "voice": "Alnilam",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        200,
+        208,
+        215,
+        180,
+        178,
+        176,
+        175
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "north-american",
+      "voice": "Despina",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

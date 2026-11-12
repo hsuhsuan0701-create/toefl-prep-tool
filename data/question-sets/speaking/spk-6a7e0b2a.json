@@ -1,0 +1,185 @@
+{
+  "id": "spk-6a7e0b2a",
+  "source": "generated",
+  "createdAt": "2026-08-23T07:25:39.670Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Vaccination Clinic Setup Walkthrough",
+    "scenarioDescription": "You're shadowing the lead nurse at the health center's vaccination clinic on the morning it's being set up, before the doors open to patients. Listen to the nurse and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-6a7e0b2a/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-6a7e0b2a.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Vaccination Clinic Setup Walkthrough. You're shadowing the lead nurse at the health center's vaccination clinic on the morning it's being set up, before the doors open to patients. Listen to the nurse and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- We set up the sign-in table first.\n- This table holds pens and spare sign-in sheets.\n- We stacked the consent forms in a pile by the first chair.\n- The vaccine cooler sits at the back, and it must stay closed.\n- When a vial leaves the cooler, we use it within an hour.\n- After each shot, we send patients to recovery seating timed at fifteen minutes.\n- The sharps bin near the last chair gets swapped right before the doors open.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "We set up the sign-in table first.",
+        "audio": "stimuli/spk-6a7e0b2a/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "This table holds pens and spare sign-in sheets.",
+        "audio": "stimuli/spk-6a7e0b2a/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "We stacked the consent forms in a pile by the first chair.",
+        "audio": "stimuli/spk-6a7e0b2a/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The vaccine cooler sits at the back, and it must stay closed.",
+        "audio": "stimuli/spk-6a7e0b2a/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "When a vial leaves the cooler, we use it within an hour.",
+        "audio": "stimuli/spk-6a7e0b2a/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "After each shot, we send patients to recovery seating timed at fifteen minutes.",
+        "audio": "stimuli/spk-6a7e0b2a/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The sharps bin near the last chair gets swapped right before the doors open.",
+        "audio": "stimuli/spk-6a7e0b2a/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Hometown Historical Change",
+    "intro": "Thank you for speaking with me today. I'm calling from a local history project, and we're gathering people's memories of how their hometowns have changed over the years. I'd like to ask you a few questions about a place you grew up.",
+    "introAudio": "stimuli/spk-6a7e0b2a/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, could you tell me about one specific building or landmark near your childhood home that looks different today than it did years ago? About when did that change happen?",
+        "audio": "stimuli/spk-6a7e0b2a/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of a specific moment when you first noticed that change, or reacted to it in some way. What happened, and why did it stand out to you?",
+        "audio": "stimuli/spk-6a7e0b2a/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK, I'd like to ask your opinion now. Some people feel changes like this make a neighborhood more convenient and up to date, while others feel something valuable about the old place gets lost. Which view is closer to yours, and why?",
+        "audio": "stimuli/spk-6a7e0b2a/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Looking ahead, do you think towns in general should focus more on preserving old buildings, or should they prioritize new development? What do you predict will happen in most towns?",
+        "audio": "stimuli/spk-6a7e0b2a/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 155,
+      "targetWpm": 208,
+      "minWpm": 183,
+      "maxWpm": 233
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "vaccination-clinic-setup-walkthrough",
+      "requiredConcepts": [
+        "sign-in table near the entrance",
+        "consent forms stacked by the first chair",
+        "cooler of vaccine vials kept at the back",
+        "recovery seating area timed at fifteen minutes",
+        "sharps bin swapped before the doors open"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-c42dd828",
+          "reason": "that Set orients a trainee through a clinic's ongoing front-desk shift stations; this one walks a trainee through one-time setup stations for a single-day vaccination clinic before it opens."
+        }
+      ],
+      "setting": "the health center's vaccination clinic on setup morning, before doors open",
+      "speakerRole": "the clinic's lead nurse briefing a new trainee",
+      "communicativePurpose": "orient the trainee station by station through the vaccination clinic layout before opening"
+    },
+    "interview": {
+      "domain": "history-social-change",
+      "noveltyKey": "childhood-town-historical-change",
+      "requiredConcepts": [
+        "a building near home that looked different years ago",
+        "a specific year or season when the change happened",
+        "whether the change made the area better or worse",
+        "old buildings kept as they were versus rebuilt for new use"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-49400fda",
+          "reason": "that Set covers an ongoing family tradition passed down at home; this one asks about a physical, historical change to a childhood town, unrelated to family custom."
+        }
+      ],
+      "topic": "historical change in a childhood hometown",
+      "premise": "a local history project calls the respondent unannounced to ask about visible historical changes near where they grew up",
+      "questionArc": [
+        "Ask the respondent to name one specific building or landmark near their childhood home that looks different now than it did years ago, and roughly when that change happened.",
+        "Ask the respondent to recall a specific occasion when they noticed or reacted to that change, and why it stood out to them.",
+        "Present two contrasting views on such changes to a hometown — some feel they improve daily life, others feel something valuable is lost — and ask the respondent to take a side with reasons.",
+        "Broaden to whether towns in general should prioritize preserving old buildings over allowing new development, inviting a prediction or recommendation."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v4",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "british",
+      "voice": "Alnilam",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        200,
+        208,
+        215,
+        180,
+        178,
+        176,
+        175
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "north-american",
+      "voice": "Callirrhoe",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

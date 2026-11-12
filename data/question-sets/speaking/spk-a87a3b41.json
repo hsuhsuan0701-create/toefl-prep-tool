@@ -1,0 +1,232 @@
+{
+  "id": "spk-a87a3b41",
+  "source": "generated",
+  "createdAt": "2026-08-23T05:34:18.184Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Intake Room Orientation at a Wildlife Rehab Center",
+    "scenarioDescription": "You're a new volunteer at a wildlife rehabilitation center, and the rehabilitation coordinator is walking you through the intake room before your first solo shift. Listen to the coordinator and repeat what they say. Repeat only once.",
+    "introAudio": "stimuli/spk-a87a3b41/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-a87a3b41.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Intake Room Orientation at a Wildlife Rehab Center. You're a new volunteer at a wildlife rehabilitation center, and the rehabilitation coordinator is walking you through the intake room before your first solo shift. Listen to the coordinator and repeat what they say. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- This is where we log every new arrival.\n- Clean gloves and fresh aprons hang right by the sink.\n- We always check the quarantine cage before any handling occurs.\n- You'll weigh the animal, and then you'll note its condition.\n- After you finish a feeding round, fill out the feeding log.\n- Because you'll handle several species, change gloves and wash hands between them.\n- The supply cart, which holds gloves, syringes, and bandages, sits near the door.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "This is where we log every new arrival.",
+        "audio": "stimuli/spk-a87a3b41/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.076,
+          "y": 0.322,
+          "w": 0.151,
+          "h": 0.129
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Clean gloves and fresh aprons hang right by the sink.",
+        "audio": "stimuli/spk-a87a3b41/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.835,
+          "y": 0.225,
+          "w": 0.141,
+          "h": 0.161
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "We always check the quarantine cage before any handling occurs.",
+        "audio": "stimuli/spk-a87a3b41/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.562,
+          "y": 0.114,
+          "w": 0.245,
+          "h": 0.252
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "You'll weigh the animal, and then you'll note its condition.",
+        "audio": "stimuli/spk-a87a3b41/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.51,
+          "y": 0.437,
+          "w": 0.153,
+          "h": 0.126
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "After you finish a feeding round, fill out the feeding log.",
+        "audio": "stimuli/spk-a87a3b41/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.619,
+          "y": 0.709,
+          "w": 0.077,
+          "h": 0.093
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Because you'll handle several species, change gloves and wash hands between them.",
+        "audio": "stimuli/spk-a87a3b41/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.743,
+          "y": 0.428,
+          "w": 0.19,
+          "h": 0.158
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The supply cart, which holds gloves, syringes, and bandages, sits near the door.",
+        "audio": "stimuli/spk-a87a3b41/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.208,
+          "y": 0.62,
+          "w": 0.166,
+          "h": 0.237
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Weekly Household Chore Split",
+    "intro": "Thank you for speaking with me today. I'm putting together a short, informal survey about how people split up recurring chores with the people they live with — nothing to prepare, just talk naturally.",
+    "introAudio": "stimuli/spk-a87a3b41/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, a lot of households use something like a chore chart taped to the fridge to keep track of who's doing what. How do you and the people you live with usually divide up chores during a typical week, and how do you decide who's responsible for what?",
+        "audio": "stimuli/spk-a87a3b41/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now tell me about a specific week when that usual split had to change on short notice — what happened, and why did the split change that week?",
+        "audio": "stimuli/spk-a87a3b41/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "That's helpful. Some people think swapping a chore with someone else just takes a quick text the night before, while others think it needs more planning than that. Thinking of a chore you recently swapped with someone you live with, which approach do you think actually works better, and why?",
+        "audio": "stimuli/spk-a87a3b41/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Overall, do you think dividing up chores by assigning each one to a day, rather than assigning them to a specific person, actually ends up feeling fair to everyone involved? Why or why not?",
+        "audio": "stimuli/spk-a87a3b41/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "first",
+      "measuredWpm": 165.6,
+      "targetWpm": 215,
+      "minWpm": 190,
+      "maxWpm": 240
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "science-environment",
+      "noveltyKey": "wildlife-rehab-intake-station-walkthrough",
+      "requiredConcepts": [
+        "quarantine cage checked before any handling",
+        "feeding log filled out after each round",
+        "gloves changed between different species"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-fbe10c5d",
+          "reason": "Both are field/lab station walkthroughs, but this one covers animal intake and care stations at a rehab center, not water sampling gear at a wetland lab."
+        },
+        {
+          "setId": "spk-d58bb9d4",
+          "reason": "Both are before-first-solo-shift walkthroughs, but this is a professional wildlife facility, not a private home garage workshop."
+        }
+      ],
+      "setting": "the intake room of a wildlife rehabilitation center",
+      "speakerRole": "the center's rehabilitation coordinator orienting a newly arrived volunteer before their first solo shift",
+      "communicativePurpose": "walk the volunteer through each intake station once so an incoming animal can be handled safely and consistently"
+    },
+    "interview": {
+      "domain": "everyday-life",
+      "noveltyKey": "weekly-household-chore-rotation",
+      "requiredConcepts": [
+        "chore chart taped to the fridge",
+        "days assigned by chore not by person",
+        "swap request texted the night before"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-57f76698",
+          "reason": "Both are recurring-routine interviews, but this one covers dividing household chores across a week, not an evening wind-down sleep routine."
+        },
+        {
+          "setId": "spk-f5506f40",
+          "reason": "Both touch shared household practice, but this is a practical weekly task rotation, not a tradition that changes across generations."
+        }
+      ],
+      "topic": "how people divide up household chores across a typical week",
+      "premise": "a short unprepared phone interview about how people split recurring household chores among the people they live with",
+      "questionArc": [
+        "Usual chore split week to week and how it gets decided",
+        "One week the split had to change on short notice and why",
+        "A specific chore recently swapped with someone else",
+        "Whether the current way of dividing chores actually feels fair"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v4",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Rasalgethi",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        200,
+        208,
+        215,
+        180,
+        178,
+        176,
+        175
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Despina",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "taskType": "build_sentence",
+  "item": {
+    "id": "bas-ref-1",
+    "prompt": "How did the museum visit go?",
+    "frame": "The ___ ___ ___ ___ ___ ___ wonderful.",
+    "tiles": [
+      "were",
+      "the",
+      "was",
+      "new wing",
+      "led us through",
+      "who",
+      "volunteers"
+    ],
+    "answers": [
+      [
+        "volunteers",
+        "who",
+        "led us through",
+        "the",
+        "new wing",
+        "were"
+      ]
+    ]
+  },
+  "completedSentence": "The volunteers who led us through the new wing were wonderful.",
+  "distractorNote": "Seven tiles for six blanks. \"was\" is the unused distractor: it forces number agreement against the plural \"volunteers\". \"the\" and \"new wing\" are two separate tiles, which is why six blanks take six tiles.",
+  "sourceNote": "This project's own item, written in the shape of the one Build a Sentence item ETS publishes (Updated TOEFL iBT Test Overview, 2026, p. 13): seven tiles for six blanks, the opening article and the closing adjective fixed in the frame, a relative clause, and a singular-verb distractor against a plural subject. It is also the early-ramp worked example in .claude/skills/toefl-writing/references/generation-guide.md."
+}

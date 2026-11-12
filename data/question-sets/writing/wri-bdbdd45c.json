@@ -1,0 +1,525 @@
+{
+  "id": "wri-bdbdd45c",
+  "source": "generated",
+  "createdAt": "2026-08-17T15:38:41.511Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Manager: Why does the loading dock close early every Friday?",
+        "frame": "The ___ ___ ___ ___ then.",
+        "tiles": [
+          "equipment",
+          "inspection",
+          "takes",
+          "place",
+          "take"
+        ],
+        "answers": [
+          [
+            "equipment",
+            "inspection",
+            "takes",
+            "place"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Customer: My loyalty discount didn't work at checkout. Why not?",
+        "frame": "The discount ___ ___ ___ ___ on weekends.",
+        "tiles": [
+          "only applies",
+          "only apply",
+          "on",
+          "weekdays,",
+          "not"
+        ],
+        "answers": [
+          [
+            "only applies",
+            "on",
+            "weekdays,",
+            "not"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Traveler: Can I use this ticket on the local train too?",
+        "frame": "This ticket ___ ___ ___ ___ ___ fare.",
+        "tiles": [
+          "is",
+          "are",
+          "only valid",
+          "on the express route,",
+          "so you will need",
+          "a separate local"
+        ],
+        "answers": [
+          [
+            "is",
+            "only valid",
+            "on the express route,",
+            "so you will need",
+            "a separate local"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Guest: Can I still do the express checkout?",
+        "frame": "The express checkout option ___ ___ ___ ___ ___ past that time.",
+        "tiles": [
+          "is",
+          "are",
+          "only offered",
+          "before six a.m.,",
+          "and",
+          "it's already"
+        ],
+        "answers": [
+          [
+            "is",
+            "only offered",
+            "before six a.m.,",
+            "and",
+            "it's already"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Resident: When do I need to renew my parking permit by?",
+        "frame": "The renewal deadline ___ ___ ___ ___ ___ the new date.",
+        "tiles": [
+          "was",
+          "were",
+          "moved up",
+          "two weeks,",
+          "so you must renew",
+          "before"
+        ],
+        "answers": [
+          [
+            "was",
+            "moved up",
+            "two weeks,",
+            "so you must renew",
+            "before"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-6",
+        "prompt": "New volunteer: How do I get a garden plot this year?",
+        "frame": "This year ___ ___ ___ ___ ___ ___ the deadline.",
+        "tiles": [
+          "the plots",
+          "are",
+          "is",
+          "assigned by lottery,",
+          "and you must",
+          "sign up",
+          "before"
+        ],
+        "answers": [
+          [
+            "the plots",
+            "are",
+            "assigned by lottery,",
+            "and you must",
+            "sign up",
+            "before"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-7",
+        "prompt": "User: Why did my older downloads disappear?",
+        "frame": "Offline mode ___ ___ ___ ___ ___ ___ automatically.",
+        "tiles": [
+          "only keeps",
+          "your three",
+          "most recent downloads,",
+          "so older ones",
+          "are",
+          "is",
+          "removed"
+        ],
+        "answers": [
+          [
+            "only keeps",
+            "your three",
+            "most recent downloads,",
+            "so older ones",
+            "are",
+            "removed"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Visitor: What time does the sculpture garden close today?",
+        "frame": "The sculpture garden ___ ___ ___ ___ ___ ___ the winter festival.",
+        "tiles": [
+          "closes",
+          "close",
+          "an hour earlier",
+          "than usual",
+          "because the staff",
+          "are setting up",
+          "for"
+        ],
+        "answers": [
+          [
+            "closes",
+            "an hour earlier",
+            "than usual",
+            "because the staff",
+            "are setting up",
+            "for"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-9",
+        "prompt": "New trainee: Can I just place the ledger pages back on the shelf?",
+        "frame": "The restored ledger pages ___ ___ ___ ___ ___ ___ the paper.",
+        "tiles": [
+          "must stay",
+          "inside",
+          "acid-free folders,",
+          "which",
+          "prevent further damage",
+          "prevents further damage",
+          "to"
+        ],
+        "answers": [
+          [
+            "must stay",
+            "inside",
+            "acid-free folders,",
+            "which",
+            "prevent further damage",
+            "to"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Listener: If I pause my subscription, does it stop counting toward my device limit?",
+        "frame": "Paused subscriptions ___ ___ ___ ___ ___ ___ another one.",
+        "tiles": [
+          "still count",
+          "still counts",
+          "toward the monthly device limit,",
+          "so you'll need",
+          "to remove one device",
+          "before you can",
+          "add"
+        ],
+        "answers": [
+          [
+            "still count",
+            "toward the monthly device limit,",
+            "so you'll need",
+            "to remove one device",
+            "before you can",
+            "add"
+          ]
+        ],
+        "timeLimitSec": 40
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You live in a large apartment building where mailboxes are grouped along one wall of numbered slots. Over the past two weeks, packages addressed to another resident have repeatedly ended up in your mailbox instead of theirs, most likely because the slot numbers are hard to read. Write an email to the building superintendent about this situation.",
+    "to": "superintendent@brookfieldapartments.com",
+    "subject": "Recurring Package Misdelivery in the Mailbox Area",
+    "bullets": [
+      "Explain that another resident's packages keep arriving in your mailbox slot instead of theirs.",
+      "Suggest a specific way to make the mailbox number labels clearer.",
+      "Ask the superintendent to confirm once the labeling issue has been fixed."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Laboratory Science and Sustainability",
+    "professorName": "Professor Hendricks",
+    "professorPost": "Many research labs rely on disposable plastic pipette tips, tubes, and petri dishes because they are convenient and lower the risk of cross-contamination between samples. That convenience, though, produces a significant volume of plastic waste every year. Some argue that labs should switch entirely to reusable glass labware to shrink their environmental footprint, while others worry that giving up disposables would slow research down and introduce new safety risks. Should research laboratories switch entirely from disposable plastic labware to reusable glass labware to cut environmental waste? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Priya",
+        "post": "I understand the environmental appeal, but switching entirely to glass labware would slow research down. Reused glassware needs extra sterilizing time between experiments, and if cleaning isn't perfect, there's a real risk of cross-contamination between samples. In fields where results depend on precise, uncontaminated measurements, that risk seems too costly to accept just to cut down on waste."
+      },
+      {
+        "name": "Marcus",
+        "post": "While I get Priya's concern about contamination, most labs already have strict cleaning protocols that could easily extend to glassware. The amount of plastic these labs throw away every year is enormous, and reusable glass would cut that waste dramatically. A short-term investment in better sterilizing equipment seems worth it if it prevents years of unnecessary plastic waste."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "workplace-business",
+          "situation": "A company manager reminds a new employee that the loading dock closes early every Friday for equipment inspection.",
+          "participantRoles": [
+            "company manager",
+            "new employee"
+          ],
+          "noveltyKey": "loading-dock-friday-closure",
+          "requiredConcepts": [
+            "loading dock closes early on Fridays",
+            "equipment inspection schedule"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2936d16f",
+              "reason": "covers a recurring Friday equipment-inspection closure rather than a one-time temporary badge access limit"
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A retail store manager tells a longtime customer that the loyalty discount only applies during weekday hours.",
+          "participantRoles": [
+            "retail store manager",
+            "longtime customer"
+          ],
+          "noveltyKey": "loyalty-discount-weekday-only",
+          "requiredConcepts": [
+            "loyalty discount only applies on weekdays",
+            "current time falls outside eligible hours"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2936d16f",
+              "reason": "addresses a customer-facing discount policy rather than employee badge access"
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A train station attendant tells a traveler that the express route ticket is not valid on the local train.",
+          "participantRoles": [
+            "train station attendant",
+            "traveler"
+          ],
+          "noveltyKey": "express-ticket-local-train-invalid",
+          "requiredConcepts": [
+            "express route ticket not valid on local train",
+            "traveler must buy separate local fare"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2936d16f",
+              "reason": "differs from the bus transfer-window and train carriage-reassignment scenarios by covering ticket-class validity between express and local trains"
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A hotel front desk clerk tells a guest that the express checkout option is only offered before six a.m.",
+          "participantRoles": [
+            "hotel front desk clerk",
+            "guest"
+          ],
+          "noveltyKey": "hotel-express-checkout-time-limit",
+          "requiredConcepts": [
+            "express checkout offered only before six a.m.",
+            "guest missed the early checkout window"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2936d16f",
+              "reason": "introduces a hotel checkout deadline, distinct from the bus transfer window and train seat reassignment scenarios"
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A city clerk tells a resident that the public parking permit renewal deadline moved up two weeks.",
+          "participantRoles": [
+            "city clerk",
+            "resident"
+          ],
+          "noveltyKey": "parking-permit-renewal-deadline-moved",
+          "requiredConcepts": [
+            "parking permit renewal deadline moved earlier",
+            "resident must renew before new date"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2936d16f",
+              "reason": "differs from the sidewalk sale sign display-hours rule by covering a parking permit renewal deadline"
+            },
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "differs from the fountain repair and bulky-item pickup scenarios by covering a shifted renewal deadline, not a facility closure or collection schedule"
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A neighborhood volunteer coordinator tells a new volunteer that the community garden plots are assigned by lottery this year.",
+          "participantRoles": [
+            "volunteer coordinator",
+            "new volunteer"
+          ],
+          "noveltyKey": "garden-plot-lottery-assignment",
+          "requiredConcepts": [
+            "community garden plots assigned by lottery",
+            "signup deadline for lottery entry"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2936d16f",
+              "reason": "differs from the sidewalk sign display-hours rule by covering volunteer garden plot lottery assignment"
+            },
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "differs from the fountain repair and bulky-item pickup scenarios by covering a lottery-based plot assignment process"
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A software support agent tells a user that the app's offline mode only saves the last three downloads.",
+          "participantRoles": [
+            "software support agent",
+            "app user"
+          ],
+          "noveltyKey": "offline-mode-download-limit",
+          "requiredConcepts": [
+            "offline mode keeps only three downloads",
+            "older downloads removed automatically"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "differs from the digital volume export and online password rejection scenarios by covering an offline download cap, not audio export levels or login credentials"
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A museum docent tells a visitor that the sculpture garden closes an hour earlier during the winter festival setup.",
+          "participantRoles": [
+            "museum docent",
+            "visitor"
+          ],
+          "noveltyKey": "sculpture-garden-winter-festival-hours",
+          "requiredConcepts": [
+            "sculpture garden closes an hour earlier",
+            "closure due to winter festival setup"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2936d16f",
+              "reason": "differs from the theater balcony reseating and museum label date scenarios by covering a seasonal festival closure hour change"
+            },
+            {
+              "setId": "wri-bbbfc85e",
+              "reason": "differs from the museum train-stop scenario by covering festival-driven hour changes rather than transit access"
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A heritage center guide tells a new trainee that the restored ledger pages must stay inside acid-free folders.",
+          "participantRoles": [
+            "heritage center guide",
+            "new trainee"
+          ],
+          "noveltyKey": "heritage-ledger-acid-free-folders",
+          "requiredConcepts": [
+            "restored ledger pages need acid-free folders",
+            "folders prevent further paper damage"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2936d16f",
+              "reason": "differs from the heritage doorway restoration scenario by covering document preservation materials, not architectural discovery"
+            },
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "differs from the migration name record and reform diary date scenarios by covering physical preservation of ledger pages, not name discrepancies or diary dating"
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A podcast platform's digital support team tells a listener that paused subscriptions still count toward the monthly device limit.",
+          "participantRoles": [
+            "podcast platform support agent",
+            "listener"
+          ],
+          "noveltyKey": "podcast-subscription-device-limit",
+          "requiredConcepts": [
+            "paused subscriptions still count toward device limit",
+            "listener must remove a device to add another"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "differs from the digital volume export scenario by covering a paused-subscription device-count limit rather than audio export levels"
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "everyday-life",
+      "noveltyKey": "apartment-mailbox-misdelivery",
+      "requiredConcepts": [
+        "repeated misdelivery of another resident's packages",
+        "clearer mailbox number labels requested"
+      ],
+      "distinguishesFrom": [],
+      "situation": "A tenant has noticed another resident's packages keep turning up in the wrong mailbox slot for the past two weeks and wants the building to fix the labeling.",
+      "recipientRole": "apartment building superintendent",
+      "communicativeActs": [
+        "report the recurring misdelivery problem",
+        "propose a labeling fix",
+        "request confirmation once resolved"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "science-environment",
+      "noveltyKey": "lab-glassware-vs-plastic-waste",
+      "requiredConcepts": [
+        "extra sterilizing time for reused glass labware",
+        "plastic waste generated by disposable labware",
+        "cross-contamination risk in reused glass containers"
+      ],
+      "distinguishesFrom": [],
+      "proposition": "Should research laboratories switch entirely from disposable plastic labware to reusable glass labware to cut environmental waste?",
+      "competingValues": [
+        "cleaning time and contamination risk versus less plastic waste",
+        "consistent safety protocols versus long-term sustainability goals"
+      ]
+    }
+  }
+}

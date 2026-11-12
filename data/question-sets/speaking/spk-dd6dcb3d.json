@@ -1,0 +1,238 @@
+{
+  "id": "spk-dd6dcb3d",
+  "source": "generated",
+  "createdAt": "2026-08-23T14:05:39.414Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Fabrication Lab Morning Orientation",
+    "scenarioDescription": "Listen to the fabrication lab's lead technician walk you through the Saturday-morning opening routine, station by station, and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-dd6dcb3d/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-dd6dcb3d.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Fabrication Lab Morning Orientation. Listen to the fabrication lab's lead technician walk you through the Saturday-morning opening routine, station by station, and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Check the print queue before you open the lab.\n- Each printer needs its bed leveled and its queue cleared.\n- Confirm the laser cutter's safety lockout with every new user.\n- Restock the filament shelf by size, and wipe down the workbench.\n- Before the first walk-in arrives, calibrate the scan station carefully.\n- Every visitor picking up a tool must sign the checkout log.\n- The monitor who finishes this walkthrough can supervise the lab without help.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Check the print queue before you open the lab.",
+        "audio": "stimuli/spk-dd6dcb3d/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.06,
+          "y": 0.19,
+          "w": 0.11,
+          "h": 0.09
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Each printer needs its bed leveled and its queue cleared.",
+        "audio": "stimuli/spk-dd6dcb3d/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.25,
+          "y": 0.13,
+          "w": 0.23,
+          "h": 0.16
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Confirm the laser cutter's safety lockout with every new user.",
+        "audio": "stimuli/spk-dd6dcb3d/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.08,
+          "y": 0.37,
+          "w": 0.17,
+          "h": 0.16
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Restock the filament shelf by size, and wipe down the workbench.",
+        "audio": "stimuli/spk-dd6dcb3d/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.46,
+          "y": 0.31,
+          "w": 0.27,
+          "h": 0.2
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Before the first walk-in arrives, calibrate the scan station carefully.",
+        "audio": "stimuli/spk-dd6dcb3d/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.83,
+          "y": 0.38,
+          "w": 0.14,
+          "h": 0.14
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Every visitor picking up a tool must sign the checkout log.",
+        "audio": "stimuli/spk-dd6dcb3d/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.69,
+          "y": 0.7,
+          "w": 0.11,
+          "h": 0.09
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The monitor who finishes this walkthrough can supervise the lab without help.",
+        "audio": "stimuli/spk-dd6dcb3d/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "A Call About Backyard Wildlife Watching",
+    "intro": "Thank you for speaking with me today. I'm calling on behalf of a local environmental education group, and I'd like to ask you a few questions about how you watch birds and other wildlife near your home.",
+    "introAudio": "stimuli/spk-dd6dcb3d/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, which spot near your home do you watch wildlife most often, and roughly what time of day do you usually go there?",
+        "audio": "stimuli/spk-dd6dcb3d/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Can you tell me about a recent time when a particular bird or animal sighting really stood out to you, and explain why it was memorable?",
+        "audio": "stimuli/spk-dd6dcb3d/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Some people think homeowners should plant more native species to support local wildlife, while others prefer keeping a traditional, tidy lawn. Which view do you agree with, and why?",
+        "audio": "stimuli/spk-dd6dcb3d/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Looking more generally, what is one thing people living near green spaces could do to better support wildlife habitat in their neighborhood?",
+        "audio": "stimuli/spk-dd6dcb3d/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-briefing",
+      "take": "first",
+      "measuredWpm": 129.5,
+      "targetWpm": 165,
+      "minWpm": 145,
+      "maxWpm": 195
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "first",
+      "measuredWpm": 149.1,
+      "targetWpm": 184,
+      "minWpm": 156,
+      "maxWpm": 209
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "technology-media",
+      "noveltyKey": "makerspace-equipment-monitor-orientation",
+      "requiredConcepts": [
+        "3D printer print queue checked before each open",
+        "laser cutter safety lockout confirmed with each user",
+        "filament inventory shelf restocked by size",
+        "scan station calibrated for the first walk-in",
+        "tool checkout log signed at pickup"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-e0f4f676",
+          "reason": "That scenario is a radio broadcast booth with microphone checks and a mix board; this is a fabrication lab with 3D printers, a laser cutter, and a scan station."
+        },
+        {
+          "setId": "spk-1ba26e29",
+          "reason": "That scenario is a writing center tutor room orientation with sign-in sheets; this is equipment-focused fabrication lab safety and print-queue training."
+        }
+      ],
+      "setting": "A college's digital fabrication lab, tucked behind the engineering building, quiet on a Saturday morning before open build hours begin.",
+      "speakerRole": "The lab's lead technician",
+      "communicativePurpose": "Train a newly hired weekend equipment monitor by orienting them through each digital fabrication station in order, so the monitor can supervise the lab without live supervision."
+    },
+    "interview": {
+      "domain": "science-environment",
+      "noveltyKey": "backyard-wildlife-watching-habit",
+      "requiredConcepts": [
+        "backyard feeder spot checked most days",
+        "memorable wildlife sighting recalled in detail",
+        "native plants versus a tidy lawn for biodiversity",
+        "ways nearby residents could support wildlife habitat"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-fd38f94c",
+          "reason": "That topic is an indoor houseplant watering routine; this is outdoor bird/wildlife observation plus a native-planting versus tidy-lawn biodiversity opinion arc."
+        },
+        {
+          "setId": "spk-bbb69428",
+          "reason": "That topic is personal creative art/music hobby practice; this is environmental wildlife observation and a community land-use opinion, an unrelated concept and arc."
+        }
+      ],
+      "topic": "casual wildlife watching habit near home",
+      "premise": "A local environmental education group makes a brief unannounced phone call about how the test taker watches birds and other wildlife near a backyard habitat feeder.",
+      "questionArc": [
+        "Asks which specific spot near home the test taker watches wildlife most often and roughly what time of day, with no preparation time.",
+        "Asks the test taker to recall a recent occasion when a particular animal or bird sighting stood out, and why it was memorable.",
+        "Presents contrasting views on planting more native species to support backyard biodiversity versus keeping a traditional tidy lawn, then asks the test taker to take a side and justify it.",
+        "Broadens to a general recommendation for how people living nearby could better support wildlife habitat, inviting evaluation or prediction."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "british",
+      "voice": "Orus",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "australian",
+      "voice": "Umbriel",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

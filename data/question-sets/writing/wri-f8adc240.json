@@ -1,0 +1,465 @@
+{
+  "id": "wri-f8adc240",
+  "source": "generated",
+  "createdAt": "2026-08-24T17:12:52.877Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Could I check this archival book out, or would I need to photocopy pages instead?",
+        "frame": "The book ___ ___ ___ the reading room, but you may copy pages.",
+        "tiles": [
+          "must",
+          "stay",
+          "in",
+          "stays"
+        ],
+        "answers": [
+          [
+            "must",
+            "stay",
+            "in"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "I heard this model was discontinued—could I still special-order it?",
+        "frame": "You ___ ___ ___, but the wait will be longer.",
+        "tiles": [
+          "can",
+          "special-order",
+          "it",
+          "could"
+        ],
+        "answers": [
+          [
+            "can",
+            "special-order",
+            "it"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Should we build the safer route past the school, or the cheaper option along the old rail line?",
+        "frame": "The route past the school ___ ___, but the rail-line option ___ ___.",
+        "tiles": [
+          "is",
+          "safer",
+          "costs",
+          "less",
+          "safest"
+        ],
+        "answers": [
+          [
+            "is",
+            "safer",
+            "costs",
+            "less"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Did you include the marsh section in this week's habitat count?",
+        "frame": "We ___ ___ ___ ___ because it had flooded this week.",
+        "tiles": [
+          "left",
+          "the",
+          "marsh section",
+          "out",
+          "leave"
+        ],
+        "answers": [
+          [
+            "left",
+            "the",
+            "marsh section",
+            "out"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Do you think the sculpture needs anything extra before we open the exhibit?",
+        "frame": "It needs extra floor supports ___ ___ ___ ___ ___ the engineers measured.",
+        "tiles": [
+          "because",
+          "it",
+          "exceeds",
+          "the",
+          "limit",
+          "exceed"
+        ],
+        "answers": [
+          [
+            "because",
+            "it",
+            "exceeds",
+            "the",
+            "limit"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "I shouldn't drink anything at all before my fasting blood test, right?",
+        "frame": "Water is fine, ___ ___ ___ ___ ___ off-limits.",
+        "tiles": [
+          "but",
+          "certain",
+          "solid foods",
+          "are",
+          "still",
+          "is"
+        ],
+        "answers": [
+          [
+            "but",
+            "certain",
+            "solid foods",
+            "are",
+            "still"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Should I book the short connection with only a fifteen-minute transfer, or take the longer layover instead?",
+        "frame": "I would recommend the longer layover ___ ___ ___ ___ ___ safer connection.",
+        "tiles": [
+          "because",
+          "it",
+          "gives",
+          "a",
+          "much",
+          "give"
+        ],
+        "answers": [
+          [
+            "because",
+            "it",
+            "gives",
+            "a",
+            "much"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Could I photocopy this pamphlet for my research?",
+        "frame": "The pamphlet ___ ___ ___ ___ ___ ___ its fragile binding.",
+        "tiles": [
+          "may",
+          "only",
+          "be",
+          "photographed",
+          "because",
+          "of",
+          "photograph"
+        ],
+        "answers": [
+          [
+            "may",
+            "only",
+            "be",
+            "photographed",
+            "because",
+            "of"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Why does peer evaluation count for so much more this semester?",
+        "frame": "Last semester's uneven effort ___ ___ ___ ___ ___ ___ evaluation this term.",
+        "tiles": [
+          "prompted",
+          "us",
+          "to",
+          "increase",
+          "the",
+          "peer",
+          "prompt"
+        ],
+        "answers": [
+          [
+            "prompted",
+            "us",
+            "to",
+            "increase",
+            "the",
+            "peer"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Should I check out early for the refund, or stay through the storm delay?",
+        "frame": "Guests who take the early checkout ___ ___ ___ ___ ___ ___ the storm delay.",
+        "tiles": [
+          "receive",
+          "a",
+          "refund",
+          "instead",
+          "of",
+          "waiting",
+          "receives"
+        ],
+        "answers": [
+          [
+            "receive",
+            "a",
+            "refund",
+            "instead",
+            "of",
+            "waiting"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You recently attended a workshop on drought-tolerant plants at your local environmental center. Afterward, you emailed the workshop coordinator to request the session's sensor data handout, but the file you received will not open.",
+    "to": "Workshop Coordinator, Riverside Environmental Center",
+    "subject": "Corrupted Sensor Data Attachment",
+    "bullets": [
+      "Thank the coordinator for the workshop on drought-tolerant plants.",
+      "Explain that the sensor data attachment will not open.",
+      "Ask the coordinator to resend the handout as a PDF or spreadsheet."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Organizational Psychology",
+    "professorName": "Professor Whitfield",
+    "professorPost": "Some companies have begun setting aside a quiet room where employees can take a short rest during the workday as part of a broader wellbeing initiative. Supporters say brief rest breaks improve focus and reduce fatigue, while critics worry about fairness when some employees end up covering for those who are away. Do you think workplaces should offer a dedicated nap room? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Marcus",
+        "post": "I think a nap room is a smart investment. A short rest in the afternoon can restore attention and lower stress, especially in jobs that demand long stretches of concentration. Employees who return refreshed usually work more accurately and make fewer costly mistakes, so the time away more than pays for itself."
+      },
+      {
+        "name": "Elena",
+        "post": "I'm not convinced. When one person naps, someone else often has to cover phones or handle walk-ins, and that resentment builds quickly on a small team. A workplace should protect everyone's working time equally rather than offer a break that some employees can use and others can't because their role doesn't allow it."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "campus-academics",
+          "situation": "A campus librarian explains to a student why a requested archival book cannot leave the library's reading room.",
+          "participantRoles": [
+            "a campus librarian explaining a rule",
+            "a student requesting the archival book"
+          ],
+          "noveltyKey": "archival-book-reading-room-only-rule",
+          "requiredConcepts": [
+            "the archival book staying inside the reading room",
+            "photocopies allowed instead of borrowing"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A customer asks a store manager whether a discontinued product can still be special-ordered.",
+          "participantRoles": [
+            "a customer asking about a discontinued product",
+            "a store manager explaining the options"
+          ],
+          "noveltyKey": "discontinued-product-special-order-inquiry",
+          "requiredConcepts": [
+            "special-ordering the discontinued product",
+            "the longer wait for a special order"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A city planner compares two proposed bike-lane options with a neighborhood association president, weighing safety against cost.",
+          "participantRoles": [
+            "a city planner comparing two options",
+            "a neighborhood association president weighing in"
+          ],
+          "noveltyKey": "bike-lane-option-safety-cost-comparison",
+          "requiredConcepts": [
+            "the safer bike-lane option past the school",
+            "the cheaper option along the old rail line"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A field biologist explains to a field assistant why the habitat count excluded a marsh section this week.",
+          "participantRoles": [
+            "a field biologist explaining a decision",
+            "a field assistant confirming the record"
+          ],
+          "noveltyKey": "marsh-section-excluded-habitat-count",
+          "requiredConcepts": [
+            "the marsh section left out of this week's habitat count",
+            "flooding as the reason for skipping it"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-550947bf",
+              "reason": "That Set's habitat item is a recurring sampling-rotation rule; this one is a one-time explanation of why a flooded marsh section was skipped this week, not a rotation schedule."
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A gallery curator and a visiting sculptor debate whether a large piece needs extra floor supports before the exhibit opens.",
+          "participantRoles": [
+            "a gallery curator raising a structural concern",
+            "a visiting sculptor defending the installation plan"
+          ],
+          "noveltyKey": "sculpture-floor-support-before-exhibit",
+          "requiredConcepts": [
+            "extra floor supports for the large sculpture",
+            "the load limit engineers measured"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A clinic dietitian corrects a patient's misunderstanding about how much water to drink before a fasting blood test.",
+          "participantRoles": [
+            "a clinic dietitian correcting a misunderstanding",
+            "a patient preparing for the blood test"
+          ],
+          "noveltyKey": "fasting-blood-test-water-misconception",
+          "requiredConcepts": [
+            "water allowed before the fasting blood test",
+            "the foods that are not allowed"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A travel agent recommends a longer layover route over a shorter one because of a strict connection window.",
+          "participantRoles": [
+            "a travel agent making a recommendation",
+            "a traveler deciding between two routes"
+          ],
+          "noveltyKey": "longer-layover-vs-tight-connection-route",
+          "requiredConcepts": [
+            "the longer layover's safer connection window",
+            "the shorter route's tight fifteen-minute transfer"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-550947bf",
+              "reason": "That Set's travel item is a clerk stating a ticket's fixed seating policy; this one is an agent's comparative recommendation between two route options based on connection risk."
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A historical society archivist explains to a visiting historian why a reform-era pamphlet cannot be photocopied, only photographed.",
+          "participantRoles": [
+            "a historical society archivist explaining a rule",
+            "a visiting historian requesting a copy"
+          ],
+          "noveltyKey": "reform-era-pamphlet-photograph-only-rule",
+          "requiredConcepts": [
+            "photographing instead of photocopying the pamphlet",
+            "the fragile binding as the reason"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "That Set's history item requires UV photography as a conservation step before display; this one is an access restriction barring photocopying entirely, with photography as the only substitute, not a display-prep step."
+            },
+            {
+              "setId": "wri-1696d60a",
+              "reason": "That Set's item concerns ink stabilization treatment timing; this one concerns a copying-method rule, a different kind of archival constraint."
+            }
+          ]
+        },
+        {
+          "domain": "campus-academics",
+          "situation": "A professor tells a student why a group project's grading rubric now weighs peer evaluation more heavily.",
+          "participantRoles": [
+            "a professor explaining a rubric change",
+            "a student asking about the new weighting"
+          ],
+          "noveltyKey": "peer-evaluation-weight-increase-rubric",
+          "requiredConcepts": [
+            "the increased weight on peer evaluation",
+            "the reason tied to last semester's project"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A hotel concierge helps a guest decide between an early checkout with a refund or staying through a storm delay.",
+          "participantRoles": [
+            "a hotel concierge presenting the options",
+            "a guest deciding how to proceed"
+          ],
+          "noveltyKey": "early-checkout-refund-vs-storm-delay-stay",
+          "requiredConcepts": [
+            "the refund for checking out early",
+            "staying through the storm delay instead"
+          ],
+          "distinguishesFrom": []
+        }
+      ]
+    },
+    "email": {
+      "domain": "science-environment",
+      "noveltyKey": "greenhouse-sensor-data-export-error",
+      "requiredConcepts": [
+        "corrupted sensor data attachment",
+        "a plain PDF or spreadsheet resend"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-2936d16f",
+          "reason": "That Set's science email reports a shortage of safety gloves at a workshop; this one reports a corrupted data attachment after a workshop, a technology/data problem rather than an equipment-supply one."
+        }
+      ],
+      "situation": "After attending a local environmental center's workshop on drought-tolerant plants, the writer requested the session's sensor data handout by email but received a corrupted attachment that will not open.",
+      "recipientRole": "the environmental center's workshop coordinator",
+      "communicativeActs": [
+        "express appreciation for the workshop",
+        "report the corrupted attachment problem",
+        "request the handout be resent in a different format"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "workplace-nap-room-policy-debate",
+      "requiredConcepts": [
+        "a quiet room set aside for short rest breaks",
+        "coworkers who feel resentful covering the absence"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-736f2103",
+          "reason": "That Set's health item debates reserving gym equipment time slots; this one debates a rest-break policy and its effect on coverage, a different trade-off entirely."
+        }
+      ],
+      "proposition": "Some organizations now set up a quiet nap room as part of a wellbeing initiative, letting workers rest briefly during the day.",
+      "competingValues": [
+        "protecting workers' rest and alertness",
+        "preserving equal, focused work time for everyone on the clock"
+      ]
+    }
+  }
+}

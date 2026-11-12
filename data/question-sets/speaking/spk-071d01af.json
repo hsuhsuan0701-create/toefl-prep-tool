@@ -1,0 +1,230 @@
+{
+  "id": "spk-071d01af",
+  "source": "generated",
+  "createdAt": "2026-08-23T13:32:11.716Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Roommate Move-In Walkthrough",
+    "scenarioDescription": "You're giving your new roommate a quick tour of the apartment before move-in day. Listen to each sentence and repeat what you hear. Repeat only once.",
+    "introAudio": "stimuli/spk-071d01af/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-071d01af.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Roommate Move-In Walkthrough. You're giving your new roommate a quick tour of the apartment before move-in day. Listen to each sentence and repeat what you hear. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- This kitchen shelf is reserved for you.\n- Your bowls, plates, and mugs all go right there.\n- You'll find the coin slot just behind the little side panel.\n- Glass goes in the blue bin, and plastic goes in the green one.\n- If you ever get locked out, the spare key hangs by the door.\n- The little hook inside the hallway closet is where the spare key stays.\n- The bins by the door, sorted by material, get emptied every Friday.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "This kitchen shelf is reserved for you.",
+        "audio": "stimuli/spk-071d01af/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.158,
+          "y": 0.084,
+          "w": 0.252,
+          "h": 0.093
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Your bowls, plates, and mugs all go right there.",
+        "audio": "stimuli/spk-071d01af/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.158,
+          "y": 0.084,
+          "w": 0.252,
+          "h": 0.093
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "You'll find the coin slot just behind the little side panel.",
+        "audio": "stimuli/spk-071d01af/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.509,
+          "y": 0.207,
+          "w": 0.046,
+          "h": 0.083
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Glass goes in the blue bin, and plastic goes in the green one.",
+        "audio": "stimuli/spk-071d01af/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.584,
+          "y": 0.161,
+          "w": 0.123,
+          "h": 0.133
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "If you ever get locked out, the spare key hangs by the door.",
+        "audio": "stimuli/spk-071d01af/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.898,
+          "y": 0.444,
+          "w": 0.031,
+          "h": 0.048
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The little hook inside the hallway closet is where the spare key stays.",
+        "audio": "stimuli/spk-071d01af/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.579,
+          "y": 0.432,
+          "w": 0.035,
+          "h": 0.063
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The bins by the door, sorted by material, get emptied every Friday.",
+        "audio": "stimuli/spk-071d01af/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.686,
+          "y": 0.722,
+          "w": 0.183,
+          "h": 0.119
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Campus Club Participation Survey",
+    "intro": "Hi, thank you for taking a moment to speak with me. I'm calling from the Student Engagement Office, and I have a few quick questions about how students take part in campus clubs. Let's get started.",
+    "introAudio": "stimuli/spk-071d01af/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, which student club or campus organization are you currently a member of, and about how often does it meet?",
+        "audio": "stimuli/spk-071d01af/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of one specific meeting or event you attended with that club. What happened there, and why did you decide to go?",
+        "audio": "stimuli/spk-071d01af/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK, I'd like to ask your opinion. Some people believe members should be required to attend meetings regularly to keep their membership, while others think clubs should let people drop in whenever they're free. Which view do you agree with, and why?",
+        "audio": "stimuli/spk-071d01af/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Do you think every student should be required to join at least one campus club or organization before they graduate? Why or why not?",
+        "audio": "stimuli/spk-071d01af/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 232.7,
+      "targetWpm": 184,
+      "minWpm": 156,
+      "maxWpm": 209
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "everyday-life",
+      "noveltyKey": "shared-apartment-roommate-orientation",
+      "requiredConcepts": [
+        "kitchen shelf assigned to each roommate",
+        "laundry machine coin slot location",
+        "recycling bins sorted by material",
+        "spare key location for the locked front door"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-108394d6",
+          "reason": "that Set is a paid front-desk employee trained by an office manager at a moving company; this is one roommate showing another around a private home with no employer or customer involved"
+        },
+        {
+          "setId": "spk-fd38f94c",
+          "reason": "that Set is a volunteer oriented through intake stations at a public center; this is an informal walkthrough of shared household spaces before a private move-in"
+        }
+      ],
+      "setting": "a shared apartment's common areas -- the kitchen, the laundry nook, and the hallway closet -- shortly before a new roommate's move-in day",
+      "speakerRole": "the current tenant who already lives there, showing the incoming roommate around before they move in",
+      "communicativePurpose": "orient the new roommate to shared spaces and everyday household routines before move-in day so nothing needs re-explaining later"
+    },
+    "interview": {
+      "domain": "campus-academics",
+      "noveltyKey": "campus-club-participation-habit",
+      "requiredConcepts": [
+        "current campus club or organization membership",
+        "specific past club meeting or event attended",
+        "mandatory attendance versus flexible drop-in participation",
+        "requiring every student to join a club before graduating"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-8c8caaa0",
+          "reason": "that Set covers where and how the test taker studies coursework; this covers club or organization participation, a separate campus activity"
+        }
+      ],
+      "topic": "campus student club participation habits",
+      "premise": "A campus student-engagement office is running a brief unannounced phone survey about how students take part in campus clubs and organizations.",
+      "questionArc": [
+        "factual: which student club or campus organization the test taker currently belongs to and roughly how often it meets",
+        "experience: a specific past club meeting or event they attended, what happened there, and why they went",
+        "opinion: taking a side between requiring regular meeting attendance to stay a club member versus allowing flexible drop-in participation",
+        "opinion: whether every student should be required to join at least one campus club or organization before graduating"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Sadaltager",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Sulafat",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

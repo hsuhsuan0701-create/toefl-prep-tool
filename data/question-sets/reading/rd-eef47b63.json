@@ -1,0 +1,1595 @@
+{
+  "id": "rd-eef47b63",
+  "source": "generated",
+  "createdAt": "2026-08-16T08:56:08.523Z",
+  "kind": "reading",
+  "router": {
+    "timeLimitSec": 1200,
+    "ctwPassages": [
+      {
+        "id": "ctw-r1",
+        "taskType": "complete_words",
+        "topic": "How a warehouse shift manager uses a handoff log to brief the next shift",
+        "segments": [
+          {
+            "type": "text",
+            "text": "A shift handoff log lets an outgoing warehouse manager brief the incoming crew without holding a meeting. Before "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g1"
+          },
+          {
+            "type": "text",
+            "text": ", they "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g2"
+          },
+          {
+            "type": "text",
+            "text": " which "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g3"
+          },
+          {
+            "type": "text",
+            "text": " tasks "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g4"
+          },
+          {
+            "type": "text",
+            "text": " unfinished "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g5"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g6"
+          },
+          {
+            "type": "text",
+            "text": " team "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g7"
+          },
+          {
+            "type": "text",
+            "text": " continue "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g8"
+          },
+          {
+            "type": "text",
+            "text": " away. "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g9"
+          },
+          {
+            "type": "text",
+            "text": " trouble "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g10"
+          },
+          {
+            "type": "text",
+            "text": " mentioned too, such as a forklift that stopped operating and now needs a technician before anyone can use it again. Customer requests appear in the same entry, like a pickup time confirmed for an early delivery set for the following morning. Anyone starting the new rotation can simply read these notes and start immediately instead of searching for someone with answers."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-r1-g1",
+            "prefix": "lea",
+            "completion": "ving",
+            "blankLength": 4,
+            "explanationZh": "此處應填 leaving，與句首的 Before 搭配構成「Before leaving」（離開之前），指外出的倉庫主管在下班離開前先做交接紀錄，符合上下文描述主管在離開崗位前列出待辦事項的情境。"
+          },
+          {
+            "id": "ctw-r1-g2",
+            "prefix": "li",
+            "completion": "st",
+            "blankLength": 2,
+            "explanationZh": "此處應填 list，主詞 they（外出主管）需要一個動詞來說明他們「列出」哪些裝卸任務尚未完成，list 作動詞使用，後接 which loading tasks remain unfinished 作受詞子句，語意通順。"
+          },
+          {
+            "id": "ctw-r1-g3",
+            "prefix": "loa",
+            "completion": "ding",
+            "blankLength": 4,
+            "explanationZh": "此處應填 loading，修飾 tasks，構成 loading tasks（裝卸貨任務），呼應段落主題為倉庫交接日誌，內容涉及尚未完成的裝卸作業，符合倉庫工作情境。"
+          },
+          {
+            "id": "ctw-r1-g4",
+            "prefix": "rem",
+            "completion": "ain",
+            "blankLength": 3,
+            "explanationZh": "此處應填 remain，與 unfinished 搭配構成「remain unfinished」（仍未完成），說明這些裝卸任務的狀態尚未結束，符合前後文列出待辦事項的邏輯。"
+          },
+          {
+            "id": "ctw-r1-g5",
+            "prefix": "s",
+            "completion": "o",
+            "blankLength": 1,
+            "explanationZh": "此處應填 so，作為連接詞表示「因此／以便」，連接前面「主管列出未完成任務」與後面「下一班可以立即接續」的因果關係，符合交接日誌的目的。"
+          },
+          {
+            "id": "ctw-r1-g6",
+            "prefix": "ne",
+            "completion": "xt",
+            "blankLength": 2,
+            "explanationZh": "此處應填 next，修飾 team 構成「the next team」（下一班團隊），對應句首提到的 incoming crew（接手的班次），語意前後一致。"
+          },
+          {
+            "id": "ctw-r1-g7",
+            "prefix": "c",
+            "completion": "an",
+            "blankLength": 2,
+            "explanationZh": "此處應填 can，作為情態助動詞，與後面的 continue 搭配構成「can continue」（能夠繼續），說明下一班團隊因看到交接紀錄而能夠立即接續工作。"
+          },
+          {
+            "id": "ctw-r1-g8",
+            "prefix": "ri",
+            "completion": "ght",
+            "blankLength": 3,
+            "explanationZh": "此處應填 right，與後面的 away 搭配構成慣用語「right away」（立刻、馬上），強調下一班團隊可以毫不延遲地接續未完成的任務。"
+          },
+          {
+            "id": "ctw-r1-g9",
+            "prefix": "Equi",
+            "completion": "pment",
+            "blankLength": 5,
+            "explanationZh": "此處應填 Equipment，作為句子主詞，構成「Equipment trouble」（設備故障），承接段落內容從裝卸任務轉到另一類交接資訊——設備問題，如後文提到的堆高機故障。"
+          },
+          {
+            "id": "ctw-r1-g10",
+            "prefix": "ge",
+            "completion": "ts",
+            "blankLength": 2,
+            "explanationZh": "此處應填 gets，與 mentioned 搭配構成被動語態「gets mentioned」（被提及），說明設備故障也是交接日誌中會記錄提及的內容之一，符合列舉交接事項的語境。"
+          }
+        ],
+        "sourceParagraph": "A shift handoff log lets an outgoing warehouse manager brief the incoming crew without holding a meeting. Before leaving, they list which loading tasks remain unfinished so the next team can continue right away. Equipment trouble gets mentioned too, such as a forklift that stopped operating and now needs a technician before anyone can use it again. Customer requests appear in the same entry, like a pickup time confirmed for an early delivery set for the following morning. Anyone starting the new rotation can simply read these notes and start immediately instead of searching for someone with answers."
+      },
+      {
+        "id": "ctw-r2",
+        "taskType": "complete_words",
+        "topic": "How a fisheries biologist estimates a lake's fish habitat capacity",
+        "segments": [
+          {
+            "type": "text",
+            "text": "A fisheries biologist visits a lake each autumn to estimate how many fish its habitat can support through winter. First, "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g1"
+          },
+          {
+            "type": "text",
+            "text": " record "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g2"
+          },
+          {
+            "type": "text",
+            "text": " much "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g3"
+          },
+          {
+            "type": "text",
+            "text": " grows "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g4"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g5"
+          },
+          {
+            "type": "text",
+            "text": ", since "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g6"
+          },
+          {
+            "type": "text",
+            "text": " greenery "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g7"
+          },
+          {
+            "type": "text",
+            "text": " young "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g8"
+          },
+          {
+            "type": "text",
+            "text": " places "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g9"
+          },
+          {
+            "type": "text",
+            "text": " hide "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g10"
+          },
+          {
+            "type": "text",
+            "text": " larger predators. Next, crew members lower a weighted line at several spots across the water to check depth and locate cooler zones reached during warm afternoons. Oxygen readings and algae growth near the bottom further limit the remaining usable space once ice begins forming. Combining these measurements lets the team project a realistic capacity before conditions turn severe."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-r2-g1",
+            "prefix": "th",
+            "completion": "ey",
+            "blankLength": 2,
+            "explanationZh": "此處指代前句主詞「A fisheries biologist」,由於主詞是單數但可能為任一性別,故用代名詞 they 來回指該生物學家,作為 record 的主詞,合乎上下文邏輯。"
+          },
+          {
+            "id": "ctw-r2-g2",
+            "prefix": "h",
+            "completion": "ow",
+            "blankLength": 2,
+            "explanationZh": "they record how much vegetation grows 為間接問句結構,how much 用來修飾 vegetation,表示「記錄植被生長的多寡」,是此子句必要的疑問詞。"
+          },
+          {
+            "id": "ctw-r2-g3",
+            "prefix": "veget",
+            "completion": "ation",
+            "blankLength": 5,
+            "explanationZh": "vegetation 是 how much 所修飾的名詞,指「植被」,呼應後文 dense greenery(茂密的綠色植物),語意上與生物學家觀察湖岸植物生長情形一致。"
+          },
+          {
+            "id": "ctw-r2-g4",
+            "prefix": "al",
+            "completion": "ong",
+            "blankLength": 3,
+            "explanationZh": "along the shoreline 表示「沿著湖岸」,along 為介系詞,說明植被生長的位置分布在湖岸線上,符合描述生物學家觀察範圍的語境。"
+          },
+          {
+            "id": "ctw-r2-g5",
+            "prefix": "shor",
+            "completion": "eline",
+            "blankLength": 5,
+            "explanationZh": "shoreline 指「湖岸線」,是 along 之後的受詞,說明植被生長的具體地點,並與後文 greenery(綠色植物)所在位置相呼應。"
+          },
+          {
+            "id": "ctw-r2-g6",
+            "prefix": "de",
+            "completion": "nse",
+            "blankLength": 3,
+            "explanationZh": "dense greenery 意指「茂密的綠色植物」,dense 形容植被的濃密程度,說明其足以提供幼魚躲藏空間,語意上與後文 offers...places to hide 相連貫。"
+          },
+          {
+            "id": "ctw-r2-g7",
+            "prefix": "off",
+            "completion": "ers",
+            "blankLength": 3,
+            "explanationZh": "dense greenery offers young trout places to hide 中,offers 為主詞 greenery 的動詞,表示「提供」躲藏之處,符合茂密植被具遮蔽功能的敘述邏輯。"
+          },
+          {
+            "id": "ctw-r2-g8",
+            "prefix": "tr",
+            "completion": "out",
+            "blankLength": 3,
+            "explanationZh": "trout(鱒魚)是此段主題「魚類棲地容量」中具體提及的魚種,young trout 指幼鱒魚,說明茂密植被為其提供躲避掠食者的場所。"
+          },
+          {
+            "id": "ctw-r2-g9",
+            "prefix": "t",
+            "completion": "o",
+            "blankLength": 1,
+            "explanationZh": "places to hide 為不定詞片語修飾 places,表示「可供躲藏的地方」,to hide 說明該場所的功能用途,是此處文法上必要的不定詞結構。"
+          },
+          {
+            "id": "ctw-r2-g10",
+            "prefix": "fr",
+            "completion": "om",
+            "blankLength": 2,
+            "explanationZh": "hide from larger predators 表示「躲避體型較大的掠食者」,from 為介系詞,標示躲藏行為所欲迴避的對象,符合幼鱒魚利用植被自我保護的語境。"
+          }
+        ],
+        "sourceParagraph": "A fisheries biologist visits a lake each autumn to estimate how many fish its habitat can support through winter. First, they record how much vegetation grows along the shoreline, since dense greenery offers young trout places to hide from larger predators. Next, crew members lower a weighted line at several spots across the water to check depth and locate cooler zones reached during warm afternoons. Oxygen readings and algae growth near the bottom further limit the remaining usable space once ice begins forming. Combining these measurements lets the team project a realistic capacity before conditions turn severe."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-r1",
+        "taskType": "daily_life",
+        "genre": "receipt",
+        "text": "RIVERBEND CERAMIC STUDIO\nOrder #4417\n1x Hand-built Bowl — Firing Fee: $12.00\nGlazing Fee (separate from firing): $8.00\nStudio Membership Discount: -$2.00\nTotal Due: $18.00\nPickup window: Tue–Fri, 10am–5pm, starting June 3\nPieces not collected within 30 days may be donated.",
+        "questions": [
+          {
+            "id": "dl-r1-q1",
+            "stem": "According to the receipt, how much is the glazing fee?",
+            "options": [
+              {
+                "id": "a",
+                "text": "$18.00"
+              },
+              {
+                "id": "b",
+                "text": "$12.00"
+              },
+              {
+                "id": "c",
+                "text": "$8.00"
+              },
+              {
+                "id": "d",
+                "text": "$2.00"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "收據上「Glazing Fee」欄位明確標示為 $8.00,與燒製費、折扣、總金額等其他數字不同,需依項目名稱對應金額作答。"
+          },
+          {
+            "id": "dl-r1-q2",
+            "stem": "What does the receipt say may happen to a piece not picked up within 30 days?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It will be reglazed and fired again at no cost."
+              },
+              {
+                "id": "b",
+                "text": "It will be charged an extra storage fee for every week."
+              },
+              {
+                "id": "c",
+                "text": "It may be donated."
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "收據底部註明超過30天未取件的作品「可能會被捐出」,額外倉儲費與免費重燒兩個選項皆未於收據中提及,屬合理但無根據的推測。"
+          },
+          {
+            "id": "dl-r1-q3",
+            "stem": "Why are the glazing fee and firing fee listed as separate charges?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To indicate that firing is optional for customers."
+              },
+              {
+                "id": "b",
+                "text": "To show that glazing costs more than firing."
+              },
+              {
+                "id": "c",
+                "text": "To show that they are billed for different steps of the process."
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "purpose",
+            "explanationZh": "燒製費與上釉費屬製作流程中不同階段的收費,分開列出是為呈現各步驟成本,而非暗示燒製非必要;且燒製費($12)實際高於上釉費($8),故該選項與事實不符。"
+          }
+        ]
+      },
+      {
+        "id": "dl-r2",
+        "taskType": "daily_life",
+        "genre": "form",
+        "text": "WALK-IN PHYSICAL THERAPY INTAKE\nName: _______________\nDate of Birth: _______________\nReason for visit: _______________\nArea of injury: _______________\nPain level (0–10): _______________\nDoctor referral on file? Yes / No\nIf No, referral must be provided before treatment begins.\nInsurance provider: _______________\nEmergency contact: _______________",
+        "questions": [
+          {
+            "id": "dl-r2-q1",
+            "stem": "What must a patient provide before treatment begins if they answer \"No\" to the referral question?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Proof of insurance"
+              },
+              {
+                "id": "b",
+                "text": "An emergency contact number"
+              },
+              {
+                "id": "c",
+                "text": "A doctor's referral"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "表格註明若轉診欄勾選「No」,必須在治療開始前提供醫師轉診證明,保險資訊與緊急聯絡人屬表格其他欄位,與此規定無關。"
+          },
+          {
+            "id": "dl-r2-q2",
+            "stem": "What is the purpose of the pain level scale on this form?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To determine which insurance plan applies"
+              },
+              {
+                "id": "b",
+                "text": "To decide the patient's emergency contact priority"
+              },
+              {
+                "id": "c",
+                "text": "To help staff quickly gauge how severe the patient's discomfort is"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "purpose",
+            "explanationZh": "疼痛量表(0–10)讓工作人員快速了解患者不適的嚴重程度,與保險方案或緊急聯絡人順序皆無關聯,表格中亦無相關規定。"
+          }
+        ]
+      },
+      {
+        "id": "dl-r3",
+        "taskType": "daily_life",
+        "genre": "schedule",
+        "text": "HARBOR ISLAND FERRY — WEEKEND SCHEDULE\nWeekday departures: every 30 minutes, 6:00am–9:00pm\nSaturday & Sunday departures: 7:00am, 9:00am, 11:00am, 1:00pm, 3:00pm, 5:00pm\nTicket counter hours (weekends): 6:30am–4:30pm\nTicket counter hours (weekdays): 5:30am–8:30pm\nTickets may also be purchased online at any time.",
+        "questions": [
+          {
+            "id": "dl-r3-q1",
+            "stem": "How many ferry departures are scheduled on a Saturday?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Twelve"
+              },
+              {
+                "id": "b",
+                "text": "Six"
+              },
+              {
+                "id": "c",
+                "text": "Every 30 minutes"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "時刻表列出週六共六個發船時間(7:00至17:00,間隔約兩小時),十二班與每30分鐘一班皆為平日班次資訊,與週六不符。"
+          },
+          {
+            "id": "dl-r3-q2",
+            "stem": "What can travelers do if the ticket counter is already closed on a Sunday evening?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Wait until the counter reopens on Monday morning"
+              },
+              {
+                "id": "b",
+                "text": "Purchase a ticket directly from the ferry captain"
+              },
+              {
+                "id": "c",
+                "text": "Buy a ticket online"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "時刻表註明可隨時上網購票,週末售票櫃檯下午4:30即關閉,故晚間仍可透過線上購票,而非等到週一或向船長購票。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-r1",
+        "taskType": "academic_passage",
+        "title": "When Small Manufacturers Bring Production In-House",
+        "discipline": "business and economics",
+        "text": "Small manufacturers routinely decide whether to buy a component from an outside supplier or produce it themselves, a choice known as the make-or-buy decision. For low order volumes, buying is almost always cheaper: a supplier already owns the necessary tooling and machinery, and spreads that cost across many customers. As a company's own order volume rises, however, the calculation can shift. Producing a part in-house requires an upfront investment in tooling, molds, or specialized equipment, but once that investment is made, each additional unit costs comparatively little to produce. Beyond a certain volume threshold, the tooling cost is spread across enough units that in-house production becomes cheaper per unit than the supplier's price, even after including labor and materials.\n\nBeyond cost, bringing production in-house often improves quality control. A company overseeing its own manufacturing process can adjust tolerances, catch defects earlier, and respond quickly to design changes, none of which is easily arranged through a supplier's separate operation. Some companies choose to insource even before the cost threshold is reached, judging that tighter oversight justifies a higher per-unit cost. Others wait until volume clearly exceeds the threshold, wary of tying up capital in equipment that a shift in demand could leave underused. Either way, the decision rests on comparing a fixed investment against variable savings accumulated over time.",
+        "questions": [
+          {
+            "id": "ap-r1-q1",
+            "stem": "According to the passage, why is buying a component from an outside supplier usually cheaper at low order volumes?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The supplier offers a lower price by using cheaper raw materials."
+              },
+              {
+                "id": "b",
+                "text": "The supplier is legally required to charge below cost for new customers."
+              },
+              {
+                "id": "c",
+                "text": "The supplier spreads tooling and machinery costs across many customers."
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "文中說明訂單量低時,供應商已擁有工具與機械,並將成本分攤給多位客戶,因此價格較低,與原料成本或法規要求無關。"
+          },
+          {
+            "id": "ap-r1-q2",
+            "stem": "The word \"insource\" in the passage is closest in meaning to",
+            "options": [
+              {
+                "id": "a",
+                "text": "hire outside consultants to manage quality"
+              },
+              {
+                "id": "b",
+                "text": "sell a product to a new market"
+              },
+              {
+                "id": "c",
+                "text": "bring production in-house"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "vocabulary",
+            "explanationZh": "insource在文中指公司選擇將生產「移回廠內自製」,而非外包銷售新市場或聘請外部顧問管理品質。"
+          },
+          {
+            "id": "ap-r1-q3",
+            "stem": "It can be inferred from the passage that a company deciding to insource before the cost threshold is reached is most likely doing so because it",
+            "options": [
+              {
+                "id": "a",
+                "text": "expects its order volume to permanently decline"
+              },
+              {
+                "id": "b",
+                "text": "values tighter quality control more than minimizing per-unit cost"
+              },
+              {
+                "id": "c",
+                "text": "has calculated that its supplier is overcharging for materials"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "inference",
+            "explanationZh": "文中指出即使尚未達到成本門檻,部分公司仍選擇自製,顯示他們更重視品質掌控,而非供應商定價過高或訂單量將永久下滑。"
+          },
+          {
+            "id": "ap-r1-q4",
+            "stem": "How does the second paragraph relate to the first?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It contradicts the cost-based reasoning presented in the first paragraph."
+              },
+              {
+                "id": "b",
+                "text": "It introduces an additional, non-cost reason for the same decision discussed in the first paragraph."
+              },
+              {
+                "id": "c",
+                "text": "It summarizes the entire passage before restating the make-or-buy decision."
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "organization",
+            "explanationZh": "第二段在第一段成本考量之外,補充品質控管這項另一項自製理由,而非反駁第一段論點或單純重述全文。"
+          },
+          {
+            "id": "ap-r1-q5",
+            "stem": "What is the purpose of the sentence beginning \"Others wait until volume clearly exceeds the threshold\"?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To describe a legal requirement companies must follow before insourcing."
+              },
+              {
+                "id": "b",
+                "text": "To argue that most companies should never bring production in-house."
+              },
+              {
+                "id": "c",
+                "text": "To illustrate a company that prioritizes avoiding underused equipment over early quality gains."
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "purpose",
+            "explanationZh": "該句描述部分公司選擇等到訂單量明顯超過門檻,顯示他們寧可延後享有品質優勢,也要避免設備因需求變化而閒置,並非主張禁止自製或涉及法規。"
+          }
+        ]
+      }
+    ]
+  },
+  "lowerModule": {
+    "timeLimitSec": 540,
+    "ctwPassages": [
+      {
+        "id": "ctw-lo1",
+        "taskType": "complete_words",
+        "topic": "How a small town plans its yearly music festival stage schedule",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Every year, a small town organizes the stage schedule for its music festival. Organizers "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g1"
+          },
+          {
+            "type": "text",
+            "text": " performance "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g2"
+          },
+          {
+            "type": "text",
+            "text": " several "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g3"
+          },
+          {
+            "type": "text",
+            "text": " before "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g4"
+          },
+          {
+            "type": "text",
+            "text": " event "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g5"
+          },
+          {
+            "type": "text",
+            "text": ". Local "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g6"
+          },
+          {
+            "type": "text",
+            "text": " typically "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g7"
+          },
+          {
+            "type": "text",
+            "text": " early "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g8"
+          },
+          {
+            "type": "text",
+            "text": " slots "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g9"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g10"
+          },
+          {
+            "type": "text",
+            "text": ". Bigger acts then perform later once evening crowds gather and fill the entire park. Food vendors carefully plan their serving hours around that posted timetable. They expect that hungry visitors will buy more snacks whenever lines stay short. This steady approach keeps everyone ready for opening day."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-lo1-g1",
+            "prefix": "sel",
+            "completion": "ect",
+            "blankLength": 3,
+            "explanationZh": "主詞為 Organizers（複數），此句描述例行性安排，須用現在式動詞 select，語意為「挑選演出時段」，與後文 performance times 搭配。"
+          },
+          {
+            "id": "ctw-lo1-g2",
+            "prefix": "ti",
+            "completion": "mes",
+            "blankLength": 3,
+            "explanationZh": "select 之後需接受詞，performance times 指「演出時段」，與下一句 several weeks before the event begins 的時間規劃語境呼應。"
+          },
+          {
+            "id": "ctw-lo1-g3",
+            "prefix": "we",
+            "completion": "eks",
+            "blankLength": 3,
+            "explanationZh": "several 後須接複數名詞表示期間長度，weeks（週）符合「活動開始前數週」規劃時程的語意。"
+          },
+          {
+            "id": "ctw-lo1-g4",
+            "prefix": "t",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "event 為前文已提及的特定音樂節活動，故需用定冠詞 the 表示特指，而非泛指的一般活動。"
+          },
+          {
+            "id": "ctw-lo1-g5",
+            "prefix": "beg",
+            "completion": "ins",
+            "blankLength": 3,
+            "explanationZh": "主詞 the event 為單數第三人稱，現在式動詞須加 -s，begins 表示活動「開始」，與 before 搭配表時間先後。"
+          },
+          {
+            "id": "ctw-lo1-g6",
+            "prefix": "ba",
+            "completion": "nds",
+            "blankLength": 3,
+            "explanationZh": "Local 為形容詞需修飾名詞，bands（樂團）為本句主詞，且與後文 Bigger acts 形成對比，指本地樂團與大牌演出者的差異。"
+          },
+          {
+            "id": "ctw-lo1-g7",
+            "prefix": "rec",
+            "completion": "eive",
+            "blankLength": 4,
+            "explanationZh": "主詞 bands 為複數，現在式動詞不加 -s，receive（獲得）符合「樂團獲得時段」的語意，並與 typically 的例行語氣一致。"
+          },
+          {
+            "id": "ctw-lo1-g8",
+            "prefix": "afte",
+            "completion": "rnoon",
+            "blankLength": 5,
+            "explanationZh": "afternoon（下午）修飾 slots，與後句 evening crowds 形成時間對比，說明本地樂團排在較早的下午時段演出。"
+          },
+          {
+            "id": "ctw-lo1-g9",
+            "prefix": "i",
+            "completion": "n",
+            "blankLength": 1,
+            "explanationZh": "slots 與 lineup 之間須用介系詞 in 表示「在陣容/節目表之中的時段」，符合英文慣用搭配 in the lineup。"
+          },
+          {
+            "id": "ctw-lo1-g10",
+            "prefix": "lin",
+            "completion": "eup",
+            "blankLength": 3,
+            "explanationZh": "lineup（節目陣容、演出名單）為介系詞 in the 之後的名詞，指音樂節整體的演出排程表，與全文討論 stage schedule 的主題一致。"
+          }
+        ],
+        "sourceParagraph": "Every year, a small town organizes the stage schedule for its music festival. Organizers select performance times several weeks before the event begins. Local bands typically receive early afternoon slots in the lineup. Bigger acts then perform later once evening crowds gather and fill the entire park. Food vendors carefully plan their serving hours around that posted timetable. They expect that hungry visitors will buy more snacks whenever lines stay short. This steady approach keeps everyone ready for opening day."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-lo1",
+        "taskType": "daily_life",
+        "genre": "invoice",
+        "text": "PEDAL WORKS BICYCLE REPAIR — INVOICE #2291\nNew front tire: $22.00\nBrake pad replacement (parts): $14.00\nLabor charge: $25.00\nLate pickup fee (item held over 7 days): $10.00\nTotal: $71.00\nThank you for your business.",
+        "questions": [
+          {
+            "id": "dl-lo1-q1",
+            "stem": "How much is the labor charge on this invoice?",
+            "options": [
+              {
+                "id": "a",
+                "text": "$25.00"
+              },
+              {
+                "id": "b",
+                "text": "$22.00"
+              },
+              {
+                "id": "c",
+                "text": "$14.00"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "發票上「Labor charge」項目金額為 $25.00,其餘兩個金額分別對應新輪胎與煞車來令片零件費用,並非工資費用。"
+          },
+          {
+            "id": "dl-lo1-q2",
+            "stem": "Why was a late pickup fee added to this invoice?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The customer paid with the wrong method"
+              },
+              {
+                "id": "b",
+                "text": "The brake pads needed to be special-ordered"
+              },
+              {
+                "id": "c",
+                "text": "The bicycle was left at the shop for more than 7 days"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "發票說明逾期費用是因物品在店內存放超過7天所產生,與付款方式或零件是否需特別訂購無關。"
+          }
+        ]
+      },
+      {
+        "id": "dl-lo2",
+        "taskType": "daily_life",
+        "genre": "text-message chain",
+        "text": "Mia: Still meeting at the park entrance for the play tonight?\nSam: Actually it's raining, so they moved us under the tent by the food stalls.\nMia: Got it, what time does the show start?\nSam: 7:30, same as before.\nMia: See you there!",
+        "questions": [
+          {
+            "id": "dl-lo2-q1",
+            "stem": "Where will Mia and Sam meet, based on the text messages?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Inside the theater lobby"
+              },
+              {
+                "id": "b",
+                "text": "Under the tent by the food stalls"
+              },
+              {
+                "id": "c",
+                "text": "At the park entrance"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "Sam提到因下雨,集合地點改到「食物攤旁的帳篷下」,公園入口是原本的地點,劇院大廳則從未被提及。"
+          },
+          {
+            "id": "dl-lo2-q2",
+            "stem": "Why did the meeting spot change?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Because the park entrance was closed for repairs"
+              },
+              {
+                "id": "b",
+                "text": "Because of rain"
+              },
+              {
+                "id": "c",
+                "text": "Because the show started earlier"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "inference",
+            "explanationZh": "對話中Sam明確說明是因為下雨才改變集合地點,並未提到表演時間提早或公園入口整修等原因。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-lo1",
+        "taskType": "academic_passage",
+        "title": "How Earthworm Tunnels Help Garden Soil",
+        "discipline": "life science",
+        "text": "Earthworms constantly dig narrow tunnels as they move through garden soil. These tunnels do more than let the worms travel. They also create small channels that air can pass through, reaching plant roots that would otherwise struggle to get enough oxygen. Loose, tunneled soil lets rainwater soak in rather than run off the surface, so roots receive water more evenly after a storm.\n\nAs earthworms eat their way through soil, they also produce castings, a nutrient-rich waste material left behind in their tunnels. These castings contain nitrogen, phosphorus, and other nutrients that plants need to grow strong. Over time, a garden with many earthworms often has darker, richer soil than one without them, because the castings build up close to where roots can reach them.\n\nGardeners sometimes measure earthworm activity by counting tunnel openings on the surface after rain. A high number usually means healthy, well-aerated soil underneath. Because of this simple sign, some gardeners treat earthworms as a rough indicator of overall soil health, checking for their tunnels before testing soil in more expensive ways.",
+        "questions": [
+          {
+            "id": "ap-lo1-q1",
+            "stem": "According to the passage, what do earthworm tunnels allow air to do?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Mix with rainwater before it evaporates"
+              },
+              {
+                "id": "b",
+                "text": "Reach plant roots more easily"
+              },
+              {
+                "id": "c",
+                "text": "Escape from the soil surface completely"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "文中說明蚯蚓形成的通道能讓空氣到達植物根部,並非讓空氣完全逸出土壤表面或與雨水混合後蒸發。"
+          },
+          {
+            "id": "ap-lo1-q2",
+            "stem": "The word \"castings\" in the passage most nearly means",
+            "options": [
+              {
+                "id": "a",
+                "text": "waste material left behind by earthworms"
+              },
+              {
+                "id": "b",
+                "text": "seeds planted by gardeners"
+              },
+              {
+                "id": "c",
+                "text": "small tools used for digging"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "vocabulary",
+            "explanationZh": "castings指蚯蚓消化後留下的排泄物,富含養分,並非挖土工具或園丁播下的種子。"
+          },
+          {
+            "id": "ap-lo1-q3",
+            "stem": "It can be inferred that a garden with very few tunnel openings after rain probably has",
+            "options": [
+              {
+                "id": "a",
+                "text": "soil that is too rich in nutrients"
+              },
+              {
+                "id": "b",
+                "text": "fewer earthworms and less aerated soil"
+              },
+              {
+                "id": "c",
+                "text": "roots that grow unusually deep"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "inference",
+            "explanationZh": "文中指出蚯蚓通道數量多代表土壤通氣良好,因此雨後通道開口很少,合理推論代表蚯蚓數量少、土壤通氣較差。"
+          },
+          {
+            "id": "ap-lo1-q4",
+            "stem": "How does the second paragraph build on the first?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It repeats the same point about rainwater absorption."
+              },
+              {
+                "id": "b",
+                "text": "It disproves the claim made about tunnels in the first paragraph."
+              },
+              {
+                "id": "c",
+                "text": "It adds a second way earthworms improve soil, beyond creating air channels."
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "organization",
+            "explanationZh": "第二段在第一段的通氣效果之外,補充蚯蚓排泄物提供養分這項改善土壤的另一方式,並未推翻或單純重複第一段內容。"
+          },
+          {
+            "id": "ap-lo1-q5",
+            "stem": "Why does the passage mention that gardeners count tunnel openings after rain?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To explain a simple way gardeners estimate soil health"
+              },
+              {
+                "id": "b",
+                "text": "To show that tunnel counting is more accurate than any lab test"
+              },
+              {
+                "id": "c",
+                "text": "To argue that gardeners should avoid watering their soil"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "purpose",
+            "explanationZh": "文中提到園丁藉由雨後計算通道開口數量,簡單判斷土壤健康狀況,並非主張此方法比實驗室檢測更準確或建議避免澆水。"
+          }
+        ]
+      }
+    ]
+  },
+  "upperModule": {
+    "timeLimitSec": 540,
+    "ctwPassages": [
+      {
+        "id": "ctw-up1",
+        "taskType": "complete_words",
+        "topic": "How occupational health clinics use recovery-pacing plans to return patients to full activity",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Occupational health clinics often rely on a recovery-pacing plan to guide an injured worker safely back toward full activity. Clinicians "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g1"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g2"
+          },
+          {
+            "type": "text",
+            "text": " exertion "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g3"
+          },
+          {
+            "type": "text",
+            "text": " in "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g4"
+          },
+          {
+            "type": "text",
+            "text": ", incremental "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g5"
+          },
+          {
+            "type": "text",
+            "text": " rather "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g6"
+          },
+          {
+            "type": "text",
+            "text": " all "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g7"
+          },
+          {
+            "type": "text",
+            "text": " once. "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g8"
+          },
+          {
+            "type": "text",
+            "text": " intensity "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g9"
+          },
+          {
+            "type": "text",
+            "text": " adjusted "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g10"
+          },
+          {
+            "type": "text",
+            "text": " to the discomfort a patient reports during each session, not according to a fixed calendar. Subsequent visits then track whether fatigue is trending downward across consecutive appointments, confirming that the regimen remains appropriate. Only once this evidence accumulates consistently does a provider authorize a complete, unrestricted return to ordinary duties."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-up1-g1",
+            "prefix": "ra",
+            "completion": "ise",
+            "blankLength": 3,
+            "explanationZh": "主詞為複數的 Clinicians，且全句用現在式描述臨床常規做法，故動詞須用原形 raise（提高），與後面受詞 exertion levels 搭配，指「提高所指派的運動強度」。"
+          },
+          {
+            "id": "ctw-up1-g2",
+            "prefix": "assi",
+            "completion": "gned",
+            "blankLength": 4,
+            "explanationZh": "assigned 為過去分詞作形容詞，修飾 exertion levels，表示「（先前）被指派的」運動強度等級，語意上與病人被分配到的訓練強度相符。"
+          },
+          {
+            "id": "ctw-up1-g3",
+            "prefix": "lev",
+            "completion": "els",
+            "blankLength": 3,
+            "explanationZh": "levels 是動詞 raise 的受詞，與前面的 exertion 組成複合名詞 exertion levels（運動強度等級），指臨床人員調整的對象。"
+          },
+          {
+            "id": "ctw-up1-g4",
+            "prefix": "car",
+            "completion": "eful",
+            "blankLength": 4,
+            "explanationZh": "careful 為形容詞，與後面並列的 incremental 一起修飾 stages，表示調整是「謹慎且漸進的」階段，呼應全文強調循序漸進、而非一次到位的核心概念。"
+          },
+          {
+            "id": "ctw-up1-g5",
+            "prefix": "sta",
+            "completion": "ges",
+            "blankLength": 3,
+            "explanationZh": "stages 為名詞，作介系詞 in 的受詞，與 careful, incremental 兩個形容詞搭配，指「謹慎漸進的階段」，說明強度提升是分階段進行的。"
+          },
+          {
+            "id": "ctw-up1-g6",
+            "prefix": "th",
+            "completion": "an",
+            "blankLength": 2,
+            "explanationZh": "than 與前面的 rather 構成固定搭配 rather than（而非），用以對比「分階段漸進」與「一次全部調整」兩種做法，凸顯文章強調前者。"
+          },
+          {
+            "id": "ctw-up1-g7",
+            "prefix": "a",
+            "completion": "t",
+            "blankLength": 1,
+            "explanationZh": "at 與 all... once 構成固定片語 all at once（一次全部），在此表示與漸進方式相對立的做法，符合 rather than all at once 的語意。"
+          },
+          {
+            "id": "ctw-up1-g8",
+            "prefix": "Exer",
+            "completion": "cise",
+            "blankLength": 4,
+            "explanationZh": "Exercise 為名詞，與 intensity 組成複合名詞 Exercise intensity（運動強度），作為該句主詞，句首字母須大寫。"
+          },
+          {
+            "id": "ctw-up1-g9",
+            "prefix": "i",
+            "completion": "s",
+            "blankLength": 1,
+            "explanationZh": "主詞 Exercise intensity 為單數（不可數概念視為單一整體），故 be 動詞須用 is，與被動語態 is adjusted（被調整）搭配。"
+          },
+          {
+            "id": "ctw-up1-g10",
+            "prefix": "acco",
+            "completion": "rding",
+            "blankLength": 5,
+            "explanationZh": "according 與後面的 to 構成固定片語 according to（根據），表示強度調整的依據是病人回報的不適程度，而非固定行事曆。"
+          }
+        ],
+        "sourceParagraph": "Occupational health clinics often rely on a recovery-pacing plan to guide an injured worker safely back toward full activity. Clinicians raise the assigned exertion levels in careful, incremental stages rather than all at once. Exercise intensity is adjusted according to the discomfort a patient reports during each session, not according to a fixed calendar. Subsequent visits then track whether fatigue is trending downward across consecutive appointments, confirming that the regimen remains appropriate. Only once this evidence accumulates consistently does a provider authorize a complete, unrestricted return to ordinary duties."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-up1",
+        "taskType": "daily_life",
+        "genre": "social media post",
+        "text": "🌅 NEW AT CRESTVIEW FITNESS: Sunrise Yoga just added to the weekly schedule! Mondays & Thursdays, 6:00am. First-timers: a one-time mat rental fee of $3 applies — bring your own after that and skip the charge. Tag a friend who needs a reason to wake up early. #SunriseYoga #NewClass",
+        "questions": [
+          {
+            "id": "dl-up1-q1",
+            "stem": "How often is the new Sunrise Yoga class offered each week?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Once"
+              },
+              {
+                "id": "b",
+                "text": "Every weekday"
+              },
+              {
+                "id": "c",
+                "text": "Twice"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "貼文列出課程時間為「週一與週四」,每週共兩次,並非每天或僅一次。"
+          },
+          {
+            "id": "dl-up1-q2",
+            "stem": "What happens if a member brings their own mat to a later Sunrise Yoga class?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They avoid paying the mat rental fee"
+              },
+              {
+                "id": "b",
+                "text": "They can register for the class for free that week"
+              },
+              {
+                "id": "c",
+                "text": "They receive a discount on their membership"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "貼文說明租借瑜珈墊費用僅收取一次,之後自備瑜珈墊即可免除該費用,與會員折扣或免費報名課程無關。"
+          },
+          {
+            "id": "dl-up1-q3",
+            "stem": "What is the main purpose of this social media post?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To advertise a discount on all gym memberships"
+              },
+              {
+                "id": "b",
+                "text": "To announce a new class and explain its first-time fee"
+              },
+              {
+                "id": "c",
+                "text": "To recruit new personal trainers for the sunrise slot"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "purpose",
+            "explanationZh": "貼文主要目的是宣布新增的日出瑜珈課程並說明首次收取的墊子租借費,並未提及會員折扣或教練招募。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-up1",
+        "taskType": "academic_passage",
+        "title": "How a Postal Reform Changed Everyday Correspondence",
+        "discipline": "history",
+        "text": "In the mid-nineteenth century, a sweeping reform of postal rates transformed how ordinary people communicated across long distances. Before the reform, the cost of sending a letter depended on the number of sheets enclosed and the distance it traveled, a system so expensive that many households reserved letter-writing for urgent or infrequent occasions. The reform replaced this variable pricing with a single, low, prepaid rate regardless of distance, provided the letter fell under a modest weight limit.\n\nThe immediate effect was a sharp rise in personal correspondence. Families separated by migration or employment began exchanging letters far more frequently, no longer weighing every page against its cost. Historians studying postal records from the period have noted that letter volume in some regions multiplied several times over within a decade of the reform, a pace too rapid to attribute to population growth alone.\n\nThe reform's influence extended beyond personal letters. Shopkeepers, who had previously relied on in-person visits or costly couriers to manage accounts with distant suppliers, began keeping more of their routine business correspondence by mail, since even frequent, brief notes remained affordable under the new flat rate. This shift left a denser paper trail than earlier record-keeping practices had produced, one that historians now treat as unusually rich evidence of ordinary commercial life in the period, rather than merely a footnote to postal history.",
+        "questions": [
+          {
+            "id": "ap-up1-q1",
+            "stem": "According to the passage, what determined the cost of sending a letter before the reform?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Whether the letter was addressed to a business or a private household"
+              },
+              {
+                "id": "b",
+                "text": "The number of sheets enclosed and the distance traveled"
+              },
+              {
+                "id": "c",
+                "text": "The sender's occupation and social standing"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "文中說明改革前信件費用取決於信紙張數與寄送距離,與寄件人身分地位或收件對象是商家或個人住宅無關。"
+          },
+          {
+            "id": "ap-up1-q2",
+            "stem": "The word \"sweeping\" in the passage is closest in meaning to",
+            "options": [
+              {
+                "id": "a",
+                "text": "secretive and gradual"
+              },
+              {
+                "id": "b",
+                "text": "quick and temporary"
+              },
+              {
+                "id": "c",
+                "text": "extensive and far-reaching"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "vocabulary",
+            "explanationZh": "sweeping在文中意指改革「範圍廣泛、影響深遠」,而非短暫倉促或秘密漸進式的變化。"
+          },
+          {
+            "id": "ap-up1-q3",
+            "stem": "It can be inferred from the passage that before the reform, many households",
+            "options": [
+              {
+                "id": "a",
+                "text": "preferred sending letters over meeting in person whenever possible"
+              },
+              {
+                "id": "b",
+                "text": "limited their letter-writing partly because of its expense"
+              },
+              {
+                "id": "c",
+                "text": "relied entirely on shopkeepers to deliver their mail"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "inference",
+            "explanationZh": "文中指出許多家庭因費用昂貴而將寫信侷限於緊急或少數場合,可推論當時家庭部分因費用而限制通信頻率。"
+          },
+          {
+            "id": "ap-up1-q4",
+            "stem": "How does the third paragraph relate to the second?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It returns to describe the pricing system that existed before the reform."
+              },
+              {
+                "id": "b",
+                "text": "It extends the reform's effects from personal letters to commercial record-keeping."
+              },
+              {
+                "id": "c",
+                "text": "It challenges the claim that correspondence increased after the reform."
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "organization",
+            "explanationZh": "第三段延續第二段個人通信增加的討論,進一步說明改革如何影響商家的商業紀錄方式,並非反駁通信增加的說法或回頭描述改革前定價制度。"
+          },
+          {
+            "id": "ap-up1-q5",
+            "stem": "What is the purpose of mentioning that historians treat the resulting paper trail as \"unusually rich evidence\"?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To suggest that shopkeepers deliberately created records for future historians"
+              },
+              {
+                "id": "b",
+                "text": "To argue that postal records are more reliable than population data"
+              },
+              {
+                "id": "c",
+                "text": "To emphasize the reform's lasting value as a historical record beyond its original purpose"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "purpose",
+            "explanationZh": "文中提到史學家將這些商業書信視為研究當時商業生活的珍貴史料,強調其超越原本郵政用途的長期歷史價值,而非比較郵政紀錄與人口資料的可靠性。"
+          }
+        ]
+      }
+    ]
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "reading",
+    "ctwPassages": [
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "warehouse-shift-handoff-log",
+        "requiredConcepts": [
+          "unfinished loading tasks left for morning shift",
+          "forklift reported out of service",
+          "customer pickup time noted for early delivery"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "shares a scheduling/handoff feel but that Set's paragraphs cover campus tutoring, podcast transcription, tool-sharing, and cabin pricing, never a warehouse shift log"
+          }
+        ],
+        "topic": "How a warehouse shift manager uses a handoff log to brief the next shift",
+        "angle": "A handoff log lets an outgoing shift manager record unfinished tasks, equipment problems, and customer requests so the incoming shift can pick up work without a meeting."
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "lake-fish-habitat-survey",
+        "requiredConcepts": [
+          "shoreline vegetation measured for cover",
+          "water depth checked at several points",
+          "habitat capacity estimated before winter"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "no science-environment complete-the-words paragraph exists in this Set; distinguished from its unrelated campus, media, civic, and travel topics"
+          }
+        ],
+        "topic": "How a fisheries biologist estimates a lake's fish habitat capacity",
+        "angle": "A fisheries biologist measures shoreline vegetation and water depth to estimate how many fish a lake's habitat can realistically support through winter."
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "town-music-festival-stage-schedule",
+        "requiredConcepts": [
+          "stage times set weeks before the festival",
+          "local bands given early afternoon slots",
+          "food vendors plan around the schedule"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "differs from that Set's ceramic craft festival passage, which traces a craft revival rather than a stage-schedule planning process"
+          }
+        ],
+        "topic": "How a small town plans its yearly music festival stage schedule",
+        "angle": "Festival organizers set the music festival's stage schedule early so local bands and food vendors can plan around it."
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "occupational-clinic-recovery-pacing",
+        "requiredConcepts": [
+          "graded activity levels increased gradually",
+          "exercise intensity adjusted to reported pain",
+          "follow-up visits track fatigue trends"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "no health-wellbeing complete-the-words paragraph exists in this Set; distinguished from its unrelated campus, media, civic, and travel topics"
+          }
+        ],
+        "topic": "How occupational health clinics use recovery-pacing plans to return patients to full activity",
+        "angle": "Occupational health clinics stagger a patient's return through graded activity levels, adjusting exercise intensity and rest according to how consistently reported pain and fatigue trend downward across successive follow-up visits."
+      }
+    ],
+    "dailyLifeTexts": [
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "ceramic-studio-firing-fee-receipt",
+        "requiredConcepts": [
+          "glazing fee charged separately from firing",
+          "pickup window listed for finished piece"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "that Set's community center price list is a menu-style listing of upcoming pottery sessions, not an itemized receipt for an already-completed studio purchase"
+          }
+        ],
+        "genre": "receipt",
+        "scenario": "A receipt from a community ceramic studio listing a glazing fee and a kiln firing fee for a finished bowl"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "physical-therapy-clinic-intake-form",
+        "requiredConcepts": [
+          "pain level rated on a short scale",
+          "referral on file checked before treatment"
+        ],
+        "distinguishesFrom": [],
+        "genre": "form",
+        "scenario": "An intake form for a walk-in physical therapy clinic asking about the injury, pain level, and whether a doctor referral is on file"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "weekend-ferry-timetable-ticket-counter",
+        "requiredConcepts": [
+          "weekend departures reduced from weekday count",
+          "ticket counter closes earlier on weekends"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "that Set's services-travel item is a complete-the-words paragraph on sleeper-cabin pricing, not a terse ferry departure timetable"
+          }
+        ],
+        "genre": "schedule",
+        "scenario": "A weekend ferry timetable to an island stop showing fewer departures and an earlier ticket counter closing time"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "bicycle-repair-shop-late-pickup-invoice",
+        "requiredConcepts": [
+          "new tire billed separately from labor",
+          "late pickup fee added to total"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "that Set's invoice bills a company for delayed furniture repair labor, this one bills an individual for a personal bicycle with a late-pickup fee, not a delay penalty"
+          }
+        ],
+        "genre": "invoice",
+        "scenario": "An invoice from a bicycle repair shop itemizing a new tire, brake pad replacement, and a fee for late pickup"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "outdoor-theater-rain-meetup-texts",
+        "requiredConcepts": [
+          "meeting spot moved because of rain",
+          "show start time confirmed by text"
+        ],
+        "distinguishesFrom": [],
+        "genre": "text-message chain",
+        "scenario": "Two friends texting about where to meet before an outdoor theater show, changing the plan when it starts raining"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "gym-sunrise-class-social-post",
+        "requiredConcepts": [
+          "sunrise class added to the weekly schedule",
+          "mat rental fee applies to first visit only"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "shares the social-media-post genre with that Set's podcast download announcement, but the domain and content differ entirely: a fitness class schedule versus a podcast feature"
+          }
+        ],
+        "genre": "social media post",
+        "scenario": "A gym's social media post announcing a new sunrise exercise class schedule and a one-time mat rental fee for first-time visitors"
+      }
+    ],
+    "academicPassages": [
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "manufacturer-in-house-production-threshold",
+        "requiredConcepts": [
+          "order volume threshold compared to supplier cost",
+          "tooling cost spread across future orders",
+          "quality control gained by making the part in-house"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "different discipline (business and economics vs. social science) and different institutional focus than that Set's neighborhood-association policy passage"
+          }
+        ],
+        "title": "When Small Manufacturers Bring Production In-House",
+        "discipline": "business and economics",
+        "angle": "Examines the order-volume threshold at which a small manufacturer's company finds it cheaper to build a part itself rather than keep paying an outside supplier"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "earthworm-tunnels-soil-life-science",
+        "requiredConcepts": [
+          "tunnels let air reach plant roots",
+          "worm castings add nutrients to soil",
+          "loose soil holds water after rain"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "different discipline (life science vs. physical science) and unrelated topic to that Set's noise-cancelling-device passage"
+          }
+        ],
+        "title": "How Earthworm Tunnels Help Garden Soil",
+        "discipline": "life science",
+        "angle": "Explains, in simple terms, how earthworm burrowing changes the soil environment by creating channels that let air and water reach plant roots more easily"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "postal-reform-correspondence-history",
+        "requiredConcepts": [
+          "letter cost lowered by the rate reform",
+          "personal correspondence increased sharply",
+          "shopkeepers kept more written records by mail"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "different discipline (history vs. social science) and different era: a historical postal reform, not present-day civic influence"
+          }
+        ],
+        "title": "How a Postal Reform Changed Everyday Correspondence",
+        "discipline": "history",
+        "angle": "Traces how a nineteenth-century postal rate reform lowered the cost of sending a letter across long distances, which measurably increased both personal correspondence and shopkeepers' routine record-keeping by mail"
+      }
+    ]
+  }
+}

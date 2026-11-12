@@ -1,0 +1,516 @@
+{
+  "id": "wri-6d6c11da",
+  "source": "generated",
+  "createdAt": "2026-08-24T17:14:32.789Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "The loading dock's forklift certification test got postponed — is the makeup session still with the same trainer?",
+        "frame": "Yes, the same trainer ___ ___ ___ next week.",
+        "tiles": [
+          "will",
+          "run",
+          "it",
+          "runs"
+        ],
+        "answers": [
+          [
+            "will",
+            "run",
+            "it"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "I heard the tree planting event moved because the usual lot is under repair — is it still Saturday morning at the same time?",
+        "frame": "Yes, we ___ ___ ___ the corner lot instead.",
+        "tiles": [
+          "just",
+          "moved",
+          "it",
+          "move"
+        ],
+        "answers": [
+          [
+            "just",
+            "moved",
+            "it"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Why isn't the weekly habitat survey happening this week?",
+        "frame": "We ___ ___ ___ ___ the broken rain gauge is replaced.",
+        "tiles": [
+          "have",
+          "paused",
+          "the survey",
+          "until",
+          "had"
+        ],
+        "answers": [
+          [
+            "have",
+            "paused",
+            "the survey",
+            "until"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "My article got rejected — did the portal's file size limit change?",
+        "frame": "Yes — it ___ ___ ___ ___ over the new limit, so try compressing it.",
+        "tiles": [
+          "now",
+          "automatically",
+          "rejects",
+          "anything",
+          "reject"
+        ],
+        "answers": [
+          [
+            "now",
+            "automatically",
+            "rejects",
+            "anything"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Where should I set up for tonight's fitting, since the main stage isn't available?",
+        "frame": "You ___ ___ ___ ___ ___ the smaller studio, same time as always.",
+        "tiles": [
+          "will",
+          "now",
+          "need",
+          "to",
+          "use",
+          "needs"
+        ],
+        "answers": [
+          [
+            "will",
+            "now",
+            "need",
+            "to",
+            "use"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Can I still just walk in for the stress management workshop?",
+        "frame": "The clinic now requires ___ ___ ___ ___ ___ before attending.",
+        "tiles": [
+          "that",
+          "you",
+          "register",
+          "online",
+          "in advance",
+          "registering"
+        ],
+        "answers": [
+          [
+            "that",
+            "you",
+            "register",
+            "online",
+            "in advance"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Can I use my card at the ticket kiosk, or is there an ATM nearby?",
+        "frame": "The kiosk, ___ ___ ___ ___ ___, is only accepting cash until it's repaired.",
+        "tiles": [
+          "which",
+          "normally",
+          "processes",
+          "card",
+          "payments",
+          "process"
+        ],
+        "answers": [
+          [
+            "which",
+            "normally",
+            "processes",
+            "card",
+            "payments"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Can I move the newly donated migration-era trunk into storage now?",
+        "frame": "The collections manager insists ___ ___ ___ ___ ___ ___ before storage.",
+        "tiles": [
+          "that",
+          "the trunk",
+          "be",
+          "fully",
+          "photographed",
+          "and documented",
+          "is"
+        ],
+        "answers": [
+          [
+            "that",
+            "the trunk",
+            "be",
+            "fully",
+            "photographed",
+            "and documented"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Did the stockroom audit schedule change?",
+        "frame": "The audit ___ ___ ___ ___ ___ ___ next week's date.",
+        "tiles": [
+          "was",
+          "swapped",
+          "by",
+          "the manager",
+          "who",
+          "confirmed",
+          "swap"
+        ],
+        "answers": [
+          [
+            "was",
+            "swapped",
+            "by",
+            "the manager",
+            "who",
+            "confirmed"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Why did the inspection move indoors today?",
+        "frame": "It ___ ___ ___ ___ ___ ___ today.",
+        "tiles": [
+          "was",
+          "the lightning risk",
+          "that",
+          "moved",
+          "the inspection",
+          "indoors",
+          "is"
+        ],
+        "answers": [
+          [
+            "was",
+            "the lightning risk",
+            "that",
+            "moved",
+            "the inspection",
+            "indoors"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You are a volunteer archivist cataloging a historical society's newly donated collection of oral history recordings. While cross-checking the audio files against the donor's intake list, you discover that several recordings are labeled with the wrong interviewee names. The heritage exhibit featuring these recordings opens next month, so the mistake needs to be corrected soon.",
+    "to": "oralhistory@rivertonheritagesociety.org",
+    "subject": "Mislabeled Names in Oral History Recordings",
+    "bullets": [
+      "Describe the mislabeling problem you found in the recordings.",
+      "Explain how you discovered the name mismatches.",
+      "Ask the coordinator to confirm once the labels have been corrected."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Foundations of Higher Education Policy",
+    "professorName": "Professor Whitfield",
+    "professorPost": "This week we're examining a policy some universities have adopted: requiring first-year students to complete a supervised study skills course before they can enroll in upper-level electives. Supporters say it gives students essential tools before they face harder coursework, while critics worry it limits students' freedom to design their own academic path. What do you think? Should universities require this course, or should students be free to choose their own schedule? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Priya",
+        "post": "I think the requirement makes sense. A lot of first-year students, myself included, struggled with time management and note-taking skills that high school never really taught. Building those skills early would have saved me from a rough first semester before I could even think about tackling advanced electives."
+      },
+      {
+        "name": "Marcus",
+        "post": "I get where Priya's coming from, but I don't think a mandatory course is the right fix. Students come in with very different backgrounds, and forcing everyone through the same class wastes time for those who already have solid study habits. Universities should offer the course as an optional resource instead of requiring it for everyone."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "workplace-business",
+          "situation": "A warehouse shift supervisor tells a new employee that the loading dock's forklift certification test was rescheduled to the following week.",
+          "participantRoles": [
+            "warehouse shift supervisor briefing a new employee",
+            "new employee learning about the certification change"
+          ],
+          "noveltyKey": "warehouse-forklift-certification-reschedule",
+          "requiredConcepts": [
+            "forklift certification test moved one week",
+            "makeup session same trainer",
+            "loading dock training delay"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "different workplace subject — a forklift certification test reschedule rather than a fire drill time change"
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A municipal parks coordinator tells a neighborhood volunteer group that this weekend's public tree planting event moved to a different city lot.",
+          "participantRoles": [
+            "municipal parks coordinator briefing volunteers",
+            "neighborhood volunteer confirming the new lot"
+          ],
+          "noveltyKey": "tree-plant-event-lot-relocation",
+          "requiredConcepts": [
+            "tree planting event moved to new city lot",
+            "same Saturday morning start time",
+            "original lot under repair"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "different community-civic event type — a tree planting event relocation rather than a trail cleanup meeting point change"
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A wildlife biology lab supervisor tells a new field intern that the weekly habitat survey must pause until a broken rain gauge is replaced.",
+          "participantRoles": [
+            "wildlife biology lab supervisor instructing an intern",
+            "new field intern confirming the survey status"
+          ],
+          "noveltyKey": "rain-gauge-habitat-survey-pause",
+          "requiredConcepts": [
+            "habitat survey paused for equipment repair",
+            "broken rain gauge replacement",
+            "survey resumes once gauge fixed"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "different equipment and task — a field habitat survey paused for a rain gauge rather than a lab experiment paused for fume hood airflow"
+            },
+            {
+              "setId": "wri-7a20b90b",
+              "reason": "different cause and instrument — a broken rain gauge rather than drifting humidity sensor readings"
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A digital newsroom's software editor tells a freelance reporter that the online article submission portal will reject files larger than the new size limit.",
+          "participantRoles": [
+            "digital newsroom software editor",
+            "freelance reporter submitting an article"
+          ],
+          "noveltyKey": "newsroom-portal-file-size-limit",
+          "requiredConcepts": [
+            "article submission portal file size limit lowered",
+            "oversized files rejected automatically",
+            "compression workaround for large files"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "different technology failure — a lowered upload size limit rather than an overnight device sync failure or a stalled podcast download cache"
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A community theater's costume director tells a volunteer seamstress that tonight's dress rehearsal fitting moved to the smaller rehearsal studio.",
+          "participantRoles": [
+            "community theater costume director",
+            "volunteer seamstress preparing fittings"
+          ],
+          "noveltyKey": "theater-costume-fitting-studio-move",
+          "requiredConcepts": [
+            "costume fitting relocated to smaller studio",
+            "same rehearsal time kept",
+            "main stage unavailable for fitting"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7a20b90b",
+              "reason": "different arts-culture event — a costume fitting relocation rather than an opening act being swapped to a smaller stage"
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A community clinic's front desk clerk tells a patient that the free stress management workshop now requires advance online registration.",
+          "participantRoles": [
+            "community clinic front desk clerk",
+            "patient inquiring about the workshop"
+          ],
+          "noveltyKey": "clinic-stress-workshop-registration-requirement",
+          "requiredConcepts": [
+            "stress management workshop registration now required",
+            "registration completed online in advance",
+            "walk-in attendance no longer allowed"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1696d60a",
+              "reason": "different change type — a new registration requirement rather than the workshop shifting to a shorter weekly format"
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A regional bus dispatcher tells a waiting passenger that the express route ticket kiosk is temporarily accepting cash only.",
+          "participantRoles": [
+            "regional bus dispatcher",
+            "waiting passenger needing a ticket"
+          ],
+          "noveltyKey": "bus-kiosk-cash-only-outage",
+          "requiredConcepts": [
+            "express route ticket kiosk card payment down",
+            "cash only accepted until repair",
+            "nearby ATM location"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1696d60a",
+              "reason": "different services-travel problem — a card payment outage at a kiosk rather than a shuttle route gaining an extra stop"
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A regional heritage museum's collections manager tells a new volunteer that a recently donated migration-era trunk must be photographed before storage.",
+          "participantRoles": [
+            "heritage museum collections manager",
+            "new volunteer handling the donation"
+          ],
+          "noveltyKey": "heritage-trunk-photograph-before-storage",
+          "requiredConcepts": [
+            "donated migration-era trunk needs photographing",
+            "photography required before storage",
+            "handling delayed until documentation done"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1696d60a",
+              "reason": "different artifact and process — a trunk requiring photography rather than a letter requiring ink stabilization"
+            },
+            {
+              "setId": "wri-90026a0d",
+              "reason": "different donated object entirely — a migration-era trunk rather than a diary requiring UV photography"
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A retail store's inventory manager tells a part-time employee that this week's stockroom audit schedule swapped with next week's shift.",
+          "participantRoles": [
+            "retail store inventory manager",
+            "part-time employee handling the stockroom audit"
+          ],
+          "noveltyKey": "retail-stockroom-audit-schedule-swap",
+          "requiredConcepts": [
+            "stockroom audit schedule swapped between weeks",
+            "audit moved to following week",
+            "employee confirms new audit date"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1696d60a",
+              "reason": "unrelated workplace-business content — an audit schedule swap rather than an expense reimbursement cap change"
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A renewable energy research team's site engineer tells a visiting student that today's wind turbine inspection moved indoors due to lightning risk.",
+          "participantRoles": [
+            "renewable energy site engineer",
+            "visiting student observing the inspection"
+          ],
+          "noveltyKey": "wind-turbine-inspection-lightning-move-indoors",
+          "requiredConcepts": [
+            "wind turbine inspection moved indoors",
+            "lightning risk cited as cause",
+            "inspection resumes after weather clears"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "different setting and object — an outdoor turbine field inspection moved for lightning rather than a lab experiment paused for fume hood airflow"
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "history-social-change",
+      "noveltyKey": "oral-history-recording-mislabel",
+      "requiredConcepts": [
+        "oral history recordings mislabeled with wrong names",
+        "mismatch discovered during cataloging",
+        "correction needed before exhibit opens"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-736f2103",
+          "reason": "different problem type — mislabeled oral history audio files rather than a diary missing an acid-free protective sleeve"
+        }
+      ],
+      "situation": "Cataloging a historical society's newly donated oral history recordings, the writer finds several audio files labeled with the wrong interviewee names, needing correction before next month's heritage exhibit opens.",
+      "recipientRole": "the historical society's oral history program coordinator",
+      "communicativeActs": [
+        "report the recording mislabeling problem",
+        "explain how the mismatch was discovered",
+        "request confirmation once the labels are corrected"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "campus-academics",
+      "noveltyKey": "mandatory-study-skills-course-before-electives",
+      "requiredConcepts": [
+        "mandatory study skills course before electives",
+        "foundational preparation argument",
+        "scheduling flexibility and autonomy argument"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-cd14eb34",
+          "reason": "different campus-academics policy topic entirely — a mandatory prerequisite course requirement versus device use during class"
+        }
+      ],
+      "proposition": "Some universities now require first-year students to complete a supervised study skills course before they can enroll in upper-level electives.",
+      "competingValues": [
+        "ensuring incoming students build foundational study habits before tackling harder coursework",
+        "preserving students' freedom to choose their own course sequence and pace"
+      ]
+    }
+  }
+}

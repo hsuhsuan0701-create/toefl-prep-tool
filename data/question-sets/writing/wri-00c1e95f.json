@@ -1,0 +1,272 @@
+{
+  "id": "wri-00c1e95f",
+  "source": "generated",
+  "createdAt": "2026-07-28T19:02:58.303Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Whose notebook is this?",
+        "frame": "I ___ ___ ___ ___.",
+        "tiles": [
+          "think",
+          "thinks",
+          "it's",
+          "probably",
+          "mine"
+        ],
+        "answers": [
+          [
+            "think",
+            "it's",
+            "probably",
+            "mine"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Has the delivery come in yet?",
+        "frame": "The ___ ___ ___ ___.",
+        "tiles": [
+          "boxes",
+          "arrived",
+          "arrives",
+          "this",
+          "morning"
+        ],
+        "answers": [
+          [
+            "boxes",
+            "arrived",
+            "this",
+            "morning"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Do we have enough handouts for everyone?",
+        "frame": "There ___ ___ ___ ___.",
+        "tiles": [
+          "aren't",
+          "isn't",
+          "enough",
+          "for the",
+          "whole group"
+        ],
+        "answers": [
+          [
+            "aren't",
+            "enough",
+            "for the",
+            "whole group"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Did anyone mention the error on the syllabus?",
+        "frame": "Nobody ___ ___ ___ ___ ___.",
+        "tiles": [
+          "said",
+          "says",
+          "anything",
+          "about it",
+          "until",
+          "the review session"
+        ],
+        "answers": [
+          [
+            "said",
+            "anything",
+            "about it",
+            "until",
+            "the review session"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Why are you still in the lab?",
+        "frame": "I'm ___ ___ ___ ___ ___.",
+        "tiles": [
+          "waiting",
+          "for",
+          "the",
+          "samples",
+          "to cool",
+          "cooling"
+        ],
+        "answers": [
+          [
+            "waiting",
+            "for",
+            "the",
+            "samples",
+            "to cool"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Should I email the housing office again?",
+        "frame": "I'd ___ ___ ___ ___ ___.",
+        "tiles": [
+          "wait",
+          "until",
+          "they reply",
+          "they will reply",
+          "to the",
+          "first one"
+        ],
+        "answers": [
+          [
+            "wait",
+            "until",
+            "they reply",
+            "to the",
+            "first one"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-7",
+        "prompt": "How does the new library compare with the old one?",
+        "frame": "The ___ ___ ___ ___ ___.",
+        "tiles": [
+          "new one",
+          "is",
+          "more spacious",
+          "most spacious",
+          "than",
+          "the old building"
+        ],
+        "answers": [
+          [
+            "new one",
+            "is",
+            "more spacious",
+            "than",
+            "the old building"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Which laptop are they replacing?",
+        "frame": "The one ___ ___ ___ ___ ___.",
+        "tiles": [
+          "that",
+          "keeps",
+          "keep",
+          "overheating",
+          "is being",
+          "replaced"
+        ],
+        "answers": [
+          [
+            "that",
+            "keeps",
+            "overheating",
+            "is being",
+            "replaced"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Would you have gone on the field trip if there had been room?",
+        "frame": "I ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "would have",
+          "signed up",
+          "if",
+          "there had been",
+          "there was",
+          "a spot",
+          "left"
+        ],
+        "answers": [
+          [
+            "would have",
+            "signed up",
+            "if",
+            "there had been",
+            "a spot",
+            "left"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-10",
+        "prompt": "When did the assignment finally make sense to you?",
+        "frame": "Only ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "after",
+          "the second",
+          "seminar",
+          "did I",
+          "understand",
+          "understood",
+          "what was being asked"
+        ],
+        "answers": [
+          [
+            "after",
+            "the second",
+            "seminar",
+            "did I",
+            "understand",
+            "what was being asked"
+          ]
+        ],
+        "timeLimitSec": 40
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "Rowley Regional Transit has announced that the last evening bus on route 9, which leaves the university at 10:40 p.m., will be dropped from the autumn timetable. The company has invited written comments from passengers before it makes a final decision next month. You depend on that bus after evening classes.",
+    "to": "comments@rowleytransit.com",
+    "subject": "Comments on the proposed route 9 timetable",
+    "bullets": [
+      "Thank the company for inviting comments and say why the evening service matters to you.",
+      "Report a problem that dropping the last bus would cause for passengers like you.",
+      "Propose one alternative to cutting the service."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Business 214: Work and Organizations",
+    "professorName": "Dr. Ferreira",
+    "professorPost": "When companies advertise an open position, some print the salary range in the posting itself, while others say only that the pay is competitive and leave the figure for a later conversation. Governments and employers in several countries are now debating whether that range should always appear in the advertisement. What do you think? Should employers be required to publish a salary range in every job posting? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Priya",
+        "post": "Employers should have to publish it. Last summer I spent two weeks on an application and sat through two interviews, and only then did I learn that the pay would not cover my rent. The company knew that the whole time and I did not. That imbalance wastes the applicant's time, never the employer's."
+      },
+      {
+        "name": "Theo",
+        "post": "In practice the rule produces ranges so wide that they tell an applicant nothing at all. It also creates problems inside the company, because employees who have worked there for years see a higher number advertised for their own job and quietly lose trust in their manager."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  }
+}

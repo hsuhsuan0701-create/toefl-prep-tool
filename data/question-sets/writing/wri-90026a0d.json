@@ -1,0 +1,590 @@
+{
+  "id": "wri-90026a0d",
+  "source": "generated",
+  "createdAt": "2026-08-22T12:57:37.411Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Has the fire drill time changed for today?",
+        "frame": "Yes, it ___ ___ ___ ___ this afternoon.",
+        "tiles": [
+          "now",
+          "starts",
+          "an hour",
+          "earlier",
+          "started"
+        ],
+        "answers": [
+          [
+            "now",
+            "starts",
+            "an hour",
+            "earlier"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Where should I go for the trail cleanup this week?",
+        "frame": "We ___ ___ ___ ___ the north lot this week.",
+        "tiles": [
+          "are",
+          "now",
+          "meeting",
+          "at",
+          "meets"
+        ],
+        "answers": [
+          [
+            "are",
+            "now",
+            "meeting",
+            "at"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Can we continue the chemical waste experiment today?",
+        "frame": "No, we ___ ___ ___ ___ ___ is rechecked.",
+        "tiles": [
+          "must",
+          "pause",
+          "until",
+          "the",
+          "airflow",
+          "paused"
+        ],
+        "answers": [
+          [
+            "must",
+            "pause",
+            "until",
+            "the",
+            "airflow"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Why isn't the meeting device showing my calendar?",
+        "frame": "It ___ ___ ___ ___ ___ a manual restart.",
+        "tiles": [
+          "failed",
+          "to sync",
+          "overnight",
+          "and",
+          "needs",
+          "need"
+        ],
+        "answers": [
+          [
+            "failed",
+            "to sync",
+            "overnight",
+            "and",
+            "needs"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-5",
+        "prompt": "My newest episode won't finish downloading. What's wrong?",
+        "frame": "Once ___ ___ ___ ___ ___, try downloading it again.",
+        "tiles": [
+          "the stalled cache",
+          "on your device",
+          "is",
+          "finally",
+          "cleared",
+          "clearing"
+        ],
+        "answers": [
+          [
+            "the stalled cache",
+            "on your device",
+            "is",
+            "finally",
+            "cleared"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Is the etching press ready for my afternoon session?",
+        "frame": "Not yet — the technician says ___ ___ ___ ___ ___ ___ ready before your slot ends.",
+        "tiles": [
+          "it",
+          "needs",
+          "recalibration",
+          "but",
+          "will",
+          "be",
+          "needed"
+        ],
+        "answers": [
+          [
+            "it",
+            "needs",
+            "recalibration",
+            "but",
+            "will",
+            "be"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Which room is my balance assessment in this week?",
+        "frame": "It's in ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "the room",
+          "that",
+          "the front desk",
+          "just",
+          "moved",
+          "us to",
+          "moves"
+        ],
+        "answers": [
+          [
+            "the room",
+            "that",
+            "the front desk",
+            "just",
+            "moved",
+            "us to"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Can I still get my blood pressure checked before you close?",
+        "frame": "The line ___ ___ ___ ___ ___ ___ clean the equipment.",
+        "tiles": [
+          "closes",
+          "ten minutes",
+          "early",
+          "today",
+          "so",
+          "we can",
+          "closed"
+        ],
+        "answers": [
+          [
+            "closes",
+            "ten minutes",
+            "early",
+            "today",
+            "so",
+            "we can"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Can I put my suitcase on the next train?",
+        "frame": "The ___ ___ ___ ___ ___ ___ full, so you'll need a later one.",
+        "tiles": [
+          "compartment",
+          "reserved for",
+          "luggage",
+          "on that train",
+          "is",
+          "already",
+          "reserving"
+        ],
+        "answers": [
+          [
+            "compartment",
+            "reserved for",
+            "luggage",
+            "on that train",
+            "is",
+            "already"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Can visitors see the new diary donation this week?",
+        "frame": "Not yet — it ___ ___ ___ ___ ___ ___ it goes on display.",
+        "tiles": [
+          "has",
+          "to be",
+          "photographed",
+          "under UV light",
+          "first",
+          "before",
+          "photographing"
+        ],
+        "answers": [
+          [
+            "has",
+            "to be",
+            "photographed",
+            "under UV light",
+            "first",
+            "before"
+          ]
+        ],
+        "timeLimitSec": 40
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You recently signed up for a clinic's new evening stretching class and just received a confirmation email. The email confirmed your spot right away, but it lists a room location that you know is wrong, and the class begins in two days.",
+    "to": "scheduling@brightpathclinic.org",
+    "subject": "Wrong Room Listed for My Evening Stretching Class",
+    "bullets": [
+      "Thank the coordinator for confirming your spot in the new evening stretching class so quickly.",
+      "Explain that the room location listed in the confirmation email is incorrect.",
+      "Ask for the correct room location before the class starts in two days."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Introduction to Urban Ecology",
+    "professorName": "Professor Alvarado",
+    "professorPost": "Many city tree-planting programs are debating whether to require native species exclusively. Native trees tend to support local insects, birds, and soil organisms more effectively than imported species, but they often grow more slowly than some non-native trees that can provide usable shade within just a few years. Should city planting programs require native species only, even if it means residents wait longer for shade? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Priya",
+        "post": "I think cities should require native species only. Non-native trees might shade a street faster, but they rarely support local birds or insects the way native trees do. If we keep choosing quick fixes, we lose the long-term ecological value these programs are supposed to protect for the whole neighborhood."
+      },
+      {
+        "name": "Marcus",
+        "post": "I get Priya's point about biodiversity, but people live with heat right now. A neighborhood without real shade for ten years while a native oak slowly matures isn't a fair trade for residents dealing with rising summer temperatures. Programs should mix both species types instead of picking only one."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "workplace-business",
+          "situation": "office manager tells a new employee that today's fire drill schedule moved earlier in the afternoon.",
+          "participantRoles": [
+            "office manager",
+            "new employee"
+          ],
+          "noveltyKey": "fire-drill-schedule-moved-earlier",
+          "requiredConcepts": [
+            "fire drill time moved earlier",
+            "new evacuation meeting point",
+            "confirmation the change applies today only"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1696d60a",
+              "reason": "that item covers an expense reimbursement cap change, a financial policy shift rather than a same-day safety schedule change"
+            },
+            {
+              "setId": "wri-f9779355",
+              "reason": "that item covers a badge access window restriction, not a one-time drill timing update"
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "city parks volunteer coordinator tells a new volunteer that this week's trail cleanup meeting point moved to a different lot.",
+          "participantRoles": [
+            "city parks volunteer coordinator",
+            "new volunteer"
+          ],
+          "noveltyKey": "trail-cleanup-meeting-point-moved",
+          "requiredConcepts": [
+            "trail cleanup meeting point moved",
+            "different parking lot location",
+            "same start time as before"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-550947bf",
+              "reason": "that item covers a new permit requirement for a mural project, not a meeting-point relocation"
+            },
+            {
+              "setId": "wri-f9779355",
+              "reason": "that item covers a recurring weekly water tap rotation, not a one-time event relocation"
+            },
+            {
+              "setId": "wri-1696d60a",
+              "reason": "that item covers a household recycling collection day change, not a volunteer event location"
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "laboratory safety officer tells a new research assistant that today's chemical waste experiment must pause until fume hood airflow is rechecked.",
+          "participantRoles": [
+            "laboratory safety officer",
+            "new research assistant"
+          ],
+          "noveltyKey": "experiment-paused-fume-hood-airflow",
+          "requiredConcepts": [
+            "chemical waste experiment paused",
+            "fume hood airflow recheck",
+            "resume only after airflow confirmed safe"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1696d60a",
+              "reason": "that item covers a routine temperature log check, not a safety-triggered experiment pause"
+            },
+            {
+              "setId": "wri-550947bf",
+              "reason": "that item covers a field habitat count rotation, not a laboratory safety incident"
+            },
+            {
+              "setId": "wri-f9779355",
+              "reason": "that item covers scheduled sensor recalibration maintenance, not an unplanned safety pause"
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "software helpdesk technician tells a remote user that the meeting device failed overnight sync and needs a manual restart.",
+          "participantRoles": [
+            "software helpdesk technician",
+            "remote user"
+          ],
+          "noveltyKey": "meeting-device-overnight-sync-failure",
+          "requiredConcepts": [
+            "meeting device overnight sync failure",
+            "manual restart required",
+            "data since last sync at risk"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1696d60a",
+              "reason": "that item covers battery saver mode silently disabling downloads, not a sync failure"
+            },
+            {
+              "setId": "wri-f9779355",
+              "reason": "that item covers a shared profile device cap limit, unrelated to a sync failure"
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "podcast platform support agent tells a subscriber that today's episode download is stuck at a stalled digital cache.",
+          "participantRoles": [
+            "podcast platform support agent",
+            "subscriber"
+          ],
+          "noveltyKey": "episode-download-stalled-cache",
+          "requiredConcepts": [
+            "episode download stuck mid transfer",
+            "stalled digital cache clearing needed",
+            "retry after cache cleared"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1696d60a",
+              "reason": "that item covers a device setting disabling downloads, not a stalled cache on the listener side"
+            },
+            {
+              "setId": "wri-f9779355",
+              "reason": "that item covers a device-count cap on shared profiles, unrelated to a download cache fault"
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "art gallery preparator tells a visiting artist that the etching press reserved for the afternoon needs recalibration first.",
+          "participantRoles": [
+            "art gallery preparator",
+            "visiting artist"
+          ],
+          "noveltyKey": "etching-press-recalibration-delay",
+          "requiredConcepts": [
+            "etching press needs recalibration",
+            "afternoon reservation delayed briefly",
+            "press ready before scheduled slot ends"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-550947bf",
+              "reason": "that item covers an added insurance requirement before a festival, a paperwork issue rather than equipment readiness"
+            },
+            {
+              "setId": "wri-f9779355",
+              "reason": "that item covers insurance proof needed before hanging loaned artwork, unrelated to press equipment"
+            },
+            {
+              "setId": "wri-1696d60a",
+              "reason": "that item covers a visitor photography policy change, not equipment status"
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "clinic front desk clerk tells a patient that this week's balance exercise assessment moved to a different treatment room.",
+          "participantRoles": [
+            "clinic front desk clerk",
+            "patient"
+          ],
+          "noveltyKey": "balance-assessment-room-change",
+          "requiredConcepts": [
+            "balance exercise assessment room change",
+            "new room number",
+            "same appointment time"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-f9779355",
+              "reason": "that item covers a one-time reschedule limit policy, not a same-day room change"
+            },
+            {
+              "setId": "wri-550947bf",
+              "reason": "that item covers a new questionnaire requirement, a paperwork addition rather than a location change"
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "mobile health van coordinator tells a visitor that the blood pressure screening line must close ten minutes early for equipment cleaning.",
+          "participantRoles": [
+            "mobile health van coordinator",
+            "visitor"
+          ],
+          "noveltyKey": "screening-line-closes-early-cleaning",
+          "requiredConcepts": [
+            "screening line closing ten minutes early",
+            "equipment cleaning reason",
+            "last entry cutoff time"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1696d60a",
+              "reason": "that item covers a workshop format shortened permanently, not a single same-day early closure"
+            },
+            {
+              "setId": "wri-550947bf",
+              "reason": "that item covers a new questionnaire requirement, an unrelated procedural addition"
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "train station platform agent tells a passenger that the luggage compartment on the next train is already full and a later train is needed.",
+          "participantRoles": [
+            "train station platform agent",
+            "passenger"
+          ],
+          "noveltyKey": "luggage-compartment-already-full",
+          "requiredConcepts": [
+            "luggage compartment already full",
+            "next available train option",
+            "ticket validity for later train"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1696d60a",
+              "reason": "that item covers a shuttle route gaining a stop, not a capacity problem"
+            },
+            {
+              "setId": "wri-550947bf",
+              "reason": "that item covers an express ticket losing its seat reservation, unrelated to luggage space"
+            },
+            {
+              "setId": "wri-f9779355",
+              "reason": "that item covers a ferry vehicle reservation standby release, a different mode and issue"
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "heritage archive registrar tells an intern that a newly donated historical diary must be photographed under UV light before display.",
+          "participantRoles": [
+            "heritage archive registrar",
+            "intern"
+          ],
+          "noveltyKey": "diary-uv-photography-before-display",
+          "requiredConcepts": [
+            "historical diary photographed under UV light",
+            "photography required before display",
+            "handling delayed until images taken"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1696d60a",
+              "reason": "that item covers ink stabilization treatment for a migration-era letter, a conservation process rather than a photography requirement"
+            },
+            {
+              "setId": "wri-550947bf",
+              "reason": "that item covers timing gaps between walking tour groups, unrelated to archival intake handling"
+            },
+            {
+              "setId": "wri-f9779355",
+              "reason": "that item covers hourly reservation blocks for a microfilm reader, a reader-access rule rather than an intake procedure"
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "stretching-class-wrong-confirmed-location",
+      "requiredConcepts": [
+        "evening stretching class confirmation",
+        "wrong location listed in confirmation",
+        "corrected location needed before session"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-aaa3d20f",
+          "reason": "that item concerns a wrong food allergy entered on a registration record, not a wrong class location on a confirmation"
+        }
+      ],
+      "situation": "After signing up for a clinic's new evening stretching class, the writer receives a confirmation email listing the wrong room location, and the class starts in two days.",
+      "recipientRole": "clinic scheduling coordinator",
+      "communicativeActs": [
+        "express appreciation for the clinic's quick class confirmation",
+        "report that the location listed in the confirmation is wrong",
+        "request the corrected location before the session starts"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "science-environment",
+      "noveltyKey": "native-versus-fast-growing-shade-trees",
+      "requiredConcepts": [
+        "native species support local habitat",
+        "non native species grow and shade faster",
+        "biodiversity value versus quick visible results"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-bdbdd45c",
+          "reason": "that item weighs disposable plastic against reusable glass labware, an equipment sustainability choice rather than a planting policy trade-off"
+        }
+      ],
+      "proposition": "local tree-planting programs should require native species only for habitat value, even though faster-growing non-native trees provide shade sooner",
+      "competingValues": [
+        "long-term habitat and biodiversity benefits of native species",
+        "faster shade and quicker visible results from non-native species"
+      ]
+    }
+  }
+}

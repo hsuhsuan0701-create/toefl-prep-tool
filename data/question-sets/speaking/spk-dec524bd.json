@@ -1,0 +1,192 @@
+{
+  "id": "spk-dec524bd",
+  "source": "generated",
+  "createdAt": "2026-08-23T13:43:13.001Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Physical Therapy Intake Training",
+    "scenarioDescription": "You are helping train a new front-desk aide in the physical therapy intake area of the campus health clinic, just before walk-in sports injury hours begin. Listen to the lead physical therapist and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-dec524bd/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-dec524bd.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Physical Therapy Intake Training. You are helping train a new front-desk aide in the physical therapy intake area of the campus health clinic, just before walk-in sports injury hours begin. Listen to the lead physical therapist and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Let's walk through each intake station together.\n- New patients and returning athletes check in here first.\n- Each patient fills out an injury history form at check-in.\n- The form asks about the injury, but it also asks about past treatment.\n- After the form is done, walk the patient to the supply station.\n- The elastic wraps and cold packs are stocked at one station.\n- The exercise mats, wiped down first, should be ready before walk-ins begin.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Let's walk through each intake station together.",
+        "audio": "stimuli/spk-dec524bd/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "New patients and returning athletes check in here first.",
+        "audio": "stimuli/spk-dec524bd/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Each patient fills out an injury history form at check-in.",
+        "audio": "stimuli/spk-dec524bd/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The form asks about the injury, but it also asks about past treatment.",
+        "audio": "stimuli/spk-dec524bd/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "After the form is done, walk the patient to the supply station.",
+        "audio": "stimuli/spk-dec524bd/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The elastic wraps and cold packs are stocked at one station.",
+        "audio": "stimuli/spk-dec524bd/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The exercise mats, wiped down first, should be ready before walk-ins begin.",
+        "audio": "stimuli/spk-dec524bd/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Weekend Trip Preparation",
+    "intro": "Thank you for speaking with me today. I'm doing a quick study on how people get ready for short trips, and I have four brief questions about how you prepare before a weekend away from home.",
+    "introAudio": "stimuli/spk-dec524bd/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, when you're getting ready for a short weekend trip, what's one thing you always do the night before, like packing your bag or checking a bus or train schedule to pick a departure time?",
+        "audio": "stimuli/spk-dec524bd/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of one specific weekend trip you took. Was there a time when something about your route, your ticket, or what you packed had to change at the last minute? What happened, and why did you have to change it?",
+        "audio": "stimuli/spk-dec524bd/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some travelers plan out every stop of a short trip's route before they leave, while others prefer to decide the details once they've arrived. Which approach do you think works better for a short weekend trip, and why?",
+        "audio": "stimuli/spk-dec524bd/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Some people say travelers should always build extra time into their route in case a ticket or connection gets delayed, while others think that just wastes time. Do you think travelers should generally plan for possible delays? Why or why not?",
+        "audio": "stimuli/spk-dec524bd/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "interview-question",
+      "take": "retake",
+      "measuredWpm": 183.4,
+      "targetWpm": 155,
+      "minWpm": 130,
+      "maxWpm": 180
+    },
+    {
+      "check": "speech-rate",
+      "detail": "interview-question",
+      "take": "retake",
+      "measuredWpm": 187.3,
+      "targetWpm": 155,
+      "minWpm": 130,
+      "maxWpm": 180
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "health-clinic-physical-therapy-intake-walkthrough",
+      "requiredConcepts": [
+        "injury history form filled out at check-in",
+        "elastic wrap and cold pack supply station",
+        "exercise mat area readied before walk-in hours"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-6a7e0b2a",
+          "reason": "that Set walks through vaccination-day station setup before doors open; this one orients staff to ongoing physical-therapy intake stations for walk-in injury care, a different clinical service and station set"
+        }
+      ],
+      "setting": "a college health clinic's physical therapy intake area, before its walk-in sports injury hours begin",
+      "speakerRole": "the clinic's lead physical therapist training a newly hired front-desk aide",
+      "communicativePurpose": "walking the aide once through each intake station in order: injury history form, elastic wrap supply, cold pack freezer, exercise mat area, so patients get guided smoothly with no instruction needed each time"
+    },
+    "interview": {
+      "domain": "services-travel",
+      "noveltyKey": "weekend-trip-travel-prep-habit",
+      "requiredConcepts": [
+        "weekend travel bag packed the night before",
+        "a departure time chosen around a bus or train schedule",
+        "planning every stop of a route versus deciding along the way",
+        "extra travel time built in for a delayed ticket or route"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-7546a04e",
+          "reason": "that Set covers routine daily commuting by local bus or train for errands; this one covers packing and route-planning habits before an occasional weekend trip, not a daily commute"
+        }
+      ],
+      "topic": "how the test taker gets ready before a short weekend trip away from home",
+      "premise": "a travel habits researcher places an unannounced phone call asking about the test taker's usual routine for preparing before a short weekend trip, including what goes in the travel bag and how the route or ticket gets arranged",
+      "questionArc": [
+        "ask a concrete retrievable fact about how the test taker typically packs a travel bag or chooses a departure time before a short weekend trip",
+        "ask the test taker to narrate one specific past weekend trip where something about the travel route, ticket, or bag had to change, and why",
+        "present two contrasting views on planning every stop of a short trip's route in advance versus deciding details after arriving, and ask the test taker to take a side",
+        "broaden to whether travelers should generally build extra time into a route in case a ticket or connection is delayed, inviting evaluation or a recommendation"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "australian",
+      "voice": "Charon",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "north-american",
+      "voice": "Achird",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

@@ -1,0 +1,478 @@
+{
+  "id": "wri-68e48fb1",
+  "source": "generated",
+  "createdAt": "2026-08-22T07:59:33.220Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Please return the study room badge to the front desk before the library closes tonight.",
+        "frame": "I ___ ___ ___ ___ time.",
+        "tiles": [
+          "will return",
+          "returns",
+          "it",
+          "before",
+          "closing"
+        ],
+        "answers": [
+          [
+            "will return",
+            "it",
+            "before",
+            "closing"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-2",
+        "prompt": "The shared printer on our floor is being replaced next week, so please use the temporary one on the floor below until then.",
+        "frame": "I ___ ___ ___ ___ replaced.",
+        "tiles": [
+          "will use",
+          "used",
+          "the temporary printer",
+          "until",
+          "it's"
+        ],
+        "answers": [
+          [
+            "will use",
+            "the temporary printer",
+            "until",
+            "it's"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Community bulletin board posting slots are now assigned by lottery instead of first come, first served.",
+        "frame": "I ___ ___ ___ ___ posting slot.",
+        "tiles": [
+          "need to enter",
+          "needs to enter",
+          "the lottery",
+          "for",
+          "a"
+        ],
+        "answers": [
+          [
+            "need to enter",
+            "the lottery",
+            "for",
+            "a"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-4",
+        "prompt": "The climate chamber's humidity sensor needs recalibration before we run the next experiment.",
+        "frame": "I ___ ___ ___ ___ ___ in time.",
+        "tiles": [
+          "will recalibrate",
+          "recalibrates",
+          "the sensor",
+          "this afternoon",
+          "so",
+          "it's ready"
+        ],
+        "answers": [
+          [
+            "will recalibrate",
+            "the sensor",
+            "this afternoon",
+            "so",
+            "it's ready"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Your streaming device's firmware update needs an overnight wifi connection to finish installing.",
+        "frame": "I ___ ___ ___ ___ ___ can finish.",
+        "tiles": [
+          "will leave",
+          "leaves",
+          "it connected",
+          "to wifi",
+          "overnight",
+          "so the update"
+        ],
+        "answers": [
+          [
+            "will leave",
+            "it connected",
+            "to wifi",
+            "overnight",
+            "so the update"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-6",
+        "prompt": "The online catalog now requires two-factor login before you can access anything digitally.",
+        "frame": "I ___ ___ ___ ___ again.",
+        "tiles": [
+          "will set up",
+          "sets up",
+          "two-factor authentication",
+          "before I",
+          "request access"
+        ],
+        "answers": [
+          [
+            "will set up",
+            "two-factor authentication",
+            "before I",
+            "request access"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Flash photography is no longer permitted in the ceramic exhibit hall, so please turn it off on your camera.",
+        "frame": "The ___ ___ ___ ___ ___ for future visitors.",
+        "tiles": [
+          "policy",
+          "that",
+          "bans flash photography",
+          "protects",
+          "protect",
+          "the fragile ceramics"
+        ],
+        "answers": [
+          [
+            "policy",
+            "that",
+            "bans flash photography",
+            "protects",
+            "the fragile ceramics"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-8",
+        "prompt": "The nutrition workshop has moved to a smaller room down the hall, so please check the new sign before you go in.",
+        "frame": "It ___ ___ ___ ___ ___ workshop content.",
+        "tiles": [
+          "was",
+          "were",
+          "the room change",
+          "that confused me",
+          "at first,",
+          "not the"
+        ],
+        "answers": [
+          [
+            "was",
+            "the room change",
+            "that confused me",
+            "at first,",
+            "not the"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Your express ticket doesn't include a seat reservation for the connecting route, so you'll need to book one separately.",
+        "frame": "I ___ ___ ___ ___ ___ I hadn't booked.",
+        "tiles": [
+          "didn't realize",
+          "that",
+          "the connecting route",
+          "required",
+          "requires",
+          "a seat reservation"
+        ],
+        "answers": [
+          [
+            "didn't realize",
+            "that",
+            "the connecting route",
+            "required",
+            "a seat reservation"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-10",
+        "prompt": "The migration-era letters can only be viewed with gloves in the reading room, since the paper is extremely fragile.",
+        "frame": "It ___ ___ ___ ___ ___ ___ age.",
+        "tiles": [
+          "is",
+          "are",
+          "the fragile condition",
+          "of the letters",
+          "that requires gloves",
+          "whenever we handle them,",
+          "not the letters'"
+        ],
+        "answers": [
+          [
+            "is",
+            "the fragile condition",
+            "of the letters",
+            "that requires gloves",
+            "whenever we handle them,",
+            "not the letters'"
+          ]
+        ],
+        "timeLimitSec": 40
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You recently returned a projector you rented for a client presentation, and the invoice emailed to you afterward lists a late fee under a rental order number that isn't yours. You need a corrected receipt before your workplace's expense report deadline this Friday.",
+    "to": "billing@crestviewequipmentrentals.com",
+    "subject": "Incorrect Late Fee on Invoice #48219",
+    "bullets": [
+      "Explain that the invoice lists a late fee under the wrong rental order number.",
+      "Ask why the charge was applied to your account and whether the projector's return was logged correctly.",
+      "Suggest that the company issue a corrected receipt before your expense report deadline."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Museum Studies and Public Engagement",
+    "professorName": "Professor Alvarez",
+    "professorPost": "Many museums are considering removing the printed wall labels beside artworks and requiring visitors to use a smartphone app instead to read curatorial information. Supporters say this creates a cleaner, more immersive gallery space, while others worry about visitors who don't own or want to use a smartphone. Should galleries remove the printed labels and require an app instead? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Maya",
+        "post": "I don't think galleries should remove the printed labels. Not every visitor owns a smartphone, and some don't want to use one while they're trying to relax and look at art. Printed labels let anyone glance at the information immediately without opening an app or worrying about a dead battery."
+      },
+      {
+        "name": "Theo",
+        "post": "I disagree with Maya. Printed labels clutter the walls and pull attention away from the artwork itself. Most visitors already carry a phone, and an app can offer more than a small placard ever could, including enlarged images, audio narration, and translations that a paper label just can't fit."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "campus-academics",
+          "situation": "A university librarian tells a student that the badge for a reserved study room must be returned to the front desk before the library closes.",
+          "participantRoles": [
+            "university librarian",
+            "student who reserved a study room"
+          ],
+          "noveltyKey": "library-reserved-room-badge-return",
+          "requiredConcepts": [
+            "study room badge returned to front desk",
+            "library closing time deadline"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "An office manager warns an employee that the shared printer on their workplace floor is being replaced next week.",
+          "participantRoles": [
+            "office manager",
+            "employee"
+          ],
+          "noveltyKey": "shared-printer-replacement-notice",
+          "requiredConcepts": [
+            "shared printer replacement next week",
+            "temporary printer on a different floor"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A city recreation coordinator tells a neighborhood volunteer that community bulletin board posting slots are now assigned by lottery.",
+          "participantRoles": [
+            "city recreation coordinator",
+            "neighborhood volunteer"
+          ],
+          "noveltyKey": "bulletin-board-slot-lottery",
+          "requiredConcepts": [
+            "community bulletin board posting slots",
+            "assigned by lottery"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-bdbdd45c",
+              "reason": "That set's lottery assigns a physical garden plot to volunteers; this one assigns bulletin-board posting slots and centers on a random-selection process, not garden access."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A laboratory supervisor tells a research assistant that the climate chamber's humidity sensor needs recalibration before the next experiment.",
+          "participantRoles": [
+            "laboratory supervisor",
+            "research assistant"
+          ],
+          "noveltyKey": "climate-chamber-sensor-recalibration",
+          "requiredConcepts": [
+            "climate chamber humidity sensor",
+            "recalibration before the next experiment"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A software support agent tells a user that the streaming device's firmware update requires a wifi connection overnight.",
+          "participantRoles": [
+            "software support agent",
+            "device user"
+          ],
+          "noveltyKey": "firmware-update-overnight-wifi",
+          "requiredConcepts": [
+            "streaming device firmware update",
+            "wifi connection needed overnight"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "That set concerns a rejected login password on an online account; this one concerns a streaming device's firmware update needing an overnight wifi connection, a different device and problem."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A digital media archive administrator tells a researcher that the online catalog now requires two-factor login for digital access.",
+          "participantRoles": [
+            "digital media archive administrator",
+            "researcher requesting online access"
+          ],
+          "noveltyKey": "media-archive-two-factor-login",
+          "requiredConcepts": [
+            "online catalog two-factor login",
+            "digital access for the archive"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-bdbdd45c",
+              "reason": "That set concerns an app's offline download storage limit; this one concerns a login/access-control change for an online catalog, not download limits."
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A museum's gallery attendant tells a visitor that flash photography is no longer permitted in the ceramic exhibit hall.",
+          "participantRoles": [
+            "museum gallery attendant",
+            "visitor"
+          ],
+          "noveltyKey": "ceramic-exhibit-flash-photography-ban",
+          "requiredConcepts": [
+            "ceramic exhibit hall",
+            "flash photography no longer permitted"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2936d16f",
+              "reason": "That set is about a label listing two conflicting dates for an object; this one is about a new photography policy in a ceramic exhibit hall, an unrelated rule change."
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A clinic's front desk assistant tells a patient that the nutrition workshop has moved to a smaller room down the hall.",
+          "participantRoles": [
+            "clinic front desk assistant",
+            "patient enrolled in the workshop"
+          ],
+          "noveltyKey": "nutrition-workshop-room-change",
+          "requiredConcepts": [
+            "nutrition workshop room change",
+            "smaller room down the hall"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A train station agent tells a traveler that the express ticket does not include a seat reservation on the connecting route.",
+          "participantRoles": [
+            "train station agent",
+            "traveler"
+          ],
+          "noveltyKey": "express-ticket-missing-seat-reservation",
+          "requiredConcepts": [
+            "express ticket without a seat reservation",
+            "seat reservation on the connecting route"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-bdbdd45c",
+              "reason": "That set tests whether an express ticket is valid on a local train; this one tests a missing seat reservation on a connecting route, a different booking issue."
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A heritage center guide tells a visiting researcher that the migration-era letters can only be viewed with gloves in the reading room.",
+          "participantRoles": [
+            "heritage center guide",
+            "visiting researcher"
+          ],
+          "noveltyKey": "migration-letters-reading-room-gloves",
+          "requiredConcepts": [
+            "migration-era letters",
+            "gloves required in the reading room"
+          ],
+          "distinguishesFrom": []
+        }
+      ]
+    },
+    "email": {
+      "domain": "workplace-business",
+      "noveltyKey": "rental-invoice-mislabeled-charge",
+      "requiredConcepts": [
+        "late fee under the wrong rental order number",
+        "corrected receipt before the expense deadline",
+        "confirmation the projector was returned"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-787b9d66",
+          "reason": "That set reports damaged panels and a missing bracket in a furniture delivery; this one reports a billing error on a rental invoice, a workplace expense issue rather than a shipped-goods defect."
+        }
+      ],
+      "situation": "After returning a rented projector, the writer notices the emailed invoice lists a late fee under the wrong rental order number and needs a corrected receipt before the workplace expense report deadline.",
+      "recipientRole": "customer billing representative at an equipment rental company",
+      "communicativeActs": [
+        "report a problem",
+        "request clarification",
+        "propose a solution"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "arts-culture",
+      "noveltyKey": "gallery-remove-printed-labels",
+      "requiredConcepts": [
+        "printed wall labels beside artworks",
+        "smartphone app for curatorial information",
+        "visitors without a smartphone"
+      ],
+      "distinguishesFrom": [],
+      "proposition": "Should museum galleries remove printed wall labels next to artworks and require visitors to use a smartphone app instead to read curatorial information?",
+      "competingValues": [
+        "uninterrupted, immersive viewing without label clutter on the wall",
+        "equal access for visitors who don't own or want to use a smartphone"
+      ]
+    }
+  }
+}

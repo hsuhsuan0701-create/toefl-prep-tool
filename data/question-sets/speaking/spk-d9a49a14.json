@@ -1,0 +1,200 @@
+{
+  "id": "spk-d9a49a14",
+  "source": "generated",
+  "createdAt": "2026-08-23T13:47:19.603Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Vision and Hearing Screening Room Orientation",
+    "scenarioDescription": "Before the first walk-in appointments of the screening day, the health center's lead technician is walking a new work-study aide through the vision and hearing room. Listen to what the technician says and repeat it. Repeat only once.",
+    "introAudio": "stimuli/spk-d9a49a14/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-d9a49a14.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Vision and Hearing Screening Room Orientation. Before the first walk-in appointments of the screening day, the health center's lead technician is walking a new work-study aide through the vision and hearing room. Listen to what the technician says and repeat it. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- We open the vision and hearing room now.\n- Grab the screening record cards and a spare clipboard too.\n- Walk over to the taped line and check the eye chart distance.\n- Patients stand on the taped line, but children often step past it.\n- Before a hearing test starts, quietly lower the headphone volume in the booth.\n- The quiet waiting bench outside is where patients sit before their appointments begin.\n- Aides stamped in at each station should recheck volume settings before opening.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "We open the vision and hearing room now.",
+        "audio": "stimuli/spk-d9a49a14/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Grab the screening record cards and a spare clipboard too.",
+        "audio": "stimuli/spk-d9a49a14/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.224,
+          "y": 0.375,
+          "w": 0.128,
+          "h": 0.063
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Walk over to the taped line and check the eye chart distance.",
+        "audio": "stimuli/spk-d9a49a14/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Patients stand on the taped line, but children often step past it.",
+        "audio": "stimuli/spk-d9a49a14/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.468,
+          "y": 0.301,
+          "w": 0.197,
+          "h": 0.147
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Before a hearing test starts, quietly lower the headphone volume in the booth.",
+        "audio": "stimuli/spk-d9a49a14/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.748,
+          "y": 0.213,
+          "w": 0.103,
+          "h": 0.122
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The quiet waiting bench outside is where patients sit before their appointments begin.",
+        "audio": "stimuli/spk-d9a49a14/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.031,
+          "y": 0.573,
+          "w": 0.26,
+          "h": 0.252
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Aides stamped in at each station should recheck volume settings before opening.",
+        "audio": "stimuli/spk-d9a49a14/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.554,
+          "y": 0.448,
+          "w": 0.369,
+          "h": 0.349
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Discovering a Local Historic Landmark",
+    "intro": "Thank you for speaking with me today. I'm calling from the town historical society — we're collecting people's memories about nearby historic sites for an oral history project. I'll ask you four questions, and you'll have 45 seconds to answer each one.",
+    "introAudio": "stimuli/spk-d9a49a14/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, which historic landmark or old building near you do you know best, and what event or era does it mark?",
+        "audio": "stimuli/spk-d9a49a14/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Can you recall a specific visit or moment when you first learned that landmark's history, and why has it stuck with you?",
+        "audio": "stimuli/spk-d9a49a14/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some people believe historic buildings near communities receive plenty of funding for preservation, while others feel new development should get priority instead. Which view do you agree with, and why?",
+        "audio": "stimuli/spk-d9a49a14/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Do you think schools should require students to learn about local history, and what would you recommend?",
+        "audio": "stimuli/spk-d9a49a14/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "health-center-vision-hearing-screening-orientation",
+      "requiredConcepts": [
+        "eye chart distance line taped on the floor",
+        "hearing booth headphone volume check",
+        "screening record card stamped at each station",
+        "quiet waiting bench before appointments begin"
+      ],
+      "distinguishesFrom": [],
+      "setting": "The health center's vision and hearing screening room, quiet before the first walk-in appointments of a screening day.",
+      "speakerRole": "The health center's lead health technician, training a newly hired work-study aide.",
+      "communicativePurpose": "Orient the new aide through each screening station in order — eye chart line, hearing booth, and record card — before patients arrive."
+    },
+    "interview": {
+      "domain": "history-social-change",
+      "noveltyKey": "nearby-historic-landmark-awareness-interview",
+      "requiredConcepts": [
+        "a nearby historic marker or old building",
+        "the first time hearing that landmark's history",
+        "funding to preserve old buildings",
+        "local history taught in school"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-210471e3",
+          "reason": "That interview tracks following town council decisions through public notices; this one centers on personal discovery of a historic landmark's story, with no government-process content."
+        }
+      ],
+      "topic": "Awareness of a nearby historic landmark or old building and how its story was first learned",
+      "premise": "A local historical society's oral-history outreach caller places an unannounced phone interview about awareness of nearby historic sites.",
+      "questionArc": [
+        "Names which nearby historic landmark or old building the test taker actually knows, and what event or era it marks.",
+        "Recalls a specific visit or moment when the test taker first heard that landmark's history, and why it stayed with them.",
+        "Weighs whether nearby historic buildings get enough preservation funding versus new development, then takes a side.",
+        "Broadens to whether schools should require lessons on local history, inviting a recommendation."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "british",
+      "voice": "Alnilam",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "north-american",
+      "voice": "Callirrhoe",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

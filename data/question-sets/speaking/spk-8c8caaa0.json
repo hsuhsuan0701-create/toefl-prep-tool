@@ -1,0 +1,248 @@
+{
+  "id": "spk-8c8caaa0",
+  "source": "generated",
+  "createdAt": "2026-08-23T07:46:18.946Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Preparing a New Gallery Exhibit",
+    "scenarioDescription": "You are in an art gallery's back workroom before a new exhibit opens to visitors. Listen to the exhibition preparator training a newly arrived installation assistant, and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-8c8caaa0/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-8c8caaa0.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Preparing a New Gallery Exhibit. You are in an art gallery's back workroom before a new exhibit opens to visitors. Listen to the exhibition preparator training a newly arrived installation assistant, and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- This crate holds our newest paintings.\n- The frames and the wall labels arrived together this morning.\n- We open each crate only under the curator's watchful supervision.\n- Put on protective gloves, and handle each fragile frame with care.\n- After we hang each painting, we check that it hangs straight.\n- We give each wall label's eye-level placement one last careful check.\n- Angle every track light that hangs above a painting to avoid glare.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "This crate holds our newest paintings.",
+        "audio": "stimuli/spk-8c8caaa0/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.074,
+          "y": 0.196,
+          "w": 0.201,
+          "h": 0.207
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The frames and the wall labels arrived together this morning.",
+        "audio": "stimuli/spk-8c8caaa0/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.448,
+          "y": 0.226,
+          "w": 0.173,
+          "h": 0.128
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "We open each crate only under the curator's watchful supervision.",
+        "audio": "stimuli/spk-8c8caaa0/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.087,
+          "y": 0.561,
+          "w": 0.155,
+          "h": 0.207
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Put on protective gloves, and handle each fragile frame with care.",
+        "audio": "stimuli/spk-8c8caaa0/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.362,
+          "y": 0.597,
+          "w": 0.138,
+          "h": 0.171
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "After we hang each painting, we check that it hangs straight.",
+        "audio": "stimuli/spk-8c8caaa0/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.551,
+          "y": 0.498,
+          "w": 0.1,
+          "h": 0.169
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "We give each wall label's eye-level placement one last careful check.",
+        "audio": "stimuli/spk-8c8caaa0/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.727,
+          "y": 0.535,
+          "w": 0.054,
+          "h": 0.076
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Angle every track light that hangs above a painting to avoid glare.",
+        "audio": "stimuli/spk-8c8caaa0/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.855,
+          "y": 0.386,
+          "w": 0.06,
+          "h": 0.073
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "A Quick Call About Study Habits",
+    "intro": "Thank you for speaking with me today. I'm calling from the university library's outreach team, and I have just a few quick questions about how students use study spaces on campus.",
+    "introAudio": "stimuli/spk-8c8caaa0/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, which library or study space on campus do you use most often for your coursework, and what does that spot offer you?",
+        "audio": "stimuli/spk-8c8caaa0/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of a recent time you had to get through a long, difficult reading assignment for one of your courses. How did you manage to finish it?",
+        "audio": "stimuli/spk-8c8caaa0/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some students say a completely quiet study space helps them concentrate best, while others prefer a space where they can talk through ideas with classmates. Which do you prefer, and why?",
+        "audio": "stimuli/spk-8c8caaa0/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Do you think the university should create more collaborative study spaces where students can work and talk together? What would you recommend?",
+        "audio": "stimuli/spk-8c8caaa0/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-briefing",
+      "take": "first",
+      "measuredWpm": 130.6,
+      "targetWpm": 165,
+      "minWpm": 145,
+      "maxWpm": 195
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 141.5,
+      "targetWpm": 200,
+      "minWpm": 175,
+      "maxWpm": 225
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 154.3,
+      "targetWpm": 215,
+      "minWpm": 190,
+      "maxWpm": 240
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "first",
+      "measuredWpm": 140.3,
+      "targetWpm": 176,
+      "minWpm": 151,
+      "maxWpm": 201
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "arts-culture",
+      "noveltyKey": "gallery-exhibit-install-walkthrough",
+      "requiredConcepts": [
+        "wall labels aligned at eye level",
+        "track lighting angled to avoid glare",
+        "crates opened only under gallery supervision",
+        "protective gloves worn near fragile frames"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-4272b8cc",
+          "reason": "gallery exhibit installation and lighting setup, not a theater costume and prop workshop walkthrough"
+        }
+      ],
+      "setting": "an art gallery's back workroom, before a new exhibit opens to visitors",
+      "speakerRole": "the gallery's exhibition preparator training a newly arrived installation assistant",
+      "communicativePurpose": "walk the assistant once through each step of hanging and lighting the new gallery show so it goes up correctly before opening"
+    },
+    "interview": {
+      "domain": "campus-academics",
+      "noveltyKey": "study-space-habits-preference",
+      "requiredConcepts": [
+        "favorite library corner for coursework",
+        "recent long reading assignment finished",
+        "quiet versus collaborative study space preference",
+        "more group study space added on campus"
+      ],
+      "distinguishesFrom": [],
+      "topic": "where and how test takers work through course reading on campus",
+      "premise": "a university library outreach team makes a brief unannounced phone call about study habits",
+      "questionArc": [
+        "asks which library or study space the test taker uses most for coursework and what that spot offers",
+        "asks test taker to recall a recent time finishing a heavy course reading assignment and how",
+        "presents contrasting views on quiet versus collaborative study spaces, asks test taker to pick a side with a reason",
+        "broadens to whether the university should add more collaborative study space, asks test taker to evaluate and recommend"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v4",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "british",
+      "voice": "Kore",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        200,
+        208,
+        215,
+        180,
+        178,
+        176,
+        175
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "australian",
+      "voice": "Sulafat",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

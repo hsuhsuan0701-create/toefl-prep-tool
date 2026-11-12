@@ -1,0 +1,534 @@
+{
+  "id": "wri-77a01da4",
+  "source": "generated",
+  "createdAt": "2026-08-31T15:34:13.156Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Which paths need reseeding before Saturday's market, and are the detour signs ready?",
+        "frame": "The ___ ___ ___ ___ ready.",
+        "tiles": [
+          "two closed paths",
+          "already",
+          "have",
+          "signs",
+          "has"
+        ],
+        "answers": [
+          [
+            "two closed paths",
+            "already",
+            "have",
+            "signs"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "We found some damage when the crates arrived this morning.",
+        "frame": "One crate ___ ___ ___ ___ corner.",
+        "tiles": [
+          "has",
+          "a crack",
+          "near",
+          "the front",
+          "have"
+        ],
+        "answers": [
+          [
+            "has",
+            "a crack",
+            "near",
+            "the front"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Because of a staffing gap, we've had to move your physical therapy slot earlier this week.",
+        "frame": "I ___ ___ ___ ___ ___ then.",
+        "tiles": [
+          "have",
+          "rearranged",
+          "my schedule",
+          "and",
+          "can attend",
+          "has"
+        ],
+        "answers": [
+          [
+            "have",
+            "rearranged",
+            "my schedule",
+            "and",
+            "can attend"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "The afternoon ferry route is delayed because of dense fog in the strait.",
+        "frame": "Once the fog ___ ___ ___ ___ ___ time.",
+        "tiles": [
+          "lifts",
+          "we",
+          "can adjust",
+          "the connecting tour's",
+          "start",
+          "lift"
+        ],
+        "answers": [
+          [
+            "lifts",
+            "we",
+            "can adjust",
+            "the connecting tour's",
+            "start"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "We've rescheduled today's water wheel demonstration because of the recent flooding.",
+        "frame": "___ ___ ___ ___ ___ ___ in time?",
+        "tiles": [
+          "will",
+          "the safer",
+          "viewing platform",
+          "still",
+          "be",
+          "ready",
+          "is"
+        ],
+        "answers": [
+          [
+            "will",
+            "the safer",
+            "viewing platform",
+            "still",
+            "be",
+            "ready"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "The equipment orientation has been moved to the smaller seminar room down the hall.",
+        "frame": "___ ___ ___ ___ ___ ___ door.",
+        "tiles": [
+          "the sheet",
+          "that lists new arrivals",
+          "will",
+          "hang",
+          "beside",
+          "the new room's",
+          "hangs"
+        ],
+        "answers": [
+          [
+            "the sheet",
+            "that lists new arrivals",
+            "will",
+            "hang",
+            "beside",
+            "the new room's"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Our booking system now requires manager approval for any reservation longer than two hours.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ anyway.",
+        "tiles": [
+          "we",
+          "understand",
+          "that urgent meetings",
+          "can",
+          "qualify",
+          "for a quick",
+          "exception",
+          "understands"
+        ],
+        "answers": [
+          [
+            "we",
+            "understand",
+            "that urgent meetings",
+            "can",
+            "qualify",
+            "for a quick",
+            "exception"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "The heron habitat camera lost its signal sometime overnight.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ immediately.",
+        "tiles": [
+          "since",
+          "the battery pack",
+          "keeps",
+          "draining very quickly",
+          "the backup pack",
+          "should",
+          "take over",
+          "keep"
+        ],
+        "answers": [
+          [
+            "since",
+            "the battery pack",
+            "keeps",
+            "draining very quickly",
+            "the backup pack",
+            "should",
+            "take over"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "One of your export files needs a manual re-render before the submission deadline — a step in the process seems to have failed silently.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "it",
+          "was",
+          "the render queue software",
+          "that",
+          "silently",
+          "skipped",
+          "her finished",
+          "audio track",
+          "skipping"
+        ],
+        "answers": [
+          [
+            "it",
+            "was",
+            "the render queue software",
+            "that",
+            "silently",
+            "skipped",
+            "her finished",
+            "audio track"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Have you noticed the balcony drain backing up again after every storm?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "whoever",
+          "refills",
+          "the balcony planters",
+          "could also",
+          "sweep away",
+          "the wet leaves",
+          "that keep",
+          "collecting",
+          "near the drain",
+          "refill"
+        ],
+        "answers": [
+          [
+            "whoever",
+            "refills",
+            "the balcony planters",
+            "could also",
+            "sweep away",
+            "the wet leaves",
+            "that keep",
+            "collecting",
+            "near the drain"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "As part of the regional citizen science program's backyard habitat monitoring project, you were mailed a rain gauge to track weekly precipitation. When you unpacked it, you noticed the printed markings use a different measurement scale than the program's instructions describe, so every reading you take is impossible to log accurately.",
+    "to": "programcoordinator@regionalmonitoringcenter.org",
+    "subject": "Incorrect Scale on Mailed Rain Gauge",
+    "bullets": [
+      "Explain that the rain gauge you received has markings printed in the wrong measurement scale.",
+      "Request either a replacement gauge or a chart for converting your current readings.",
+      "Ask whether the readings you have already logged need to be corrected."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Archives and Cultural Heritage Studies",
+    "professorName": "Professor Alvarez",
+    "professorPost": "Many regional archives are moving away from digitizing their collections in chronological order. Instead, staff now prioritize whichever records outside researchers request most often, since that keeps popular materials available quickly. Archivists have limited time each week, so favoring frequent requests can leave entire decades of records untouched for years. Which approach should archives follow, and why?",
+    "studentPosts": [
+      {
+        "name": "Maya",
+        "post": "I think request-driven digitization makes sense. Archivists have only a few hours a week for this work, so scanning whatever researchers actually need first means that effort isn't wasted on records nobody is currently using. A chronological plan sounds fair, but it could leave popular, historically significant collections locked away for years while staff work through less-requested decades."
+      },
+      {
+        "name": "Devon",
+        "post": "I disagree with Maya. If archives only chase current demand, entire decades could stay undigitized indefinitely, especially periods nobody has discovered yet. Chronological digitization guarantees the whole collection eventually becomes accessible, so future researchers aren't blocked by today's popularity. Staffing limits are real, but that's an argument for more funding, not for permanently skipping unrequested records."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "community-civic",
+          "situation": "A city parks division supervisor tells a new seasonal groundskeeper which paths need reseeding before the weekend market opens.",
+          "participantRoles": [
+            "city parks division supervisor",
+            "newly hired seasonal groundskeeper"
+          ],
+          "noveltyKey": "park-path-reseeding-market-prep",
+          "requiredConcepts": [
+            "reseeding schedule before weekend market",
+            "closed path detour signage"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7024b060",
+              "reason": "Uses seasonal groundskeeping and path reseeding logistics rather than a bench-donation safety inspection requirement."
+            },
+            {
+              "setId": "wri-7d7e0b05",
+              "reason": "Is a supervisor's routine work instruction, not a resident's council proposal to convert a vacant lot."
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A gallery registrar tells a visiting sculptor that one crate arrived with a cracked corner before the opening reception.",
+          "participantRoles": [
+            "gallery registrar",
+            "visiting sculptor"
+          ],
+          "noveltyKey": "gallery-crate-corner-crack-before-reception",
+          "requiredConcepts": [
+            "cracked crate corner found before opening",
+            "insurance claim photo documentation"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7024b060",
+              "reason": "Centers on a damaged shipping crate before a gallery reception rather than a backdrop repaint before a festival preview."
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A clinic scheduler tells a patient that the physical therapy slot moved earlier because of a staffing gap.",
+          "participantRoles": [
+            "clinic scheduler",
+            "patient"
+          ],
+          "noveltyKey": "clinic-therapy-slot-moved-staffing-gap",
+          "requiredConcepts": [
+            "appointment slot moved earlier",
+            "staffing gap explanation"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7024b060",
+              "reason": "Concerns a scheduler-to-patient move of a physical therapy slot due to staffing, not a wellbeing coordinator's clinic scheduling conflict."
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A ferry dispatcher tells a tour operator the afternoon route is delayed by dense fog.",
+          "participantRoles": [
+            "ferry dispatcher",
+            "tour operator"
+          ],
+          "noveltyKey": "ferry-route-fog-delay-tour-operator",
+          "requiredConcepts": [
+            "afternoon route delayed by fog",
+            "revised arrival estimate for connecting tour"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A historical mill site's guide tells a visiting school group leader that today's water wheel demonstration was rescheduled to protect it from recent flooding.",
+          "participantRoles": [
+            "historical mill site guide",
+            "visiting school group leader"
+          ],
+          "noveltyKey": "historical-mill-waterwheel-demo-flood-reschedule",
+          "requiredConcepts": [
+            "water wheel demonstration rescheduled after flooding",
+            "safer viewing platform for rescheduled date"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7d7e0b05",
+              "reason": "Involves a live water-wheel demonstration rescheduled for flooding, not archival ledger access for a genealogist."
+            }
+          ]
+        },
+        {
+          "domain": "campus-academics",
+          "situation": "A university facilities coordinator tells an incoming exchange student that the equipment orientation moved to the smaller seminar room.",
+          "participantRoles": [
+            "university facilities coordinator",
+            "incoming exchange student"
+          ],
+          "noveltyKey": "university-facilities-equipment-orientation-room-change",
+          "requiredConcepts": [
+            "equipment orientation moved to smaller seminar room",
+            "revised sign-in sheet at new room"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7d7e0b05",
+              "reason": "Involves equipment-orientation room logistics for an exchange student, not a textbook-edition clarification for a first-year student."
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A workplace scheduling coordinator tells a new employee that the shared conference room booking system now requires manager approval for reservations over two hours.",
+          "participantRoles": [
+            "workplace scheduling coordinator",
+            "new employee"
+          ],
+          "noveltyKey": "workplace-conference-room-approval-policy-change",
+          "requiredConcepts": [
+            "booking system now requires approval over two hours",
+            "new employee learns exception process for urgent meetings"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7024b060",
+              "reason": "Reports a booking-policy change for conference rooms, not a broken shared printer awaiting a vendor part."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A wildlife refuge coordinator tells a visiting intern that the heron's habitat camera lost its signal overnight.",
+          "participantRoles": [
+            "wildlife refuge coordinator",
+            "visiting intern"
+          ],
+          "noveltyKey": "refuge-heron-habitat-camera-signal-loss",
+          "requiredConcepts": [
+            "habitat camera lost signal overnight",
+            "backup battery pack swap needed"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7024b060",
+              "reason": "Involves a habitat camera losing signal overnight, not a coastal tide forecast delaying a sampling trip."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A digital media lab's technician tells an independent filmmaker that the render queue software silently skipped her project's audio track.",
+          "participantRoles": [
+            "digital media lab technician",
+            "independent filmmaker"
+          ],
+          "noveltyKey": "media-lab-render-queue-audio-track-skip",
+          "requiredConcepts": [
+            "render queue software silently skipped audio track",
+            "manual re-render before submission deadline"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7024b060",
+              "reason": "Involves a render-queue bug dropping an audio track for a filmmaker, not a podcast analytics dashboard splitting metrics."
+            }
+          ]
+        },
+        {
+          "domain": "everyday-life",
+          "situation": "A renter mentions to the next-door tenant that their shared balcony drain keeps clogging with fallen leaves.",
+          "participantRoles": [
+            "renter",
+            "next-door tenant"
+          ],
+          "noveltyKey": "shared-balcony-drain-leaf-clog",
+          "requiredConcepts": [
+            "balcony drain clogging with fallen leaves",
+            "proposed weekly leaf-clearing turn"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-bdbdd45c",
+              "reason": "Concerns a clogged shared balcony drain, not recurring package misdelivery to the wrong mailbox."
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "science-environment",
+      "noveltyKey": "citizen-science-rain-gauge-misreading-report",
+      "requiredConcepts": [
+        "rain gauge markings printed in wrong scale",
+        "replacement gauge or conversion chart request",
+        "retroactive correction of already-logged readings"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-f8adc240",
+          "reason": "Reports a physically mismarked rain-gauge scale rather than a corrupted digital sensor-data attachment."
+        },
+        {
+          "setId": "wri-b5e4cabe",
+          "reason": "Is an equipment-defect report, not a request about receiving the wrong workshop handout attachment."
+        }
+      ],
+      "situation": "After the regional citizen science program mailed a rain gauge for a backyard habitat monitoring project, the writer notices the markings are printed in the wrong scale, making every reading impossible to log accurately.",
+      "recipientRole": "citizen science program coordinator at the regional monitoring center",
+      "communicativeActs": [
+        "report that the mailed rain gauge has a mismarked measurement scale",
+        "request either a replacement gauge or a corrected reading conversion chart",
+        "ask whether already-logged readings need retroactive correction"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "history-social-change",
+      "noveltyKey": "archive-digitization-demand-vs-chronological-order",
+      "requiredConcepts": [
+        "request-driven digitization order",
+        "chronological digitization order",
+        "limited archivist staffing time",
+        "gaps left in undigitized decades"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-7d7e0b05",
+          "reason": "Weighs a digitization-order tradeoff for archives, not whether to rename a landmark for historical accuracy."
+        },
+        {
+          "setId": "wri-550947bf",
+          "reason": "Concerns institutional archive prioritization, not revising a family tradition after new historical facts emerge."
+        }
+      ],
+      "proposition": "Some regional archives now prioritize digitizing whichever historical records outside researchers request most, rather than following a chronological order through the full collection.",
+      "competingValues": [
+        "meeting immediate outside-researcher demand",
+        "preserving the collection's chronological completeness"
+      ]
+    }
+  }
+}

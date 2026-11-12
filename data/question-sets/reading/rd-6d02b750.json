@@ -1,0 +1,1623 @@
+{
+  "id": "rd-6d02b750",
+  "source": "generated",
+  "createdAt": "2026-08-10T05:17:15.839Z",
+  "kind": "reading",
+  "router": {
+    "timeLimitSec": 1200,
+    "ctwPassages": [
+      {
+        "id": "ctw-r1",
+        "taskType": "complete_words",
+        "topic": "Ergonomic Office Design and Employee Injury Prevention",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Ergonomic office design has become a major priority for companies seeking to protect employee health and prevent workplace injuries. Adjustable "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g1"
+          },
+          {
+            "type": "text",
+            "text": " let "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g2"
+          },
+          {
+            "type": "text",
+            "text": " switch "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g3"
+          },
+          {
+            "type": "text",
+            "text": " sitting "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g4"
+          },
+          {
+            "type": "text",
+            "text": " standing "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g5"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g6"
+          },
+          {
+            "type": "text",
+            "text": ", reducing "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g7"
+          },
+          {
+            "type": "text",
+            "text": " on "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g8"
+          },
+          {
+            "type": "text",
+            "text": " wrists, "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g9"
+          },
+          {
+            "type": "text",
+            "text": ", and "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g10"
+          },
+          {
+            "type": "text",
+            "text": " back. A poor office layout instead traps staff in cramped, fixed postures, and injury rates increase sharply within months. Chairs with lumbar support, screens set at eye level, and keyboard trays angled correctly all lower the physical toll of desk work. Companies that adopt this equipment report fewer medical claims and steadier attendance among staff."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-r1-g1",
+            "prefix": "de",
+            "completion": "sks",
+            "blankLength": 3,
+            "explanationZh": "此句主詞須為可調整、讓使用者變換姿勢的辦公家具,並與其後動詞「let」的複數形式一致,同時呼應全文主題「人體工學辦公設計」,因此應填入複數名詞「desks」(辦公桌)。"
+          },
+          {
+            "id": "ctw-r1-g2",
+            "prefix": "wor",
+            "completion": "kers",
+            "blankLength": 4,
+            "explanationZh": "動詞「let」之後需要受詞,指的是使用辦公桌、必須在坐姿與站姿間切換的人,呼應前文提及要保護的對象「employee health」,故填入「workers」。"
+          },
+          {
+            "id": "ctw-r1-g3",
+            "prefix": "bet",
+            "completion": "ween",
+            "blankLength": 4,
+            "explanationZh": "「switch between A and B」為固定搭配,意指「在兩者之間切換」,後方接著並列的動名詞「sitting」與「standing」,故此處須填入介系詞「between」。"
+          },
+          {
+            "id": "ctw-r1-g4",
+            "prefix": "a",
+            "completion": "nd",
+            "blankLength": 2,
+            "explanationZh": "承接「between sitting ___ standing」,需要對等連接詞連接兩個並列的動名詞「sitting」與「standing」,因此填入「and」。"
+          },
+          {
+            "id": "ctw-r1-g5",
+            "prefix": "throu",
+            "completion": "ghout",
+            "blankLength": 5,
+            "explanationZh": "此處修飾後方的「the day」,「throughout the day」表示「整天之中持續」,符合文意描述員工在一整天工作期間不斷切換坐站姿勢,故填入「throughout」。"
+          },
+          {
+            "id": "ctw-r1-g6",
+            "prefix": "d",
+            "completion": "ay",
+            "blankLength": 2,
+            "explanationZh": "承接介系詞片語「throughout the ___」,需搭配名詞組成固定用語「throughout the day」(整天之中),指員工整個工作日皆在變換姿勢,故填入「day」。"
+          },
+          {
+            "id": "ctw-r1-g7",
+            "prefix": "str",
+            "completion": "ain",
+            "blankLength": 3,
+            "explanationZh": "此字為動名詞「reducing」的受詞,指因久坐或姿勢不良對身體造成的壓力與緊繃,呼應全文主旨「預防職業傷害」,故填入「strain」。"
+          },
+          {
+            "id": "ctw-r1-g8",
+            "prefix": "t",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "「strain on ___ wrists」後方接的是特定身體部位清單,依英文文法須以定冠詞「the」限定「wrists, neck, and lower back」這組部位,故填入「the」。"
+          },
+          {
+            "id": "ctw-r1-g9",
+            "prefix": "ne",
+            "completion": "ck",
+            "blankLength": 2,
+            "explanationZh": "此處為身體部位並列清單「wrists, ___, and lower back」中的一項,依文意應填入人體部位「neck」(頸部),呼應前文提及久坐姿勢對頸部造成的負擔。"
+          },
+          {
+            "id": "ctw-r1-g10",
+            "prefix": "lo",
+            "completion": "wer",
+            "blankLength": 3,
+            "explanationZh": "承接「neck, and ___ back」,「lower back」為固定用語,指「下背部」,並與段落後文提到的「lumbar support(腰部支撐)」相呼應,故填入「lower」。"
+          }
+        ],
+        "sourceParagraph": "Ergonomic office design has become a major priority for companies seeking to protect employee health and prevent workplace injuries. Adjustable desks let workers switch between sitting and standing throughout the day, reducing strain on the wrists, neck, and lower back. A poor office layout instead traps staff in cramped, fixed postures, and injury rates increase sharply within months. Chairs with lumbar support, screens set at eye level, and keyboard trays angled correctly all lower the physical toll of desk work. Companies that adopt this equipment report fewer medical claims and steadier attendance among staff."
+      },
+      {
+        "id": "ctw-r2",
+        "taskType": "complete_words",
+        "topic": "The Standardization of Global Time Zones",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Cities once kept their own local time by watching the sun and adjusting clocks slightly from one town to the next. Confusing "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g1"
+          },
+          {
+            "type": "text",
+            "text": " clocks "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g2"
+          },
+          {
+            "type": "text",
+            "text": " transport "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g3"
+          },
+          {
+            "type": "text",
+            "text": " whenever "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g4"
+          },
+          {
+            "type": "text",
+            "text": " crossed "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g5"
+          },
+          {
+            "type": "text",
+            "text": " towns "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g6"
+          },
+          {
+            "type": "text",
+            "text": " each "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g7"
+          },
+          {
+            "type": "text",
+            "text": " a "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g8"
+          },
+          {
+            "type": "text",
+            "text": " time. "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g9"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g10"
+          },
+          {
+            "type": "text",
+            "text": " nineteenth century, reformers finally agreed on standard boundaries for each time zone across the world. This international agreement made railway timetables far easier to plan and helped travelers avoid missed connections in busy stations."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-r2-g1",
+            "prefix": "lo",
+            "completion": "cal",
+            "blankLength": 3,
+            "explanationZh": "此處指城市各自擁有的「當地/在地」時間，與後文因各城鎮採用不同 local time 而造成混亂、最終促成 international agreement 統一標準形成對照，故填 local 最符合語境。"
+          },
+          {
+            "id": "ctw-r2-g2",
+            "prefix": "disr",
+            "completion": "upted",
+            "blankLength": 5,
+            "explanationZh": "主詞為「Confusing local clocks」，需要及物動詞說明其對後面「transport schedules」造成的影響，disrupted（打亂）正確呈現時區混亂導致交通時刻表受干擾的因果關係。"
+          },
+          {
+            "id": "ctw-r2-g3",
+            "prefix": "sche",
+            "completion": "dules",
+            "blankLength": 5,
+            "explanationZh": "動詞 disrupted 之後需要受詞，指出被打亂的對象，schedules（時刻表）與後句 railway timetables 前後呼應，語意一致。"
+          },
+          {
+            "id": "ctw-r2-g4",
+            "prefix": "trav",
+            "completion": "elers",
+            "blankLength": 5,
+            "explanationZh": "whenever 子句需要一個能夠「crossed between towns」的主詞，travelers（旅客）與後文 helped travelers avoid missed connections 指涉同一群受時區混亂影響的人。"
+          },
+          {
+            "id": "ctw-r2-g5",
+            "prefix": "bet",
+            "completion": "ween",
+            "blankLength": 4,
+            "explanationZh": "動詞 crossed 之後需要介係詞表示「在……之間」移動，between towns 表達旅客往返於不同城鎮之間，符合語境與慣用搭配。"
+          },
+          {
+            "id": "ctw-r2-g6",
+            "prefix": "th",
+            "completion": "at",
+            "blankLength": 2,
+            "explanationZh": "towns 之後需要關係代名詞引導修飾子句 each followed a different time，that 作為限定用法的關係代名詞是文法上正確的選擇。"
+          },
+          {
+            "id": "ctw-r2-g7",
+            "prefix": "foll",
+            "completion": "owed",
+            "blankLength": 4,
+            "explanationZh": "關係子句主詞為 each（指每個城鎮），需要動詞說明其所「採用」的時間，followed a different time 呼應前句提到各城鎮時間不一致所造成的混亂。"
+          },
+          {
+            "id": "ctw-r2-g8",
+            "prefix": "diff",
+            "completion": "erent",
+            "blankLength": 5,
+            "explanationZh": "a __ time 需要形容詞說明時間的性質，different（不同的）呼應前句提到城鎮之間時間各異、造成交通銜接混亂的主旨。"
+          },
+          {
+            "id": "ctw-r2-g9",
+            "prefix": "Dur",
+            "completion": "ing",
+            "blankLength": 3,
+            "explanationZh": "句首需要介係詞引導時間狀語 the late nineteenth century，說明改革者達成共識的歷史時期，During 表示「在……期間」，文法正確。"
+          },
+          {
+            "id": "ctw-r2-g10",
+            "prefix": "la",
+            "completion": "te",
+            "blankLength": 2,
+            "explanationZh": "nineteenth century 前需要形容詞限定其具體階段，late（晚期的）指出時區標準化改革發生於十九世紀晚期。"
+          }
+        ],
+        "sourceParagraph": "Cities once kept their own local time by watching the sun and adjusting clocks slightly from one town to the next. Confusing local clocks disrupted transport schedules whenever travelers crossed between towns that each followed a different time. During the late nineteenth century, reformers finally agreed on standard boundaries for each time zone across the world. This international agreement made railway timetables far easier to plan and helped travelers avoid missed connections in busy stations."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-r1",
+        "taskType": "daily_life",
+        "genre": "poster/sign/notice",
+        "text": "COMMUNITY PARK CLEANUP\nSaturday morning volunteer sign-up now open!\nMeet at the Maple Street entrance, 9:00 AM.\nGloves and bags provided on site — no equipment needed.\nWear old clothes and closed-toe shoes.\nRefreshments served after cleanup.\nQuestions? Contact the Parks Office at the community center.",
+        "questions": [
+          {
+            "id": "dl-r1-q1",
+            "stem": "What is the main purpose of this notice?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To thank volunteers for a previous cleanup event"
+              },
+              {
+                "id": "b",
+                "text": "To recruit volunteers for a Saturday morning cleanup event"
+              },
+              {
+                "id": "c",
+                "text": "To announce that the park will be closed for repairs"
+              },
+              {
+                "id": "d",
+                "text": "To advertise gardening equipment for sale near the park"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "purpose",
+            "explanationZh": "通知明確寫出「Saturday morning volunteer sign-up now open」及集合時間地點,目的是招募本週六上午的公園清潔志工,並非感謝過去活動、宣布公園整修或販售園藝器材,故其餘選項均無根據。"
+          },
+          {
+            "id": "dl-r1-q2",
+            "stem": "According to the notice, what will volunteers receive on site?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Gloves and bags"
+              },
+              {
+                "id": "b",
+                "text": "Free refreshments and volunteer T-shirts"
+              },
+              {
+                "id": "c",
+                "text": "A one-year community center membership"
+              },
+              {
+                "id": "d",
+                "text": "Closed-toe shoes and old clothing"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "公告寫明「Gloves and bags provided on site」,清楚說明現場提供的是手套與垃圾袋;點心是清潔後才供應,舊衣與包頭鞋是志工需自備事項,並非現場發放物品,會員資格則完全未提及。"
+          }
+        ]
+      },
+      {
+        "id": "dl-r2",
+        "taskType": "daily_life",
+        "genre": "schedule",
+        "text": "REGIONAL LINE — WEEKEND TIMETABLE (Effective This Month)\n\nNote: A new station stop was added midweek at Fernbrook Junction.\n\nSaturday & Sunday Departures:\nCentral Station — 8:45 AM (was 7:30 AM)\nFernbrook Junction — 9:10 AM (new stop)\nLakeside Park — 9:35 AM (was 8:20 AM)\nHarbor Terminal — 10:05 AM (was 8:50 AM)\n\nWeekend departure times have shifted later to allow for the added stop.\nWeekday timetable unchanged.",
+        "questions": [
+          {
+            "id": "dl-r2-q1",
+            "stem": "Which station is the newly added stop?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Central Station"
+              },
+              {
+                "id": "b",
+                "text": "Fernbrook Junction"
+              },
+              {
+                "id": "c",
+                "text": "Lakeside Park"
+              },
+              {
+                "id": "d",
+                "text": "Harbor Terminal"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "時刻表註記寫明「A new station stop was added midweek at Fernbrook Junction」,並在該站旁標示「(new stop)」,可知新增停靠站為Fernbrook Junction,其餘車站原本皆已存在。"
+          },
+          {
+            "id": "dl-r2-q2",
+            "stem": "Why have weekend departure times moved later?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To reduce overall travel time"
+              },
+              {
+                "id": "b",
+                "text": "Because of construction delays"
+              },
+              {
+                "id": "c",
+                "text": "To accommodate the newly added stop"
+              },
+              {
+                "id": "d",
+                "text": "Because weekday service was cancelled"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "表末說明「Weekend departure times have shifted later to allow for the added stop」,顯示發車時間延後是為了讓列車有時間停靠新增站點,並非施工延誤、縮短車程,平日班表也未取消。"
+          },
+          {
+            "id": "dl-r2-q3",
+            "stem": "What happens to the weekday timetable?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It is also delayed by fifteen minutes"
+              },
+              {
+                "id": "b",
+                "text": "It remains unchanged"
+              },
+              {
+                "id": "c",
+                "text": "It will be announced at a later date"
+              },
+              {
+                "id": "d",
+                "text": "It now includes the Fernbrook Junction stop"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "表末明確寫出「Weekday timetable unchanged」,代表平日時刻表維持不變,並未延後、公告延遲或新增Fernbrook停靠站,這些變動僅適用於週末班表。"
+          }
+        ]
+      },
+      {
+        "id": "dl-r3",
+        "taskType": "daily_life",
+        "genre": "web page",
+        "text": "BudgetWise — What's New\n\nVersion 4.2 (Latest Update)\n\nNew: Spending Alerts\nThe budgeting app now adds spending alerts that notify you when a category nears its monthly limit.\n\nFixed: Login Issue\nA login bug that sometimes blocked users after a password reset has been fixed in this latest update.\n\nImproved: Faster loading for the transaction history screen.\n\nComing Soon: Shared budgets for households.\n\nHelp Center | Release Notes Archive | Contact Support",
+        "questions": [
+          {
+            "id": "dl-r3-q1",
+            "stem": "What new feature does spending alerts provide?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A notification when a budget category nears its limit"
+              },
+              {
+                "id": "b",
+                "text": "A weekly summary email of all purchases"
+              },
+              {
+                "id": "c",
+                "text": "A discount on premium subscriptions"
+              },
+              {
+                "id": "d",
+                "text": "An automatic transfer to a savings account"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "頁面寫道「The budgeting app now adds spending alerts that notify you when a category nears its monthly limit」,說明新功能是類別預算即將超支時發出提醒,並非週報信件、訂閱折扣或自動轉帳儲蓄。"
+          },
+          {
+            "id": "dl-r3-q2",
+            "stem": "What problem did the latest update fix?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Slow loading of the transaction history screen"
+              },
+              {
+                "id": "b",
+                "text": "A login bug that blocked users after resetting their password"
+              },
+              {
+                "id": "c",
+                "text": "Missing data in shared household budgets"
+              },
+              {
+                "id": "d",
+                "text": "Incorrect spending alert notifications"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "「Fixed」段落指出「A login bug ... has been fixed in this latest update」,可知修正的是登入問題;交易紀錄載入速度屬於「Improved」項目,共享預算是尚未推出的「Coming Soon」功能。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-r1",
+        "taskType": "academic_passage",
+        "title": "How Small Manufacturers Adapted Shift Schedules to Retain Employees",
+        "discipline": "business and economics",
+        "text": "Small manufacturers have long struggled to keep skilled workers on the factory floor. Turnover among production staff can disrupt output, delay orders, and raise training costs whenever a new hire must be brought up to speed. In recent years, however, a growing number of small manufacturing firms have adopted flexible shift schedules to address this problem directly. Instead of assigning every worker to the same fixed shift, these companies now let employees choose morning or evening shifts based on their personal circumstances, such as childcare needs or a second job.\n\nEarly results suggest the approach is working. Flexible shift options cut turnover significantly at several firms that adopted them, since workers who once quit over scheduling conflicts now stay because the job fits their lives. Beyond retention, managers report an unexpected side benefit: employees who choose their own hours tend to be more attentive during their shifts, since fatigue and resentment from mismatched schedules decline.\n\nAs a result, small manufacturers report steadier output than in previous years, with fewer missed deadlines and less reliance on costly overtime to cover empty shifts. Industry consultants now recommend flexible scheduling as a low-cost retention tool that smaller firms, which cannot always compete with larger companies on wages, can use to remain competitive for skilled labor.",
+        "questions": [
+          {
+            "id": "ap-r1-q1",
+            "stem": "According to the passage, what is one way small manufacturers have changed their shift scheduling?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They now let employees choose morning or evening shifts"
+              },
+              {
+                "id": "b",
+                "text": "They eliminated shift work entirely in favor of remote work"
+              },
+              {
+                "id": "c",
+                "text": "They increased wages to match larger competitors"
+              },
+              {
+                "id": "d",
+                "text": "They reduced the number of shifts per day"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "文中寫道「these companies now let employees choose morning or evening shifts」,顯示製造商改變的作法是讓員工自選早班或晚班,並非改為遠距工作、調薪或減少班次,這些均未提及。"
+          },
+          {
+            "id": "ap-r1-q2",
+            "stem": "In the passage, the word \"retention\" (paragraph 2) is closest in meaning to",
+            "options": [
+              {
+                "id": "a",
+                "text": "The ability to keep employees from leaving"
+              },
+              {
+                "id": "b",
+                "text": "The process of hiring new staff quickly"
+              },
+              {
+                "id": "c",
+                "text": "The measurement of factory output over time"
+              },
+              {
+                "id": "d",
+                "text": "The practice of increasing employee wages"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "vocabulary",
+            "explanationZh": "文中「retention」與留住員工、降低離職有關,如「a low-cost retention tool」,指留住員工的能力,並非招募新人、衡量產量或調薪,這些概念與原意不符。"
+          },
+          {
+            "id": "ap-r1-q3",
+            "stem": "What can be inferred about employees who previously quit due to scheduling conflicts?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Their personal circumstances, such as childcare, likely conflicted with fixed shifts"
+              },
+              {
+                "id": "b",
+                "text": "They were dissatisfied with their pay rather than their schedule"
+              },
+              {
+                "id": "c",
+                "text": "They left specifically to work for larger manufacturing companies"
+              },
+              {
+                "id": "d",
+                "text": "They were let go due to poor attendance records"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "第一段提到員工因托育需求或兼職而受固定班表限制,第二段又說離職員工是「over scheduling conflicts」,兩者合併可推知離職原因與生活安排衝突有關,而非薪資、轉職大公司或考勤問題。"
+          },
+          {
+            "id": "ap-r1-q4",
+            "stem": "How does the third paragraph relate to the rest of the passage?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It introduces a completely new and unrelated problem facing manufacturers"
+              },
+              {
+                "id": "b",
+                "text": "It summarizes the resulting benefits and offers a broader industry recommendation"
+              },
+              {
+                "id": "c",
+                "text": "It contradicts the claims made in the second paragraph"
+              },
+              {
+                "id": "d",
+                "text": "It provides a historical background for the trend described earlier"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "organization",
+            "explanationZh": "第三段承接前文,說明彈性排班帶來的產出穩定與顧問建議,屬於總結成果並提出產業建議,並非引入新問題、反駁前段或提供歷史背景。"
+          },
+          {
+            "id": "ap-r1-q5",
+            "stem": "What is the main purpose of the passage?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To criticize small manufacturers for outdated scheduling practices"
+              },
+              {
+                "id": "b",
+                "text": "To explain how flexible shift scheduling has helped small manufacturers retain workers"
+              },
+              {
+                "id": "c",
+                "text": "To compare wage structures between small and large manufacturing firms"
+              },
+              {
+                "id": "d",
+                "text": "To warn readers about the risks of flexible work schedules"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "purpose",
+            "explanationZh": "全文說明小型製造商如何透過彈性班表降低離職率、提升產出穩定,目的在解釋此作法的成效,並非批評排班方式、比較薪資或警告風險。"
+          }
+        ]
+      }
+    ]
+  },
+  "lowerModule": {
+    "timeLimitSec": 540,
+    "ctwPassages": [
+      {
+        "id": "ctw-lo1",
+        "taskType": "complete_words",
+        "topic": "Exercise and Sleep Quality",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Doctors often tell patients that regular exercise can improve many parts of daily life. Regular "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g1"
+          },
+          {
+            "type": "text",
+            "text": " deepens "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g2"
+          },
+          {
+            "type": "text",
+            "text": " sleep "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g3"
+          },
+          {
+            "type": "text",
+            "text": " helps "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g4"
+          },
+          {
+            "type": "text",
+            "text": " body "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g5"
+          },
+          {
+            "type": "text",
+            "text": " more "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g6"
+          },
+          {
+            "type": "text",
+            "text": " each "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g7"
+          },
+          {
+            "type": "text",
+            "text": ". This "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g8"
+          },
+          {
+            "type": "text",
+            "text": " sleep "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g9"
+          },
+          {
+            "type": "text",
+            "text": " stress "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g10"
+          },
+          {
+            "type": "text",
+            "text": " during busy daytime hours at work or school. People who sleep well during the night often feel calmer the next day. Many trainers now recommend a short daily walk or a simple workout before dinner. This simple habit costs nothing and often improves mood as well."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-lo1-g1",
+            "prefix": "exer",
+            "completion": "cise",
+            "blankLength": 4,
+            "explanationZh": "此處為主詞,呼應首句主題「regular exercise」,說明規律運動如何深化夜間睡眠,語意承接自然。"
+          },
+          {
+            "id": "ctw-lo1-g2",
+            "prefix": "nig",
+            "completion": "htly",
+            "blankLength": 4,
+            "explanationZh": "「nightly sleep」中 nightly 修飾 sleep,表示「每夜的」睡眠,扣合段落「運動改善睡眠」的主題。"
+          },
+          {
+            "id": "ctw-lo1-g3",
+            "prefix": "a",
+            "completion": "nd",
+            "blankLength": 2,
+            "explanationZh": "「deepens...and helps」以 and 連接兩個並列動詞片語,表示運動同時帶來兩項效果,語法上須用連接詞。"
+          },
+          {
+            "id": "ctw-lo1-g4",
+            "prefix": "t",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "「the body」中 the 為定冠詞,修飾其後名詞 body,符合英文語法結構,指涉前述已知的身體。"
+          },
+          {
+            "id": "ctw-lo1-g5",
+            "prefix": "re",
+            "completion": "st",
+            "blankLength": 2,
+            "explanationZh": "「helps the body rest」中 rest 為 helps 接受詞後的原形動詞補語,表示身體因此得以休息。"
+          },
+          {
+            "id": "ctw-lo1-g6",
+            "prefix": "fu",
+            "completion": "lly",
+            "blankLength": 3,
+            "explanationZh": "「rest more fully」中 fully 為副詞修飾 rest,表示休息「更加充分」,強化運動提升睡眠品質的語意。"
+          },
+          {
+            "id": "ctw-lo1-g7",
+            "prefix": "ni",
+            "completion": "ght",
+            "blankLength": 3,
+            "explanationZh": "「each night」為時間片語,表示此休息效果每晚皆發生,呼應段落強調規律運動的持續性。"
+          },
+          {
+            "id": "ctw-lo1-g8",
+            "prefix": "impr",
+            "completion": "oved",
+            "blankLength": 4,
+            "explanationZh": "「This improved sleep」承接前句所述「睡眠更充分」的內容,improved 指涉那項已被改善的睡眠。"
+          },
+          {
+            "id": "ctw-lo1-g9",
+            "prefix": "low",
+            "completion": "ers",
+            "blankLength": 3,
+            "explanationZh": "「sleep lowers」中 lowers 為主詞 sleep 的動詞,表示改善後的睡眠會「降低」壓力程度。"
+          },
+          {
+            "id": "ctw-lo1-g10",
+            "prefix": "lev",
+            "completion": "els",
+            "blankLength": 3,
+            "explanationZh": "「stress levels」為固定搭配,levels 指壓力的「程度」,與動詞 lowers 搭配描述壓力程度下降。"
+          }
+        ],
+        "sourceParagraph": "Doctors often tell patients that regular exercise can improve many parts of daily life. Regular exercise deepens nightly sleep and helps the body rest more fully each night. This improved sleep lowers stress levels during busy daytime hours at work or school. People who sleep well during the night often feel calmer the next day. Many trainers now recommend a short daily walk or a simple workout before dinner. This simple habit costs nothing and often improves mood as well."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-lo1",
+        "taskType": "daily_life",
+        "genre": "receipt",
+        "text": "GREENFIELD MARKET\n123 Main St. — Weekly Receipt\n\nPRODUCE ITEMS — LISTED WITH UNIT PRICES\nBananas    1.2 lb @ $0.59/lb ... $0.71\nTomatoes   0.8 lb @ $1.99/lb ... $1.59\nSpinach    1 bunch @ $2.49 ea ... $2.49\n\nPANTRY\nRice, 5 lb bag ... $6.99\nOlive Oil, 500 mL ... $8.49\nPasta, 1 lb box ... $1.79\n\nSubtotal ... $21.06\nLoyalty Discount (10%) applied to total ... -$2.11\nTax ... $1.14\nTOTAL ... $20.09\n\nThank you for shopping with your Loyalty Card!",
+        "questions": [
+          {
+            "id": "dl-lo1-q1",
+            "stem": "How much is the loyalty discount on this receipt?",
+            "options": [
+              {
+                "id": "a",
+                "text": "10% of the pre-tax subtotal ($21.06)"
+              },
+              {
+                "id": "b",
+                "text": "A flat $5.00 off"
+              },
+              {
+                "id": "c",
+                "text": "Free shipping on the next order"
+              },
+              {
+                "id": "d",
+                "text": "10% off produce items only"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "折扣金額為$2.11,恰好是小計(Subtotal)$21.06的10%(21.06×10%≈2.11),折扣是在加稅之前依小計計算,而非依加稅後的TOTAL($20.09)計算。固定5美元、免運或僅限生鮮商品的說法都與收據數字不符。"
+          },
+          {
+            "id": "dl-lo1-q2",
+            "stem": "What can be inferred about how the produce prices are calculated?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Each produce item is priced per unit of weight or count"
+              },
+              {
+                "id": "b",
+                "text": "All produce items cost a flat $2.49 regardless of type"
+              },
+              {
+                "id": "c",
+                "text": "Produce prices already include the loyalty discount"
+              },
+              {
+                "id": "d",
+                "text": "Produce is priced by the bag regardless of weight"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "生鮮區標題註明「LISTED WITH UNIT PRICES」,且每項商品皆標示「@ $0.59/lb」等單位價格,可知價格依重量或件數計算,並非固定$2.49、已含折扣或依整袋計價。"
+          }
+        ]
+      },
+      {
+        "id": "dl-lo2",
+        "taskType": "daily_life",
+        "genre": "text-message chain",
+        "text": "Mia: Hey, are we still on for the clinic tomorrow?\nJordan: Actually the appointment moved to next Tuesday, sorry!\nMia: Oh no, why the change?\nJordan: Dr. Lin had an emergency. They rebooked us for 3 PM Tuesday.\nMia: That works. Tuesday's after my exam anyway.\nJordan: How are you feeling? You mentioned a stress headache before the exam last week.\nMia: A little better, but still tense about it.\nJordan: Try to rest tonight. See you Tuesday!",
+        "questions": [
+          {
+            "id": "dl-lo2-q1",
+            "stem": "Why was the clinic appointment changed?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Mia requested a later time"
+              },
+              {
+                "id": "b",
+                "text": "The doctor had an emergency"
+              },
+              {
+                "id": "c",
+                "text": "The clinic was closed for a holiday"
+              },
+              {
+                "id": "d",
+                "text": "Jordan forgot to confirm the booking"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "inference",
+            "explanationZh": "Jordan傳訊寫道「Dr. Lin had an emergency. They rebooked us for 3 PM Tuesday」,說明改期原因是醫生臨時有緊急狀況,並非Mia要求延後、診所休診或Jordan忘記確認。"
+          },
+          {
+            "id": "dl-lo2-q2",
+            "stem": "What did Mia experience before her exam?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A stress headache"
+              },
+              {
+                "id": "b",
+                "text": "A minor cold"
+              },
+              {
+                "id": "c",
+                "text": "Trouble sleeping"
+              },
+              {
+                "id": "d",
+                "text": "A missed bus"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "Jordan提到「You mentioned a stress headache before the exam last week」,可知Mia考前出現的是壓力型頭痛,對話中並未提到感冒、失眠或錯過公車。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-lo1",
+        "taskType": "academic_passage",
+        "title": "How Desert Plants Survive in Harsh Environments",
+        "discipline": "life science",
+        "text": "Desert plants face a difficult challenge: very little rain falls, yet the plants must still find enough water to survive. Over time, many desert plants have developed special features that help them save water and reach hidden water sources underground.\n\nOne common feature is thick, waxy leaves. These leaves reduce water loss because the waxy coating stops moisture from escaping into the dry air. Some plants also have small, narrow leaves, which lose less water than large, flat ones.\n\nRoots are just as important as leaves. Many desert plants grow deep roots that reach underground moisture far below the surface, where the soil stays cooler and slightly damp even during long droughts. Other desert plants spread their roots wide instead of deep, so they can quickly soak up any rain that does fall.\n\nA few desert plants take a different approach. Instead of relying only on leaves or roots, some plants store water in stems, which swell after rainfall and slowly release the stored water during dry periods. Cacti are a well-known example of this strategy. Together, these adaptations allow desert plants to survive conditions that would kill most other plants within days.",
+        "questions": [
+          {
+            "id": "ap-lo1-q1",
+            "stem": "According to the passage, what do thick, waxy leaves help desert plants do?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Reduce water loss"
+              },
+              {
+                "id": "b",
+                "text": "Absorb more sunlight"
+              },
+              {
+                "id": "c",
+                "text": "Grow taller more quickly"
+              },
+              {
+                "id": "d",
+                "text": "Attract pollinating insects"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "文中寫道「These leaves reduce water loss because the waxy coating stops moisture from escaping」,說明厚蠟質葉片的作用是減少水分散失,並非吸收陽光、加速生長或吸引昆蟲授粉。"
+          },
+          {
+            "id": "ap-lo1-q2",
+            "stem": "In the passage, the word \"droughts\" is closest in meaning to",
+            "options": [
+              {
+                "id": "a",
+                "text": "Long periods without rain"
+              },
+              {
+                "id": "b",
+                "text": "Sudden heavy rainstorms"
+              },
+              {
+                "id": "c",
+                "text": "Extremely cold temperatures"
+              },
+              {
+                "id": "d",
+                "text": "Areas with rich, fertile soil"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "vocabulary",
+            "explanationZh": "文中「droughts」與缺水、長期無雨相關,如「even during long droughts」,指長時間不下雨,並非暴雨、酷寒或肥沃土壤,這些意思與原文不符。"
+          },
+          {
+            "id": "ap-lo1-q3",
+            "stem": "What can be inferred about desert plants with wide, shallow roots compared to those with deep roots?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They likely rely more on capturing surface rainfall quickly than on reaching deep moisture"
+              },
+              {
+                "id": "b",
+                "text": "They generally grow taller than plants with deep roots"
+              },
+              {
+                "id": "c",
+                "text": "They cannot survive without regular watering by humans"
+              },
+              {
+                "id": "d",
+                "text": "They produce more flowers than deep-rooted plants"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "文中提到淺根植物「spread their roots wide instead of deep, so they can quickly soak up any rain that does fall」,可推知它們較依賴快速吸收地表降雨,而非長得較高、需人工澆水或開花較多。"
+          },
+          {
+            "id": "ap-lo1-q4",
+            "stem": "How does the passage organize its discussion of desert plant adaptations?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It compares desert plants to plants from other climates in chronological order"
+              },
+              {
+                "id": "b",
+                "text": "It presents several separate water-saving strategies, one at a time, such as leaves, roots, and stems"
+              },
+              {
+                "id": "c",
+                "text": "It argues that only one adaptation truly allows survival in the desert"
+              },
+              {
+                "id": "d",
+                "text": "It focuses entirely on the history of desert plant research"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "organization",
+            "explanationZh": "文章依序介紹厚蠟葉、深根、莖部儲水三種不同的省水策略,屬於逐一呈現多種適應方式,並非按時間比較其他氣候植物、主張單一方式或聚焦研究歷史。"
+          },
+          {
+            "id": "ap-lo1-q5",
+            "stem": "What is the main purpose of this passage?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To criticize desert farming methods"
+              },
+              {
+                "id": "b",
+                "text": "To explain different ways desert plants adapt to conserve and obtain water"
+              },
+              {
+                "id": "c",
+                "text": "To describe the geological formation of deserts"
+              },
+              {
+                "id": "d",
+                "text": "To compare desert animals and desert plants"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "purpose",
+            "explanationZh": "全文說明沙漠植物如何透過葉片、根系與莖部等不同方式節水並取得水分,目的是介紹這些適應策略,並非批評農法、描述地質成因或比較動植物。"
+          }
+        ]
+      }
+    ]
+  },
+  "upperModule": {
+    "timeLimitSec": 540,
+    "ctwPassages": [
+      {
+        "id": "ctw-up1",
+        "taskType": "complete_words",
+        "topic": "Ceramic Restoration Techniques in Museum Collections",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Museum conservators frequently encounter ancient ceramic vessels whose surfaces have deteriorated significantly after centuries of burial or exposure to humidity. Conservators "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g1"
+          },
+          {
+            "type": "text",
+            "text": " stabilize "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g2"
+          },
+          {
+            "type": "text",
+            "text": " cracked "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g3"
+          },
+          {
+            "type": "text",
+            "text": " glaze "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g4"
+          },
+          {
+            "type": "text",
+            "text": " specialized "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g5"
+          },
+          {
+            "type": "text",
+            "text": " that "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g6"
+          },
+          {
+            "type": "text",
+            "text": " fine "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g7"
+          },
+          {
+            "type": "text",
+            "text": " without "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g8"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g9"
+          },
+          {
+            "type": "text",
+            "text": " surface. "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g10"
+          },
+          {
+            "type": "text",
+            "text": " stabilization, restored artifacts return to museum display where visitors can appreciate their preserved craftsmanship and enduring historical value. Such meticulous restoration work demonstrates how scientific analysis and traditional craftsmanship together preserve cultural heritage for future generations to study and admire."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-up1-g1",
+            "prefix": "care",
+            "completion": "fully",
+            "blankLength": 5,
+            "explanationZh": "carefully 是副詞,修飾動詞 stabilize,說明 conservators 進行穩定化處理的方式是「小心地」進行,呼應文末 meticulous restoration work 所描述的謹慎細緻態度,故此處須填副詞而非其他詞類。"
+          },
+          {
+            "id": "ctw-up1-g2",
+            "prefix": "t",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "the 是定冠詞,用於 cracked ceramic glaze 之前,因為此片語被 cracked 這個限定性修飾語鎖定為「這些正在被搶救之古陶器容器上、已產生裂痕的那層特定釉面」,是可辨識的特定對象,而非泛指任一陶瓷釉面,故須用定冠詞 the 而非不定冠詞。"
+          },
+          {
+            "id": "ctw-up1-g3",
+            "prefix": "cer",
+            "completion": "amic",
+            "blankLength": 4,
+            "explanationZh": "ceramic 是形容詞,修飾名詞 glaze,說明所穩定的釉面材質為「陶瓷」釉,與句子主詞 ceramic vessels 及全文陶器修復主題一致,故填入 ceramic 以精確描述釉面種類。"
+          },
+          {
+            "id": "ctw-up1-g4",
+            "prefix": "us",
+            "completion": "ing",
+            "blankLength": 3,
+            "explanationZh": "using 是現在分詞,引導 using specialized adhesives 這個分詞片語,說明 conservators 穩定裂痕釉面時所採用的方法或工具(黏著劑),文法上承接主要動詞 stabilize,表示伴隨的手段,故須用現在分詞 using。"
+          },
+          {
+            "id": "ctw-up1-g5",
+            "prefix": "adhe",
+            "completion": "sives",
+            "blankLength": 5,
+            "explanationZh": "adhesives 是複數名詞,作為 using 的受詞,指的是 specialized adhesives that penetrate fine fractures 中「滲入細小裂縫」的專用黏著劑,是修復裂痕釉面所使用的具體材料,故填 adhesives。"
+          },
+          {
+            "id": "ctw-up1-g6",
+            "prefix": "pene",
+            "completion": "trate",
+            "blankLength": 5,
+            "explanationZh": "penetrate 是關係子句 that penetrate fine fractures 中的動詞,主詞是複數的 adhesives,說明這些黏著劑的作用是「滲入」細小的裂縫,故用複數動詞形式 penetrate 而非單數的 penetrates。"
+          },
+          {
+            "id": "ctw-up1-g7",
+            "prefix": "frac",
+            "completion": "tures",
+            "blankLength": 5,
+            "explanationZh": "fractures 是複數名詞,作為動詞 penetrate 的受詞,指黏著劑所滲入的「細小裂縫」,與句首提到釉面已 cracked(產生裂痕)相呼應,故填入 fractures 描述這些裂縫本身。"
+          },
+          {
+            "id": "ctw-up1-g8",
+            "prefix": "alte",
+            "completion": "ring",
+            "blankLength": 4,
+            "explanationZh": "altering 是現在分詞,接在介系詞 without 之後(without altering the original surface),因為介系詞後須接動名詞形式,說明黏著劑滲入裂縫時「不改變」原始表面的特性,故填 altering。"
+          },
+          {
+            "id": "ctw-up1-g9",
+            "prefix": "orig",
+            "completion": "inal",
+            "blankLength": 4,
+            "explanationZh": "original 是形容詞,修飾名詞 surface,說明黏著劑滲入裂縫時所保留的是文物「原始的」表面,呼應前面 without altering 強調修復過程不破壞文物本來樣貌,故填 original。"
+          },
+          {
+            "id": "ctw-up1-g10",
+            "prefix": "Af",
+            "completion": "ter",
+            "blankLength": 3,
+            "explanationZh": "After 是介系詞,開啟 After stabilization, restored artifacts return to museum display 這句,表示「穩定化處理完成之後」的時間順序,承接前一句描述的釉面修復程序,引出後續文物重返展示的結果,故填 After。"
+          }
+        ],
+        "sourceParagraph": "Museum conservators frequently encounter ancient ceramic vessels whose surfaces have deteriorated significantly after centuries of burial or exposure to humidity. Conservators carefully stabilize the cracked ceramic glaze using specialized adhesives that penetrate fine fractures without altering the original surface. After stabilization, restored artifacts return to museum display where visitors can appreciate their preserved craftsmanship and enduring historical value. Such meticulous restoration work demonstrates how scientific analysis and traditional craftsmanship together preserve cultural heritage for future generations to study and admire."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-up1",
+        "taskType": "daily_life",
+        "genre": "advertisement",
+        "text": "THE LANTERN PLAYHOUSE PRESENTS\n'Echoes of the Harbor' — A Gripping New Drama!\n\nOpening night show times listed below:\nFriday, October 3 — 7:00 PM & 9:30 PM\n\nDon't miss the most talked-about production of the season!\n\nDiscounted pricing for early reservations — save 20% when you book before September 20.\n\nTickets from $18. Group rates available.\n\nBox Office: (555) 019-4482 | www.lanternplayhouse.example\nSeats are limited. Reserve yours today!",
+        "questions": [
+          {
+            "id": "dl-up1-q1",
+            "stem": "How can customers save 20% on tickets?",
+            "options": [
+              {
+                "id": "a",
+                "text": "By attending the Friday 7:00 PM show only"
+              },
+              {
+                "id": "b",
+                "text": "By booking before September 20"
+              },
+              {
+                "id": "c",
+                "text": "By purchasing a group rate of ten or more"
+              },
+              {
+                "id": "d",
+                "text": "By mentioning the advertisement at the box office"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "廣告寫明「Discounted pricing for early reservations — save 20% when you book before September 20」,說明折扣條件是9月20日前訂票,並非限定場次、達到團體人數或提及廣告內容。"
+          },
+          {
+            "id": "dl-up1-q2",
+            "stem": "What is the main purpose of this advertisement?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To review a past theater performance"
+              },
+              {
+                "id": "b",
+                "text": "To promote ticket sales for an upcoming play"
+              },
+              {
+                "id": "c",
+                "text": "To announce the theater's permanent closing"
+              },
+              {
+                "id": "d",
+                "text": "To recruit actors for a new production"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "purpose",
+            "explanationZh": "廣告列出首演場次、票價與訂票折扣資訊,目的是宣傳新劇售票,並非評論過往演出、宣布歇業或招募演員,文中完全未提及這些內容。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-up1",
+        "taskType": "academic_passage",
+        "title": "How Canal Expansion Reshaped Regional Trade Networks in the Nineteenth Century",
+        "discipline": "history",
+        "text": "During the nineteenth century, the construction of extensive canal systems fundamentally altered the economic geography of many inland regions. Before canals connected distant waterways, merchants relied on slow, often unreliable overland routes to move goods between towns separated by mountains or dense forests, a process that could consume weeks for even modest distances. Once major canals opened, however, the canal shortened shipping times between markets so dramatically that goods once considered too perishable or too heavy to transport profitably suddenly became viable commodities in distant towns.\n\nThis newfound efficiency did not emerge without friction. As traffic increased, merchants pushed for standardized shipping rules governing toll rates, loading procedures, and vessel right-of-way, since inconsistent regulations between competing canal companies frequently caused costly delays and disputes. Regional governments, eager to encourage commerce, gradually adopted many of these proposed standards, which further reduced the uncertainty merchants faced when planning long-distance shipments.\n\nThe cumulative effect was substantial: regional trade networks expanded after canal opening, linking agricultural producers, manufacturers, and urban markets that had previously operated in relative isolation from one another. Towns situated along canal routes often experienced rapid population growth as warehouses, shipping firms, and related industries clustered near the water. Historians generally regard this period of canal expansion as a decisive precursor to the even more sweeping transformations that railroads would later bring to regional and national trade.",
+        "questions": [
+          {
+            "id": "ap-up1-q1",
+            "stem": "According to the passage, what was one effect of canals shortening shipping times?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Perishable and heavy goods became profitable to transport to distant towns"
+              },
+              {
+                "id": "b",
+                "text": "Railroads were immediately rendered obsolete"
+              },
+              {
+                "id": "c",
+                "text": "Overland trade routes were officially banned by regional governments"
+              },
+              {
+                "id": "d",
+                "text": "Toll rates on canals were eliminated entirely"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "文中寫道「goods once considered too perishable or too heavy...became viable commodities」,說明運河縮短運輸時間使易腐或笨重貨物得以獲利運輸,並非鐵路被淘汰、陸運遭禁或通行費全免。"
+          },
+          {
+            "id": "ap-up1-q2",
+            "stem": "In the passage, \"friction\" (paragraph 2) most nearly means",
+            "options": [
+              {
+                "id": "a",
+                "text": "Difficulty or conflict arising from a new situation"
+              },
+              {
+                "id": "b",
+                "text": "The physical resistance between a boat and water"
+              },
+              {
+                "id": "c",
+                "text": "A financial profit earned from trade"
+              },
+              {
+                "id": "d",
+                "text": "A type of canal-building material"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "vocabulary",
+            "explanationZh": "文中「friction」指新局勢帶來的摩擦與衝突,如「did not emerge without friction」,並非船體與水的物理摩擦力、貿易利潤或建材種類,這些屬於字面或不相關意涵。"
+          },
+          {
+            "id": "ap-up1-q3",
+            "stem": "What can be inferred about the relationship between competing canal companies before standardized rules were adopted?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They cooperated closely to set uniform prices"
+              },
+              {
+                "id": "b",
+                "text": "Their inconsistent regulations often created conflict and inefficiency"
+              },
+              {
+                "id": "c",
+                "text": "They were all owned by a single regional government"
+              },
+              {
+                "id": "d",
+                "text": "They refused to allow merchants to use their canals"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "inference",
+            "explanationZh": "文中提到「inconsistent regulations between competing canal companies frequently caused costly delays and disputes」,可推知標準化前各公司規定不一,導致摩擦與效率低落,並非合作定價、同屬單一政府或拒絕使用。"
+          },
+          {
+            "id": "ap-up1-q4",
+            "stem": "How does the second paragraph relate to the first paragraph?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It presents a complication that arose from the efficiency described in paragraph one"
+              },
+              {
+                "id": "b",
+                "text": "It contradicts the claim that canals reduced shipping times"
+              },
+              {
+                "id": "c",
+                "text": "It shifts to an entirely unrelated topic about railroads"
+              },
+              {
+                "id": "d",
+                "text": "It repeats the same information using different examples"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "organization",
+            "explanationZh": "第二段承接第一段運河帶來的效率提升,說明隨之而來的規範不一問題與商人推動標準化的過程,屬於呈現新產生的複雜情況,並非反駁前段或轉向鐵路話題。"
+          },
+          {
+            "id": "ap-up1-q5",
+            "stem": "What is the primary purpose of this passage?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To argue that canals were less important than railroads"
+              },
+              {
+                "id": "b",
+                "text": "To explain how canal expansion transformed regional trade networks in the nineteenth century"
+              },
+              {
+                "id": "c",
+                "text": "To describe the engineering methods used to build canals"
+              },
+              {
+                "id": "d",
+                "text": "To criticize merchants for resisting standardized shipping rules"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "purpose",
+            "explanationZh": "全文說明十九世紀運河擴張如何縮短運輸時間、促成標準化規範並擴大區域貿易網絡,目的在解釋這段歷史轉變,並非主張鐵路更重要或批評商人。"
+          }
+        ]
+      }
+    ]
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "reading",
+    "ctwPassages": [
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "ergonomic-office-design-injury",
+        "requiredConcepts": [
+          "adjustable desks reduce employee strain",
+          "poor office layout increases injury rates"
+        ],
+        "distinguishesFrom": [],
+        "topic": "Ergonomic Office Design and Employee Injury Prevention",
+        "angle": "explains how ergonomic office furniture and adjustable workstations reduce repetitive strain injury among employees"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "time-zone-standardization-reform",
+        "requiredConcepts": [
+          "confusing local clocks disrupted transport schedules",
+          "reformers agreed on standard time zone boundaries"
+        ],
+        "distinguishesFrom": [],
+        "topic": "The Standardization of Global Time Zones",
+        "angle": "traces the historical reform that unified local time-keeping practices into standardized time zones worldwide"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "exercise-sleep-quality-link",
+        "requiredConcepts": [
+          "regular exercise deepens nightly sleep",
+          "improved sleep lowers daytime stress"
+        ],
+        "distinguishesFrom": [],
+        "topic": "Exercise and Sleep Quality",
+        "angle": "explains how regular exercise improves sleep quality and lowers everyday stress levels"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "ceramic-restoration-museum-artifacts",
+        "requiredConcepts": [
+          "conservators stabilize cracked ceramic glaze",
+          "restored artifacts return to museum display"
+        ],
+        "distinguishesFrom": [],
+        "topic": "Ceramic Restoration Techniques in Museum Collections",
+        "angle": "examines how conservators use ceramic restoration methods to preserve fragile artifacts held in museum collections"
+      }
+    ],
+    "dailyLifeTexts": [
+      {
+        "domain": "community-civic",
+        "noveltyKey": "park-cleanup-volunteer-poster",
+        "requiredConcepts": [
+          "Saturday morning volunteer sign-up",
+          "gloves and bags provided on site"
+        ],
+        "distinguishesFrom": [],
+        "genre": "poster/sign/notice",
+        "scenario": "a city-sponsored neighborhood park cleanup drive recruiting volunteers for a Saturday morning event"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "regional-train-weekend-timetable",
+        "requiredConcepts": [
+          "new station stop added midweek",
+          "weekend departure times shifted later"
+        ],
+        "distinguishesFrom": [],
+        "genre": "schedule",
+        "scenario": "a revised weekend timetable for a regional train line showing new station stop times"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "budgeting-app-changelog-page",
+        "requiredConcepts": [
+          "budgeting app adds spending alerts",
+          "login bug fixed in latest update"
+        ],
+        "distinguishesFrom": [],
+        "genre": "web page",
+        "scenario": "a changelog page listing new features in the latest software update for a budgeting app"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "grocery-store-itemized-receipt",
+        "requiredConcepts": [
+          "produce items listed with unit prices",
+          "loyalty discount applied to total"
+        ],
+        "distinguishesFrom": [],
+        "genre": "receipt",
+        "scenario": "an itemized grocery store receipt for a weekly produce and pantry purchase, showing prices and total"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "clinic-appointment-reschedule-texts",
+        "requiredConcepts": [
+          "appointment moved to next Tuesday",
+          "stress headache before the exam"
+        ],
+        "distinguishesFrom": [],
+        "genre": "text-message chain",
+        "scenario": "two friends texting about rescheduling a clinic appointment due to stress-related headaches before an exam"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "local-theater-play-advertisement",
+        "requiredConcepts": [
+          "opening night show times listed",
+          "discounted pricing for early reservations"
+        ],
+        "distinguishesFrom": [],
+        "genre": "advertisement",
+        "scenario": "a promotional flyer announcing a local theater's new play with pricing and show dates"
+      }
+    ],
+    "academicPassages": [
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "flexible-shift-schedules-manufacturers",
+        "requiredConcepts": [
+          "flexible shift options cut turnover",
+          "employees choose morning or evening shifts",
+          "small manufacturers report steadier output"
+        ],
+        "distinguishesFrom": [],
+        "title": "How Small Manufacturers Adapted Shift Schedules to Retain Employees",
+        "discipline": "business and economics",
+        "angle": "analyzes how flexible shift schedules helped small manufacturers reduce employee turnover"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "desert-plant-water-adaptation",
+        "requiredConcepts": [
+          "thick waxy leaves reduce water loss",
+          "deep roots reach underground moisture",
+          "some plants store water in stems"
+        ],
+        "distinguishesFrom": [],
+        "title": "How Desert Plants Survive in Harsh Environments",
+        "discipline": "life science",
+        "angle": "examines root and leaf adaptations that reduce water loss for plants living in dry habitats"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "canal-expansion-regional-trade",
+        "requiredConcepts": [
+          "canal shortened shipping times between markets",
+          "merchants pushed for standardized shipping rules",
+          "regional trade networks expanded after canal opening"
+        ],
+        "distinguishesFrom": [],
+        "title": "How Canal Expansion Reshaped Regional Trade Networks in the Nineteenth Century",
+        "discipline": "history",
+        "angle": "traces the historical reform of shipping regulations following canal expansion across river networks"
+      }
+    ]
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "id": "spk-c68f245c",
+  "source": "generated",
+  "createdAt": "2026-08-23T13:49:28.068Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Closing Up the Bakery Kitchen",
+    "scenarioDescription": "You're the shift manager at a neighborhood bakery, walking a newly hired kitchen employee through tonight's closing routine, station by station. Listen to each sentence and repeat what the manager says. Repeat only once.",
+    "introAudio": "stimuli/spk-c68f245c/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-c68f245c.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Closing Up the Bakery Kitchen. You're the shift manager at a neighborhood bakery, walking a newly hired kitchen employee through tonight's closing routine, station by station. Listen to each sentence and repeat what the manager says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- First, let's check the walk-in cooler together.\n- The temperature log and the door seal need checking.\n- Sign the cooler log and switch off the light before you leave.\n- We'll scrub the mixer bowls first, and you'll dry every one of them.\n- After the bowls are completely dry, seal every flour bin tightly.\n- Once the surfaces are clean, count the drawer and lock the front register.\n- The drawer amount you just counted should match what was recorded this morning.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "First, let's check the walk-in cooler together.",
+        "audio": "stimuli/spk-c68f245c/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The temperature log and the door seal need checking.",
+        "audio": "stimuli/spk-c68f245c/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Sign the cooler log and switch off the light before you leave.",
+        "audio": "stimuli/spk-c68f245c/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "We'll scrub the mixer bowls first, and you'll dry every one of them.",
+        "audio": "stimuli/spk-c68f245c/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "After the bowls are completely dry, seal every flour bin tightly.",
+        "audio": "stimuli/spk-c68f245c/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.731,
+          "y": 0.407,
+          "w": 0.222,
+          "h": 0.248
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Once the surfaces are clean, count the drawer and lock the front register.",
+        "audio": "stimuli/spk-c68f245c/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.381,
+          "y": 0.742,
+          "w": 0.246,
+          "h": 0.114
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The drawer amount you just counted should match what was recorded this morning.",
+        "audio": "stimuli/spk-c68f245c/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.613,
+          "y": 0.784,
+          "w": 0.12,
+          "h": 0.094
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "A Phone Call About Grocery List Habits",
+    "intro": "A representative from a local market-research group is calling to ask a few quick questions about how you plan your weekly grocery shopping. Listen to each question, then answer within the time given.",
+    "introAudio": "stimuli/spk-c68f245c/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thank you for taking a moment to speak with me today. I'm calling about how people plan their grocery shopping. Do you usually write a list before you go shopping, or do you shop without one?",
+        "audio": "stimuli/spk-c68f245c/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Thanks, that's helpful. Where in your home do you usually write your list — somewhere like a notepad stuck to the refrigerator door, maybe — and what do you write it with?",
+        "audio": "stimuli/spk-c68f245c/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "Good to know. Some people think a handwritten list is the most reliable way to avoid forgetting things, while others feel it's easy to leave an item off no matter how careful you are. Can you tell me about a recent week when an item from your list got left off, and which view do you think is closer to true?",
+        "audio": "stimuli/spk-c68f245c/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "That's a great example. One last question: in general, do you think it's better to make an extra trip back to the store as soon as you notice something's missing, or to just wait until your next scheduled shopping trip? What did you actually do the last time that forgotten item ran out?",
+        "audio": "stimuli/spk-c68f245c/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "interview-question",
+      "take": "first",
+      "measuredWpm": 184.8,
+      "targetWpm": 155,
+      "minWpm": 130,
+      "maxWpm": 180
+    },
+    {
+      "check": "speech-rate",
+      "detail": "interview-question",
+      "take": "retake",
+      "measuredWpm": 183.5,
+      "targetWpm": 155,
+      "minWpm": 130,
+      "maxWpm": 180
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "workplace-business",
+      "noveltyKey": "bakery-closing-routine-walkthrough",
+      "requiredConcepts": [
+        "walk-in cooler log signed before lights out",
+        "mixer bowls scrubbed before flour bins sealed",
+        "front register drawer counted and locked"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-108394d6",
+          "reason": "Both workplace-business orientation walkthroughs, but this one is a bakery kitchen closing routine, not a moving company's front desk."
+        },
+        {
+          "setId": "spk-663e848c",
+          "reason": "Different setting and station sequence: bakery closing tasks versus a help desk's loaner device checkout stations."
+        }
+      ],
+      "setting": "A neighborhood bakery's kitchen just before closing time, as the shift manager walks a newly hired employee through the closing routine station by station.",
+      "speakerRole": "the bakery's shift manager training a newly hired kitchen employee",
+      "communicativePurpose": "orient the new employee through each closing station in order so the kitchen closes safely and is ready to reopen without supervision"
+    },
+    "interview": {
+      "domain": "everyday-life",
+      "noveltyKey": "weekly-grocery-list-habit",
+      "requiredConcepts": [
+        "notepad stuck to the refrigerator door",
+        "forgotten item from last week's list",
+        "extra trip back to the store"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-fd38f94c",
+          "reason": "Both everyday-life interviews, but this one covers a weekly grocery list routine, not houseplant watering."
+        },
+        {
+          "setId": "spk-071d01af",
+          "reason": "Different daily habit entirely: grocery list planning versus campus club participation."
+        }
+      ],
+      "topic": "everyday habit of preparing a weekly grocery shopping list at home",
+      "premise": "A local market-research group places a brief, unannounced phone call about how the respondent prepares a weekly grocery list at home, then asks for a concrete recent example.",
+      "questionArc": [
+        "Caller asks whether the respondent writes a weekly grocery list before shopping or shops without one.",
+        "Caller asks where in the home the list gets written and what the respondent uses to write it.",
+        "Caller asks the respondent to recall a specific recent week when an item was left off the list.",
+        "Caller asks how the respondent handled running out of that forgotten item until the next trip."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Kore",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "australian",
+      "voice": "Sulafat",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

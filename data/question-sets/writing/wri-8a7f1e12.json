@@ -1,0 +1,266 @@
+{
+  "id": "wri-8a7f1e12",
+  "source": "generated",
+  "createdAt": "2026-07-28T18:59:18.996Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Where did you leave the keys?",
+        "frame": "I ___ ___ ___ ___ counter.",
+        "tiles": [
+          "left",
+          "them",
+          "on",
+          "the",
+          "leave"
+        ],
+        "answers": [
+          [
+            "left",
+            "them",
+            "on",
+            "the"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-2",
+        "prompt": "How many people signed up for the field trip?",
+        "frame": "Twelve students ___ ___ ___ ___ far.",
+        "tiles": [
+          "have",
+          "signed",
+          "up",
+          "so",
+          "has"
+        ],
+        "answers": [
+          [
+            "have",
+            "signed",
+            "up",
+            "so"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Should I bring lunch to the workshop?",
+        "frame": "You ___ ___ ___ ___ anything.",
+        "tiles": [
+          "don't",
+          "have",
+          "to",
+          "bring",
+          "doesn't"
+        ],
+        "answers": [
+          [
+            "don't",
+            "have",
+            "to",
+            "bring"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Did you ever hear back about the internship?",
+        "frame": "They ___ ___ ___ ___ else.",
+        "tiles": [
+          "have",
+          "already",
+          "chosen",
+          "someone",
+          "has"
+        ],
+        "answers": [
+          [
+            "have",
+            "already",
+            "chosen",
+            "someone"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Which route should we take to the coast?",
+        "frame": "The northern road ___ ___ ___ ___ ___ one.",
+        "tiles": [
+          "is",
+          "shorter",
+          "than",
+          "the",
+          "coastal",
+          "more short"
+        ],
+        "answers": [
+          [
+            "is",
+            "shorter",
+            "than",
+            "the",
+            "coastal"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Why did the field trip end early?",
+        "frame": "We ___ ___ ___ ___ ___ quickly.",
+        "tiles": [
+          "turned back",
+          "because",
+          "the tide",
+          "was",
+          "rising",
+          "were"
+        ],
+        "answers": [
+          [
+            "turned back",
+            "because",
+            "the tide",
+            "was",
+            "rising"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Which of the samples did the lab send back?",
+        "frame": "They ___ ___ ___ ___ ___ improperly.",
+        "tiles": [
+          "rejected",
+          "the ones",
+          "that",
+          "had been",
+          "stored",
+          "storing"
+        ],
+        "answers": [
+          [
+            "rejected",
+            "the ones",
+            "that",
+            "had been",
+            "stored"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Were you able to see the meteor shower?",
+        "frame": "By the time ___ ___, the clouds ___ ___ ___ in.",
+        "tiles": [
+          "we reached",
+          "the hilltop",
+          "had",
+          "already",
+          "moved",
+          "we reach"
+        ],
+        "answers": [
+          [
+            "we reached",
+            "the hilltop",
+            "had",
+            "already",
+            "moved"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Are you going to submit the abstract this week?",
+        "frame": "I ___ ___ ___ ___ ___ comments.",
+        "tiles": [
+          "would submit it",
+          "if",
+          "my supervisor",
+          "had returned",
+          "her",
+          "would return"
+        ],
+        "answers": [
+          [
+            "would submit it",
+            "if",
+            "my supervisor",
+            "had returned",
+            "her"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Which recordings ended up in the final collection?",
+        "frame": "The archivists ___ ___ ___ ___ ___ the flood.",
+        "tiles": [
+          "kept",
+          "only the tapes",
+          "whose",
+          "labels",
+          "had survived",
+          "who's"
+        ],
+        "answers": [
+          [
+            "kept",
+            "only the tapes",
+            "whose",
+            "labels",
+            "had survived"
+          ]
+        ],
+        "timeLimitSec": 40
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You arranged with the curator of the Ashfield City Archive to examine a set of nineteenth-century town maps for a history course project. You missed the appointment last Thursday because your train was cancelled, and the archive allows visitors into the reading room only by advance booking. All requests must be made in writing.",
+    "to": "curator@ashfieldarchive.org",
+    "subject": "Missed appointment on Thursday",
+    "bullets": [
+      "Apologize for missing your appointment and explain what happened.",
+      "Propose a specific new date and time to view the maps.",
+      "Ask for clarification about what visitors may bring into the reading room."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Biology 140: Ecology and Society",
+    "professorName": "Dr. Adeyemi",
+    "professorPost": "Most towns keep their public parks as closely mown lawns, but some have begun letting sections grow into rough meadow that is cut only once or twice a year. Supporters point to the wildflowers and insects that return; others argue that residents lose ground they actually use, and that an uncut park looks neglected. Councils in many towns are now being asked to decide. What do you think? Should towns let parts of their public parks grow wild instead of mowing them? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Hana",
+        "post": "I would like to see it happen. The strip behind my old school was left uncut for two summers, and by the second year there were butterflies and moths I had never seen in town before. Cutting grass every week costs money and fuel, and almost nobody sits on that particular lawn anyway."
+      },
+      {
+        "name": "Julian",
+        "post": "My neighborhood tried this, and the meadow simply became the part of the park that everyone avoided. The field where we played football on weekends disappeared, ticks turned up in the long grass, and older residents stopped walking there once the paths were overgrown. A park still has to be usable."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  }
+}

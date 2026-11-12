@@ -1,0 +1,217 @@
+{
+  "id": "spk-55acbaf7",
+  "source": "generated",
+  "createdAt": "2026-08-23T07:19:08.253Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Writing Center Walkthrough",
+    "scenarioDescription": "You are training to be a peer tutor at the university writing center. Listen to the lead tutor and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-55acbaf7/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-55acbaf7.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Writing Center Walkthrough. You are training to be a peer tutor at the university writing center. Listen to the lead tutor and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- New tutors sign in at the front desk.\n- The citation guides and style manuals sit on this shelf.\n- Tutors check the shelf and confirm the citation style beforehand.\n- You'll use the booking calendar, and it schedules walk-in appointments automatically.\n- Reserve the quiet consultation room when a session runs longer than usual.\n- Keep the supply cart stocked with pens and revision checklists daily.\n- The consultation room, which sits past the shelf, works best for longer sessions.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "New tutors sign in at the front desk.",
+        "audio": "stimuli/spk-55acbaf7/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.096,
+          "y": 0.526,
+          "w": 0.228,
+          "h": 0.224
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The citation guides and style manuals sit on this shelf.",
+        "audio": "stimuli/spk-55acbaf7/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.316,
+          "y": 0.252,
+          "w": 0.134,
+          "h": 0.177
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Tutors check the shelf and confirm the citation style beforehand.",
+        "audio": "stimuli/spk-55acbaf7/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.465,
+          "y": 0.312,
+          "w": 0.063,
+          "h": 0.138
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "You'll use the booking calendar, and it schedules walk-in appointments automatically.",
+        "audio": "stimuli/spk-55acbaf7/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.716,
+          "y": 0.37,
+          "w": 0.21,
+          "h": 0.151
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Reserve the quiet consultation room when a session runs longer than usual.",
+        "audio": "stimuli/spk-55acbaf7/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.728,
+          "y": 0.185,
+          "w": 0.155,
+          "h": 0.15
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Keep the supply cart stocked with pens and revision checklists daily.",
+        "audio": "stimuli/spk-55acbaf7/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.669,
+          "y": 0.584,
+          "w": 0.189,
+          "h": 0.245
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The consultation room, which sits past the shelf, works best for longer sessions.",
+        "audio": "stimuli/spk-55acbaf7/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "A Quick Travel Survey",
+    "intro": "Hi there, thank you for speaking with me today. I'm calling with a short survey about overnight travel. This will only take a few minutes.",
+    "introAudio": "stimuli/spk-55acbaf7/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "When you take a trip that keeps you away overnight, what kind of place do you usually stay, and how do you usually get there—by train, by bus, or by car?",
+        "audio": "stimuli/spk-55acbaf7/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of one overnight trip away from home that really stands out to you. Can you describe that trip and explain why it stands out?",
+        "audio": "stimuli/spk-55acbaf7/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some travelers book their hotel room or train ticket far in advance to get a lower price. Others wait until the last minute so they can keep their plans flexible. Which approach do you prefer, and why?",
+        "audio": "stimuli/spk-55acbaf7/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Should travel booking platforms require travelers to reserve lodging and tickets in advance during the busiest travel seasons? What would you recommend?",
+        "audio": "stimuli/spk-55acbaf7/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "first",
+      "measuredWpm": 162.3,
+      "targetWpm": 215,
+      "minWpm": 190,
+      "maxWpm": 240
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "campus-academics",
+      "noveltyKey": "writing-center-tutor-training-walkthrough",
+      "requiredConcepts": [
+        "sign-in sheet at the front desk",
+        "citation guide shelf checked before each session",
+        "booking calendar for scheduling walk-in appointments",
+        "quiet consultation room reserved for longer sessions",
+        "supply cart restocked with pens and revision checklists"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-82a09237",
+          "reason": "the previous entry orients a new hire around studio supplies and borrowing tools; this one trains a peer tutor on scheduling and citation resources in a different venue"
+        }
+      ],
+      "setting": "a university writing center's tutoring room, where the lead tutor walks a new peer tutor through each desk and shelf before their first solo shift",
+      "speakerRole": "the writing center's lead tutor training a newly hired peer tutor",
+      "communicativePurpose": "orient the new peer tutor to each part of the writing center once, in order, so sessions run consistently"
+    },
+    "interview": {
+      "domain": "services-travel",
+      "noveltyKey": "overnight-trip-lodging-choice",
+      "requiredConcepts": [
+        "hotel room booked before a trip",
+        "train or bus ticket bought at the last minute",
+        "lower price from booking a route in advance",
+        "overnight stay away from home",
+        "advance booking requirement during busy travel seasons"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-7546a04e",
+          "reason": "prior interview covers routine daily bus/train commuting; this one covers one specific overnight trip, a lodging choice, and an advance-booking opinion, not daily route habits"
+        }
+      ],
+      "topic": "overnight travel and lodging choices away from home",
+      "premise": "a brief unannounced phone survey about a recent overnight trip, asking how the respondent traveled and where they stayed",
+      "questionArc": [
+        "factual: asks what kind of overnight lodging the respondent usually books and how they typically travel there, such as by train, bus, or car",
+        "experience: asks the respondent to narrate one specific overnight trip away from home and why that particular trip stands out",
+        "opinion: presents booking a hotel or train ticket far in advance for a lower price versus booking at the last minute for flexibility, and asks the respondent to take a side",
+        "opinion: broadens to whether travel booking platforms should require advance reservations during high-demand travel seasons, inviting a recommendation"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v4",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Orus",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        200,
+        208,
+        215,
+        180,
+        178,
+        176,
+        175
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "australian",
+      "voice": "Achird",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

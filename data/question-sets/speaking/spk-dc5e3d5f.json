@@ -1,0 +1,192 @@
+{
+  "id": "spk-dc5e3d5f",
+  "source": "generated",
+  "createdAt": "2026-08-24T17:17:14.509Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Climbing Wall Belay Checker Orientation",
+    "scenarioDescription": "You are shadowing the lead climbing wall supervisor as she walks a newly hired belay certification checker through each clearance station before the wall opens for open climb hours. Listen to the supervisor and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-dc5e3d5f/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-dc5e3d5f.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Climbing Wall Belay Checker Orientation. You are shadowing the lead climbing wall supervisor as she walks a newly hired belay certification checker through each clearance station before the wall opens for open climb hours. Listen to the supervisor and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Climbers start at the waiver sign-in table.\n- The lead supervisor and the new checker meet here first.\n- Climbers move from the sign-in table to the harness fitting station.\n- The checker fits the harness snugly, and the climber adjusts the leg loops.\n- Before climbers reach the wall, they must pass the knot inspection checkpoint.\n- The checker inspects each climber's figure-eight knot before signaling the belayer to begin.\n- The belay device, checked twice by the supervisor, keeps every climber secure.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Climbers start at the waiver sign-in table.",
+        "audio": "stimuli/spk-dc5e3d5f/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The lead supervisor and the new checker meet here first.",
+        "audio": "stimuli/spk-dc5e3d5f/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Climbers move from the sign-in table to the harness fitting station.",
+        "audio": "stimuli/spk-dc5e3d5f/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The checker fits the harness snugly, and the climber adjusts the leg loops.",
+        "audio": "stimuli/spk-dc5e3d5f/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Before climbers reach the wall, they must pass the knot inspection checkpoint.",
+        "audio": "stimuli/spk-dc5e3d5f/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The checker inspects each climber's figure-eight knot before signaling the belayer to begin.",
+        "audio": "stimuli/spk-dc5e3d5f/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The belay device, checked twice by the supervisor, keeps every climber secure.",
+        "audio": "stimuli/spk-dc5e3d5f/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Daily Vitamin Reminder Survey",
+    "intro": "A researcher from a health and wellbeing study calls you out of the blue to ask about a daily habit: remembering to take a vitamin or medication every day.",
+    "introAudio": "stimuli/spk-dc5e3d5f/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thank you for speaking with me today. First, could you tell me how you usually remember to take a vitamin or medication each day — for instance, do you keep the bottle by the bathroom sink, or rely on something else?",
+        "audio": "stimuli/spk-dc5e3d5f/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of a specific day recently when you almost forgot a dose and only realized at bedtime — what happened?",
+        "audio": "stimuli/spk-dc5e3d5f/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Some people set a phone alarm for breakfast time or sort a pillbox every Sunday night, while others just rely on memory. Which approach do you think works better, and why?",
+        "audio": "stimuli/spk-dc5e3d5f/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question: if your daily schedule changed significantly — for example, a new job or travel — how would you adjust the way you remember to take your medication?",
+        "audio": "stimuli/spk-dc5e3d5f/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 145.6,
+      "targetWpm": 184,
+      "minWpm": 156,
+      "maxWpm": 209
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "campus-academics",
+      "noveltyKey": "campus-climbing-wall-belay-check-orientation",
+      "requiredConcepts": [
+        "harness fitting station",
+        "knot inspection checkpoint",
+        "belay device safety check",
+        "waiver sign-in table"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-1ba26e29",
+          "reason": "that orientation walks a new peer tutor through a campus writing center; this one walks a new belay checker through a climbing wall bay, a different campus facility and task"
+        },
+        {
+          "setId": "spk-fb16d13c",
+          "reason": "that orientation covers a campus mail and package center's sorting stations; this one covers a climbing wall's safety-clearance stations"
+        }
+      ],
+      "setting": "the campus recreation center's indoor climbing wall bay, just before the wall opens for open climb hours",
+      "speakerRole": "the recreation center's lead climbing wall supervisor training a newly hired belay certification checker",
+      "communicativePurpose": "orient the new checker through each clearance station in order so climbers can be safely approved before the wall opens"
+    },
+    "interview": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "daily-vitamin-reminder-habit",
+      "requiredConcepts": [
+        "a vitamin bottle kept by the bathroom sink",
+        "a phone alarm set for breakfast time",
+        "a missed dose caught only at bedtime",
+        "a pillbox sorted every Sunday night"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-4ed5798a",
+          "reason": "that interview covers a mid-study exercise break habit; this one covers remembering a daily vitamin or medication, a different everyday health routine"
+        },
+        {
+          "setId": "spk-c68f245c",
+          "reason": "that interview covers a weekly grocery list habit in a different domain family (everyday-life); this one stays inside health-wellbeing"
+        }
+      ],
+      "topic": "how the test taker remembers to take a daily vitamin or medication",
+      "premise": "A health-wellbeing research group makes a brief unannounced phone call asking how the test taker remembers to take a daily vitamin or medication, then asks for a specific recent example.",
+      "questionArc": [
+        "Asks how the test taker usually remembers to take a vitamin or medication each day.",
+        "Asks for a specific recent day when the test taker almost forgot or nearly missed a dose.",
+        "Asks whether the test taker relies on a reminder tool like a phone alarm or pillbox rather than just memory, and why.",
+        "Asks how the test taker would adjust the reminder method if their daily schedule changed significantly."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "british",
+      "voice": "Erinome",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "north-american",
+      "voice": "Callirrhoe",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

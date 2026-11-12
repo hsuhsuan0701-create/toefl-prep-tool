@@ -1,0 +1,229 @@
+{
+  "id": "spk-6800cfd7",
+  "source": "generated",
+  "createdAt": "2026-08-23T13:30:45.887Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Platform Safety Walkthrough",
+    "scenarioDescription": "A senior platform supervisor is walking a newly hired attendant through each safety station on the platform before the attendant's first solo shift. Listen to the supervisor and repeat what the supervisor says. Repeat only once.",
+    "introAudio": "stimuli/spk-6800cfd7/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-6800cfd7.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Platform Safety Walkthrough. A senior platform supervisor is walking a newly hired attendant through each safety station on the platform before the attendant's first solo shift. Listen to the supervisor and repeat what the supervisor says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Check the signal board before each announcement.\n- Confirm the arrival time and the platform number together.\n- Walk to the yellow line and keep it clear of bags.\n- Passengers often crowd the edge, but you must ask them back.\n- Point out the emergency call box whenever a passenger looks confused.\n- The emergency call box near the ticket machine connects straight to control.\n- Announce the gap warning again once a train pulling in reaches the platform.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Check the signal board before each announcement.",
+        "audio": "stimuli/spk-6800cfd7/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Confirm the arrival time and the platform number together.",
+        "audio": "stimuli/spk-6800cfd7/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.437,
+          "y": 0.143,
+          "w": 0.174,
+          "h": 0.093
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Walk to the yellow line and keep it clear of bags.",
+        "audio": "stimuli/spk-6800cfd7/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.503,
+          "y": 0.573,
+          "w": 0.089,
+          "h": 0.087
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Passengers often crowd the edge, but you must ask them back.",
+        "audio": "stimuli/spk-6800cfd7/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.724,
+          "y": 0.518,
+          "w": 0.147,
+          "h": 0.158
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Point out the emergency call box whenever a passenger looks confused.",
+        "audio": "stimuli/spk-6800cfd7/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.37,
+          "y": 0.556,
+          "w": 0.064,
+          "h": 0.165
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The emergency call box near the ticket machine connects straight to control.",
+        "audio": "stimuli/spk-6800cfd7/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.081,
+          "y": 0.478,
+          "w": 0.068,
+          "h": 0.111
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Announce the gap warning again once a train pulling in reaches the platform.",
+        "audio": "stimuli/spk-6800cfd7/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.74,
+          "y": 0.2,
+          "w": 0.096,
+          "h": 0.124
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Neighborhood Event Awareness",
+    "intro": "A volunteer from your neighborhood association is calling residents at random to ask how they find out about local events. Thank you for speaking with me today. I have a few quick questions about how you keep up with what's happening around the neighborhood.",
+    "introAudio": "stimuli/spk-6800cfd7/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Which bulletin board or flyer spot around the neighborhood do you check most often, and about how many times a week do you look at it?",
+        "audio": "stimuli/spk-6800cfd7/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Can you tell me about a specific event you found out about that way recently? What was it, and how did you end up deciding to go?",
+        "audio": "stimuli/spk-6800cfd7/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK, next I'd like to ask your opinion. Some people say paper flyers on a board are easy to notice while you're walking by, but others say a shared neighborhood app would reach more people faster. Which do you think works better, and why?",
+        "audio": "stimuli/spk-6800cfd7/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Do you think the neighborhood as a whole should invest in one central format for sharing event information, rather than relying on both flyers and separate apps? What would you recommend?",
+        "audio": "stimuli/spk-6800cfd7/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-briefing",
+      "take": "retake",
+      "measuredWpm": 144.1,
+      "targetWpm": 165,
+      "minWpm": 145,
+      "maxWpm": 195
+    },
+    {
+      "check": "speech-rate",
+      "detail": "interview-question",
+      "take": "retake",
+      "measuredWpm": 182.6,
+      "targetWpm": 155,
+      "minWpm": 130,
+      "maxWpm": 180
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "services-travel",
+      "noveltyKey": "train-platform-signal-board-walkthrough",
+      "requiredConcepts": [
+        "signal board checked before each announcement",
+        "yellow boarding line kept clear",
+        "emergency call box location confirmed",
+        "platform edge gap warning repeated at boarding"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-f9fe8bad",
+          "reason": "that Set walks a trainee through the lost-and-found counter for recovering passenger items; this one walks a trainee through platform safety stations (signal board, boarding line, call box) with no lost-and-found content."
+        }
+      ],
+      "setting": "a regional train station's platform supervisor office and platform edge, shortly before a newly hired platform attendant's first solo shift",
+      "speakerRole": "the station's senior platform supervisor training a newly hired platform attendant",
+      "communicativePurpose": "orienting the new attendant through each platform safety station in order so passengers can be helped and boarding kept moving without the supervisor's guidance"
+    },
+    "interview": {
+      "domain": "community-civic",
+      "noveltyKey": "neighborhood-bulletin-board-event-habit",
+      "requiredConcepts": [
+        "bulletin board checked twice a week",
+        "flyer led to a weekend cleanup event",
+        "paper flyers versus a shared neighborhood app",
+        "one central format the neighborhood should adopt"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-210471e3",
+          "reason": "that Set covers following formal town council decisions and public meeting notices; this one covers casual awareness of neighborhood social/volunteer events via a bulletin board, a different civic habit entirely."
+        }
+      ],
+      "topic": "how the respondent finds out about upcoming neighborhood events through the community center's public bulletin board",
+      "premise": "a neighborhood outreach volunteer places a brief unannounced phone call about how residents currently learn about local community events",
+      "questionArc": [
+        "asks which specific public bulletin board or flyer spot the respondent checks most often and roughly how often",
+        "asks the respondent to recall a specific recent neighborhood event they learned about that way and what happened",
+        "introduces a contrast between paper flyers on the board and a shared neighborhood app, then asks the respondent to take a side with a reason",
+        "broadens to whether the neighborhood as a whole should invest in one central format for sharing event information, inviting a recommendation"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "australian",
+      "voice": "Rasalgethi",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Umbriel",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

@@ -1,0 +1,459 @@
+{
+  "id": "wri-aaa3d20f",
+  "source": "generated",
+  "createdAt": "2026-08-07T02:29:12.848Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Why is the public fountain closed until Friday?",
+        "frame": "The ___ ___ ___ ___ pump.",
+        "tiles": [
+          "municipal repair crew",
+          "is",
+          "replacing",
+          "a damaged",
+          "are"
+        ],
+        "answers": [
+          [
+            "municipal repair crew",
+            "is",
+            "replacing",
+            "a damaged"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Why are the culture plates stored upside down?",
+        "frame": "That ___ ___ ___ ___ the cultures.",
+        "tiles": [
+          "position",
+          "keeps",
+          "condensation",
+          "off",
+          "keep"
+        ],
+        "answers": [
+          [
+            "position",
+            "keeps",
+            "condensation",
+            "off"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Why does my digital recording have uneven volume after export?",
+        "frame": "The automatic ___ ___ ___ ___ the original audio track.",
+        "tiles": [
+          "volume setting",
+          "changed",
+          "the levels",
+          "on",
+          "change"
+        ],
+        "answers": [
+          [
+            "volume setting",
+            "changed",
+            "the levels",
+            "on"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Why must I avoid breakfast before the health screening?",
+        "frame": "An ___ ___ ___ ___ ___ before the screening.",
+        "tiles": [
+          "eight-hour fast",
+          "is required,",
+          "although",
+          "you may drink",
+          "plain water",
+          "are required,"
+        ],
+        "answers": [
+          [
+            "eight-hour fast",
+            "is required,",
+            "although",
+            "you may drink",
+            "plain water"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Why do these two migration interviews give different family names for the same person?",
+        "frame": "One interview ___ ___ ___ ___ ___ ___ in the transcript.",
+        "tiles": [
+          "uses her married name,",
+          "whereas",
+          "the other uses",
+          "her birth family name;",
+          "the name change",
+          "is noted",
+          "are noted"
+        ],
+        "answers": [
+          [
+            "uses her married name,",
+            "whereas",
+            "the other uses",
+            "her birth family name;",
+            "the name change",
+            "is noted"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Where should I leave my bulky items for municipal pickup?",
+        "frame": "Place the bulky items ___ ___ ___ ___ on the first Saturday of each month.",
+        "tiles": [
+          "at the marked collection corner,",
+          "where",
+          "the municipal crew",
+          "will collect them",
+          "which"
+        ],
+        "answers": [
+          [
+            "at the marked collection corner,",
+            "where",
+            "the municipal crew",
+            "will collect them"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Why must the habitat survey begin just before sunrise every morning?",
+        "frame": "Because bird activity peaks ___ ___ ___ ___ ___ the survey results remain comparable.",
+        "tiles": [
+          "just before sunrise,",
+          "we use",
+          "the same observation window",
+          "each day",
+          "so that",
+          "we used"
+        ],
+        "answers": [
+          [
+            "just before sunrise,",
+            "we use",
+            "the same observation window",
+            "each day",
+            "so that"
+          ],
+          [
+            "just before sunrise,",
+            "each day",
+            "we use",
+            "the same observation window",
+            "so that"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Why does my online account still reject the new password?",
+        "frame": "Because the browser ___ ___ ___ ___ ___ to the server.",
+        "tiles": [
+          "has saved",
+          "your old password,",
+          "the new login attempt",
+          "is still sending",
+          "the outdated credentials",
+          "have saved"
+        ],
+        "answers": [
+          [
+            "has saved",
+            "your old password,",
+            "the new login attempt",
+            "is still sending",
+            "the outdated credentials"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Why should I move my bedtime earlier in such small steps?",
+        "frame": "Advancing bedtime ___ ___ ___ ___ ___ ___ a sudden loss of sleep.",
+        "tiles": [
+          "in fifteen-minute changes",
+          "while keeping",
+          "a consistent morning wake-up time",
+          "allows your body clock",
+          "to adjust",
+          "without causing",
+          "allow your body clock"
+        ],
+        "answers": [
+          [
+            "in fifteen-minute changes",
+            "while keeping",
+            "a consistent morning wake-up time",
+            "allows your body clock",
+            "to adjust",
+            "without causing"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-10",
+        "prompt": "How did historians determine when this reform-era diary was written?",
+        "frame": "The railway strike ___ ___ ___ ___ ___ ___ before the new minister took office.",
+        "tiles": [
+          "mentioned in one entry",
+          "establishes the earliest possible date,",
+          "while the resignation",
+          "named in the final entry",
+          "shows that the diary",
+          "must have been completed",
+          "establish the earliest possible date,"
+        ],
+        "answers": [
+          [
+            "mentioned in one entry",
+            "establishes the earliest possible date,",
+            "while the resignation",
+            "named in the final entry",
+            "shows that the diary",
+            "must have been completed"
+          ]
+        ],
+        "timeLimitSec": 40
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You recently joined a nutrition workshop offered by a local clinic. You appreciated the welcoming clinic introduction and clear opening session, but your registration record incorrectly lists your tree-nut allergy as a dairy allergy. You need the clinic to correct this information before the next session.",
+    "to": "nutritionprogram@riversideclinic.org",
+    "subject": "Correction to Workshop Allergy Record",
+    "bullets": [
+      "Express appreciation for the welcoming introduction to the clinic workshop.",
+      "Report that your tree-nut allergy was entered as a dairy allergy.",
+      "Request confirmation that your registration record has been corrected."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Transportation and Society",
+    "professorName": "Dr. Morgan",
+    "professorPost": "Long-distance train operators must balance different passengers' needs within a limited amount of space. Some travelers favor one quiet carriage on each train, while others prefer the freedom to choose any available seat. Should operators designate one carriage as a quiet area throughout every journey? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Elena",
+        "post": "I support a quiet carriage because passengers may need to sleep, read, or work without frequent interruptions. Clear signs and limited enforcement would probably be enough to set expectations without creating conflict. Since the rest of the train would allow normal conversation, this policy would preserve choices for most travelers."
+      },
+      {
+        "name": "Mateo",
+        "post": "I oppose the proposal because reserving an entire carriage reduces flexible train seating for families and groups. Group conversations during long trips are reasonable, especially when relatives have paid to travel together. Instead of creating a permanent quiet area, operators could provide earplugs or designate quiet hours late at night."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "community-civic",
+          "situation": "A resident asks a municipal clerk why the public fountain is fenced off and when it will reopen.",
+          "participantRoles": [
+            "resident",
+            "municipal clerk"
+          ],
+          "noveltyKey": "public-fountain-repair",
+          "requiredConcepts": [
+            "public fountain closed until Friday",
+            "municipal repair crew"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A laboratory technician explains why an experiment's culture plates must remain upside down.",
+          "participantRoles": [
+            "trainee",
+            "laboratory technician"
+          ],
+          "noveltyKey": "experiment-plate-position",
+          "requiredConcepts": [
+            "condensation kept off the cultures",
+            "plates stored upside down"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A podcast producer asks why a digital recording has uneven volume after export.",
+          "participantRoles": [
+            "podcast producer",
+            "sound technician"
+          ],
+          "noveltyKey": "digital-volume-export",
+          "requiredConcepts": [
+            "automatic volume setting",
+            "original audio track"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A clinic receptionist explains why a patient must avoid breakfast before a health screening.",
+          "participantRoles": [
+            "patient",
+            "clinic receptionist"
+          ],
+          "noveltyKey": "health-screening-fast",
+          "requiredConcepts": [
+            "eight-hour fast",
+            "plain water before the screening"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A history researcher asks an oral-history archivist why two migration interviews use different family names.",
+          "participantRoles": [
+            "history researcher",
+            "oral-history archivist"
+          ],
+          "noveltyKey": "migration-name-records",
+          "requiredConcepts": [
+            "married and birth family names",
+            "name change noted in the transcript"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A neighborhood coordinator tells a resident where to place bulky items for municipal pickup.",
+          "participantRoles": [
+            "resident",
+            "neighborhood coordinator"
+          ],
+          "noveltyKey": "municipal-bulky-pickup",
+          "requiredConcepts": [
+            "marked collection corner",
+            "pickup on the first Saturday"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A biology fieldworker explains why a habitat survey must begin just before sunrise.",
+          "participantRoles": [
+            "new fieldworker",
+            "biology fieldworker"
+          ],
+          "noveltyKey": "habitat-survey-sunrise",
+          "requiredConcepts": [
+            "bird activity before sunrise",
+            "same observation window each day"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A user asks a software technician why an online account still rejects a new password.",
+          "participantRoles": [
+            "account holder",
+            "software technician"
+          ],
+          "noveltyKey": "online-password-rejection",
+          "requiredConcepts": [
+            "old password saved by the browser",
+            "new login attempt"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A sleep counselor explains why a client should move bedtime earlier in small steps.",
+          "participantRoles": [
+            "client",
+            "sleep counselor"
+          ],
+          "noveltyKey": "sleep-schedule-adjustment",
+          "requiredConcepts": [
+            "fifteen-minute bedtime changes",
+            "consistent morning wake-up time"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A historian explains how a reform-era diary was dated from historical clues inside its entries.",
+          "participantRoles": [
+            "visitor",
+            "historian"
+          ],
+          "noveltyKey": "reform-diary-dating",
+          "requiredConcepts": [
+            "railway strike mentioned in one entry",
+            "resignation named in the final entry"
+          ],
+          "distinguishesFrom": []
+        }
+      ]
+    },
+    "email": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "clinic-allergy-record",
+      "requiredConcepts": [
+        "welcoming clinic introduction",
+        "tree-nut allergy entered as dairy allergy",
+        "corrected registration confirmation"
+      ],
+      "distinguishesFrom": [],
+      "situation": "A patient joined a clinic nutrition workshop, appreciated the clear opening session, but noticed that the registration record lists the wrong food allergy.",
+      "recipientRole": "clinic program coordinator",
+      "communicativeActs": [
+        "express appreciation for the introduction",
+        "report the incorrect allergy record",
+        "request a corrected registration confirmation"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "services-travel",
+      "noveltyKey": "quiet-train-carriage",
+      "requiredConcepts": [
+        "one quiet carriage on each train",
+        "group conversations during long trips",
+        "clear signs and limited enforcement"
+      ],
+      "distinguishesFrom": [],
+      "proposition": "Long-distance train operators should designate one carriage as a quiet area throughout every journey.",
+      "competingValues": [
+        "quiet travel for rest and concentration",
+        "flexible train seating for families and groups"
+      ]
+    }
+  }
+}

@@ -1,0 +1,1634 @@
+{
+  "id": "rd-efd07fb4",
+  "source": "generated",
+  "createdAt": "2026-08-17T15:53:43.236Z",
+  "kind": "reading",
+  "router": {
+    "timeLimitSec": 1200,
+    "ctwPassages": [
+      {
+        "id": "ctw-r1",
+        "taskType": "complete_words",
+        "topic": "town historians hand-copying elders' spoken memories before sound recording was possible",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Long before tape recorders reached small towns, community volunteers preserved local memory by hand. Each "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g1"
+          },
+          {
+            "type": "text",
+            "text": " a "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g2"
+          },
+          {
+            "type": "text",
+            "text": " visited "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g3"
+          },
+          {
+            "type": "text",
+            "text": " elder "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g4"
+          },
+          {
+            "type": "text",
+            "text": " copied "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g5"
+          },
+          {
+            "type": "text",
+            "text": " spoken "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g6"
+          },
+          {
+            "type": "text",
+            "text": " exactly "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g7"
+          },
+          {
+            "type": "text",
+            "text": " they "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g8"
+          },
+          {
+            "type": "text",
+            "text": " told, "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g9"
+          },
+          {
+            "type": "text",
+            "text": " many "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g10"
+          },
+          {
+            "type": "text",
+            "text": " in a plain notebook. They became the core of a growing heritage archive meant to outlast anyone who remembered the events firsthand. To keep entries reliable, organizers compared disputed dates and names against old family notes kept in attics and drawers. Errors were rare, but when a detail conflicted, the older document usually settled the question, and the record was corrected before binding."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-r1-g1",
+            "prefix": "we",
+            "completion": "ek",
+            "blankLength": 2,
+            "explanationZh": "此處需與「Each ___」搭配表示重複發生的時間單位，Each week（每週）符合後文「a helper visited an elder」所描述的例行性、定期拜訪動作，故答案為 week。"
+          },
+          {
+            "id": "ctw-r1-g2",
+            "prefix": "hel",
+            "completion": "per",
+            "blankLength": 3,
+            "explanationZh": "此字為句子主詞，指前一句提到「preserved local memory by hand」的志工，helper（協助者）呼應下文其造訪長者、抄錄故事的角色，故答案為 helper。"
+          },
+          {
+            "id": "ctw-r1-g3",
+            "prefix": "a",
+            "completion": "n",
+            "blankLength": 1,
+            "explanationZh": "此處為不定冠詞，修飾其後以母音音起始的名詞 elder，依英文文法規則母音開頭名詞前須用 an 而非 a，故答案為 an。"
+          },
+          {
+            "id": "ctw-r1-g4",
+            "prefix": "a",
+            "completion": "nd",
+            "blankLength": 2,
+            "explanationZh": "此處連接 helper 的兩個並列動作「visited an elder」與「copied down spoken stories」，需要對等連接詞 and 表示動作先後接續，故答案為 and。"
+          },
+          {
+            "id": "ctw-r1-g5",
+            "prefix": "do",
+            "completion": "wn",
+            "blankLength": 2,
+            "explanationZh": "copied 後接 down 構成片語動詞 copy down，意為「逐字記下」，恰好描述 helper 將長者口述內容原原本本寫下的動作，故答案為 down。"
+          },
+          {
+            "id": "ctw-r1-g6",
+            "prefix": "sto",
+            "completion": "ries",
+            "blankLength": 4,
+            "explanationZh": "此字為 copied down 的受詞，指長者所講述、被抄寫下來的內容，spoken stories（口述的故事）與後文「exactly as they were told」的 they 相呼應，故答案為 stories。"
+          },
+          {
+            "id": "ctw-r1-g7",
+            "prefix": "a",
+            "completion": "s",
+            "blankLength": 1,
+            "explanationZh": "此處引導方式子句，as they were told 表示「依照被講述的樣子」，as 在此作連接詞表示比較／方式，與 exactly 搭配強調完全依原樣抄錄，故答案為 as。"
+          },
+          {
+            "id": "ctw-r1-g8",
+            "prefix": "we",
+            "completion": "re",
+            "blankLength": 2,
+            "explanationZh": "此處為被動語態動詞，主詞 they 指前述複數的 stories，需 be 動詞過去式 were 搭配過去分詞 told，構成「被講述」的被動結構，故答案為 were。"
+          },
+          {
+            "id": "ctw-r1-g9",
+            "prefix": "fil",
+            "completion": "ling",
+            "blankLength": 4,
+            "explanationZh": "此字為現在分詞，引導分詞片語補充說明抄錄故事的結果——filling many pages（填滿許多頁），與主要子句動作同時發生，故答案為 filling。"
+          },
+          {
+            "id": "ctw-r1-g10",
+            "prefix": "pa",
+            "completion": "ges",
+            "blankLength": 3,
+            "explanationZh": "此字為 filling 的受詞，指筆記本中被寫滿的頁面，pages（頁）與後文「in a plain notebook」的筆記本語意一致，故答案為 pages。"
+          }
+        ],
+        "sourceParagraph": "Long before tape recorders reached small towns, community volunteers preserved local memory by hand. Each week a helper visited an elder and copied down spoken stories exactly as they were told, filling many pages in a plain notebook. They became the core of a growing heritage archive meant to outlast anyone who remembered the events firsthand. To keep entries reliable, organizers compared disputed dates and names against old family notes kept in attics and drawers. Errors were rare, but when a detail conflicted, the older document usually settled the question, and the record was corrected before binding."
+      },
+      {
+        "id": "ctw-r2",
+        "taskType": "complete_words",
+        "topic": "adjusting a daily walking habit after a familiar path floods",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Heavy rain last week left my usual morning walking path completely underwater. For "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g1"
+          },
+          {
+            "type": "text",
+            "text": " I "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g2"
+          },
+          {
+            "type": "text",
+            "text": " followed "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g3"
+          },
+          {
+            "type": "text",
+            "text": " same "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g4"
+          },
+          {
+            "type": "text",
+            "text": " along "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g5"
+          },
+          {
+            "type": "text",
+            "text": " river, "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g6"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g7"
+          },
+          {
+            "type": "text",
+            "text": " ground "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g8"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g9"
+          },
+          {
+            "type": "text",
+            "text": " stayed "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g10"
+          },
+          {
+            "type": "text",
+            "text": " for days. So I started testing nearby streets that climbed slightly higher toward the old market. The first mornings felt awkward, since the turns did not match what my feet expected. Gradually the new route became familiar, and I noticed quiet corners and a small garden I had never seen before. By the end of the week, the difference no longer seemed strange."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-r2-g1",
+            "prefix": "ye",
+            "completion": "ars",
+            "blankLength": 3,
+            "explanationZh": "此處與後方過去完成式「had followed」搭配，「For years」表示「多年以來」，說明作者長期沿同一路線行走，故答案為 years。"
+          },
+          {
+            "id": "ctw-r2-g2",
+            "prefix": "h",
+            "completion": "ad",
+            "blankLength": 2,
+            "explanationZh": "主詞 I 後接過去完成式，需要助動詞 had 與過去分詞 followed 連用，表示在河水淹沒步道之前「早已」走同一條路，故答案為 had。"
+          },
+          {
+            "id": "ctw-r2-g3",
+            "prefix": "t",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "followed 後接名詞片語「same course」，course 為特定、已知的那條路線，需用定冠詞 the 修飾 same course，故答案為 the。"
+          },
+          {
+            "id": "ctw-r2-g4",
+            "prefix": "cou",
+            "completion": "rse",
+            "blankLength": 3,
+            "explanationZh": "「the same ___ along the river」描述作者沿河長年行走的路徑，course 意指「路線」，與後句提到改走鄰近街道的對比呼應，故答案為 course。"
+          },
+          {
+            "id": "ctw-r2-g5",
+            "prefix": "t",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "along 之後接特定、上下文中唯一的那條河，須用定冠詞 the 修飾 river，故答案為 the。"
+          },
+          {
+            "id": "ctw-r2-g6",
+            "prefix": "b",
+            "completion": "ut",
+            "blankLength": 2,
+            "explanationZh": "前句敘述作者長年沿河邊路線行走，後句轉折說明橋邊低地會淹水數日，語意上下句形成對比，需用轉折連接詞 but，故答案為 but。"
+          },
+          {
+            "id": "ctw-r2-g7",
+            "prefix": "l",
+            "completion": "ow",
+            "blankLength": 2,
+            "explanationZh": "「the ___ ground near the bridge」描述橋邊地勢較低、容易積水的地區，形容詞 low 用來修飾 ground，說明其地勢低窪，故答案為 low。"
+          },
+          {
+            "id": "ctw-r2-g8",
+            "prefix": "ne",
+            "completion": "ar",
+            "blankLength": 2,
+            "explanationZh": "「ground ___ the bridge」表示低地的位置在橋樑「附近」，需用介係詞 near 表示地點鄰近關係，故答案為 near。"
+          },
+          {
+            "id": "ctw-r2-g9",
+            "prefix": "bri",
+            "completion": "dge",
+            "blankLength": 3,
+            "explanationZh": "near the ___ 指出低地緊鄰的地標，文中前後皆提及橋為淹水路段的位置參照，故答案為 bridge。"
+          },
+          {
+            "id": "ctw-r2-g10",
+            "prefix": "flo",
+            "completion": "oded",
+            "blankLength": 4,
+            "explanationZh": "「stayed ___ for days」描述該低地持續多日處於淹水狀態，需用過去分詞 flooded 作為主詞補語，呼應首句 underwater 的語意，故答案為 flooded。"
+          }
+        ],
+        "sourceParagraph": "Heavy rain last week left my usual morning walking path completely underwater. For years I had followed the same course along the river, but the low ground near the bridge stayed flooded for days. So I started testing nearby streets that climbed slightly higher toward the old market. The first mornings felt awkward, since the turns did not match what my feet expected. Gradually the new route became familiar, and I noticed quiet corners and a small garden I had never seen before. By the end of the week, the difference no longer seemed strange."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-r1",
+        "taskType": "daily_life",
+        "genre": "poster/sign/notice",
+        "text": "ROOM CHANGE NOTICE\n\nGuest Lecture: Dr. Elena Ruiz, Marine Biology\nMoved from Hall B, Room 104 to Baxter Hall, Room 220 — larger seating!\nSame day. Same time: 3:00 PM.\nSeats limited — arrive early.\nQuestions? Front desk, Baxter Hall.",
+        "questions": [
+          {
+            "id": "dl-r1-q1",
+            "stem": "According to the notice, where has the guest lecture been moved?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To Baxter Hall, Room 220"
+              },
+              {
+                "id": "b",
+                "text": "To the front desk in Baxter Hall"
+              },
+              {
+                "id": "c",
+                "text": "To Hall B, Room 104"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "公告明確指出改到Baxter Hall 220室，Hall B 104室是原本的舊教室，服務台只是詢問處，並非新教室位置。"
+          },
+          {
+            "id": "dl-r1-q2",
+            "stem": "Why most likely was the lecture moved to a new room?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To provide larger seating for attendees"
+              },
+              {
+                "id": "b",
+                "text": "To move the event closer to the front desk"
+              },
+              {
+                "id": "c",
+                "text": "To hold the lecture at a more convenient time"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "purpose",
+            "explanationZh": "公告寫明新教室提供『larger seating』，顯示搬遷是為了容納更多聽眾；時間並未改變，服務台也僅是詢問處。"
+          }
+        ]
+      },
+      {
+        "id": "dl-r2",
+        "taskType": "daily_life",
+        "genre": "advertisement",
+        "text": "SAVE ON PARKING — CARPOOL AND WIN!\n\nShare a ride with two or more coworkers? Get 50% off your monthly parking pass!\nSign up through the office manager, front lobby, by the 15th.\nFewer cars. Faster mornings. Bigger savings.\nLimited passes available — first come, first served!",
+        "questions": [
+          {
+            "id": "dl-r2-q1",
+            "stem": "Based on the advertisement, how many coworkers must an employee ride with to qualify for the discount?",
+            "options": [
+              {
+                "id": "a",
+                "text": "At least five other coworkers"
+              },
+              {
+                "id": "b",
+                "text": "At least one other coworker"
+              },
+              {
+                "id": "c",
+                "text": "At least two other coworkers"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "廣告寫『share a ride with two or more coworkers』，代表至少需兩位同事同乘，並非一位或五位。"
+          },
+          {
+            "id": "dl-r2-q2",
+            "stem": "Where should an employee go to sign up for the discount?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The building maintenance supervisor's workshop"
+              },
+              {
+                "id": "b",
+                "text": "The office manager, near the front lobby"
+              },
+              {
+                "id": "c",
+                "text": "The human resources department, by internal email"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "廣告指出報名地點為『office manager, front lobby』，並非維修主管的工作室或人資信箱。"
+          },
+          {
+            "id": "dl-r2-q3",
+            "stem": "What is the main purpose of this advertisement?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To notify staff of an upcoming increase in parking fees"
+              },
+              {
+                "id": "b",
+                "text": "To announce the construction of a new employee parking garage"
+              },
+              {
+                "id": "c",
+                "text": "To promote carpooling with a parking discount"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "main_idea",
+            "explanationZh": "全文主旨在鼓勵員工共乘以換取停車費折扣，並未提及興建新車庫或調漲費用。"
+          }
+        ]
+      },
+      {
+        "id": "dl-r3",
+        "taskType": "daily_life",
+        "genre": "web page",
+        "text": "City Recycling Center — Drop-Off Hours\n\nOpen Tuesday-Saturday, 9:00 AM-4:00 PM. Closed Sunday and Monday.\n\nAccepted this month: paper, glass, plastic bottles, and cardboard. Electronics are not accepted at the drop-off site.\n\nNeed a special pickup for large items? Call our hotline at 555-0142.\n\nHome | Hours | Materials | Contact",
+        "questions": [
+          {
+            "id": "dl-r3-q1",
+            "stem": "What is NOT accepted at the drop-off site this month?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Cardboard"
+              },
+              {
+                "id": "b",
+                "text": "Glass"
+              },
+              {
+                "id": "c",
+                "text": "Electronics"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "頁面寫明『Electronics are not accepted』，紙張、玻璃、紙板則列為本月可回收項目。"
+          },
+          {
+            "id": "dl-r3-q2",
+            "stem": "On which days is the recycling center closed?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Sunday and Monday"
+              },
+              {
+                "id": "b",
+                "text": "Saturday and Sunday"
+              },
+              {
+                "id": "c",
+                "text": "Monday and Tuesday"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "頁面寫『Closed Sunday and Monday』，週二至週六為開放時間，故此為正確答案。"
+          },
+          {
+            "id": "dl-r3-q3",
+            "stem": "Why would someone call the hotline number listed on the page?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To find out which materials are accepted this month"
+              },
+              {
+                "id": "b",
+                "text": "To ask whether the center is open on Mondays"
+              },
+              {
+                "id": "c",
+                "text": "To arrange a special pickup for large items"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "purpose",
+            "explanationZh": "頁面說明專線用於『special pickup for large items』，並非詢問開放時間或可回收的材料種類。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-r1",
+        "taskType": "academic_passage",
+        "title": "How Repeated Practice Builds Muscle Memory",
+        "discipline": "life science",
+        "text": "When a person practices the same physical movement over and over, something changes inside the nervous system long before any muscle grows larger. Repeated practice strengthens the specific neural pathways that carry signals from the brain to the muscles involved in that movement. Each time the movement is performed correctly, the connections along that pathway become slightly more efficient, so the brain needs less conscious effort to produce the same result. This is why a skill that once required careful, deliberate attention, such as tying a knot or striking a tennis ball, can eventually feel almost automatic. Athletes and musicians rely on this process, often called muscle memory, to perform complex sequences quickly and with fewer mistakes. However, this efficiency is not guaranteed by repetition alone. If a movement is practiced incorrectly, the same strengthening occurs, but it reinforces the flawed pattern instead of the correct one. For that reason, coaches and teachers emphasize that repetition must be paired with feedback and correction, especially early in training. Practicing the wrong technique thousands of times does not fix it; it simply makes the error more deeply ingrained and harder to unlearn later, which is why unsupervised repetition has clear limits despite its usefulness.",
+        "questions": [
+          {
+            "id": "ap-r1-q1",
+            "stem": "According to the passage, what happens in the nervous system when a movement is practiced repeatedly?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The muscles begin to grow larger before any change occurs in the brain"
+              },
+              {
+                "id": "b",
+                "text": "The neural pathways involved become more efficient at carrying signals"
+              },
+              {
+                "id": "c",
+                "text": "The brain gradually reduces the number of signals it sends to the muscles"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "文中說明反覆練習會強化『neural pathways』傳遞訊號到肌肉的效率，而非使肌肉先變大或大腦減少送出訊號。"
+          },
+          {
+            "id": "ap-r1-q2",
+            "stem": "The word \"ingrained\" in the passage is closest in meaning to",
+            "options": [
+              {
+                "id": "a",
+                "text": "firmly established"
+              },
+              {
+                "id": "b",
+                "text": "publicly recognized"
+              },
+              {
+                "id": "c",
+                "text": "financially costly"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "vocabulary",
+            "explanationZh": "『ingrained』指錯誤已深植難改，意近firmly established，與公開認可、花費昂貴無關。"
+          },
+          {
+            "id": "ap-r1-q3",
+            "stem": "It can be inferred from the passage that a musician who practices a piece incorrectly for months would most likely",
+            "options": [
+              {
+                "id": "a",
+                "text": "eventually notice the mistakes and correct the technique automatically without any outside feedback"
+              },
+              {
+                "id": "b",
+                "text": "lose the ability to play the piece at all"
+              },
+              {
+                "id": "c",
+                "text": "develop a flawed technique that becomes automatic and hard to correct"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "文中提到錯誤練習會使錯誤模式更深植且更難修正，故長期錯誤練習後技巧會自動化並難以改正，而非自行修正或喪失演奏能力。"
+          },
+          {
+            "id": "ap-r1-q4",
+            "stem": "How does the passage relate the idea of muscle memory to the point about incorrect practice?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It argues that muscle memory only applies to athletes, not musicians"
+              },
+              {
+                "id": "b",
+                "text": "It presents two unrelated theories about how the brain controls movement"
+              },
+              {
+                "id": "c",
+                "text": "It first explains how correct repetition builds efficient pathways, then qualifies that the same process can reinforce mistakes"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "organization",
+            "explanationZh": "文章先說明正確重複如何強化神經路徑，再補充相同機制也可能強化錯誤動作，屬先後遞進的結構。"
+          },
+          {
+            "id": "ap-r1-q5",
+            "stem": "Why does the author mention coaches and teachers in the passage?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To compare coaching methods used in different sports"
+              },
+              {
+                "id": "b",
+                "text": "To criticize coaches for relying too heavily on repetition"
+              },
+              {
+                "id": "c",
+                "text": "To explain why feedback and correction matter during repeated practice"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "purpose",
+            "explanationZh": "作者提及教練與老師是為了說明反饋與糾正在練習中的重要性，而非批評教練或比較訓練方法。"
+          }
+        ]
+      }
+    ]
+  },
+  "lowerModule": {
+    "timeLimitSec": 540,
+    "ctwPassages": [
+      {
+        "id": "ctw-lo1",
+        "taskType": "complete_words",
+        "topic": "how a small city department keeps track of donated public benches",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Our city parks department keeps a simple log of every donated bench. Each "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g1"
+          },
+          {
+            "type": "text",
+            "text": " lists "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g2"
+          },
+          {
+            "type": "text",
+            "text": " name "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g3"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g4"
+          },
+          {
+            "type": "text",
+            "text": ", the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g5"
+          },
+          {
+            "type": "text",
+            "text": ", and "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g6"
+          },
+          {
+            "type": "text",
+            "text": " date "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g7"
+          },
+          {
+            "type": "text",
+            "text": " arrived. A worker "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g8"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g9"
+          },
+          {
+            "type": "text",
+            "text": " against a list "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g10"
+          },
+          {
+            "type": "text",
+            "text": " public spots that still need seating. Before placing it, they visit the location to confirm it is still empty. Sometimes a place already has enough chairs, so the bench waits instead. Once a good match appears, they write it down right away. This system keeps every gift from sitting unused for long."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-lo1-g1",
+            "prefix": "en",
+            "completion": "try",
+            "blankLength": 3,
+            "explanationZh": "此處需要一個名詞當作句子主詞，且必須與後面的動詞 lists 搭配。「entry」（紀錄項目）呼應前一句提到的 log（紀錄），指紀錄中的每一筆項目，語意與文法皆通順。"
+          },
+          {
+            "id": "ctw-lo1-g2",
+            "prefix": "t",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "「the name of the donor」中，name 是特定、雙方都能理解所指為何的名詞（即該筆紀錄裡的捐贈者姓名），因此須用定冠詞「the」，而非不定冠詞。"
+          },
+          {
+            "id": "ctw-lo1-g3",
+            "prefix": "o",
+            "completion": "f",
+            "blankLength": 1,
+            "explanationZh": "「the name of the donor」使用介系詞「of」表示所屬關係，即「捐贈者的姓名」，是英文中表達所有格關係的常見結構。"
+          },
+          {
+            "id": "ctw-lo1-g4",
+            "prefix": "do",
+            "completion": "nor",
+            "blankLength": 3,
+            "explanationZh": "根據上下文，紀錄中列出的是「the name of the donor」，即捐贈者的姓名；「donor」（捐贈者）呼應前句的 donated bench（受捐贈的長椅），語意完全吻合。"
+          },
+          {
+            "id": "ctw-lo1-g5",
+            "prefix": "mate",
+            "completion": "rial",
+            "blankLength": 4,
+            "explanationZh": "句中以逗號並列列出紀錄的三項內容：姓名、material（材質）、日期，對應長椅本身的材質資訊，符合語境所需的名詞。"
+          },
+          {
+            "id": "ctw-lo1-g6",
+            "prefix": "t",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "「the date it arrived」中，date 是紀錄裡特定、已知所指的日期（長椅送達的日期），因此需要定冠詞「the」。"
+          },
+          {
+            "id": "ctw-lo1-g7",
+            "prefix": "i",
+            "completion": "t",
+            "blankLength": 1,
+            "explanationZh": "此處需要代名詞代替前面提到的 bench，作為關係子句「it arrived」的主詞，指「長椅抵達」，故填入「it」。"
+          },
+          {
+            "id": "ctw-lo1-g8",
+            "prefix": "che",
+            "completion": "cks",
+            "blankLength": 3,
+            "explanationZh": "主詞為單數第三人稱「A worker」，且描述的是該工作人員例行性的動作（現在式敘述整體流程），動詞須加 -s，故為「checks」。"
+          },
+          {
+            "id": "ctw-lo1-g9",
+            "prefix": "l",
+            "completion": "og",
+            "blankLength": 2,
+            "explanationZh": "工作人員核對的對象是前文提到的紀錄本身，即「the log」（那份紀錄），呼應第一句的 keeps a simple log，故填入「log」。"
+          },
+          {
+            "id": "ctw-lo1-g10",
+            "prefix": "o",
+            "completion": "f",
+            "blankLength": 1,
+            "explanationZh": "「a list of public spots」以介系詞「of」連接 list 與其內容，表示「一份……的清單」，是英文中表達清單內容的常見用法。"
+          }
+        ],
+        "sourceParagraph": "Our city parks department keeps a simple log of every donated bench. Each entry lists the name of the donor, the material, and the date it arrived. A worker checks the log against a list of public spots that still need seating. Before placing it, they visit the location to confirm it is still empty. Sometimes a place already has enough chairs, so the bench waits instead. Once a good match appears, they write it down right away. This system keeps every gift from sitting unused for long."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-lo1",
+        "taskType": "daily_life",
+        "genre": "schedule",
+        "text": "Wetland Field Lab — Weekly Schedule\n\nMonday: Water sampling, north pond\nWednesday: Water sampling, south channel\nFriday: Equipment cleaning, lab room 3\n\nNote: Skip sampling during storms to protect nesting birds near the shoreline.",
+        "questions": [
+          {
+            "id": "dl-lo1-q1",
+            "stem": "On which day is equipment cleaned?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Friday"
+              },
+              {
+                "id": "b",
+                "text": "Monday"
+              },
+              {
+                "id": "c",
+                "text": "Wednesday"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "時間表寫明週五為『Equipment cleaning』，週一、週三則安排水質採樣。"
+          },
+          {
+            "id": "dl-lo1-q2",
+            "stem": "According to the schedule notice, why is sampling skipped during storms?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To avoid disturbing birds nesting near the shoreline"
+              },
+              {
+                "id": "b",
+                "text": "Because heavy rain would dilute the water samples"
+              },
+              {
+                "id": "c",
+                "text": "Because staff safety rules prohibit outdoor work in storms"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "公告最後一句明白寫著：暴風雨期間暫停採樣是為了保護岸邊築巢的鳥類，這是文中直接說明的原因，不需推論。其餘選項（樣本被稀釋、員工安全規定）雖然聽起來合理，但公告全文都未提及，屬於憑常識臆測、與原文不符的干擾選項。"
+          }
+        ]
+      },
+      {
+        "id": "dl-lo2",
+        "taskType": "daily_life",
+        "genre": "news article",
+        "text": "Riverside Library launched a new app this week that lets residents borrow digital audiobooks from home. Patrons may borrow up to five audiobooks at one time, and each title returns automatically after three weeks. Library officials say the printed catalog will move online by next spring, making searches faster for everyone. The app is free to download and works on most phones and tablets.",
+        "questions": [
+          {
+            "id": "dl-lo2-q1",
+            "stem": "According to the article, how many audiobooks can a patron borrow at once?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Up to five"
+              },
+              {
+                "id": "b",
+                "text": "Up to ten"
+              },
+              {
+                "id": "c",
+                "text": "Up to three"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "文章寫『borrow up to five audiobooks at one time』，並非三本或十本。"
+          },
+          {
+            "id": "dl-lo2-q2",
+            "stem": "When does the library expect the printed catalog to move online?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Within three weeks"
+              },
+              {
+                "id": "b",
+                "text": "By next summer"
+              },
+              {
+                "id": "c",
+                "text": "By next spring"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "文章指出印刷目錄預計『by next spring』上線，並非夏天或三週內。"
+          },
+          {
+            "id": "dl-lo2-q3",
+            "stem": "What is this article mainly about?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A change in the library's return policy for printed books"
+              },
+              {
+                "id": "b",
+                "text": "A new app that lets residents borrow digital audiobooks"
+              },
+              {
+                "id": "c",
+                "text": "A plan to close the library's physical branch"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "main_idea",
+            "explanationZh": "全文主旨在介紹圖書館新推出的電子有聲書借閱App，並未涉及還書政策或分館關閉。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-lo1",
+        "taskType": "academic_passage",
+        "title": "Why Faculty Consultation Attendance Varies by Course Size",
+        "discipline": "social science",
+        "text": "Many university professors set aside weekly office hours so students can ask questions in person. A recent study looked at how often students actually visit these office hours, and found a clear pattern based on class size. In small classes, students visited office hours fairly often, sometimes once every few weeks. In large classes, however, visits were much less frequent, even though the professors offered the same number of open hours. Researchers think this happens because students in big classes feel less known by their professor and are less comfortable showing up alone. To address this, some professors changed how they scheduled consultation time. Instead of one long block each week, they offered several shorter sessions, including some right after large lectures when students were already nearby. A few professors also let students sign up in small groups instead of coming alone. These changes led to a noticeable rise in visits, especially from students who had never come before. The study suggests that comfort, not interest, is often the biggest barrier keeping students from asking their professors for help, and that simple scheduling changes can lower that barrier without adding extra work hours for the professor.",
+        "questions": [
+          {
+            "id": "ap-lo1-q1",
+            "stem": "According to the passage, what did the study find about students in large classes?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They visited office hours much less often than students in small classes"
+              },
+              {
+                "id": "b",
+                "text": "They avoided office hours entirely once large lectures began each semester"
+              },
+              {
+                "id": "c",
+                "text": "They visited office hours slightly more often than students in small classes, the study reported"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "研究發現大班學生到訪教師諮詢時間的次數明顯低於小班學生，並非更高或完全不去。"
+          },
+          {
+            "id": "ap-lo1-q2",
+            "stem": "The word \"barrier\" in the passage is closest in meaning to",
+            "options": [
+              {
+                "id": "a",
+                "text": "reward"
+              },
+              {
+                "id": "b",
+                "text": "requirement"
+              },
+              {
+                "id": "c",
+                "text": "obstacle"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "vocabulary",
+            "explanationZh": "『barrier』在文中指阻礙學生前往諮詢的心理因素，意近obstacle，而非獎勵或規定。"
+          },
+          {
+            "id": "ap-lo1-q3",
+            "stem": "It can be inferred that a professor who offers several short sessions after large lectures does so mainly to",
+            "options": [
+              {
+                "id": "a",
+                "text": "make visiting office hours easier and less intimidating for students already nearby"
+              },
+              {
+                "id": "b",
+                "text": "discourage larger groups of students from signing up for individual consultations"
+              },
+              {
+                "id": "c",
+                "text": "reduce the overall number of hours professors must spend meeting individually with students each week"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "文中說明大堂課後安排短時段，是為了讓已在附近的學生更容易且較不害怕地前往諮詢。"
+          },
+          {
+            "id": "ap-lo1-q4",
+            "stem": "How is the information in the passage organized?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It presents a research finding, then describes solutions professors tried in response"
+              },
+              {
+                "id": "b",
+                "text": "It lists office hour times for several different courses"
+              },
+              {
+                "id": "c",
+                "text": "It compares two competing theories without describing any study"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "organization",
+            "explanationZh": "文章先陳述研究發現的班級規模差異，再描述教授因應此發現所做的排課調整，屬先果後策略的結構。"
+          },
+          {
+            "id": "ap-lo1-q5",
+            "stem": "What is the main purpose of the passage?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To explain why class size affects how often students visit office hours and what professors can do about it"
+              },
+              {
+                "id": "b",
+                "text": "To describe the history of faculty office hours at universities"
+              },
+              {
+                "id": "c",
+                "text": "To argue that office hours should be eliminated in large classes"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "purpose",
+            "explanationZh": "全文目的在說明班級規模如何影響諮詢時間到訪率，並介紹教授可採取的改善措施。"
+          }
+        ]
+      }
+    ]
+  },
+  "upperModule": {
+    "timeLimitSec": 540,
+    "ctwPassages": [
+      {
+        "id": "ctw-up1",
+        "taskType": "complete_words",
+        "topic": "how long-distance bus operators plan driver rest stops along fixed routes",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Long-distance bus companies must plan carefully when scheduling rest breaks for drivers on lengthy routes. Safety "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g1"
+          },
+          {
+            "type": "text",
+            "text": " set a maximum "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g2"
+          },
+          {
+            "type": "text",
+            "text": " of "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g3"
+          },
+          {
+            "type": "text",
+            "text": " a "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g4"
+          },
+          {
+            "type": "text",
+            "text": " can "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g5"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g6"
+          },
+          {
+            "type": "text",
+            "text": " without "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g7"
+          },
+          {
+            "type": "text",
+            "text": " to "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g8"
+          },
+          {
+            "type": "text",
+            "text": ". To "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g9"
+          },
+          {
+            "type": "text",
+            "text": " this "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g10"
+          },
+          {
+            "type": "text",
+            "text": ", dispatchers assign each route a rotating set of designated stations where drivers may pause. No single station handles every break; instead, the halting duty shifts from one station to the next as buses travel the route. Printed route maps mark each designated stop, so crews always know exactly where the next respite point occurs."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-up1-g1",
+            "prefix": "regul",
+            "completion": "ations",
+            "blankLength": 6,
+            "explanationZh": "此處主詞需與後方「set a maximum number of hours」（訂出最高時數）搭配，且呼應段落主題「safety」，故應填 regulations（法規），表示是安全法規訂出駕駛時數上限，而非其他名詞。"
+          },
+          {
+            "id": "ctw-up1-g2",
+            "prefix": "num",
+            "completion": "ber",
+            "blankLength": 3,
+            "explanationZh": "空格後接「of hours」，且前方有形容詞 maximum（最高的），構成固定搭配 a maximum number of hours（最高時數），故應填 number，指法規限制的是「時數的數量」上限。"
+          },
+          {
+            "id": "ctw-up1-g3",
+            "prefix": "ho",
+            "completion": "urs",
+            "blankLength": 3,
+            "explanationZh": "承接「a maximum number of」，此處須填可數名詞複數 hours，表示規定所限制的是駕駛可連續「操作車輛的時數」，與下文「a driver can operate」在語意上相連貫。"
+          },
+          {
+            "id": "ctw-up1-g4",
+            "prefix": "dri",
+            "completion": "ver",
+            "blankLength": 3,
+            "explanationZh": "此處為關係子句的主詞，需與「can operate the vehicle」搭配，指的是「駕駛」本人，故應填 driver，呼應前一句提到的 drivers on lengthy routes。"
+          },
+          {
+            "id": "ctw-up1-g5",
+            "prefix": "ope",
+            "completion": "rate",
+            "blankLength": 4,
+            "explanationZh": "主詞 driver 後接助動詞 can，須填原形動詞，且受詞為 the vehicle，故應填 operate（操作、駕駛），表示駕駛可連續駕駛車輛的時數上限。"
+          },
+          {
+            "id": "ctw-up1-g6",
+            "prefix": "veh",
+            "completion": "icle",
+            "blankLength": 4,
+            "explanationZh": "動詞 operate 後需接受詞，指駕駛所操作的對象，故應填 vehicle（車輛），與句首提到的 bus companies 及駕駛主題一致。"
+          },
+          {
+            "id": "ctw-up1-g7",
+            "prefix": "stop",
+            "completion": "ping",
+            "blankLength": 4,
+            "explanationZh": "介系詞 without 後須接動名詞，且語意上要與「to recover」（休息恢復）相對比，指駕駛不能「不停下」就持續操作車輛，故應填 stopping。"
+          },
+          {
+            "id": "ctw-up1-g8",
+            "prefix": "rec",
+            "completion": "over",
+            "blankLength": 4,
+            "explanationZh": "不定詞 to 後須接原形動詞，表示停下來的目的是為了「恢復精神／休息」，故應填 recover，呼應段落主旨「rest breaks」（休息時間）。"
+          },
+          {
+            "id": "ctw-up1-g9",
+            "prefix": "me",
+            "completion": "et",
+            "blankLength": 2,
+            "explanationZh": "此處為不定詞片語開頭，句意為「為了達到此時數上限」，dispatchers 才會安排休息站，故應填 meet（達到、符合），與後方 this limit 搭配為固定用法 meet a limit。"
+          },
+          {
+            "id": "ctw-up1-g10",
+            "prefix": "li",
+            "completion": "mit",
+            "blankLength": 3,
+            "explanationZh": "承接 meet this ___，須填名詞作受詞，指前句提到的「maximum number of hours」，即駕駛操作時數的上限，故應填 limit，與全段討論法規時數限制的主題呼應。"
+          }
+        ],
+        "sourceParagraph": "Long-distance bus companies must plan carefully when scheduling rest breaks for drivers on lengthy routes. Safety regulations set a maximum number of hours a driver can operate the vehicle without stopping to recover. To meet this limit, dispatchers assign each route a rotating set of designated stations where drivers may pause. No single station handles every break; instead, the halting duty shifts from one station to the next as buses travel the route. Printed route maps mark each designated stop, so crews always know exactly where the next respite point occurs."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-up1",
+        "taskType": "daily_life",
+        "genre": "email",
+        "text": "Subject: Updated Pickup Time for Friday's Field Trip\n\nDear Ms. Alvarez,\n\nBecause of a scheduled detour on Route 9, our charter bus must depart earlier than originally planned. The pickup time has moved from 7:30 AM to 6:45 AM at the main entrance. Please confirm this new time with your students by Wednesday so everyone arrives before departure.\n\nThank you for your flexibility.\n\nRegards,\nMetro Charter Services",
+        "questions": [
+          {
+            "id": "dl-up1-q1",
+            "stem": "Why was the pickup time changed?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A sudden change in weather conditions"
+              },
+              {
+                "id": "b",
+                "text": "A road detour affected the bus route"
+              },
+              {
+                "id": "c",
+                "text": "A shortage of available bus drivers"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "信件說明因Route 9路線臨時繞道，巴士必須提早出發，並非因司機不足或天氣驟變。"
+          },
+          {
+            "id": "dl-up1-q2",
+            "stem": "What is the new pickup time?",
+            "options": [
+              {
+                "id": "a",
+                "text": "7:30 AM"
+              },
+              {
+                "id": "b",
+                "text": "6:45 AM"
+              },
+              {
+                "id": "c",
+                "text": "Wednesday morning"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "信件寫明時間『moved from 7:30 AM to 6:45 AM』，故新集合時間為6:45。"
+          },
+          {
+            "id": "dl-up1-q3",
+            "stem": "What does the sender ask Ms. Alvarez to do?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Arrange alternate transportation for the students"
+              },
+              {
+                "id": "b",
+                "text": "Reschedule the field trip to a different day"
+              },
+              {
+                "id": "c",
+                "text": "Confirm the new time with students"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "purpose",
+            "explanationZh": "信件要求收件人於週三前向學生確認新集合時間，並未提及延後行程或另尋交通方式。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-up1",
+        "taskType": "academic_passage",
+        "title": "How Dynamic Pricing Shapes Off-Peak Bus Demand",
+        "discipline": "business and economics",
+        "text": "Long-distance bus companies increasingly rely on dynamic pricing, a strategy in which fares fluctuate according to how many seats remain unsold as departure approaches. Rather than charging a fixed price regardless of demand, an operator lowers fares on routes and times when seats are going unfilled, particularly during midweek afternoons when few travelers are journeying. This approach does more than simply fill empty seats; it actively reshapes when passengers choose to travel. A traveler with a flexible schedule, observing a substantially discounted fare for an off-peak departure, may shift their trip away from a crowded Friday evening toward a quieter Tuesday morning, easing pressure on the buses and terminals that would otherwise strain under concentrated demand. Economists describe this redistribution as demand smoothing, since it spreads passenger volume more evenly across the week rather than concentrating it around a few peak windows. The strategy is not without cost to the operator, however. Revenue becomes harder to forecast when a substantial share of fares depend on fluctuating seat availability rather than a stable, published price. Some companies attempt to balance this unpredictability by capping how far fares can drop, ensuring that even heavily discounted seats still contribute meaningfully to covering the fixed costs of running each route. The underlying tension, then, is between maximizing how fully each bus is used and preserving a revenue stream operators can reliably anticipate.",
+        "questions": [
+          {
+            "id": "ap-up1-q1",
+            "stem": "According to the passage, when do bus operators typically lower fares under dynamic pricing?",
+            "options": [
+              {
+                "id": "a",
+                "text": "When many seats go unsold nearing a route's departure"
+              },
+              {
+                "id": "b",
+                "text": "When fuel costs unexpectedly decline for the operating company"
+              },
+              {
+                "id": "c",
+                "text": "When a route reaches full capacity"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "文中說明業者於離峰時段座位尚有空位時降價，並非滿載或油價下跌時。"
+          },
+          {
+            "id": "ap-up1-q2",
+            "stem": "The word \"smoothing\" in the passage is closest in meaning to",
+            "options": [
+              {
+                "id": "a",
+                "text": "advertising"
+              },
+              {
+                "id": "b",
+                "text": "evening out"
+              },
+              {
+                "id": "c",
+                "text": "speeding up"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "vocabulary",
+            "explanationZh": "『smoothing』在此指讓需求分布更平均，意近evening out，而非加快速度或做廣告。"
+          },
+          {
+            "id": "ap-up1-q3",
+            "stem": "It can be inferred that a traveler with a fixed, non-negotiable schedule would",
+            "options": [
+              {
+                "id": "a",
+                "text": "always receive the very lowest fare available regardless of departure timing"
+              },
+              {
+                "id": "b",
+                "text": "be unlikely to shift travel times for a fare discount"
+              },
+              {
+                "id": "c",
+                "text": "be charged more than a flexible traveler under every possible pricing model"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "inference",
+            "explanationZh": "文中指出彈性旅客會因離峰折扣改變行程，暗示行程固定的旅客較不會因折扣而改變搭乘時間。"
+          },
+          {
+            "id": "ap-up1-q4",
+            "stem": "How does the passage develop its explanation of dynamic pricing?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It describes how the strategy shifts demand, then turns to the revenue tradeoff it creates for operators"
+              },
+              {
+                "id": "b",
+                "text": "It contrasts dynamic pricing with a single alternative pricing model in detail"
+              },
+              {
+                "id": "c",
+                "text": "It narrates the historical origin of dynamic pricing in the airline industry"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "organization",
+            "explanationZh": "文章先說明動態定價如何改變需求分布，再轉向討論此策略帶來的營收不確定性，屬先效果後代價的結構。"
+          },
+          {
+            "id": "ap-up1-q5",
+            "stem": "Why does the author mention that some companies cap how far fares can drop?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To show one way operators limit the unpredictability that dynamic pricing introduces to revenue"
+              },
+              {
+                "id": "b",
+                "text": "To explain how governments regulate long-distance bus fares"
+              },
+              {
+                "id": "c",
+                "text": "To argue that fare caps eliminate the need for dynamic pricing altogether"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "purpose",
+            "explanationZh": "作者提及票價下限是為了說明業者如何限制動態定價帶來的營收不確定性，而非主張取消定價或說明政府法規。"
+          }
+        ]
+      }
+    ]
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "reading",
+    "ctwPassages": [
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "handwritten-oral-history-preservation",
+        "requiredConcepts": [
+          "helpers writing down elders' spoken stories by hand",
+          "a heritage archive built before recording was possible",
+          "historical accuracy checked against family letters"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "different genre and subject: a news article about funded building restoration versus a typed-gap paragraph about hand-transcribing oral memories."
+          }
+        ],
+        "topic": "town historians hand-copying elders' spoken memories before sound recording was possible",
+        "angle": "before sound recording was possible, helpers wrote down elders' spoken stories word for word to preserve a heritage archive"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "flooded-morning-walk-detour",
+        "requiredConcepts": [
+          "a familiar morning walking path flooded by rain",
+          "trying nearby streets as a replacement path",
+          "getting used to the change over several days"
+        ],
+        "distinguishesFrom": [],
+        "topic": "adjusting a daily walking habit after a familiar path floods",
+        "angle": "a person's usual morning walk changes after heavy rain leaves the familiar path underwater, so they try nearby streets instead"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "donated-park-bench-tracking-log",
+        "requiredConcepts": [
+          "donated benches logged before placement",
+          "a municipal worker matching benches to public spots",
+          "checking each spot still needs seating"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "different scenario: tool-lending program membership rules versus a log for placing donated park benches."
+          }
+        ],
+        "topic": "how a small city department keeps track of donated public benches",
+        "angle": "a municipal parks worker logs each donated bench so the city can place it in a public spot that still needs seating"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "bus-driver-rest-stop-rotation",
+        "requiredConcepts": [
+          "mandatory rest stops rotated among several stations",
+          "a maximum continuous driving time drivers cannot exceed",
+          "route maps showing where each rest stop falls"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "different subject: overnight sleeper cabin pricing by season versus rotating mandatory rest stops for long-distance bus drivers."
+          }
+        ],
+        "topic": "how long-distance bus operators plan driver rest stops along fixed routes",
+        "angle": "bus operators rotate mandatory rest stops among several stations along a long-distance route so no driver exceeds a maximum continuous driving time"
+      }
+    ],
+    "dailyLifeTexts": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "guest-lecture-room-change-notice",
+        "requiredConcepts": [
+          "guest lecture moved to a larger room",
+          "the new room number and building",
+          "the original start time unchanged"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "different genre and purpose: a workshop registration form versus a posted notice announcing a lecture room change."
+          }
+        ],
+        "genre": "poster/sign/notice",
+        "scenario": "a printed notice posted outside a campus lecture hall announcing that a guest professor's talk has moved to a bigger room"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "employee-carpool-parking-discount-ad",
+        "requiredConcepts": [
+          "discounted parking pass for employees who carpool",
+          "how many coworkers must share a ride to qualify",
+          "how to sign up through the office manager"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "different genre and topic: an invoice for delayed furniture repair versus an advertisement for an employee carpool parking discount."
+          }
+        ],
+        "genre": "advertisement",
+        "scenario": "an internal company advertisement promoting a discounted parking pass for employees who carpool to the office"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "city-recycling-center-hours-webpage",
+        "requiredConcepts": [
+          "drop-off hours for a public recycling center",
+          "which materials are accepted this month",
+          "a phone number for special pickup requests"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "different genre and service: a seasonal program price list versus a web page listing public recycling center hours."
+          }
+        ],
+        "genre": "web page",
+        "scenario": "a city website page listing drop-off hours for a public recycling center"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "wetland-lab-weekly-sampling-schedule",
+        "requiredConcepts": [
+          "specific weekdays set aside for water sampling",
+          "a separate day reserved for cleaning sampling equipment",
+          "a note protecting nearby wildlife habitat during storms"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "different medium and topic: a summarized air quality test report versus a posted weekly sampling schedule at a wetland field laboratory."
+          }
+        ],
+        "genre": "schedule",
+        "scenario": "a posted schedule at a wetland field laboratory showing which days each week are set aside for water sampling versus equipment cleaning"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "town-audiobook-app-launch-article",
+        "requiredConcepts": [
+          "a new app for borrowing digital audiobooks",
+          "how many audiobooks a patron can borrow at once",
+          "when the print catalog will also move online"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "different genre and feature: a social media post about offline podcast downloads versus a news article about a new digital audiobook app."
+          }
+        ],
+        "genre": "news article",
+        "scenario": "a short local news article reporting that the town has launched a new app for borrowing digital audiobooks online"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "charter-bus-pickup-time-change-email",
+        "requiredConcepts": [
+          "pickup time moved earlier for a field trip",
+          "the reason tied to a route change",
+          "a request to confirm the new time by a deadline"
+        ],
+        "distinguishesFrom": [],
+        "genre": "email",
+        "scenario": "an email from a charter bus operator informing a field trip organizer that the pickup time moved earlier because of a route change"
+      }
+    ],
+    "academicPassages": [
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "muscle-memory-through-repeated-exercise",
+        "requiredConcepts": [
+          "practice strengthening neural pathways for movement",
+          "movements feeling less consciously effortful over time",
+          "unsupervised repetition without correction has limits"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-eef47b63",
+            "reason": "same life-science discipline but a different body of content: neuromuscular skill learning versus earthworm burrowing and soil ecology."
+          }
+        ],
+        "title": "How Repeated Practice Builds Muscle Memory",
+        "discipline": "life science",
+        "angle": "explains how repeating the same physical exercise over weeks strengthens the neural pathways behind a movement, making it feel less consciously effortful"
+      },
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "faculty-consultation-attendance-by-course-size",
+        "requiredConcepts": [
+          "larger courses mean less frequent consultation visits",
+          "professors adjusting scheduling to reach large courses",
+          "a study comparing attendance across course sizes"
+        ],
+        "distinguishesFrom": [],
+        "title": "Why Faculty Consultation Attendance Varies by Course Size",
+        "discipline": "social science",
+        "angle": "examines how the size of a university course changes how comfortable students feel visiting a professor during scheduled consultation hours"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "dynamic-bus-fare-demand-shifting",
+        "requiredConcepts": [
+          "fare discounts tied to real-time seat availability",
+          "shifting passenger demand away from peak hours",
+          "a tradeoff between filling seats and predictable revenue"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-eef47b63",
+            "reason": "same business/economics discipline but a different domain and mechanism: bus fare demand-shifting versus a manufacturer's make-versus-buy production threshold."
+          }
+        ],
+        "title": "How Dynamic Pricing Shapes Off-Peak Bus Demand",
+        "discipline": "business and economics",
+        "angle": "explains how bus operators use fare discounts tied to real-time seat availability to shift passenger demand away from peak travel hours"
+      }
+    ]
+  }
+}

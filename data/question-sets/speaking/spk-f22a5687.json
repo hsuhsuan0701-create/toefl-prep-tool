@@ -1,0 +1,94 @@
+{
+  "id": "spk-f22a5687",
+  "source": "generated",
+  "createdAt": "2026-07-30T07:36:07.581Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Media Production Center Tour",
+    "scenarioDescription": "You are training to help students at a campus media production center. Listen to the center manager as you walk through the facility and repeat what she says. Repeat only once.",
+    "image": {
+      "file": "images/scenarios/spk-f22a5687.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Media Production Center Tour. You are training to help students at a campus media production center. Listen to the center manager as you walk through the facility and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- We keep the cameras in this cabinet.\n- Students and instructors share these digital editing stations.\n- You can borrow microphones and return them at the front desk.\n- The recording booths are fully soundproof, but their doors must remain securely closed.\n- When your session ends, please save your project and sign out of the computer.\n- Before leaving the studio, check that all borrowed equipment is safely packed and clearly labeled for return.\n- The small control room beside the exit, which contains the main audio console, is reserved for trained staff members.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "We keep the cameras in this cabinet.",
+        "audio": "stimuli/spk-f22a5687/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Students and instructors share these digital editing stations.",
+        "audio": "stimuli/spk-f22a5687/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "You can borrow microphones and return them at the front desk.",
+        "audio": "stimuli/spk-f22a5687/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The recording booths are fully soundproof, but their doors must remain securely closed.",
+        "audio": "stimuli/spk-f22a5687/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "When your session ends, please save your project and sign out of the computer.",
+        "audio": "stimuli/spk-f22a5687/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Before leaving the studio, check that all borrowed equipment is safely packed and clearly labeled for return.",
+        "audio": "stimuli/spk-f22a5687/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The small control room beside the exit, which contains the main audio console, is reserved for trained staff members.",
+        "audio": "stimuli/spk-f22a5687/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Study Breaks and Concentration",
+    "intro": "You have agreed to participate in a campus research study about study breaks and concentration. You will have a short interview with a researcher, who will ask about your habits, experiences, and opinions.",
+    "introAudio": "stimuli/spk-f22a5687/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thank you for speaking with me today. When you study or work on an important task, how often do you take breaks, and what do you usually do during them?",
+        "audio": "stimuli/spk-f22a5687/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Please describe a time when taking a break helped you complete a difficult task. What did you do during the break, and why do you think it helped?",
+        "audio": "stimuli/spk-f22a5687/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some people believe breaks should follow a fixed schedule, while others prefer to stop only when they feel tired. Which approach do you think is more effective, and why?",
+        "audio": "stimuli/spk-f22a5687/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Some schools are considering teaching students how to plan focused work periods and restorative breaks. Should time-management strategies like these be included in regular classes? Why or why not?",
+        "audio": "stimuli/spk-f22a5687/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  }
+}

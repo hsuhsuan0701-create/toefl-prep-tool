@@ -1,0 +1,136 @@
+{
+  "id": "spk-70c8a41a",
+  "source": "generated",
+  "createdAt": "2026-07-30T06:47:46.407Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Campus Radio Station Training",
+    "scenarioDescription": "You are learning how to help at a campus radio station. Listen to the station manager during a tour and repeat what she says. Repeat only once.",
+    "image": {
+      "file": "images/scenarios/spk-70c8a41a.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Campus Radio Station Training. You are learning how to help at a campus radio station. Listen to the station manager during a tour and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- This studio records student podcasts.\n- The control room holds microphones and spare cables.\n- You'll check the sound levels and adjust each microphone here.\n- We store headphones by the window, and producers sign them out before each session.\n- When a guest arrives, guide them inside and explain the recording schedule for the day.\n- Because live programs move quickly, the assistant at the main console also keeps a written backup of every announcement.\n- Any interview recorded in the small booth, which blocks hallway noise, must be uploaded to the shared folder before closing.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "This studio records student podcasts.",
+        "audio": "stimuli/spk-70c8a41a/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.093,
+          "y": 0.179,
+          "w": 0.26,
+          "h": 0.176
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The control room holds microphones and spare cables.",
+        "audio": "stimuli/spk-70c8a41a/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.475,
+          "y": 0.081,
+          "w": 0.2,
+          "h": 0.21
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "You'll check the sound levels and adjust each microphone here.",
+        "audio": "stimuli/spk-70c8a41a/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.675,
+          "y": 0.211,
+          "w": 0.23,
+          "h": 0.176
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "We store headphones by the window, and producers sign them out before each session.",
+        "audio": "stimuli/spk-70c8a41a/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.027,
+          "y": 0.407,
+          "w": 0.265,
+          "h": 0.205
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "When a guest arrives, guide them inside and explain the recording schedule for the day.",
+        "audio": "stimuli/spk-70c8a41a/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.31,
+          "y": 0.563,
+          "w": 0.2,
+          "h": 0.169
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Because live programs move quickly, the assistant at the main console also keeps a written backup of every announcement.",
+        "audio": "stimuli/spk-70c8a41a/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.776,
+          "y": 0.48,
+          "w": 0.142,
+          "h": 0.172
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Any interview recorded in the small booth, which blocks hallway noise, must be uploaded to the shared folder before closing.",
+        "audio": "stimuli/spk-70c8a41a/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.724,
+          "y": 0.658,
+          "w": 0.158,
+          "h": 0.184
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Managing Distractions While Studying",
+    "intro": "You have agreed to take part in a research study about how students manage distractions while studying. You will have a short online interview with a researcher. The researcher will ask you some questions.",
+    "introAudio": "stimuli/spk-70c8a41a/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thank you for speaking with me today. Where do you usually study, and what kinds of distractions do you commonly notice there?",
+        "audio": "stimuli/spk-70c8a41a/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Think of a time when a distraction made it difficult for you to finish an important task. What happened, and why was it difficult to stay focused?",
+        "audio": "stimuli/spk-70c8a41a/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some students prefer to remove every possible distraction before studying. Others believe that learning to work despite minor distractions is more practical. Which approach do you prefer, and why?",
+        "audio": "stimuli/spk-70c8a41a/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Some colleges are considering creating more distraction-free study areas where phone calls, conversations, and other interruptions are strictly limited. Should colleges invest more space and money in these areas? Why or why not?",
+        "audio": "stimuli/spk-70c8a41a/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  }
+}

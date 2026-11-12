@@ -1,0 +1,183 @@
+{
+  "id": "spk-c2aa29f2",
+  "source": "generated",
+  "createdAt": "2026-08-24T17:24:31.405Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Rental Car Return Inspection",
+    "scenarioDescription": "You are training as a new return agent at a rental car garage. Listen to the senior supervisor walk you through the vehicle return inspection before the morning rush and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-c2aa29f2/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-c2aa29f2.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Rental Car Return Inspection. You are training as a new return agent at a rental car garage. Listen to the senior supervisor walk you through the vehicle return inspection before the morning rush and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Meet the driver right at this gate.\n- Check the windshield, the mirrors, and the headlights.\n- Walk around the car and note every dent or scratch.\n- Check the fuel gauge, and confirm it's full before the next rental.\n- After you finish the walk-around, match the ticket stub to the tag.\n- Once the mileage is logged, hand off the keys and thank the driver.\n- Any driver who parked incorrectly should pull forward before the inspection starts.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Meet the driver right at this gate.",
+        "audio": "stimuli/spk-c2aa29f2/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Check the windshield, the mirrors, and the headlights.",
+        "audio": "stimuli/spk-c2aa29f2/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Walk around the car and note every dent or scratch.",
+        "audio": "stimuli/spk-c2aa29f2/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Check the fuel gauge, and confirm it's full before the next rental.",
+        "audio": "stimuli/spk-c2aa29f2/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "After you finish the walk-around, match the ticket stub to the tag.",
+        "audio": "stimuli/spk-c2aa29f2/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Once the mileage is logged, hand off the keys and thank the driver.",
+        "audio": "stimuli/spk-c2aa29f2/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Any driver who parked incorrectly should pull forward before the inspection starts.",
+        "audio": "stimuli/spk-c2aa29f2/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Staying Informed About Public Safety Alerts",
+    "intro": "Hi, thanks so much for picking up. I'm a researcher with the city's communications office, and I'm calling residents to learn how people in your neighborhood find out about public safety alerts. Do you have a few minutes to answer four quick questions?",
+    "introAudio": "stimuli/spk-c2aa29f2/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, which alert channel are you actually signed up for right now — a text alert service, a phone app, or a neighborhood watch group chat — and which one do you check most often?",
+        "audio": "stimuli/spk-c2aa29f2/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thanks. Now think of one specific alert you actually received recently, maybe about a storm or another kind of severe weather warning. Did it come through a source you trust, or did you first hear it as an unconfirmed rumor before you could confirm it? What did you do right after you read it?",
+        "audio": "stimuli/spk-c2aa29f2/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Some residents say frequent safety alerts help them react early and stay safer. Others say getting so many notifications mostly causes unnecessary anxiety and makes people tune them out. Which view is closer to yours, and why?",
+        "audio": "stimuli/spk-c2aa29f2/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Should local government require every resident to sign up for one shared citywide alert system, instead of leaving people to pick their own channels on their own? What do you think?",
+        "audio": "stimuli/spk-c2aa29f2/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "services-travel",
+      "noveltyKey": "rental-car-return-garage-inspection-orientation",
+      "requiredConcepts": [
+        "fuel gauge check before next rental",
+        "dent and scratch walk-around inspection",
+        "mileage log entered before keys returned",
+        "return ticket stub matched to vehicle tag"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-4ed5798a",
+          "reason": "prior Set is a hotel bellhop luggage handoff walkthrough; this one orients an agent through vehicle return inspection at a rental garage, an unrelated location and task"
+        },
+        {
+          "setId": "spk-6800cfd7",
+          "reason": "prior Set orients a train platform attendant on signal and boarding steps; this one is a rental garage return-inspection walkthrough, unrelated to rail transit"
+        }
+      ],
+      "setting": "rental car return garage",
+      "speakerRole": "senior rental garage supervisor",
+      "communicativePurpose": "orient a newly hired return agent through each vehicle inspection step, including the return ticket stub check, before the morning rental rush begins"
+    },
+    "interview": {
+      "domain": "community-civic",
+      "noveltyKey": "public-safety-alert-signup-habit",
+      "requiredConcepts": [
+        "text alert signup for severe weather warnings",
+        "neighborhood watch group chat notice",
+        "trusted alert source versus unconfirmed rumor",
+        "one shared citywide alert system for every resident"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-8663cea7",
+          "reason": "prior Set asks about awareness of city council meetings and local government decisions; this one asks about personal safety-alert signup and notification habits, a different civic behavior"
+        },
+        {
+          "setId": "spk-6800cfd7",
+          "reason": "prior Set asks how residents learn about neighborhood events from a community bulletin board; this one is about safety-alert channels, not general event awareness"
+        }
+      ],
+      "topic": "how the test taker currently receives and reacts to local public safety alerts",
+      "premise": "A city communications researcher makes a brief unannounced phone call about how residents in a neighborhood stay informed about public safety alerts",
+      "questionArc": [
+        "factual: asks which public safety alert channel (text service, app, or neighborhood group chat) the test taker is currently signed up for and checks most often",
+        "experience: asks the test taker to recall one specific recent alert they received and describe how they responded to it",
+        "opinion: presents two contrasting views on whether frequent safety alerts mostly help through early warning or mostly cause unnecessary anxiety and notification fatigue, and asks the test taker to take a side",
+        "opinion: broadens to whether local government should require every resident to sign up for one shared citywide alert system"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Sadaltager",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "australian",
+      "voice": "Despina",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

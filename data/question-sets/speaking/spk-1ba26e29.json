@@ -1,0 +1,197 @@
+{
+  "id": "spk-1ba26e29",
+  "source": "generated",
+  "createdAt": "2026-08-23T13:55:42.337Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Orienting a New Writing Center Tutor",
+    "scenarioDescription": "Listen to the writing center's lead tutor orient a newly hired tutor before Monday's drop-in hour begins, and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-1ba26e29/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-1ba26e29.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Orienting a New Writing Center Tutor. Listen to the writing center's lead tutor orient a newly hired tutor before Monday's drop-in hour begins, and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Please sign the sheet at the front table.\n- The sign-in sheet and a pen sit on the table.\n- Check the sheet, then walk toward the citation guide shelf.\n- The citation guide shelf sits beside the whiteboard, and tutors use it often.\n- When a student asks about sources, point them to that shelf.\n- The printer by the door makes draft copies, so mention it early.\n- The appointment log, which sits near the printer, gets filled out afterward.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Please sign the sheet at the front table.",
+        "audio": "stimuli/spk-1ba26e29/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The sign-in sheet and a pen sit on the table.",
+        "audio": "stimuli/spk-1ba26e29/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Check the sheet, then walk toward the citation guide shelf.",
+        "audio": "stimuli/spk-1ba26e29/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The citation guide shelf sits beside the whiteboard, and tutors use it often.",
+        "audio": "stimuli/spk-1ba26e29/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "When a student asks about sources, point them to that shelf.",
+        "audio": "stimuli/spk-1ba26e29/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The printer by the door makes draft copies, so mention it early.",
+        "audio": "stimuli/spk-1ba26e29/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The appointment log, which sits near the printer, gets filled out afterward.",
+        "audio": "stimuli/spk-1ba26e29/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Attending Local Arts Performances",
+    "intro": "Hi, thanks so much for taking a moment to talk. I'm calling on behalf of the town arts council for a quick phone survey about how residents experience live music and theater here. I just have four short questions.",
+    "introAudio": "stimuli/spk-1ba26e29/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, how often do you go to live music or theater performances near you, and where do you usually go?",
+        "audio": "stimuli/spk-1ba26e29/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thanks. Can you tell me about a specific performance you attended recently, and what made it stick in your memory?",
+        "audio": "stimuli/spk-1ba26e29/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK, next I'd like to hear your opinion. Some people think ticket prices for local performances should be capped so more residents can afford to attend. Others say tickets should stay at market rate so venues can pay for higher-quality shows. Which view do you agree with, and why?",
+        "audio": "stimuli/spk-1ba26e29/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. One last question: should the town government put more funding toward small local arts venues? What would you recommend?",
+        "audio": "stimuli/spk-1ba26e29/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-briefing",
+      "take": "first",
+      "measuredWpm": 143.6,
+      "targetWpm": 165,
+      "minWpm": 145,
+      "maxWpm": 195
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 288.1,
+      "targetWpm": 226,
+      "minWpm": 156,
+      "maxWpm": 251
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "campus-academics",
+      "noveltyKey": "campus-writing-center-tutor-orientation",
+      "requiredConcepts": [
+        "sign-in sheet at the front table",
+        "citation guide shelf beside the whiteboard",
+        "printer for draft copies",
+        "appointment log filled out after each session"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-8fed5241",
+          "reason": "That Set orients a work-study aide through an international office's drop-in advising desk; this orients a tutor through the writing center's own intake, citation, and printer stops."
+        },
+        {
+          "setId": "spk-108394d6",
+          "reason": "That Set walks a new employee through a moving company's front office; this is a campus academic-support service with an entirely different domain and stop sequence."
+        }
+      ],
+      "setting": "the campus writing center's tutoring room, before the center's Monday drop-in hour for undergraduate students begins",
+      "speakerRole": "the writing center's lead peer tutor, training a newly hired tutor",
+      "communicativePurpose": "walk the new tutor through each area of the center in order so a session runs smoothly without supervision"
+    },
+    "interview": {
+      "domain": "arts-culture",
+      "noveltyKey": "live-arts-performance-attendance-habit",
+      "requiredConcepts": [
+        "a live music or theater show attended recently",
+        "favorite local venue for performances",
+        "capped ticket price versus market-rate ticket price",
+        "town funding for small arts venues"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-bbb69428",
+          "reason": "That Set asks how the test taker personally practices an art or music hobby at home; this asks about attending and paying to see live performances, a different everyday behavior."
+        }
+      ],
+      "topic": "attending live local arts performances",
+      "premise": "A local arts council researcher makes a brief, unannounced phone call about how residents attend and pay for live music or theater performances in town.",
+      "questionArc": [
+        "Ask how often the test taker attends live music or theater performances nearby and where they usually go.",
+        "Ask the test taker to describe a specific recent performance they attended and what made it memorable.",
+        "Present two views—cap ticket prices for local performances to broaden access, or price at market rate to fund quality—and ask the test taker to take a side.",
+        "Broaden to whether local government should fund small arts venues, inviting a recommendation."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "australian",
+      "voice": "Charon",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "north-american",
+      "voice": "Iapetus",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

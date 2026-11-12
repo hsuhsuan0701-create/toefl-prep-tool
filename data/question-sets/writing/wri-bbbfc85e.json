@@ -1,0 +1,264 @@
+{
+  "id": "wri-bbbfc85e",
+  "source": "generated",
+  "createdAt": "2026-07-30T06:46:06.589Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "What time does the cafeteria stop serving lunch?",
+        "frame": "The cafeteria ___ ___ ___ ___ day.",
+        "tiles": [
+          "closes",
+          "at",
+          "two",
+          "every",
+          "close"
+        ],
+        "answers": [
+          [
+            "closes",
+            "at",
+            "two",
+            "every"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Where did you find my notebook?",
+        "frame": "I ___ ___ ___ ___ desk.",
+        "tiles": [
+          "found",
+          "it",
+          "under",
+          "behind",
+          "the front"
+        ],
+        "answers": [
+          [
+            "found",
+            "it",
+            "under",
+            "the front"
+          ],
+          [
+            "found",
+            "it",
+            "behind",
+            "the front"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Why is Lena wearing a coat indoors?",
+        "frame": "The ___ ___ ___ ___ today.",
+        "tiles": [
+          "classroom",
+          "feels",
+          "unusually",
+          "cold",
+          "feel"
+        ],
+        "answers": [
+          [
+            "classroom",
+            "feels",
+            "unusually",
+            "cold"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-4",
+        "prompt": "How did Omar get to the museum?",
+        "frame": "He took ___ ___ ___ ___ museum.",
+        "tiles": [
+          "the train",
+          "that",
+          "stops",
+          "beside the",
+          "stop"
+        ],
+        "answers": [
+          [
+            "the train",
+            "that",
+            "stops",
+            "beside the"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Why hasn't the printer finished my poster?",
+        "frame": "It ___ ___ ___ ___ jammed.",
+        "tiles": [
+          "stopped working",
+          "after",
+          "the paper tray",
+          "became",
+          "becomes"
+        ],
+        "answers": [
+          [
+            "stopped working",
+            "after",
+            "the paper tray",
+            "became"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Have you met the new laboratory assistant?",
+        "frame": "Yes, ___ ___ ___ ___ ___ yesterday.",
+        "tiles": [
+          "she",
+          "is",
+          "the student",
+          "who",
+          "helped us",
+          "were"
+        ],
+        "answers": [
+          [
+            "she",
+            "is",
+            "the student",
+            "who",
+            "helped us"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Why didn't you drive to the evening lecture?",
+        "frame": "I ___ ___ ___ ___ icy.",
+        "tiles": [
+          "stayed home",
+          "because",
+          "the roads",
+          "were",
+          "was"
+        ],
+        "answers": [
+          [
+            "stayed home",
+            "because",
+            "the roads",
+            "were"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Which transportation proposal did the committee approve?",
+        "frame": "They approved ___ ___ ___ ___ near schools.",
+        "tiles": [
+          "the plan",
+          "that",
+          "reduces",
+          "traffic",
+          "reduce"
+        ],
+        "answers": [
+          [
+            "the plan",
+            "that",
+            "reduces",
+            "traffic"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Who discovered the error in the budget report?",
+        "frame": "It was Maya ___ ___ ___ ___ figure.",
+        "tiles": [
+          "who",
+          "noticed",
+          "the",
+          "missing",
+          "which"
+        ],
+        "answers": [
+          [
+            "who",
+            "noticed",
+            "the",
+            "missing"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Under what condition will tomorrow's field trip proceed?",
+        "frame": "Only if ___ ___ ___ ___ ___ tomorrow.",
+        "tiles": [
+          "the weather",
+          "improves",
+          "will",
+          "the class",
+          "leave",
+          "would"
+        ],
+        "answers": [
+          [
+            "the weather",
+            "improves",
+            "will",
+            "the class",
+            "leave"
+          ]
+        ],
+        "timeLimitSec": 40
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You recently attended a weekend ceramics workshop at your university's arts center. You appreciated the instructor's guidance, but after returning home, you realized that you had left your wallet in the workshop room. The center is now closed until Monday, and you need help locating and retrieving it.",
+    "to": "artscenter@northbridge.edu",
+    "subject": "Missing Wallet After Ceramics Workshop",
+    "bullets": [
+      "Express your appreciation for the workshop.",
+      "Describe your wallet and explain where and when you last saw it.",
+      "Ask the staff to check for it and explain how you can retrieve it if it is found."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Introduction to Urban Planning",
+    "professorName": "Dr. Rivera",
+    "professorPost": "City streets must serve many users, including residents, businesses, delivery companies, cyclists, and pedestrians. Some cities are considering converting curbside parking spaces into designated loading zones for delivery vehicles. Do you think cities should make this change? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Nina",
+        "post": "Cities should replace some curbside parking with loading zones. Delivery drivers often block travel lanes when no legal space is available, creating congestion and dangerous visibility problems. Dedicated zones would make deliveries quicker and keep streets safer for cyclists, pedestrians, and drivers."
+      },
+      {
+        "name": "Leo",
+        "post": "I would keep the parking spaces. Many small businesses depend on customers who cannot carry purchases far, and residents without private garages already struggle to park. Removing spaces may shift cars onto nearby streets and make daily errands harder, especially for older people or families with children."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  }
+}

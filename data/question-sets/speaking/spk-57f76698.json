@@ -1,0 +1,217 @@
+{
+  "id": "spk-57f76698",
+  "source": "generated",
+  "createdAt": "2026-08-07T02:43:18.962Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "First Overnight Shift at a Sleep Clinic",
+    "scenarioDescription": "Tonight is your first shift as a helper at an overnight sleep clinic. The clinic's overnight technician walks you down the sleep clinic hallway to the quiet rooms, showing you where the monitoring supplies are kept and what to lay out before patients arrive. Listen to the technician and repeat what they say. Repeat only once.",
+    "introAudio": "stimuli/spk-57f76698/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-57f76698.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: First Overnight Shift at a Sleep Clinic. Tonight is your first shift as a helper at an overnight sleep clinic. The clinic's overnight technician walks you down the sleep clinic hallway to the quiet rooms, showing you where the monitoring supplies are kept and what to lay out before patients arrive. Listen to the technician and repeat what they say. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Our sleep rooms stay dark and quiet.\n- This hallway connects the quiet rooms and the desk.\n- The clinic supply closet across from the desk holds clean sheets.\n- The spare pillows stacked beside the doorway are clean, and you'll set one out.\n- After the patient settles in, please dim the ceiling light and shut the door quietly.\n- Any sensor wires kept in the labeled drawer should be counted before you start the overnight shift.\n- The helper who works the front desk overnight will tell you which rooms are ready for the next patient.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Our sleep rooms stay dark and quiet.",
+        "audio": "stimuli/spk-57f76698/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.088,
+          "y": 0.085,
+          "w": 0.297,
+          "h": 0.166
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "This hallway connects the quiet rooms and the desk.",
+        "audio": "stimuli/spk-57f76698/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.378,
+          "y": 0.258,
+          "w": 0.158,
+          "h": 0.278
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "The clinic supply closet across from the desk holds clean sheets.",
+        "audio": "stimuli/spk-57f76698/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.609,
+          "y": 0.144,
+          "w": 0.17,
+          "h": 0.158
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The spare pillows stacked beside the doorway are clean, and you'll set one out.",
+        "audio": "stimuli/spk-57f76698/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.57,
+          "y": 0.334,
+          "w": 0.1,
+          "h": 0.134
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "After the patient settles in, please dim the ceiling light and shut the door quietly.",
+        "audio": "stimuli/spk-57f76698/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.835,
+          "y": 0.287,
+          "w": 0.108,
+          "h": 0.231
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Any sensor wires kept in the labeled drawer should be counted before you start the overnight shift.",
+        "audio": "stimuli/spk-57f76698/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.673,
+          "y": 0.686,
+          "w": 0.218,
+          "h": 0.234
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The helper who works the front desk overnight will tell you which rooms are ready for the next patient.",
+        "audio": "stimuli/spk-57f76698/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.589,
+          "y": 0.479,
+          "w": 0.218,
+          "h": 0.126
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Family Traditions Across Generations",
+    "intro": "You have agreed to take part in a short recorded interview for a project that gathers personal accounts of traditions people keep at home. An interviewer will ask you four questions about your own family. You will not have time to prepare your answers.",
+    "introAudio": "stimuli/spk-57f76698/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thank you for speaking with me today. To start, could you tell me about a tradition your family keeps, and when in the year it usually happens?",
+        "audio": "stimuli/spk-57f76698/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of a tradition that had to change at some point in your family. What made your family adapt it, and how did the people around you react to the change?",
+        "audio": "stimuli/spk-57f76698/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some people believe that keeping a tradition exactly as it was handed down is what gives it meaning. Others feel a tradition should be reshaped so it fits the way people actually live now. Which view do you agree with, and why?",
+        "audio": "stimuli/spk-57f76698/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Do you think passing traditions on to younger relatives is worth doing deliberately, or is it better to let it happen on its own? If a family wanted to keep an older tradition alive, what would you recommend they do?",
+        "audio": "stimuli/spk-57f76698/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "overnight-sleep-clinic-room-walkthrough",
+      "requiredConcepts": [
+        "sleep clinic hallway to the quiet rooms",
+        "sensor wires kept in the labeled drawer",
+        "spare pillows stacked beside the doorway",
+        "clinic supply closet across from the desk"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-89911631",
+          "reason": "That one walks through a recording lab where cameras are borrowed; this one moves between overnight sleep rooms and the supplies kept for them."
+        },
+        {
+          "setId": "spk-e5b2b735",
+          "reason": "That one briefs a front-desk shift at a recreation facility; this one briefs an overnight helper inside a quiet sleep clinic."
+        },
+        {
+          "setId": "spk-8d9ee619",
+          "reason": "That one greets arriving visitors at an animal park; this one prepares one new helper before a first overnight clinic shift."
+        }
+      ],
+      "setting": "The quiet recording rooms and the connecting hallway of an overnight sleep clinic",
+      "speakerRole": "The clinic's overnight technician, briefing a newly hired helper",
+      "communicativePurpose": "Showing the new helper, room by room, where sleep monitoring supplies are kept and what to lay out before the first overnight shift"
+    },
+    "interview": {
+      "domain": "history-social-change",
+      "noveltyKey": "family-traditions-changing-across-generations",
+      "requiredConcepts": [
+        "a tradition your family keeps",
+        "a tradition that had to change",
+        "keeping a tradition exactly as it was",
+        "passing traditions on to younger relatives"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-43ab8b09",
+          "reason": "That one asks about meals eaten across a normal week; this one asks about traditions a family keeps and how they were reshaped."
+        },
+        {
+          "setId": "spk-26132ac6",
+          "reason": "That one asks about skills the speaker taught themselves; this one asks about traditions inherited from older relatives."
+        },
+        {
+          "setId": "spk-8d9ee619",
+          "reason": "That one asks about visiting large towns elsewhere; this one stays inside one family's own traditions."
+        }
+      ],
+      "topic": "Family traditions and how they change across generations",
+      "premise": "A short recorded interview for a project gathering personal accounts of traditions people keep at home; the interviewer asks four questions with no preparation time",
+      "questionArc": [
+        "Factual: which tradition the speaker's family keeps, and when in the year it happens.",
+        "Experience: a time a family tradition had to be adapted, and why it changed.",
+        "Opinion: two contrasting views — keeping a tradition exactly as it was inherited versus reshaping it to fit how people live now — and which side the speaker takes.",
+        "Opinion, broader: whether older traditions are worth deliberately passing on to younger relatives, with a recommendation for how a family might do it."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v1",
+    "provider": "openai",
+    "model": "gpt-4o-mini-tts",
+    "listenAndRepeat": {
+      "accent": "australian",
+      "voice": "marin",
+      "briefingTargetWpm": 165,
+      "itemTargetWpm": 180
+    },
+    "interview": {
+      "accent": "new-zealand",
+      "voice": "cedar",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

@@ -1,0 +1,3230 @@
+{
+  "id": "lsn-ed0a8e87",
+  "source": "generated",
+  "createdAt": "2026-08-17T16:43:21.179Z",
+  "kind": "listening",
+  "advisoryNotes": [
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "listen_choose",
+      "itemPosition": 0
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "listen_choose",
+      "itemPosition": 1
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "listen_choose",
+      "itemPosition": 6
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "listen_choose",
+      "itemPosition": 7
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "listen_choose",
+      "itemPosition": 10
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "listen_choose",
+      "itemPosition": 11
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "listen_choose",
+      "itemPosition": 12
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "listen_choose",
+      "itemPosition": 13
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "listen_choose",
+      "itemPosition": 14
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "listen_choose",
+      "itemPosition": 15
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "listen_choose",
+      "itemPosition": 18
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "listen_choose",
+      "itemPosition": 19
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "conversation",
+      "itemPosition": 0
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "conversation",
+      "itemPosition": 2
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "conversation",
+      "itemPosition": 3
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "conversation",
+      "itemPosition": 4
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "conversation",
+      "itemPosition": 5
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "announcement",
+      "itemPosition": 3
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "domain-balance",
+      "taskType": "announcement",
+      "itemPosition": 4
+    },
+    {
+      "check": "catalog-novelty",
+      "detail": "containment",
+      "taskType": "listen_choose",
+      "conflictingSetIds": [
+        "lsn-6de33148"
+      ],
+      "score": 0.8
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 136.1,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 100.7,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 129.3,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 110.3,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 116.3,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "conversation",
+      "take": "first",
+      "measuredWpm": 138.2,
+      "targetWpm": 162,
+      "minWpm": 150,
+      "maxWpm": 175
+    },
+    {
+      "check": "speech-rate",
+      "detail": "academic-talk",
+      "take": "retake",
+      "measuredWpm": 135,
+      "targetWpm": 148,
+      "minWpm": 140,
+      "maxWpm": 155
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "first",
+      "measuredWpm": 128.2,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "conversation",
+      "take": "retake",
+      "measuredWpm": 149.8,
+      "targetWpm": 162,
+      "minWpm": 150,
+      "maxWpm": 175
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 94.7,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 131.6,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "academic-talk",
+      "take": "retake",
+      "measuredWpm": 132.5,
+      "targetWpm": 148,
+      "minWpm": 140,
+      "maxWpm": 155
+    },
+    {
+      "check": "speech-rate",
+      "detail": "academic-talk",
+      "take": "retake",
+      "measuredWpm": 157.7,
+      "targetWpm": 148,
+      "minWpm": 140,
+      "maxWpm": 155
+    }
+  ],
+  "router": {
+    "timeLimitSec": 1080,
+    "listenChoose": [
+      {
+        "id": "lcr-r1",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-r1.mp3",
+        "speaker": {
+          "id": "lcr-r1-sp",
+          "role": "university student",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Sadaltager",
+          "provider": "gemini"
+        },
+        "utterance": "Could I retake the exam I missed?",
+        "options": [
+          {
+            "id": "lcr-r1-a",
+            "text": "Sure, how about next Tuesday afternoon?"
+          },
+          {
+            "id": "lcr-r1-b",
+            "text": "Sorry, extra credit isn't offered here."
+          },
+          {
+            "id": "lcr-r1-c",
+            "text": "You should email the registrar today."
+          },
+          {
+            "id": "lcr-r1-d",
+            "text": "I'll just lower your final grade instead."
+          }
+        ],
+        "correctOptionId": "lcr-r1-a",
+        "skill": "function",
+        "explanationZh": "學生說「retake the exam I missed」是請求補考，回覆應提供具體時間；提到註冊組、免除規定或直接調降成績的說法都沒有安排補考，不符合情境。"
+      },
+      {
+        "id": "lcr-r2",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-r2.mp3",
+        "speaker": {
+          "id": "lcr-r2-sp",
+          "role": "campus housing officer",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Leda",
+          "provider": "gemini"
+        },
+        "utterance": "We can review room swaps this week.",
+        "options": [
+          {
+            "id": "lcr-r2-a",
+            "text": "Can you repair my broken heater instead?"
+          },
+          {
+            "id": "lcr-r2-b",
+            "text": "I already fixed the noise issue myself."
+          },
+          {
+            "id": "lcr-r2-c",
+            "text": "Great, what day works for you?"
+          },
+          {
+            "id": "lcr-r2-d",
+            "text": "I'd rather cancel my housing contract completely."
+          }
+        ],
+        "correctOptionId": "lcr-r2-c",
+        "skill": "function",
+        "explanationZh": "房務人員表示本週可審核換房需求，貼切回覆應詢問方便時間；提到自行解決噪音、要求修暖氣或取消合約的說法都文不對題。"
+      },
+      {
+        "id": "lcr-r3",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-r3.mp3",
+        "speaker": {
+          "id": "lcr-r3-sp",
+          "role": "office employee",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Achird",
+          "provider": "gemini"
+        },
+        "utterance": "Can you confirm the new report deadline?",
+        "options": [
+          {
+            "id": "lcr-r3-a",
+            "text": "Yes, it's now due Thursday afternoon."
+          },
+          {
+            "id": "lcr-r3-b",
+            "text": "The report format hasn't been decided yet."
+          },
+          {
+            "id": "lcr-r3-c",
+            "text": "No, submit your expense receipts first."
+          },
+          {
+            "id": "lcr-r3-d",
+            "text": "You'll need approval from another department."
+          }
+        ],
+        "correctOptionId": "lcr-r3-a",
+        "skill": "function",
+        "explanationZh": "員工詢問新的報告截止日是否確定，回覆應直接給出具體日期；提到報帳收據、報告格式未定或需其他部門核准都沒有回答截止日的問題。"
+      },
+      {
+        "id": "lcr-r4",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-r4.mp3",
+        "speaker": {
+          "id": "lcr-r4-sp",
+          "role": "customer service agent",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Gacrux",
+          "provider": "gemini"
+        },
+        "utterance": "Your claim's delayed—we're missing the serial number.",
+        "options": [
+          {
+            "id": "lcr-r4-a",
+            "text": "Then cancel my order completely, please."
+          },
+          {
+            "id": "lcr-r4-b",
+            "text": "Can you upgrade my plan instead?"
+          },
+          {
+            "id": "lcr-r4-c",
+            "text": "I already paid the shipping fee twice."
+          },
+          {
+            "id": "lcr-r4-d",
+            "text": "Oh, I'll send that right away."
+          }
+        ],
+        "correctOptionId": "lcr-r4-d",
+        "skill": "function",
+        "explanationZh": "客服提到因缺少序號導致理賠延遲，顧客合理回覆是願意補寄資料；要求取消訂單、抱怨運費或升級方案都沒有回應缺資料這件事。"
+      },
+      {
+        "id": "lcr-r5",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-r5.mp3",
+        "speaker": {
+          "id": "lcr-r5-sp",
+          "role": "city clerk",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Puck",
+          "provider": "gemini"
+        },
+        "utterance": "Permit fees rise next quarter, unfortunately.",
+        "options": [
+          {
+            "id": "lcr-r5-a",
+            "text": "Can I skip the emissions inspection?"
+          },
+          {
+            "id": "lcr-r5-b",
+            "text": "I'd like to recycle these bins instead."
+          },
+          {
+            "id": "lcr-r5-c",
+            "text": "When does the library reopen downtown?"
+          },
+          {
+            "id": "lcr-r5-d",
+            "text": "Is there a discount for seniors?"
+          }
+        ],
+        "correctOptionId": "lcr-r5-d",
+        "skill": "function",
+        "explanationZh": "市府人員說下季停車證費用將調漲，居民合理回覆是詢問是否有優惠；提到資源回收桶、免驗排氣或圖書館開放時間都文不對題。"
+      },
+      {
+        "id": "lcr-r6",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-r6.mp3",
+        "speaker": {
+          "id": "lcr-r6-sp",
+          "role": "library patron",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Vindemiatrix",
+          "provider": "gemini"
+        },
+        "utterance": "I lost my library card this week.",
+        "options": [
+          {
+            "id": "lcr-r6-a",
+            "text": "You'll owe a late fee for that."
+          },
+          {
+            "id": "lcr-r6-b",
+            "text": "We don't repair streetlights at this desk."
+          },
+          {
+            "id": "lcr-r6-c",
+            "text": "The building closes early on Sundays."
+          },
+          {
+            "id": "lcr-r6-d",
+            "text": "No problem, here's a temporary one."
+          }
+        ],
+        "correctOptionId": "lcr-r6-d",
+        "skill": "function",
+        "explanationZh": "讀者說本週弄丟圖書證，館員應提供補發方案；提到閉館時間、遲還罰款或路燈維修都沒有回應補發證件的需求。"
+      },
+      {
+        "id": "lcr-r7",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-r7.mp3",
+        "speaker": {
+          "id": "lcr-r7-sp",
+          "role": "park ranger",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Charon",
+          "provider": "gemini"
+        },
+        "utterance": "The trail's closed from erosion damage.",
+        "options": [
+          {
+            "id": "lcr-r7-a",
+            "text": "I already renewed my parking permit."
+          },
+          {
+            "id": "lcr-r7-b",
+            "text": "I'll check the sensor wiring myself."
+          },
+          {
+            "id": "lcr-r7-c",
+            "text": "Can I still swim at the lake?"
+          },
+          {
+            "id": "lcr-r7-d",
+            "text": "Do you know when it'll reopen?"
+          }
+        ],
+        "correctOptionId": "lcr-r7-d",
+        "skill": "function",
+        "explanationZh": "巡管員說步道因土壤侵蝕而封閉，遊客合理回覆是詢問何時重新開放；提到感測線路、湖泊游泳或停車證都與步道封閉無關。"
+      },
+      {
+        "id": "lcr-r8",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-r8.mp3",
+        "speaker": {
+          "id": "lcr-r8-sp",
+          "role": "researcher",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Autonoe",
+          "provider": "gemini"
+        },
+        "utterance": "This scale's readings seem off lately.",
+        "options": [
+          {
+            "id": "lcr-r8-a",
+            "text": "We ordered new safety goggles yesterday."
+          },
+          {
+            "id": "lcr-r8-b",
+            "text": "Try recharging the battery overnight."
+          },
+          {
+            "id": "lcr-r8-c",
+            "text": "Let's book a technician this week."
+          },
+          {
+            "id": "lcr-r8-d",
+            "text": "The thermostat's already been replaced."
+          }
+        ],
+        "correctOptionId": "lcr-r8-c",
+        "skill": "function",
+        "explanationZh": "研究員反映磅秤讀數近來不準，實驗室主管合理回覆是安排技師檢修；提到溫控器已換、重新充電或添購護目鏡都沒有處理磅秤校正問題。"
+      },
+      {
+        "id": "lcr-r9",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-r9.mp3",
+        "speaker": {
+          "id": "lcr-r9-sp",
+          "role": "streaming subscriber",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Iapetus",
+          "provider": "gemini"
+        },
+        "utterance": "I was charged twice this month.",
+        "options": [
+          {
+            "id": "lcr-r9-a",
+            "text": "We've added a new documentary section."
+          },
+          {
+            "id": "lcr-r9-b",
+            "text": "Try restarting the app first."
+          },
+          {
+            "id": "lcr-r9-c",
+            "text": "I'll issue a refund immediately."
+          },
+          {
+            "id": "lcr-r9-d",
+            "text": "Your files should sync automatically."
+          }
+        ],
+        "correctOptionId": "lcr-r9-c",
+        "skill": "function",
+        "explanationZh": "訂閱者說本月被重複扣款，客服合理回覆是立即辦理退款；提到檔案同步、重啟應用程式或新增紀錄片都沒有處理扣款問題。"
+      },
+      {
+        "id": "lcr-r10",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-r10.mp3",
+        "speaker": {
+          "id": "lcr-r10-sp",
+          "role": "app user",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Kore",
+          "provider": "gemini"
+        },
+        "utterance": "The app crashes opening my photos.",
+        "options": [
+          {
+            "id": "lcr-r10-a",
+            "text": "That feature launches again next month."
+          },
+          {
+            "id": "lcr-r10-b",
+            "text": "What device model are you using?"
+          },
+          {
+            "id": "lcr-r10-c",
+            "text": "Have you updated your billing info?"
+          },
+          {
+            "id": "lcr-r10-d",
+            "text": "Try exporting your video project again."
+          }
+        ],
+        "correctOptionId": "lcr-r10-b",
+        "skill": "function",
+        "explanationZh": "使用者反映開啟相片時應用程式當機，技術支援合理回覆是詢問裝置型號以便排查；提到匯出影片、更新帳單或功能延後上線都答非所問。"
+      }
+    ],
+    "conversations": [
+      {
+        "id": "conv-r1",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-ed0a8e87/conv-r1.mp3",
+        "setting": "small design company's shared workspace during a client review call",
+        "speakers": [
+          {
+            "id": "conv-r1-sp1",
+            "role": "freelance graphic designer",
+            "gender": "female",
+            "accent": "british",
+            "voice": "Zephyr",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-r1-sp2",
+            "role": "company client",
+            "gender": "male",
+            "accent": "australian",
+            "voice": "Umbriel",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-r1-sp2",
+            "text": "I like the shapes, but honestly the color feels a little flat to me."
+          },
+          {
+            "speakerId": "conv-r1-sp1",
+            "text": "Flat how—like it needs more contrast, or a totally different palette?"
+          },
+          {
+            "speakerId": "conv-r1-sp2",
+            "text": "More contrast, I think. Maybe a bolder blue instead of this pale one."
+          },
+          {
+            "speakerId": "conv-r1-sp1",
+            "text": "Got it. I can push the saturation up and try a deeper navy."
+          },
+          {
+            "speakerId": "conv-r1-sp2",
+            "text": "Perfect. Could you show me a couple of options, not just one?"
+          },
+          {
+            "speakerId": "conv-r1-sp1",
+            "text": "Sure, I'll put together two revised drafts and send them by Friday."
+          },
+          {
+            "speakerId": "conv-r1-sp2",
+            "text": "That works. Should I hold off sharing the current version with my team?"
+          },
+          {
+            "speakerId": "conv-r1-sp1",
+            "text": "Yeah, wait for the new drafts—no point showing something we're already changing."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-r1-q1",
+            "stem": "What does the client want changed about the logo?",
+            "options": [
+              {
+                "id": "conv-r1-q1-a",
+                "text": "The shapes need to be simplified."
+              },
+              {
+                "id": "conv-r1-q1-b",
+                "text": "The color needs to be bolder."
+              },
+              {
+                "id": "conv-r1-q1-c",
+                "text": "The logo needs to be resized."
+              },
+              {
+                "id": "conv-r1-q1-d",
+                "text": "The font should be replaced."
+              }
+            ],
+            "correctOptionId": "conv-r1-q1-b",
+            "skill": "detail",
+            "explanationZh": "客戶說顏色「feels a little flat」，希望改用更飽和、更深的藍色，顯示色彩需要更大膽；並未要求簡化形狀、換字體或調整尺寸。"
+          },
+          {
+            "id": "conv-r1-q2",
+            "stem": "What does the designer agree to do?",
+            "options": [
+              {
+                "id": "conv-r1-q2-a",
+                "text": "Switch to an entirely new logo concept."
+              },
+              {
+                "id": "conv-r1-q2-b",
+                "text": "Send two revised drafts by Friday."
+              },
+              {
+                "id": "conv-r1-q2-c",
+                "text": "Show the current version to the team."
+              },
+              {
+                "id": "conv-r1-q2-d",
+                "text": "Deliver a single final draft today."
+              }
+            ],
+            "correctOptionId": "conv-r1-q2-b",
+            "skill": "detail",
+            "explanationZh": "設計師表示會準備兩份修改稿並於週五前寄出，而非展示目前版本、改用全新概念或只交一份定稿。"
+          }
+        ]
+      },
+      {
+        "id": "conv-r2",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-ed0a8e87/conv-r2.mp3",
+        "setting": "campus career center office before a scheduled mock interview",
+        "speakers": [
+          {
+            "id": "conv-r2-sp1",
+            "role": "career counselor",
+            "gender": "female",
+            "accent": "north-american",
+            "voice": "Laomedeia",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-r2-sp2",
+            "role": "university student",
+            "gender": "male",
+            "accent": "british",
+            "voice": "Algieba",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-r2-sp1",
+            "text": "Let's run through a few questions before your actual interview tomorrow."
+          },
+          {
+            "speakerId": "conv-r2-sp2",
+            "text": "Okay. Ask me the one about my greatest strength—I've been dreading that."
+          },
+          {
+            "speakerId": "conv-r2-sp1",
+            "text": "Sure. So, what would you say is your greatest strength?"
+          },
+          {
+            "speakerId": "conv-r2-sp2",
+            "text": "Um, I guess I'd say I'm just really hardworking and good with people overall."
+          },
+          {
+            "speakerId": "conv-r2-sp1",
+            "text": "That's a bit vague, though. Can you give me a specific example?"
+          },
+          {
+            "speakerId": "conv-r2-sp2",
+            "text": "Right—like when I organized the club fundraiser last semester, maybe?"
+          },
+          {
+            "speakerId": "conv-r2-sp1",
+            "text": "Exactly, use that story. Numbers help too, like how much you raised."
+          },
+          {
+            "speakerId": "conv-r2-sp2",
+            "text": "Good idea, thanks. I'll rework that whole answer before tomorrow's actual interview."
+          },
+          {
+            "speakerId": "conv-r2-sp1",
+            "text": "Great. That kind of detail makes your strengths sound much more convincing."
+          },
+          {
+            "speakerId": "conv-r2-sp2",
+            "text": "Thanks, I feel better about it now."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-r2-q1",
+            "stem": "What problem does the counselor point out in the student's first answer?",
+            "options": [
+              {
+                "id": "conv-r2-q1-a",
+                "text": "It ignored the actual question."
+              },
+              {
+                "id": "conv-r2-q1-b",
+                "text": "It was too long and rambling."
+              },
+              {
+                "id": "conv-r2-q1-c",
+                "text": "It lacked a specific example."
+              },
+              {
+                "id": "conv-r2-q1-d",
+                "text": "It focused only on past failures."
+              }
+            ],
+            "correctOptionId": "conv-r2-q1-c",
+            "skill": "detail",
+            "explanationZh": "諮詢師指出學生的回答「a bit vague」，缺乏具體例子，因此正確答案為此。提到答非所問的選項不符，因學生確實回答了問題；提到冗長離題的選項也不符，原回答其實很簡短；提到只談過去失敗的選項同樣無據，原文談的是優點而非失敗。"
+          },
+          {
+            "id": "conv-r2-q2",
+            "stem": "What does the counselor suggest the student include?",
+            "options": [
+              {
+                "id": "conv-r2-q2-a",
+                "text": "A formal recommendation letter."
+              },
+              {
+                "id": "conv-r2-q2-b",
+                "text": "A list of academic honors."
+              },
+              {
+                "id": "conv-r2-q2-c",
+                "text": "A concrete story with numbers."
+              },
+              {
+                "id": "conv-r2-q2-d",
+                "text": "A comparison to other candidates."
+              }
+            ],
+            "correctOptionId": "conv-r2-q2-c",
+            "skill": "detail",
+            "explanationZh": "諮詢師建議用募款活動的具體故事並加入數字佐證，故此為正確答案。提到學業榮譽列表、正式推薦信、與其他候選人比較的選項，原文均未提及，皆無根據。"
+          }
+        ]
+      },
+      {
+        "id": "conv-r3",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-ed0a8e87/conv-r3.mp3",
+        "setting": "university geology laboratory storage room before a sample analysis session",
+        "speakers": [
+          {
+            "id": "conv-r3-sp1",
+            "role": "geologist",
+            "gender": "female",
+            "accent": "australian",
+            "voice": "Leda",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-r3-sp2",
+            "role": "field assistant",
+            "gender": "male",
+            "accent": "north-american",
+            "voice": "Achird",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-r3-sp1",
+            "text": "Wait, these labels don't match what I remember from yesterday's collection."
+          },
+          {
+            "speakerId": "conv-r3-sp2",
+            "text": "What do you mean? I labeled everything before we left the site."
+          },
+          {
+            "speakerId": "conv-r3-sp1",
+            "text": "These say 'Ridge Site,' but I'm pretty sure these are from the canyon."
+          },
+          {
+            "speakerId": "conv-r3-sp2",
+            "text": "Hm, that's strange. Maybe the labels got mixed up overnight in storage."
+          },
+          {
+            "speakerId": "conv-r3-sp1",
+            "text": "Could you pull up your field notebook and check the sample numbers?"
+          },
+          {
+            "speakerId": "conv-r3-sp2",
+            "text": "Sure, give me a second—I wrote down each site as we collected."
+          },
+          {
+            "speakerId": "conv-r3-sp1",
+            "text": "Great, let's cross-check every sample before we start today's analysis."
+          },
+          {
+            "speakerId": "conv-r3-sp2",
+            "text": "Agreed. I'd rather lose ten minutes than misidentify the whole batch."
+          },
+          {
+            "speakerId": "conv-r3-sp1",
+            "text": "Good call. Better safe than sorry with data this important."
+          },
+          {
+            "speakerId": "conv-r3-sp2",
+            "text": "Exactly. I'll start with the canyon samples first."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-r3-q1",
+            "stem": "What problem do the speakers discover?",
+            "options": [
+              {
+                "id": "conv-r3-q1-a",
+                "text": "Some samples went missing overnight."
+              },
+              {
+                "id": "conv-r3-q1-b",
+                "text": "The site location was recorded incorrectly on a map."
+              },
+              {
+                "id": "conv-r3-q1-c",
+                "text": "The wrong equipment was packed."
+              },
+              {
+                "id": "conv-r3-q1-d",
+                "text": "Rock samples appear to be mislabeled."
+              }
+            ],
+            "correctOptionId": "conv-r3-q1-d",
+            "skill": "gist",
+            "explanationZh": "對話核心是標籤與實際採集地點不符，顯示岩石樣本可能被貼錯標籤，而非樣本遺失、設備打包錯誤或地圖記錄錯誤。"
+          },
+          {
+            "id": "conv-r3-q2",
+            "stem": "What does the geologist ask the assistant to do?",
+            "options": [
+              {
+                "id": "conv-r3-q2-a",
+                "text": "Contact the storage manager about the mixup."
+              },
+              {
+                "id": "conv-r3-q2-b",
+                "text": "Return to the canyon to recollect samples."
+              },
+              {
+                "id": "conv-r3-q2-c",
+                "text": "Check the sample numbers against the field notebook."
+              },
+              {
+                "id": "conv-r3-q2-d",
+                "text": "Relabel every sample using new tags."
+              }
+            ],
+            "correctOptionId": "conv-r3-q2-c",
+            "skill": "detail",
+            "explanationZh": "地質學家請助理核對野外筆記本上的樣本編號以確認來源，而非重貼標籤、重返峽谷採樣或聯絡倉儲管理員。"
+          }
+        ]
+      }
+    ],
+    "announcements": [
+      {
+        "id": "ann-r1",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-ed0a8e87/ann-r1.mp3",
+        "setting": "company-wide intranet bulletin posted by the office facilities manager",
+        "speaker": {
+          "id": "ann-r1-sp",
+          "role": "office facilities manager",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Iapetus",
+          "provider": "gemini"
+        },
+        "transcript": "Starting next month, our office will relocate from the third floor to the eighth floor. Please pack your desk items into the provided boxes and label each one with your department name. Facilities staff will handle furniture and shared equipment, so you won't need to move anything heavy. The new floor offers larger meeting rooms. Contact facilities with any questions.",
+        "questions": [
+          {
+            "id": "ann-r1-q1",
+            "stem": "What are employees asked to do before the move?",
+            "options": [
+              {
+                "id": "ann-r1-q1-a",
+                "text": "Clean out the break room."
+              },
+              {
+                "id": "ann-r1-q1-b",
+                "text": "Submit a request for a new desk."
+              },
+              {
+                "id": "ann-r1-q1-c",
+                "text": "Pack desk items into labeled boxes."
+              },
+              {
+                "id": "ann-r1-q1-d",
+                "text": "Move their own furniture to the new floor."
+              }
+            ],
+            "correctOptionId": "ann-r1-q1-c",
+            "skill": "detail",
+            "explanationZh": "公告要求員工把桌上物品裝箱並標明部門名稱，而非自行搬家具、申請新桌子或清理休息室。"
+          },
+          {
+            "id": "ann-r1-q2",
+            "stem": "Who will handle moving furniture and shared equipment?",
+            "options": [
+              {
+                "id": "ann-r1-q2-a",
+                "text": "An outside moving company."
+              },
+              {
+                "id": "ann-r1-q2-b",
+                "text": "Employees, working in teams."
+              },
+              {
+                "id": "ann-r1-q2-c",
+                "text": "Facilities staff."
+              },
+              {
+                "id": "ann-r1-q2-d",
+                "text": "Each department's manager."
+              }
+            ],
+            "correctOptionId": "ann-r1-q2-c",
+            "skill": "detail",
+            "explanationZh": "公告說明家具與共用設備由設施部門人員負責搬運，而非部門主管、外部搬家公司或員工自行處理。"
+          }
+        ]
+      },
+      {
+        "id": "ann-r2",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-ed0a8e87/ann-r2.mp3",
+        "setting": "heritage center entrance display announced by the site's tour coordinator",
+        "speaker": {
+          "id": "ann-r2-sp",
+          "role": "heritage center tour coordinator",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Sulafat",
+          "provider": "gemini"
+        },
+        "transcript": "Attention visitors: today's heritage walking tour will now begin thirty minutes earlier than the printed schedule, at nine-thirty instead of ten. Please gather at the entrance courtyard, where we've updated the meeting-point sign with the new historical route map. The earlier start allows us to avoid the midday heat and finish before the center closes for lunch. If you arrive late, front desk staff can help you catch up with the group.",
+        "questions": [
+          {
+            "id": "ann-r2-q1",
+            "stem": "What change is announced about the tour?",
+            "options": [
+              {
+                "id": "ann-r2-q1-a",
+                "text": "It will start thirty minutes earlier."
+              },
+              {
+                "id": "ann-r2-q1-b",
+                "text": "It will be shortened by thirty minutes."
+              },
+              {
+                "id": "ann-r2-q1-c",
+                "text": "It will require advance reservations now."
+              },
+              {
+                "id": "ann-r2-q1-d",
+                "text": "It will move to a different building."
+              }
+            ],
+            "correctOptionId": "ann-r2-q1-a",
+            "skill": "detail",
+            "explanationZh": "公告明確指出行程提早三十分鐘於九點半開始，而非縮短時間、換場地或需要預約。"
+          },
+          {
+            "id": "ann-r2-q2",
+            "stem": "Why was the start time moved earlier?",
+            "options": [
+              {
+                "id": "ann-r2-q2-a",
+                "text": "To accommodate more visitors."
+              },
+              {
+                "id": "ann-r2-q2-b",
+                "text": "To avoid the midday heat."
+              },
+              {
+                "id": "ann-r2-q2-c",
+                "text": "Because the guide has another commitment."
+              },
+              {
+                "id": "ann-r2-q2-d",
+                "text": "Because of a scheduling conflict with another event."
+              }
+            ],
+            "correctOptionId": "ann-r2-q2-b",
+            "skill": "inference",
+            "explanationZh": "公告說明提早出發是為了避開中午的高溫，而非人數增加、與其他活動撞期或導覽員另有安排。"
+          }
+        ]
+      },
+      {
+        "id": "ann-r3",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-ed0a8e87/ann-r3.mp3",
+        "setting": "apartment building lobby notice posted by the building superintendent",
+        "speaker": {
+          "id": "ann-r3-sp",
+          "role": "building superintendent",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Umbriel",
+          "provider": "gemini"
+        },
+        "transcript": "Notice to residents: the elevator will be out of service for two days starting tomorrow for scheduled maintenance. During this time, please use the stairwell located at the end of each hallway. If you need help carrying groceries or other heavy items, contact the front office and staff will assist you. We apologize for the inconvenience and expect the elevator to be running normally again by Thursday evening.",
+        "questions": [
+          {
+            "id": "ann-r3-q1",
+            "stem": "Why is the elevator out of service?",
+            "options": [
+              {
+                "id": "ann-r3-q1-a",
+                "text": "Because new elevators are being installed."
+              },
+              {
+                "id": "ann-r3-q1-b",
+                "text": "For scheduled maintenance work."
+              },
+              {
+                "id": "ann-r3-q1-c",
+                "text": "Because of storm damage."
+              },
+              {
+                "id": "ann-r3-q1-d",
+                "text": "Because it failed a safety inspection."
+              }
+            ],
+            "correctOptionId": "ann-r3-q1-b",
+            "skill": "detail",
+            "explanationZh": "公告說明電梯是因例行維護而停用，而非風災損壞、未通過安檢或安裝新電梯。"
+          },
+          {
+            "id": "ann-r3-q2",
+            "stem": "What should residents do if they need help with heavy items?",
+            "options": [
+              {
+                "id": "ann-r3-q2-a",
+                "text": "Use the loading dock elevator instead."
+              },
+              {
+                "id": "ann-r3-q2-b",
+                "text": "Contact the front office for assistance."
+              },
+              {
+                "id": "ann-r3-q2-c",
+                "text": "Ask a neighbor for help."
+              },
+              {
+                "id": "ann-r3-q2-d",
+                "text": "Wait until the elevator is repaired."
+              }
+            ],
+            "correctOptionId": "ann-r3-q2-b",
+            "skill": "detail",
+            "explanationZh": "公告建議需要搬運重物的住戶聯絡前台辦公室協助，而非等電梯修好、找鄰居幫忙或使用裝卸電梯。"
+          }
+        ]
+      }
+    ],
+    "academicTalks": [
+      {
+        "id": "talk-r1",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-ed0a8e87/talk-r1.mp3",
+        "discipline": "life science",
+        "speaker": {
+          "id": "talk-r1-sp",
+          "role": "marine biology lecturer",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Erinome",
+          "provider": "gemini"
+        },
+        "transcript": "Today I want to talk about a striking example of ecosystem recovery: kelp forests along a rocky coastline that had been stripped bare for decades. The main culprit was an explosion in the local sea urchin population. Urchins graze on kelp, and without a natural predator to keep their numbers in check, they multiplied and ate through entire kelp forests, leaving what researchers call 'urchin barrens'—rocky stretches with almost no plant life at all. The turning point came when sea otters, which prey heavily on urchins, began returning to the area after decades of absence. As otter numbers grew, urchin populations dropped sharply, and kelp began regrowing within just a few years. Our biology team has been tracking biodiversity along this coastline ever since, counting fish, invertebrates, and seabirds that depend on kelp for shelter and food. The data show a clear pattern: wherever otters reestablished themselves, biodiversity climbed noticeably higher than in nearby otter-free areas. This case illustrates how a single predator's return can reshape an entire coastal ecosystem.",
+        "questions": [
+          {
+            "id": "talk-r1-q1",
+            "stem": "What is the main topic of this talk?",
+            "options": [
+              {
+                "id": "talk-r1-q1-a",
+                "text": "Researchers have been replanting kelp by hand across the rocky coastline."
+              },
+              {
+                "id": "talk-r1-q1-b",
+                "text": "Climate change has been steadily destroying kelp forests around the world for decades."
+              },
+              {
+                "id": "talk-r1-q1-c",
+                "text": "A predator's return helped restore a damaged kelp forest."
+              },
+              {
+                "id": "talk-r1-q1-d",
+                "text": "Local fishing communities started farming sea urchins for export."
+              }
+            ],
+            "correctOptionId": "talk-r1-q1-c",
+            "skill": "gist",
+            "explanationZh": "講座核心是海獺回歸如何幫助海帶林恢復，並非氣候變遷破壞海帶林、人工種植或海膽養殖外銷。"
+          },
+          {
+            "id": "talk-r1-q2",
+            "stem": "What caused the original decline of the kelp forest?",
+            "options": [
+              {
+                "id": "talk-r1-q2-a",
+                "text": "An extended drought that reduced coastal water quality for years."
+              },
+              {
+                "id": "talk-r1-q2-b",
+                "text": "A sudden explosion in the local sea urchin population."
+              },
+              {
+                "id": "talk-r1-q2-c",
+                "text": "Industrial pollution discharged from factories near the shoreline."
+              },
+              {
+                "id": "talk-r1-q2-d",
+                "text": "Decades of unregulated overfishing of nearby fish species along the coast."
+              }
+            ],
+            "correctOptionId": "talk-r1-q2-b",
+            "skill": "detail",
+            "explanationZh": "講者說明海膽數量暴增是海帶林最初衰退的主因，而非過度捕撈、工廠污染或乾旱。"
+          },
+          {
+            "id": "talk-r1-q3",
+            "stem": "What term do researchers use for kelp-free rocky areas caused by urchins?",
+            "options": [
+              {
+                "id": "talk-r1-q3-a",
+                "text": "Grazing zones designated for controlled urchin harvesting"
+              },
+              {
+                "id": "talk-r1-q3-b",
+                "text": "Urchin barrens"
+              },
+              {
+                "id": "talk-r1-q3-c",
+                "text": "Coastal kelp deserts caused by pollution runoff"
+              },
+              {
+                "id": "talk-r1-q3-d",
+                "text": "Rocky voids left behind by melting sea ice"
+              }
+            ],
+            "correctOptionId": "talk-r1-q3-b",
+            "skill": "detail",
+            "explanationZh": "講者提到研究者稱這類幾乎無植被的岩石地帶為「urchin barrens」，而非汙染造成的海帶沙漠、融冰岩石空地或放牧區。"
+          },
+          {
+            "id": "talk-r1-q4",
+            "stem": "What can be inferred about areas without sea otters, based on the lecture?",
+            "options": [
+              {
+                "id": "talk-r1-q4-a",
+                "text": "They likely have lower biodiversity than areas with otters."
+              },
+              {
+                "id": "talk-r1-q4-b",
+                "text": "They receive more sunlight for kelp growth."
+              },
+              {
+                "id": "talk-r1-q4-c",
+                "text": "They contain no sea urchins at all."
+              },
+              {
+                "id": "talk-r1-q4-d",
+                "text": "They have completely recovered without any help."
+              }
+            ],
+            "correctOptionId": "talk-r1-q4-a",
+            "skill": "inference",
+            "explanationZh": "講座指出海獺重新出現的地區生物多樣性明顯較高，可推論沒有海獺的區域多樣性較低，而非已完全恢復、完全無海膽或日照較多。"
+          }
+        ]
+      }
+    ]
+  },
+  "lowerModule": {
+    "timeLimitSec": 420,
+    "listenChoose": [
+      {
+        "id": "lcr-lo1",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-lo1.mp3",
+        "speaker": {
+          "id": "lcr-lo1-sp",
+          "role": "orchestra conductor",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Zubenelgenubi",
+          "provider": "gemini"
+        },
+        "utterance": "We're rehearsing in the smaller hall now.",
+        "options": [
+          {
+            "id": "lcr-lo1-a",
+            "text": "Got it, same time as before?"
+          },
+          {
+            "id": "lcr-lo1-b",
+            "text": "The glaze mixture turned out wrong."
+          },
+          {
+            "id": "lcr-lo1-c",
+            "text": "Can I reserve a gallery seat?"
+          },
+          {
+            "id": "lcr-lo1-d",
+            "text": "I'll repaint the mural this weekend."
+          }
+        ],
+        "correctOptionId": "lcr-lo1-a",
+        "skill": "function",
+        "explanationZh": "指揮回覆排練場地改到較小的音樂廳，團員合理回覆是確認時間是否不變；提到壁畫、藝廊座位或釉料配方都與排練地點無關。"
+      },
+      {
+        "id": "lcr-lo2",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-lo2.mp3",
+        "speaker": {
+          "id": "lcr-lo2-sp",
+          "role": "gallery visitor",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Callirrhoe",
+          "provider": "gemini"
+        },
+        "utterance": "Could you save me a seat Saturday?",
+        "options": [
+          {
+            "id": "lcr-lo2-a",
+            "text": "Rehearsals moved to a smaller hall."
+          },
+          {
+            "id": "lcr-lo2-b",
+            "text": "The insurance paperwork isn't ready yet."
+          },
+          {
+            "id": "lcr-lo2-c",
+            "text": "Membership freezes start next Monday."
+          },
+          {
+            "id": "lcr-lo2-d",
+            "text": "Sure, I'll add your name now."
+          }
+        ],
+        "correctOptionId": "lcr-lo2-d",
+        "skill": "function",
+        "explanationZh": "訪客請求週六保留座位聽藝術家講座，館方合理回覆是確認會登記名字；提到保險文件、排練場地或會員暫停都文不對題。"
+      },
+      {
+        "id": "lcr-lo3",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-lo3.mp3",
+        "speaker": {
+          "id": "lcr-lo3-sp",
+          "role": "clinic patient",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Rasalgethi",
+          "provider": "gemini"
+        },
+        "utterance": "Can I refill my prescription today?",
+        "options": [
+          {
+            "id": "lcr-lo3-a",
+            "text": "I need doctor approval first."
+          },
+          {
+            "id": "lcr-lo3-b",
+            "text": "The gym reopens after renovation."
+          },
+          {
+            "id": "lcr-lo3-c",
+            "text": "Your membership freeze starts Monday."
+          },
+          {
+            "id": "lcr-lo3-d",
+            "text": "We're out of insurance forms."
+          }
+        ],
+        "correctOptionId": "lcr-lo3-a",
+        "skill": "function",
+        "explanationZh": "病人詢問今天能否領取處方箋補藥，藥師合理回覆是說明需先取得醫師核准；提到會籍暫停、健身房整修或保險表單都沒有回應補藥的問題。"
+      },
+      {
+        "id": "lcr-lo4",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-lo4.mp3",
+        "speaker": {
+          "id": "lcr-lo4-sp",
+          "role": "gym member",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Autonoe",
+          "provider": "gemini"
+        },
+        "utterance": "I'd like to freeze my membership.",
+        "options": [
+          {
+            "id": "lcr-lo4-a",
+            "text": "Sure, when should that begin?"
+          },
+          {
+            "id": "lcr-lo4-b",
+            "text": "We've restocked the vending machines."
+          },
+          {
+            "id": "lcr-lo4-c",
+            "text": "The insurance add-on costs extra."
+          },
+          {
+            "id": "lcr-lo4-d",
+            "text": "Your prescription refill is ready."
+          }
+        ],
+        "correctOptionId": "lcr-lo4-a",
+        "skill": "function",
+        "explanationZh": "會員要求暫停健身房會籍，櫃檯合理回覆是詢問暫停開始的時間；提到處方箋、保險加購或補貨自動販賣機都文不對題。"
+      },
+      {
+        "id": "lcr-lo5",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-lo5.mp3",
+        "speaker": {
+          "id": "lcr-lo5-sp",
+          "role": "airline traveler",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Algieba",
+          "provider": "gemini"
+        },
+        "utterance": "My bag's over the weight limit.",
+        "options": [
+          {
+            "id": "lcr-lo5-a",
+            "text": "Insurance mainly covers cosmetic damage, not size."
+          },
+          {
+            "id": "lcr-lo5-b",
+            "text": "Your rental car's ready downstairs."
+          },
+          {
+            "id": "lcr-lo5-c",
+            "text": "That'll mean an extra fee today."
+          },
+          {
+            "id": "lcr-lo5-d",
+            "text": "The cruise cabin upgrade is full."
+          }
+        ],
+        "correctOptionId": "lcr-lo5-c",
+        "skill": "function",
+        "explanationZh": "旅客反映行李超重，櫃檯人員合理回覆是說明將收取額外費用；提到租車、郵輪升等或保險理賠都沒有回應超重行李的問題。"
+      }
+    ],
+    "conversations": [
+      {
+        "id": "conv-lo1",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-ed0a8e87/conv-lo1.mp3",
+        "setting": "community ceramic studio's glaze mixing room the morning after a workshop",
+        "speakers": [
+          {
+            "id": "conv-lo1-sp1",
+            "role": "experienced potter",
+            "gender": "male",
+            "accent": "british",
+            "voice": "Fenrir",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-lo1-sp2",
+            "role": "new apprentice",
+            "gender": "female",
+            "accent": "australian",
+            "voice": "Despina",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-lo1-sp1",
+            "text": "Something's off with this glaze—it's way thicker than it should be."
+          },
+          {
+            "speakerId": "conv-lo1-sp2",
+            "text": "Oh no, I think I mixed the ratio wrong yesterday afternoon."
+          },
+          {
+            "speakerId": "conv-lo1-sp1",
+            "text": "What ratio did you use instead of the usual one?"
+          },
+          {
+            "speakerId": "conv-lo1-sp2",
+            "text": "I added twice as much powder as the recipe called for."
+          },
+          {
+            "speakerId": "conv-lo1-sp1",
+            "text": "That explains the texture. A few pieces already went through the kiln."
+          },
+          {
+            "speakerId": "conv-lo1-sp2",
+            "text": "Can those pieces be refired, or are they ruined completely?"
+          },
+          {
+            "speakerId": "conv-lo1-sp1",
+            "text": "We can refire them with a thinner coat to even things out."
+          },
+          {
+            "speakerId": "conv-lo1-sp2",
+            "text": "That's a relief. I'll double-check every measurement from now on."
+          },
+          {
+            "speakerId": "conv-lo1-sp1",
+            "text": "Good. Mistakes happen, but careful measuring saves us a lot of rework."
+          },
+          {
+            "speakerId": "conv-lo1-sp2",
+            "text": "Thanks for being patient with me—I'll be more careful going forward."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-lo1-q1",
+            "stem": "What mistake did the apprentice make?",
+            "options": [
+              {
+                "id": "conv-lo1-q1-a",
+                "text": "She mislabeled the glaze containers again."
+              },
+              {
+                "id": "conv-lo1-q1-b",
+                "text": "She added too much glaze powder."
+              },
+              {
+                "id": "conv-lo1-q1-c",
+                "text": "She fired the pieces too quickly."
+              },
+              {
+                "id": "conv-lo1-q1-d",
+                "text": "She used the wrong type of clay."
+              }
+            ],
+            "correctOptionId": "conv-lo1-q1-b",
+            "skill": "detail",
+            "explanationZh": "學徒表示自己加了「twice as much powder」，顯示她把釉料粉末的比例加倍，而非燒製過快、用錯陶土或標示錯誤。"
+          },
+          {
+            "id": "conv-lo1-q2",
+            "stem": "What does the potter say can be done about the affected pieces?",
+            "options": [
+              {
+                "id": "conv-lo1-q2-a",
+                "text": "They need to soak in water overnight."
+              },
+              {
+                "id": "conv-lo1-q2-b",
+                "text": "They should be sold at a discount."
+              },
+              {
+                "id": "conv-lo1-q2-c",
+                "text": "They can be refired with a thinner coat."
+              },
+              {
+                "id": "conv-lo1-q2-d",
+                "text": "They must be thrown away completely."
+              }
+            ],
+            "correctOptionId": "conv-lo1-q2-c",
+            "skill": "detail",
+            "explanationZh": "師傅說可以用較薄的一層釉重新燒製來補救，而非直接丟棄、打折出售或浸泡過夜。"
+          }
+        ]
+      },
+      {
+        "id": "conv-lo2",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-ed0a8e87/conv-lo2.mp3",
+        "setting": "fitness center training floor during a scheduled session",
+        "speakers": [
+          {
+            "id": "conv-lo2-sp1",
+            "role": "personal trainer",
+            "gender": "female",
+            "accent": "north-american",
+            "voice": "Zephyr",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-lo2-sp2",
+            "role": "gym client",
+            "gender": "male",
+            "accent": "british",
+            "voice": "Achird",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-lo2-sp1",
+            "text": "How's the shoulder feeling since we talked last session?"
+          },
+          {
+            "speakerId": "conv-lo2-sp2",
+            "text": "Still a little sore, especially when I lift anything overhead."
+          },
+          {
+            "speakerId": "conv-lo2-sp1",
+            "text": "Okay, let's skip overhead presses entirely for the next few weeks."
+          },
+          {
+            "speakerId": "conv-lo2-sp2",
+            "text": "That's most of my upper-body routine, though—what should I do instead?"
+          },
+          {
+            "speakerId": "conv-lo2-sp1",
+            "text": "We'll switch to seated resistance exercises that don't strain the shoulder."
+          },
+          {
+            "speakerId": "conv-lo2-sp2",
+            "text": "Will that still build strength, or is it more of a break?"
+          },
+          {
+            "speakerId": "conv-lo2-sp1",
+            "text": "It'll maintain strength while the shoulder heals, then we'll rebuild gradually."
+          },
+          {
+            "speakerId": "conv-lo2-sp2",
+            "text": "Okay, that sounds reasonable. Let's start with the seated exercises today."
+          },
+          {
+            "speakerId": "conv-lo2-sp1",
+            "text": "Good. Tell me right away if anything feels sharp or painful."
+          },
+          {
+            "speakerId": "conv-lo2-sp2",
+            "text": "Will do. I'd rather go slow than reinjure it again."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-lo2-q1",
+            "stem": "Why is the trainer changing the client's routine?",
+            "options": [
+              {
+                "id": "conv-lo2-q1-a",
+                "text": "The client requested a lighter schedule for personal reasons."
+              },
+              {
+                "id": "conv-lo2-q1-b",
+                "text": "The client wants a faster program."
+              },
+              {
+                "id": "conv-lo2-q1-c",
+                "text": "The client has a shoulder strain."
+              },
+              {
+                "id": "conv-lo2-q1-d",
+                "text": "The gym removed some equipment."
+              }
+            ],
+            "correctOptionId": "conv-lo2-q1-c",
+            "skill": "gist",
+            "explanationZh": "學員肩膀仍會痠痛，教練因此調整訓練內容，並非為了加快進度、器材短缺或學員個人排程需求。"
+          },
+          {
+            "id": "conv-lo2-q2",
+            "stem": "What does the trainer plan to have the client do instead?",
+            "options": [
+              {
+                "id": "conv-lo2-q2-a",
+                "text": "A full week of rest."
+              },
+              {
+                "id": "conv-lo2-q2-b",
+                "text": "Seated resistance exercises."
+              },
+              {
+                "id": "conv-lo2-q2-c",
+                "text": "Cardio exercises only."
+              },
+              {
+                "id": "conv-lo2-q2-d",
+                "text": "Overhead pressing with lighter weights."
+              }
+            ],
+            "correctOptionId": "conv-lo2-q2-b",
+            "skill": "detail",
+            "explanationZh": "教練說明會改用不會刺激肩膀的坐姿阻力訓練，而非繼續過頭推舉、整週休息或只做有氧運動。"
+          }
+        ]
+      }
+    ],
+    "announcements": [
+      {
+        "id": "ann-lo1",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-ed0a8e87/ann-lo1.mp3",
+        "setting": "city hall public notice board update posted by the city clerk",
+        "speaker": {
+          "id": "ann-lo1-sp",
+          "role": "city clerk",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Vindemiatrix",
+          "provider": "gemini"
+        },
+        "transcript": "Notice for tonight's town hall meeting: the budget discussion item has been moved earlier on the agenda, right after opening remarks instead of near the end. Because of the added item, the public comment period will be shortened to five minutes per speaker for this session only. Residents wishing to speak should sign up at the front table before the meeting starts at seven.",
+        "questions": [
+          {
+            "id": "ann-lo1-q1",
+            "stem": "What change was made to tonight's agenda?",
+            "options": [
+              {
+                "id": "ann-lo1-q1-a",
+                "text": "The budget discussion was moved earlier."
+              },
+              {
+                "id": "ann-lo1-q1-b",
+                "text": "The meeting location was changed."
+              },
+              {
+                "id": "ann-lo1-q1-c",
+                "text": "The meeting was postponed to next week."
+              },
+              {
+                "id": "ann-lo1-q1-d",
+                "text": "A new agenda item was removed entirely."
+              }
+            ],
+            "correctOptionId": "ann-lo1-q1-a",
+            "skill": "detail",
+            "explanationZh": "公告指出預算討論項目提前到開場後，而非改地點、延期或取消新增議程。"
+          },
+          {
+            "id": "ann-lo1-q2",
+            "stem": "What is different about the public comment period tonight?",
+            "options": [
+              {
+                "id": "ann-lo1-q2-a",
+                "text": "It now requires written submissions only."
+              },
+              {
+                "id": "ann-lo1-q2-b",
+                "text": "It has been canceled for this session."
+              },
+              {
+                "id": "ann-lo1-q2-c",
+                "text": "It has been shortened to five minutes per speaker."
+              },
+              {
+                "id": "ann-lo1-q2-d",
+                "text": "It has been extended to allow more speakers."
+              }
+            ],
+            "correctOptionId": "ann-lo1-q2-c",
+            "skill": "detail",
+            "explanationZh": "因議程調整，公開發言時間本次縮短為每人五分鐘，而非取消、只收書面意見或延長時間。"
+          }
+        ]
+      },
+      {
+        "id": "ann-lo2",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-ed0a8e87/ann-lo2.mp3",
+        "setting": "news app in-app announcement posted by the product support lead",
+        "speaker": {
+          "id": "ann-lo2-sp",
+          "role": "news app product support lead",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Iapetus",
+          "provider": "gemini"
+        },
+        "transcript": "We've added a new feature to the app: live traffic alerts for your local area, updated in real time throughout the day. Your notification settings have been automatically updated to include these alerts, though you can turn them off anytime in the settings menu. This feature works alongside our existing breaking news alerts, so you'll now get both traffic and news updates in one place.",
+        "questions": [
+          {
+            "id": "ann-lo2-q1",
+            "stem": "What new feature has been added to the app?",
+            "options": [
+              {
+                "id": "ann-lo2-q1-a",
+                "text": "A weather forecast widget."
+              },
+              {
+                "id": "ann-lo2-q1-b",
+                "text": "Live traffic alerts."
+              },
+              {
+                "id": "ann-lo2-q1-c",
+                "text": "A podcast download option."
+              },
+              {
+                "id": "ann-lo2-q1-d",
+                "text": "A community discussion forum."
+              }
+            ],
+            "correctOptionId": "ann-lo2-q1-b",
+            "skill": "gist",
+            "explanationZh": "公告說明新增的是即時路況提醒功能，而非播客下載、天氣小工具或社群討論區。"
+          },
+          {
+            "id": "ann-lo2-q2",
+            "stem": "What happened to users' notification settings?",
+            "options": [
+              {
+                "id": "ann-lo2-q2-a",
+                "text": "They were disabled until further notice."
+              },
+              {
+                "id": "ann-lo2-q2-b",
+                "text": "They were reset to factory defaults."
+              },
+              {
+                "id": "ann-lo2-q2-c",
+                "text": "They must be manually enabled by each user."
+              },
+              {
+                "id": "ann-lo2-q2-d",
+                "text": "They were automatically updated to include the new alerts."
+              }
+            ],
+            "correctOptionId": "ann-lo2-q2-d",
+            "skill": "detail",
+            "explanationZh": "公告指出通知設定已自動更新以納入新提醒，而非重設為預設值、需手動開啟或暫時停用。"
+          }
+        ]
+      }
+    ],
+    "academicTalks": []
+  },
+  "upperModule": {
+    "timeLimitSec": 660,
+    "listenChoose": [
+      {
+        "id": "lcr-up1",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-up1.mp3",
+        "speaker": {
+          "id": "lcr-up1-sp",
+          "role": "rental car customer",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Gacrux",
+          "provider": "gemini"
+        },
+        "utterance": "Does insurance cover small scratches?",
+        "options": [
+          {
+            "id": "lcr-up1-a",
+            "text": "Ferry upgrades are booked separately."
+          },
+          {
+            "id": "lcr-up1-b",
+            "text": "The overweight fee applies at check-in."
+          },
+          {
+            "id": "lcr-up1-c",
+            "text": "Yes, for a modest daily rate."
+          },
+          {
+            "id": "lcr-up1-d",
+            "text": "Your cabin request wasn't approved."
+          }
+        ],
+        "correctOptionId": "lcr-up1-c",
+        "skill": "function",
+        "explanationZh": "顧客詢問保險是否涵蓋輕微刮痕，租車人員合理回覆是說明每日加保費率；提到超重費用、渡輪升等或艙房申請都與刮痕保險無關。"
+      },
+      {
+        "id": "lcr-up2",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-up2.mp3",
+        "speaker": {
+          "id": "lcr-up2-sp",
+          "role": "museum visitor",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Puck",
+          "provider": "gemini"
+        },
+        "utterance": "How long until the board approves it?",
+        "options": [
+          {
+            "id": "lcr-up2-a",
+            "text": "Usually about three review weeks."
+          },
+          {
+            "id": "lcr-up2-b",
+            "text": "Insurance forms aren't needed anymore."
+          },
+          {
+            "id": "lcr-up2-c",
+            "text": "The archive's sealed until next year."
+          },
+          {
+            "id": "lcr-up2-d",
+            "text": "The tour starts an hour earlier."
+          }
+        ],
+        "correctOptionId": "lcr-up2-a",
+        "skill": "function",
+        "explanationZh": "訪客詢問文物借展需多久獲董事會核准，館員合理回覆是給出約三週的審查期；提到檔案封存、保險表單或行程提前都文不對題。"
+      },
+      {
+        "id": "lcr-up3",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-up3.mp3",
+        "speaker": {
+          "id": "lcr-up3-sp",
+          "role": "genealogy researcher",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Sulafat",
+          "provider": "gemini"
+        },
+        "utterance": "How do I access this sealed record?",
+        "options": [
+          {
+            "id": "lcr-up3-a",
+            "text": "Our recording session moved to Friday."
+          },
+          {
+            "id": "lcr-up3-b",
+            "text": "Just fill out this request form."
+          },
+          {
+            "id": "lcr-up3-c",
+            "text": "The elevator's out for two days."
+          },
+          {
+            "id": "lcr-up3-d",
+            "text": "The loan needs board approval first."
+          }
+        ],
+        "correctOptionId": "lcr-up3-b",
+        "skill": "function",
+        "explanationZh": "研究者詢問如何取得封存的家族紀錄，檔案員合理回覆是說明需先填寫申請表；提到借展核准、口述歷史錄音或電梯維修都答非所問。"
+      },
+      {
+        "id": "lcr-up4",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-up4.mp3",
+        "speaker": {
+          "id": "lcr-up4-sp",
+          "role": "apartment tenant",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Alnilam",
+          "provider": "gemini"
+        },
+        "utterance": "Can we renew for a longer term?",
+        "options": [
+          {
+            "id": "lcr-up4-a",
+            "text": "Sure, I can offer eighteen months."
+          },
+          {
+            "id": "lcr-up4-b",
+            "text": "I'll pick up carpool duty Monday."
+          },
+          {
+            "id": "lcr-up4-c",
+            "text": "Your package was already redelivered."
+          },
+          {
+            "id": "lcr-up4-d",
+            "text": "The jacket alteration's running late."
+          }
+        ],
+        "correctOptionId": "lcr-up4-a",
+        "skill": "function",
+        "explanationZh": "房客詢問能否續簽更長租約，房東合理回覆是提出具體延長月數；提到包裹已重寄、拼車輪值或西裝改衣進度都與租約續簽無關。"
+      },
+      {
+        "id": "lcr-up5",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-ed0a8e87/lcr-up5.mp3",
+        "speaker": {
+          "id": "lcr-up5-sp",
+          "role": "tailor shop customer",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Laomedeia",
+          "provider": "gemini"
+        },
+        "utterance": "Is my jacket alteration ready yet?",
+        "options": [
+          {
+            "id": "lcr-up5-a",
+            "text": "I've mailed your package already."
+          },
+          {
+            "id": "lcr-up5-b",
+            "text": "The carpool schedule swapped this week."
+          },
+          {
+            "id": "lcr-up5-c",
+            "text": "Not yet—tomorrow, with a discount for the wait."
+          },
+          {
+            "id": "lcr-up5-d",
+            "text": "Your lease renewal papers are signed."
+          }
+        ],
+        "correctOptionId": "lcr-up5-c",
+        "skill": "function",
+        "explanationZh": "顧客詢問改好的外套是否取件，裁縫合理回覆是說明明天完成並提供折扣；提到租約續簽、拼車輪值或包裹已寄出都文不對題。"
+      }
+    ],
+    "conversations": [
+      {
+        "id": "conv-up1",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-ed0a8e87/conv-up1.mp3",
+        "setting": "cruise ship concierge desk shortly after boarding",
+        "speakers": [
+          {
+            "id": "conv-up1-sp1",
+            "role": "cruise ship concierge",
+            "gender": "male",
+            "accent": "north-american",
+            "voice": "Zubenelgenubi",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-up1-sp2",
+            "role": "passenger",
+            "gender": "female",
+            "accent": "british",
+            "voice": "Callirrhoe",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-up1-sp2",
+            "text": "Is it possible to upgrade to a balcony cabin at this point?"
+          },
+          {
+            "speakerId": "conv-up1-sp1",
+            "text": "Let me check what's still available for this sailing."
+          },
+          {
+            "speakerId": "conv-up1-sp2",
+            "text": "I'd really like an ocean view if there's anything left."
+          },
+          {
+            "speakerId": "conv-up1-sp1",
+            "text": "It looks like we have a few balcony cabins on deck seven."
+          },
+          {
+            "speakerId": "conv-up1-sp2",
+            "text": "Perfect. What's the difference in price from my current cabin?"
+          },
+          {
+            "speakerId": "conv-up1-sp1",
+            "text": "The upgrade runs about eighty dollars more per night."
+          },
+          {
+            "speakerId": "conv-up1-sp2",
+            "text": "That's reasonable. Can you go ahead and process that upgrade now?"
+          },
+          {
+            "speakerId": "conv-up1-sp1",
+            "text": "Sure, I'll update your booking and send new key cards shortly."
+          },
+          {
+            "speakerId": "conv-up1-sp2",
+            "text": "Great, thank you for checking so quickly."
+          },
+          {
+            "speakerId": "conv-up1-sp1",
+            "text": "Of course. Enjoy the rest of your boarding process."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-up1-q1",
+            "stem": "What does the passenger request?",
+            "options": [
+              {
+                "id": "conv-up1-q1-a",
+                "text": "An upgrade to a balcony cabin."
+              },
+              {
+                "id": "conv-up1-q1-b",
+                "text": "A refund for her current cabin."
+              },
+              {
+                "id": "conv-up1-q1-c",
+                "text": "A tour of the ship's dining areas."
+              },
+              {
+                "id": "conv-up1-q1-d",
+                "text": "A later boarding time."
+              }
+            ],
+            "correctOptionId": "conv-up1-q1-a",
+            "skill": "gist",
+            "explanationZh": "乘客一開始就詢問能否升級到有陽台的艙房，並非要求退款、延後登船或參觀餐廳。"
+          },
+          {
+            "id": "conv-up1-q2",
+            "stem": "According to the concierge, what will the upgrade cost?",
+            "options": [
+              {
+                "id": "conv-up1-q2-a",
+                "text": "A one-time fee of eighty dollars total."
+              },
+              {
+                "id": "conv-up1-q2-b",
+                "text": "Nothing extra for this sailing."
+              },
+              {
+                "id": "conv-up1-q2-c",
+                "text": "About eighty dollars more per night."
+              },
+              {
+                "id": "conv-up1-q2-d",
+                "text": "Twice the price of her current cabin."
+              }
+            ],
+            "correctOptionId": "conv-up1-q2-c",
+            "skill": "detail",
+            "explanationZh": "服務人員說明升等每晚約多收八十美元，而非一次性收費、免費升等或雙倍價格。"
+          }
+        ]
+      },
+      {
+        "id": "conv-up2",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-ed0a8e87/conv-up2.mp3",
+        "setting": "apartment building parking garage entrance on a weekday morning",
+        "speakers": [
+          {
+            "id": "conv-up2-sp1",
+            "role": "tenant",
+            "gender": "female",
+            "accent": "australian",
+            "voice": "Leda",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-up2-sp2",
+            "role": "building manager",
+            "gender": "male",
+            "accent": "north-american",
+            "voice": "Umbriel",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-up2-sp1",
+            "text": "Someone's parked in my assigned spot again this morning."
+          },
+          {
+            "speakerId": "conv-up2-sp2",
+            "text": "Sorry about that. Do you know which car it is?"
+          },
+          {
+            "speakerId": "conv-up2-sp1",
+            "text": "It's a gray sedan, but I don't recognize it at all."
+          },
+          {
+            "speakerId": "conv-up2-sp2",
+            "text": "I'll post a notice and try to track down the owner."
+          },
+          {
+            "speakerId": "conv-up2-sp1",
+            "text": "In the meantime, where am I supposed to park my car?"
+          },
+          {
+            "speakerId": "conv-up2-sp2",
+            "text": "You can use the visitor spot near the entrance for now."
+          },
+          {
+            "speakerId": "conv-up2-sp1",
+            "text": "Okay, I can do that until this gets sorted out."
+          },
+          {
+            "speakerId": "conv-up2-sp2",
+            "text": "Thanks for your patience—I'll follow up with you by tomorrow."
+          },
+          {
+            "speakerId": "conv-up2-sp1",
+            "text": "This has happened twice this month, honestly."
+          },
+          {
+            "speakerId": "conv-up2-sp2",
+            "text": "I hear you. I'll look into adding better signage too."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-up2-q1",
+            "stem": "What problem does the tenant report?",
+            "options": [
+              {
+                "id": "conv-up2-q1-a",
+                "text": "Her monthly parking pass has expired."
+              },
+              {
+                "id": "conv-up2-q1-b",
+                "text": "A stranger's car is in her spot again."
+              },
+              {
+                "id": "conv-up2-q1-c",
+                "text": "The visitor lot near the entrance is full."
+              },
+              {
+                "id": "conv-up2-q1-d",
+                "text": "Her assigned parking spot was towed away."
+              }
+            ],
+            "correctOptionId": "conv-up2-q1-b",
+            "skill": "gist",
+            "explanationZh": "房客一開始就說「有人又占用了我的固定車位」，指的是有陌生車輛停在她的位置，並非車位本身被拖吊、訪客車位滿了，或她的車證過期。"
+          },
+          {
+            "id": "conv-up2-q2",
+            "stem": "What solution does the manager offer for now?",
+            "options": [
+              {
+                "id": "conv-up2-q2-a",
+                "text": "Share a spot with another tenant."
+              },
+              {
+                "id": "conv-up2-q2-b",
+                "text": "Use the visitor spot near the entrance."
+              },
+              {
+                "id": "conv-up2-q2-c",
+                "text": "Wait outside until the car is removed."
+              },
+              {
+                "id": "conv-up2-q2-d",
+                "text": "Park on the street until further notice."
+              }
+            ],
+            "correctOptionId": "conv-up2-q2-b",
+            "skill": "detail",
+            "explanationZh": "管理員建議暫時使用入口附近的訪客車位，而非停在路邊、與人共用車位或在旁等待。"
+          }
+        ]
+      }
+    ],
+    "announcements": [],
+    "academicTalks": [
+      {
+        "id": "talk-up1",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-ed0a8e87/talk-up1.mp3",
+        "discipline": "art and music",
+        "speaker": {
+          "id": "talk-up1-sp",
+          "role": "art history lecturer",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Orus",
+          "provider": "gemini"
+        },
+        "transcript": "Restoring a faded outdoor mural is a much slower process than most people imagine. Before touching the artwork at all, a conservator runs a series of small solvent tests on inconspicuous corners of the painting to see which cleaning solution lifts decades of grime without damaging the original paint underneath. Different solvents react differently depending on the type of paint used and how many years the mural has been exposed to sun and rain. Once a safe solvent is identified, cleaning proceeds slowly, section by section, often using cotton swabs rather than brushes to avoid removing any remaining original pigment. After cleaning, the conservator studies old photographs and paint samples to match the mural's original colors as closely as possible, since sunlight fades pigments unevenly across a wall. Only after this careful color-matching does any actual repainting begin, and even then, conservators typically use reversible paints so future restorers can undo the work if better techniques become available later. The whole process for a single mural can take several months from start to finish.",
+        "questions": [
+          {
+            "id": "talk-up1-q1",
+            "stem": "What is this talk mainly about?",
+            "options": [
+              {
+                "id": "talk-up1-q1-a",
+                "text": "How public grants fund large mural projects citywide."
+              },
+              {
+                "id": "talk-up1-q1-b",
+                "text": "The life story of a well-known muralist."
+              },
+              {
+                "id": "talk-up1-q1-c",
+                "text": "New pigment technology for outdoor paintings today."
+              },
+              {
+                "id": "talk-up1-q1-d",
+                "text": "How conservators carefully restore a faded mural."
+              }
+            ],
+            "correctOptionId": "talk-up1-q1-d",
+            "skill": "gist",
+            "explanationZh": "講座主題是修復褪色戶外壁畫的謹慎過程，並非壁畫家生平、新顏料技術或公共補助如何資助壁畫計畫。"
+          },
+          {
+            "id": "talk-up1-q2",
+            "stem": "Why does a conservator test solvents on inconspicuous corners first?",
+            "options": [
+              {
+                "id": "talk-up1-q2-a",
+                "text": "To measure sunlight exposure across the wall's whole surface."
+              },
+              {
+                "id": "talk-up1-q2-b",
+                "text": "To find a cleaner that won't damage the paint."
+              },
+              {
+                "id": "talk-up1-q2-c",
+                "text": "To choose which part of the mural gets repainted first."
+              },
+              {
+                "id": "talk-up1-q2-d",
+                "text": "To estimate the mural's age from its surface material."
+              }
+            ],
+            "correctOptionId": "talk-up1-q2-b",
+            "skill": "detail",
+            "explanationZh": "修復師在不顯眼角落先測試溶劑，是為了找到能清潔又不傷原始顏料的溶劑，而非決定先修哪一區、判斷年代或測日照量。"
+          },
+          {
+            "id": "talk-up1-q3",
+            "stem": "Why does the conservator study old photographs before repainting?",
+            "options": [
+              {
+                "id": "talk-up1-q3-a",
+                "text": "To find out who painted the mural originally."
+              },
+              {
+                "id": "talk-up1-q3-b",
+                "text": "To accurately match the mural's original colors."
+              },
+              {
+                "id": "talk-up1-q3-c",
+                "text": "To calculate how long the cleaning stage takes."
+              },
+              {
+                "id": "talk-up1-q3-d",
+                "text": "To decide exactly where protective coating should go."
+              }
+            ],
+            "correctOptionId": "talk-up1-q3-b",
+            "skill": "detail",
+            "explanationZh": "修復師研究舊照片是為了盡量還原壁畫原本的色彩，而非決定塗層位置、找出原作者或估算清潔所需時間。"
+          },
+          {
+            "id": "talk-up1-q4",
+            "stem": "Why do conservators typically use reversible paints?",
+            "options": [
+              {
+                "id": "talk-up1-q4-a",
+                "text": "Because they dry faster than standard paints outdoors."
+              },
+              {
+                "id": "talk-up1-q4-b",
+                "text": "So future restorers can undo this work later."
+              },
+              {
+                "id": "talk-up1-q4-c",
+                "text": "Because the original artist specifically required their use."
+              },
+              {
+                "id": "talk-up1-q4-d",
+                "text": "Because reversible paints cost much less than standard paints do."
+              }
+            ],
+            "correctOptionId": "talk-up1-q4-b",
+            "skill": "inference",
+            "explanationZh": "講者說明使用可逆顏料是為了讓未來的修復師能在技術進步時撤銷這次修復，而非成本較低、乾得較快或原作者要求。"
+          }
+        ]
+      },
+      {
+        "id": "talk-up2",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-ed0a8e87/talk-up2.mp3",
+        "discipline": "social science",
+        "speaker": {
+          "id": "talk-up2-sp",
+          "role": "sociology lecturer",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Kore",
+          "provider": "gemini"
+        },
+        "transcript": "Let's look at a historical case where organized, everyday protest reshaped public policy. In one city, a public bus system had long enforced seating and boarding policies that discriminated against a portion of its ridership. Rather than pursuing change only through courts or petitions, community organizers called for a citywide boycott: residents who normally rode the bus each day arranged carpools, walked, or found other transportation, refusing to pay bus fares for months. The economic pressure was significant, since fare revenue made up a large share of the transit system's operating budget, and ridership dropped sharply almost overnight. Bus company officials initially expected the boycott to fade within weeks, but organizers sustained the effort far longer than predicted through careful planning and community meetings. Eventually, the financial strain combined with growing public attention forced officials to revise the discriminatory boarding and seating rules. This case is often cited by historians as an example of how coordinated, nonviolent economic pressure—rather than legislation alone—can force institutions to change long-standing unfair policies.",
+        "questions": [
+          {
+            "id": "talk-up2-q1",
+            "stem": "What is the main point of this lecture?",
+            "options": [
+              {
+                "id": "talk-up2-q1-a",
+                "text": "A private company took over a struggling bus system."
+              },
+              {
+                "id": "talk-up2-q1-b",
+                "text": "A new bus route was built to serve more neighborhoods."
+              },
+              {
+                "id": "talk-up2-q1-c",
+                "text": "An organized boycott pressured a transit system to change discriminatory policies."
+              },
+              {
+                "id": "talk-up2-q1-d",
+                "text": "A legislative bill immediately ended discrimination in transit."
+              }
+            ],
+            "correctOptionId": "talk-up2-q1-c",
+            "skill": "gist",
+            "explanationZh": "講座重點是有組織的抵制運動如何迫使公車系統修改歧視政策，並非新路線、立法直接終止歧視或私人公司接管。"
+          },
+          {
+            "id": "talk-up2-q2",
+            "stem": "How did residents respond during the boycott?",
+            "options": [
+              {
+                "id": "talk-up2-q2-a",
+                "text": "They petitioned for lower bus fares only."
+              },
+              {
+                "id": "talk-up2-q2-b",
+                "text": "They organized a public transportation strike by drivers."
+              },
+              {
+                "id": "talk-up2-q2-c",
+                "text": "They avoided riding the bus by carpooling or walking."
+              },
+              {
+                "id": "talk-up2-q2-d",
+                "text": "They filed a series of individual lawsuits."
+              }
+            ],
+            "correctOptionId": "talk-up2-q2-c",
+            "skill": "detail",
+            "explanationZh": "居民以共乘、步行等方式避免搭公車，而非提告、罷駛或只請願降低票價。"
+          },
+          {
+            "id": "talk-up2-q3",
+            "stem": "Why was the boycott economically damaging to the bus system?",
+            "options": [
+              {
+                "id": "talk-up2-q3-a",
+                "text": "The company had to hire additional drivers."
+              },
+              {
+                "id": "talk-up2-q3-b",
+                "text": "Fare revenue was a major part of its operating budget."
+              },
+              {
+                "id": "talk-up2-q3-c",
+                "text": "Maintenance costs increased suddenly."
+              },
+              {
+                "id": "talk-up2-q3-d",
+                "text": "New buses had to be purchased."
+              }
+            ],
+            "correctOptionId": "talk-up2-q3-b",
+            "skill": "detail",
+            "explanationZh": "講者說明票務收入占營運預算很大比例，抵制導致收入銳減造成經濟壓力，而非增聘司機、購買新車或維修成本上升。"
+          },
+          {
+            "id": "talk-up2-q4",
+            "stem": "What can be inferred about the officials' initial expectations?",
+            "options": [
+              {
+                "id": "talk-up2-q4-a",
+                "text": "They planned to shut down the bus system entirely."
+              },
+              {
+                "id": "talk-up2-q4-b",
+                "text": "They underestimated how long the boycott would last."
+              },
+              {
+                "id": "talk-up2-q4-c",
+                "text": "They believed the boycott was fully justified from the start."
+              },
+              {
+                "id": "talk-up2-q4-d",
+                "text": "They expected ridership to increase during the boycott."
+              }
+            ],
+            "correctOptionId": "talk-up2-q4-b",
+            "skill": "inference",
+            "explanationZh": "講者提到公車公司原以為抵制幾週內就會結束，顯示官員低估了抵制持續的時間，而非認為抵制合理、預期載客量上升或打算關閉系統。"
+          }
+        ]
+      },
+      {
+        "id": "talk-up3",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-ed0a8e87/talk-up3.mp3",
+        "discipline": "physical science",
+        "speaker": {
+          "id": "talk-up3-sp",
+          "role": "computer science lecturer",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Sadaltager",
+          "provider": "gemini"
+        },
+        "transcript": "Let's walk through the basic idea behind encrypting a digital message. Imagine you want to send a text message that only one specific person can read, even if someone intercepts it along the way. Encryption solves this by scrambling your original message into unreadable text using a mathematical process combined with a digital key—essentially a long string of numbers. Without that exact key, the scrambled message looks like random characters to anyone who intercepts it. For the intended recipient to read the message, their device needs the matching key to reverse the scrambling process and recover the original text. In many modern systems, the two devices exchange keys securely before any actual message is sent, using a separate mathematical method so that even the key exchange itself can't be easily intercepted and understood. Once both devices hold the correct keys, ordinary messages can be scrambled and unscrambled almost instantly, which is why encrypted messaging feels no slower than sending a normal text. This entire process happens automatically in the background, without users ever seeing the scrambled version themselves.",
+        "questions": [
+          {
+            "id": "talk-up3-q1",
+            "stem": "What is this talk mainly explaining?",
+            "options": [
+              {
+                "id": "talk-up3-q1-a",
+                "text": "How to build a smartphone messaging app."
+              },
+              {
+                "id": "talk-up3-q1-b",
+                "text": "How internet service providers track user data."
+              },
+              {
+                "id": "talk-up3-q1-c",
+                "text": "How passwords are stored on a server."
+              },
+              {
+                "id": "talk-up3-q1-d",
+                "text": "How digital encryption scrambles and unscrambles messages using keys."
+              }
+            ],
+            "correctOptionId": "talk-up3-q1-d",
+            "skill": "gist",
+            "explanationZh": "講座主要說明數位加密如何利用金鑰將訊息打亂與還原，而非教做通訊軟體、追蹤資料或密碼儲存方式。"
+          },
+          {
+            "id": "talk-up3-q2",
+            "stem": "What is used, along with a mathematical process, to scramble a message?",
+            "options": [
+              {
+                "id": "talk-up3-q2-a",
+                "text": "A physical security token."
+              },
+              {
+                "id": "talk-up3-q2-b",
+                "text": "The recipient's phone number."
+              },
+              {
+                "id": "talk-up3-q2-c",
+                "text": "A fingerprint scan."
+              },
+              {
+                "id": "talk-up3-q2-d",
+                "text": "A digital key."
+              }
+            ],
+            "correctOptionId": "talk-up3-q2-d",
+            "skill": "detail",
+            "explanationZh": "講者提到打亂訊息除了數學運算外，還需要一組數位金鑰，而非實體安全裝置、電話號碼或指紋。"
+          },
+          {
+            "id": "talk-up3-q3",
+            "stem": "What must a recipient's device have to read an encrypted message?",
+            "options": [
+              {
+                "id": "talk-up3-q3-a",
+                "text": "A faster internet connection."
+              },
+              {
+                "id": "talk-up3-q3-b",
+                "text": "A special antenna for encrypted signals."
+              },
+              {
+                "id": "talk-up3-q3-c",
+                "text": "The sender's physical device."
+              },
+              {
+                "id": "talk-up3-q3-d",
+                "text": "The matching key to reverse the scrambling."
+              }
+            ],
+            "correctOptionId": "talk-up3-q3-d",
+            "skill": "detail",
+            "explanationZh": "講者說明接收端裝置需要相符的金鑰才能還原訊息，而非更快的網路、寄件者的實體裝置或特殊天線。"
+          },
+          {
+            "id": "talk-up3-q4",
+            "stem": "Why does the key exchange use a separate mathematical method?",
+            "options": [
+              {
+                "id": "talk-up3-q4-a",
+                "text": "So messages can be sent without any key at all."
+              },
+              {
+                "id": "talk-up3-q4-b",
+                "text": "So users can choose their own encryption method manually."
+              },
+              {
+                "id": "talk-up3-q4-c",
+                "text": "So the exchange itself is harder for outsiders to intercept and understand."
+              },
+              {
+                "id": "talk-up3-q4-d",
+                "text": "So devices can identify each other's exact location."
+              }
+            ],
+            "correctOptionId": "talk-up3-q4-c",
+            "skill": "inference",
+            "explanationZh": "講者指出金鑰交換另用一套數學方法，是為了讓交換過程本身也難以被攔截理解，而非不需金鑰、讓使用者自選加密法或定位裝置位置。"
+          }
+        ]
+      }
+    ]
+  },
+  "audioProfile": {
+    "version": "ets-2026-listening-v1",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview"
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "listening",
+    "listenChoose": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "exam-makeup-request",
+        "requiredConcepts": [
+          "missed exam due to campus health emergency",
+          "professor offers a makeup slot next week"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "advisor registration hold lift concerns a registration hold, not a missed exam makeup"
+          }
+        ],
+        "topic": "student asks a professor to schedule a makeup exam after a missed test",
+        "speakerRole": "university student requesting a makeup exam from a course professor"
+      },
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "roommate-change-request",
+        "requiredConcepts": [
+          "dorm roommate conflict over noise schedule",
+          "housing office reviews room change options"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "dorm maintenance request delay concerns a heater repair, not a roommate change request"
+          }
+        ],
+        "topic": "student asks a campus housing officer about switching dorm rooms",
+        "speakerRole": "campus housing officer responding to a student's room change request"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "deadline-extension-office-request",
+        "requiredConcepts": [
+          "quarterly report deadline moved two days",
+          "manager confirms new office submission time"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "expense report receipt mixup concerns missing receipts, not a report deadline extension"
+          }
+        ],
+        "topic": "office employee asks a manager to confirm an extended report deadline",
+        "speakerRole": "office employee requesting deadline clarification from a manager"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "warranty-claim-delay-explanation",
+        "requiredConcepts": [
+          "warranty claim delayed by missing serial number",
+          "company agent requests a photo of the receipt"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "conference room double booking concerns scheduling, not a customer warranty claim delay"
+          }
+        ],
+        "topic": "customer calls a company support line about a delayed warranty claim",
+        "speakerRole": "customer service agent explaining a warranty claim delay to a customer"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "parking-permit-fee-increase",
+        "requiredConcepts": [
+          "public parking permit fee rising next quarter",
+          "city clerk explains a senior discount option"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "recycling bin size exchange concerns bin sizing, not a public parking permit fee"
+          }
+        ],
+        "topic": "resident asks a city clerk about an increase in the public parking permit fee",
+        "speakerRole": "city clerk explaining a parking permit fee increase to a resident"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "library-card-replacement-request",
+        "requiredConcepts": [
+          "public library card reported lost this week",
+          "clerk issues a temporary replacement card"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "streetlight outage repair report concerns infrastructure repair, not replacing a lost library card"
+          }
+        ],
+        "topic": "patron asks a public library clerk to replace a lost library card",
+        "speakerRole": "library clerk processing a lost card replacement for a community patron"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "trail-closure-report-followup",
+        "requiredConcepts": [
+          "hiking trail closed after habitat erosion damage",
+          "ranger gives an estimated reopening date"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "habitat monitor equipment check concerns sensor wiring, not a trail closure caused by erosion"
+          }
+        ],
+        "topic": "hiker asks a park ranger about a trail closed for habitat erosion repair",
+        "speakerRole": "park ranger explaining a trail closure caused by habitat erosion"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "lab-equipment-calibration-check",
+        "requiredConcepts": [
+          "laboratory scale reading inconsistent this week",
+          "manager schedules a calibration technician visit"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "greenhouse thermostat malfunction report concerns a thermostat, not scheduling scale calibration"
+          }
+        ],
+        "topic": "researcher asks a lab manager to schedule calibration for a faulty laboratory scale",
+        "speakerRole": "laboratory manager arranging equipment calibration for a researcher"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "streaming-billing-question",
+        "requiredConcepts": [
+          "digital streaming subscription charged twice",
+          "support agent issues a billing refund"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "cloud storage sync error alert concerns file syncing, not a duplicate streaming subscription charge"
+          }
+        ],
+        "topic": "subscriber asks online support about a duplicate charge on a streaming account",
+        "speakerRole": "online support agent resolving a duplicate billing charge for a subscriber"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "app-crash-bug-report",
+        "requiredConcepts": [
+          "mobile app crashes when opening saved photos",
+          "support agent requests the device model"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "video editor crash during export concerns export software, not a mobile app photo-viewing crash"
+          }
+        ],
+        "topic": "user reports a digital app crash to online technical support",
+        "speakerRole": "technical support agent troubleshooting an app crash reported by a user"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "rehearsal-schedule-conflict",
+        "requiredConcepts": [
+          "orchestra rehearsal moved to a smaller music hall",
+          "conductor confirms the new rehearsal time"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "choir rehearsal venue change concerns a choir's floor repair, not an orchestra's smaller music hall"
+          }
+        ],
+        "topic": "orchestra member asks a conductor about a changed rehearsal schedule",
+        "speakerRole": "conductor confirming a rehearsal schedule change for an orchestra member"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "artist-talk-reservation-request",
+        "requiredConcepts": [
+          "gallery artist talk seats limited this weekend",
+          "staff confirms a reservation for the visitor"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "sculpture loan insurance paperwork concerns loan documents, not reserving a seat for an artist talk"
+          }
+        ],
+        "topic": "visitor asks gallery staff to reserve a seat for an upcoming artist talk",
+        "speakerRole": "gallery staff member confirming an artist talk reservation for a visitor"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "prescription-refill-request",
+        "requiredConcepts": [
+          "clinic prescription refill needs doctor approval",
+          "pharmacist offers a temporary partial refill"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "physical therapy insurance preauthorization concerns therapy approval, not a prescription refill"
+          }
+        ],
+        "topic": "patient asks a clinic pharmacist about refilling a prescription",
+        "speakerRole": "clinic pharmacist explaining a prescription refill process to a patient"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "gym-membership-freeze-request",
+        "requiredConcepts": [
+          "gym membership paused for a two month injury",
+          "front desk confirms the freeze start date"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "nutrition app subscription cancellation concerns canceling a digital plan, not pausing a gym membership"
+          }
+        ],
+        "topic": "gym member asks the front desk to freeze a membership during recovery",
+        "speakerRole": "gym front desk staff processing a membership freeze request"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "airline-baggage-fee-question",
+        "requiredConcepts": [
+          "checked bag exceeds the airline weight limit",
+          "agent explains the extra baggage fee ticket"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "rental car pickup location change concerns a rental lot move, not an airline baggage fee"
+          }
+        ],
+        "topic": "traveler asks an airline agent about an overweight baggage fee",
+        "speakerRole": "airline counter agent explaining a baggage fee to a traveler"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "rental-insurance-addon-question",
+        "requiredConcepts": [
+          "rental car insurance add-on covers a scratch",
+          "agent quotes the daily insurance rate"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "ferry ticket seat class upgrade concerns a seat upgrade, not a rental car insurance add-on"
+          }
+        ],
+        "topic": "customer asks a rental car agent about adding insurance coverage",
+        "speakerRole": "rental car agent explaining an insurance add-on to a customer"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "artifact-loan-approval-question",
+        "requiredConcepts": [
+          "historical artifact loan needs board approval",
+          "docent explains the loan review timeline"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "sculpture loan insurance paperwork concerns a form issue, not a board approval timeline"
+          }
+        ],
+        "topic": "visitor asks a museum docent about the approval process for a historical artifact loan",
+        "speakerRole": "museum docent explaining a historical artifact loan approval process"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "genealogy-record-access-question",
+        "requiredConcepts": [
+          "historical family record sealed until review",
+          "archivist explains the access request form"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "oral history reschedule request concerns a recording session, not access to a sealed historical record"
+          }
+        ],
+        "topic": "genealogy researcher asks an archivist how to access a sealed historical family record",
+        "speakerRole": "archivist explaining a historical record access request to a researcher"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "lease-renewal-question",
+        "requiredConcepts": [
+          "lease renewal deadline approaching next week",
+          "landlord offers a slightly longer lease term"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "neighbor package redelivery request concerns package pickup timing, not a lease renewal decision"
+          }
+        ],
+        "topic": "tenant asks a landlord about renewing an apartment lease",
+        "speakerRole": "landlord discussing lease renewal terms with a tenant"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "tailor-alteration-pickup-question",
+        "requiredConcepts": [
+          "altered jacket ready a day later than promised",
+          "tailor offers a discount for the delay"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "carpool schedule swap request concerns driving day swaps, not a tailoring pickup delay"
+          }
+        ],
+        "topic": "customer asks a tailor about a delayed alteration pickup",
+        "speakerRole": "tailor explaining a delayed alteration pickup to a customer"
+      }
+    ],
+    "conversations": [
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "logo-concept-client-revision",
+        "requiredConcepts": [
+          "client wants bolder color for logo concept",
+          "designer proposes two revised drafts by friday"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-6de33148",
+            "reason": "client slide deck revision conversation is about a presentation deck, not a logo design concept"
+          }
+        ],
+        "setting": "small design company's shared workspace during a client review call",
+        "speakerRoles": [
+          "freelance graphic designer presenting logo concepts",
+          "company client giving feedback on the logo drafts"
+        ]
+      },
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "mock-interview-prep-session",
+        "requiredConcepts": [
+          "student practices answers before mock interview",
+          "counselor flags a vague response about strengths"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-6de33148",
+            "reason": "personal statement tone conversation concerns application writing, not spoken interview practice"
+          }
+        ],
+        "setting": "campus career center office before a scheduled mock interview",
+        "speakerRoles": [
+          "university student preparing for a job interview",
+          "career counselor giving interview feedback"
+        ]
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "rock-sample-label-mixup",
+        "requiredConcepts": [
+          "rock samples from two sites mislabeled overnight",
+          "geologist requests recheck against field notebook"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-6de33148",
+            "reason": "habitat survey weather postponement conversation is about rescheduling due to storms, not sample labeling errors"
+          }
+        ],
+        "setting": "university geology laboratory storage room before a sample analysis session",
+        "speakerRoles": [
+          "geologist reviewing rock sample labels",
+          "field assistant who collected the samples"
+        ]
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "glaze-recipe-mishap-conversation",
+        "requiredConcepts": [
+          "glaze recipe mixed with wrong ratio yesterday",
+          "apprentice asks whether pieces can be refired"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-6de33148",
+            "reason": "ceramic bowl crack refire conversation is about a firing crack, not a glaze mixing ratio error"
+          }
+        ],
+        "setting": "community ceramic studio's glaze mixing room the morning after a workshop",
+        "speakerRoles": [
+          "experienced potter reviewing the glaze mishap",
+          "new apprentice who mixed the glaze batch"
+        ]
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "injury-safe-routine-adjustment",
+        "requiredConcepts": [
+          "shoulder strain limits overhead exercise moves",
+          "trainer swaps in seated resistance exercises"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "nutrition consult wait conversation concerns appointment scheduling, not exercise routine adjustment for an injury"
+          }
+        ],
+        "setting": "fitness center training floor during a scheduled session",
+        "speakerRoles": [
+          "personal trainer adjusting the client's routine",
+          "gym client recovering from a shoulder strain"
+        ]
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "cruise-cabin-upgrade-request",
+        "requiredConcepts": [
+          "passenger requests upgrade to balcony cabin",
+          "concierge checks remaining cabin availability"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-03948a55",
+            "reason": "missed connection ticket reissue conversation concerns a train ticket, not a cruise cabin upgrade"
+          }
+        ],
+        "setting": "cruise ship concierge desk shortly after boarding",
+        "speakerRoles": [
+          "cruise ship concierge checking cabin options",
+          "passenger requesting a cabin upgrade"
+        ]
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "parking-spot-assignment-mixup",
+        "requiredConcepts": [
+          "assigned parking spot occupied by another car",
+          "manager offers a temporary spot until resolved"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-6de33148",
+            "reason": "grocery restock schedule conflict conversation concerns household chores, not a parking spot dispute"
+          }
+        ],
+        "setting": "apartment building parking garage entrance on a weekday morning",
+        "speakerRoles": [
+          "tenant whose assigned parking spot is occupied",
+          "building manager resolving the parking mixup"
+        ]
+      }
+    ],
+    "announcements": [
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "office-floor-relocation-notice",
+        "requiredConcepts": [
+          "office moving to a new floor next month",
+          "employee desks packed and labeled by department"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-03948a55",
+            "reason": "remote work policy trial announcement covers a scheduling policy, not a physical office relocation"
+          }
+        ],
+        "setting": "company-wide intranet bulletin posted by the office facilities manager",
+        "speakerRole": "office facilities manager announcing an upcoming floor relocation to all employees"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "heritage-walking-tour-time-change",
+        "requiredConcepts": [
+          "heritage walking tour start time moved earlier",
+          "historical route sign updated at meeting point"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "heritage tour schedule announcement changes tour start time and length, not group size or meeting point signage"
+          }
+        ],
+        "setting": "heritage center entrance display announced by the site's tour coordinator",
+        "speakerRole": "heritage center tour coordinator announcing a walking tour schedule change to visitors"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "apartment-elevator-maintenance-notice",
+        "requiredConcepts": [
+          "elevator out of service for two days",
+          "residents asked to use stairs during repair"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "laundry room maintenance announcement concerns washing machines, not elevator service"
+          }
+        ],
+        "setting": "apartment building lobby notice posted by the building superintendent",
+        "speakerRole": "building superintendent announcing a scheduled elevator maintenance closure to residents"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "town-hall-meeting-agenda-change",
+        "requiredConcepts": [
+          "town hall meeting agenda item moved earlier",
+          "public comment period shortened for this session"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-6de33148",
+            "reason": "public park cleanup volunteer signup announcement is about a cleanup event, not a meeting agenda change"
+          }
+        ],
+        "setting": "city hall public notice board update posted by the city clerk",
+        "speakerRole": "city clerk announcing a change to the town hall meeting agenda"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "local-news-app-feature-rollout",
+        "requiredConcepts": [
+          "local news app adds live traffic alerts",
+          "digital notification settings updated automatically"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-03948a55",
+            "reason": "podcast offline download feature launch concerns a podcast platform, not a local news app's traffic alerts"
+          }
+        ],
+        "setting": "news app in-app announcement posted by the product support lead",
+        "speakerRole": "news app product support lead announcing a new feature to app users"
+      }
+    ],
+    "academicTalks": [
+      {
+        "domain": "science-environment",
+        "noveltyKey": "kelp-forest-recovery-lecture",
+        "requiredConcepts": [
+          "kelp forest habitat recovering after sea otter return",
+          "biology team tracks biodiversity along rocky coastline"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "soil microbial diversity crop rotation talk covers farmland soil, not coastal kelp habitat recovery"
+          },
+          {
+            "setId": "lsn-03948a55",
+            "reason": "coral reef heat tolerance talk covers thermal stress adaptation, not predator-driven habitat recovery"
+          }
+        ],
+        "discipline": "marine biology",
+        "speakerRole": "marine biology lecturer presenting habitat recovery data to an undergraduate environment course"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "mural-restoration-technique-lecture",
+        "requiredConcepts": [
+          "faded outdoor mural cleaned with solvent tests",
+          "conservator matches original pigment before repainting"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "regional weaving craft revival lecture concerns textile apprenticeship, not painted mural conservation chemistry"
+          },
+          {
+            "setId": "lsn-03948a55",
+            "reason": "regional music festival origin lecture is about performance history, not visual-art restoration method"
+          }
+        ],
+        "discipline": "art history",
+        "speakerRole": "art history lecturer walking students through a museum mural conservation case study"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "transit-desegregation-history-lecture",
+        "requiredConcepts": [
+          "public bus boycott forces route policy reform",
+          "historical account of organized ridership protest"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "consumer cooperative society formation lecture concerns retail purchasing, not transit civil-rights reform"
+          },
+          {
+            "setId": "lsn-03948a55",
+            "reason": "early labor reform movement lecture concerns factory hours, not transportation desegregation"
+          }
+        ],
+        "discipline": "sociology",
+        "speakerRole": "sociology lecturer analyzing a historical civil-rights transit campaign for an undergraduate seminar"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "encryption-basics-lecture",
+        "requiredConcepts": [
+          "message scrambled with a shared digital key",
+          "two devices exchange keys before decoding text"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "recommendation algorithm cold-start lecture is about content suggestion, not message encryption mechanics"
+          },
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "touchscreen sensing lecture concerns capacitive hardware, not software encryption concepts"
+          }
+        ],
+        "discipline": "computer science",
+        "speakerRole": "computer science lecturer explaining basic encryption to a general-education technology course"
+      }
+    ]
+  }
+}

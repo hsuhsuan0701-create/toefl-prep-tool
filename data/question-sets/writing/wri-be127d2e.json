@@ -1,0 +1,572 @@
+{
+  "id": "wri-be127d2e",
+  "source": "generated",
+  "createdAt": "2026-08-31T15:28:59.366Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "My connecting coach never showed up — how long until the next one leaves?",
+        "frame": "The ___ ___ ___ ___ the flooded highway.",
+        "tiles": [
+          "connecting bus",
+          "was",
+          "rerouted",
+          "around",
+          "is"
+        ],
+        "answers": [
+          [
+            "connecting bus",
+            "was",
+            "rerouted",
+            "around"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Why can't the crew use modern cement for this repair?",
+        "frame": "The century-old stonework ___ ___ ___ ___.",
+        "tiles": [
+          "requires",
+          "lime-based mortar",
+          "instead of",
+          "modern cement",
+          "require"
+        ],
+        "answers": [
+          [
+            "requires",
+            "lime-based mortar",
+            "instead of",
+            "modern cement"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Should we push back the headliner's start time for the piano?",
+        "frame": "The ___ ___ ___ ___ ___ before the show.",
+        "tiles": [
+          "borrowed piano",
+          "is",
+          "a half-step flat",
+          "and",
+          "needs retuning",
+          "was"
+        ],
+        "answers": [
+          [
+            "borrowed piano",
+            "is",
+            "a half-step flat",
+            "and",
+            "needs retuning"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "How much should I run this week?",
+        "frame": "Your persistent ___ ___ ___ ___ ___ this week.",
+        "tiles": [
+          "shin stress",
+          "means",
+          "the training mileage",
+          "must be cut",
+          "in half",
+          "were cut"
+        ],
+        "answers": [
+          [
+            "shin stress",
+            "means",
+            "the training mileage",
+            "must be cut",
+            "in half"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Did the city approve funding, so I can start lining up volunteers for the booth?",
+        "frame": "___ ___ ___ ___ ___ ___ at the street fair.",
+        "tiles": [
+          "the city",
+          "has",
+          "approved",
+          "funding",
+          "for",
+          "a registration booth",
+          "have"
+        ],
+        "answers": [
+          [
+            "the city",
+            "has",
+            "approved",
+            "funding",
+            "for",
+            "a registration booth"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Two of my transfer credits are being held back until review.",
+        "frame": "___ ___ ___ ___ ___ ___ my declared major?",
+        "tiles": [
+          "will",
+          "the two transfer credits",
+          "that",
+          "need review",
+          "count",
+          "toward",
+          "needs review"
+        ],
+        "answers": [
+          [
+            "will",
+            "the two transfer credits",
+            "that",
+            "need review",
+            "count",
+            "toward"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "The customer is still waiting on the bulk paper order.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ the wrong distribution center.",
+        "tiles": [
+          "we",
+          "discovered",
+          "that",
+          "the bulk order",
+          "was",
+          "somehow sent",
+          "to",
+          "were"
+        ],
+        "answers": [
+          [
+            "we",
+            "discovered",
+            "that",
+            "the bulk order",
+            "was",
+            "somehow sent",
+            "to"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Why do my old recordings look different in the new archive?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ without anyone noticing.",
+        "tiles": [
+          "the software",
+          "that",
+          "moved",
+          "your recordings",
+          "has",
+          "been dropping",
+          "metadata tags",
+          "was"
+        ],
+        "answers": [
+          [
+            "the software",
+            "that",
+            "moved",
+            "your recordings",
+            "has",
+            "been dropping",
+            "metadata tags"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "What do you need me to do before we release the owl?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "the volunteer",
+          "who",
+          "records",
+          "the owl's weight",
+          "determines",
+          "whether",
+          "it",
+          "can be released",
+          "record"
+        ],
+        "answers": [
+          [
+            "the volunteer",
+            "who",
+            "records",
+            "the owl's weight",
+            "determines",
+            "whether",
+            "it",
+            "can be released"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "What's going on with your bathroom?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "water",
+          "that",
+          "started leaking",
+          "through",
+          "my bathroom ceiling last night",
+          "seems",
+          "to be coming",
+          "from",
+          "your unit",
+          "starts leaking"
+        ],
+        "answers": [
+          [
+            "water",
+            "that",
+            "started leaking",
+            "through",
+            "my bathroom ceiling last night",
+            "seems",
+            "to be coming",
+            "from",
+            "your unit"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "After borrowing a friend's camping tent for a weekend trip, you discover that a support pole snapped during a windy night and now needs to be replaced before your friend needs the tent again next month.",
+    "to": "Jordan Ellison",
+    "subject": "Sorry about the tent pole",
+    "bullets": [
+      "Apologize for the broken tent pole and take responsibility for the damage.",
+      "Explain that a support pole snapped during a windy night on the trip.",
+      "Propose getting a replacement pole before Jordan needs the tent again next month."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Introduction to Health Economics",
+    "professorName": "Professor Alvarado",
+    "professorPost": "Some employers are now letting workers convert part of their standard health insurance premium into a flexible wellness stipend that can be spent on gym memberships or health apps instead of traditional clinical coverage. Supporters say this gives employees more control over how their benefits dollars are spent, while critics worry it could weaken guaranteed access to essential medical care. What do you think — should companies offer this kind of flexible stipend in place of standard coverage? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Nora",
+        "post": "I like the flexible stipend option. Not everyone needs the same coverage — a healthy twenty-five-year-old might get more value from a gym membership than from paying into a plan built around costly procedures they may never use. Letting people choose keeps their benefits relevant to their actual lives."
+      },
+      {
+        "name": "Devon",
+        "post": "A gym membership or wellness app doesn't cover surgery or chronic treatment. Standard insurance exists precisely because health needs are unpredictable, and everyone deserves that baseline protection regardless of how healthy they feel today. Converting core coverage into a lifestyle perk risks leaving people without care exactly when they need it most."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "services-travel",
+          "situation": "A cross-country bus company's dispatcher explains to a stranded passenger why the connecting coach was rerouted around a flooded highway.",
+          "participantRoles": [
+            "a cross-country bus dispatcher explaining a flooded-highway reroute",
+            "a stranded passenger trying to catch a connecting coach"
+          ],
+          "noveltyKey": "bus-dispatcher-reroute-flooded-highway-connection",
+          "requiredConcepts": [
+            "connecting coach rerouted around flooded highway",
+            "stranded passenger's next available bus",
+            "estimated delay to the connection window"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7024b060",
+              "reason": "a train delay caused by a signal inspection, not a bus reroute around flooding"
+            },
+            {
+              "setId": "wri-f9779355",
+              "reason": "a booking date mismatch on a kayak tour, not a route disruption from weather"
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A heritage bridge restoration crew's foreman explains to a city preservation officer why re-pointing the century-old stonework requires lime-based mortar instead of modern cement.",
+          "participantRoles": [
+            "a heritage bridge restoration foreman explaining mortar choice",
+            "a city preservation officer reviewing the restoration method"
+          ],
+          "noveltyKey": "heritage-bridge-mortar-restoration-explanation",
+          "requiredConcepts": [
+            "lime-based mortar versus modern cement",
+            "re-pointing century-old bridge stonework",
+            "preservation officer approving restoration method"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7d7e0b05",
+              "reason": "a debate over relocating a fountain, not a material-choice explanation for bridge repair"
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A folk music festival's sound engineer tells the headliner's road crew lead that the borrowed piano is a half-step flat and needs retuning before the set.",
+          "participantRoles": [
+            "a folk music festival's sound engineer reporting the tuning issue",
+            "the headliner's road crew lead deciding whether to delay the set"
+          ],
+          "noveltyKey": "festival-piano-tuning-before-headliner-set",
+          "requiredConcepts": [
+            "borrowed piano a half-step flat",
+            "retuning needed before the set",
+            "whether to delay the headliner's start time"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7024b060",
+              "reason": "a chipped set backdrop needing repaint, not an instrument tuning problem"
+            },
+            {
+              "setId": "wri-8f7e61bf",
+              "reason": "a cracked handheld prop needing replacement, not a live sound equipment issue"
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A sports clinic's physiotherapist tells a marathon runner that persistent shin stress means the training mileage must be cut in half this week.",
+          "participantRoles": [
+            "a sports clinic physiotherapist explaining the shin stress diagnosis",
+            "a marathon runner needing to adjust training mileage"
+          ],
+          "noveltyKey": "sports-clinic-shin-stress-mileage-reduction",
+          "requiredConcepts": [
+            "persistent shin stress from overtraining",
+            "training mileage cut in half this week",
+            "physiotherapist's recommended recovery plan"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "correcting a class-location mixup, not a medical consultation"
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A city civic engagement office's coordinator tells a neighborhood block captain that municipal funding was approved for a pop-up voter registration booth at next month's street fair.",
+          "participantRoles": [
+            "a city civic engagement coordinator confirming approved funding",
+            "a neighborhood block captain organizing the street fair booth"
+          ],
+          "noveltyKey": "voter-registration-booth-street-fair-funding",
+          "requiredConcepts": [
+            "municipal funding approved for the booth",
+            "pop-up voter registration at the street fair",
+            "block captain organizing volunteer staffing"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-6c0c961a",
+              "reason": "correcting a billing receipt date, not confirming event funding"
+            }
+          ]
+        },
+        {
+          "domain": "campus-academics",
+          "situation": "A university's academic advising office tells a transfer student that two of her previous credits won't count toward the major until the department chair reviews the syllabi.",
+          "participantRoles": [
+            "a university academic advisor explaining the credit review process",
+            "a transfer student awaiting department chair approval on two credits"
+          ],
+          "noveltyKey": "transfer-credit-syllabus-review-advising",
+          "requiredConcepts": [
+            "two transfer credits pending review",
+            "department chair reviewing course syllabi",
+            "credits counting toward the declared major"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7d7e0b05",
+              "reason": "clarifying which textbook edition is required, not reviewing transfer credits"
+            },
+            {
+              "setId": "wri-7024b060",
+              "reason": "a room reassignment for a thesis defense, not an academic credit review"
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A regional office supply company's customer service manager tells a warehouse employee that a bulk order of printer paper was shipped to the wrong distribution center.",
+          "participantRoles": [
+            "an office supply company's customer service manager explaining the shipping error",
+            "a warehouse employee needing to redirect the bulk order"
+          ],
+          "noveltyKey": "bulk-paper-order-wrong-distribution-center",
+          "requiredConcepts": [
+            "bulk order shipped to wrong distribution center",
+            "redirecting the printer paper shipment",
+            "customer waiting on the delayed order"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-787b9d66",
+              "reason": "a damaged panel and missing bracket in a delivery, not a shipment sent to the wrong destination"
+            },
+            {
+              "setId": "wri-7024b060",
+              "reason": "an out-of-service office printer awaiting a part, not a logistics shipping error"
+            },
+            {
+              "setId": "wri-8f7e61bf",
+              "reason": "an internal expense-report deadline change, not an external shipment misdirection"
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A community radio station's digital archivist tells a volunteer DJ that the software migrating old broadcast recordings to the new online archive has been silently dropping metadata tags.",
+          "participantRoles": [
+            "a community radio station's digital archivist reporting the software bug",
+            "a volunteer DJ whose old broadcast recordings lost metadata tags"
+          ],
+          "noveltyKey": "radio-archive-software-dropping-metadata-tags",
+          "requiredConcepts": [
+            "migration software dropping metadata tags",
+            "old broadcast recordings moved to online archive",
+            "volunteer DJ's recordings needing re-tagging"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-6023c170",
+              "reason": "a consumer cloud photo backup auto-deleting files, not a station's internal archive software bug"
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A wildlife rehabilitation center's staff biologist asks a new volunteer to record the injured owl's weight before it's cleared for release back into its habitat.",
+          "participantRoles": [
+            "a wildlife rehabilitation center's staff biologist directing the weigh-in",
+            "a new volunteer recording the injured owl's weight"
+          ],
+          "noveltyKey": "rehab-owl-weight-check-before-habitat-release",
+          "requiredConcepts": [
+            "injured owl's weight recorded before release",
+            "clearance for return to its habitat",
+            "volunteer logging the weigh-in result"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-8f7e61bf",
+              "reason": "postponing a field sampling trip, not a release-clearance procedure"
+            }
+          ]
+        },
+        {
+          "domain": "everyday-life",
+          "situation": "A tenant tells his upstairs neighbor that water has been dripping through the bathroom ceiling since last night's storm.",
+          "participantRoles": [
+            "a tenant reporting the ceiling leak",
+            "an upstairs neighbor whose bathroom may be the source"
+          ],
+          "noveltyKey": "ceiling-leak-after-storm-neighbor-conversation",
+          "requiredConcepts": [
+            "water dripping through the bathroom ceiling",
+            "leak beginning after last night's storm",
+            "upstairs neighbor checking for the source"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-bdbdd45c",
+              "reason": "a recurring package misdelivery problem, not a water leak from an upstairs unit"
+            },
+            {
+              "setId": "wri-8f7e61bf",
+              "reason": "resetting a shared wifi router password, not a plumbing leak issue"
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "everyday-life",
+      "noveltyKey": "borrowed-tent-pole-snapped-apology",
+      "requiredConcepts": [
+        "support pole snapped during a windy night",
+        "replacement pole arranged before next use",
+        "apology for damage to the borrowed tent"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-7d7e0b05",
+          "reason": "an apology for a transportation-schedule mix-up, not for damaging borrowed equipment"
+        },
+        {
+          "setId": "wri-bdbdd45c",
+          "reason": "a recurring delivery problem report, not a one-time damage apology to a friend"
+        }
+      ],
+      "situation": "After borrowing a friend's camping tent for a weekend trip, the writer discovers a support pole snapped during a windy night and needs to email the friend to apologize and arrange a replacement before it's needed again next month.",
+      "recipientRole": "a friend who lent the personal camping tent",
+      "communicativeActs": [
+        "apologize for damaging the borrowed tent",
+        "explain how the pole snapped during the windy night",
+        "propose replacing the pole before the friend needs the tent again"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "wellness-stipend-vs-standard-health-insurance",
+      "requiredConcepts": [
+        "flexible wellness stipend for gym memberships",
+        "standard clinical health insurance coverage",
+        "employee choosing between the two options"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-f8adc240",
+          "reason": "workplace rest-space policy debate over nap rooms, not a choice between insurance structures"
+        },
+        {
+          "setId": "wri-736f2103",
+          "reason": "exercise-equipment reservation scheduling, not a health-benefit plan design choice"
+        },
+        {
+          "setId": "wri-8f7e61bf",
+          "reason": "a single appointment's scheduling logistics, not a standing benefit-structure policy debate"
+        }
+      ],
+      "proposition": "Some employers now let workers convert part of their standard health insurance premium into a flexible wellness stipend for gym memberships or health apps instead of traditional clinical coverage.",
+      "competingValues": [
+        "individual flexibility to choose wellness spending that fits personal needs",
+        "a standardized safety net ensuring baseline clinical coverage for everyone"
+      ]
+    }
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "id": "spk-663e848c",
+  "source": "generated",
+  "createdAt": "2026-08-23T07:38:01.149Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Your First Solo Shift at the IT Help Desk",
+    "scenarioDescription": "You're a new part-time worker starting your first solo shift at the college's IT help desk. Listen to the lead technician walk you through the loaner equipment room and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-663e848c/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-663e848c.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Your First Solo Shift at the IT Help Desk. You're a new part-time worker starting your first solo shift at the college's IT help desk. Listen to the lead technician walk you through the loaner equipment room and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Plug in the laptop charging cart every morning.\n- Sign the checkout log and the loan sheet at pickup.\n- Clear the software update queue on each device before checkout.\n- Wipe down the screen, and test the trackpad before handing it over.\n- If a device looks damaged, tag it for the repair bin right away.\n- Because devices return all day, wipe the counter and check the return bin twice.\n- The lead technician, who trained every hire, confirms each station before closing.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Plug in the laptop charging cart every morning.",
+        "audio": "stimuli/spk-663e848c/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.31,
+          "y": 0.19,
+          "w": 0.13,
+          "h": 0.16
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Sign the checkout log and the loan sheet at pickup.",
+        "audio": "stimuli/spk-663e848c/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.19,
+          "y": 0.43,
+          "w": 0.13,
+          "h": 0.07
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Clear the software update queue on each device before checkout.",
+        "audio": "stimuli/spk-663e848c/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.48,
+          "y": 0.37,
+          "w": 0.13,
+          "h": 0.11
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Wipe down the screen, and test the trackpad before handing it over.",
+        "audio": "stimuli/spk-663e848c/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.65,
+          "y": 0.35,
+          "w": 0.12,
+          "h": 0.11
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "If a device looks damaged, tag it for the repair bin right away.",
+        "audio": "stimuli/spk-663e848c/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.78,
+          "y": 0.41,
+          "w": 0.17,
+          "h": 0.1
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Because devices return all day, wipe the counter and check the return bin twice.",
+        "audio": "stimuli/spk-663e848c/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.25,
+          "y": 0.73,
+          "w": 0.13,
+          "h": 0.06
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The lead technician, who trained every hire, confirms each station before closing.",
+        "audio": "stimuli/spk-663e848c/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.64,
+          "y": 0.58,
+          "w": 0.22,
+          "h": 0.31
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "A Call About Saving Energy at Home",
+    "intro": "An outreach worker from your local energy-conservation program is calling to ask about your household's daily habits. You have no time to prepare — just answer naturally after each question.",
+    "introAudio": "stimuli/spk-663e848c/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thank you for taking a few minutes to speak with me today. To start, which one energy-saving habit do you practice most often at home, and about how often do you do it?",
+        "audio": "stimuli/spk-663e848c/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thanks for sharing that. Could you tell me about a recent time when you noticed a real change or a saved cost because of that habit, and why do you think that happened?",
+        "audio": "stimuli/spk-663e848c/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "Thanks for that story. Now I'd like to hear your opinion on something. Some people believe individual habits at home make the biggest difference in saving energy, while others think programs run by the local utility matter more. Which view do you agree with, and why?",
+        "audio": "stimuli/spk-663e848c/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. For my last question, what would you recommend to encourage more households to adopt energy-saving habits like these?",
+        "audio": "stimuli/spk-663e848c/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 144.9,
+      "targetWpm": 175,
+      "minWpm": 150,
+      "maxWpm": 200
+    },
+    {
+      "check": "speech-rate",
+      "detail": "interview-question",
+      "take": "retake",
+      "measuredWpm": 129.2,
+      "targetWpm": 155,
+      "minWpm": 130,
+      "maxWpm": 180
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "technology-media",
+      "noveltyKey": "college-it-help-desk-loaner-device-orientation",
+      "requiredConcepts": [
+        "laptop charging cart plugged in each morning",
+        "loaner device checkout log signed at pickup",
+        "software update queue cleared before checkout",
+        "damaged device tagged for the repair bin",
+        "return bin checked twice before closing"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-210471e3",
+          "reason": "That scenario orients a trainee to a radio station's on-air broadcast equipment; this one orients a worker to a college IT help desk's loaner device checkout stations, a different venue and equipment set."
+        }
+      ],
+      "setting": "the college's IT help desk loaner equipment room, just before a newly hired part-time worker's first solo shift",
+      "speakerRole": "the help desk's lead technician",
+      "communicativePurpose": "orient the new worker to each loaner device station in order so equipment checkout runs smoothly alone"
+    },
+    "interview": {
+      "domain": "science-environment",
+      "noveltyKey": "everyday-household-energy-saving-habits",
+      "requiredConcepts": [
+        "lights switched off in empty rooms",
+        "thermostat lowered before bed each night",
+        "unplugging chargers left plugged in overnight",
+        "shorter shower time cutting water heater use"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-8d9ee619",
+          "reason": "That interview covers urban travel and visiting cities for a research study; this one covers daily household energy-saving habits, an unrelated content thread."
+        }
+      ],
+      "topic": "everyday habits for saving household energy",
+      "premise": "An energy-conservation outreach team places a brief, unannounced phone call about a resident's daily habits for saving energy at home, with no preparation time before each question.",
+      "questionArc": [
+        "which specific energy-saving habit the respondent practices most often at home and how often",
+        "a recent time the respondent noticed a saved cost or change from that habit, with why they think it happened",
+        "a stated position on whether individual household habits or the local utility's programs matter more for saving energy, weighing two contrasting views",
+        "a broader recommendation for how households could be encouraged to adopt energy-saving habits"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v4",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Rasalgethi",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        200,
+        208,
+        215,
+        180,
+        178,
+        176,
+        175
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "australian",
+      "voice": "Callirrhoe",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

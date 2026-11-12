@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      # server/test/transcode.test.ts runs the real ffmpeg and ffprobe; every other suite uses
+      # in-process fakes for them.
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
+
+      - run: npm ci
+
+      # The same four commands as local verification (CLAUDE.md). No secrets: both suites are
+      # hermetic, and an unmocked network call fails the test that made it.
+      - run: npm test
+      - run: npm run typecheck
+      - run: npm run build -w client
+      - run: npm run lint -w client

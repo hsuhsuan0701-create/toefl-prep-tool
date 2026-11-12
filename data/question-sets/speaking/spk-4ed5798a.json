@@ -1,0 +1,226 @@
+{
+  "id": "spk-4ed5798a",
+  "source": "generated",
+  "createdAt": "2026-08-23T13:41:51.302Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Hotel Luggage Room Orientation",
+    "scenarioDescription": "You are the hotel's guest services supervisor, training a newly hired bellhop before a large tour group's check-in rush. Walk the trainee through the back-of-house luggage staging room. Listen to each instruction and repeat what the supervisor says. Repeat only once.",
+    "introAudio": "stimuli/spk-4ed5798a/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-4ed5798a.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Hotel Luggage Room Orientation. You are the hotel's guest services supervisor, training a newly hired bellhop before a large tour group's check-in rush. Walk the trainee through the back-of-house luggage staging room. Listen to each instruction and repeat what the supervisor says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Line up each luggage cart near the service elevator.\n- Check each trainee's uniform and name tag before rounds.\n- Sort and match the room key packets against the tour group's manifest.\n- Open the concierge stand's lost tag log, and record each number.\n- After you match the key packets, staple them to the guest folders.\n- Before the tour group arrives, make sure every cart sits near the elevator.\n- Guests checked in during the rush get their keys handed over first.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Line up each luggage cart near the service elevator.",
+        "audio": "stimuli/spk-4ed5798a/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.211,
+          "y": 0.162,
+          "w": 0.266,
+          "h": 0.191
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Check each trainee's uniform and name tag before rounds.",
+        "audio": "stimuli/spk-4ed5798a/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.655,
+          "y": 0.215,
+          "w": 0.126,
+          "h": 0.177
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Sort and match the room key packets against the tour group's manifest.",
+        "audio": "stimuli/spk-4ed5798a/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.233,
+          "y": 0.358,
+          "w": 0.362,
+          "h": 0.152
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Open the concierge stand's lost tag log, and record each number.",
+        "audio": "stimuli/spk-4ed5798a/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.763,
+          "y": 0.38,
+          "w": 0.131,
+          "h": 0.14
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "After you match the key packets, staple them to the guest folders.",
+        "audio": "stimuli/spk-4ed5798a/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.26,
+          "y": 0.563,
+          "w": 0.316,
+          "h": 0.145
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Before the tour group arrives, make sure every cart sits near the elevator.",
+        "audio": "stimuli/spk-4ed5798a/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.211,
+          "y": 0.162,
+          "w": 0.266,
+          "h": 0.191
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Guests checked in during the rush get their keys handed over first.",
+        "audio": "stimuli/spk-4ed5798a/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.722,
+          "y": 0.603,
+          "w": 0.111,
+          "h": 0.144
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Exercise Breaks During Study Sessions",
+    "intro": "Thank you for speaking with me today. I'm a health peer educator, and I'm calling to ask a few quick questions about how people fit short exercise breaks into long study or work sessions.",
+    "introAudio": "stimuli/spk-4ed5798a/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, what kind of chair or desk stretch do you usually do during a long study session, and about how often do you take that break?",
+        "audio": "stimuli/spk-4ed5798a/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of a specific recent afternoon when you sat and studied for a long stretch and ended up feeling stiff or uncomfortable. What happened, and how did you respond?",
+        "audio": "stimuli/spk-4ed5798a/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Some people prefer a movement break scheduled at a fixed interval, say every hour, no matter how they feel. Others wait and move only once stiffness or discomfort actually starts. Which approach do you prefer, and why?",
+        "audio": "stimuli/spk-4ed5798a/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Do you think schools or workplaces should build a mandatory movement break into every long class or work block, or should that decision stay up to the individual? What would you recommend?",
+        "audio": "stimuli/spk-4ed5798a/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-briefing",
+      "take": "retake",
+      "measuredWpm": 135.4,
+      "targetWpm": 165,
+      "minWpm": 145,
+      "maxWpm": 195
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "services-travel",
+      "noveltyKey": "hotel-bellhop-luggage-orientation",
+      "requiredConcepts": [
+        "luggage cart lined up near the service elevator",
+        "room key packets matched to the tour group manifest",
+        "bellhop uniform and name tag checked before rounds",
+        "lost luggage tag log at the concierge stand"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-6800cfd7",
+          "reason": "different venue and role — a hotel back-of-house luggage room with a bellhop trainee, not a train platform with a platform attendant"
+        }
+      ],
+      "setting": "a hotel back-of-house luggage staging room, just before a large tour group's check-in rush",
+      "speakerRole": "the hotel's guest services supervisor, training a newly hired bellhop trainee",
+      "communicativePurpose": "orient the trainee through each luggage and key-packet station so bags and room keys reach guests smoothly during the rush"
+    },
+    "interview": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "exercise-break-during-study-sessions",
+      "requiredConcepts": [
+        "chair or desk stretch done between study blocks",
+        "specific afternoon when sitting too long caused stiffness",
+        "scheduled break versus break only when discomfort starts",
+        "mandatory movement break built into long class blocks"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-4272b8cc",
+          "reason": "different health topic — short exercise/movement breaks during sitting, not overall sleep duration during a busy week — and a distinct scheduled-vs-reactive opinion arc"
+        }
+      ],
+      "topic": "quick exercise breaks during long study sessions",
+      "premise": "A health peer educator makes a brief unannounced phone call about how people fit short exercise breaks into long study or work sessions.",
+      "questionArc": [
+        "asks what specific movement or stretch break the test taker currently takes during long sitting sessions and how often",
+        "asks the test taker to recall a specific recent afternoon when sitting too long caused stiffness or discomfort and how they responded",
+        "presents scheduled movement breaks versus breaks taken only once discomfort starts and asks which the test taker prefers and why",
+        "broadens to whether schools or workplaces should build mandatory movement breaks into long sitting blocks and asks for a recommendation"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "australian",
+      "voice": "Sadaltager",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Algieba",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

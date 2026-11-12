@@ -1,0 +1,226 @@
+{
+  "id": "spk-ad012649",
+  "source": "generated",
+  "createdAt": "2026-08-24T13:00:34.732Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "A Walk Through the Tropical Greenhouse",
+    "scenarioDescription": "You're joining a volunteer guide leading a small group through the botanical garden's tropical greenhouse. Listen to the guide and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-ad012649/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-ad012649.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: A Walk Through the Tropical Greenhouse. You're joining a volunteer guide leading a small group through the botanical garden's tropical greenhouse. Listen to the guide and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Welcome to our tropical greenhouse tour today.\n- The humidity misters and vents keep this room warm.\n- Sensors near the ceiling track moisture and adjust the misters automatically.\n- The system raises humidity at dawn, but it lowers it again by noon.\n- Because it rotates every season, this orchid bed sits near the entrance.\n- The small plaque you're passing names the donor who funded this habitat zone.\n- This path, forking here, offers the shortest way to the garden gate.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Welcome to our tropical greenhouse tour today.",
+        "audio": "stimuli/spk-ad012649/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The humidity misters and vents keep this room warm.",
+        "audio": "stimuli/spk-ad012649/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.104,
+          "y": 0.122,
+          "w": 0.242,
+          "h": 0.125
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Sensors near the ceiling track moisture and adjust the misters automatically.",
+        "audio": "stimuli/spk-ad012649/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.518,
+          "y": 0.091,
+          "w": 0.067,
+          "h": 0.062
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The system raises humidity at dawn, but it lowers it again by noon.",
+        "audio": "stimuli/spk-ad012649/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.73,
+          "y": 0.178,
+          "w": 0.172,
+          "h": 0.11
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Because it rotates every season, this orchid bed sits near the entrance.",
+        "audio": "stimuli/spk-ad012649/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.031,
+          "y": 0.532,
+          "w": 0.306,
+          "h": 0.248
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The small plaque you're passing names the donor who funded this habitat zone.",
+        "audio": "stimuli/spk-ad012649/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.429,
+          "y": 0.641,
+          "w": 0.078,
+          "h": 0.079
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "This path, forking here, offers the shortest way to the garden gate.",
+        "audio": "stimuli/spk-ad012649/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.574,
+          "y": 0.781,
+          "w": 0.153,
+          "h": 0.097
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Requesting Time Off From a Part-Time Job",
+    "intro": "Thank you for speaking with me today. I'm part of a small workplace research group, and I have four quick questions about how you handle time off at your part-time job.",
+    "introAudio": "stimuli/spk-ad012649/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, do you usually request time off from your part-time job well in advance, or only when something comes up suddenly?",
+        "audio": "stimuli/spk-ad012649/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Think about the most recent specific time you needed time off — how many days ahead did you ask, and how did you first let your manager know: in person, by text, or some other way?",
+        "audio": "stimuli/spk-ad012649/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK, I'd like to ask your opinion now. Some employees arrange their own coverage before requesting time off, while others leave that entirely to the manager. Which approach do you take, and why do you prefer it?",
+        "audio": "stimuli/spk-ad012649/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. If you could change one thing about how your workplace currently handles time-off requests, what would it be, and why?",
+        "audio": "stimuli/spk-ad012649/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "science-environment",
+      "noveltyKey": "botanical-garden-greenhouse-tour",
+      "requiredConcepts": [
+        "greenhouse humidity control cycle explained to visitors",
+        "rotating seasonal orchid bed near the entrance",
+        "habitat zone donor plaque along the path",
+        "shortest path back to the garden gate"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-bbb69428",
+          "reason": "that scene is a lab coordinator training a new staff assistant on plant-care duties, not a guide narrating a public tour"
+        },
+        {
+          "setId": "spk-e0d7a688",
+          "reason": "that scene is a studio technician training a weekend equipment monitor, an internal staff walkthrough rather than visitor narration"
+        },
+        {
+          "setId": "spk-9dbd086f",
+          "reason": "that scene is a weather-station operator training a newly hired observer, an internal orientation rather than a public tour"
+        }
+      ],
+      "setting": "a public botanical garden's tropical habitat greenhouse, mid-morning during a scheduled visitor walking tour",
+      "speakerRole": "the garden's volunteer tour guide addressing a small group of visiting sightseers",
+      "communicativePurpose": "narrate a guided walk through the greenhouse's plant collections and orient visitors to the tour's course and stops, distinct from the catalog's recurring staff-training walkthroughs"
+    },
+    "interview": {
+      "domain": "workplace-business",
+      "noveltyKey": "time-off-request-notice-habit",
+      "requiredConcepts": [
+        "advance notice given before requesting time off",
+        "backup coworker arranged to cover the shift",
+        "manager's preferred channel for receiving the request"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-3813889d",
+          "reason": "that interview covers handling a customer complaint during a shift, not planning personal leave with a manager"
+        },
+        {
+          "setId": "spk-e0f4f676",
+          "reason": "that interview covers which task gets handled first during a shift, not requesting time off in advance"
+        },
+        {
+          "setId": "spk-c68f245c",
+          "reason": "that interview covers a weekly grocery list habit in everyday-life, unrelated to workplace scheduling"
+        }
+      ],
+      "topic": "How test takers request time off in advance from a part-time job manager",
+      "premise": "A workplace research group places a brief unannounced phone call asking how the test taker requests time off from their part-time job, how far ahead they notify their manager, and whether they arrange shift coverage themselves.",
+      "questionArc": [
+        "Ask whether the test taker usually requests time off from their part-time job well in advance or only when something comes up suddenly.",
+        "Ask about the most recent specific time they needed time off, including how many days ahead they asked and who they told first.",
+        "Ask whether they arrange a coworker to cover their shift themselves or leave that to the manager, and why they prefer handling it that way.",
+        "Ask what one thing they would change about how their workplace currently handles time-off requests."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "british",
+      "voice": "Orus",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "australian",
+      "voice": "Achird",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

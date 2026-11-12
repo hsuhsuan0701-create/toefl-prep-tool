@@ -1,0 +1,169 @@
+{
+  "id": "spk-e0f4f676",
+  "source": "generated",
+  "createdAt": "2026-08-23T13:51:13.264Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Broadcast Booth Orientation",
+    "scenarioDescription": "You are a new engineer starting your first shift at the college radio station. The lead technician is walking you through the digital media lab and control room before your first live broadcast. Listen to the technician and repeat what they say. Repeat only once.",
+    "introAudio": "stimuli/spk-e0f4f676/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-e0f4f676.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Broadcast Booth Orientation. You are a new engineer starting your first shift at the college radio station. The lead technician is walking you through the digital media lab and control room before your first live broadcast. Listen to the technician and repeat what they say. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Always check your microphone levels before broadcasting.\n- The producer and the engineer check the microphone together.\n- We test the signal and adjust the mixing board faders.\n- The faders look correct, but confirm the streaming encoder connection too.\n- After you finish setup, save a backup copy in the recording folder.\n- You'll hear a countdown, and once it ends, the on-air light turns red.\n- The studio door, propped open for late arrivals, leads straight to the booth.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Always check your microphone levels before broadcasting.",
+        "audio": "stimuli/spk-e0f4f676/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The producer and the engineer check the microphone together.",
+        "audio": "stimuli/spk-e0f4f676/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "We test the signal and adjust the mixing board faders.",
+        "audio": "stimuli/spk-e0f4f676/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The faders look correct, but confirm the streaming encoder connection too.",
+        "audio": "stimuli/spk-e0f4f676/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "After you finish setup, save a backup copy in the recording folder.",
+        "audio": "stimuli/spk-e0f4f676/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "You'll hear a countdown, and once it ends, the on-air light turns red.",
+        "audio": "stimuli/spk-e0f4f676/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The studio door, propped open for late arrivals, leads straight to the booth.",
+        "audio": "stimuli/spk-e0f4f676/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Workplace Task Priorities Survey",
+    "intro": "Hello, thank you for speaking with me today. I'm calling from a workplace research group, and I have four quick questions about your part-time job.",
+    "introAudio": "stimuli/spk-e0f4f676/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "When your shift starts, which task or duty do you usually tackle first?",
+        "audio": "stimuli/spk-e0f4f676/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of a specific shift when your priorities suddenly changed partway through. What happened, and what did you do about it?",
+        "audio": "stimuli/spk-e0f4f676/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Some workers prefer following a fixed checklist of tasks in order, no matter what happens. Others prefer deciding priority in the moment, based on what seems most urgent. Which approach do you think works better, and why?",
+        "audio": "stimuli/spk-e0f4f676/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. In general, should workplaces give employees a written list ranking their priorities, or should they trust employees to use their own judgment? What would you recommend?",
+        "audio": "stimuli/spk-e0f4f676/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "technology-media",
+      "noveltyKey": "digital-media-lab-broadcast-booth-orientation",
+      "requiredConcepts": [
+        "microphone levels checked before broadcast",
+        "mixing board fader settings confirmed",
+        "streaming encoder connection verified",
+        "backup digital recording folder location",
+        "on-air light signal before broadcast start"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-663e848c",
+          "reason": "Prior Set orients a loaner-device checkout counter for help-desk workers; this Set orients live-broadcast production stations (mic, board, encoder) for a radio engineer, a different workflow and purpose."
+        }
+      ],
+      "setting": "the college's digital media lab and radio station control room, minutes before a live broadcast shift begins",
+      "speakerRole": "the media lab's lead technician, training a newly hired engineer",
+      "communicativePurpose": "orient the new engineer through each broadcast station — microphone check, mixing board, streaming encoder, backup recording folder — before the on-air light comes on"
+    },
+    "interview": {
+      "domain": "workplace-business",
+      "noveltyKey": "workplace-task-priority-shift",
+      "requiredConcepts": [
+        "first task tackled when a shift starts",
+        "priorities suddenly reshuffled mid-shift",
+        "fixed checklist versus in-the-moment judgment",
+        "written priority list versus employee judgment"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-87780d29",
+          "reason": "Prior Set covers handling one customer request during a seasonal job; this Set covers how the test taker personally organizes and reprioritizes tasks across a workplace shift, not a customer interaction."
+        }
+      ],
+      "topic": "prioritizing tasks during a part-time workplace shift",
+      "premise": "A workplace research group makes a brief unannounced phone call asking how the test taker decides which task to handle first during a shift at their part-time job.",
+      "questionArc": [
+        "Ask which single task or duty the test taker handles first when a shift starts at their job.",
+        "Ask about a specific past shift when task priorities suddenly changed and what the test taker did about it.",
+        "Ask the test taker to weigh following a fixed task checklist against deciding priority in the moment, and justify a preference.",
+        "Ask whether workplaces should hand employees a written priority list or trust employees' own judgment, broadening to a general recommendation."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "british",
+      "voice": "Rasalgethi",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "australian",
+      "voice": "Sulafat",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

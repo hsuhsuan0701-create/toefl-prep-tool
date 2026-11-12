@@ -1,0 +1,197 @@
+{
+  "id": "spk-7ed36c39",
+  "source": "generated",
+  "createdAt": "2026-08-22T12:57:45.378Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Print Studio Orientation",
+    "scenarioDescription": "Listen to the studio's print technician orient a visiting printmaker to the print workroom before her first solo session, and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-7ed36c39/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-7ed36c39.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Print Studio Orientation. Listen to the studio's print technician orient a visiting printmaker to the print workroom before her first solo session, and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- This is your print station for today.\n- This bench holds the brayers and the ink slab.\n- Rinse the brayer well and set it back on the rack.\n- You can adjust the roller height, but always test it on scrap paper first.\n- After you finish a print, wipe the ink slab clean before starting a new color.\n- When you're finished for the day, hang your loaned apron by the sink so it dries properly.\n- Before you pull your first print alone, ask me to check the pressure, which I always test on a scrap sheet first.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "This is your print station for today.",
+        "audio": "stimuli/spk-7ed36c39/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.102,
+          "y": 0.63,
+          "w": 0.23,
+          "h": 0.25
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "This bench holds the brayers and the ink slab.",
+        "audio": "stimuli/spk-7ed36c39/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.036,
+          "y": 0.408,
+          "w": 0.243,
+          "h": 0.234
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Rinse the brayer well and set it back on the rack.",
+        "audio": "stimuli/spk-7ed36c39/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.434,
+          "y": 0.142,
+          "w": 0.117,
+          "h": 0.113
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "You can adjust the roller height, but always test it on scrap paper first.",
+        "audio": "stimuli/spk-7ed36c39/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "After you finish a print, wipe the ink slab clean before starting a new color.",
+        "audio": "stimuli/spk-7ed36c39/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.536,
+          "y": 0.597,
+          "w": 0.102,
+          "h": 0.091
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "When you're finished for the day, hang your loaned apron by the sink so it dries properly.",
+        "audio": "stimuli/spk-7ed36c39/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.729,
+          "y": 0.158,
+          "w": 0.098,
+          "h": 0.167
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Before you pull your first print alone, ask me to check the pressure, which I always test on a scrap sheet first.",
+        "audio": "stimuli/spk-7ed36c39/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.666,
+          "y": 0.362,
+          "w": 0.231,
+          "h": 0.225
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Neighborhood Event Participation",
+    "intro": "Thank you for speaking with me today. I'm a civic engagement researcher, and I'm calling residents to ask a few quick questions about how you take part in events in your neighborhood. There's no need to prepare — just answer based on your own experience.",
+    "introAudio": "stimuli/spk-7ed36c39/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Which neighborhood community event do you attend most often, and what usually happens there?",
+        "audio": "stimuli/spk-7ed36c39/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of one specific community event you remember clearly — maybe a festival, a fair, or a neighborhood meeting. Can you describe what happened and explain why it stood out to you?",
+        "audio": "stimuli/spk-7ed36c39/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some people believe local governments should take the lead in organizing neighborhood events, while others think residents themselves should take on more of that responsibility. Which side do you agree with, and why?",
+        "audio": "stimuli/spk-7ed36c39/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. If you could recommend one change to raise turnout at future neighborhood events, what would it be, and why do you think it would work?",
+        "audio": "stimuli/spk-7ed36c39/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "arts-culture",
+      "noveltyKey": "print-studio-press-orientation-walkthrough",
+      "requiredConcepts": [
+        "ink slab wiped clean between color changes",
+        "loaned apron hung by the sink after use",
+        "press pressure checked before the first pull",
+        "brayer rinsed before it returns to the rack"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-0d5886fd",
+          "reason": "that Set orients a gallery visitor guide through display and coatroom areas; this one orients a printmaker through press mechanics and cleanup routine in a working studio, not visitor-facing spaces."
+        }
+      ],
+      "setting": "an art studio's print workroom, before a visiting printmaker's first solo session",
+      "speakerRole": "the studio's print technician orienting the visiting printmaker",
+      "communicativePurpose": "walk the visiting printmaker through each print station so they can work the press safely alone"
+    },
+    "interview": {
+      "domain": "community-civic",
+      "noveltyKey": "neighborhood-event-participation-interview",
+      "requiredConcepts": [
+        "a favorite neighborhood event attended regularly",
+        "a specific festival or meeting recalled in detail",
+        "organizer effort versus resident turnout tradeoff",
+        "one change that would raise event attendance"
+      ],
+      "distinguishesFrom": [],
+      "topic": "how residents take part in local community events",
+      "premise": "A civic engagement researcher is briefly phoning residents about how they take part in neighborhood community events, with no preparation time before each question",
+      "questionArc": [
+        "Ask which neighborhood community event the resident attends most often and what usually happens there.",
+        "Ask the resident to recount one specific community event they remember clearly and explain why it stood out.",
+        "Present two contrasting views on whether local governments or community members should hold more responsibility for organizing neighborhood events, and ask the resident to pick a side with reasons.",
+        "Ask the resident to evaluate what change would most increase neighborhood turnout at future community events and justify the recommendation."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v2",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "australian",
+      "voice": "Erinome",
+      "briefingTargetWpm": 165,
+      "itemTargetWpm": 180
+    },
+    "interview": {
+      "accent": "north-american",
+      "voice": "Callirrhoe",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

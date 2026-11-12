@@ -1,0 +1,17 @@
+{
+  "name": "server", "version": "0.0.1", "type": "module",
+  "engines": { "node": ">=24 <25" },
+  "scripts": {
+    "dev": "tsx watch --env-file=../.env src/index.ts",
+    "start": "tsx --env-file=../.env src/index.ts",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "hono": "^4.6.0", "@hono/node-server": "^2.1.7",
+    "better-sqlite3": "^13.0.3", "@toefl-prep/shared": "*", "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0", "vitest": "^4.1.12", "typescript": "^5.6.0",
+    "@types/node": "^24.13.2", "@types/better-sqlite3": "^7.6.0"
+  }
+}

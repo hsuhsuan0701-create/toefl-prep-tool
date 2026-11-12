@@ -1,0 +1,3044 @@
+{
+  "id": "lsn-fc96bdab",
+  "source": "generated",
+  "createdAt": "2026-08-17T23:11:42.209Z",
+  "kind": "listening",
+  "advisoryNotes": [
+    {
+      "check": "catalog-novelty",
+      "detail": "containment",
+      "taskType": "listen_choose",
+      "score": 0.857
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 128.9,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 120.2,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "first",
+      "measuredWpm": 131.6,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 130.2,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 118.1,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "first",
+      "measuredWpm": 116.8,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "announcement",
+      "take": "retake",
+      "measuredWpm": 117.9,
+      "targetWpm": 150,
+      "minWpm": 140,
+      "maxWpm": 160
+    },
+    {
+      "check": "speech-rate",
+      "detail": "announcement",
+      "take": "retake",
+      "measuredWpm": 122.9,
+      "targetWpm": 150,
+      "minWpm": 140,
+      "maxWpm": 160
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 128.2,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "first",
+      "measuredWpm": 129.3,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 131.6,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 133.6,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "first",
+      "measuredWpm": 123,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "conversation",
+      "take": "retake",
+      "measuredWpm": 177.4,
+      "targetWpm": 162,
+      "minWpm": 150,
+      "maxWpm": 175
+    }
+  ],
+  "router": {
+    "timeLimitSec": 1080,
+    "listenChoose": [
+      {
+        "id": "r-lc-01",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/r-lc-01.mp3",
+        "speaker": {
+          "id": "r-lc-01-spk",
+          "role": "academic advising staff member",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Sadaltager",
+          "provider": "gemini"
+        },
+        "utterance": "Your section switch is confirmed.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Great, what time's the new class?"
+          },
+          {
+            "id": "b",
+            "text": "Sorry, I already dropped that course."
+          },
+          {
+            "id": "c",
+            "text": "Actually, can we reschedule my appointment?"
+          },
+          {
+            "id": "d",
+            "text": "The registrar's office closes at five."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "function",
+        "explanationZh": "顧問確認選課異動已核准,得體回應應追問新班別的上課時間,而非泛用感謝語;b誤把情境當作退選,c答非所問要求改約,d為無關的辦公室資訊,均與確認訊息無關。"
+      },
+      {
+        "id": "r-lc-02",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/r-lc-02.mp3",
+        "speaker": {
+          "id": "r-lc-02-spk",
+          "role": "campus library staff member",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Leda",
+          "provider": "gemini"
+        },
+        "utterance": "I can extend your room two hours.",
+        "options": [
+          {
+            "id": "a",
+            "text": "I lost my student ID."
+          },
+          {
+            "id": "b",
+            "text": "No, I already ate lunch."
+          },
+          {
+            "id": "c",
+            "text": "The printer is out of paper."
+          },
+          {
+            "id": "d",
+            "text": "Perfect, I really need it."
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "function",
+        "explanationZh": "館員同意延長讀書室使用時間,合宜回應應表達需要並感謝,其餘選項離題。"
+      },
+      {
+        "id": "r-lc-03",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/r-lc-03.mp3",
+        "speaker": {
+          "id": "r-lc-03-spk",
+          "role": "workplace office supply coordinator",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Achird",
+          "provider": "gemini"
+        },
+        "utterance": "Your new keyboard ships tomorrow.",
+        "options": [
+          {
+            "id": "a",
+            "text": "I already fixed the office printer."
+          },
+          {
+            "id": "b",
+            "text": "I never ordered a new monitor."
+          },
+          {
+            "id": "c",
+            "text": "The staff meeting starts at noon."
+          },
+          {
+            "id": "d",
+            "text": "Thanks, mine's been sticking badly."
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "function",
+        "explanationZh": "對方告知新鍵盤即將送達,合理回應應提及舊鍵盤故障需求,其餘無關。"
+      },
+      {
+        "id": "r-lc-04",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/r-lc-04.mp3",
+        "speaker": {
+          "id": "r-lc-04-spk",
+          "role": "company billing representative",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Gacrux",
+          "provider": "gemini"
+        },
+        "utterance": "I see the duplicate charge now.",
+        "options": [
+          {
+            "id": "a",
+            "text": "My badge won't scan today."
+          },
+          {
+            "id": "b",
+            "text": "I haven't opened an account."
+          },
+          {
+            "id": "c",
+            "text": "The elevator's out of service."
+          },
+          {
+            "id": "d",
+            "text": "Good, so you'll refund it?"
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "inference",
+        "explanationZh": "對方確認重複收費,合宜回應應追問是否退款,其餘選項與帳單無關。"
+      },
+      {
+        "id": "r-lc-05",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/r-lc-05.mp3",
+        "speaker": {
+          "id": "r-lc-05-spk",
+          "role": "municipal public works clerk",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Puck",
+          "provider": "gemini"
+        },
+        "utterance": "Crews will fix that light Friday.",
+        "options": [
+          {
+            "id": "a",
+            "text": "My mail still hasn't arrived yet."
+          },
+          {
+            "id": "b",
+            "text": "The community park closes at dusk."
+          },
+          {
+            "id": "c",
+            "text": "I already renewed my parking permit."
+          },
+          {
+            "id": "d",
+            "text": "Finally, it's been dark lately."
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "function",
+        "explanationZh": "對方告知路燈將於週五修復,合宜回應應表達期待已久,其餘無關。"
+      },
+      {
+        "id": "r-lc-06",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/r-lc-06.mp3",
+        "speaker": {
+          "id": "r-lc-06-spk",
+          "role": "community center volunteer coordinator",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Vindemiatrix",
+          "provider": "gemini"
+        },
+        "utterance": "You're set for Saturday's cleanup shift.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Great, what time should I arrive?"
+          },
+          {
+            "id": "b",
+            "text": "I already returned my library card yesterday."
+          },
+          {
+            "id": "c",
+            "text": "The downtown bus route changed again recently."
+          },
+          {
+            "id": "d",
+            "text": "My parking permit expired last month too."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "function",
+        "explanationZh": "對方確認志工排班,合宜回應應詢問到場時間,其餘無關。"
+      },
+      {
+        "id": "r-lc-07",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/r-lc-07.mp3",
+        "speaker": {
+          "id": "r-lc-07-spk",
+          "role": "laboratory supervisor",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Charon",
+          "provider": "gemini"
+        },
+        "utterance": "Grab goggles before you start.",
+        "options": [
+          {
+            "id": "a",
+            "text": "I already published the research paper."
+          },
+          {
+            "id": "b",
+            "text": "Sure, where are they kept?"
+          },
+          {
+            "id": "c",
+            "text": "The lab microscope needs recalibration soon."
+          },
+          {
+            "id": "d",
+            "text": "The lab results looked fairly accurate."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "function",
+        "explanationZh": "主管提醒戴護目鏡,合宜回應應詢問存放位置,其餘與實驗安全無關。"
+      },
+      {
+        "id": "r-lc-08",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/r-lc-08.mp3",
+        "speaker": {
+          "id": "r-lc-08-spk",
+          "role": "environmental research staffer",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Autonoe",
+          "provider": "gemini"
+        },
+        "utterance": "The storm might delay our survey.",
+        "options": [
+          {
+            "id": "a",
+            "text": "That's fine, we'll reschedule."
+          },
+          {
+            "id": "b",
+            "text": "I already sent the final report."
+          },
+          {
+            "id": "c",
+            "text": "The nature trail reopened yesterday afternoon."
+          },
+          {
+            "id": "d",
+            "text": "The species count was surprisingly high."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "inference",
+        "explanationZh": "對方提及暴風雨可能延誤調查,合宜回應應表示可接受並改期,其餘無關。"
+      },
+      {
+        "id": "r-lc-09",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/r-lc-09.mp3",
+        "speaker": {
+          "id": "r-lc-09-spk",
+          "role": "online technical support agent",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Iapetus",
+          "provider": "gemini"
+        },
+        "utterance": "I've reset your account password.",
+        "options": [
+          {
+            "id": "a",
+            "text": "The app keeps crashing daily."
+          },
+          {
+            "id": "b",
+            "text": "My screen brightness is low."
+          },
+          {
+            "id": "c",
+            "text": "I never bought a subscription."
+          },
+          {
+            "id": "d",
+            "text": "Thanks, I'll log in now."
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "function",
+        "explanationZh": "對方告知密碼已重設,合宜回應應表示將登入,其餘與帳戶無關。"
+      },
+      {
+        "id": "r-lc-10",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/r-lc-10.mp3",
+        "speaker": {
+          "id": "r-lc-10-spk",
+          "role": "podcast platform support agent",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Kore",
+          "provider": "gemini"
+        },
+        "utterance": "That episode should download now.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Great, I'll check my phone."
+          },
+          {
+            "id": "b",
+            "text": "The show starts at eight."
+          },
+          {
+            "id": "c",
+            "text": "My headphones need charging."
+          },
+          {
+            "id": "d",
+            "text": "I already renewed my pass."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "function",
+        "explanationZh": "對方告知節目應可下載,合宜回應應表示會查看手機,其餘無關。"
+      }
+    ],
+    "conversations": [
+      {
+        "id": "r-cv-01",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-fc96bdab/r-cv-01.mp3",
+        "setting": "small marketing agency conference room during a client budget review",
+        "speakers": [
+          {
+            "id": "r-cv-01-a",
+            "role": "marketing coordinator",
+            "gender": "female",
+            "accent": "british",
+            "voice": "Zephyr",
+            "provider": "gemini"
+          },
+          {
+            "id": "r-cv-01-b",
+            "role": "company manager",
+            "gender": "male",
+            "accent": "australian",
+            "voice": "Umbriel",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "r-cv-01-a",
+            "text": "Thanks for meeting on short notice. The client called this morning — they want to cut the campaign budget by twenty percent starting next month."
+          },
+          {
+            "speakerId": "r-cv-01-b",
+            "text": "Twenty percent is significant. Did they say why?"
+          },
+          {
+            "speakerId": "r-cv-01-a",
+            "text": "Their sales dipped last quarter, so leadership froze new spending. They still want results, though."
+          },
+          {
+            "speakerId": "r-cv-01-b",
+            "text": "Then we can't keep the same scope. Let's drop the print ads and focus only on social media and email."
+          },
+          {
+            "speakerId": "r-cv-01-a",
+            "text": "That should cut costs enough. Should I tell them we're keeping the launch date?"
+          },
+          {
+            "speakerId": "r-cv-01-b",
+            "text": "Yes, keep the date, but flag that impressions will likely be lower with the smaller budget."
+          },
+          {
+            "speakerId": "r-cv-01-a",
+            "text": "I'll draft a revised proposal today and send it before our call tomorrow."
+          }
+        ],
+        "questions": [
+          {
+            "id": "r-cv-01-q1",
+            "stem": "What is the main topic of the conversation?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Complaining about a client's overdue payment history"
+              },
+              {
+                "id": "b",
+                "text": "Picking a launch date for a new product"
+              },
+              {
+                "id": "c",
+                "text": "Hiring a new employee for the marketing team"
+              },
+              {
+                "id": "d",
+                "text": "Reworking a campaign after a budget cut"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "gist",
+            "explanationZh": "對話一開始即說明客戶要求砍預算兩成,兩人接著討論刪減印刷廣告、僅保留社群與電子郵件,是在調整專案範圍以因應預算削減,其餘選項均未於對話中提及。"
+          },
+          {
+            "id": "r-cv-01-q2",
+            "stem": "What does the manager propose cutting from the campaign?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The launch event"
+              },
+              {
+                "id": "b",
+                "text": "Email newsletters"
+              },
+              {
+                "id": "c",
+                "text": "Print ads"
+              },
+              {
+                "id": "d",
+                "text": "Social media posts"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "經理提議刪除的是印刷廣告,保留社群與電子郵件行銷,對話中明確提到。"
+          }
+        ]
+      },
+      {
+        "id": "r-cv-02",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-fc96bdab/r-cv-02.mp3",
+        "setting": "regional train station platform after a missed connecting train",
+        "speakers": [
+          {
+            "id": "r-cv-02-a",
+            "role": "traveler",
+            "gender": "male",
+            "accent": "north-american",
+            "voice": "Zubenelgenubi",
+            "provider": "gemini"
+          },
+          {
+            "id": "r-cv-02-b",
+            "role": "train station service agent",
+            "gender": "female",
+            "accent": "british",
+            "voice": "Sulafat",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "r-cv-02-a",
+            "text": "Excuse me, my connecting train left five minutes before I got here. Is there another one today?"
+          },
+          {
+            "speakerId": "r-cv-02-b",
+            "text": "Let me check... yes, there's a later train, but it goes through a different route with one transfer."
+          },
+          {
+            "speakerId": "r-cv-02-a",
+            "text": "Will I still reach the city by tonight?"
+          },
+          {
+            "speakerId": "r-cv-02-b",
+            "text": "You should arrive by nine, about two hours later than planned. I can rebook you at no extra charge since the connection was missed due to the earlier delay."
+          },
+          {
+            "speakerId": "r-cv-02-a",
+            "text": "That works. Can I keep my seat near the window?"
+          },
+          {
+            "speakerId": "r-cv-02-b",
+            "text": "I'll note that, though it isn't guaranteed on this route. Here's your new ticket — boarding starts in twenty minutes."
+          },
+          {
+            "speakerId": "r-cv-02-a",
+            "text": "Thank you for sorting this out so quickly."
+          }
+        ],
+        "questions": [
+          {
+            "id": "r-cv-02-q1",
+            "stem": "What is the traveler's main problem?",
+            "options": [
+              {
+                "id": "a",
+                "text": "He missed his connecting train and needs another"
+              },
+              {
+                "id": "b",
+                "text": "He wants a refund for his canceled trip"
+              },
+              {
+                "id": "c",
+                "text": "He lost the ticket for his original journey"
+              },
+              {
+                "id": "d",
+                "text": "He is unhappy about his assigned seat choice"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "gist",
+            "explanationZh": "旅客的接駁列車已於抵達前離站,因此需要改搭另一班車,其餘選項均與對話內容不符。"
+          },
+          {
+            "id": "r-cv-02-q2",
+            "stem": "What does the agent say about the cost of the new ticket?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It requires a small transfer fee"
+              },
+              {
+                "id": "b",
+                "text": "There is no extra charge"
+              },
+              {
+                "id": "c",
+                "text": "It must be paid at the counter"
+              },
+              {
+                "id": "d",
+                "text": "It costs twice as much"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "站務員明確表示因誤點造成的改票不另外收費。"
+          }
+        ]
+      },
+      {
+        "id": "r-cv-03",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-fc96bdab/r-cv-03.mp3",
+        "setting": "wellness clinic exercise room during a post-injury check-in",
+        "speakers": [
+          {
+            "id": "r-cv-03-a",
+            "role": "personal trainer",
+            "gender": "male",
+            "accent": "australian",
+            "voice": "Fenrir",
+            "provider": "gemini"
+          },
+          {
+            "id": "r-cv-03-b",
+            "role": "clinic client",
+            "gender": "female",
+            "accent": "north-american",
+            "voice": "Callirrhoe",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "r-cv-03-a",
+            "text": "How did that shoulder stretch feel just now?"
+          },
+          {
+            "speakerId": "r-cv-03-b",
+            "text": "Honestly, it pulled a bit more than I expected. I felt some tightness."
+          },
+          {
+            "speakerId": "r-cv-03-a",
+            "text": "Okay, let's back off that one. We'll swap it for a gentler seated stretch instead."
+          },
+          {
+            "speakerId": "r-cv-03-b",
+            "text": "Will that still help with my recovery?"
+          },
+          {
+            "speakerId": "r-cv-03-a",
+            "text": "Yes, it targets the same muscles but with less strain on the joint. We'll build back up gradually."
+          },
+          {
+            "speakerId": "r-cv-03-b",
+            "text": "That sounds safer. Should I still do my other exercises today?"
+          },
+          {
+            "speakerId": "r-cv-03-a",
+            "text": "Go ahead with the rest of the routine, just skip anything that causes sharp pain."
+          }
+        ],
+        "questions": [
+          {
+            "id": "r-cv-03-q1",
+            "stem": "Why does the trainer change the client's exercise?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The client wants a harder workout"
+              },
+              {
+                "id": "b",
+                "text": "The equipment is broken"
+              },
+              {
+                "id": "c",
+                "text": "The original stretch caused too much strain"
+              },
+              {
+                "id": "d",
+                "text": "The session is running out of time"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "gist",
+            "explanationZh": "教練因該伸展動作造成過度緊繃而更換動作,其餘選項未提及。"
+          },
+          {
+            "id": "r-cv-03-q2",
+            "stem": "What can be inferred about the client's injury?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It is not fully healed"
+              },
+              {
+                "id": "b",
+                "text": "It was never actually injured"
+              },
+              {
+                "id": "c",
+                "text": "It happened during this new session"
+              },
+              {
+                "id": "d",
+                "text": "It will need surgical repair soon"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "教練因學員拉伸時感到緊繃而立即換成更溫和的動作,可推斷其傷勢尚未完全康復,需謹慎恢復。"
+          }
+        ]
+      }
+    ],
+    "announcements": [
+      {
+        "id": "r-an-01",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-fc96bdab/r-an-01.mp3",
+        "setting": "company-wide staff message announcing an updated employee equipment reimbursement policy",
+        "speaker": {
+          "id": "r-an-01-spk",
+          "role": "company operations director",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Algieba",
+          "provider": "gemini"
+        },
+        "transcript": "Starting next month, our equipment reimbursement policy is changing. The maximum expense limit rises from two hundred to three hundred fifty dollars per employee. All receipts must now be submitted through the updated company portal rather than by email. Approvals will take up to five business days. If you have questions, contact the operations office directly. This change applies to all departments company-wide.",
+        "questions": [
+          {
+            "id": "r-an-01-q1",
+            "stem": "What is the new maximum reimbursement limit?",
+            "options": [
+              {
+                "id": "a",
+                "text": "$350"
+              },
+              {
+                "id": "b",
+                "text": "$200"
+              },
+              {
+                "id": "c",
+                "text": "$150"
+              },
+              {
+                "id": "d",
+                "text": "$500"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "公告明確指出新的報銷上限為三百五十美元。"
+          },
+          {
+            "id": "r-an-01-q2",
+            "stem": "Why does the speaker mention the company portal?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To identify the required method for submitting receipts"
+              },
+              {
+                "id": "b",
+                "text": "To promote a newly launched employee rewards program with extra perks"
+              },
+              {
+                "id": "c",
+                "text": "To gather employee opinions on the newly redesigned interface"
+              },
+              {
+                "id": "d",
+                "text": "To alert staff to a temporary company website outage"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "function",
+            "explanationZh": "提及入口網站是為了說明收據現在必須改用這個新系統提交，而非透過電子郵件寄送。"
+          }
+        ]
+      },
+      {
+        "id": "r-an-02",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-fc96bdab/r-an-02.mp3",
+        "setting": "laboratory facilities newsletter announcing new energy-efficient equipment installation",
+        "speaker": {
+          "id": "r-an-02-spk",
+          "role": "laboratory facilities director",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Despina",
+          "provider": "gemini"
+        },
+        "transcript": "This week, our labs are installing new energy-efficient cooling units to replace the outdated systems. The upgrade is expected to reduce equipment downtime significantly, since the current units overheat during long experiments. Installation will happen in stages, lab by lab, over the next two weeks. Researchers should expect brief power interruptions during their scheduled installation window. We appreciate your patience during this transition.",
+        "questions": [
+          {
+            "id": "r-an-02-q1",
+            "stem": "What is this announcement mainly about?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A required safety training session for staff"
+              },
+              {
+                "id": "b",
+                "text": "Adjusted operating hours for the laboratories"
+              },
+              {
+                "id": "c",
+                "text": "A funding cut affecting current research projects"
+              },
+              {
+                "id": "d",
+                "text": "New cooling equipment installed in the labs"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "gist",
+            "explanationZh": "公告開頭即說明各實驗室正在安裝新的節能冷卻設備,以取代舊系統,這是全文主旨。"
+          },
+          {
+            "id": "r-an-02-q2",
+            "stem": "What should researchers expect during installation?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Complete lab closures for a month"
+              },
+              {
+                "id": "b",
+                "text": "Brief power interruptions"
+              },
+              {
+                "id": "c",
+                "text": "Mandatory relocation to another building"
+              },
+              {
+                "id": "d",
+                "text": "A permanent increase in equipment fees"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "公告提到研究人員在安裝期間應預期短暫斷電。"
+          }
+        ]
+      },
+      {
+        "id": "r-an-03",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-fc96bdab/r-an-03.mp3",
+        "setting": "clinic front desk display announcing an extended stress-management workshop series",
+        "speaker": {
+          "id": "r-an-03-spk",
+          "role": "clinic wellness program coordinator",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Achird",
+          "provider": "gemini"
+        },
+        "transcript": "Good news for anyone interested in our stress-management workshops — the series is being extended through the end of the year. We're also adding a new evening session every Wednesday to accommodate people who work during the day. Both morning and evening sessions cover the same material, so you only need to attend one. Sign up at the front desk or through our online portal.",
+        "questions": [
+          {
+            "id": "r-an-03-q1",
+            "stem": "What new session is being added?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A daily lunchtime session"
+              },
+              {
+                "id": "b",
+                "text": "A weekend retreat"
+              },
+              {
+                "id": "c",
+                "text": "A Wednesday evening session"
+              },
+              {
+                "id": "d",
+                "text": "A Saturday morning session"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "公告提到新增的是每週三的晚間場次。"
+          },
+          {
+            "id": "r-an-03-q2",
+            "stem": "Why does the speaker mention that morning and evening sessions cover the same material?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To apologize for a canceled session"
+              },
+              {
+                "id": "b",
+                "text": "To clarify that attendees only need to attend one session"
+              },
+              {
+                "id": "c",
+                "text": "To recommend attending both sessions for full credit"
+              },
+              {
+                "id": "d",
+                "text": "To explain a scheduling conflict"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "function",
+            "explanationZh": "提及晨間與晚間內容相同,是為了說明只需擇一參加即可。"
+          }
+        ]
+      }
+    ],
+    "academicTalks": [
+      {
+        "id": "r-at-01",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-fc96bdab/r-at-01.mp3",
+        "discipline": "organizational psychology",
+        "speaker": {
+          "id": "r-at-01-spk",
+          "role": "organizational psychology lecturer",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Erinome",
+          "provider": "gemini"
+        },
+        "transcript": "Today I want to discuss a recent workplace study on flexible break scheduling. Researchers worked with a mid-sized company where employees had traditionally taken breaks at fixed times — say, a ten-minute break every two hours regardless of workload. In the study, one group of employees was allowed to choose when to take short breaks, as long as they took a similar total amount of break time. After eight weeks, researchers compared error rates and self-reported focus levels between the flexible group and the fixed-schedule group. The flexible group reported significantly better focus during afternoon hours, when attention typically declines. They also made noticeably fewer errors on tasks requiring sustained attention, such as data entry and proofreading. Interestingly, the total amount of break time didn't change — only the timing did. The researchers suggest that letting employees break when they personally feel fatigued, rather than on a fixed clock, helps them return to work with sharper attention. However, the study only examined desk-based roles, so it's unclear whether the same benefits would appear in jobs requiring constant customer interaction.",
+        "questions": [
+          {
+            "id": "r-at-01-q1",
+            "stem": "What is the main topic of this talk?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A comparison of employee salary and benefits packages"
+              },
+              {
+                "id": "b",
+                "text": "A survey of company policies on remote customer service"
+              },
+              {
+                "id": "c",
+                "text": "A history of how office break-room facilities have changed"
+              },
+              {
+                "id": "d",
+                "text": "A workplace study on flexible break timing and focus"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "gist",
+            "explanationZh": "本篇主旨為彈性休息時間安排如何影響職場專注力的研究,比較固定休息與彈性休息兩組員工的表現差異。"
+          },
+          {
+            "id": "r-at-01-q2",
+            "stem": "What did the flexible group show fewer of, according to the study?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Sick days taken during the eight-week study"
+              },
+              {
+                "id": "b",
+                "text": "Scheduled meetings attended each afternoon"
+              },
+              {
+                "id": "c",
+                "text": "The total number of hours worked per week"
+              },
+              {
+                "id": "d",
+                "text": "Errors on tasks needing sustained attention"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "研究顯示彈性組在需要持續專注的任務(如資料輸入、校對)中犯的錯誤較少,而不是工時、病假或會議次數的差異。"
+          },
+          {
+            "id": "r-at-01-q3",
+            "stem": "What can be inferred about the fixed-schedule group's afternoon performance?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It improved more than the flexible group's afternoon performance did."
+              },
+              {
+                "id": "b",
+                "text": "It was never actually measured by the researchers in this study."
+              },
+              {
+                "id": "c",
+                "text": "It was probably weaker."
+              },
+              {
+                "id": "d",
+                "text": "It remained exactly the same as morning performance levels."
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "由於彈性組下午專注力與錯誤率明顯較佳,可推論固定時間組在下午的表現可能較弱,而非進步更多、未被測量或與早上完全相同。"
+          },
+          {
+            "id": "r-at-01-q4",
+            "stem": "What limitation does the speaker mention about the study?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It did not measure error rates"
+              },
+              {
+                "id": "b",
+                "text": "It only examined desk-based roles"
+              },
+              {
+                "id": "c",
+                "text": "It only included new employees"
+              },
+              {
+                "id": "d",
+                "text": "It lasted only one week"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "講者提到此研究僅涵蓋辦公室性質的工作,具有侷限性。"
+          }
+        ]
+      }
+    ]
+  },
+  "lowerModule": {
+    "timeLimitSec": 420,
+    "listenChoose": [
+      {
+        "id": "l-lc-01",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/l-lc-01.mp3",
+        "speaker": {
+          "id": "l-lc-01-spk",
+          "role": "museum front desk staffer",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Puck",
+          "provider": "gemini"
+        },
+        "utterance": "Groups of ten get a discount.",
+        "options": [
+          {
+            "id": "a",
+            "text": "I already bought a poster."
+          },
+          {
+            "id": "b",
+            "text": "Perfect, that's twelve of us."
+          },
+          {
+            "id": "c",
+            "text": "The exhibit closes in June."
+          },
+          {
+            "id": "d",
+            "text": "My ticket got damaged."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "function",
+        "explanationZh": "對方說明十人以上享團體折扣,合宜回應應說明己方人數符合資格,其餘三項分別談展期、紀念品與票券損壞,均與折扣資訊無關。"
+      },
+      {
+        "id": "l-lc-02",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/l-lc-02.mp3",
+        "speaker": {
+          "id": "l-lc-02-spk",
+          "role": "theater staff member",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Vindemiatrix",
+          "provider": "gemini"
+        },
+        "utterance": "We can store your instrument backstage.",
+        "options": [
+          {
+            "id": "a",
+            "text": "One less thing to carry."
+          },
+          {
+            "id": "b",
+            "text": "The stage lights need adjusting now."
+          },
+          {
+            "id": "c",
+            "text": "I forgot my music sheets today."
+          },
+          {
+            "id": "d",
+            "text": "The rehearsal ran late tonight."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "function",
+        "explanationZh": "劇院人員提議代為存放樂器,合宜回應應表達不必再攜帶樂器的輕鬆感,其餘選項分別談排練、樂譜與燈光,均與此提議無關。"
+      },
+      {
+        "id": "l-lc-03",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/l-lc-03.mp3",
+        "speaker": {
+          "id": "l-lc-03-spk",
+          "role": "clinic front desk staffer",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Rasalgethi",
+          "provider": "gemini"
+        },
+        "utterance": "I moved your visit to Thursday.",
+        "options": [
+          {
+            "id": "a",
+            "text": "My prescription already refilled."
+          },
+          {
+            "id": "b",
+            "text": "The gym opens at six."
+          },
+          {
+            "id": "c",
+            "text": "That works better for me."
+          },
+          {
+            "id": "d",
+            "text": "I lost my insurance card."
+          }
+        ],
+        "correctOptionId": "c",
+        "skill": "function",
+        "explanationZh": "診所人員告知已改期,合宜回應應表示新時間更方便,其餘無關。"
+      },
+      {
+        "id": "l-lc-04",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/l-lc-04.mp3",
+        "speaker": {
+          "id": "l-lc-04-spk",
+          "role": "fitness center staff member",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Laomedeia",
+          "provider": "gemini"
+        },
+        "utterance": "That class is full right now.",
+        "options": [
+          {
+            "id": "a",
+            "text": "The pool actually closes at nine tonight."
+          },
+          {
+            "id": "b",
+            "text": "I already froze my membership for winter."
+          },
+          {
+            "id": "c",
+            "text": "My locker key went missing yesterday."
+          },
+          {
+            "id": "d",
+            "text": "Please put me on the waitlist."
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "function",
+        "explanationZh": "對方告知課程額滿,合宜回應應要求加入候補名單,其餘選項皆答非所問。"
+      },
+      {
+        "id": "l-lc-05",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/l-lc-05.mp3",
+        "speaker": {
+          "id": "l-lc-05-spk",
+          "role": "train station staff member",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Iapetus",
+          "provider": "gemini"
+        },
+        "utterance": "Your train arrived two hours late.",
+        "options": [
+          {
+            "id": "a",
+            "text": "My seat number changed twice today."
+          },
+          {
+            "id": "b",
+            "text": "I already checked in online yesterday."
+          },
+          {
+            "id": "c",
+            "text": "So can I get a refund?"
+          },
+          {
+            "id": "d",
+            "text": "The bags all fit fine actually."
+          }
+        ],
+        "correctOptionId": "c",
+        "skill": "inference",
+        "explanationZh": "對方告知列車誤點兩小時,合宜回應應追問能否退費,其餘選項與情境無關。"
+      }
+    ],
+    "conversations": [
+      {
+        "id": "l-cv-01",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-fc96bdab/l-cv-01.mp3",
+        "setting": "local newsroom digital editing bay before an evening broadcast deadline",
+        "speakers": [
+          {
+            "id": "l-cv-01-a",
+            "role": "video editor",
+            "gender": "female",
+            "accent": "british",
+            "voice": "Leda",
+            "provider": "gemini"
+          },
+          {
+            "id": "l-cv-01-b",
+            "role": "reporter",
+            "gender": "male",
+            "accent": "australian",
+            "voice": "Umbriel",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "l-cv-01-a",
+            "text": "I can't find the clip from this afternoon's interview. It's not in the shared folder."
+          },
+          {
+            "speakerId": "l-cv-01-b",
+            "text": "That's strange, I uploaded it right after we finished filming."
+          },
+          {
+            "speakerId": "l-cv-01-a",
+            "text": "Wait, I found it — it was saved under the wrong date. Give me a minute to move it."
+          },
+          {
+            "speakerId": "l-cv-01-b",
+            "text": "No problem. While you do that, can we confirm the segment order for tonight?"
+          },
+          {
+            "speakerId": "l-cv-01-a",
+            "text": "Sure, I think the interview goes first, then the weather update, then your closing remarks."
+          },
+          {
+            "speakerId": "l-cv-01-b",
+            "text": "That works for me. We go live in fifteen minutes, so let's move quickly."
+          },
+          {
+            "speakerId": "l-cv-01-a",
+            "text": "Almost done — the clip is loading into the system now."
+          }
+        ],
+        "questions": [
+          {
+            "id": "l-cv-01-q1",
+            "stem": "What problem does the editor first encounter?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A video clip went missing"
+              },
+              {
+                "id": "b",
+                "text": "A reporter missed the interview"
+              },
+              {
+                "id": "c",
+                "text": "A studio camera stopped working"
+              },
+              {
+                "id": "d",
+                "text": "A broadcast signal suddenly failed"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "gist",
+            "explanationZh": "對話一開始，剪輯師表示找不到當天訪談的影片檔案，這是他遇到的第一個問題。"
+          },
+          {
+            "id": "l-cv-01-q2",
+            "stem": "What is the correct segment order they agree on?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Interview, weather, closing remarks"
+              },
+              {
+                "id": "b",
+                "text": "Interview, closing remarks, weather"
+              },
+              {
+                "id": "c",
+                "text": "Closing remarks, interview, weather"
+              },
+              {
+                "id": "d",
+                "text": "Weather, interview, closing remarks"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "兩人確認的播出順序為訪談、天氣、結尾致詞。"
+          }
+        ]
+      },
+      {
+        "id": "l-cv-02",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-fc96bdab/l-cv-02.mp3",
+        "setting": "local art gallery back room before an opening reception",
+        "speakers": [
+          {
+            "id": "l-cv-02-a",
+            "role": "gallery coordinator",
+            "gender": "male",
+            "accent": "north-american",
+            "voice": "Zubenelgenubi",
+            "provider": "gemini"
+          },
+          {
+            "id": "l-cv-02-b",
+            "role": "visiting artist",
+            "gender": "female",
+            "accent": "british",
+            "voice": "Sulafat",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "l-cv-02-a",
+            "text": "One of the frames cracked during transport. It's the large painting near the entrance."
+          },
+          {
+            "speakerId": "l-cv-02-b",
+            "text": "Oh no, is the canvas itself damaged?"
+          },
+          {
+            "speakerId": "l-cv-02-a",
+            "text": "No, just the frame. I can attach a temporary support before the reception tonight."
+          },
+          {
+            "speakerId": "l-cv-02-b",
+            "text": "Will visitors even notice, or should we move it further back?"
+          },
+          {
+            "speakerId": "l-cv-02-a",
+            "text": "The fix should be barely visible. I'll place a small plant near the corner just in case."
+          },
+          {
+            "speakerId": "l-cv-02-b",
+            "text": "That sounds reasonable. Can you have it ready before guests arrive?"
+          },
+          {
+            "speakerId": "l-cv-02-a",
+            "text": "Yes, I'll finish within the hour, well before the doors open."
+          }
+        ],
+        "questions": [
+          {
+            "id": "l-cv-02-q1",
+            "stem": "What is the coordinator's main task in this conversation?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Rehanging every painting in the gallery"
+              },
+              {
+                "id": "b",
+                "text": "Repairing a damaged picture frame before an event"
+              },
+              {
+                "id": "c",
+                "text": "Rescheduling the opening reception"
+              },
+              {
+                "id": "d",
+                "text": "Ordering new frames for future exhibits"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "gist",
+            "explanationZh": "協調員的主要任務是在活動前修復受損的畫框。"
+          },
+          {
+            "id": "l-cv-02-q2",
+            "stem": "What does the coordinator plan to use to help hide the repair?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A new curtain"
+              },
+              {
+                "id": "b",
+                "text": "A small plant"
+              },
+              {
+                "id": "c",
+                "text": "Extra lighting"
+              },
+              {
+                "id": "d",
+                "text": "A larger frame"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "協調員提到會用小盆栽稍微遮掩修補痕跡。"
+          }
+        ]
+      }
+    ],
+    "announcements": [
+      {
+        "id": "l-an-01",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-fc96bdab/l-an-01.mp3",
+        "setting": "bus terminal overhead announcement describing a temporary ticket counter relocation",
+        "speaker": {
+          "id": "l-an-01-spk",
+          "role": "bus terminal operations announcer",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Callirrhoe",
+          "provider": "gemini"
+        },
+        "transcript": "Attention passengers: due to ongoing station renovations, the main ticket counter has moved to a temporary location near gate twelve. This relocation will remain in effect until renovations are complete, expected in about six weeks. Ticket machines near the original counter remain available for those who prefer self-service. We apologize for any inconvenience and thank you for your patience.",
+        "questions": [
+          {
+            "id": "l-an-01-q1",
+            "stem": "What is this announcement mainly about?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A weather-related travel delay"
+              },
+              {
+                "id": "b",
+                "text": "A new frequent-traveler discount"
+              },
+              {
+                "id": "c",
+                "text": "A temporary ticket counter move"
+              },
+              {
+                "id": "d",
+                "text": "A canceled bus route change"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "gist",
+            "explanationZh": "公告主旨是售票櫃檯因車站整修暫時遷移至十二號登機門附近的臨時地點，約六週後恢復原位。"
+          },
+          {
+            "id": "l-an-01-q2",
+            "stem": "How long is the ticket counter expected to remain relocated?",
+            "options": [
+              {
+                "id": "a",
+                "text": "About six weeks"
+              },
+              {
+                "id": "b",
+                "text": "About six months"
+              },
+              {
+                "id": "c",
+                "text": "Indefinitely"
+              },
+              {
+                "id": "d",
+                "text": "About six days"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "公告指出遷移預計持續約六週。"
+          }
+        ]
+      },
+      {
+        "id": "l-an-02",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-fc96bdab/l-an-02.mp3",
+        "setting": "heritage society radio segment announcing new historical trail marker installations",
+        "speaker": {
+          "id": "l-an-02-spk",
+          "role": "heritage society project director",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Algieba",
+          "provider": "gemini"
+        },
+        "transcript": "Our heritage society has just completed installing new markers along the downtown walking trail. Each marker explains a site connected to the city's early reform movement, including the original meeting hall and the printing office. The markers include short historical summaries and, for those with smartphones, a code linking to further reading. We invite residents to explore the trail this month.",
+        "questions": [
+          {
+            "id": "l-an-02-q1",
+            "stem": "What historical topic do the new markers focus on?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The founding of the heritage society"
+              },
+              {
+                "id": "b",
+                "text": "The city's early reform movement"
+              },
+              {
+                "id": "c",
+                "text": "A local sports history"
+              },
+              {
+                "id": "d",
+                "text": "A recent construction project"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "新設立的解說牌聚焦於城市早期的改革運動歷史。"
+          },
+          {
+            "id": "l-an-02-q2",
+            "stem": "Why does the speaker mention the smartphone code?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To advertise a new mobile app"
+              },
+              {
+                "id": "b",
+                "text": "To explain how visitors can access more information"
+              },
+              {
+                "id": "c",
+                "text": "To warn about limited phone service"
+              },
+              {
+                "id": "d",
+                "text": "To announce a fee for trail access"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "function",
+            "explanationZh": "提及手機條碼是為了說明民眾可藉此取得更多資訊。"
+          }
+        ]
+      }
+    ],
+    "academicTalks": []
+  },
+  "upperModule": {
+    "timeLimitSec": 660,
+    "listenChoose": [
+      {
+        "id": "u-lc-01",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/u-lc-01.mp3",
+        "speaker": {
+          "id": "u-lc-01-spk",
+          "role": "hotel front desk agent",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Gacrux",
+          "provider": "gemini"
+        },
+        "utterance": "Early check-in should be possible today.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Wonderful, what time works?"
+          },
+          {
+            "id": "b",
+            "text": "I already paid the deposit."
+          },
+          {
+            "id": "c",
+            "text": "My flight lands next week."
+          },
+          {
+            "id": "d",
+            "text": "The pool closes at midnight."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "function",
+        "explanationZh": "櫃檯人員表示今日可提早入住,合宜回應應簡短詢問可入住的時間,其餘選項分別談泳池、押金與航班,均與此議題無關。"
+      },
+      {
+        "id": "u-lc-02",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/u-lc-02.mp3",
+        "speaker": {
+          "id": "u-lc-02-spk",
+          "role": "heritage society staff member",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Fenrir",
+          "provider": "gemini"
+        },
+        "utterance": "We'd gladly accept that family letter.",
+        "options": [
+          {
+            "id": "a",
+            "text": "I already renewed my membership."
+          },
+          {
+            "id": "b",
+            "text": "The exhibit runs through fall."
+          },
+          {
+            "id": "c",
+            "text": "The archive computer crashed."
+          },
+          {
+            "id": "d",
+            "text": "Great, when's a good time?"
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "function",
+        "explanationZh": "對方同意接受家族信件捐贈,合宜回應應簡短詢問送交的時間,其餘選項分別談展期、會員與設備故障,均與此捐贈事宜無關。"
+      },
+      {
+        "id": "u-lc-03",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/u-lc-03.mp3",
+        "speaker": {
+          "id": "u-lc-03-spk",
+          "role": "historical society staff member",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Despina",
+          "provider": "gemini"
+        },
+        "utterance": "Our reading room now stays open later.",
+        "options": [
+          {
+            "id": "a",
+            "text": "The tour starts at noon."
+          },
+          {
+            "id": "b",
+            "text": "The genealogy records were sealed."
+          },
+          {
+            "id": "c",
+            "text": "I already returned the microfilm."
+          },
+          {
+            "id": "d",
+            "text": "Good, I'll swing by then."
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "function",
+        "explanationZh": "對方告知閱覽室延長開放,合宜回應應簡短表示稍後會前往,其餘選項分別談封存紀錄、微縮膠捲與導覽時間,均與開放時間變更無關。"
+      },
+      {
+        "id": "u-lc-04",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/u-lc-04.mp3",
+        "speaker": {
+          "id": "u-lc-04-spk",
+          "role": "laundromat staff member",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Alnilam",
+          "provider": "gemini"
+        },
+        "utterance": "I found a shirt matching your description.",
+        "options": [
+          {
+            "id": "a",
+            "text": "I already paid for two full loads today."
+          },
+          {
+            "id": "b",
+            "text": "My laundry detergent ran out yesterday morning."
+          },
+          {
+            "id": "c",
+            "text": "That's mine, thanks for checking."
+          },
+          {
+            "id": "d",
+            "text": "The washing machine's been broken for weeks now."
+          }
+        ],
+        "correctOptionId": "c",
+        "skill": "inference",
+        "explanationZh": "對方描述找到符合特徵的襯衫,合宜回應應確認那是自己的物品,其餘無關。"
+      },
+      {
+        "id": "u-lc-05",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-fc96bdab/u-lc-05.mp3",
+        "speaker": {
+          "id": "u-lc-05-spk",
+          "role": "apartment building staff member",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Autonoe",
+          "provider": "gemini"
+        },
+        "utterance": "Your delivery alert was sent late.",
+        "options": [
+          {
+            "id": "a",
+            "text": "My mailbox key is bent."
+          },
+          {
+            "id": "b",
+            "text": "I already renewed my lease."
+          },
+          {
+            "id": "c",
+            "text": "The elevator's under maintenance."
+          },
+          {
+            "id": "d",
+            "text": "Ah, that explains the confusion."
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "inference",
+        "explanationZh": "對方說明包裹到貨通知延誤發送,合宜回應應表示這解釋了先前的困惑,其餘無關。"
+      }
+    ],
+    "conversations": [
+      {
+        "id": "u-cv-01",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-fc96bdab/u-cv-01.mp3",
+        "setting": "municipal recycling center before a community composting program launch",
+        "speakers": [
+          {
+            "id": "u-cv-01-a",
+            "role": "municipal outreach coordinator",
+            "gender": "female",
+            "accent": "north-american",
+            "voice": "Zephyr",
+            "provider": "gemini"
+          },
+          {
+            "id": "u-cv-01-b",
+            "role": "local shop owner",
+            "gender": "male",
+            "accent": "british",
+            "voice": "Achird",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "u-cv-01-a",
+            "text": "Thanks for offering to donate those composting bins to the neighborhood program."
+          },
+          {
+            "speakerId": "u-cv-01-b",
+            "text": "Happy to help. We have about fifteen extra bins sitting in storage."
+          },
+          {
+            "speakerId": "u-cv-01-a",
+            "text": "That's more than enough for our first round of placements. Where should we pick them up?"
+          },
+          {
+            "speakerId": "u-cv-01-b",
+            "text": "You can send a truck to my shop's loading dock anytime this week."
+          },
+          {
+            "speakerId": "u-cv-01-a",
+            "text": "We'll place the first batch near the community garden and the school entrance."
+          },
+          {
+            "speakerId": "u-cv-01-b",
+            "text": "Good choices — those spots get a lot of foot traffic."
+          },
+          {
+            "speakerId": "u-cv-01-a",
+            "text": "I'll send you a schedule once the placements are confirmed."
+          }
+        ],
+        "questions": [
+          {
+            "id": "u-cv-01-q1",
+            "stem": "What is the main purpose of this conversation?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Advertising the shop's upcoming clearance sale"
+              },
+              {
+                "id": "b",
+                "text": "Scheduling repairs for the loading dock shelves"
+              },
+              {
+                "id": "c",
+                "text": "Requesting a refund for damaged storage bins"
+              },
+              {
+                "id": "d",
+                "text": "Arranging the donation and placement of bins"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "gist",
+            "explanationZh": "對話一開始就在感謝對方捐贈堆肥桶,接著討論取貨地點與擺放位置(社區花園、學校門口),可知主旨是安排堆肥桶的捐贈與擺放,而非退款、修繕貨架或宣傳特賣活動。"
+          },
+          {
+            "id": "u-cv-01-q2",
+            "stem": "Where does the shop owner say the bins can be picked up?",
+            "options": [
+              {
+                "id": "a",
+                "text": "At the community garden"
+              },
+              {
+                "id": "b",
+                "text": "At his shop's loading dock"
+              },
+              {
+                "id": "c",
+                "text": "At the recycling center office"
+              },
+              {
+                "id": "d",
+                "text": "At the school entrance"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "店主表示可到店鋪的裝卸區領取堆肥桶。"
+          }
+        ]
+      },
+      {
+        "id": "u-cv-02",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-fc96bdab/u-cv-02.mp3",
+        "setting": "shared apartment hallway on a moving day",
+        "speakers": [
+          {
+            "id": "u-cv-02-a",
+            "role": "tenant",
+            "gender": "female",
+            "accent": "australian",
+            "voice": "Laomedeia",
+            "provider": "gemini"
+          },
+          {
+            "id": "u-cv-02-b",
+            "role": "neighbor",
+            "gender": "male",
+            "accent": "north-american",
+            "voice": "Iapetus",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "u-cv-02-a",
+            "text": "Since we're both getting moving trucks this weekend, want to split a temporary parking permit?"
+          },
+          {
+            "speakerId": "u-cv-02-b",
+            "text": "That's a good idea — how much does it cost?"
+          },
+          {
+            "speakerId": "u-cv-02-a",
+            "text": "About thirty dollars for the day, so fifteen each."
+          },
+          {
+            "speakerId": "u-cv-02-b",
+            "text": "Sounds fair. My truck should only need a spot for a couple of hours in the morning."
+          },
+          {
+            "speakerId": "u-cv-02-a",
+            "text": "Mine will probably need the space most of the afternoon."
+          },
+          {
+            "speakerId": "u-cv-02-b",
+            "text": "That should still work with one permit, as long as we coordinate the timing."
+          },
+          {
+            "speakerId": "u-cv-02-a",
+            "text": "I'll apply for it today and let you know once it's approved."
+          }
+        ],
+        "questions": [
+          {
+            "id": "u-cv-02-q1",
+            "stem": "Why does the tenant suggest splitting a parking permit?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Both need truck parking this weekend"
+              },
+              {
+                "id": "b",
+                "text": "The city recently raised parking fees"
+              },
+              {
+                "id": "c",
+                "text": "Each unit requires its own permit"
+              },
+              {
+                "id": "d",
+                "text": "Neither neighbor currently owns a car"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "gist",
+            "explanationZh": "房客提議分攤停車證,因為兩人這個週末都要租搬家卡車,需要臨時停車空間,合租一張證件可省下一半費用。"
+          },
+          {
+            "id": "u-cv-02-q2",
+            "stem": "How much will each neighbor pay for the permit?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Ten dollars"
+              },
+              {
+                "id": "b",
+                "text": "Thirty dollars"
+              },
+              {
+                "id": "c",
+                "text": "Fifteen dollars"
+              },
+              {
+                "id": "d",
+                "text": "Twenty-five dollars"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "對話提到租金總共三十美元，兩人平分，所以每人負擔十五美元。"
+          }
+        ]
+      }
+    ],
+    "announcements": [],
+    "academicTalks": [
+      {
+        "id": "u-at-01",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-fc96bdab/u-at-01.mp3",
+        "discipline": "transportation planning",
+        "speaker": {
+          "id": "u-at-01-spk",
+          "role": "transportation planning lecturer",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Orus",
+          "provider": "gemini"
+        },
+        "transcript": "Let's look at a study on real-time bus arrival displays and how they affect passengers' perception of waiting. Transportation planners installed digital displays at several bus stops showing the exact number of minutes until the next bus arrived, replacing static printed schedules. Researchers then surveyed passengers about how long their wait felt, and compared these responses to the actual wait times recorded. Even when actual wait times stayed the same, passengers at stops with the new displays reported feeling like they waited notably less time than passengers at stops without displays. Some riders explained that not knowing when the bus would arrive made uncertainty feel worse than the wait itself. Survey responses also showed less reported frustration and fewer complaints about missed connections. Interestingly, the effect was strongest at stops where wait times tended to be longer, suggesting the displays matter most when uncertainty would otherwise be greatest. The researchers concluded that giving passengers accurate, visible information reduces perceived wait time even without changing bus schedules at all.",
+        "questions": [
+          {
+            "id": "u-at-01-q1",
+            "stem": "What is this talk mainly about?",
+            "options": [
+              {
+                "id": "a",
+                "text": "How real-time arrival displays affect riders' sense of waiting"
+              },
+              {
+                "id": "b",
+                "text": "A survey measuring commuter satisfaction with printed schedules"
+              },
+              {
+                "id": "c",
+                "text": "A comparison of subway and bus fare structures across several major transit systems"
+              },
+              {
+                "id": "d",
+                "text": "A proposal to add new express bus routes downtown"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "gist",
+            "explanationZh": "本篇主旨為即時到站顯示器如何影響乘客對等候時間的感受,而非比較票價、增設路線或調查民眾對紙本時刻表的滿意度。"
+          },
+          {
+            "id": "u-at-01-q2",
+            "stem": "What did passengers report at stops with the new displays?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They complained that the new digital displays were confusing and hard to read during rush hour"
+              },
+              {
+                "id": "b",
+                "text": "They preferred the old printed schedules over the new digital displays"
+              },
+              {
+                "id": "c",
+                "text": "They said their wait felt shorter, although actual wait times stayed the same"
+              },
+              {
+                "id": "d",
+                "text": "They reported that actual wait times increased significantly at every stop"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "裝有顯示器站點的乘客表示等候感覺較短,即使實際等候時間並未改變;文中並未提及乘客抱怨顯示器難懂、偏好舊時刻表,或等候時間實際增加。"
+          },
+          {
+            "id": "u-at-01-q3",
+            "stem": "Why might uncertainty make waiting feel worse, based on the talk?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Uncertainty itself feels unpleasant to passengers"
+              },
+              {
+                "id": "b",
+                "text": "Passengers dislike interacting with digital screens at stops"
+              },
+              {
+                "id": "c",
+                "text": "Uncertainty causes buses to arrive further behind schedule"
+              },
+              {
+                "id": "d",
+                "text": "Uncertainty leads riders to pay higher fares for tickets"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "談話提到「not knowing when the bus would arrive made uncertainty feel worse than the wait itself」，可推論不確定性本身就會讓乘客感到不舒服，而非等待時間本身造成的。"
+          },
+          {
+            "id": "u-at-01-q4",
+            "stem": "Where was the effect of the displays strongest?",
+            "options": [
+              {
+                "id": "a",
+                "text": "At stops that had the highest number of daily passengers using them"
+              },
+              {
+                "id": "b",
+                "text": "At stops without printed schedules"
+              },
+              {
+                "id": "c",
+                "text": "At stops near train stations"
+              },
+              {
+                "id": "d",
+                "text": "At stops where riders already waited the longest"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "談話指出效果在「stops where wait times tended to be longer」最明顯，因為不確定性在那些地方本來就最高。"
+          }
+        ]
+      },
+      {
+        "id": "u-at-02",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-fc96bdab/u-at-02.mp3",
+        "discipline": "sleep science",
+        "speaker": {
+          "id": "u-at-02-spk",
+          "role": "sleep science lecturer",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Kore",
+          "provider": "gemini"
+        },
+        "transcript": "Our next topic is a clinic-based study on evening light exposure and sleep onset. Researchers asked participants to spend several evenings in rooms with different light conditions before bedtime — some under bright light, others under progressively dimmed light starting two hours before sleep. Each participant's time to fall asleep was measured using sleep-tracking equipment. Participants exposed to bright light in the evening took noticeably longer to fall asleep compared to those in the dimmed-light condition. On average, the dimmed-light group fell asleep about twenty minutes faster. Researchers believe this happens because bright light, especially from screens and overhead lighting, delays the body's natural release of a hormone that signals it's time to sleep. When researchers had the bright-light group switch to dimmed lighting on a later night, their sleep onset time improved as well, supporting the idea that the light itself, not some other personal factor, was driving the difference. The study suggests that simply dimming lights earlier in the evening could be a low-cost way to help people fall asleep faster.",
+        "questions": [
+          {
+            "id": "u-at-02-q1",
+            "stem": "What is the main focus of this talk?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A study comparing napping habits and mood"
+              },
+              {
+                "id": "b",
+                "text": "The effects of caffeine intake on sleep quality"
+              },
+              {
+                "id": "c",
+                "text": "How evening light exposure affects sleep onset speed"
+              },
+              {
+                "id": "d",
+                "text": "A comparison of different types of sleep-tracking equipment and monitoring devices"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "gist",
+            "explanationZh": "本篇主旨為傍晚光照如何影響入睡速度,呼應原文開頭「evening light exposure and sleep onset」。提到睡眠追蹤設備種類比較、咖啡因影響、午睡習慣與情緒的選項均與原文主旨無關,屬於干擾選項。"
+          },
+          {
+            "id": "u-at-02-q2",
+            "stem": "How much faster did the dimmed-light group fall asleep on average?",
+            "options": [
+              {
+                "id": "a",
+                "text": "About one hour"
+              },
+              {
+                "id": "b",
+                "text": "About forty-five minutes"
+              },
+              {
+                "id": "c",
+                "text": "About twenty minutes"
+              },
+              {
+                "id": "d",
+                "text": "About five minutes or so"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "原文提到\"the dimmed-light group fell asleep about twenty minutes faster\"，說明使用漸暗燈光的組別平均比對照組快二十分鐘入睡，故正確答案為「大約二十分鐘」。提到五分鐘、一小時、四十五分鐘的選項皆與原文所述的數字不符，原文全程只提及「二十分鐘」這個具體差距，並無其他時間長度的描述可以支持。"
+          },
+          {
+            "id": "u-at-02-q3",
+            "stem": "What does the follow-up test (switching the bright-light group to dimmed lighting) suggest?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The light itself caused the change, not personal factors"
+              },
+              {
+                "id": "b",
+                "text": "The sleep-tracking equipment produced inconsistent readings"
+              },
+              {
+                "id": "c",
+                "text": "Sleep onset time cannot be influenced by lighting changes"
+              },
+              {
+                "id": "d",
+                "text": "Participants preferred using bright light while reading"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "原文指出改為調暗燈光後入睡時間也隨之改善,\"supporting the idea that the light itself...was driving the difference\",顯示是光線本身造成差異。提到裝置讀數不一致、參與者偏好明亮光線、入睡時間無法改變的選項均與原文不符。"
+          },
+          {
+            "id": "u-at-02-q4",
+            "stem": "What does the speaker say bright light delays?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The body's process of digesting food eaten before bedtime"
+              },
+              {
+                "id": "b",
+                "text": "The onset of hunger"
+              },
+              {
+                "id": "c",
+                "text": "The release of a hormone that signals sleep"
+              },
+              {
+                "id": "d",
+                "text": "The body's morning wake-up signal"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "講者提到強光會延遲有助睡眠之荷爾蒙的釋放,原文為「delays the body's natural release of a hormone that signals it's time to sleep」。消化過程、飢餓感、晨間清醒訊號皆未在原文中提及,屬於無根據的干擾選項。"
+          }
+        ]
+      },
+      {
+        "id": "u-at-03",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-fc96bdab/u-at-03.mp3",
+        "discipline": "public administration",
+        "speaker": {
+          "id": "u-at-03-spk",
+          "role": "public administration lecturer",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Sadaltager",
+          "provider": "gemini"
+        },
+        "transcript": "Today's example comes from public administration research on volunteer retention. A city government introduced a digital tracking system for its volunteer programs, which sent an automated reminder text to volunteers the day before each scheduled shift. Previously, volunteers relied only on a printed calendar handed out at the start of each season. Researchers compared volunteer retention rates — meaning how many volunteers returned for a second shift — before and after the system was introduced. Retention rates rose noticeably after the reminder system began, with more volunteers showing up for shifts they had signed up for and returning for future shifts. Interviewed volunteers said the reminders made them feel more accountable and reduced the chance they'd simply forget a commitment. The city also reported fewer last-minute shift cancellations overall. Researchers note that the system's simplicity may explain its success — it required no extra training and worked through a channel, text messaging, that nearly every volunteer already used daily.",
+        "questions": [
+          {
+            "id": "u-at-03-q1",
+            "stem": "What is this talk mainly about?",
+            "options": [
+              {
+                "id": "a",
+                "text": "How an automated reminder system affected volunteer retention"
+              },
+              {
+                "id": "b",
+                "text": "A new law regulating city volunteer programs"
+              },
+              {
+                "id": "c",
+                "text": "A comparison of two cities' budgets"
+              },
+              {
+                "id": "d",
+                "text": "A study on volunteer recruitment advertising"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "gist",
+            "explanationZh": "本篇主旨為自動提醒系統如何影響志工留任率。"
+          },
+          {
+            "id": "u-at-03-q2",
+            "stem": "What did the city use before the digital tracking system?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A printed calendar handed out each season"
+              },
+              {
+                "id": "b",
+                "text": "A phone call from staff"
+              },
+              {
+                "id": "c",
+                "text": "An online sign-up form"
+              },
+              {
+                "id": "d",
+                "text": "A monthly newsletter"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "系統導入前,市府僅於每季發放紙本行事曆供志工參考。"
+          },
+          {
+            "id": "u-at-03-q3",
+            "stem": "Why does the speaker mention that reminders are sent by text messaging?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To suggest volunteers prefer phone calls"
+              },
+              {
+                "id": "b",
+                "text": "To explain a privacy concern"
+              },
+              {
+                "id": "c",
+                "text": "To criticize the city's technology budget"
+              },
+              {
+                "id": "d",
+                "text": "To explain why the system was easy for volunteers to use"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "function",
+            "explanationZh": "提及簡訊提醒是為了說明系統簡單易用、無需額外訓練。"
+          },
+          {
+            "id": "u-at-03-q4",
+            "stem": "What did volunteers say about the reminders in interviews?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The reminders were often inaccurate"
+              },
+              {
+                "id": "b",
+                "text": "The reminders should be sent by mail instead"
+              },
+              {
+                "id": "c",
+                "text": "The reminders made them feel more accountable"
+              },
+              {
+                "id": "d",
+                "text": "The reminders arrived too late to be useful"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "受訪志工表示提醒讓他們感覺更有責任感。"
+          }
+        ]
+      }
+    ]
+  },
+  "audioProfile": {
+    "version": "ets-2026-listening-v1",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview"
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "listening",
+    "listenChoose": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "course-section-switch-request",
+        "requiredConcepts": [
+          "course section switch approved by academic advisor"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior campus item covered an exam makeup request, not a course section switch"
+          }
+        ],
+        "topic": "switching a university course section request",
+        "speakerRole": "academic advising staff member handling a course section change request"
+      },
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "study-room-booking-extension",
+        "requiredConcepts": [
+          "student requests extended library study room booking"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior campus item covered a roommate change request, not a study room booking"
+          }
+        ],
+        "topic": "extending a campus library study room reservation",
+        "speakerRole": "campus library staff member handling a study room booking extension"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "office-equipment-replacement-request",
+        "requiredConcepts": [
+          "employee requests a replacement office keyboard"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior workplace item covered a deadline extension request, not equipment replacement"
+          }
+        ],
+        "topic": "employee requests a replacement office keyboard",
+        "speakerRole": "workplace office supply coordinator handling an equipment replacement request"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "company-invoice-discrepancy-inquiry",
+        "requiredConcepts": [
+          "customer questions a duplicate company invoice charge"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior workplace item covered a warranty claim delay, not an invoice dispute"
+          }
+        ],
+        "topic": "customer questions a duplicate workplace invoice charge",
+        "speakerRole": "company billing representative resolving an invoice discrepancy"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "streetlight-repair-status-inquiry",
+        "requiredConcepts": [
+          "resident follows up on a municipal streetlight repair report"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior civic item covered a park permit fee increase, not a streetlight repair"
+          }
+        ],
+        "topic": "following up on a municipal streetlight repair report",
+        "speakerRole": "municipal public works clerk giving a streetlight repair status update"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "neighborhood-cleanup-shift-signup",
+        "requiredConcepts": [
+          "volunteer signs up for a neighborhood cleanup shift"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior civic item covered a library card replacement, not a cleanup shift signup"
+          }
+        ],
+        "topic": "signing up for a neighborhood cleanup volunteer shift",
+        "speakerRole": "community center volunteer coordinator confirming a cleanup shift signup"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "laboratory-safety-goggle-loan",
+        "requiredConcepts": [
+          "requests safety goggles before a lab experiment"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior science item covered a trail closure report followup, not a goggle loan"
+          }
+        ],
+        "topic": "requesting safety goggles before a laboratory experiment",
+        "speakerRole": "laboratory supervisor handling a safety goggle loan request"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "habitat-survey-weather-delay-check",
+        "requiredConcepts": [
+          "habitat biodiversity survey may be delayed by weather"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior science item covered a lab equipment calibration check, not a weather delay"
+          }
+        ],
+        "topic": "checking whether a habitat biodiversity survey is delayed",
+        "speakerRole": "environmental research staffer confirming a habitat survey delay"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "online-account-password-reset-help",
+        "requiredConcepts": [
+          "reset an online account password via digital support"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior technology item covered a duplicate stream billing charge, not a password reset"
+          }
+        ],
+        "topic": "resetting an online account password through digital support",
+        "speakerRole": "online technical support agent handling a password reset request"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "podcast-episode-download-missing",
+        "requiredConcepts": [
+          "listener reports a missing downloaded podcast episode"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior technology item covered an app crash bug report, not a missing download"
+          }
+        ],
+        "topic": "reporting a missing downloaded podcast episode",
+        "speakerRole": "podcast platform support agent addressing a missing download"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "museum-gallery-group-discount-inquiry",
+        "requiredConcepts": [
+          "asks about a group discount for a museum gallery tour"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior arts item covered a rehearsal schedule conflict, not a group discount"
+          }
+        ],
+        "topic": "asking about a group discount for a museum gallery tour",
+        "speakerRole": "museum front desk staffer explaining a gallery group discount"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "theater-instrument-storage-request",
+        "requiredConcepts": [
+          "asks theater staff to store an instrument before a show"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior arts item covered an artist talk reservation, not instrument storage"
+          }
+        ],
+        "topic": "storing an instrument at a theater before a music festival show",
+        "speakerRole": "theater staff member handling instrument storage before a show"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "clinic-nutrition-reschedule-request",
+        "requiredConcepts": [
+          "patient asks to reschedule a nutrition consultation"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior health item covered a prescription refill request, not a general reschedule"
+          }
+        ],
+        "topic": "rescheduling a nutrition consultation at a wellness clinic",
+        "speakerRole": "clinic front desk staffer handling a nutrition consultation reschedule"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "fitness-class-waitlist-inquiry",
+        "requiredConcepts": [
+          "gym member asks about a waitlist for a full exercise class"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior health item covered a gym membership freeze request, not a class waitlist"
+          }
+        ],
+        "topic": "asking about a waitlist for a full exercise class",
+        "speakerRole": "fitness center staff member explaining an exercise class waitlist"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "train-ticket-refund-delay-inquiry",
+        "requiredConcepts": [
+          "traveler asks about a ticket refund after a delayed train"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior travel item covered an airline baggage fee, not a delay refund"
+          }
+        ],
+        "topic": "requesting a ticket refund after a delayed train",
+        "speakerRole": "train station staff member handling a delayed-train ticket refund"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "hotel-early-checkin-availability",
+        "requiredConcepts": [
+          "asks hotel front desk about early check-in availability"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior travel item covered a rental insurance addon, not early check-in"
+          }
+        ],
+        "topic": "asking a hotel front desk about early check-in availability",
+        "speakerRole": "hotel front desk agent confirming early check-in availability"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "heritage-society-document-donation-inquiry",
+        "requiredConcepts": [
+          "asks a heritage society about donating a family document"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior history item covered an artifact loan approval, not a document donation"
+          }
+        ],
+        "topic": "donating a historical family document to a heritage society",
+        "speakerRole": "heritage society staff member handling a historical document donation inquiry"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "historical-archive-reading-room-hours-inquiry",
+        "requiredConcepts": [
+          "asks about extended historical archive reading room hours"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior history item covered sealed genealogy record access, not reading room hours"
+          }
+        ],
+        "topic": "asking a historical society about extended reading room hours",
+        "speakerRole": "historical society staff member explaining reading room hour extensions"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "laundromat-lost-item-inquiry",
+        "requiredConcepts": [
+          "person asks a laundromat staff member about a lost shirt"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior everyday-life item covered a delayed tailor alteration pickup, not a lost laundromat item"
+          }
+        ],
+        "topic": "asking a laundromat staff member about a lost shirt",
+        "speakerRole": "laundromat staff member handling a lost item inquiry"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "apartment-package-delivery-notification-delay",
+        "requiredConcepts": [
+          "tenant asks about a delayed package delivery notification"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior everyday-life item covered an apartment lease renewal, not a package notification delay"
+          }
+        ],
+        "topic": "asking about a delayed package delivery notification",
+        "speakerRole": "apartment building staff member addressing a delayed package notification"
+      }
+    ],
+    "conversations": [
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "client-budget-cut-negotiation",
+        "requiredConcepts": [
+          "client requests lower workplace project budget",
+          "company manager proposes reduced service scope"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-6de33148",
+            "reason": "prior workplace conversation covered a slide deck pricing correction, not a budget-cut negotiation"
+          }
+        ],
+        "setting": "small marketing agency conference room during a client budget review",
+        "speakerRoles": [
+          "marketing coordinator explaining a workplace budget cut request",
+          "company manager proposing a reduced project scope"
+        ]
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "missed-train-connection-rebooking",
+        "requiredConcepts": [
+          "missed train connection leads to a rebooking request",
+          "travel agent offers an alternate route ticket"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-6de33148",
+            "reason": "prior travel conversation covered an early-departure bus connection, not a missed train connection"
+          },
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "prior travel conversation covered delayed connecting baggage, not a rebooking request"
+          }
+        ],
+        "setting": "regional train station platform after a missed connecting train",
+        "speakerRoles": [
+          "train station service agent handling a missed connection rebooking",
+          "traveler whose connecting train departed early"
+        ]
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "post-injury-exercise-modification-checkin",
+        "requiredConcepts": [
+          "client reports discomfort during a clinic exercise stretch",
+          "trainer modifies the exercise routine to reduce strain"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "prior health conversation covered a physical therapy stretch discomfort followup, this reframes it as a fitness trainer checkin"
+          },
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior health conversation covered a shoulder-strain routine swap, not a general post-injury checkin"
+          }
+        ],
+        "setting": "wellness clinic exercise room during a post-injury check-in",
+        "speakerRoles": [
+          "personal trainer modifying a client's exercise routine",
+          "clinic client recovering from a minor injury"
+        ]
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "missing-broadcast-clip-deadline",
+        "requiredConcepts": [
+          "missing digital media clip found before broadcast",
+          "editor and reporter agree on segment order"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-03948a55",
+            "reason": "prior technology conversation covered a podcast script software glitch, not a missing broadcast clip"
+          },
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "prior technology conversation covered a dead microphone channel, not a missing media clip"
+          }
+        ],
+        "setting": "local newsroom digital editing bay before an evening broadcast deadline",
+        "speakerRoles": [
+          "video editor searching for a missing digital media clip",
+          "reporter confirming the broadcast segment order"
+        ]
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "gallery-painting-frame-rehang",
+        "requiredConcepts": [
+          "damaged frame needs rehanging before gallery reception",
+          "gallery coordinator proposes a temporary frame fix"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-6de33148",
+            "reason": "prior arts conversation covered a cracked ceramic bowl refiring, not a gallery painting frame"
+          },
+          {
+            "setId": "lsn-03948a55",
+            "reason": "prior arts conversation covered a ceramic piece deadline, not a painting frame repair"
+          }
+        ],
+        "setting": "local art gallery back room before an opening reception",
+        "speakerRoles": [
+          "gallery coordinator arranging a damaged painting frame repair",
+          "visiting artist reviewing the gallery reception setup"
+        ]
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "public-composting-bin-donation-setup",
+        "requiredConcepts": [
+          "shop owner donates composting bins to a community program",
+          "coordinator confirms the public bin placement schedule"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "prior civic conversation covered a neighborhood watch patrol schedule brief, not a bin donation"
+          },
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "prior civic conversation covered a compost station orientation for a plot holder, not a bin donation program"
+          }
+        ],
+        "setting": "municipal recycling center before a community composting program launch",
+        "speakerRoles": [
+          "municipal outreach coordinator arranging a public composting bin donation",
+          "local shop owner offering to donate composting bins"
+        ]
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "shared-moving-day-parking-permit-split",
+        "requiredConcepts": [
+          "two neighbors split the cost of a temporary parking permit",
+          "permit is needed for a moving truck on moving day"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior everyday-life conversation covered an apartment parking spot mixup, not a shared permit cost split"
+          },
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "prior everyday-life conversation covered a grocery bill split, not a parking permit"
+          }
+        ],
+        "setting": "shared apartment hallway on a moving day",
+        "speakerRoles": [
+          "tenant proposing to split a temporary parking permit cost",
+          "neighbor confirming the moving truck's parking needs"
+        ]
+      }
+    ],
+    "announcements": [
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "equipment-reimbursement-policy-update",
+        "requiredConcepts": [
+          "equipment reimbursement policy raises the expense limit",
+          "employees submit receipts through the updated company portal"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior workplace announcement covered a floor relocation notice, not a reimbursement policy change"
+          }
+        ],
+        "setting": "company-wide staff message announcing an updated employee equipment reimbursement policy",
+        "speakerRole": "company operations director announcing an updated employee equipment reimbursement policy"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "laboratory-energy-efficient-equipment-installation",
+        "requiredConcepts": [
+          "laboratory installs new energy-efficient cooling equipment",
+          "installation reduces experiment downtime"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "prior science announcement covered a wildlife corridor construction timeline, not laboratory equipment"
+          },
+          {
+            "setId": "lsn-03948a55",
+            "reason": "prior science announcement covered a wetland habitat survey, not equipment installation"
+          }
+        ],
+        "setting": "laboratory facilities newsletter announcing new energy-efficient equipment installation",
+        "speakerRole": "laboratory facilities director announcing new energy-efficient equipment installation"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "stress-management-workshop-series-extension",
+        "requiredConcepts": [
+          "clinic extends its stress-management workshop series",
+          "an additional evening session is added weekly"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "prior clinic announcement covered a nutrition workshop time change, not a stress-workshop series extension"
+          }
+        ],
+        "setting": "clinic front desk display announcing an extended stress-management workshop series",
+        "speakerRole": "clinic wellness program coordinator announcing an extended stress-management workshop series"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "bus-terminal-ticket-counter-relocation",
+        "requiredConcepts": [
+          "bus terminal ticket counter moves to a temporary location",
+          "relocation lasts during the station renovation"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "prior travel announcement covered a new express bus route pilot program, not a counter relocation"
+          },
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "prior travel announcement covered a weekend detour shuttle stop, not a ticket counter move"
+          }
+        ],
+        "setting": "bus terminal overhead announcement describing a temporary ticket counter relocation",
+        "speakerRole": "bus terminal operations announcer describing a temporary ticket counter relocation"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "heritage-walking-trail-marker-project",
+        "requiredConcepts": [
+          "heritage society installs new historical trail markers",
+          "markers explain a past reform movement site"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "prior heritage announcement covered a walk tour time change, not new trail marker installations"
+          },
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "prior heritage announcement covered a tour start-time change, not marker installations"
+          }
+        ],
+        "setting": "heritage society radio segment announcing new historical trail marker installations",
+        "speakerRole": "heritage society project director announcing new historical trail marker installations"
+      }
+    ],
+    "academicTalks": [
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "flexible-break-scheduling-focus-study",
+        "requiredConcepts": [
+          "flexible break scheduling improves workplace focus",
+          "company employees report fewer afternoon errors"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-6de33148",
+            "reason": "prior workplace talk covered flexible-schedule retail turnover, not break-timing and focus"
+          },
+          {
+            "setId": "lsn-03948a55",
+            "reason": "prior workplace talk covered a customer feedback survey system, unrelated topic"
+          }
+        ],
+        "discipline": "organizational psychology",
+        "speakerRole": "organizational psychology lecturer explaining a workplace flexible break scheduling study"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "real-time-bus-display-wait-perception",
+        "requiredConcepts": [
+          "real-time bus arrival displays lower perceived wait time",
+          "passengers report less frustration at the station"
+        ],
+        "distinguishesFrom": [],
+        "discipline": "transportation planning",
+        "speakerRole": "transportation planning lecturer explaining a bus arrival display study"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "evening-light-exposure-sleep-onset",
+        "requiredConcepts": [
+          "evening light exposure delays sleep onset in a clinic study",
+          "dimming light earlier shortens time to fall asleep"
+        ],
+        "distinguishesFrom": [],
+        "discipline": "sleep science",
+        "speakerRole": "sleep science lecturer explaining evening light exposure effects on sleep onset"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "municipal-volunteer-tracking-retention-study",
+        "requiredConcepts": [
+          "volunteer tracking system raises civic retention",
+          "volunteers receive an automated reminder before each shift"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-6de33148",
+            "reason": "prior civic talk covered participatory budgeting spend priorities, not volunteer retention"
+          },
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "prior civic talk covered public comment periods in city budgeting, not volunteer tracking"
+          }
+        ],
+        "discipline": "public administration",
+        "speakerRole": "public administration lecturer explaining a municipal volunteer tracking system study"
+      }
+    ]
+  }
+}

@@ -1,0 +1,542 @@
+{
+  "id": "wri-91d6d3b8",
+  "source": "generated",
+  "createdAt": "2026-08-31T15:27:25.389Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "The projector cable in the conference room won't connect, and the client pitch starts in ten minutes.",
+        "frame": "I'll ___ ___ ___ ___ HDMI adapter from the supply closet.",
+        "tiles": [
+          "go",
+          "get",
+          "the",
+          "backup",
+          "went"
+        ],
+        "answers": [
+          [
+            "go",
+            "get",
+            "the",
+            "backup"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "We're approaching the crevasse field—what's your status back there?",
+        "frame": "The safety rope ___ ___ ___ ___ points.",
+        "tiles": [
+          "is",
+          "secured",
+          "at",
+          "both anchor",
+          "are"
+        ],
+        "answers": [
+          [
+            "is",
+            "secured",
+            "at",
+            "both anchor"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "The chat queue is backing up fast—can we get back to the segment soon?",
+        "frame": "I've ___ ___ ___ ___ ___ our naming policy.",
+        "tiles": [
+          "had",
+          "to ban",
+          "a username",
+          "that",
+          "violates",
+          "have"
+        ],
+        "answers": [
+          [
+            "had",
+            "to ban",
+            "a username",
+            "that",
+            "violates"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Is everything ready for the dress rehearsal, including the cello parts?",
+        "frame": "I'll ___ ___ ___ ___ ___ before rehearsal starts.",
+        "tiles": [
+          "photocopy",
+          "the missing part",
+          "from",
+          "the",
+          "archive score",
+          "photocopied"
+        ],
+        "answers": [
+          [
+            "photocopy",
+            "the missing part",
+            "from",
+            "the",
+            "archive score"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "I'm calling from the clinic—if you want the opening, you'll need to confirm within the hour.",
+        "frame": "___ ___ ___ ___ ___ ___ of a cancellation.",
+        "tiles": [
+          "a",
+          "spot",
+          "has",
+          "just",
+          "opened up",
+          "because",
+          "have"
+        ],
+        "answers": [
+          [
+            "a",
+            "spot",
+            "has",
+            "just",
+            "opened up",
+            "because"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "The engine's running and the headcount's short two—should I pull out now?",
+        "frame": "___ ___ ___ ___ ___ ___ on the gangway?",
+        "tiles": [
+          "should",
+          "we",
+          "wait",
+          "for",
+          "the two",
+          "stragglers",
+          "waits"
+        ],
+        "answers": [
+          [
+            "should",
+            "we",
+            "wait",
+            "for",
+            "the two",
+            "stragglers"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "What's wrong with the banner, and can we get a reprint before the show opens?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ at all.",
+        "tiles": [
+          "the",
+          "banner",
+          "that",
+          "arrived",
+          "doesn't fit",
+          "our",
+          "display frame",
+          "don't fit"
+        ],
+        "answers": [
+          [
+            "the",
+            "banner",
+            "that",
+            "arrived",
+            "doesn't fit",
+            "our",
+            "display frame"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "The salinity reading is off—shouldn't we change the water in the coral tank right now?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ instead.",
+        "tiles": [
+          "a",
+          "sudden",
+          "change",
+          "could stress the coral overnight",
+          "so",
+          "let's",
+          "adjust it gradually",
+          "can stress the coral overnight"
+        ],
+        "answers": [
+          [
+            "a",
+            "sudden",
+            "change",
+            "could stress the coral overnight",
+            "so",
+            "let's",
+            "adjust it gradually"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "The scoreboard froze right in front of the spectators—why did the match just get paused?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "the",
+          "software",
+          "froze in the middle of the match",
+          "so",
+          "we",
+          "need",
+          "to",
+          "restart it manually",
+          "needs"
+        ],
+        "answers": [
+          [
+            "the",
+            "software",
+            "froze in the middle of the match",
+            "so",
+            "we",
+            "need",
+            "to",
+            "restart it manually"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "The clear sky window's closing fast, and the system shows both of us booked for the telescope tonight—so who observes first?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "it",
+          "was",
+          "the booking system's error",
+          "that",
+          "put",
+          "us both",
+          "down",
+          "for",
+          "the same slot",
+          "were"
+        ],
+        "answers": [
+          [
+            "it",
+            "was",
+            "the booking system's error",
+            "that",
+            "put",
+            "us both",
+            "down",
+            "for",
+            "the same slot"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "While researching my family's history, I discovered that the plaque outside the old Whitfield Building lists a construction year that doesn't match the deed records held by the county archive. The town's heritage walk is scheduled for next weekend, and I'd like to see the plaque corrected before then.",
+    "to": "preservation@rivermont.gov",
+    "subject": "Incorrect Construction Year on the Whitfield Building Plaque",
+    "bullets": [
+      "Explain what the county archive's deed records show about the plaque's incorrect construction year.",
+      "Ask how the date currently on the plaque was originally determined.",
+      "Suggest a way to get the plaque corrected before next weekend's heritage walk."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Sociology 101: Everyday Life and Social Behavior",
+    "professorName": "Dr. Alvarez",
+    "professorPost": "Living with roommates or family members almost always means splitting household chores like cooking, cleaning, and trash duty. Some households post a fixed rotating schedule on the fridge so everyone knows exactly whose turn it is each week. Others skip the schedule entirely and divide tasks informally, based on who happens to have time or is better at a given chore that week. Which approach do you think keeps a shared household running more smoothly, and why?",
+    "studentPosts": [
+      {
+        "name": "Mia",
+        "post": "I think a posted rotation is the fairer option. Without one, chores quietly slide onto whoever feels guilty first, usually the same person every week. A fixed schedule means nobody has to negotiate or nag each other; you just check the fridge and know it's your turn. That predictability actually prevents arguments instead of causing them."
+      },
+      {
+        "name": "Noah",
+        "post": "A strict rotation ignores that people's weeks aren't identical. If I have three exams this week and my roommate has none, forcing me to cook anyway just adds stress for no real benefit. Dividing tasks informally, based on who has time or is genuinely good at something, gets chores done better than rigidly following a chart."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "workplace-business",
+          "situation": "A sales associate in the company's downtown office asks the IT support technician to fix the conference room's projector cable before the client pitch begins in ten minutes.",
+          "participantRoles": [
+            "sales associate preparing to deliver the client pitch",
+            "IT support technician troubleshooting the projector cable"
+          ],
+          "noveltyKey": "downtown-office-projector-cable-before-pitch",
+          "requiredConcepts": [
+            "projector cable not connecting",
+            "client pitch starting in ten minutes",
+            "backup HDMI adapter in the supply closet"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-8f7e61bf",
+              "reason": "Time-pressured equipment troubleshooting before a live pitch, not an expense-report deadline moved up by accounting."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A field survey leader monitoring the glacier's environment radios the newest team member to confirm the safety rope is secured before the group crosses a crevasse field.",
+          "participantRoles": [
+            "field survey leader coordinating the crossing",
+            "newest expedition member checking the safety gear"
+          ],
+          "noveltyKey": "glacier-survey-safety-rope-radio-check",
+          "requiredConcepts": [
+            "safety rope secured at both anchor points",
+            "crevasse field just ahead of the team",
+            "radio check before the crossing"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-8f7e61bf",
+              "reason": "A safety-critical field crossing in progress, not a postponed wetland sampling trip."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "An online livestream's chat moderator alerts the show host that a viewer's username violates the platform's naming policy and must be banned before the segment continues.",
+          "participantRoles": [
+            "livestream chat moderator monitoring the feed",
+            "show host running the live segment"
+          ],
+          "noveltyKey": "livestream-username-policy-violation-ban",
+          "requiredConcepts": [
+            "viewer username violating naming policy",
+            "temporary ban before the segment resumes",
+            "chat queue backing up fast"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-8f7e61bf",
+              "reason": "An in-the-moment moderation decision during a live broadcast, not a repair-order tracking error at a device shop."
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "An orchestra librarian tells the principal cellist that one stand's sheet music part is missing just before the dress rehearsal begins.",
+          "participantRoles": [
+            "orchestra librarian managing the sheet music",
+            "principal cellist preparing for the dress rehearsal"
+          ],
+          "noveltyKey": "orchestra-missing-cello-part-before-rehearsal",
+          "requiredConcepts": [
+            "missing cello part for one stand",
+            "dress rehearsal starting in minutes",
+            "photocopy from the archive score"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-8f7e61bf",
+              "reason": "A missing sheet-music part discovered before a rehearsal, not a damaged lantern prop changing the prop list."
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A physical therapy clinic's scheduling assistant calls a waitlisted patient to offer an opening that just came up after another patient cancelled.",
+          "participantRoles": [
+            "clinic scheduling assistant calling the waitlisted patient",
+            "patient deciding whether to accept the opening"
+          ],
+          "noveltyKey": "physical-therapy-waitlist-opening-call",
+          "requiredConcepts": [
+            "opening from a last-minute cancellation",
+            "waitlisted patient offered the slot",
+            "confirmation needed within the hour"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-8f7e61bf",
+              "reason": "An outbound call offering a newly opened slot, not a reschedule caused by equipment recalibration."
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "An excursion coordinator tells the tour bus driver that the dockside headcount is short two passengers before the bus can depart for the shore excursion.",
+          "participantRoles": [
+            "excursion coordinator counting passengers at the dock",
+            "tour bus driver waiting to depart"
+          ],
+          "noveltyKey": "cruise-excursion-headcount-short-at-dock",
+          "requiredConcepts": [
+            "headcount short by two passengers",
+            "shore excursion bus ready to depart",
+            "stragglers still on the gangway"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-8f7e61bf",
+              "reason": "A passenger headcount problem delaying departure, not a fare policy change to an express train route."
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A marketing coordinator at the company's trade show booth tells the vendor that the booth's banner arrived in the wrong dimensions and won't fit the display frame.",
+          "participantRoles": [
+            "marketing coordinator setting up the booth",
+            "vendor who delivered the banner"
+          ],
+          "noveltyKey": "trade-show-banner-wrong-dimensions",
+          "requiredConcepts": [
+            "banner arrived in the wrong dimensions",
+            "banner won't fit the display frame",
+            "reprint needed before the show opens"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-6023c170",
+              "reason": "A physical signage defect discovered while setting up, not a negotiation over extending a discount code."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "An aquarium technician disagrees with a new intern about whether the coral habitat tank's salinity reading calls for an immediate water change.",
+          "participantRoles": [
+            "aquarium technician reviewing the sensor data",
+            "new intern proposing an immediate water change"
+          ],
+          "noveltyKey": "aquarium-coral-tank-salinity-dispute",
+          "requiredConcepts": [
+            "coral tank's salinity reading",
+            "gradual adjustment versus immediate change",
+            "risk of stressing the coral overnight"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-6023c170",
+              "reason": "A technical disagreement over a sensor reading, not an administrative request for a grant report extension."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "An esports arena's broadcast technician tells the tournament referee that the scoreboard software froze in the middle of the match and needs a manual restart.",
+          "participantRoles": [
+            "broadcast technician monitoring the scoreboard software",
+            "tournament referee overseeing the match"
+          ],
+          "noveltyKey": "esports-scoreboard-software-freeze-midmatch",
+          "requiredConcepts": [
+            "scoreboard software froze mid-match",
+            "manual restart needed right away",
+            "match paused in front of spectators"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-6023c170",
+              "reason": "A live technical failure requiring an immediate restart, not a pre-launch debate over delaying release for an accessibility bug."
+            }
+          ]
+        },
+        {
+          "domain": "campus-academics",
+          "situation": "Two astronomy graduate students discover they were both assigned the campus observatory's telescope for the same overnight slot and must work out who observes first.",
+          "participantRoles": [
+            "astronomy graduate student booked for the overnight slot",
+            "second astronomy graduate student with the same booking"
+          ],
+          "noveltyKey": "observatory-telescope-overnight-booking-overlap",
+          "requiredConcepts": [
+            "double booking for the same overnight slot",
+            "clear sky window closing fast",
+            "deciding who observes first"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7024b060",
+              "reason": "A peer scheduling conflict over shared equipment they negotiate themselves, not an administrative room reassignment handed down by a registrar."
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "history-social-change",
+      "noveltyKey": "historic-plaque-wrong-construction-year",
+      "requiredConcepts": [
+        "plaque's construction year looks wrong",
+        "family history research turned up a mismatch",
+        "heritage walk happening next weekend",
+        "deed records held by the county archive"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-6d6c11da",
+          "reason": "A public monument's signage error found through personal genealogy research, not an oral-history audio file mislabeled during cataloging."
+        },
+        {
+          "setId": "wri-736f2103",
+          "reason": "A factual correction request about a plaque's date, not a report about a donated diary lacking protective storage."
+        }
+      ],
+      "situation": "While researching family history, a resident notices that the plaque outside a historic building lists the wrong construction year and wants it corrected before an upcoming heritage walk.",
+      "recipientRole": "the town's historic preservation office coordinator",
+      "communicativeActs": [
+        "report a problem",
+        "request clarification",
+        "propose a solution"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "everyday-life",
+      "noveltyKey": "household-chore-rotation-vs-informal-split",
+      "requiredConcepts": [
+        "rotating chore schedule posted on the fridge",
+        "one roommate is busier some weeks than others",
+        "chores left undone when no one is assigned",
+        "resentment over who does more overall"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-7a20b90b",
+          "reason": "This is about dividing indoor household chores between housemates, not scheduling turns for a shared outdoor space."
+        }
+      ],
+      "proposition": "Should people who share a household keep a strict rotating chore schedule, or divide chores informally based on who has time and skill for each task that week?",
+      "competingValues": [
+        "predictability and fairness from a fixed rotation",
+        "flexibility that matches each person's actual time and skill"
+      ]
+    }
+  }
+}

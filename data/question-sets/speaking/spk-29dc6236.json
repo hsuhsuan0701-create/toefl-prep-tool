@@ -1,0 +1,259 @@
+{
+  "id": "spk-29dc6236",
+  "source": "generated",
+  "createdAt": "2026-08-17T15:38:55.196Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Welcoming a New Archive Volunteer",
+    "scenarioDescription": "Listen to the archive's collections coordinator and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-29dc6236/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-29dc6236.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Welcoming a New Archive Volunteer. Listen to the archive's collections coordinator and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- We log donations at this table.\n- Old photographs and letters both arrive here first.\n- We open each donated envelope carefully and check its condition.\n- You'll wear gloves before touching anything fragile, and I'll show you why.\n- Because these old documents tear so easily, we always handle them with gloved hands.\n- After we finish logging everything at the desk, each folder gets carried over to the storage shelves.\n- The storage shelves, labeled by decade, keep every photograph organized so future visitors can find exactly what they're looking for.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "We log donations at this table.",
+        "audio": "stimuli/spk-29dc6236/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.103,
+          "y": 0.548,
+          "w": 0.245,
+          "h": 0.207
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Old photographs and letters both arrive here first.",
+        "audio": "stimuli/spk-29dc6236/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.1,
+          "y": 0.32,
+          "w": 0.24,
+          "h": 0.21
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "We open each donated envelope carefully and check its condition.",
+        "audio": "stimuli/spk-29dc6236/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.39,
+          "y": 0.53,
+          "w": 0.22,
+          "h": 0.2
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "You'll wear gloves before touching anything fragile, and I'll show you why.",
+        "audio": "stimuli/spk-29dc6236/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.43,
+          "y": 0.34,
+          "w": 0.15,
+          "h": 0.19
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Because these old documents tear so easily, we always handle them with gloved hands.",
+        "audio": "stimuli/spk-29dc6236/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.42,
+          "y": 0.2,
+          "w": 0.18,
+          "h": 0.15
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "After we finish logging everything at the desk, each folder gets carried over to the storage shelves.",
+        "audio": "stimuli/spk-29dc6236/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.61,
+          "y": 0.4,
+          "w": 0.15,
+          "h": 0.16
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The storage shelves, labeled by decade, keep every photograph organized so future visitors can find exactly what they're looking for.",
+        "audio": "stimuli/spk-29dc6236/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.66,
+          "y": 0.14,
+          "w": 0.3,
+          "h": 0.34
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Evening Wind-Down Routines",
+    "intro": "Thank you for speaking with me today. I'm working on a short wellness research project about how people relax before bed, and I'd love to hear about your evening routine.",
+    "introAudio": "stimuli/spk-29dc6236/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, could you walk me through what you usually do during the hour before you go to sleep on a typical night?",
+        "audio": "stimuli/spk-29dc6236/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of one specific night when that usual wind-down routine got interrupted — what happened, and how did the interruption affect you?",
+        "audio": "stimuli/spk-29dc6236/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK, next I'd like to hear your opinion. Some people believe that using screens before bed always disrupts sleep, no matter what you're doing on them. Others think it really depends on what's being watched or read. Which view do you lean toward, and why?",
+        "audio": "stimuli/spk-29dc6236/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. For my last question — do you think schools or families should actively teach young people healthy sleep habits, or is that something people should figure out on their own? What would you recommend?",
+        "audio": "stimuli/spk-29dc6236/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-briefing",
+      "take": "retake",
+      "measuredWpm": 125.4,
+      "targetWpm": 165,
+      "minWpm": 145,
+      "maxWpm": 195
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "first",
+      "measuredWpm": 147.1,
+      "targetWpm": 180,
+      "minWpm": 150,
+      "maxWpm": 225
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "first",
+      "measuredWpm": 143.7,
+      "targetWpm": 180,
+      "minWpm": 150,
+      "maxWpm": 225
+    },
+    {
+      "check": "speech-rate",
+      "detail": "interview-question",
+      "take": "retake",
+      "measuredWpm": 123.1,
+      "targetWpm": 155,
+      "minWpm": 130,
+      "maxWpm": 180
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "history-social-change",
+      "noveltyKey": "heritage-archive-intake-walkthrough",
+      "requiredConcepts": [
+        "donated historical photographs logged at intake table",
+        "handling gloves before touching fragile documents",
+        "storage shelves labeled by decade"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-43ab8b09",
+          "reason": "that Set is a community-civic greenhouse orientation about watering and plant care; this one is a history-social-change archive walkthrough about handling historical documents."
+        },
+        {
+          "setId": "spk-26132ac6",
+          "reason": "that Set is a community-civic food pantry orientation about sorting donated food; this one covers donated historical photographs and documents in an archive setting."
+        },
+        {
+          "setId": "spk-82a09237",
+          "reason": "that Set is a campus-academics art studio orientation about borrowing art supplies; this one is a history-social-change heritage archive with no campus or art-supply framing."
+        }
+      ],
+      "setting": "a small-town heritage archive room where donated historical photographs and documents are logged before storage",
+      "speakerRole": "the archive's collections coordinator training a newly arrived helper",
+      "communicativePurpose": "walking the helper through each station in the archive room — the intake table, the logging desk, and the storage shelves — explaining how donated historical materials move through each step before they're safely shelved"
+    },
+    "interview": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "evening-wind-down-sleep-routine",
+      "requiredConcepts": [
+        "usual hour before sleep on an ordinary night",
+        "one night the wind-down routine got interrupted",
+        "screens before bed always harmful or depends on content",
+        "teaching young people healthy sleep habits"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-8d9ee619",
+          "reason": "that Set covers urban travel experience in science-environment; this one covers personal evening sleep habits in health-wellbeing, an unrelated topic and domain."
+        },
+        {
+          "setId": "spk-f22a5687",
+          "reason": "that Set is a campus-academics study-break interview about concentration during work; this one is about winding down for sleep, a different daily-life domain and topic."
+        },
+        {
+          "setId": "spk-70c8a41a",
+          "reason": "that Set covers managing study distractions in technology-media/campus contexts; this one covers a health-wellbeing sleep routine with no study or technology framing."
+        }
+      ],
+      "topic": "evening wind-down routines before sleep",
+      "premise": "a short wellness-research interview asking people to describe how they relax in the hour before they go to sleep",
+      "questionArc": [
+        "ask what the person typically does during the hour before sleep on an ordinary night, answerable from routine memory alone",
+        "ask about one specific night when their usual wind-down routine got interrupted and what caused the interruption",
+        "present two contrasting views — that screen use before bed always disrupts sleep versus that it depends on what's being watched or read — and ask which position they lean toward and why",
+        "broaden to whether schools or families should actively teach young people healthy sleep habits, inviting a recommendation"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v2",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "new-zealand",
+      "voice": "Erinome",
+      "briefingTargetWpm": 165,
+      "itemTargetWpm": 180
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Callirrhoe",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

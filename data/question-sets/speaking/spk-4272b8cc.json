@@ -1,0 +1,184 @@
+{
+  "id": "spk-4272b8cc",
+  "source": "generated",
+  "createdAt": "2026-08-23T07:36:15.220Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Costume and Prop Workshop Orientation",
+    "scenarioDescription": "You are a new backstage crew member on your first solo shift in the theater's costume and prop workshop. Listen to the wardrobe supervisor as she walks you through each station and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-4272b8cc/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-4272b8cc.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Costume and Prop Workshop Orientation. You are a new backstage crew member on your first solo shift in the theater's costume and prop workshop. Listen to the wardrobe supervisor as she walks you through each station and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- This costume rack is sorted by scene.\n- Each hanger holds costumes and their matching accessories.\n- Please check the prop table against today's full show list.\n- Count every prop twice, and log anything that seems out of place.\n- Keep the sewing station clear whenever repairs might come up during a show.\n- Because the rehearsal stage sits close, keep your voice down during scene changes.\n- The sewing station, which stays open for repairs, should remain clutter-free at all times.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "This costume rack is sorted by scene.",
+        "audio": "stimuli/spk-4272b8cc/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Each hanger holds costumes and their matching accessories.",
+        "audio": "stimuli/spk-4272b8cc/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Please check the prop table against today's full show list.",
+        "audio": "stimuli/spk-4272b8cc/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Count every prop twice, and log anything that seems out of place.",
+        "audio": "stimuli/spk-4272b8cc/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Keep the sewing station clear whenever repairs might come up during a show.",
+        "audio": "stimuli/spk-4272b8cc/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Because the rehearsal stage sits close, keep your voice down during scene changes.",
+        "audio": "stimuli/spk-4272b8cc/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The sewing station, which stays open for repairs, should remain clutter-free at all times.",
+        "audio": "stimuli/spk-4272b8cc/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Sleep Routine During Busy Weeks",
+    "intro": "Thank you for speaking with me today. I'm a wellbeing researcher looking into how people's sleep patterns change during busy weeks. I have four quick questions — there's no need to prepare, just answer naturally.",
+    "introAudio": "stimuli/spk-4272b8cc/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, what time do you usually go to bed and wake up on a typical week?",
+        "audio": "stimuli/spk-4272b8cc/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thanks. Now think of a recent stretch of unusually busy days. How did your sleep timing change during that time, and what caused the shift?",
+        "audio": "stimuli/spk-4272b8cc/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Some people believe it's fine to cut sleep short occasionally to get everything done, while others insist on protecting their rest no matter how busy things get. Which view do you agree with more, and why?",
+        "audio": "stimuli/spk-4272b8cc/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. For my final question, do you think schools or workplaces with fixed daily schedules should adjust them to help people protect their sleep? What would you recommend?",
+        "audio": "stimuli/spk-4272b8cc/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 146,
+      "targetWpm": 208,
+      "minWpm": 183,
+      "maxWpm": 233
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "arts-culture",
+      "noveltyKey": "theater-costume-prop-workshop-walkthrough",
+      "requiredConcepts": [
+        "costume rack sorted by scene",
+        "prop table checked against the show list",
+        "sewing station kept clear for repairs",
+        "quiet voice kept up near the rehearsal stage"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-7ed36c39",
+          "reason": "orients a backstage costume and prop crew member through a wardrobe workshop, not a visiting printmaker through a printmaking press studio"
+        }
+      ],
+      "setting": "a school theater's costume and prop workshop storage room, just before a newly arrived backstage crew member's first solo shift",
+      "speakerRole": "the theater's wardrobe supervisor, training the newly arrived backstage crew member",
+      "communicativePurpose": "orient the new crew member station by station through the costume and prop workshop before opening night"
+    },
+    "interview": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "sleep-routine-during-busy-weeks",
+      "requiredConcepts": [
+        "usual bedtime and wake time on an ordinary week",
+        "a recent stretch of unusually busy days",
+        "sleep sacrificed to finish tasks versus protecting rest",
+        "whether rigid daily schedules should bend to protect sleep"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-f9fe8bad",
+          "reason": "tracks how sleep timing shifts during unusually busy stretches rather than a home remedy routine used when a cold hits"
+        }
+      ],
+      "topic": "how the respondent's sleep routine shifts during unusually busy stretches of the week",
+      "premise": "a wellbeing researcher places a brief, unannounced phone call asking the respondent about sleep timing during ordinary weeks and unusually busy stretches, with no preparation time before each question",
+      "questionArc": [
+        "ask a concrete retrievable fact: the respondent's usual bedtime and wake time on an ordinary week",
+        "ask the respondent to describe a recent stretch of unusually busy days and how sleep timing changed, with a reason for the change",
+        "name two contrasting views on cutting sleep short to finish tasks versus protecting rest during busy periods, and ask the respondent to take a side and justify it",
+        "broaden to whether organizations that set rigid daily schedules should adjust them to protect people's sleep, inviting a recommendation"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v4",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Charon",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        200,
+        208,
+        215,
+        180,
+        178,
+        176,
+        175
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "australian",
+      "voice": "Iapetus",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

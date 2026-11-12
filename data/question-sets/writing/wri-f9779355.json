@@ -1,0 +1,530 @@
+{
+  "id": "wri-f9779355",
+  "source": "generated",
+  "createdAt": "2026-08-22T08:02:23.623Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Will my credit evaluation results be ready before the tuition payment deadline?",
+        "frame": "No, you'll have ___ ___ ___ ___ finished.",
+        "tiles": [
+          "provisional",
+          "provisionally",
+          "enrollment status",
+          "until",
+          "they're"
+        ],
+        "answers": [
+          [
+            "provisional",
+            "enrollment status",
+            "until",
+            "they're"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Can I badge into the loading dock this weekend?",
+        "frame": "Your badge ___ ___ ___ ___ ___ after hours.",
+        "tiles": [
+          "only grants",
+          "only grant",
+          "access",
+          "during weekday",
+          "delivery windows,",
+          "never"
+        ],
+        "answers": [
+          [
+            "only grants",
+            "access",
+            "during weekday",
+            "delivery windows,",
+            "never"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-3",
+        "prompt": "How do I know when it's my turn to use the water tap?",
+        "frame": "The posted calendar ___ ___ ___ ___ ___ the plot holders.",
+        "tiles": [
+          "shows",
+          "show",
+          "how",
+          "the schedule",
+          "rotates weekly",
+          "among"
+        ],
+        "answers": [
+          [
+            "shows",
+            "how",
+            "the schedule",
+            "rotates weekly",
+            "among"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Do I need to do anything with the soil moisture sensors before each sampling round?",
+        "frame": "You must ___ ___ ___ ___ ___ ___ sampling round.",
+        "tiles": [
+          "recalibrate",
+          "recalibrating",
+          "the sensors",
+          "and log",
+          "a calibration entry",
+          "before",
+          "each week's"
+        ],
+        "answers": [
+          [
+            "recalibrate",
+            "the sensors",
+            "and log",
+            "a calibration entry",
+            "before",
+            "each week's"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Can my framed pieces be hung today?",
+        "frame": "Not until you ___ ___ ___ ___ ___ approval.",
+        "tiles": [
+          "provide",
+          "provides",
+          "proof of insurance",
+          "and",
+          "get",
+          "hanging"
+        ],
+        "answers": [
+          [
+            "provide",
+            "proof of insurance",
+            "and",
+            "get",
+            "hanging"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Can I reschedule my nutrition follow-up appointment again?",
+        "frame": "You can ___ ___ ___ ___ ___ referral.",
+        "tiles": [
+          "reschedule",
+          "rescheduling",
+          "it",
+          "only once",
+          "without",
+          "a new"
+        ],
+        "answers": [
+          [
+            "reschedule",
+            "it",
+            "only once",
+            "without",
+            "a new"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Is my vehicle reservation still guaranteed if I'm running late?",
+        "frame": "Vehicle reservations ___ ___ ___ ___ ___ ___ standby.",
+        "tiles": [
+          "that aren't",
+          "confirmed",
+          "thirty minutes",
+          "before departure",
+          "are released",
+          "is released",
+          "to"
+        ],
+        "answers": [
+          [
+            "that aren't",
+            "confirmed",
+            "thirty minutes",
+            "before departure",
+            "are released",
+            "to"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Can I just walk into the reading room and use the microfilm reader whenever I like?",
+        "frame": "No, you need ___ ___ ___ ___ ___ ___ the front desk.",
+        "tiles": [
+          "to reserve",
+          "reserve",
+          "it",
+          "in one-hour blocks",
+          "on",
+          "the sign-up sheet",
+          "at"
+        ],
+        "answers": [
+          [
+            "to reserve",
+            "it",
+            "in one-hour blocks",
+            "on",
+            "the sign-up sheet",
+            "at"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Why can't I add another device to my streaming account?",
+        "frame": "Because ___ ___ ___ ___ ___ ___ a new one.",
+        "tiles": [
+          "shared-household profiles",
+          "are now capped",
+          "is now capped",
+          "at four devices,",
+          "you'll need",
+          "to remove one",
+          "before adding"
+        ],
+        "answers": [
+          [
+            "shared-household profiles",
+            "are now capped",
+            "at four devices,",
+            "you'll need",
+            "to remove one",
+            "before adding"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Can I just pay the laundry room card reader with cash on the spot?",
+        "frame": "What ___ ___ ___ ___ ___ ___ cash refill.",
+        "tiles": [
+          "the reader",
+          "requires now",
+          "is",
+          "was",
+          "a preloaded balance,",
+          "since there's",
+          "no on-site"
+        ],
+        "answers": [
+          [
+            "the reader",
+            "requires now",
+            "is",
+            "a preloaded balance,",
+            "since there's",
+            "no on-site"
+          ]
+        ],
+        "timeLimitSec": 40
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You booked a guided kayak tour through a small travel outfitter's website for this coming Saturday, and you just received the payment confirmation email. The confirmation lists the tour date as next Wednesday instead of Saturday, and the outfitter's phone line will not be staffed again until the day of the tour itself.",
+    "to": "bookings@bluewaterkayaktours.com",
+    "subject": "Wrong Date on My Kayak Tour Confirmation",
+    "bullets": [
+      "Describe the date mismatch between your booking and the confirmation email.",
+      "Request written confirmation of the correct tour date before you arrive.",
+      "Ask whether a refund would be possible if the date cannot be corrected in time."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Arts and Cultural Management",
+    "professorName": "Professor Alvarez",
+    "professorPost": "This week we're examining how community theaters price their tickets. Some venues let prices climb for productions that are especially popular, while others limit any single season's total price increase to a fixed percentage regardless of demand. Should community theaters cap ticket price increases at a fixed percentage each season, or should they be free to price tickets according to demand? Why?",
+    "studentPosts": [
+      {
+        "name": "Mara",
+        "post": "I'd keep the cap. Longtime subscribers plan their season around a fixed budget, and if a hit show suddenly costs twice as much, families on tight budgets get priced out first. A steady, modest increase lets people trust that their favorite theater will still be affordable next year, even if a production becomes popular."
+      },
+      {
+        "name": "Theo",
+        "post": "I understand Mara's concern, but a strict cap limits what theaters can invest in bigger sets, guest directors, or extra rehearsal time. Letting prices rise with demand for popular shows generates the extra revenue needed to fund those upgrades, and theaters can still offer discounted nights for regulars who can't pay full price."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "campus-academics",
+          "situation": "A university registrar tells a transfer student that credit evaluation results won't be ready until after the tuition payment deadline.",
+          "participantRoles": [
+            "university registrar",
+            "transfer student"
+          ],
+          "noveltyKey": "credit-evaluation-after-payment-deadline",
+          "requiredConcepts": [
+            "credit evaluation result",
+            "tuition payment deadline",
+            "provisional enrollment status"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A company facilities manager tells a new employee that the loading dock badge only grants access during weekday delivery windows.",
+          "participantRoles": [
+            "company facilities manager",
+            "new employee"
+          ],
+          "noveltyKey": "loading-dock-badge-delivery-window",
+          "requiredConcepts": [
+            "loading dock badge access",
+            "weekday delivery window",
+            "after-hours entry restriction"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-bdbdd45c",
+              "reason": "that set's dock entry is about a Friday equipment-inspection closure, not badge access hours"
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A parks department clerk tells a resident that the community garden's water-tap schedule now rotates weekly among plot holders.",
+          "participantRoles": [
+            "parks department clerk",
+            "community garden plot holder"
+          ],
+          "noveltyKey": "garden-water-tap-weekly-rotation",
+          "requiredConcepts": [
+            "community garden water-tap schedule",
+            "weekly rotation among plot holders",
+            "posted rotation calendar"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-bdbdd45c",
+              "reason": "that set's garden entry concerns lottery assignment of plots, not a recurring water-tap rotation schedule"
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "An environmental field station supervisor tells a new laboratory technician that the soil moisture sensors must be recalibrated before each week's sampling round.",
+          "participantRoles": [
+            "environmental field station supervisor",
+            "new laboratory technician"
+          ],
+          "noveltyKey": "soil-moisture-sensor-weekly-recalibration",
+          "requiredConcepts": [
+            "soil moisture sensor recalibration",
+            "weekly sampling round",
+            "calibration log entry"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2936d16f",
+              "reason": "that set's laboratory entry involves a foil-wrapped control jar, not sensor recalibration timing"
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A gallery registrar tells a visiting artist that framed pieces on loan must be insured before they can be hung.",
+          "participantRoles": [
+            "gallery registrar",
+            "visiting artist"
+          ],
+          "noveltyKey": "loaned-artwork-insurance-before-hanging",
+          "requiredConcepts": [
+            "framed artwork on loan",
+            "proof of insurance",
+            "hanging approval"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2936d16f",
+              "reason": "that set's museum entry is about a label listing two dates, not insurance requirements for loaned pieces"
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A clinic scheduler tells a patient that the nutrition follow-up appointment can only be moved once without a new referral.",
+          "participantRoles": [
+            "clinic scheduler",
+            "patient"
+          ],
+          "noveltyKey": "nutrition-followup-single-reschedule-limit",
+          "requiredConcepts": [
+            "nutrition follow-up appointment",
+            "one-time reschedule limit",
+            "new referral requirement"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-736f2103",
+              "reason": "that set's vision-screen entry is about waitlist length, not a reschedule limit on nutrition follow-ups"
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A ferry station agent tells a traveler that vehicle reservations are released to standby if not confirmed thirty minutes before departure.",
+          "participantRoles": [
+            "ferry station agent",
+            "traveler with a vehicle reservation"
+          ],
+          "noveltyKey": "ferry-vehicle-reservation-standby-release",
+          "requiredConcepts": [
+            "vehicle reservation confirmation",
+            "thirty-minute cutoff",
+            "standby release"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2936d16f",
+              "reason": "that set's train entry concerns a reassigned window seat, not a vehicle reservation release deadline"
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A heritage archive assistant tells a visiting historian that the reading room's microfilm reader is reserved in one-hour blocks.",
+          "participantRoles": [
+            "heritage archive assistant",
+            "visiting historian"
+          ],
+          "noveltyKey": "microfilm-reader-hourly-block-reservation",
+          "requiredConcepts": [
+            "reading room microfilm reader",
+            "one-hour reservation block",
+            "signup sheet at front desk"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-736f2103",
+              "reason": "that set's archive entry is about a relocated paper archive, not a microfilm reader reservation system"
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A streaming platform's support agent tells a subscriber that shared-household profiles are now capped at four devices per account.",
+          "participantRoles": [
+            "streaming platform support agent",
+            "subscriber"
+          ],
+          "noveltyKey": "shared-household-profile-device-cap",
+          "requiredConcepts": [
+            "shared-household profile limit",
+            "four-device account cap",
+            "device removal to add new one"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-bdbdd45c",
+              "reason": "that set's podcast entry is about paused subscriptions still counting toward a device limit, not a household profile cap"
+            },
+            {
+              "setId": "wri-736f2103",
+              "reason": "that set's stream entry is about downloads disappearing after a storage-limit reset, not a device cap on shared profiles"
+            }
+          ]
+        },
+        {
+          "domain": "everyday-life",
+          "situation": "A downstairs neighbor tells a tenant that the shared laundry room's card reader now requires exact change loaded in advance.",
+          "participantRoles": [
+            "downstairs neighbor",
+            "tenant using shared laundry"
+          ],
+          "noveltyKey": "laundry-card-reader-preloaded-change",
+          "requiredConcepts": [
+            "shared laundry room card reader",
+            "preloaded balance requirement",
+            "no on-site cash refill"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-bdbdd45c",
+              "reason": "that set's apartment entry is about mailbox misdelivery, not laundry card reader payment rules"
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "services-travel",
+      "noveltyKey": "kayak-tour-date-mismatch-confirmation",
+      "requiredConcepts": [
+        "payment confirmation email",
+        "wrong tour date listed",
+        "refund possibility"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-00c1e95f",
+          "reason": "that email is a comment on a public bus timetable proposal, not a booking-date correction request"
+        },
+        {
+          "setId": "wri-8a7f1e12",
+          "reason": "that email concerns a missed archive appointment due to a cancelled train, not a tour-date mismatch in a confirmation email"
+        }
+      ],
+      "situation": "After booking a guided kayak tour through a small travel outfitter's website, the payment confirmation email listed the wrong tour date, and the outfitter can't be reached by phone until the tour day.",
+      "recipientRole": "the outfitter's online booking support team",
+      "communicativeActs": [
+        "report the date mismatch on the payment confirmation",
+        "request written confirmation of the correct tour date before arrival",
+        "ask whether a refund is possible if the date can't be fixed in time"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "arts-culture",
+      "noveltyKey": "theater-ticket-price-cap-vs-demand-pricing",
+      "requiredConcepts": [
+        "fixed percentage price cap per season",
+        "demand-based ticket pricing",
+        "funding for higher-quality productions"
+      ],
+      "distinguishesFrom": [],
+      "proposition": "Community theaters should cap each production's ticket price increases at a fixed percentage per season rather than adjusting prices to demand.",
+      "competingValues": [
+        "predictable, affordable access for regular theatergoers",
+        "revenue flexibility to fund higher-quality productions"
+      ]
+    }
+  }
+}

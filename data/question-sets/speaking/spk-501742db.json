@@ -1,0 +1,214 @@
+{
+  "id": "spk-501742db",
+  "source": "generated",
+  "createdAt": "2026-08-24T17:18:37.386Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "House Sitter Orientation",
+    "scenarioDescription": "Listen to a homeowner walk a house sitter through the kitchen and living room the evening before a weeklong trip, and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-501742db/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-501742db.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: House Sitter Orientation. Listen to a homeowner walk a house sitter through the kitchen and living room the evening before a weeklong trip, and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- The feeding station is right here in the kitchen.\n- Milo and Luna each get one scoop of dry food.\n- Fill their bowls at seven in the morning and again at six.\n- Water the ferns in the living room, but skip the cactus.\n- Water the bathroom plants twice a week because they dry out fast.\n- Please bring in the mail and any packages before dinner each day.\n- The emergency contact number posted by the door works if anything goes wrong.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "The feeding station is right here in the kitchen.",
+        "audio": "stimuli/spk-501742db/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.312,
+          "y": 0.07,
+          "w": 0.091,
+          "h": 0.147
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Milo and Luna each get one scoop of dry food.",
+        "audio": "stimuli/spk-501742db/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.134,
+          "y": 0.298,
+          "w": 0.088,
+          "h": 0.119
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Fill their bowls at seven in the morning and again at six.",
+        "audio": "stimuli/spk-501742db/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.212,
+          "y": 0.485,
+          "w": 0.106,
+          "h": 0.13
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Water the ferns in the living room, but skip the cactus.",
+        "audio": "stimuli/spk-501742db/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.395,
+          "y": 0.428,
+          "w": 0.239,
+          "h": 0.17
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Water the bathroom plants twice a week because they dry out fast.",
+        "audio": "stimuli/spk-501742db/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.707,
+          "y": 0.521,
+          "w": 0.083,
+          "h": 0.135
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Please bring in the mail and any packages before dinner each day.",
+        "audio": "stimuli/spk-501742db/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.748,
+          "y": 0.418,
+          "w": 0.133,
+          "h": 0.076
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The emergency contact number posted by the door works if anything goes wrong.",
+        "audio": "stimuli/spk-501742db/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.838,
+          "y": 0.229,
+          "w": 0.057,
+          "h": 0.089
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Keeping a Family Recipe Alive",
+    "intro": "A caller from a local heritage outreach program reaches you by phone to ask how you keep a family recipe or cooking tradition alive at home. Answer each question after you hear it. You will have 45 seconds for each response.",
+    "introAudio": "stimuli/spk-501742db/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thank you so much for taking my call today. To start, which family recipe or dish do you make most often, and who first taught you to make it?",
+        "audio": "stimuli/spk-501742db/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "That's a great start. Can you tell me about one specific time you made that dish, and what made that occasion so memorable?",
+        "audio": "stimuli/spk-501742db/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "Thanks for sharing that. Some people think a written recipe card preserves a family tradition best, while others believe watching a relative cook in person teaches it better. Which do you think works better, and why?",
+        "audio": "stimuli/spk-501742db/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. For my last question, do you think family cooking traditions like this one should be documented or shared more widely so they survive for future generations? Why or why not?",
+        "audio": "stimuli/spk-501742db/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "everyday-life",
+      "noveltyKey": "house-sitter-pet-plant-care-orientation",
+      "requiredConcepts": [
+        "pet feeding station and food measurements",
+        "plant watering schedule by room",
+        "mail and package pickup routine",
+        "emergency contact number posted by the door"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-071d01af",
+          "reason": "That set orients an incoming roommate moving into shared housing long-term; this one briefs a short-term house and pet sitter before the homeowner leaves on a single trip."
+        }
+      ],
+      "setting": "the kitchen and living room of a house, the evening before a weeklong trip",
+      "speakerRole": "a homeowner preparing to leave on a trip",
+      "communicativePurpose": "orient a hired house and pet sitter through the daily care routine before departure"
+    },
+    "interview": {
+      "domain": "history-social-change",
+      "noveltyKey": "family-recipe-tradition-kept-alive",
+      "requiredConcepts": [
+        "a recipe passed down from a grandparent or parent",
+        "a specific memory of learning to cook it",
+        "written recipe cards versus watching someone cook",
+        "sharing a family recipe outside the family"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-e0d7a688",
+          "reason": "That set covers a passed-down family story or oral tradition in general; this one is narrowly a cooking recipe and the hands-on act of learning to make it."
+        },
+        {
+          "setId": "spk-d9a49a14",
+          "reason": "That set is about awareness of a nearby historic landmark; this one stays inside the home and a personal food tradition, not a public site."
+        }
+      ],
+      "topic": "keeping a family cooking tradition alive at home",
+      "premise": "A local heritage outreach program places a brief, unannounced phone call asking how the test taker keeps a family recipe or cooking tradition alive at home.",
+      "questionArc": [
+        "Ask which family recipe or dish the test taker makes most often and who first taught it to them.",
+        "Ask the test taker to recall one specific time they made that dish and what made the occasion memorable.",
+        "Ask whether a written recipe card or watching a relative cook in person better preserves a family tradition, with a reason.",
+        "Ask whether family cooking traditions like this one should be documented or shared more widely so they survive for future generations."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "british",
+      "voice": "Alnilam",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "north-american",
+      "voice": "Sulafat",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

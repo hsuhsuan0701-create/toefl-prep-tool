@@ -1,0 +1,233 @@
+{
+  "id": "spk-50c1bede",
+  "source": "generated",
+  "createdAt": "2026-08-23T07:40:43.780Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Volunteer Supply Room Walkthrough",
+    "scenarioDescription": "You are a new volunteer arriving for your first shift at a neighborhood volunteer center before its first public collection event of the day. Listen to the volunteer coordinator explain each donation station in the supply room and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-50c1bede/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-50c1bede.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Volunteer Supply Room Walkthrough. You are a new volunteer arriving for your first shift at a neighborhood volunteer center before its first public collection event of the day. Listen to the volunteer coordinator explain each donation station in the supply room and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Welcome to our volunteer supply room today.\n- The boxes and bins sit near the front door.\n- Please sign in and grab a badge at the table.\n- The boxes are sorted by item type, and each one has a label.\n- When you arrive, please sign the sheet clipped to the intake table.\n- Gloves and aprons are stored behind the coordinator's desk, so grab a pair first.\n- The event, which starts at the time posted on the whiteboard, begins this morning.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Welcome to our volunteer supply room today.",
+        "audio": "stimuli/spk-50c1bede/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.46,
+          "y": 0.12,
+          "w": 0.19,
+          "h": 0.16
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The boxes and bins sit near the front door.",
+        "audio": "stimuli/spk-50c1bede/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.25,
+          "y": 0.21,
+          "w": 0.16,
+          "h": 0.21
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Please sign in and grab a badge at the table.",
+        "audio": "stimuli/spk-50c1bede/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.2,
+          "y": 0.57,
+          "w": 0.11,
+          "h": 0.08
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The boxes are sorted by item type, and each one has a label.",
+        "audio": "stimuli/spk-50c1bede/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "When you arrive, please sign the sheet clipped to the intake table.",
+        "audio": "stimuli/spk-50c1bede/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.35,
+          "y": 0.43,
+          "w": 0.14,
+          "h": 0.11
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Gloves and aprons are stored behind the coordinator's desk, so grab a pair first.",
+        "audio": "stimuli/spk-50c1bede/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.77,
+          "y": 0.21,
+          "w": 0.21,
+          "h": 0.26
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The event, which starts at the time posted on the whiteboard, begins this morning.",
+        "audio": "stimuli/spk-50c1bede/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.67,
+          "y": 0.05,
+          "w": 0.22,
+          "h": 0.18
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Podcast Listening Habits",
+    "intro": "Thank you for speaking with me today. I'm calling as part of a short study on how people listen to podcasts during a normal day. I'll ask you four quick questions -- please answer as naturally as you can.",
+    "introAudio": "stimuli/spk-50c1bede/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, what device and app do you usually use to listen to podcasts, and what time of day do you usually tune in?",
+        "audio": "stimuli/spk-50c1bede/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of a specific episode or moment from a podcast that has stuck with you. What happened, and why do you still remember it?",
+        "audio": "stimuli/spk-50c1bede/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some listeners say ads placed in the middle of an episode break their focus and ruin the flow. Others say those ads are a fair trade for free content. Which view do you agree with, and why?",
+        "audio": "stimuli/spk-50c1bede/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Some podcast platforms release an entire season at once, while others post one new episode each week. Which approach would you recommend podcast creators use, and why?",
+        "audio": "stimuli/spk-50c1bede/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-briefing",
+      "take": "retake",
+      "measuredWpm": 143.1,
+      "targetWpm": 165,
+      "minWpm": 145,
+      "maxWpm": 195
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 156.3,
+      "targetWpm": 200,
+      "minWpm": 175,
+      "maxWpm": 225
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "community-civic",
+      "noveltyKey": "neighborhood-volunteer-center-donation-walkthrough",
+      "requiredConcepts": [
+        "donation boxes sorted by item type near the door",
+        "sign-in sheet clipped to the intake table",
+        "gloves and aprons stored behind the coordinator's desk",
+        "collection event start time posted on the whiteboard"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-c42dd828",
+          "reason": "c42dd828 orients a front desk trainee in a health clinic; this plan orients a volunteer around donation intake stations in a civic collection setting, a different venue and purpose."
+        },
+        {
+          "setId": "spk-a87a3b41",
+          "reason": "a87a3b41 is a wildlife rehab intake walkthrough for animal handling; this plan covers donation sorting and sign-in stations for a public collection event, not animal care."
+        }
+      ],
+      "setting": "a neighborhood volunteer center's supply room",
+      "speakerRole": "the center's volunteer coordinator",
+      "communicativePurpose": "walking a newly arrived volunteer through each donation station before the center's first public collection event of the day"
+    },
+    "interview": {
+      "domain": "technology-media",
+      "noveltyKey": "podcast-listening-routine-device-habit",
+      "requiredConcepts": [
+        "a podcast played during a daily routine",
+        "a memorable moment from a podcast host or guest",
+        "opinion on ads inserted mid-episode",
+        "opinion on weekly versus full-season episode release"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-e5b2b735",
+          "reason": "e5b2b735 asks about learning a skill via online resources; this plan asks about routine podcast listening habits and episode-release opinions, a different topic and arc."
+        }
+      ],
+      "topic": "personal podcast listening habits during an ordinary day",
+      "premise": "A media habits researcher places a brief, unannounced phone call asking how the respondent listens to podcasts on a personal device during an ordinary day, with no preparation time before each question.",
+      "questionArc": [
+        "Ask which device and app the respondent typically uses to listen to podcasts and when during the day this usually happens.",
+        "Ask the respondent to recall one specific podcast moment or episode that stuck with them and explain why it was memorable.",
+        "Present two contrasting views on ads inserted in the middle of an episode and ask the respondent to take a side with a reason.",
+        "Broaden to whether podcast platforms should release a whole season at once or one episode per week, asking for a recommendation."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v4",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "british",
+      "voice": "Erinome",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        200,
+        208,
+        215,
+        180,
+        178,
+        176,
+        175
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "australian",
+      "voice": "Iapetus",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

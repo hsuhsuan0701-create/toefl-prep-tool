@@ -1,0 +1,175 @@
+{
+  "id": "spk-fb16d13c",
+  "source": "generated",
+  "createdAt": "2026-08-24T12:58:56.383Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Campus Mail and Package Center Orientation",
+    "scenarioDescription": "Listen to the campus mail center supervisor orient a new student worker in the sorting room, and repeat what the supervisor says. Repeat only once.",
+    "introAudio": "stimuli/spk-fb16d13c/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-fb16d13c.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Campus Mail and Package Center Orientation. Listen to the campus mail center supervisor orient a new student worker in the sorting room, and repeat what the supervisor says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- This is the campus package sorting room.\n- Empty bins and rolling carts line the back wall.\n- We scan each package and place it in the right bin.\n- The scanner reads the label, and it sorts the package by dorm building.\n- After the scanner logs a package, the system emails the student right away.\n- The pickup counter staff always check each student's ID and dorm assignment.\n- Any package that arrives damaged gets logged carefully before it's placed in storage.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "This is the campus package sorting room.",
+        "audio": "stimuli/spk-fb16d13c/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Empty bins and rolling carts line the back wall.",
+        "audio": "stimuli/spk-fb16d13c/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "We scan each package and place it in the right bin.",
+        "audio": "stimuli/spk-fb16d13c/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The scanner reads the label, and it sorts the package by dorm building.",
+        "audio": "stimuli/spk-fb16d13c/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "After the scanner logs a package, the system emails the student right away.",
+        "audio": "stimuli/spk-fb16d13c/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The pickup counter staff always check each student's ID and dorm assignment.",
+        "audio": "stimuli/spk-fb16d13c/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Any package that arrives damaged gets logged carefully before it's placed in storage.",
+        "audio": "stimuli/spk-fb16d13c/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Managing App Notifications",
+    "intro": "Thank you for speaking with me today. I'm calling from a mobile technology usability research group, and we're asking people a few quick questions about how they manage the notification alerts their apps send to their phone.",
+    "introAudio": "stimuli/spk-fb16d13c/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Which apps on your phone send you the most notifications, and how do you currently have those alerts set up — are they on, muted, or something in between?",
+        "audio": "stimuli/spk-fb16d13c/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of a specific recent time when notifications felt distracting or hard to keep up with. What was happening, and why did it get overwhelming at that particular moment?",
+        "audio": "stimuli/spk-fb16d13c/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some people believe apps should limit how often they send notifications by default, so users aren't interrupted unless they choose to be. Others believe apps should be free to notify as often as they want, and users can adjust the settings themselves. Which view do you agree with, and why?",
+        "audio": "stimuli/spk-fb16d13c/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. If you could recommend one change that device makers should make to how notification systems work by default, what would it be, and why do you think that change would help?",
+        "audio": "stimuli/spk-fb16d13c/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "campus-academics",
+      "noveltyKey": "campus-mail-package-center-orientation",
+      "requiredConcepts": [
+        "packages sorted by dorm building",
+        "pickup counter student ID check",
+        "notification email sent when a package is scanned",
+        "damaged package logged before storage"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-1ba26e29",
+          "reason": "prior set orients a new tutor through a campus writing center's drop-in session stations; this one orients a new student worker through a campus mail and package center's intake and pickup stations"
+        }
+      ],
+      "setting": "the campus mail and package center's sorting room",
+      "speakerRole": "campus mail center supervisor",
+      "communicativePurpose": "orient a newly hired student worker through each step of receiving, logging, and releasing student packages"
+    },
+    "interview": {
+      "domain": "technology-media",
+      "noveltyKey": "phone-notification-management-habit",
+      "requiredConcepts": [
+        "app notifications muted during work hours",
+        "checking messages first thing each morning",
+        "opinion on always-on notification badges",
+        "recommended change to notification defaults"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-9dbd086f",
+          "reason": "prior set covers deciding whether to install a software update; this one covers managing incoming app notification alerts, a different everyday device habit"
+        }
+      ],
+      "topic": "managing notification alerts from apps on a personal device",
+      "premise": "A mobile technology usability research group is making a brief, unannounced phone call about how people manage notification alerts from apps on their personal device.",
+      "questionArc": [
+        "Ask which apps send the most notifications to the person's device and how those alerts are currently set up.",
+        "Ask about a specific recent time notifications became distracting or hard to keep up with, and why that happened.",
+        "Present two contrasting views on whether apps should limit notification frequency by default, and ask the person to take a side and justify it.",
+        "Ask the person to recommend one change device makers should make to how notification systems work, and to defend that recommendation."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "australian",
+      "voice": "Kore",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "north-american",
+      "voice": "Umbriel",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

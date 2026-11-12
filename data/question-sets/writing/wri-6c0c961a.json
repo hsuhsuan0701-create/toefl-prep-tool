@@ -1,0 +1,511 @@
+{
+  "id": "wri-6c0c961a",
+  "source": "generated",
+  "createdAt": "2026-08-25T13:44:43.126Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Why is there a gap in last night's solar panel readings?",
+        "frame": "A failed sensor ___ ___ ___ overnight.",
+        "tiles": [
+          "caused",
+          "the",
+          "gap",
+          "cause"
+        ],
+        "answers": [
+          [
+            "caused",
+            "the",
+            "gap"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Is this login error just affecting my account?",
+        "frame": "The error ___ ___ ___ today.",
+        "tiles": [
+          "affects",
+          "many",
+          "accounts",
+          "affect"
+        ],
+        "answers": [
+          [
+            "affects",
+            "many",
+            "accounts"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "What's being done about the misprint in tonight's sheet music?",
+        "frame": "We ___ ___ ___ ___ before rehearsal.",
+        "tiles": [
+          "will",
+          "reprint",
+          "the",
+          "corrected copies",
+          "reprinted"
+        ],
+        "answers": [
+          [
+            "will",
+            "reprint",
+            "the",
+            "corrected copies"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Is my hearing test still starting on time?",
+        "frame": "We ___ ___ ___ ___ fifteen minutes.",
+        "tiles": [
+          "have",
+          "pushed",
+          "your appointment",
+          "back",
+          "push"
+        ],
+        "answers": [
+          [
+            "have",
+            "pushed",
+            "your appointment",
+            "back"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "What happens now that I've lost my locker key?",
+        "frame": "Since you lost the key, a replacement fee ___ ___ ___ ___ ___ counter.",
+        "tiles": [
+          "now",
+          "applies",
+          "right",
+          "at",
+          "the",
+          "apply"
+        ],
+        "answers": [
+          [
+            "now",
+            "applies",
+            "right",
+            "at",
+            "the"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "What did you discover about the donated negatives?",
+        "frame": "I ___ ___ ___ ___ ___ with the wrong decade.",
+        "tiles": [
+          "found",
+          "that",
+          "someone",
+          "relabeled",
+          "the negatives",
+          "relabel"
+        ],
+        "answers": [
+          [
+            "found",
+            "that",
+            "someone",
+            "relabeled",
+            "the negatives"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Why hasn't the lab started yet?",
+        "frame": "The ___ ___ ___ ___ ___ in the closet.",
+        "tiles": [
+          "goggles",
+          "that",
+          "we",
+          "need",
+          "are still",
+          "is still"
+        ],
+        "answers": [
+          [
+            "goggles",
+            "that",
+            "we",
+            "need",
+            "are still"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Has anything changed about the pool's class schedule?",
+        "frame": "The staff ___ ___ ___ ___ ___ ___ the time slots.",
+        "tiles": [
+          "posted",
+          "the",
+          "new schedule",
+          "after",
+          "they",
+          "swapped",
+          "swap"
+        ],
+        "answers": [
+          [
+            "posted",
+            "the",
+            "new schedule",
+            "after",
+            "they",
+            "swapped"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "What caused the change of plans for the presentation?",
+        "frame": "It ___ ___ ___ ___ ___ ___ out.",
+        "tiles": [
+          "was",
+          "the",
+          "projector",
+          "bulb",
+          "that",
+          "burned",
+          "burns"
+        ],
+        "answers": [
+          [
+            "was",
+            "the",
+            "projector",
+            "bulb",
+            "that",
+            "burned"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "So what's the plan for shoveling next week?",
+        "frame": "The turns ___ ___ ___ ___ ___ ___ next week.",
+        "tiles": [
+          "will",
+          "be",
+          "swapped",
+          "by",
+          "both",
+          "neighbors",
+          "swap"
+        ],
+        "answers": [
+          [
+            "will",
+            "be",
+            "swapped",
+            "by",
+            "both",
+            "neighbors"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "I borrowed an extension ladder from the neighborhood tool-lending library on Saturday, and the confirmation email I received afterward lists a return date three days earlier than the date written on the sign-out sheet I signed at pickup. I'd like the emailed receipt corrected to match the sign-out sheet before that earlier date arrives and a late fee gets charged.",
+    "to": "frontdesk@westgrove-toollibrary.org",
+    "subject": "Return Date Mismatch on Ladder Receipt",
+    "bullets": [
+      "Point out that the return date on the emailed receipt doesn't match the sign-out sheet from pickup.",
+      "Request that the receipt be corrected to the date recorded on the sign-out sheet.",
+      "Ask for confirmation once the correction is made, before any late fee applies."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Higher Education Policy",
+    "professorName": "Dr. Bennett",
+    "professorPost": "Some universities now let students mark one elective each semester as pass/fail instead of receiving a letter grade, so a weak result in an unfamiliar subject won't lower their GPA. Supporters say this encourages students to explore outside their comfort zone without fear of academic penalty; critics worry it removes information that employers and graduate programs rely on when they read a transcript. Should schools offer a pass/fail option for electives? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Maria",
+        "post": "I think a pass/fail option is a great idea. I've avoided classes like astronomy because I was scared a bad grade would drag down my GPA, even though the subject genuinely interested me. If one elective per semester didn't count toward my average, I would take more academic risks and probably learn far more overall."
+      },
+      {
+        "name": "Owen",
+        "post": "I understand the appeal, but transcripts exist for a reason. When I apply for internships, employers compare grades across applicants, and a page with a 'pass' mark tells them nothing about how well I actually did. If students want to explore new subjects, they should still be graded, or the transcript stops meaning anything to the people reading it."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "science-environment",
+          "situation": "In a renewable-energy laboratory, overnight readings from a rooftop solar panel show a data gap because a sensor failed; the lab supervisor has the new intern swap in a replacement sensor and note the gap before the next report.",
+          "participantRoles": [
+            "the renewable-energy laboratory's supervisor",
+            "a newly hired laboratory intern"
+          ],
+          "noveltyKey": "solar-panel-data-gap-sensor-swap",
+          "requiredConcepts": [
+            "overnight data gap traced to a failed sensor",
+            "replacement sensor installed before next reading",
+            "gap noted in the monthly report"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "catalog's science-environment entry pauses a habitat experiment for a fume-hood airflow recheck; this one is a solar-monitoring data gap fixed by a sensor swap, a different mechanism and setting"
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "At a digital reading platform, an online support lead tells a subscriber that a login error in the ebook app affects several accounts and will be fixed with an overnight software update.",
+          "participantRoles": [
+            "a digital reading platform's support lead",
+            "a subscriber who reported a login error"
+          ],
+          "noveltyKey": "ebook-app-login-error-overnight-fix",
+          "requiredConcepts": [
+            "login error affecting several ebook accounts",
+            "overnight software update scheduled",
+            "subscribers notified once the fix is confirmed"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-b5e4cabe",
+              "reason": "catalog's technology-media entry is a streaming subtitle-sync bug under investigation; this is a library ebook login error resolved via an overnight software update, a different system and resolution"
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "In an amateur choir's rehearsal hall, the music director tells a volunteer librarian that tonight's printed sheet music has a misprint, so corrected copies are being reprinted before rehearsal starts.",
+          "participantRoles": [
+            "an amateur choir's music director",
+            "a volunteer sheet-music librarian"
+          ],
+          "noveltyKey": "choir-sheet-music-misprint-reprint",
+          "requiredConcepts": [
+            "sheet music misprint found before rehearsal",
+            "corrected copies reprinted the same afternoon",
+            "rehearsal start delayed thirty minutes"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "catalog's arts-culture entry is an etching-press recalibration delay; this is a choir sheet-music misprint fixed by reprinting, a different craft and object"
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "In a wellness clinic's hearing-test booth, an audiology technician tells a waiting patient that the booth needs recalibration, so the appointment is pushed back fifteen minutes.",
+          "participantRoles": [
+            "a wellness clinic's audiology technician",
+            "a patient waiting for a scheduled hearing test"
+          ],
+          "noveltyKey": "clinic-hearing-test-booth-recalibration-delay",
+          "requiredConcepts": [
+            "hearing-test booth needing recalibration",
+            "appointment pushed back fifteen minutes",
+            "quiet waiting area offered during the delay"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "catalog's health-wellbeing entry just relocates a balance assessment to a different room; this is a hearing-test booth needing recalibration, a different clinical cause"
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "At a ferry terminal's ticket counter, an attendant tells a passenger who lost a locker key that a replacement fee applies, then reopens the locker with a master key.",
+          "participantRoles": [
+            "a ferry terminal's ticket counter attendant",
+            "a passenger who lost a locker key"
+          ],
+          "noveltyKey": "ferry-locker-key-replacement-fee",
+          "requiredConcepts": [
+            "locker key lost before departure",
+            "replacement fee charged at the counter",
+            "locker reopened with a master key"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "catalog's services-travel entry is about a full luggage compartment on a train; this is a lost ferry locker key resolved with a replacement fee, a different problem type"
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "In a town's heritage archive, the collection curator tells a volunteer that a batch of donated photo negatives was relabeled with the wrong decade, and the correct dates are being traced through the donor log.",
+          "participantRoles": [
+            "a heritage archive's collection curator",
+            "a volunteer sorting donated negatives"
+          ],
+          "noveltyKey": "archive-photo-negative-relabel-error",
+          "requiredConcepts": [
+            "photo negatives relabeled with the wrong decade",
+            "correct dates traced through the donor log",
+            "corrected boxes returned to the storage shelf"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-6d6c11da",
+              "reason": "catalog's history-social-change entry requires photographing a donated trunk before storage; this is mislabeled photo negatives traced and corrected, a different archival task"
+            }
+          ]
+        },
+        {
+          "domain": "campus-academics",
+          "situation": "Before a chemistry lab session, a teaching assistant tells an arriving student that the campus supply closet is short on safety-goggle sizes, so the lab start is delayed a few minutes while extra pairs are located.",
+          "participantRoles": [
+            "a chemistry course's teaching assistant",
+            "a student arriving for the lab session"
+          ],
+          "noveltyKey": "campus-chem-lab-goggle-size-shortage",
+          "requiredConcepts": [
+            "safety goggles running short before lab begins",
+            "extra pairs borrowed from the supply closet",
+            "lab start delayed a few minutes"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "catalog's science-environment lab entry pauses an experiment for fume-hood recheck; this is a campus chemistry class short on goggle sizes, a supply issue not an equipment recheck"
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "At a municipal pool, the front-desk coordinator tells a regular lap swimmer that the lane-swim and aqua-aerobics time slots have been swapped, with the new schedule posted at the public entrance.",
+          "participantRoles": [
+            "a municipal pool's front-desk coordinator",
+            "a regular lap swimmer"
+          ],
+          "noveltyKey": "pool-lane-swim-aqua-aerobics-schedule-swap",
+          "requiredConcepts": [
+            "lane-swim and aqua-aerobics time slots swapped",
+            "new schedule posted at the entrance",
+            "same number of lanes kept open"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "catalog's community-civic entry relocates a trail-cleanup meeting point; this is a municipal pool swapping two class time slots, a scheduling swap rather than a location change"
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "In a company office, the facilities coordinator tells an employee preparing a client presentation that the conference room projector's bulb burned out, so the meeting is moving to a smaller room while a replacement bulb is ordered.",
+          "participantRoles": [
+            "an office facilities coordinator",
+            "an employee preparing a client presentation"
+          ],
+          "noveltyKey": "office-projector-bulb-burnout-room-move",
+          "requiredConcepts": [
+            "projector bulb burned out before the meeting",
+            "replacement bulb ordered the same day",
+            "presentation moved to a smaller room"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-b5e4cabe",
+              "reason": "catalog's workplace-business entry is a password-reset ticket downgraded in priority; this is a burned-out projector bulb delaying a client presentation, a different equipment failure"
+            }
+          ]
+        },
+        {
+          "domain": "everyday-life",
+          "situation": "In a shared apartment building, one neighbor tells the neighbor who shares the driveway that their snow-shoveling schedule got mixed up, and they agree to swap turns the following week.",
+          "participantRoles": [
+            "a resident sharing a driveway with a neighbor",
+            "the neighbor who normally shovels on alternating weeks"
+          ],
+          "noveltyKey": "shared-driveway-snow-shovel-schedule-mixup",
+          "requiredConcepts": [
+            "snow-shoveling schedule mixed up between neighbors",
+            "driveway cleared before both leave for work",
+            "turns swapped for the following week"
+          ],
+          "distinguishesFrom": []
+        }
+      ]
+    },
+    "email": {
+      "domain": "community-civic",
+      "noveltyKey": "tool-library-receipt-due-date-mismatch",
+      "requiredConcepts": [
+        "due-date mismatch between receipt and sign-out sheet",
+        "ladder borrowed from the tool-lending library",
+        "correction requested before a late fee applies"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-b91a8955",
+          "reason": "catalog's community-civic email is about a shut-off shared garden water tap harming seedlings; this is a due-date mismatch on a tool-library receipt, a different service and problem"
+        },
+        {
+          "setId": "wri-550947bf",
+          "reason": "catalog's community-civic email is a double-booked meeting room for a walking-tour program; this is a borrowed-tool receipt date error, unrelated to room booking"
+        }
+      ],
+      "situation": "The writer borrowed a ladder from the neighborhood tool-lending library; the emailed receipt shows a due date three days earlier than the sign-out sheet at pickup, and they want it corrected before a late fee applies.",
+      "recipientRole": "the tool-lending library's front-desk coordinator",
+      "communicativeActs": [
+        "state that the receipt's return date doesn't match the sign-out sheet from pickup",
+        "request the receipt be corrected to the sign-out sheet's date",
+        "ask for confirmation once the correction is made, before any late fee is applied"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "campus-academics",
+      "noveltyKey": "pass-fail-elective-grading-option",
+      "requiredConcepts": [
+        "one elective graded pass fail per semester",
+        "GPA protected while exploring an unfamiliar subject",
+        "transcript loses letter grade detail employers rely on"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-6d6c11da",
+          "reason": "catalog's campus-academics discussion is about mandatory study-skill courses before electives; this is optional pass/fail grading for one elective, a different policy lever"
+        },
+        {
+          "setId": "wri-cd14eb34",
+          "reason": "catalog's campus-academics discussion concerns laptops in the classroom; this is about GPA and transcript grading policy, an unrelated axis"
+        }
+      ],
+      "proposition": "Some universities let students grade one elective per semester pass/fail, protecting GPA while they explore unfamiliar subjects; critics say it strips transcript signal that employers and graduate programs rely on.",
+      "competingValues": [
+        "academic exploration without GPA risk",
+        "transcript signal value for employers and graduate programs"
+      ]
+    }
+  }
+}

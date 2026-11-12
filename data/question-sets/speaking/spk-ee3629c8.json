@@ -1,0 +1,176 @@
+{
+  "id": "spk-ee3629c8",
+  "source": "generated",
+  "createdAt": "2026-08-23T14:15:54.754Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Front Office Check-In",
+    "scenarioDescription": "You're the office manager training a new front-desk employee at a small company. Listen to each sentence about the morning check-in routine and repeat what the speaker says. Repeat only once.",
+    "introAudio": "stimuli/spk-ee3629c8/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-ee3629c8.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Front Office Check-In. You're the office manager training a new front-desk employee at a small company. Listen to each sentence about the morning check-in routine and repeat what the speaker says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- New employees always check in at this desk.\n- You'll print a visitor badge and a guest ID here.\n- The manager reviews the sign-in sheet and initials it every morning.\n- Guests receive a badge, and drivers get a temporary parking pass.\n- Whenever someone asks for a coworker, check the employee directory by the door.\n- The badge, the sign-in sheet, and the posted directory all matter daily.\n- The visitor whose badge you print today will remember how you treat them.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "New employees always check in at this desk.",
+        "audio": "stimuli/spk-ee3629c8/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "You'll print a visitor badge and a guest ID here.",
+        "audio": "stimuli/spk-ee3629c8/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "The manager reviews the sign-in sheet and initials it every morning.",
+        "audio": "stimuli/spk-ee3629c8/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Guests receive a badge, and drivers get a temporary parking pass.",
+        "audio": "stimuli/spk-ee3629c8/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Whenever someone asks for a coworker, check the employee directory by the door.",
+        "audio": "stimuli/spk-ee3629c8/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The badge, the sign-in sheet, and the posted directory all matter daily.",
+        "audio": "stimuli/spk-ee3629c8/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The visitor whose badge you print today will remember how you treat them.",
+        "audio": "stimuli/spk-ee3629c8/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Tracking and Reducing Home Energy Use",
+    "intro": "Thank you for taking a few minutes to speak with us today. We're part of a residential energy conservation research group, and we're calling to ask a few questions about how you manage energy use at home day to day. There's no need to prepare anything — just answer naturally.",
+    "introAudio": "stimuli/spk-ee3629c8/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, which specific habit or appliance setting — like adjusting your thermostat or unplugging chargers you're not using — do you rely on most to cut everyday energy use at home, and about how often do you use it?",
+        "audio": "stimuli/spk-ee3629c8/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thank you. Could you describe a specific time when an unusually high energy bill made you change one of your home energy habits? What exactly did you change, and why do you think that change has stuck with you since then?",
+        "audio": "stimuli/spk-ee3629c8/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK, now I'd like to ask your opinion. Some people say convenience should come first at home, even if it means using more energy than necessary. Others believe a household should always minimize its energy use, even when that's less convenient. Which view is closer to yours, and why?",
+        "audio": "stimuli/spk-ee3629c8/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask one final question. Should local utility companies reward, or even require, households to track their everyday energy use? What effect do you think that would have?",
+        "audio": "stimuli/spk-ee3629c8/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "workplace-business",
+      "noveltyKey": "front-office-visitor-badge-orientation",
+      "requiredConcepts": [
+        "visitor badge printed at the front office",
+        "manager reviews the daily sign-in sheet",
+        "temporary parking pass handed over",
+        "employee directory posted by the door"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-c68f245c",
+          "reason": "different workplace routine — bakery closing checklist versus a company's front-office morning check-in for new employees"
+        }
+      ],
+      "setting": "the front office of a small company where new employees check in each morning",
+      "speakerRole": "the office manager training a new front-desk employee",
+      "communicativePurpose": "orient a new employee to the company's morning check-in routine at the front office"
+    },
+    "interview": {
+      "domain": "science-environment",
+      "noveltyKey": "home-energy-conservation-habit-check",
+      "requiredConcepts": [
+        "thermostat adjusted to save energy",
+        "chargers unplugged when not in use",
+        "high energy bill prompting a change",
+        "convenience versus energy savings tradeoff",
+        "utility incentive for tracking energy use"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-dd6dcb3d",
+          "reason": "different topic — backyard wildlife watching habits versus tracking and reducing home energy use"
+        }
+      ],
+      "topic": "the everyday habit of tracking and reducing energy use at home",
+      "premise": "a residential energy conservation research group places a brief unannounced phone call about how people manage household energy use day to day",
+      "questionArc": [
+        "ask which specific habit or appliance setting test taker relies on most to cut everyday home energy use, and how often they use it",
+        "ask about a specific past moment when a noticeably high energy bill made test taker change a home energy habit, and why the change stuck",
+        "introduce two contrasting views — some households prioritize convenience over energy savings while others always minimize energy use — and ask test taker to take a side and justify it with a reason",
+        "broaden to whether local utilities should reward or require households to track home energy use, inviting a recommendation or prediction about the effect"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "british",
+      "voice": "Alnilam",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "north-american",
+      "voice": "Sulafat",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

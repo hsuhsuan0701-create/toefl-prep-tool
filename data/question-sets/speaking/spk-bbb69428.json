@@ -1,0 +1,191 @@
+{
+  "id": "spk-bbb69428",
+  "source": "generated",
+  "createdAt": "2026-08-23T13:45:18.655Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Greenhouse Assistant Orientation",
+    "scenarioDescription": "You've just started as a new assistant in the plant biology laboratory's greenhouse. Listen to the greenhouse coordinator explain each station along the potting bench, and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-bbb69428/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-bbb69428.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Greenhouse Assistant Orientation. You've just started as a new assistant in the plant biology laboratory's greenhouse. Listen to the greenhouse coordinator explain each station along the potting bench, and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- This greenhouse has twelve separate watering stations.\n- The moisture gauge and the humidity log sit here.\n- Check the soil moisture gauge before each watering round.\n- Log the humidity reading, and initial the entry at each bay.\n- After you log the humidity, rotate the seedling trays for even light.\n- Before you leave each bay, inspect the pest trap near the intake vents.\n- The assistant working the morning shift checks every gauge before opening time.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "This greenhouse has twelve separate watering stations.",
+        "audio": "stimuli/spk-bbb69428/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The moisture gauge and the humidity log sit here.",
+        "audio": "stimuli/spk-bbb69428/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Check the soil moisture gauge before each watering round.",
+        "audio": "stimuli/spk-bbb69428/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Log the humidity reading, and initial the entry at each bay.",
+        "audio": "stimuli/spk-bbb69428/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "After you log the humidity, rotate the seedling trays for even light.",
+        "audio": "stimuli/spk-bbb69428/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Before you leave each bay, inspect the pest trap near the intake vents.",
+        "audio": "stimuli/spk-bbb69428/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The assistant working the morning shift checks every gauge before opening time.",
+        "audio": "stimuli/spk-bbb69428/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "A Call About Your Art or Music Hobby",
+    "intro": "Hello! I'm calling on behalf of the city arts council. We're gathering quick impressions from residents about how people practice art and music hobbies at home. Thank you for speaking with me today — this will only take a few minutes.",
+    "introAudio": "stimuli/spk-bbb69428/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, which art or music hobby do you practice most often at home — for example, filling a watercolor sketchbook on weekend afternoons, or something else — and how often do you set aside time for it?",
+        "audio": "stimuli/spk-bbb69428/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of a specific recent practice session. Did you work at home, or did you book a practice room at a local art studio? What materials or space did you use, and how did the session go?",
+        "audio": "stimuli/spk-bbb69428/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some people think practicing a hobby alone at home helps you improve faster, while others believe taking a group music class works better. Which do you think helps someone improve faster, and why?",
+        "audio": "stimuli/spk-bbb69428/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Do you think local studios should offer free art or music practice space to hobbyists? What do you predict would happen if they did?",
+        "audio": "stimuli/spk-bbb69428/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "speech-rate",
+      "detail": "lr-briefing",
+      "take": "retake",
+      "measuredWpm": 134.8,
+      "targetWpm": 165,
+      "minWpm": 145,
+      "maxWpm": 195
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "science-environment",
+      "noveltyKey": "greenhouse-biology-lab-orientation",
+      "requiredConcepts": [
+        "soil moisture gauge checked before watering",
+        "humidity log entry at each greenhouse bay",
+        "seedling tray rotation for even light exposure",
+        "pest trap inspected near the intake vents"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-8fed5241",
+          "reason": "different domain and venue — an administrative advising desk walkthrough, not a science laboratory greenhouse"
+        },
+        {
+          "setId": "spk-663e848c",
+          "reason": "different domain — a technology help-desk loaner equipment orientation, not plant-care stations"
+        },
+        {
+          "setId": "spk-6a7e0b2a",
+          "reason": "different domain — a health clinic vaccination setup, not a plant biology laboratory greenhouse"
+        }
+      ],
+      "setting": "a research greenhouse attached to a plant biology laboratory, with watering stations spaced along the potting bench",
+      "speakerRole": "the greenhouse's plant biology laboratory coordinator",
+      "communicativePurpose": "orient a newly hired greenhouse assistant through each plant-care station in the laboratory before the morning watering rotation begins"
+    },
+    "interview": {
+      "domain": "arts-culture",
+      "noveltyKey": "creative-hobby-practice-habit",
+      "requiredConcepts": [
+        "watercolor sketchbook filled during weekend afternoons",
+        "practice room booked at a local art studio",
+        "solo practice versus taking a group music class",
+        "free art studio space offered to hobbyists"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-8fed5241",
+          "reason": "different domain — a technology-media digital reminder app habit, not an active art or music hobby"
+        },
+        {
+          "setId": "spk-50c1bede",
+          "reason": "different domain and topic — passive podcast listening on a device, not hands-on art or music practice"
+        }
+      ],
+      "topic": "everyday practice of a personal art or music hobby at home",
+      "premise": "a local arts council researcher places a brief unannounced phone call about how the test taker practices a personal art or music hobby at home",
+      "questionArc": [
+        "asks which art or music hobby they practice most often at home and how often they set aside practice time",
+        "asks about a specific recent art or music practice session, including materials or space used and how it went",
+        "asks whether practicing that art or music hobby alone or in a group class helps someone improve faster, with a reason",
+        "asks whether local studios should offer free art or music practice space to hobbyists, inviting a prediction"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "british",
+      "voice": "Gacrux",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "australian",
+      "voice": "Iapetus",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

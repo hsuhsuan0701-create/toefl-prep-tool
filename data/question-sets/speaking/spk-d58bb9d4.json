@@ -1,0 +1,214 @@
+{
+  "id": "spk-d58bb9d4",
+  "source": "generated",
+  "createdAt": "2026-08-22T12:57:03.984Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Garage Workshop Handoff",
+    "scenarioDescription": "Listen to a homeowner walking a house-sitter through the garage workshop just before leaving for a two-week trip, and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-d58bb9d4/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-d58bb9d4.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Garage Workshop Handoff. Listen to a homeowner walking a house-sitter through the garage workshop just before leaving for a two-week trip, and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- The breaker panel sits behind the workbench.\n- Flip that switch if the lights or radio die.\n- We sort recyclables by material in bins near the side door.\n- Glass and plastic go in one bin, but paper and cardboard go in the other.\n- The spare key is inside the tool cabinet drawer, in case you ever get locked out.\n- The circuit breaker panel behind the workbench controls both the workshop lights and the garage door opener.\n- The recycling bins, which are sorted by material near the side door, get picked up every other Thursday morning.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "The breaker panel sits behind the workbench.",
+        "audio": "stimuli/spk-d58bb9d4/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.224,
+          "y": 0.17,
+          "w": 0.111,
+          "h": 0.155
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Flip that switch if the lights or radio die.",
+        "audio": "stimuli/spk-d58bb9d4/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.224,
+          "y": 0.17,
+          "w": 0.111,
+          "h": 0.155
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "We sort recyclables by material in bins near the side door.",
+        "audio": "stimuli/spk-d58bb9d4/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.686,
+          "y": 0.441,
+          "w": 0.177,
+          "h": 0.146
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Glass and plastic go in one bin, but paper and cardboard go in the other.",
+        "audio": "stimuli/spk-d58bb9d4/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.686,
+          "y": 0.441,
+          "w": 0.177,
+          "h": 0.146
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "The spare key is inside the tool cabinet drawer, in case you ever get locked out.",
+        "audio": "stimuli/spk-d58bb9d4/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.071,
+          "y": 0.501,
+          "w": 0.198,
+          "h": 0.219
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The circuit breaker panel behind the workbench controls both the workshop lights and the garage door opener.",
+        "audio": "stimuli/spk-d58bb9d4/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.224,
+          "y": 0.17,
+          "w": 0.111,
+          "h": 0.155
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The recycling bins, which are sorted by material near the side door, get picked up every other Thursday morning.",
+        "audio": "stimuli/spk-d58bb9d4/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.686,
+          "y": 0.441,
+          "w": 0.177,
+          "h": 0.146
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Packing Habits Before a Trip",
+    "intro": "Thank you for taking a few minutes to speak with me today. I'm gathering short phone interviews for a research project on how people get ready for trips. There's no need to prepare anything in advance — just answer with whatever comes to mind. Are you comfortable if I ask you a few quick questions about how you pack?",
+    "introAudio": "stimuli/spk-d58bb9d4/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Great, thank you. When you're getting ready for a trip, what's usually the first thing you pack, and how do you decide whether to bring just one bag or check luggage instead?",
+        "audio": "stimuli/spk-d58bb9d4/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "OK, let's talk about a specific trip. Can you tell me about a time when you forgot something or packed it at the last minute — maybe even something like a charger left behind at the airport gate? What happened?",
+        "audio": "stimuli/spk-d58bb9d4/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "Thanks for sharing that. Some travelers write out a full packing list before every trip, while others just pack from memory and trust themselves to remember what they need. Which approach do you think works better, and why?",
+        "audio": "stimuli/spk-d58bb9d4/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Do you think most travelers would pack better if they kept a saved packing list on their phone, or does relying on a list like that take away from learning to prepare on your own?",
+        "audio": "stimuli/spk-d58bb9d4/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "everyday-life",
+      "noveltyKey": "garage-workshop-house-sitter-walkthrough",
+      "requiredConcepts": [
+        "circuit breaker panel behind the workbench",
+        "recycling bins sorted by material near the side door",
+        "spare key inside the tool cabinet drawer"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-43ab8b09",
+          "reason": "spk-43ab8b09 is a staff member orienting a volunteer to an institutional campus greenhouse; this is a homeowner orienting a house-sitter in a private home, an everyday-life rather than community-civic setting."
+        },
+        {
+          "setId": "spk-8d9ee619",
+          "reason": "spk-8d9ee619 is a workplace zoo-tour for visitors given by paid staff; this is a one-time personal favor between homeowner and house-sitter with no institutional roles."
+        }
+      ],
+      "setting": "a garage workshop attached to a private house, just before the homeowner leaves for a two-week trip",
+      "speakerRole": "homeowner orienting a new house-sitter to the garage workshop, naming each station only once before departing",
+      "communicativePurpose": "walk the house-sitter through workshop stations once each so they can locate the breaker panel, sorted recycling, and spare key without needing repeated instructions"
+    },
+    "interview": {
+      "domain": "services-travel",
+      "noveltyKey": "pretrip-packing-routine",
+      "requiredConcepts": [
+        "one bag versus checked luggage",
+        "packing list saved on a phone",
+        "forgotten charger at the airport gate"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-8d9ee619",
+          "reason": "spk-8d9ee619 interviews about urban travel experience broadly; this instead targets the narrow habit of packing routine and one specific packing lapse before a trip."
+        },
+        {
+          "setId": "spk-e5b2b735",
+          "reason": "spk-e5b2b735 covers self-taught skill learning outside class; this is unrelated in subject and sits in services-travel rather than technology-media."
+        }
+      ],
+      "topic": "How people pack and prepare for travel before a trip",
+      "premise": "A short unprepared phone interview for a travel habits research project asks about pretrip packing routines and one memorable packing lapse.",
+      "questionArc": [
+        "Interviewer asks the participant to agree to a short recorded phone interview about travel packing habits, noting there is no time to prepare answers.",
+        "Interviewer asks what the participant usually packs first and how they decide between one bag and checked luggage before a trip.",
+        "Interviewer asks the participant to recall one specific trip when something was forgotten or packed at the last minute, such as a charger left behind at the airport gate.",
+        "Interviewer asks how that experience changed the packing list the participant now keeps saved on a phone for later trips."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v2",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "new-zealand",
+      "voice": "Rasalgethi",
+      "briefingTargetWpm": 165,
+      "itemTargetWpm": 180
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Iapetus",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "id": "spk-82a09237",
+  "source": "generated",
+  "createdAt": "2026-07-30T07:28:44.815Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Campus Art Studio Orientation",
+    "scenarioDescription": "You are learning how to guide students through a campus art studio. Listen to the studio manager and repeat what she says. Repeat only once.",
+    "image": {
+      "file": "images/scenarios/spk-82a09237.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Campus Art Studio Orientation. You are learning how to guide students through a campus art studio. Listen to the studio manager and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- This room stores our campus art supplies.\n- Students and instructors share these labeled storage cabinets.\n- You'll check each borrowed item at the desk by the entrance.\n- We clean the brushes here, and the drying rack stands beside them.\n- When a class ends, please return all unused paper to the nearest blue shelf.\n- The locked cabinet near the windows holds paints that require staff supervision during use at all times.\n- Any project left on the center tables, which are reserved for workshops, must be collected before the studio closes.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "This room stores our campus art supplies.",
+        "audio": "stimuli/spk-82a09237/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Students and instructors share these labeled storage cabinets.",
+        "audio": "stimuli/spk-82a09237/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "You'll check each borrowed item at the desk by the entrance.",
+        "audio": "stimuli/spk-82a09237/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "We clean the brushes here, and the drying rack stands beside them.",
+        "audio": "stimuli/spk-82a09237/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "When a class ends, please return all unused paper to the nearest blue shelf.",
+        "audio": "stimuli/spk-82a09237/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The locked cabinet near the windows holds paints that require staff supervision during use at all times.",
+        "audio": "stimuli/spk-82a09237/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Any project left on the center tables, which are reserved for workshops, must be collected before the studio closes.",
+        "audio": "stimuli/spk-82a09237/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Study Spaces and Student Learning",
+    "intro": "You have agreed to take part in a campus research study about where students study and how learning spaces affect their work. You will have a short interview with a researcher, who will ask you four questions.",
+    "introAudio": "stimuli/spk-82a09237/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thank you for speaking with me today. Where do you usually study, and what kind of work do you normally do there?",
+        "audio": "stimuli/spk-82a09237/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Think of a time when your surroundings made it especially easy or difficult for you to concentrate. What was the place like, and why did it affect you that way?",
+        "audio": "stimuli/spk-82a09237/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some students prefer quiet spaces where they can work alone, while others prefer shared spaces with conversation and activity. Which environment helps students learn more effectively, and why?",
+        "audio": "stimuli/spk-82a09237/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Some universities are considering spending more money on flexible study areas instead of traditional classrooms. Would this be a good use of university resources? Explain what benefits or problems you think this change could create.",
+        "audio": "stimuli/spk-82a09237/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  }
+}

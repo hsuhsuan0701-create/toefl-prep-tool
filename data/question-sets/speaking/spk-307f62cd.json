@@ -1,0 +1,227 @@
+{
+  "id": "spk-307f62cd",
+  "source": "generated",
+  "createdAt": "2026-08-23T14:14:26.844Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Lighting Booth Orientation",
+    "scenarioDescription": "You're starting your first shift as a backstage assistant in a community theater's lighting control booth, just before the Friday evening rehearsal call. Listen to the lead lighting technician orient you through each station, and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-307f62cd/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-307f62cd.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Lighting Booth Orientation. You're starting your first shift as a backstage assistant in a community theater's lighting control booth, just before the Friday evening rehearsal call. Listen to the lead lighting technician orient you through each station, and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- The stage manager hands me the cue sheet first.\n- The cue sheet and the crew list arrive before rehearsal.\n- Check the angle and lock each spotlight at your station.\n- We move through each lighting board station, and you take notes.\n- Before the curtain rises tonight, we test every intercom channel twice.\n- The backup bulbs sit inside a locked drawer beside the main switchboard.\n- The assistant who is assigned to spotlight two should check her own angle.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "The stage manager hands me the cue sheet first.",
+        "audio": "stimuli/spk-307f62cd/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.04,
+          "y": 0.37,
+          "w": 0.12,
+          "h": 0.145
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The cue sheet and the crew list arrive before rehearsal.",
+        "audio": "stimuli/spk-307f62cd/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.025,
+          "y": 0.55,
+          "w": 0.17,
+          "h": 0.145
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Check the angle and lock each spotlight at your station.",
+        "audio": "stimuli/spk-307f62cd/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.73,
+          "y": 0.18,
+          "w": 0.14,
+          "h": 0.13
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "We move through each lighting board station, and you take notes.",
+        "audio": "stimuli/spk-307f62cd/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.57,
+          "y": 0.315,
+          "w": 0.085,
+          "h": 0.155
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Before the curtain rises tonight, we test every intercom channel twice.",
+        "audio": "stimuli/spk-307f62cd/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.735,
+          "y": 0.515,
+          "w": 0.175,
+          "h": 0.245
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The backup bulbs sit inside a locked drawer beside the main switchboard.",
+        "audio": "stimuli/spk-307f62cd/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.335,
+          "y": 0.69,
+          "w": 0.165,
+          "h": 0.14
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The assistant who is assigned to spotlight two should check her own angle.",
+        "audio": "stimuli/spk-307f62cd/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Daily Commute Habits",
+    "intro": "Thank you for taking a moment to talk with us. We're part of a campus transportation research group studying how people get around each day, and we just have a few quick questions for you.",
+    "introAudio": "stimuli/spk-307f62cd/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, how do you usually get from home to the place you go most often each day, like your workplace or campus, and which street, stop, or bus number do you typically use to get there?",
+        "audio": "stimuli/spk-307f62cd/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thanks for sharing that. Now, can you tell me about a specific day when your usual route was blocked, maybe by construction, and walk me through what you did instead?",
+        "audio": "stimuli/spk-307f62cd/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK, I'd like to ask your opinion now. Some commuters always choose the fastest way to get somewhere, even if it costs more, while others choose the cheapest option even if it takes longer. Which do you usually prefer, and why?",
+        "audio": "stimuli/spk-307f62cd/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. If our transportation office could only improve routes in one way, either by making them faster or by making them cheaper, which change do you think would help most commuters more, and why?",
+        "audio": "stimuli/spk-307f62cd/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "arts-culture",
+      "noveltyKey": "theater-lighting-board-orientation",
+      "requiredConcepts": [
+        "cue sheet handoff before the rehearsal call",
+        "spotlight angle check at each lighting board station",
+        "intercom channel test before the curtain rises",
+        "backup bulb location inside the lighting booth"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-e0d7a688",
+          "reason": "spk-e0d7a688 orients a weekend monitor through a print/ceramic visual-art studio; this plans a performing-arts lighting booth orientation before a live rehearsal, a different sub-domain and setting."
+        },
+        {
+          "setId": "spk-e0f4f676",
+          "reason": "spk-e0f4f676 orients a broadcast-booth engineer for a media lab, a technology-media setting; this is an arts-culture theater lighting orientation, not a broadcast/media task."
+        },
+        {
+          "setId": "spk-071d01af",
+          "reason": "spk-071d01af is an everyday-life roommate orientation to a shared apartment; this plans a workplace-style backstage crew orientation instead."
+        }
+      ],
+      "setting": "a community theater's backstage lighting control booth, shortly before the venue's Friday evening rehearsal call",
+      "speakerRole": "the theater's lead lighting technician training a newly hired backstage assistant",
+      "communicativePurpose": "orient the new assistant through each lighting board station in order so cues run smoothly without supervision once the show starts"
+    },
+    "interview": {
+      "domain": "services-travel",
+      "noveltyKey": "daily-commute-route-choice-habit",
+      "requiredConcepts": [
+        "usual way to get to work or class each day",
+        "specific street, stop, or bus number taken most often",
+        "a recent day the usual route was blocked by construction",
+        "choosing speed over cost when picking how to travel"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-dec524bd",
+          "reason": "spk-dec524bd covers preparing for an occasional weekend trip away from home; this plans a routine short daily commute instead, a habitual not occasional trip."
+        },
+        {
+          "setId": "spk-6800cfd7",
+          "reason": "spk-6800cfd7 is a listen_repeat train-platform staff orientation, not an interview about a rider's own personal commute habit."
+        },
+        {
+          "setId": "spk-4ed5798a",
+          "reason": "spk-4ed5798a is a listen_repeat hotel bellhop orientation; this is a first-person interview about a test taker's own everyday travel choice, not a workplace walkthrough."
+        }
+      ],
+      "topic": "daily commute route and mode choice habit",
+      "premise": "A campus transportation research group makes a brief unannounced phone call asking how the test taker usually gets to their most frequent daily destination and why they choose that route over other options.",
+      "questionArc": [
+        "asks how the test taker usually travels between home and the place they go most often each day",
+        "asks which specific street, stop, or bus number they take most often on that trip",
+        "asks for a concrete recent example when that usual route had to change, such as being blocked by construction",
+        "asks whether the test taker prefers the faster option or the cheaper option when choosing how to travel, and why"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Gacrux",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "australian",
+      "voice": "Callirrhoe",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

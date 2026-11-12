@@ -1,0 +1,523 @@
+{
+  "id": "wri-1696d60a",
+  "source": "generated",
+  "createdAt": "2026-08-22T09:29:14.200Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Ms. Alvarez, I just found out my study room booking overlaps with another group's project reservation tonight.",
+        "frame": "I ___ ___ ___ ___ instead.",
+        "tiles": [
+          "can",
+          "offer",
+          "you",
+          "the next open slot",
+          "offered"
+        ],
+        "answers": [
+          [
+            "can",
+            "offer",
+            "you",
+            "the next open slot"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-2",
+        "prompt": "I heard the reimbursement cap changed and we need a receipt for every purchase now, what's the new number?",
+        "frame": "The ___ ___ ___ ___ this quarter.",
+        "tiles": [
+          "reimbursement cap",
+          "has",
+          "dropped",
+          "for",
+          "have"
+        ],
+        "answers": [
+          [
+            "reimbursement cap",
+            "has",
+            "dropped",
+            "for"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-3",
+        "prompt": "I noticed the flyer mentioned a new pickup day, did the recycling schedule actually change?",
+        "frame": "Starting this week, ___ ___ ___ ___ ___ the night before.",
+        "tiles": [
+          "you",
+          "must",
+          "put",
+          "the bins",
+          "out",
+          "putting"
+        ],
+        "answers": [
+          [
+            "you",
+            "must",
+            "put",
+            "the bins",
+            "out"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-4",
+        "prompt": "What's the new procedure in the climate chamber lab?",
+        "frame": "From now on, ___ ___ ___ ___ ___ twice a day.",
+        "tiles": [
+          "the",
+          "temperature log",
+          "must",
+          "be",
+          "checked",
+          "checks"
+        ],
+        "answers": [
+          [
+            "the",
+            "temperature log",
+            "must",
+            "be",
+            "checked"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Why did my downloads stop working overnight?",
+        "frame": "Battery saver mode ___ ___ ___, so you ___ ___ them back on yourself.",
+        "tiles": [
+          "silently",
+          "disables",
+          "background downloads",
+          "must",
+          "turn",
+          "disable"
+        ],
+        "answers": [
+          [
+            "silently",
+            "disables",
+            "background downloads",
+            "must",
+            "turn"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Is photography still allowed in the ceramic exhibit this weekend?",
+        "frame": "The policy states ___ ___ ___ ___ ___ ___ for the festival weekend only.",
+        "tiles": [
+          "that",
+          "photography",
+          "is",
+          "restricted",
+          "in",
+          "the ceramic exhibit",
+          "are"
+        ],
+        "answers": [
+          [
+            "that",
+            "photography",
+            "is",
+            "restricted",
+            "in",
+            "the ceramic exhibit"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Has anything changed about the stress-reduction workshop schedule?",
+        "frame": "The workshop ___ ___ ___ ___ ___ ___ in a shorter format.",
+        "tiles": [
+          "that",
+          "used to meet",
+          "every other week",
+          "now",
+          "meets",
+          "weekly",
+          "meet"
+        ],
+        "answers": [
+          [
+            "that",
+            "used to meet",
+            "every other week",
+            "now",
+            "meets",
+            "weekly"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Does the shuttle still go straight to the train station?",
+        "frame": "The shuttle route, ___ ___ ___ ___, ___ ___ than before.",
+        "tiles": [
+          "which",
+          "now",
+          "includes",
+          "an extra stop",
+          "takes",
+          "a little longer",
+          "include"
+        ],
+        "answers": [
+          [
+            "which",
+            "now",
+            "includes",
+            "an extra stop",
+            "takes",
+            "a little longer"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Can we put the new letter donation on display this week?",
+        "frame": "Not until the ink ___ ___ ___ ___ ___ ___ ready for display.",
+        "tiles": [
+          "has",
+          "been",
+          "stabilized",
+          "by our conservator",
+          "will the letter",
+          "be",
+          "is"
+        ],
+        "answers": [
+          [
+            "has",
+            "been",
+            "stabilized",
+            "by our conservator",
+            "will the letter",
+            "be"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Where should I go for the makeup exam?",
+        "frame": "The ___, ___ ___ ___ ___ ___, will start at nine.",
+        "tiles": [
+          "makeup exam",
+          "moved",
+          "to",
+          "a smaller lecture hall",
+          "by",
+          "the registrar",
+          "moves"
+        ],
+        "answers": [
+          [
+            "makeup exam",
+            "moved",
+            "to",
+            "a smaller lecture hall",
+            "by",
+            "the registrar"
+          ]
+        ],
+        "timeLimitSec": 40
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You are a new employee, and the laptop your company's IT department issued you arrived with a visibly cracked corner on the screen. You need a fully working device before a major project deadline later this week.",
+    "to": "itsupport@brightfield-solutions.com",
+    "subject": "Cracked Screen on New Laptop – Need a Replacement Before This Week's Deadline",
+    "bullets": [
+      "Describe the cracked screen you found on the laptop when it arrived.",
+      "Request an expedited replacement device before your deadline this week.",
+      "Ask for confirmation of the new delivery timeline for the replacement."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Introduction to Museum Studies",
+    "professorName": "Professor Whitfield",
+    "professorPost": "Several major museums have begun offering special exhibits entirely through virtual reality headsets, letting visitors explore digital reconstructions of artworks while the original objects stay in storage for the run of the show. Supporters say this widens access for people who cannot travel to or afford the physical exhibit, while others worry that visitors lose the direct encounter with an object's scale, texture, and craftsmanship. What do you think? Should museums offer VR-only exhibits as a substitute for viewing the physical artwork, or does something essential get lost in translation?",
+    "studentPosts": [
+      {
+        "name": "Priya",
+        "post": "I think VR exhibits are a real win for access. Not everyone can afford a flight and a museum ticket, and a VR headset lets someone across the world study the same brushwork up close, even zoom in further than a guard would ever allow near the actual canvas. Democratizing the experience matters more than preserving one ideal viewing."
+      },
+      {
+        "name": "Marco",
+        "post": "While I get Priya's point about access, a screen can't replicate standing in front of a real painting. The scale, the texture of brushstrokes, even the way light hits the surface changes how you perceive it. Reducing art to pixels for convenience risks flattening exactly what makes the original worth seeing."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "campus-academics",
+          "situation": "a university librarian tells a student that her study room booking overlapped with another course project's reservation for the same evening",
+          "participantRoles": [
+            "university librarian",
+            "student"
+          ],
+          "noveltyKey": "study-room-booking-overlap-course-project",
+          "requiredConcepts": [
+            "study room booking overlapped",
+            "librarian offers next open slot"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2936d16f",
+              "reason": "that item reassigns a theater patron's balcony seat for a safety reason; this one resolves a competing study-room reservation at a university library."
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "an office manager tells a new employee that the company's expense reimbursement cap dropped for the new fiscal quarter",
+          "participantRoles": [
+            "office manager",
+            "new employee"
+          ],
+          "noveltyKey": "expense-reimbursement-cap-fiscal-quarter-drop",
+          "requiredConcepts": [
+            "expense reimbursement cap lowered",
+            "receipts required for new quarter"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-bdbdd45c",
+              "reason": "that catalog set's workplace item is a loading-dock closure schedule; this one is a policy change to expense reimbursement limits."
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "a city recycling coordinator tells a neighborhood volunteer that bin collection moved to a different weekday",
+          "participantRoles": [
+            "city recycling coordinator",
+            "neighborhood volunteer"
+          ],
+          "noveltyKey": "recycling-bin-collection-weekday-moved",
+          "requiredConcepts": [
+            "recycling collection day changed",
+            "bins must be out night before"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-736f2103",
+              "reason": "that community-civic item covers a public notice board's posting-duration rule; this one covers a recycling pickup schedule change."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "a laboratory supervisor tells a new research assistant that the climate chamber's temperature log must be checked twice daily",
+          "participantRoles": [
+            "laboratory supervisor",
+            "research assistant"
+          ],
+          "noveltyKey": "climate-chamber-temperature-log-check-twice-daily",
+          "requiredConcepts": [
+            "climate chamber log check",
+            "twice-daily temperature reading required"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-736f2103",
+              "reason": "that item corrects a greenhouse humidity log entry already recorded wrong; this one introduces a new twice-daily logging requirement going forward."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "a software support agent tells an app user that the device's battery-saver mode silently disables background downloads",
+          "participantRoles": [
+            "software support agent",
+            "app user"
+          ],
+          "noveltyKey": "battery-saver-mode-disables-background-downloads",
+          "requiredConcepts": [
+            "battery-saver disables downloads",
+            "user must re-enable manually"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-736f2103",
+              "reason": "that item explains a stream device's download-limit reset tied to storage; this one explains a battery-saver setting silently blocking downloads."
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "a museum docent tells a visitor that the ceramic exhibit's photography policy changed for the festival weekend",
+          "participantRoles": [
+            "museum docent",
+            "visitor"
+          ],
+          "noveltyKey": "ceramic-exhibit-photography-policy-festival-weekend",
+          "requiredConcepts": [
+            "ceramic exhibit photography restricted",
+            "policy applies only festival weekend"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-bdbdd45c",
+              "reason": "that item covers a sculpture garden's earlier closing hour during a festival; this one covers a photography rule change for a ceramic exhibit."
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "a clinic nutritionist tells a patient that the stress-reduction workshop moved to a shorter weekly format",
+          "participantRoles": [
+            "clinic nutritionist",
+            "patient"
+          ],
+          "noveltyKey": "stress-reduction-workshop-shorter-weekly-format",
+          "requiredConcepts": [
+            "workshop format shortened",
+            "now meets weekly instead of biweekly"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-736f2103",
+              "reason": "that item offers a makeup session for a missed stress-management workshop; this one changes the ongoing workshop's format and frequency."
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "a hotel concierge tells a guest that the shuttle route to the train station added an extra stop",
+          "participantRoles": [
+            "hotel concierge",
+            "guest"
+          ],
+          "noveltyKey": "shuttle-route-added-extra-station-stop",
+          "requiredConcepts": [
+            "shuttle route gained a stop",
+            "total trip time increased slightly"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-bdbdd45c",
+              "reason": "that item explains an express ticket being invalid on a local train; this one explains an added stop on a hotel's shuttle route."
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "a heritage center guide tells a volunteer that a newly donated migration-era letter needs its ink stabilized before display",
+          "participantRoles": [
+            "heritage center guide",
+            "volunteer"
+          ],
+          "noveltyKey": "migration-era-letter-ink-stabilization-before-display",
+          "requiredConcepts": [
+            "letter ink needs stabilizing",
+            "display delayed until treatment done"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-736f2103",
+              "reason": "that item covers a missing oral-history transcript section; this one covers a donated letter needing conservation treatment before it can be shown."
+            }
+          ]
+        },
+        {
+          "domain": "campus-academics",
+          "situation": "a professor tells a student that the makeup exam room changed to a smaller lecture hall",
+          "participantRoles": [
+            "professor",
+            "student"
+          ],
+          "noveltyKey": "makeup-exam-room-changed-smaller-lecture-hall",
+          "requiredConcepts": [
+            "makeup exam moved room",
+            "smaller lecture hall assigned"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2936d16f",
+              "reason": "that campus item is about an office badge's limited lobby access; this one is about a makeup exam being relocated to a smaller room."
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "workplace-business",
+      "noveltyKey": "damaged-laptop-screen-it-replacement-request",
+      "requiredConcepts": [
+        "cracked screen corner on arrival",
+        "replacement needed before deadline"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-787b9d66",
+          "reason": "that email reports a damaged furniture panel to a workshop's external customer service; this one reports a damaged company laptop to internal IT ahead of a project deadline."
+        },
+        {
+          "setId": "wri-2936d16f",
+          "reason": "that build-a-sentence item is an unrelated office-badge access scenario; this email is a damaged-equipment replacement request."
+        }
+      ],
+      "situation": "a new employee's company-issued laptop arrived from IT with a visibly cracked screen corner, and the employee needs a working device before a major project deadline this week",
+      "recipientRole": "workplace IT support coordinator",
+      "communicativeActs": [
+        "report the cracked laptop screen found on arrival",
+        "request an expedited replacement device before the deadline",
+        "ask for confirmation of the new delivery timeline"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "arts-culture",
+      "noveltyKey": "vr-exhibit-access-versus-physical-art-encounter",
+      "requiredConcepts": [
+        "virtual reality museum exhibit access",
+        "authentic in-person object viewing",
+        "original artwork left in storage during vr run"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-2936d16f",
+          "reason": "that discussion item debates podcast release pacing for listeners; this proposition instead weighs virtual versus physical art viewing, a distinct domain and trade-off."
+        }
+      ],
+      "proposition": "Some art museums now let visitors experience special exhibits entirely through virtual reality headsets instead of viewing the physical objects in person.",
+      "competingValues": [
+        "broader, more affordable access for visitors who cannot travel to or afford the physical exhibit",
+        "authentic close encounter with the original artwork's texture, scale, and craftsmanship"
+      ]
+    }
+  }
+}

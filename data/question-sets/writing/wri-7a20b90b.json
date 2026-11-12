@@ -1,0 +1,521 @@
+{
+  "id": "wri-7a20b90b",
+  "source": "generated",
+  "createdAt": "2026-08-22T12:54:14.175Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "What's wrong with my badge photo?",
+        "frame": "Your photo ___ ___ ___ ___ before the printing deadline this week.",
+        "tiles": [
+          "needs",
+          "to",
+          "be",
+          "retaken",
+          "retake"
+        ],
+        "answers": [
+          [
+            "needs",
+            "to",
+            "be",
+            "retaken"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Has anything changed about tonight's noise permit?",
+        "frame": "The permit ___ ___ ___ ___ than it did last year.",
+        "tiles": [
+          "now",
+          "ends",
+          "much",
+          "earlier",
+          "earliest"
+        ],
+        "answers": [
+          [
+            "now",
+            "ends",
+            "much",
+            "earlier"
+          ],
+          [
+            "ends",
+            "much",
+            "earlier",
+            "now"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-3",
+        "prompt": "What happens if the two humidity readings don't match?",
+        "frame": "We ___ ___ ___ ___ ___ until the readings agree again.",
+        "tiles": [
+          "will",
+          "have",
+          "to",
+          "pause",
+          "the experiment",
+          "paused"
+        ],
+        "answers": [
+          [
+            "will",
+            "have",
+            "to",
+            "pause",
+            "the experiment"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Did we lose the whole interview?",
+        "frame": "Fortunately, ___ ___ ___ ___ ___ from a backup file.",
+        "tiles": [
+          "we",
+          "can",
+          "just",
+          "restart",
+          "the interview",
+          "restarted"
+        ],
+        "answers": [
+          [
+            "we",
+            "can",
+            "just",
+            "restart",
+            "the interview"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Which stage is the opening act using tonight?",
+        "frame": "They ___ ___ ___ ___ ___ because of the wind.",
+        "tiles": [
+          "quickly",
+          "moved",
+          "the act",
+          "to",
+          "the smaller side stage",
+          "move"
+        ],
+        "answers": [
+          [
+            "quickly",
+            "moved",
+            "the act",
+            "to",
+            "the smaller side stage"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Where should I go for the stress management session?",
+        "frame": "The group ___ ___ ___ ___ ___ ___ this month.",
+        "tiles": [
+          "that",
+          "meets",
+          "on Tuesdays",
+          "is",
+          "meeting",
+          "in the annex",
+          "meet"
+        ],
+        "answers": [
+          [
+            "that",
+            "meets",
+            "on Tuesdays",
+            "is",
+            "meeting",
+            "in the annex"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Can I still get dinner on the way back?",
+        "frame": "The dining car ___ ___ ___ ___ ___ ___ the outbound trip.",
+        "tiles": [
+          "closes",
+          "an hour",
+          "earlier",
+          "than",
+          "it does",
+          "on",
+          "close"
+        ],
+        "answers": [
+          [
+            "closes",
+            "an hour",
+            "earlier",
+            "than",
+            "it does",
+            "on"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-8",
+        "prompt": "May I look through the new ledger today?",
+        "frame": "Not yet — ___ ___ ___ ___ ___ ___ anyone handles it again.",
+        "tiles": [
+          "it",
+          "needs",
+          "to",
+          "be",
+          "photographed",
+          "before",
+          "photograph"
+        ],
+        "answers": [
+          [
+            "it",
+            "needs",
+            "to",
+            "be",
+            "photographed",
+            "before"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Do I still have until next month to apply?",
+        "frame": "The deadline, ___ ___ ___ ___ ___ ___ two weeks earlier this year.",
+        "tiles": [
+          "moved",
+          "up",
+          "by",
+          "the department",
+          "now",
+          "falls",
+          "moving"
+        ],
+        "answers": [
+          [
+            "moved",
+            "up",
+            "by",
+            "the department",
+            "now",
+            "falls"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Is it okay if I park in the driveway overnight?",
+        "frame": "It's fine, ___ ___ ___ ___ ___ ___ on trash pickup mornings.",
+        "tiles": [
+          "except",
+          "that",
+          "we",
+          "need",
+          "it",
+          "clear",
+          "clears"
+        ],
+        "answers": [
+          [
+            "except",
+            "that",
+            "we",
+            "need",
+            "it",
+            "clear"
+          ]
+        ],
+        "timeLimitSec": 40
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You recently upgraded to the paid tier of a podcast platform specifically to remove advertisements, and the charge for the new plan went through successfully. However, ads still play in every episode you download for offline listening, even though your account shows an active paid subscription. Write an email to the platform's customer support team about this problem.",
+    "to": "support@castloop-app.example",
+    "subject": "Ads Still Playing in Downloaded Episodes",
+    "bullets": [
+      "Describe the problem with ads still playing in your downloaded episodes.",
+      "Request that the issue be fixed or that you receive a refund for the malfunctioning feature.",
+      "Ask for confirmation once the problem has been resolved."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Sociology of Everyday Life",
+    "professorName": "Professor Whitfield",
+    "professorPost": "This week we're looking at how small groups negotiate shared resources in everyday settings. Picture a set of neighbors who share a courtyard or driveway used for parking, gardening, or informal gatherings. Some residents want the group to adopt a fixed weekly schedule assigning specific days or hours to each household, while others prefer to leave access first-come, first-served. Which approach do you think works better for neighbors sharing a space like this? Why?",
+    "studentPosts": [
+      {
+        "name": "Maya",
+        "post": "I think a fixed schedule works best. Without one, whoever is most persistent or has the most free time ends up using the space the most, which isn't fair to neighbors with unpredictable schedules, like parents or shift workers. A weekly rotation guarantees everyone gets a turn, even if it feels less spontaneous."
+      },
+      {
+        "name": "Derek",
+        "post": "I get Maya's point about fairness, but a rigid schedule ignores how differently people actually use the space. Most days nobody wants the courtyard at the same time anyway, so first-come, first-served lets neighbors use it when they actually need it instead of wasting an assigned slot they can't use that week."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "workplace-business",
+          "situation": "A workplace office manager tells a new employee that the employee's ID badge photo must be retaken before the company prints permanent badges.",
+          "participantRoles": [
+            "office manager",
+            "new employee"
+          ],
+          "noveltyKey": "employee-id-badge-photo-retake-deadline",
+          "requiredConcepts": [
+            "blurry badge photo needing a retake",
+            "badge printing deadline this week"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-f9779355",
+              "reason": "That item is about weekday-only badge access hours for a loading dock; this one is about a photo needing to be retaken before printing, not access timing."
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A city public works clerk tells a community event organizer that the noise permit for tonight's street fair has an earlier cutoff time.",
+          "participantRoles": [
+            "public works clerk",
+            "event organizer"
+          ],
+          "noveltyKey": "street-fair-noise-permit-cutoff-time",
+          "requiredConcepts": [
+            "street fair noise permit cutoff time",
+            "earlier end time than usual"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-550947bf",
+              "reason": "That item is a new permit requirement for a mural project; this one is an earlier cutoff time on an existing noise permit for a street fair."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A laboratory supervisor tells a new intern that today's climate experiment must pause if the humidity sensor readings drift too far apart.",
+          "participantRoles": [
+            "laboratory supervisor",
+            "new intern"
+          ],
+          "noveltyKey": "climate-experiment-pause-humidity-sensor-drift",
+          "requiredConcepts": [
+            "humidity sensor readings drifting apart",
+            "pausing the experiment until readings match"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-68e48fb1",
+              "reason": "That item is about recalibrating a sensor before an experiment starts; this one is about pausing mid-experiment when two sensor readings disagree."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A podcast host tells a guest that the recording software just crashed and the interview must restart from a backup file.",
+          "participantRoles": [
+            "podcast host",
+            "guest"
+          ],
+          "noveltyKey": "podcast-recording-software-crash-backup-restart",
+          "requiredConcepts": [
+            "recording software crashing mid-session",
+            "restoring the interview from a backup file"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-68e48fb1",
+              "reason": "That item is about a firmware update needing overnight wifi; this one is a live software crash during recording that forces a restart from backup."
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A festival organizer tells a stage crew member that tonight's opening act moved to a smaller side stage.",
+          "participantRoles": [
+            "festival organizer",
+            "stage crew member"
+          ],
+          "noveltyKey": "festival-opening-act-stage-swap-notice",
+          "requiredConcepts": [
+            "opening act moved to a smaller side stage",
+            "reason for tonight's stage change"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-f9779355",
+              "reason": "That item is about insuring a loan artwork before hanging it; this one is about swapping a festival act's stage assignment on the night of the show."
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A clinic scheduler tells a patient that the stress management group session moved to a different building this month.",
+          "participantRoles": [
+            "clinic scheduler",
+            "patient"
+          ],
+          "noveltyKey": "stress-session-building-relocation-notice",
+          "requiredConcepts": [
+            "stress management group moved buildings",
+            "new location for this month only"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1696d60a",
+              "reason": "That item shortens the stress workshop's meeting format from biweekly to weekly; this one keeps the format but relocates the session to a different building."
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A train conductor tells a passenger that the dining car closes earlier on the return route.",
+          "participantRoles": [
+            "train conductor",
+            "passenger"
+          ],
+          "noveltyKey": "train-dining-car-earlier-closing-return-route",
+          "requiredConcepts": [
+            "dining car closing earlier than usual",
+            "only on the return trip"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1696d60a",
+              "reason": "That item adds an extra stop to a shuttle route; this one is an earlier closing time for a train's dining car on the return leg only."
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "An archive assistant tells a visiting historian that a newly donated ledger must be photographed for the historical record before anyone handles it again.",
+          "participantRoles": [
+            "archive assistant",
+            "visiting historian"
+          ],
+          "noveltyKey": "donated-ledger-photograph-before-handling",
+          "requiredConcepts": [
+            "newly donated ledger needing a photograph",
+            "handling only after the photograph is taken"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-f9779355",
+              "reason": "That item reserves a microfilm reader in hourly blocks; this one requires photographing a newly donated ledger before it can be handled again."
+            }
+          ]
+        },
+        {
+          "domain": "campus-academics",
+          "situation": "A university academic advisor tells a student that the study-abroad application deadline moved up two weeks.",
+          "participantRoles": [
+            "academic advisor",
+            "student"
+          ],
+          "noveltyKey": "study-abroad-application-deadline-moved-earlier",
+          "requiredConcepts": [
+            "study-abroad application deadline moved earlier",
+            "two fewer weeks to submit materials"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-550947bf",
+              "reason": "That item is a diploma name-change deadline tied to printing; this one is a study-abroad application deadline moved two weeks earlier."
+            }
+          ]
+        },
+        {
+          "domain": "everyday-life",
+          "situation": "A downstairs neighbor tells a friend that the shared driveway needs to stay clear on trash pickup mornings.",
+          "participantRoles": [
+            "downstairs neighbor",
+            "friend"
+          ],
+          "noveltyKey": "shared-driveway-clear-trash-pickup-mornings",
+          "requiredConcepts": [
+            "shared driveway kept clear on pickup mornings",
+            "which mornings pickup happens"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-f9779355",
+              "reason": "That item is about preloading a shared laundry card reader; this one is about keeping a shared driveway clear on trash pickup mornings."
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "technology-media",
+      "noveltyKey": "podcast-ad-removal-subscription-malfunction",
+      "requiredConcepts": [
+        "ads still playing despite a paid subscription",
+        "issue affecting downloaded episodes only",
+        "confirmation once the fix is applied"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-703ea6d7",
+          "reason": "That item is uncertainty over whether an online submission form received a poem; this one is a paid podcast subscription failing to remove ads from downloads."
+        }
+      ],
+      "situation": "After upgrading to the paid tier of a podcast platform specifically to remove ads, a listener finds that ads still play in every episode downloaded for offline listening, even though the subscription shows as active.",
+      "recipientRole": "the podcast platform's customer support team",
+      "communicativeActs": [
+        "report the problem with ads still playing",
+        "request a fix or refund for the malfunctioning feature",
+        "ask for confirmation once the issue is resolved"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "everyday-life",
+      "noveltyKey": "shared-outdoor-space-fixed-schedule-vs-first-come",
+      "requiredConcepts": [
+        "a fixed weekly schedule for the shared space",
+        "first-come-first-served access",
+        "predictability versus everyday convenience"
+      ],
+      "distinguishesFrom": [],
+      "proposition": "Neighbors who share a common outdoor space, like a courtyard or driveway, disagree over whether to set a fixed schedule for using it or leave access first-come, first-served.",
+      "competingValues": [
+        "predictable fairness through a set schedule",
+        "flexibility to use the space whenever it happens to be convenient"
+      ]
+    }
+  }
+}

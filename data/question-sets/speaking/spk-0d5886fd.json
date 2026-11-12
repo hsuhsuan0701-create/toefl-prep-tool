@@ -1,0 +1,94 @@
+{
+  "id": "spk-0d5886fd",
+  "source": "generated",
+  "createdAt": "2026-07-30T07:18:39.171Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Campus Art Gallery Orientation",
+    "scenarioDescription": "You are learning to guide visitors through a campus art gallery. Listen to the gallery coordinator and repeat what she says. Repeat only once.",
+    "image": {
+      "file": "images/scenarios/spk-0d5886fd.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Campus Art Gallery Orientation. You are learning to guide visitors through a campus art gallery. Listen to the gallery coordinator and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- This hallway leads to the main gallery.\n- The front desk and coatroom are beside the entrance.\n- Visitors can borrow audio guides and return them near the stairs.\n- Photography is allowed in this room, but flashes can damage the artwork.\n- When a guided tour begins, please keep the doorway clear for other guests waiting nearby.\n- The small study area beyond the sculpture hall stays quiet because students often sketch there between classes.\n- The conservation room, which you'll see behind the glass doors, is where staff carefully examine newly acquired pieces.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "This hallway leads to the main gallery.",
+        "audio": "stimuli/spk-0d5886fd/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The front desk and coatroom are beside the entrance.",
+        "audio": "stimuli/spk-0d5886fd/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Visitors can borrow audio guides and return them near the stairs.",
+        "audio": "stimuli/spk-0d5886fd/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Photography is allowed in this room, but flashes can damage the artwork.",
+        "audio": "stimuli/spk-0d5886fd/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "When a guided tour begins, please keep the doorway clear for other guests waiting nearby.",
+        "audio": "stimuli/spk-0d5886fd/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The small study area beyond the sculpture hall stays quiet because students often sketch there between classes.",
+        "audio": "stimuli/spk-0d5886fd/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The conservation room, which you'll see behind the glass doors, is where staff carefully examine newly acquired pieces.",
+        "audio": "stimuli/spk-0d5886fd/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Study Breaks and Concentration",
+    "intro": "You have agreed to participate in a research study about how students take breaks while studying. You will have a short online interview with a researcher, who will ask you four questions.",
+    "introAudio": "stimuli/spk-0d5886fd/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thank you for speaking with me today. When you study for a long period, where do you usually take a break, and what do you normally do during that break?",
+        "audio": "stimuli/spk-0d5886fd/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Think about a time when taking a break helped you complete a difficult assignment or prepare for an exam. What happened, and why do you think the break helped you?",
+        "audio": "stimuli/spk-0d5886fd/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some students prefer several short breaks because they can return to work quickly. Others prefer one long break because it gives them more time to relax. Which approach is better for you, and why?",
+        "audio": "stimuli/spk-0d5886fd/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Some educators believe schools should schedule brief breaks during long classes, while others worry that breaks reduce teaching time. Should schools make short breaks a regular part of long classes? Why or why not?",
+        "audio": "stimuli/spk-0d5886fd/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  }
+}

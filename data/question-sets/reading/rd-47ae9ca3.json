@@ -1,0 +1,1773 @@
+{
+  "id": "rd-47ae9ca3",
+  "source": "generated",
+  "createdAt": "2026-08-23T07:38:47.934Z",
+  "kind": "reading",
+  "router": {
+    "timeLimitSec": 1200,
+    "ctwPassages": [
+      {
+        "id": "ctw-r1",
+        "taskType": "complete_words",
+        "topic": "urban stream restoration monitoring",
+        "segments": [
+          {
+            "type": "text",
+            "text": "A team of biologists recently began monitoring a city stream that was restored after decades of concrete channeling. Each "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g1"
+          },
+          {
+            "type": "text",
+            "text": ", the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g2"
+          },
+          {
+            "type": "text",
+            "text": " records "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g3"
+          },
+          {
+            "type": "text",
+            "text": " number "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g4"
+          },
+          {
+            "type": "text",
+            "text": " young "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g5"
+          },
+          {
+            "type": "text",
+            "text": " present "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g6"
+          },
+          {
+            "type": "text",
+            "text": " new "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g7"
+          },
+          {
+            "type": "text",
+            "text": " beds "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g8"
+          },
+          {
+            "type": "text",
+            "text": " measures "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g9"
+          },
+          {
+            "type": "text",
+            "text": " quickly "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g10"
+          },
+          {
+            "type": "text",
+            "text": " moves through the channel. Workers had planted native grasses and shrubs along both edges to reduce erosion and provide shade. Early data show that their numbers are rising steadily near those areas, while flow measurements suggest the waterway now behaves more like a natural system. Local officials hope these signs will justify similar efforts elsewhere in the region."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-r1-g1",
+            "prefix": "mo",
+            "completion": "nth",
+            "blankLength": 3,
+            "explanationZh": "此處為 “Each ___, the group records...”，表示生物學家每隔固定週期就會記錄一次資料，故需填入表示時間週期的名詞 month，與後文「每月」重複監測的敘述相符。"
+          },
+          {
+            "id": "ctw-r1-g2",
+            "prefix": "gr",
+            "completion": "oup",
+            "blankLength": 3,
+            "explanationZh": "此空格是動詞 records 的主詞，應與前一句提到的 “A team of biologists” 呼應，指同一批進行監測的人，故填入 group，指稱這個監測團隊。"
+          },
+          {
+            "id": "ctw-r1-g3",
+            "prefix": "t",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "此處 “the number of young fish” 是特定、已在文中被追蹤觀察的魚群數量，並非泛指任意數量，因此需用定冠詞 the 來限定這個特定的計數對象。"
+          },
+          {
+            "id": "ctw-r1-g4",
+            "prefix": "o",
+            "completion": "f",
+            "blankLength": 1,
+            "explanationZh": "“the number of + 名詞” 是固定搭配，用來表示某類事物的數量，此處指「魚的數量」，故填入介系詞 of 連接 number 與其後的 young fish。"
+          },
+          {
+            "id": "ctw-r1-g5",
+            "prefix": "fi",
+            "completion": "sh",
+            "blankLength": 2,
+            "explanationZh": "此句主詞為 group，受詞為 the number of young ___，依上下文（新礫石床附近、魚類數量上升）可知監測對象是魚類，故填入 fish 作為被計數的生物。"
+          },
+          {
+            "id": "ctw-r1-g6",
+            "prefix": "ne",
+            "completion": "ar",
+            "blankLength": 2,
+            "explanationZh": "此處描述年輕魚群出現的空間位置——「靠近新的礫石床」，需要表示鄰近關係的介系詞，故填入 near，說明魚群聚集的地點與礫石床的相對位置。"
+          },
+          {
+            "id": "ctw-r1-g7",
+            "prefix": "gra",
+            "completion": "vel",
+            "blankLength": 3,
+            "explanationZh": "此處 “new ___ beds” 指的是溪流復育後新形成、供魚類棲息與產卵的礫石堆積地形，依上下文語意應填入 gravel，構成 gravel beds（礫石床）此一具體地貌名詞。"
+          },
+          {
+            "id": "ctw-r1-g8",
+            "prefix": "a",
+            "completion": "nd",
+            "blankLength": 2,
+            "explanationZh": "此句主詞 the group 同時搭配兩個並列的動詞 records 與 measures，表示團隊「既記錄又測量」兩件事，因此需要並列連接詞 and 來連接這兩個動詞片語。"
+          },
+          {
+            "id": "ctw-r1-g9",
+            "prefix": "h",
+            "completion": "ow",
+            "blankLength": 2,
+            "explanationZh": "measures 之後接的是一個作受詞的名詞子句，說明所測量的內容為「水流動的速度」，故填入疑問詞 how，與 quickly 搭配構成 how quickly（多快）。"
+          },
+          {
+            "id": "ctw-r1-g10",
+            "prefix": "wa",
+            "completion": "ter",
+            "blankLength": 3,
+            "explanationZh": "此處為子句 “___ moves through the channel” 的主詞，依語意應是在描述水流狀態（呼應後文 flow measurements），故填入 water，作為在渠道中流動的主體。"
+          }
+        ],
+        "sourceParagraph": "A team of biologists recently began monitoring a city stream that was restored after decades of concrete channeling. Each month, the group records the number of young fish present near new gravel beds and measures how quickly water moves through the channel. Workers had planted native grasses and shrubs along both edges to reduce erosion and provide shade. Early data show that their numbers are rising steadily near those areas, while flow measurements suggest the waterway now behaves more like a natural system. Local officials hope these signs will justify similar efforts elsewhere in the region."
+      },
+      {
+        "id": "ctw-r2",
+        "taskType": "complete_words",
+        "topic": "outdoor mural pigment fading study",
+        "segments": [
+          {
+            "type": "text",
+            "text": "A museum conservation team is studying how sunlight fades the paint on outdoor murals around the city. Researchers "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g1"
+          },
+          {
+            "type": "text",
+            "text": " small "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g2"
+          },
+          {
+            "type": "text",
+            "text": " samples "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g3"
+          },
+          {
+            "type": "text",
+            "text": " strong "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g4"
+          },
+          {
+            "type": "text",
+            "text": " lamps "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g5"
+          },
+          {
+            "type": "text",
+            "text": " record "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g6"
+          },
+          {
+            "type": "text",
+            "text": " quickly "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g7"
+          },
+          {
+            "type": "text",
+            "text": " color "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g8"
+          },
+          {
+            "type": "text",
+            "text": " its "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g9"
+          },
+          {
+            "type": "text",
+            "text": ". Bright "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g10"
+          },
+          {
+            "type": "text",
+            "text": " and yellows tend to fade faster than deep blues and greens under the same lamp conditions. The group is also testing several clear coatings that might slow this process without changing how a mural looks. Early results suggest that one coating reduces color loss noticeably, though further trials are still planned before any recommendation is made."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-r2-g1",
+            "prefix": "exp",
+            "completion": "ose",
+            "blankLength": 3,
+            "explanationZh": "此處主詞是 Researchers,後面接受詞 small paint samples 與介系詞 to,構成「expose A to B」(將A暴露於B)的固定搭配,語意上呼應前句「sunlight fades the paint」,說明研究人員讓樣本暴露在紫外線燈下,故填 expose。"
+          },
+          {
+            "id": "ctw-r2-g2",
+            "prefix": "pa",
+            "completion": "int",
+            "blankLength": 3,
+            "explanationZh": "此空格為名詞,修飾後面的 samples,構成 paint samples(顏料樣本)。全文主題是研究戶外壁畫顏料(paint)褪色,前句已提到 the paint on outdoor murals,故此處延續同一主題詞 paint,填入 paint 使句意連貫。"
+          },
+          {
+            "id": "ctw-r2-g3",
+            "prefix": "t",
+            "completion": "o",
+            "blankLength": 1,
+            "explanationZh": "動詞 expose 需搭配介系詞 to 才能接受詞,構成「expose...to...」的固定用法,表示「將樣本暴露於強紫外線燈」,故填 to 使句子文法正確。"
+          },
+          {
+            "id": "ctw-r2-g4",
+            "prefix": "ultra",
+            "completion": "violet",
+            "blankLength": 6,
+            "explanationZh": "此處修飾 lamps,表示燈具的種類。全文主旨為研究陽光(含紫外線)如何使顏料褪色,因此燈具應為模擬陽光效果的 ultraviolet(紫外線)燈,與主題「sunlight fades the paint」相呼應,故填 ultraviolet。"
+          },
+          {
+            "id": "ctw-r2-g5",
+            "prefix": "a",
+            "completion": "nd",
+            "blankLength": 2,
+            "explanationZh": "此處連接兩個由 Researchers 發出的動作:expose...lamps 與 record how quickly...,屬對等連接詞,用來並列兩個動詞片語,故填 and。"
+          },
+          {
+            "id": "ctw-r2-g6",
+            "prefix": "h",
+            "completion": "ow",
+            "blankLength": 2,
+            "explanationZh": "此處引導一個間接問句,作為動詞 record 的受詞,詢問「顏色多快失去亮度」,故填疑問詞 how,與後面的 quickly 組成 how quickly(多快)。"
+          },
+          {
+            "id": "ctw-r2-g7",
+            "prefix": "ea",
+            "completion": "ch",
+            "blankLength": 2,
+            "explanationZh": "此處為限定詞,修飾 color,表示「每一種顏色」個別的褪色速度都被記錄,呼應下一句提到不同顏色(reds、yellows、blues、greens)褪色速度不同的對比,故填 each。"
+          },
+          {
+            "id": "ctw-r2-g8",
+            "prefix": "lo",
+            "completion": "ses",
+            "blankLength": 3,
+            "explanationZh": "主詞 each color 為第三人稱單數,動詞需用單數現在式,且句意描述顏色「失去」亮度的持續現象,與 fades 呼應,故填 loses。"
+          },
+          {
+            "id": "ctw-r2-g9",
+            "prefix": "brigh",
+            "completion": "tness",
+            "blankLength": 5,
+            "explanationZh": "此處為動詞 loses 的受詞,指顏色所失去的特性。全句主題是顏料褪色、亮度降低,故填 brightness(亮度),與後文 color loss 語意一致。"
+          },
+          {
+            "id": "ctw-r2-g10",
+            "prefix": "re",
+            "completion": "ds",
+            "blankLength": 2,
+            "explanationZh": "此處與 yellows 並列,構成複數顏色名詞 reds and yellows,指「紅色與黃色」這類顏料,呼應下文所述紅、黃色系褪色較深藍、深綠色快,故填 reds。"
+          }
+        ],
+        "sourceParagraph": "A museum conservation team is studying how sunlight fades the paint on outdoor murals around the city. Researchers expose small paint samples to strong ultraviolet lamps and record how quickly each color loses its brightness. Bright reds and yellows tend to fade faster than deep blues and greens under the same lamp conditions. The group is also testing several clear coatings that might slow this process without changing how a mural looks. Early results suggest that one coating reduces color loss noticeably, though further trials are still planned before any recommendation is made."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-r1",
+        "taskType": "daily_life",
+        "genre": "menu",
+        "text": "Campus Dining Hall — Swipe Meal Pricing\nPresent your student ID at the entrance to use a meal swipe.\n\nBasic Plan: 10 swipes per week — $85/week\nStandard Plan: 14 swipes per week — $110/week\nUnlimited Plan: unlimited swipes — $140/week\n\nEach swipe covers one entree, one side, and a drink. Extra items are charged separately at the register.\n\nGuests without a meal plan pay $12 per visit in cash or card. Guest visits do not count against a student's weekly swipe total.\n\nPlans reset every Monday morning. Unused swipes do not carry over to the next week.",
+        "questions": [
+          {
+            "id": "dl-r1-q1",
+            "stem": "How many swipes does the Standard Plan include per week?",
+            "options": [
+              {
+                "id": "a",
+                "text": "12"
+              },
+              {
+                "id": "b",
+                "text": "10"
+              },
+              {
+                "id": "c",
+                "text": "14"
+              },
+              {
+                "id": "d",
+                "text": "Unlimited"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "菜單清楚列出 Standard Plan 為每週14次刷卡，故正確答案為說14次的選項。說10次的選項其實是 Basic Plan 的次數，說unlimited的選項屬於 Unlimited Plan，說12次的選項則完全未出現在菜單中，三者均無根據。"
+          },
+          {
+            "id": "dl-r1-q2",
+            "stem": "What happens to unused swipes at the end of the week?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They are refunded in cash to the student"
+              },
+              {
+                "id": "b",
+                "text": "They expire and are not carried over"
+              },
+              {
+                "id": "c",
+                "text": "They carry over into next week's total"
+              },
+              {
+                "id": "d",
+                "text": "They automatically convert into guest visit passes"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "菜單註明未用完的刷卡次數不會累積到下週,因此答案是次數會過期作廢;文中並未提到現金退款、轉換訪客券或延續使用等做法。"
+          },
+          {
+            "id": "dl-r1-q3",
+            "stem": "What is the purpose of the guest pricing note?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To describe how guests can apply for their own meal plan"
+              },
+              {
+                "id": "b",
+                "text": "To inform visitors without a meal plan of the guest cost"
+              },
+              {
+                "id": "c",
+                "text": "To explain that guests can borrow unused student swipes from the weekly plan total"
+              },
+              {
+                "id": "d",
+                "text": "To advertise a discount for returning guests"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "purpose",
+            "explanationZh": "訪客定價說明是為了讓沒有餐卡方案的人知道單次用餐需付12美元,並非讓訪客借用學生的刷卡次數,也未提到折扣或申請餐卡方案。"
+          }
+        ]
+      },
+      {
+        "id": "dl-r2",
+        "taskType": "daily_life",
+        "genre": "text-message chain",
+        "text": "Mia: Hey, are you still using the 2nd floor conference room at 10am tomorrow?\nJordan: Yeah, I booked it for the vendor call. Why?\nMia: I need it at 10 for a client demo. Can we swap? I'll take your 1pm slot instead.\nJordan: My vendor call really needs the bigger screen in that room though.\nMia: The 3rd floor room has a screen too, and it's free at 10.\nJordan: Oh good, that works. I'll move my call there and you can keep the 2nd floor slot.\nMia: Perfect, I'll update the booking system now. Thanks!",
+        "questions": [
+          {
+            "id": "dl-r2-q1",
+            "stem": "Why does Jordan initially hesitate to give up the 2nd floor room?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The 3rd floor room is already booked"
+              },
+              {
+                "id": "b",
+                "text": "He prefers the 2nd floor's view"
+              },
+              {
+                "id": "c",
+                "text": "The room has a bigger screen he needs"
+              },
+              {
+                "id": "d",
+                "text": "He has not yet confirmed the vendor call"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "喬丹一開始猶豫是因為那間會議室有他打電話需要的大螢幕,文中並未提到景觀偏好,也已說明三樓會議室當時是空的。"
+          },
+          {
+            "id": "dl-r2-q2",
+            "stem": "What does Mia offer to do in exchange for the 2nd floor room?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Give Jordan her 1pm slot"
+              },
+              {
+                "id": "b",
+                "text": "Reserve a room for Jordan next week"
+              },
+              {
+                "id": "c",
+                "text": "Pay for Jordan's vendor call expenses"
+              },
+              {
+                "id": "d",
+                "text": "Take Jordan's afternoon meeting notes"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "米亞提議用她下午一點的時段來交換,讓喬丹保留原本會議室,文中沒有提到付費、代寫會議記錄或另外預約下週的會議室。"
+          },
+          {
+            "id": "dl-r2-q3",
+            "stem": "What is the main purpose of this text exchange?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To cancel the client demo"
+              },
+              {
+                "id": "b",
+                "text": "To reschedule the vendor call"
+              },
+              {
+                "id": "c",
+                "text": "To resolve a room-booking conflict"
+              },
+              {
+                "id": "d",
+                "text": "To request a screen for IT"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "main_idea",
+            "explanationZh": "整段對話的目的是為了協調兩人對同一間會議室的預約衝突,並非取消客戶展示、向IT申請螢幕設備,或更改廠商電話會議的時間。"
+          }
+        ]
+      },
+      {
+        "id": "dl-r3",
+        "taskType": "daily_life",
+        "genre": "poster/sign/notice",
+        "text": "NEW AIR QUALITY MONITORING STATION\nNow Open at Riverside Nature Center\n\nFunded by a regional clean-energy grant, this station tracks particle pollution and ozone levels around the clock.\n\nInstallation completed: March 3rd\nLive readings available on the visitor center's front kiosk daily.\n\nQuestions about the data? Ask a staff naturalist during center hours.",
+        "questions": [
+          {
+            "id": "dl-r3-q1",
+            "stem": "What funding source paid for the new station?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A private corporate donation"
+              },
+              {
+                "id": "b",
+                "text": "A city parks maintenance tax"
+              },
+              {
+                "id": "c",
+                "text": "A regional clean-energy grant"
+              },
+              {
+                "id": "d",
+                "text": "A university environmental research initiative fund"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "告示明確寫出這座監測站是由區域潔淨能源補助款所資助,並非市府公園稅、大學研究經費或企業捐款。"
+          },
+          {
+            "id": "dl-r3-q2",
+            "stem": "Where can visitors check the station's current readings?",
+            "options": [
+              {
+                "id": "a",
+                "text": "On the nature center's website"
+              },
+              {
+                "id": "b",
+                "text": "At the front kiosk in the visitor center"
+              },
+              {
+                "id": "c",
+                "text": "By calling the visitor center front desk during business hours"
+              },
+              {
+                "id": "d",
+                "text": "Through a downloadable mobile monitoring app"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "告示指出即時數據會顯示在遊客中心入口的資訊站上,並未提到官網、電話或手機應用程式。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-r1",
+        "taskType": "academic_passage",
+        "title": "Loyalty Programs in Small Retail Business",
+        "discipline": "business and economics",
+        "text": "Small retail businesses often use loyalty programs to encourage customers to return. In a typical program, a shopper earns points for every dollar spent, and those points accumulate toward a reward, such as a discount or a free item. Store owners design point values carefully: too few points per purchase makes the reward feel out of reach, while too many make the program too costly to sustain. Many programs also use reward tiers, giving customers small perks early on and larger rewards after repeated visits. This tiered structure keeps shoppers motivated even before they reach the top level.\n\nRunning a loyalty program is not free. Businesses must track points, print or manage digital cards, and absorb the cost of rewards given away. For a small shop with thin profit margins, these costs can add up quickly. Owners therefore have to balance generosity against expense, setting reward thresholds that feel valuable to customers without draining the business's income.\n\nDespite these costs, many small retailers view loyalty programs as worthwhile. Regular customers tend to spend more per visit than occasional shoppers, and a well-designed program can turn a first-time buyer into someone who returns for years, offsetting the price of the rewards themselves.",
+        "questions": [
+          {
+            "id": "ap-r1-q1",
+            "stem": "According to the passage, why do store owners set point values carefully?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Because setting them too low makes rewards feel unreachable and too high makes costs unsustainable"
+              },
+              {
+                "id": "b",
+                "text": "Because local business associations mandate a standard point-to-dollar conversion rate for all members"
+              },
+              {
+                "id": "c",
+                "text": "Because loyal customers threaten to switch to competitors if the point system feels overly generous"
+              },
+              {
+                "id": "d",
+                "text": "Because digital loyalty platforms automatically cap point values regardless of what owners want"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "文章指出點數設定太低會讓獎勵顯得遙不可及,太高則使方案成本難以永續,因此業者須謹慎拿捏點數比例,而非受協會規範、顧客威脅或平台限制。"
+          },
+          {
+            "id": "ap-r1-q2",
+            "stem": "In the passage, the word \"thresholds\" is closest in meaning to",
+            "options": [
+              {
+                "id": "a",
+                "text": "levels a customer must reach before qualifying"
+              },
+              {
+                "id": "b",
+                "text": "promotional messages sent to loyalty program members"
+              },
+              {
+                "id": "c",
+                "text": "physical locations where rewards can be claimed"
+              },
+              {
+                "id": "d",
+                "text": "fixed percentages applied to every single purchase"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "vocabulary",
+            "explanationZh": "thresholds 在文中指顧客須達到才能兌換獎勵的門檻,而非兌換地點、宣傳訊息或消費比例。"
+          },
+          {
+            "id": "ap-r1-q3",
+            "stem": "What can be inferred about occasional shoppers compared to regular customers?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They tend to receive higher point values than regulars"
+              },
+              {
+                "id": "b",
+                "text": "They tend to spend less per visit than regulars"
+              },
+              {
+                "id": "c",
+                "text": "They tend to never qualify for any loyalty rewards"
+              },
+              {
+                "id": "d",
+                "text": "They tend to complain more often about program costs"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "inference",
+            "explanationZh": "文章暗示偶爾光顧的顧客單次消費通常低於常客,並未提到抱怨、獲得更高點數或完全無法獲得獎勵。"
+          },
+          {
+            "id": "ap-r1-q4",
+            "stem": "How does the passage relate the idea of program costs to the idea of program benefits?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It shows that real costs can be offset by spending"
+              },
+              {
+                "id": "b",
+                "text": "It argues that costs always eliminate any real benefit"
+              },
+              {
+                "id": "c",
+                "text": "It treats costs and benefits as unrelated separate concerns"
+              },
+              {
+                "id": "d",
+                "text": "It claims that benefits only appear once programs end"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "organization",
+            "explanationZh": "文章先描述經營忠誠方案的實際成本,接著說明常客消費增加能抵銷這些成本,顯示兩者為有關聯而非互相抵消或無關的概念。"
+          },
+          {
+            "id": "ap-r1-q5",
+            "stem": "What is the main purpose of the second paragraph?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To compare loyalty programs across different industries"
+              },
+              {
+                "id": "b",
+                "text": "To explain the practical costs and trade-offs owners face when running a program"
+              },
+              {
+                "id": "c",
+                "text": "To criticize small businesses for adopting loyalty programs"
+              },
+              {
+                "id": "d",
+                "text": "To describe how customers redeem their points"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "purpose",
+            "explanationZh": "第二段主要在說明業者經營忠誠方案時面臨的實際成本與取捨,並非批評小型企業、比較產業差異或說明如何兌換點數。"
+          }
+        ]
+      }
+    ]
+  },
+  "lowerModule": {
+    "timeLimitSec": 540,
+    "ctwPassages": [
+      {
+        "id": "ctw-lo1",
+        "taskType": "complete_words",
+        "topic": "hydration habits during exercise",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Athletes must drink enough water before starting a strenuous workout. Doctors "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g1"
+          },
+          {
+            "type": "text",
+            "text": " sipping "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g2"
+          },
+          {
+            "type": "text",
+            "text": " amounts "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g3"
+          },
+          {
+            "type": "text",
+            "text": " an "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g4"
+          },
+          {
+            "type": "text",
+            "text": " beforehand. "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g5"
+          },
+          {
+            "type": "text",
+            "text": " fatigue, "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g6"
+          },
+          {
+            "type": "text",
+            "text": ", or "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g7"
+          },
+          {
+            "type": "text",
+            "text": " unusually "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g8"
+          },
+          {
+            "type": "text",
+            "text": " mouth "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g9"
+          },
+          {
+            "type": "text",
+            "text": " signal "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g10"
+          },
+          {
+            "type": "text",
+            "text": " dehydration during a session. Coaches often schedule brief breaks so players remember to gulp fluids every twenty minutes. In longer competitions, many participants choose special beverages containing dissolved minerals and sugar. They replace what perspiration removes from the body. Restoring those salts swiftly wards off muscle cramps and sustains steady output."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-lo1-g1",
+            "prefix": "reco",
+            "completion": "mmend",
+            "blankLength": 5,
+            "explanationZh": "主詞為複數的 Doctors，且此句陳述醫生一般性的建議，須用現在式動詞 recommend，後接動名詞 sipping，符合「recommend + V-ing」的固定用法。"
+          },
+          {
+            "id": "ctw-lo1-g2",
+            "prefix": "sm",
+            "completion": "all",
+            "blankLength": 3,
+            "explanationZh": "此處修飾 amounts（少量），與後文「sipping」小口啜飲的動作相呼應，故用形容詞 small 表示少量飲水，而非大量。"
+          },
+          {
+            "id": "ctw-lo1-g3",
+            "prefix": "rou",
+            "completion": "ghly",
+            "blankLength": 4,
+            "explanationZh": "roughly 修飾後面的時間 an hour，表示「大約、粗略地」，說明建議喝水的時間點並非精確一小時，而是概略估計。"
+          },
+          {
+            "id": "ctw-lo1-g4",
+            "prefix": "ho",
+            "completion": "ur",
+            "blankLength": 2,
+            "explanationZh": "與前面的 an 及 roughly 搭配，構成 roughly an hour beforehand（運動前大約一小時），為文中建議提前喝水的具體時間單位。"
+          },
+          {
+            "id": "ctw-lo1-g5",
+            "prefix": "Persi",
+            "completion": "stent",
+            "blankLength": 5,
+            "explanationZh": "為新句開頭，須大寫；Persistent（持續的）修飾 fatigue，說明脫水徵兆中的疲勞是持續性而非偶發的，語意上與 dizziness、dry mouth 並列為警訊症狀。"
+          },
+          {
+            "id": "ctw-lo1-g6",
+            "prefix": "dizz",
+            "completion": "iness",
+            "blankLength": 5,
+            "explanationZh": "與 fatigue、dry mouth 並列，屬於輕度脫水的常見症狀之一，意指「頭暈」，符合句意列舉脫水徵兆的邏輯。"
+          },
+          {
+            "id": "ctw-lo1-g7",
+            "prefix": "a",
+            "completion": "n",
+            "blankLength": 1,
+            "explanationZh": "後接以母音開頭的 unusually，依英文文法須使用不定冠詞 an 而非 a，用來修飾 mouth。"
+          },
+          {
+            "id": "ctw-lo1-g8",
+            "prefix": "d",
+            "completion": "ry",
+            "blankLength": 2,
+            "explanationZh": "dry mouth（口乾）與 fatigue、dizziness 同為脫水的徵兆之一，符合上下文列舉症狀的語境。"
+          },
+          {
+            "id": "ctw-lo1-g9",
+            "prefix": "c",
+            "completion": "an",
+            "blankLength": 2,
+            "explanationZh": "can 為情態動詞，表示這些症狀「可能」顯示輕度脫水，語氣上屬於可能性推測，而非肯定陳述，符合句意的不確定性。"
+          },
+          {
+            "id": "ctw-lo1-g10",
+            "prefix": "mi",
+            "completion": "ld",
+            "blankLength": 2,
+            "explanationZh": "mild 修飾 dehydration，表示這些症狀反映的是輕微、初期的脫水狀況，而非嚴重脫水，與句中列舉的輕微不適徵兆相符。"
+          }
+        ],
+        "sourceParagraph": "Athletes must drink enough water before starting a strenuous workout. Doctors recommend sipping small amounts roughly an hour beforehand. Persistent fatigue, dizziness, or an unusually dry mouth can signal mild dehydration during a session. Coaches often schedule brief breaks so players remember to gulp fluids every twenty minutes. In longer competitions, many participants choose special beverages containing dissolved minerals and sugar. They replace what perspiration removes from the body. Restoring those salts swiftly wards off muscle cramps and sustains steady output."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-lo1",
+        "taskType": "daily_life",
+        "genre": "web page",
+        "text": "Riverbend Ceramics Studio — Weekend Classes\n\nSaturday Morning: Wheel Throwing, 9:00–11:00, $35 per class\nSaturday Afternoon: Hand Building, 1:00–3:00, $30 per class\nSunday Morning: Glazing Basics, 9:00–11:00, $25 per class\n\nAll classes include studio time and tools. Clay and glaze cost extra: add $10 per project for materials.\n\nSpace is limited to eight students per class. Sign up online at least two days ahead.",
+        "questions": [
+          {
+            "id": "dl-lo1-q1",
+            "stem": "How much extra do students pay for clay and glaze materials?",
+            "options": [
+              {
+                "id": "a",
+                "text": "$10"
+              },
+              {
+                "id": "b",
+                "text": "$30"
+              },
+              {
+                "id": "c",
+                "text": "$35"
+              },
+              {
+                "id": "d",
+                "text": "$25"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "網頁列出材料費是每件作品加收10美元,25美元、30美元、35美元分別是不同課程本身的費用,並非材料費。"
+          },
+          {
+            "id": "dl-lo1-q2",
+            "stem": "What is the class size limit?",
+            "options": [
+              {
+                "id": "a",
+                "text": "No limit"
+              },
+              {
+                "id": "b",
+                "text": "Eight students"
+              },
+              {
+                "id": "c",
+                "text": "Ten students"
+              },
+              {
+                "id": "d",
+                "text": "Five students"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "網頁寫明每堂課名額限制為八人,並非五人、十人或不限人數。"
+          },
+          {
+            "id": "dl-lo1-q3",
+            "stem": "Why might a student need to sign up early?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Because Wheel Throwing classes tend to fill up first"
+              },
+              {
+                "id": "b",
+                "text": "Because online registration can take two days to confirm"
+              },
+              {
+                "id": "c",
+                "text": "Because each class is limited to eight students total"
+              },
+              {
+                "id": "d",
+                "text": "Because clay and glaze materials must be pre-ordered"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "文中提到「名額限制每班八人」,說明及早報名是因為名額有限;並未提到輪盤課程最先額滿、材料需事先訂購,或線上報名需兩天才能確認等原因。"
+          }
+        ]
+      },
+      {
+        "id": "dl-lo2",
+        "taskType": "daily_life",
+        "genre": "invoice",
+        "text": "Riverside Physical Therapy — Invoice #4021\n\nSession Date: June 12\nService: 45-minute therapy session — $120\nInsurance Co-pay Applied: -$25\nAmount Billed to Insurance: $95\n\nBalance Due from Patient: $25\n\nPayment due within 30 days. Contact billing at the front desk with questions.",
+        "questions": [
+          {
+            "id": "dl-lo2-q1",
+            "stem": "How much is the patient's balance due?",
+            "options": [
+              {
+                "id": "a",
+                "text": "$25"
+              },
+              {
+                "id": "b",
+                "text": "$145"
+              },
+              {
+                "id": "c",
+                "text": "$120"
+              },
+              {
+                "id": "d",
+                "text": "$95"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "帳單顯示病人應付餘額為25美元,95美元是保險支付金額,120美元是療程總費用,145美元並未出現在帳單中。"
+          },
+          {
+            "id": "dl-lo2-q2",
+            "stem": "What does the amount billed to insurance represent?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The total session cost before any payment"
+              },
+              {
+                "id": "b",
+                "text": "The portion of the fee insurance is expected to cover"
+              },
+              {
+                "id": "c",
+                "text": "A late fee added to the invoice"
+              },
+              {
+                "id": "d",
+                "text": "The co-pay the patient already paid"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "inference",
+            "explanationZh": "保險應付金額代表保險公司預計會負擔的療程費用部分,並非療程總費用、遲繳罰款或病人已付的自付額。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-lo1",
+        "taskType": "academic_passage",
+        "title": "How Sound-Absorbing Materials Reduce Urban Noise",
+        "discipline": "physical science",
+        "text": "Cities can be noisy places, especially near busy roads. Engineers have found that certain materials can help lower this noise. These materials are called sound-absorbing materials, and they are usually full of tiny holes or open spaces. When sound waves hit a porous material, some of the sound energy gets trapped inside the small holes instead of bouncing back into the air. This means less noise reaches nearby homes, schools, and parks.\n\nCommon sound-absorbing materials include foam panels, certain types of concrete, and layered fabric screens. Engineers often place these materials in walls or barriers built along highways. Tests show that a well-placed barrier can lower noise levels by a noticeable amount, making conversations and daily activities easier for people who live close by.\n\nPlacement matters as much as the material itself. A barrier works best when it stands close to the noise source and blocks a direct path to the area it protects. Height and length also affect how much sound gets through. Because of this, city planners often work with acoustic engineers to decide exactly where a noise barrier should go before it is built.",
+        "questions": [
+          {
+            "id": "ap-lo1-q1",
+            "stem": "According to the passage, what happens when sound waves hit a porous material?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Some sound energy becomes trapped inside the small holes"
+              },
+              {
+                "id": "b",
+                "text": "The material converts sound into heat that heats nearby buildings"
+              },
+              {
+                "id": "c",
+                "text": "The waves are reflected back at a higher volume"
+              },
+              {
+                "id": "d",
+                "text": "The waves pass straight through without change"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "文章說明聲波撞擊多孔材料時,部分聲能會被困在細小孔洞中,而不是直接穿透、以更大音量反射,或被轉換成熱能加熱建築物。"
+          },
+          {
+            "id": "ap-lo1-q2",
+            "stem": "In the passage, \"porous\" most nearly means",
+            "options": [
+              {
+                "id": "a",
+                "text": "resistant to weather damage"
+              },
+              {
+                "id": "b",
+                "text": "extremely heavy"
+              },
+              {
+                "id": "c",
+                "text": "full of tiny openings"
+              },
+              {
+                "id": "d",
+                "text": "brightly colored"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "vocabulary",
+            "explanationZh": "porous 在文中指材料內部布滿細小孔洞,並非指沉重、色彩鮮豔或防風化。"
+          },
+          {
+            "id": "ap-lo1-q3",
+            "stem": "What can be inferred about a barrier that is not placed close to a noise source?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It requires no acoustic engineering at all"
+              },
+              {
+                "id": "b",
+                "text": "It will completely eliminate all nearby noise"
+              },
+              {
+                "id": "c",
+                "text": "It must be made of a different material"
+              },
+              {
+                "id": "d",
+                "text": "It will likely block sound less effectively"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "inference",
+            "explanationZh": "文章暗示隔音牆若不靠近噪音來源,效果會較差,並未說明能完全消除噪音、需換材質或不需要聲學工程師參與。"
+          },
+          {
+            "id": "ap-lo1-q4",
+            "stem": "How does the second paragraph build on the idea introduced in the first paragraph?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It restates the first paragraph without adding anything new"
+              },
+              {
+                "id": "b",
+                "text": "It switches to an unrelated topic entirely"
+              },
+              {
+                "id": "c",
+                "text": "It builds on that explanation with concrete material examples"
+              },
+              {
+                "id": "d",
+                "text": "It disputes the first paragraph's claim about how sound absorption actually works in practice"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "organization",
+            "explanationZh": "第二段承接第一段對吸音原理的說明,進一步舉出實際材料(泡棉、混凝土、隔音屏)與其應用方式,並非反駁前段論點,也未轉向無關主題或單純重複。"
+          },
+          {
+            "id": "ap-lo1-q5",
+            "stem": "What is the main purpose of the third paragraph?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To criticize city planners for poor decisions"
+              },
+              {
+                "id": "b",
+                "text": "To explain that where a barrier is placed also affects how well it reduces noise"
+              },
+              {
+                "id": "c",
+                "text": "To describe the history of noise barrier design"
+              },
+              {
+                "id": "d",
+                "text": "To argue that material choice does not matter"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "purpose",
+            "explanationZh": "第三段主要說明隔音牆的擺放位置也會影響降噪效果,並非表示材質不重要、批評城市規劃者或介紹隔音牆歷史。"
+          }
+        ]
+      }
+    ]
+  },
+  "upperModule": {
+    "timeLimitSec": 540,
+    "ctwPassages": [
+      {
+        "id": "ctw-up1",
+        "taskType": "complete_words",
+        "topic": "grocery aisle layout navigation",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Supermarket planners carefully design the layout of aisles so that shoppers move through the store in a predictable pattern. Because "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g1"
+          },
+          {
+            "type": "text",
+            "text": " tend "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g2"
+          },
+          {
+            "type": "text",
+            "text": " walk "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g3"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g4"
+          },
+          {
+            "type": "text",
+            "text": " edges "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g5"
+          },
+          {
+            "type": "text",
+            "text": ", popular "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g6"
+          },
+          {
+            "type": "text",
+            "text": " such "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g7"
+          },
+          {
+            "type": "text",
+            "text": " dairy "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g8"
+          },
+          {
+            "type": "text",
+            "text": " produce "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g9"
+          },
+          {
+            "type": "text",
+            "text": " placed "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g10"
+          },
+          {
+            "type": "text",
+            "text": " the perimeter. Special displays near the end of each row showcase featured merchandise that retailers want patrons to notice. Small, inexpensive products positioned near checkout lines encourage impulse purchases from consumers with little else to occupy attention. Researchers who study shopping patterns argue that this arrangement, though seemingly convenient, maximizes the time and money a typical visitor spends inside the shop."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-up1-g1",
+            "prefix": "cust",
+            "completion": "omers",
+            "blankLength": 5,
+            "explanationZh": "此句的邏輯主詞需與後文「walk along the outer edges」的動作者一致，且呼應前句提到的 shoppers（顧客），故填入 customers，指稱在賣場中走動的消費者。"
+          },
+          {
+            "id": "ctw-up1-g2",
+            "prefix": "t",
+            "completion": "o",
+            "blankLength": 1,
+            "explanationZh": "tend 之後須接不定詞 to walk，構成「tend to + 原形動詞」的固定搭配，表示「傾向於做某事」，故填 to。"
+          },
+          {
+            "id": "ctw-up1-g3",
+            "prefix": "al",
+            "completion": "ong",
+            "blankLength": 3,
+            "explanationZh": "此處描述顧客「沿著」外側走動的路徑，need 一個表示沿著方向移動的介系詞，故填 along，與 walk 搭配構成 walk along。"
+          },
+          {
+            "id": "ctw-up1-g4",
+            "prefix": "ou",
+            "completion": "ter",
+            "blankLength": 3,
+            "explanationZh": "edges 前需要形容詞修飾，指的是賣場「外側」的邊緣（與後段 perimeter 呼應，皆指外圍區域），故填 outer。"
+          },
+          {
+            "id": "ctw-up1-g5",
+            "prefix": "fi",
+            "completion": "rst",
+            "blankLength": 3,
+            "explanationZh": "此字修飾整個子句，表示顧客「首先」會走外圍動線，之後才會進入其他區域，與全文描述的動線先後順序相符，故填 first。"
+          },
+          {
+            "id": "ctw-up1-g6",
+            "prefix": "go",
+            "completion": "ods",
+            "blankLength": 3,
+            "explanationZh": "popular 後需要一個可與 such as dairy and produce 對應的複數名詞，指「乳製品和農產品」這類受歡迎的「商品」，故填 goods。"
+          },
+          {
+            "id": "ctw-up1-g7",
+            "prefix": "a",
+            "completion": "s",
+            "blankLength": 1,
+            "explanationZh": "此處為列舉例子的固定用法 such as，意為「例如」，用來引出 dairy and produce 這兩個具體例子，故填 as。"
+          },
+          {
+            "id": "ctw-up1-g8",
+            "prefix": "a",
+            "completion": "nd",
+            "blankLength": 2,
+            "explanationZh": "dairy 與 produce 是兩個並列的名詞，中間需要對等連接詞連接兩者，故填 and。"
+          },
+          {
+            "id": "ctw-up1-g9",
+            "prefix": "a",
+            "completion": "re",
+            "blankLength": 2,
+            "explanationZh": "主詞 goods 為複數，且此句為被動語態描述商品「被放置」在外圍，故須用複數 be 動詞 are 搭配 placed，填入 are。"
+          },
+          {
+            "id": "ctw-up1-g10",
+            "prefix": "al",
+            "completion": "ong",
+            "blankLength": 3,
+            "explanationZh": "此處指商品被放置的位置是「沿著」賣場外圍（perimeter），與句意「沿著周邊擺放」相符，故填 along，與前面 along the outer edges 呼應同一種空間描述方式。"
+          }
+        ],
+        "sourceParagraph": "Supermarket planners carefully design the layout of aisles so that shoppers move through the store in a predictable pattern. Because customers tend to walk along the outer edges first, popular goods such as dairy and produce are placed along the perimeter. Special displays near the end of each row showcase featured merchandise that retailers want patrons to notice. Small, inexpensive products positioned near checkout lines encourage impulse purchases from consumers with little else to occupy attention. Researchers who study shopping patterns argue that this arrangement, though seemingly convenient, maximizes the time and money a typical visitor spends inside the shop."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-up1",
+        "taskType": "daily_life",
+        "genre": "form",
+        "text": "Heritage Archive — Donated Materials Intake Form\n\nDonor Name:\nDonor Contact (phone or email):\nDescription of Materials: Family correspondence, approximately 40 letters\nDate Range of Letters: 1918–1932\nCondition of Materials: Some pages brittle; ink faded on several items\nPreferred Attribution: Anonymous donor / Named in catalog record\nStaff Reviewer Signature:\nDate Received:",
+        "questions": [
+          {
+            "id": "dl-up1-q1",
+            "stem": "What date range do the donated letters span?",
+            "options": [
+              {
+                "id": "a",
+                "text": "1932–1948"
+              },
+              {
+                "id": "b",
+                "text": "1918–1932"
+              },
+              {
+                "id": "c",
+                "text": "1920–1940"
+              },
+              {
+                "id": "d",
+                "text": "1908–1922"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "表格明確標示信件年代範圍為1918至1932年,其餘選項的年份區間都與表格所填不符。"
+          },
+          {
+            "id": "dl-up1-q2",
+            "stem": "What does the condition note suggest about how the letters have been stored?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They have likely aged without special preservation measures"
+              },
+              {
+                "id": "b",
+                "text": "They were digitally scanned and no longer exist in physical form"
+              },
+              {
+                "id": "c",
+                "text": "They were kept in ideal, climate-controlled conditions"
+              },
+              {
+                "id": "d",
+                "text": "They were recently restored by a professional conservator"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "表格提到部分頁面脆化、墨水褪色,顯示信件很可能長期未受到特殊保存措施,而非處於恆溫恆濕的理想環境或經專業修復。"
+          },
+          {
+            "id": "dl-up1-q3",
+            "stem": "What is the main purpose of the \"Preferred Attribution\" field?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To confirm the donor's legal ownership of the family letters"
+              },
+              {
+                "id": "b",
+                "text": "To request permission for the letters to be publicly exhibited"
+              },
+              {
+                "id": "c",
+                "text": "To assess the monetary value of the donated materials"
+              },
+              {
+                "id": "d",
+                "text": "To let the donor decide how they will be credited in records"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "purpose",
+            "explanationZh": "「偏好署名方式」欄位讓捐贈者決定日後在檔案紀錄中如何被具名或稱呼,與鑑價、確認法律所有權或申請公開展覽許可無關。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-up1",
+        "taskType": "academic_passage",
+        "title": "Standardizing Measurement Units in the Industrial Era",
+        "discipline": "history",
+        "text": "Before the widespread standardization of measurement units, factories across a single region often relied on inconsistent local systems inherited from earlier eras. A bolt manufactured to one town's definition of an inch might differ noticeably from a supposedly identical bolt produced in a neighboring town, since each locality had historically calibrated its own tools and reference standards independently. As industrial production expanded and components increasingly needed to interlock precisely across factories, these discrepancies produced costly manufacturing errors: parts that should have fit together failed to align, machinery malfunctioned, and entire production runs sometimes had to be discarded.\n\nRecognizing the mounting economic toll of this fragmentation, industrialists and government officials began lobbying for a uniform national standard. Committees were formed to compare competing regional definitions and select a single reference, one that manufacturers throughout the country would be legally required to adopt. Legislatures eventually codified these standards into law, mandating their use in commerce and manufacturing alike.\n\nThe transition proved gradual rather than immediate. Established manufacturers resisted retooling their equipment, citing the expense, and it took years of enforcement before the new standard achieved near-universal compliance. Nevertheless, once adopted, standardized measurement dramatically reduced the errors that had long plagued cross-regional manufacturing, enabling the kind of interchangeable-parts production that later defined modern industry.",
+        "questions": [
+          {
+            "id": "ap-up1-q1",
+            "stem": "According to the passage, what problem did inconsistent local measurement units create as industrial production expanded?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Local factory workers received unequal wages across the region"
+              },
+              {
+                "id": "b",
+                "text": "Parts made to different local standards often failed to fit"
+              },
+              {
+                "id": "c",
+                "text": "National legislatures completely banned trade between neighboring regions"
+              },
+              {
+                "id": "d",
+                "text": "Manufacturers were forced to consolidate all factories into one city"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "文章指出隨著工業生產擴張,各地不一致的度量單位導致零件無法精準吻合,造成成本高昂的製造錯誤,並非工資不均、工廠被迫遷移或禁止跨區貿易。"
+          },
+          {
+            "id": "ap-up1-q2",
+            "stem": "In the passage, the word \"codified\" is closest in meaning to",
+            "options": [
+              {
+                "id": "a",
+                "text": "delayed for further review"
+              },
+              {
+                "id": "b",
+                "text": "formally written into law"
+              },
+              {
+                "id": "c",
+                "text": "kept secret from the public"
+              },
+              {
+                "id": "d",
+                "text": "put into practice"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "vocabulary",
+            "explanationZh": "codified 在文中指將標準正式訂入法律,並非發明、秘密隱藏或暫時中止。"
+          },
+          {
+            "id": "ap-up1-q3",
+            "stem": "What can be inferred about manufacturers who resisted the new standard?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They saw the upfront cost as not worth it for now"
+              },
+              {
+                "id": "b",
+                "text": "They manufactured products that never required any precise measurement standards at all"
+              },
+              {
+                "id": "c",
+                "text": "They had voluntarily switched to the new standard even before it was required by law"
+              },
+              {
+                "id": "d",
+                "text": "They were permanently exempt from the law by special government provision"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "文章暗示抗拒採用新標準的製造商,是因為認為當下改裝設備的花費過高並不划算,而非法律上永久豁免或早已採用該標準。"
+          },
+          {
+            "id": "ap-up1-q4",
+            "stem": "How does the final paragraph relate to the paragraph before it?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It shows that the standard described earlier was ultimately abandoned"
+              },
+              {
+                "id": "b",
+                "text": "It disputes the claim that a national standard was ever created"
+              },
+              {
+                "id": "c",
+                "text": "It describes the difficult, gradual process of adopting the standard that the previous paragraph explains was legally mandated"
+              },
+              {
+                "id": "d",
+                "text": "It introduces an entirely unrelated historical event"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "organization",
+            "explanationZh": "最後一段承接前段所述的法定標準,進一步描述採用過程其實緩慢而艱難,並非表示標準遭到廢除或提出無關的歷史事件。"
+          },
+          {
+            "id": "ap-up1-q5",
+            "stem": "What is the main purpose of the passage as a whole?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To criticize government officials for delaying standardization"
+              },
+              {
+                "id": "b",
+                "text": "To trace how inconsistent measurement units were reformed into a national standard during industrialization"
+              },
+              {
+                "id": "c",
+                "text": "To compare measurement systems used in different countries today"
+              },
+              {
+                "id": "d",
+                "text": "To argue that industrialization would have succeeded without standardized measurement"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "purpose",
+            "explanationZh": "全文主旨在追溯工業化時期度量單位如何從各地不一,逐步改革為全國統一標準,並非主張標準化毫無必要或批評政府延遲改革。"
+          }
+        ]
+      }
+    ]
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "reading",
+    "ctwPassages": [
+      {
+        "domain": "science-environment",
+        "noveltyKey": "urban-stream-restoration-monitoring",
+        "requiredConcepts": [
+          "fish habitat recovery indicators",
+          "streambank vegetation replanting",
+          "water flow rate measurements"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-35c68bb3",
+            "reason": "urban stream restoration monitoring differs from planting shade trees for sidewalk cooling"
+          }
+        ],
+        "topic": "urban stream restoration monitoring",
+        "angle": "researchers track fish habitat recovery indicators after an urban stream restoration project"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "outdoor-mural-pigment-fading-study",
+        "requiredConcepts": [
+          "ultraviolet light exposure testing",
+          "pigment fading rate comparison",
+          "protective coating trial"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "mural pigment fading study differs from ceramic artifact restoration technique"
+          }
+        ],
+        "topic": "outdoor mural pigment fading study",
+        "angle": "a museum conservation team studies how sunlight fades outdoor mural pigment over time"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "hydration-habits-during-exercise",
+        "requiredConcepts": [
+          "water intake before a workout",
+          "signs of mild dehydration",
+          "electrolyte replacement drinks"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "hydration during exercise differs from the exercise-sleep quality link"
+          }
+        ],
+        "topic": "hydration habits during exercise",
+        "angle": "a simple explanation of why athletes need steady hydration during exercise sessions"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "grocery-aisle-layout-navigation",
+        "requiredConcepts": [
+          "end-cap product placement",
+          "impulse buy positioning near checkout",
+          "shopper path through store aisles"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-efd07fb4",
+            "reason": "grocery aisle layout navigation differs from adjusting a walk route after flooding"
+          }
+        ],
+        "topic": "grocery aisle layout navigation",
+        "angle": "an analysis of how supermarkets arrange aisles to influence shopper movement and purchasing decisions"
+      }
+    ],
+    "dailyLifeTexts": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "dining-hall-swipe-meal-pricing-menu",
+        "requiredConcepts": [
+          "swipe-based meal pricing",
+          "meal plan tiers listed",
+          "guest pricing note"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "a dining hall menu differs from a photography workshop registration form"
+          }
+        ],
+        "genre": "menu",
+        "scenario": "a campus dining hall's new swipe-based meal pricing menu posted near the entrance for students"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "coworker-conference-room-swap-texts",
+        "requiredConcepts": [
+          "conference room booking swap",
+          "preferred meeting time proposal",
+          "confirmation of new booking"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "a text chain about swapping a room booking differs from an itemized furniture repair invoice"
+          }
+        ],
+        "genre": "text-message chain",
+        "scenario": "two employees texting about swapping their reserved office conference room times"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "air-quality-station-notice-energy-grant",
+        "requiredConcepts": [
+          "new air quality monitoring station",
+          "energy grant funding source",
+          "installation completion date"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "a public notice about a new monitoring station differs from an internal lab air-quality test summary"
+          }
+        ],
+        "genre": "poster/sign/notice",
+        "scenario": "a printed notice at a nature center announcing a new air-quality monitoring station funded by an energy grant"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "ceramic-studio-website-class-listing",
+        "requiredConcepts": [
+          "weekend class time slots",
+          "per-class fee amount",
+          "material fee note"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-35c68bb3",
+            "reason": "a studio class listing webpage differs from an art supply store receipt"
+          }
+        ],
+        "genre": "web page",
+        "scenario": "a local ceramic studio's web page listing weekend class times and fees"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "physical-therapy-clinic-session-invoice",
+        "requiredConcepts": [
+          "session fee itemized",
+          "insurance co-pay amount",
+          "outstanding balance due"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-35c68bb3",
+            "reason": "a physical therapy invoice differs from a flu shot walk-in schedule"
+          }
+        ],
+        "genre": "invoice",
+        "scenario": "a physical therapy clinic invoice itemizing session fees and insurance co-pay amounts"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "heritage-letter-donation-intake-form",
+        "requiredConcepts": [
+          "donor contact information field",
+          "letter date range field",
+          "condition of donated letters note"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "a donation intake form differs from a news article about town hall restoration funding"
+          }
+        ],
+        "genre": "form",
+        "scenario": "a heritage archive's intake form for a family's donated historical letters"
+      }
+    ],
+    "academicPassages": [
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "small-retail-loyalty-program-design",
+        "requiredConcepts": [
+          "points earned per purchase amount",
+          "reward tier thresholds",
+          "cost of running the loyalty program"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "loyalty program design differs from flexible shift scheduling at a manufacturer"
+          }
+        ],
+        "title": "Loyalty Programs in Small Retail Business",
+        "discipline": "business and economics",
+        "angle": "explains how small retail businesses design loyalty programs to encourage repeat customer visits"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "sound-absorbing-materials-urban-noise-reduction",
+        "requiredConcepts": [
+          "porous material sound absorption",
+          "noise level reduction measurement",
+          "placement near busy roads"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "sound-absorbing material physics differs from desert plant water adaptation biology"
+          }
+        ],
+        "title": "How Sound-Absorbing Materials Reduce Urban Noise",
+        "discipline": "physical science",
+        "angle": "explains how porous materials placed near roads absorb sound energy and lower noise levels in nearby environments"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "measurement-standardization-industrial-era",
+        "requiredConcepts": [
+          "inconsistent local measurement units",
+          "factory production errors from mismatched units",
+          "national standard adopted by law"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "measurement standardization reform differs from canal expansion and regional trade networks"
+          }
+        ],
+        "title": "Standardizing Measurement Units in the Industrial Era",
+        "discipline": "history",
+        "angle": "traces the historical reform effort to standardize measurement units across factories during early industrialization"
+      }
+    ]
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "id": "spk-9ae7fbc2",
+  "source": "generated",
+  "createdAt": "2026-08-23T07:22:17.135Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Seed Bank Orientation",
+    "scenarioDescription": "Listen to the seed bank coordinator train a new research aide and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-9ae7fbc2/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-9ae7fbc2.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Seed Bank Orientation. Listen to the seed bank coordinator train a new research aide and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- This is our germination testing bench.\n- Trays and petri dishes wait here for testing.\n- Every seed sample is labeled by its collection date and origin.\n- This climate-controlled storage cabinet keeps samples cool, and staff check it twice daily.\n- When new samples arrive, we place them on the quarantine shelf first.\n- After recording the humidity reading, you must sign the log before your shift ends.\n- Please follow each step in order, which keeps every seed sample safe and traceable.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "This is our germination testing bench.",
+        "audio": "stimuli/spk-9ae7fbc2/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Trays and petri dishes wait here for testing.",
+        "audio": "stimuli/spk-9ae7fbc2/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Every seed sample is labeled by its collection date and origin.",
+        "audio": "stimuli/spk-9ae7fbc2/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "This climate-controlled storage cabinet keeps samples cool, and staff check it twice daily.",
+        "audio": "stimuli/spk-9ae7fbc2/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "When new samples arrive, we place them on the quarantine shelf first.",
+        "audio": "stimuli/spk-9ae7fbc2/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "After recording the humidity reading, you must sign the log before your shift ends.",
+        "audio": "stimuli/spk-9ae7fbc2/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Please follow each step in order, which keeps every seed sample safe and traceable.",
+        "audio": "stimuli/spk-9ae7fbc2/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "A Call About Home Art Hobbies",
+    "intro": "Hello, thank you for speaking with me today. I'm calling on behalf of the local arts council, and I'd like to ask you a few quick questions about how you pursue a personal art hobby at home.",
+    "introAudio": "stimuli/spk-9ae7fbc2/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, what craft or art hobby have you kept up, and where at home do you usually work on it — the kitchen table, a spare room, somewhere else?",
+        "audio": "stimuli/spk-9ae7fbc2/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of one occasion when you finished a piece or shared one with a neighbor or friend. What happened, and why did that occasion stand out to you?",
+        "audio": "stimuli/spk-9ae7fbc2/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some people believe an art hobby is best picked up by teaching yourself through practice, while others think a structured class works better. Which side do you agree with, and why?",
+        "audio": "stimuli/spk-9ae7fbc2/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Do you think a neighborhood benefits when more of its residents keep up a personal art hobby at home? Please explain your view and what effect you predict.",
+        "audio": "stimuli/spk-9ae7fbc2/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "first",
+      "measuredWpm": 148.5,
+      "targetWpm": 200,
+      "minWpm": 175,
+      "maxWpm": 225
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "first",
+      "measuredWpm": 184.6,
+      "targetWpm": 215,
+      "minWpm": 190,
+      "maxWpm": 240
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 154,
+      "targetWpm": 180,
+      "minWpm": 155,
+      "maxWpm": 205
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "science-environment",
+      "noveltyKey": "seed-bank-storage-orientation",
+      "requiredConcepts": [
+        "germination testing bench",
+        "seed sample labeled by collection date",
+        "climate-controlled storage cabinet checked twice daily",
+        "quarantine shelf for newly received samples",
+        "humidity log signed at end of shift"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-a87a3b41",
+          "reason": "that scenario intakes live animals at a wildlife rehab center; this one handles plant seed samples and germination testing, with no animal handling at all"
+        }
+      ],
+      "setting": "a seed bank storage room in an environmental science building, where climate-controlled cabinets and a germination testing bench support a biodiversity conservation project",
+      "speakerRole": "the laboratory's seed bank coordinator training a newly hired research aide before the aide's first solo shift",
+      "communicativePurpose": "orient the aide to each germination and storage step in order so no seed sample is mishandled or mislabeled"
+    },
+    "interview": {
+      "domain": "arts-culture",
+      "noveltyKey": "home-art-hobby-practice",
+      "requiredConcepts": [
+        "a handmade item finished last month",
+        "workspace at the kitchen table or a spare room",
+        "self-taught skill versus a structured class",
+        "a piece shared with a neighbor or friend"
+      ],
+      "distinguishesFrom": [],
+      "topic": "how the respondent keeps up a personal art hobby at home",
+      "premise": "a local arts council volunteer places a brief, unannounced phone call about how residents pursue a personal art hobby at home, no preparation time before each question",
+      "questionArc": [
+        "asks for concrete retrievable information: what craft or art hobby the respondent keeps up and where at home they usually work on it",
+        "asks the respondent to describe one specific occasion of finishing or sharing a piece of that art, with a reason the occasion stood out",
+        "introduces two contrasting views on whether an art hobby is better picked up self-taught or through a structured class, then asks the respondent to take a side and justify it",
+        "broadens to a general claim about whether a neighborhood benefits when more residents keep up a personal art hobby, asking the respondent to evaluate and predict"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v4",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "australian",
+      "voice": "Alnilam",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        200,
+        208,
+        215,
+        180,
+        178,
+        176,
+        175
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Umbriel",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

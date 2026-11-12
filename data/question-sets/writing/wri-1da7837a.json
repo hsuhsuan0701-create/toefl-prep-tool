@@ -1,0 +1,539 @@
+{
+  "id": "wri-1da7837a",
+  "source": "generated",
+  "createdAt": "2026-09-01T10:16:11.059Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Our robot just failed its final weight check, and the qualifying round starts in twenty minutes.",
+        "frame": "We ___ ___ ___ ___ on hand.",
+        "tiles": [
+          "don't",
+          "have",
+          "a",
+          "backup part",
+          "doesn't"
+        ],
+        "answers": [
+          [
+            "don't",
+            "have",
+            "a",
+            "backup part"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "The delivery van broke down halfway through its route this morning.",
+        "frame": "Three ___ ___ ___ ___ breakfast trays.",
+        "tiles": [
+          "meeting rooms",
+          "are",
+          "still",
+          "without",
+          "is"
+        ],
+        "answers": [
+          [
+            "meeting rooms",
+            "are",
+            "still",
+            "without"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "The coral-tagging equipment's housing cracked during yesterday's dive.",
+        "frame": "We ___ ___ ___ ___ ___ reef survey.",
+        "tiles": [
+          "will",
+          "have",
+          "to",
+          "delay",
+          "today's",
+          "must"
+        ],
+        "answers": [
+          [
+            "will",
+            "have",
+            "to",
+            "delay",
+            "today's"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "The transcoding queue stalled overnight, and tomorrow's premiere episode is still unprocessed.",
+        "frame": "This ___ ___ ___ ___ ___ risk.",
+        "tiles": [
+          "could",
+          "put",
+          "the",
+          "whole",
+          "premiere",
+          "puts"
+        ],
+        "answers": [
+          [
+            "could",
+            "put",
+            "the",
+            "whole",
+            "premiere"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "The marionette's control bar just snapped during setup, and the matinee opens to a full house in minutes.",
+        "frame": "___ ___ ___ ___ ___ ___ opens?",
+        "tiles": [
+          "will",
+          "the spare bar",
+          "even",
+          "be ready",
+          "before",
+          "the house",
+          "was"
+        ],
+        "answers": [
+          [
+            "will",
+            "the spare bar",
+            "even",
+            "be ready",
+            "before",
+            "the house"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "The walk-in intake computer crashed this morning, and the triage queue is already backing up fast.",
+        "frame": "___ ___ ___ ___ ___ ___ it's fixed.",
+        "tiles": [
+          "the whole team",
+          "should",
+          "quickly",
+          "switch",
+          "to paper forms",
+          "until",
+          "switches"
+        ],
+        "answers": [
+          [
+            "the whole team",
+            "should",
+            "quickly",
+            "switch",
+            "to paper forms",
+            "until"
+          ],
+          [
+            "the whole team",
+            "should",
+            "switch",
+            "quickly",
+            "to paper forms",
+            "until"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "The gangway ramp just failed its safety inspection, and boarding for the afternoon excursion is on hold.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ replacement part.",
+        "tiles": [
+          "the technician",
+          "who",
+          "is checking it now",
+          "says",
+          "it needs",
+          "a",
+          "full",
+          "say"
+        ],
+        "answers": [
+          [
+            "the technician",
+            "who",
+            "is checking it now",
+            "says",
+            "it needs",
+            "a",
+            "full"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "The microfiche scanner overheated in the middle of the batch, and the newspaper conversion has stopped.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ rescanned.",
+        "tiles": [
+          "it",
+          "seems",
+          "that",
+          "the whole batch",
+          "will",
+          "need",
+          "to be",
+          "seem"
+        ],
+        "answers": [
+          [
+            "it",
+            "seems",
+            "that",
+            "the whole batch",
+            "will",
+            "need",
+            "to be"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Why are the self-checkout kiosks offline right before the weekend book sale opens?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "the checkout kiosks",
+          "were disconnected",
+          "from the network",
+          "by",
+          "an",
+          "overnight",
+          "software",
+          "update",
+          "was"
+        ],
+        "answers": [
+          [
+            "the checkout kiosks",
+            "were disconnected",
+            "from the network",
+            "by",
+            "an",
+            "overnight",
+            "software",
+            "update"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Why is the laundry room's coin machine roped off right before the weekend rush?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "it",
+          "was",
+          "a jammed",
+          "coin mechanism",
+          "that",
+          "shut",
+          "the whole",
+          "machine",
+          "down",
+          "were"
+        ],
+        "answers": [
+          [
+            "it",
+            "was",
+            "a jammed",
+            "coin mechanism",
+            "that",
+            "shut",
+            "the whole",
+            "machine",
+            "down"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "During today's scheduled consultation hours, a graduate teaching assistant discovers that the reserved seminar room's projector cable is missing. Without it, Friday's course review session for the whole class is at risk.",
+    "to": "scheduling@facilities.university.edu",
+    "subject": "Missing Projector Cable in Room 214 Ahead of Friday's Review Session",
+    "bullets": [
+      "Report that the projector cable in the reserved seminar room is missing.",
+      "Request a replacement cable or a loaner unit be sent before Friday.",
+      "Ask whether an alternate room could be reserved as a backup in case the cable isn't found."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Introduction to Organizational Behavior",
+    "professorName": "Professor Whitfield",
+    "professorPost": "This week we're discussing a growing corporate practice: requiring all remote employees to attend a quarterly in-person offsite at company expense. Supporters argue these gatherings rebuild the trust and team cohesion that daily video calls can't fully replace. Critics see them as a costly intrusion on the flexibility remote work was supposed to provide. What do you think? Should companies require this kind of in-person attendance, or should remote employees be free to opt out?",
+    "studentPosts": [
+      {
+        "name": "Maya",
+        "post": "I think the quarterly offsite makes sense. Video calls work for updates, but trust builds faster in person — sharing a meal or solving a problem face-to-face does something a screen can't. Since the company covers travel, the real cost to employees is small compared to what a team gains from actually knowing each other."
+      },
+      {
+        "name": "Daniel",
+        "post": "I get Maya's point about trust, but mandatory travel four times a year isn't really free — it eats into personal time and disrupts caregiving schedules that remote work was supposed to protect. A company that hired people for flexibility shouldn't turn around and require attendance; optional meetups would let cohesion build more naturally."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "campus-academics",
+          "situation": "A university robotics club's advisor tells the student team captain that their competition entry failed its final weight check only twenty minutes before the qualifying round closes.",
+          "participantRoles": [
+            "university robotics club advisor",
+            "student team captain preparing to compete"
+          ],
+          "noveltyKey": "campus-robotics-weight-check-failure",
+          "requiredConcepts": [
+            "robotics team's failed weight check",
+            "twenty minutes before the qualifying round",
+            "no backup part on hand"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "That set's campus scenario involves a broken poster printer before a conference deadline; this one involves a failed equipment check before a live competition round, a different complication and stakes."
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A corporate office's catering manager tells the workplace event planner that the vendor's delivery van broke down halfway through its morning route, leaving three meeting rooms without breakfast trays.",
+          "participantRoles": [
+            "corporate office catering manager",
+            "workplace event planner awaiting the delivery"
+          ],
+          "noveltyKey": "workplace-catering-van-breakdown",
+          "requiredConcepts": [
+            "catering van breakdown en route",
+            "three meeting rooms without breakfast",
+            "delayed morning delivery"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-77a01da4",
+              "reason": "That set's workplace scenario is a policy change requiring manager approval for long conference-room bookings; this one is a logistics failure mid-delivery, a concrete disruption rather than a policy shift."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A marine biology laboratory's dive supervisor tells the incoming research assistant that the coral-tagging equipment's waterproof housing cracked during yesterday's dive, delaying today's reef habitat survey.",
+          "participantRoles": [
+            "marine biology laboratory dive supervisor",
+            "incoming research assistant joining the survey"
+          ],
+          "noveltyKey": "science-dive-equipment-crack-reef-survey",
+          "requiredConcepts": [
+            "cracked waterproof equipment housing",
+            "yesterday's dive damage",
+            "delayed reef survey"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-77a01da4",
+              "reason": "That set's science scenario is a wildlife camera losing signal overnight; this one is field equipment physically cracking underwater, a different failure mode and setting."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A streaming media platform's on-call engineer tells the digital content producer that the video software's transcoding queue stalled overnight, leaving tomorrow's premiere episode unprocessed.",
+          "participantRoles": [
+            "streaming media platform on-call engineer",
+            "digital content producer awaiting the premiere"
+          ],
+          "noveltyKey": "media-transcoding-queue-stall-premiere",
+          "requiredConcepts": [
+            "stalled overnight transcoding queue",
+            "unprocessed premiere episode",
+            "streaming deadline at risk"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-77a01da4",
+              "reason": "That set's media scenario is a render queue silently skipping an audio track for a filmmaker; this one is a transcoding queue stalling entirely before a scheduled premiere, a different symptom and business context."
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A puppet theater's stage supervisor tells the touring performer that the marionette's control bar snapped during setup, just minutes before the matinee show opens to a full house.",
+          "participantRoles": [
+            "puppet theater stage supervisor",
+            "touring marionette performer"
+          ],
+          "noveltyKey": "arts-puppet-marionette-control-bar-snap",
+          "requiredConcepts": [
+            "snapped marionette control bar",
+            "minutes before the matinee",
+            "full house waiting"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "That set's arts scenario is two groups double-booking a shared rehearsal hall; this one is a prop breaking during setup right before curtain, a physical equipment failure rather than a scheduling conflict."
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "An urgent care clinic's charge nurse tells the newly arrived physician that the walk-in intake computer crashed, backing up the morning's health triage queue.",
+          "participantRoles": [
+            "urgent care clinic charge nurse",
+            "newly arrived physician starting the shift"
+          ],
+          "noveltyKey": "health-urgent-care-intake-computer-crash",
+          "requiredConcepts": [
+            "crashed walk-in intake computer",
+            "backed-up triage queue",
+            "morning appointments delayed"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-77a01da4",
+              "reason": "That set's health scenario is a physical therapy slot moving earlier due to a staffing gap; this one is a system crash backing up an active triage line, a technical failure rather than a schedule change."
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A cruise terminal's dock coordinator tells the arriving travel tour guide that the gangway ramp failed its safety inspection, delaying boarding for the afternoon excursion route.",
+          "participantRoles": [
+            "cruise terminal dock coordinator",
+            "travel tour guide arriving with the group"
+          ],
+          "noveltyKey": "travel-cruise-gangway-inspection-failure",
+          "requiredConcepts": [
+            "failed gangway safety inspection",
+            "delayed afternoon boarding",
+            "excursion schedule at risk"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "That set's travel scenario is a shuttle bus overbooked with too many passengers; this one is a safety-inspection failure blocking boarding entirely, a different kind of obstacle."
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A county heritage archive's digitization coordinator tells the visiting genealogist that the microfiche scanner overheated mid-batch, halting the historical newspaper conversion project.",
+          "participantRoles": [
+            "county heritage archive digitization coordinator",
+            "visiting genealogist researching old records"
+          ],
+          "noveltyKey": "history-archive-microfiche-scanner-overheat",
+          "requiredConcepts": [
+            "overheated microfiche scanner",
+            "halted newspaper conversion",
+            "mid-batch scanning failure"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-77a01da4",
+              "reason": "That set's history scenario is a flood forcing a waterwheel demonstration to reschedule; this one is equipment overheating mid-task, a mechanical failure rather than a weather-driven postponement."
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A neighborhood community center's front desk supervisor tells the newly arrived civic volunteer that the self-checkout kiosks lost their network connection right before the public book sale opens.",
+          "participantRoles": [
+            "neighborhood community center front desk supervisor",
+            "newly arrived civic volunteer helping with the sale"
+          ],
+          "noveltyKey": "civic-library-checkout-kiosk-network-outage",
+          "requiredConcepts": [
+            "network outage on checkout kiosks",
+            "lost connection before the sale",
+            "weekend book sale opening"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "That set's civic scenario is a resident disputing a noise ordinance at a public meeting, a policy debate; this one is a technical outage disrupting an event's opening, a logistics failure instead."
+            }
+          ]
+        },
+        {
+          "domain": "everyday-life",
+          "situation": "An apartment building's maintenance supervisor tells the new tenant that the shared laundry room's coin machine jammed overnight, right before the weekend rush.",
+          "participantRoles": [
+            "apartment building maintenance supervisor",
+            "new tenant needing the laundry room"
+          ],
+          "noveltyKey": "everyday-apartment-laundry-coin-jam",
+          "requiredConcepts": [
+            "jammed laundry room coin machine",
+            "overnight mechanical failure",
+            "weekend laundry rush"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-77a01da4",
+              "reason": "That set's everyday scenario is a shared balcony drain clogging with fallen leaves, an ongoing maintenance nuisance; this one is a sudden coin-machine jam right before peak weekend use, a time-pressured breakdown."
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "campus-academics",
+      "noveltyKey": "office-hours-projector-cable-missing",
+      "requiredConcepts": [
+        "missing projector cable",
+        "Friday review session at risk",
+        "need for a backup room"
+      ],
+      "distinguishesFrom": [],
+      "situation": "During today's scheduled consultation hours, a graduate teaching assistant discovers the reserved seminar room's projector cable is missing, threatening Friday's course review session for the whole class.",
+      "recipientRole": "campus facilities scheduling coordinator responsible for classroom equipment",
+      "communicativeActs": [
+        "report that the seminar room's projector cable is missing",
+        "request a replacement cable or a loaner unit before Friday",
+        "ask whether an alternate room can be reserved as a backup"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "workplace-business",
+      "noveltyKey": "remote-work-quarterly-offsite-requirement",
+      "requiredConcepts": [
+        "quarterly required in-person offsite",
+        "company-paid travel expense",
+        "video-call cohesion limits"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-b91a8955",
+          "reason": "That discussion weighs promoting within versus hiring externally for open roles; this one weighs mandatory in-person attendance versus full remote flexibility for existing employees, a different tradeoff axis entirely."
+        }
+      ],
+      "proposition": "Some companies now require all remote employees to attend quarterly in-person offsite gatherings at company expense, arguing the sessions rebuild a sense of team cohesion that daily video calls cannot replace.",
+      "competingValues": [
+        "team cohesion and trust built through in-person contact",
+        "individual flexibility and cost savings of full remote work"
+      ]
+    }
+  }
+}

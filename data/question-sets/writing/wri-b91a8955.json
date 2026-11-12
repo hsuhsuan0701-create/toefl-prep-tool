@@ -1,0 +1,262 @@
+{
+  "id": "wri-b91a8955",
+  "source": "generated",
+  "createdAt": "2026-07-27T17:13:09.857Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Who's giving the presentation tomorrow?",
+        "frame": "Amir ___ ___ ___ ___ morning.",
+        "tiles": [
+          "is",
+          "presenting",
+          "first",
+          "tomorrow",
+          "are"
+        ],
+        "answers": [
+          [
+            "is",
+            "presenting",
+            "first",
+            "tomorrow"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-2",
+        "prompt": "What did you order at the café?",
+        "frame": "I ___ ___ ___ ___ lunch.",
+        "tiles": [
+          "ordered",
+          "the",
+          "vegetable soup",
+          "for",
+          "order"
+        ],
+        "answers": [
+          [
+            "ordered",
+            "the",
+            "vegetable soup",
+            "for"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Where are the extra chairs kept?",
+        "frame": "They ___ ___ ___ ___ closet.",
+        "tiles": [
+          "are",
+          "stored",
+          "in the",
+          "back",
+          "is"
+        ],
+        "answers": [
+          [
+            "are",
+            "stored",
+            "in the",
+            "back"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Has the delivery arrived yet?",
+        "frame": "It ___ ___ ___ ___ morning.",
+        "tiles": [
+          "hasn't",
+          "come",
+          "yet",
+          "this",
+          "didn't"
+        ],
+        "answers": [
+          [
+            "hasn't",
+            "come",
+            "yet",
+            "this"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-5",
+        "prompt": "How did Nadia hear about the internship?",
+        "frame": "Her advisor ___ ___ ___ ___ week.",
+        "tiles": [
+          "sent",
+          "her",
+          "the listing",
+          "last",
+          "to her"
+        ],
+        "answers": [
+          [
+            "sent",
+            "her",
+            "the listing",
+            "last"
+          ],
+          [
+            "sent",
+            "the listing",
+            "to her",
+            "last"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Will Diego join us for dinner?",
+        "frame": "He said ___ ___ ___ ___ six.",
+        "tiles": [
+          "that",
+          "he would be",
+          "free",
+          "after",
+          "he will be"
+        ],
+        "answers": [
+          [
+            "that",
+            "he would be",
+            "free",
+            "after"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Why didn't you submit the form on time?",
+        "frame": "The office ___ ___ ___ ___ I arrived.",
+        "tiles": [
+          "had",
+          "already",
+          "closed",
+          "by the time",
+          "has"
+        ],
+        "answers": [
+          [
+            "had",
+            "already",
+            "closed",
+            "by the time"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Which apartment did you decide on?",
+        "frame": "We chose ___ ___ ___ ___ repainted.",
+        "tiles": [
+          "the one",
+          "that",
+          "the landlord",
+          "had just",
+          "who"
+        ],
+        "answers": [
+          [
+            "the one",
+            "that",
+            "the landlord",
+            "had just"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Why was the field trip cancelled?",
+        "frame": "The visit ___ ___ ___ ___ for renovations.",
+        "tiles": [
+          "was called off",
+          "because",
+          "the museum",
+          "had closed",
+          "was calling off"
+        ],
+        "answers": [
+          [
+            "was called off",
+            "because",
+            "the museum",
+            "had closed"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-10",
+        "prompt": "So Elena designed the poster?",
+        "frame": "No, ___ ___ ___ ___ ___ the poster.",
+        "tiles": [
+          "it",
+          "was",
+          "her roommate",
+          "who",
+          "designed",
+          "which"
+        ],
+        "answers": [
+          [
+            "it",
+            "was",
+            "her roommate",
+            "who",
+            "designed"
+          ]
+        ],
+        "timeLimitSec": 40
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You rent a small plot at the Fairview Community Garden, which is run by a neighborhood association. For the past two weeks the shared water tap near your plot has been shut off, and several of your seedlings have dried out before you could carry water from the far end of the garden. The association has asked members to write to the garden coordinator with any concerns.",
+    "to": "coordinator@fairviewgarden.org",
+    "subject": "Water access at the Fairview Community Garden",
+    "bullets": [
+      "Express your appreciation for something the garden has offered you.",
+      "Describe the problem you have had with the water supply.",
+      "Ask when members can expect the tap to be working again."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Principles of Management",
+    "professorName": "Dr. Halloran",
+    "professorPost": "When a management position opens up, an organization can promote someone who already works there or recruit an experienced candidate from outside. Promoting from within rewards loyalty and draws on detailed knowledge of how the company actually operates, while hiring externally can bring in skills and perspectives the current staff does not have. Both choices carry costs. What do you think? When a management position opens up, should companies promote from within? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Tomás",
+        "post": "Companies should promote from within. At the restaurant where I worked, the manager they hired from outside spent four months learning things the assistant cooks already knew, and two experienced staff quit because they saw no path upward. Someone who already understands the daily routine can lead from the first week."
+      },
+      {
+        "name": "Grace",
+        "post": "I disagree. My aunt's small firm promoted the same handful of people for a decade, and the company kept repeating strategies that had stopped working. An outsider is willing to ask why a process exists at all, and that question is often worth more than familiarity with the current routine."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "id": "spk-8fed5241",
+  "source": "generated",
+  "createdAt": "2026-08-23T07:44:50.805Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Orientation at the International Student Services Desk",
+    "scenarioDescription": "You've just started as a student worker at the international student services office, and the lead academic advisor is showing you each check-in station before the afternoon drop-in advising hours begin. Listen to what she says, and repeat each sentence. Repeat only once.",
+    "introAudio": "stimuli/spk-8fed5241/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-8fed5241.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Orientation at the International Student Services Desk. You've just started as a student worker at the international student services office, and the lead academic advisor is showing you each check-in station before the afternoon drop-in advising hours begin. Listen to what she says, and repeat each sentence. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Sign in every visitor at the door.\n- A sign-in sheet and pen are clipped beside the door.\n- Open the holds folder and pull the matching form.\n- The holds folder sits by the window, but slips stay by the desk.\n- File each appointment slip by student ID after you confirm the name.\n- Stack the campus map handouts near the exit so new students can grab one.\n- Students waiting for drop-in advising should check the appointment slips filed under their ID.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Sign in every visitor at the door.",
+        "audio": "stimuli/spk-8fed5241/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "A sign-in sheet and pen are clipped beside the door.",
+        "audio": "stimuli/spk-8fed5241/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Open the holds folder and pull the matching form.",
+        "audio": "stimuli/spk-8fed5241/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The holds folder sits by the window, but slips stay by the desk.",
+        "audio": "stimuli/spk-8fed5241/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "File each appointment slip by student ID after you confirm the name.",
+        "audio": "stimuli/spk-8fed5241/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Stack the campus map handouts near the exit so new students can grab one.",
+        "audio": "stimuli/spk-8fed5241/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Students waiting for drop-in advising should check the appointment slips filed under their ID.",
+        "audio": "stimuli/spk-8fed5241/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "A Quick Call From a Usability Researcher",
+    "intro": "Hi there, thank you for taking a few minutes to speak with me. I'm a usability researcher studying how people use digital reminder apps in their daily routines, and I have four quick questions for you. There's no need to prepare — just answer naturally.",
+    "introAudio": "stimuli/spk-8fed5241/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, which reminder app do you currently use on your phone or another device, and about how many times a day would you say you open it?",
+        "audio": "stimuli/spk-8fed5241/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of a specific time recently when that app kept you from missing something important. Can you describe what happened, and why you reacted the way you did when the notification came through?",
+        "audio": "stimuli/spk-8fed5241/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some people prefer typing their reminders into an app themselves, while others prefer adding reminders by speaking to a voice assistant. Which do you prefer, and why?",
+        "audio": "stimuli/spk-8fed5241/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Some schools and workplaces are considering requiring everyone on a team to use the same shared reminder app for group project deadlines. Do you think that should be required, and what effect do you predict it would have?",
+        "audio": "stimuli/spk-8fed5241/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "campus-academics",
+      "noveltyKey": "international-student-office-desk-orientation",
+      "requiredConcepts": [
+        "sign-in sheet clipped beside the door",
+        "course registration holds folder by the window",
+        "advising appointment slips filed by student ID",
+        "campus map handouts stacked near the exit"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-55acbaf7",
+          "reason": "that Set orients a peer tutor through a writing center's tutoring desks and shelves; this Set orients a student worker through an international student office's registration-hold and appointment-slip check-in stations"
+        },
+        {
+          "setId": "spk-f9fe8bad",
+          "reason": "that Set trains a train station counter clerk to log lost passenger items; this Set trains a campus office worker to manage course registration holds and advising appointment slips"
+        }
+      ],
+      "setting": "the international student services office's front desk area, before its afternoon drop-in advising hours",
+      "speakerRole": "the office's lead academic advisor training a newly hired student worker",
+      "communicativePurpose": "orient the new student worker to each check-in station in order so drop-in advising runs smoothly without the advisor needing to repeat instructions"
+    },
+    "interview": {
+      "domain": "technology-media",
+      "noveltyKey": "digital-reminder-app-daily-task-habit",
+      "requiredConcepts": [
+        "reminder app opened multiple times per day",
+        "task almost missed before a notification caught it",
+        "typed reminders versus voice-activated reminders",
+        "shared reminder app for group project deadlines"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-210471e3",
+          "reason": "that Set covers civic engagement with local town council notices; this Set covers a personal digital reminder app on a device, unrelated topic and domain"
+        },
+        {
+          "setId": "spk-663e848c",
+          "reason": "that Set covers household energy-saving habits; this Set covers digital task-reminder app habits on a personal device, a different daily routine entirely"
+        }
+      ],
+      "topic": "how the respondent uses a digital reminder app on a personal device to manage daily tasks",
+      "premise": "A technology usability researcher makes a brief, unannounced phone call about the respondent's digital reminder app habits, with no preparation time before each question.",
+      "questionArc": [
+        "which digital reminder app the respondent currently uses on their device and how often it's opened during a typical day",
+        "a specific recent moment when the reminder app prevented a missed task, and why the respondent reacted the way they did",
+        "a stated preference between typed reminders and voice-activated reminders on the device, with a reason",
+        "whether schools or workplaces should require a shared digital reminder app for group tasks, with a prediction about the effect"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v4",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Kore",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        200,
+        208,
+        215,
+        180,
+        178,
+        176,
+        175
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Vindemiatrix",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

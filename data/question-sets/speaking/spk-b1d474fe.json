@@ -1,0 +1,238 @@
+{
+  "id": "spk-b1d474fe",
+  "source": "generated",
+  "createdAt": "2026-09-01T10:16:58.492Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Shoe Repair Workshop Orientation",
+    "scenarioDescription": "You are a newly hired apprentice at a custom shoe repair workshop. Listen to the senior repair technician orient you at the resoling bench before the shop opens, and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-b1d474fe/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-b1d474fe.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Shoe Repair Workshop Orientation. You are a newly hired apprentice at a custom shoe repair workshop. Listen to the senior repair technician orient you at the resoling bench before the shop opens, and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Watch me closely during your first repair.\n- We pull off the worn sole and heel plate first.\n- We scrape away the old adhesive along the edge of the sole.\n- We remove the old sole completely, and then we fit the new one.\n- Because the leather stiffens quickly, we condition it before stitching begins.\n- Once the sole is set, check the heel counter alignment carefully.\n- Always match the claim ticket stapled to the shoe before handing it back.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Watch me closely during your first repair.",
+        "audio": "stimuli/spk-b1d474fe/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.395,
+          "y": 0.101,
+          "w": 0.159,
+          "h": 0.136
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "We pull off the worn sole and heel plate first.",
+        "audio": "stimuli/spk-b1d474fe/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.165,
+          "y": 0.277,
+          "w": 0.159,
+          "h": 0.146
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "We scrape away the old adhesive along the edge of the sole.",
+        "audio": "stimuli/spk-b1d474fe/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.369,
+          "y": 0.28,
+          "w": 0.148,
+          "h": 0.133
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "We remove the old sole completely, and then we fit the new one.",
+        "audio": "stimuli/spk-b1d474fe/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.554,
+          "y": 0.274,
+          "w": 0.136,
+          "h": 0.146
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Because the leather stiffens quickly, we condition it before stitching begins.",
+        "audio": "stimuli/spk-b1d474fe/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.385,
+          "y": 0.457,
+          "w": 0.151,
+          "h": 0.151
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Once the sole is set, check the heel counter alignment carefully.",
+        "audio": "stimuli/spk-b1d474fe/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.743,
+          "y": 0.347,
+          "w": 0.141,
+          "h": 0.139
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Always match the claim ticket stapled to the shoe before handing it back.",
+        "audio": "stimuli/spk-b1d474fe/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.625,
+          "y": 0.54,
+          "w": 0.195,
+          "h": 0.145
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Home Water Filter Habits Survey",
+    "intro": "Hello! I'm calling from a residential environmental habits research group — we're doing a short phone survey about home water filtration and how people cut down on waste. It'll only take a few minutes. After each question, please respond within 45 seconds; there's no time to prepare beforehand.",
+    "introAudio": "stimuli/spk-b1d474fe/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thanks so much for taking a moment to chat. To start, which type of water filter do you use at home — a pitcher filter, a faucet-mounted one, or something else — and about how often do you actually use it?",
+        "audio": "stimuli/spk-b1d474fe/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thanks. Now walk me through how you actually keep it up — for instance, do you usually refill a reusable bottle straight from the filter, and when was the last time you swapped in a new cartridge?",
+        "audio": "stimuli/spk-b1d474fe/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK, that's helpful. I'd like to ask your opinion on something now. Some people track their filter's replacement schedule with a written note or a phone reminder, while others just wait until the water starts to taste a little off. Which approach do you think works better, and why?",
+        "audio": "stimuli/spk-b1d474fe/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Looking at households in general, do you think most people would actually keep up with filter replacement without some kind of reminder system, or is expecting people to track it manually just unrealistic?",
+        "audio": "stimuli/spk-b1d474fe/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 222,
+      "targetWpm": 184,
+      "minWpm": 156,
+      "maxWpm": 209
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "workplace-business",
+      "noveltyKey": "shoe-repair-workshop-orientation",
+      "requiredConcepts": [
+        "old sole removal before new sole fitting",
+        "leather conditioning before stitching begins",
+        "heel counter alignment check",
+        "customer claim ticket matched before pickup"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-4fe1e9b2",
+          "reason": "same workplace-business orientation structure but set in a bindery workshop trimming and stapling steps, not shoe resoling"
+        },
+        {
+          "setId": "spk-7a8b422f",
+          "reason": "same domain and orientation structure but set at a hardware store paint-mix station, not a footwear repair bench"
+        }
+      ],
+      "setting": "a custom shoe repair workshop's resoling bench, just before the shop opens for walk-in repairs",
+      "speakerRole": "the shop's senior repair technician orienting a newly hired apprentice",
+      "communicativePurpose": "walking the apprentice through each resoling station step in the correct order before the shop opens"
+    },
+    "interview": {
+      "domain": "science-environment",
+      "noveltyKey": "home-water-filter-maintenance-habit",
+      "requiredConcepts": [
+        "filter cartridge replacement reminder",
+        "pitcher versus faucet-mounted filter choice",
+        "reused bottle refill habit",
+        "reminder missed and water tasted off"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-4fe1e9b2",
+          "reason": "same science-environment interview domain but covers home food waste composting, not water filter maintenance"
+        },
+        {
+          "setId": "spk-d340295a",
+          "reason": "same domain, covers rainwater collection for the garden rather than drinking-water filtration upkeep"
+        },
+        {
+          "setId": "spk-dd6dcb3d",
+          "reason": "same domain, covers casual backyard wildlife watching, an unrelated everyday environmental habit"
+        }
+      ],
+      "topic": "how the test taker maintains a home water filter or pitcher to cut down on environmental waste",
+      "premise": "A residential environmental-habits research group makes a brief unannounced phone call about how people maintain home water filtration to reduce waste.",
+      "questionArc": [
+        "Caller introduces a brief environmental habits survey and confirms the test taker has a few minutes to talk.",
+        "Caller asks how the test taker currently maintains their home water filter or pitcher.",
+        "Caller asks for a specific recent example, such as the last time a filter cartridge was replaced.",
+        "Caller asks whether the test taker tracks the replacement schedule and what happens when it slips."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Kore",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Vindemiatrix",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

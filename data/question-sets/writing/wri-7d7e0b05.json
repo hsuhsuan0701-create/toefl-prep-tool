@@ -1,0 +1,568 @@
+{
+  "id": "wri-7d7e0b05",
+  "source": "generated",
+  "createdAt": "2026-08-31T15:20:15.673Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Please put on these handling gloves before you touch any of the fragile pages.",
+        "frame": "I ___ ___ ___ ___.",
+        "tiles": [
+          "really",
+          "need",
+          "the nineteen-thirties",
+          "immigration ledger",
+          "needs"
+        ],
+        "answers": [
+          [
+            "really",
+            "need",
+            "the nineteen-thirties",
+            "immigration ledger"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Can this century-old fountain's original stone foundation survive being moved during the renovation?",
+        "frame": "We ___ ___ ___ ___.",
+        "tiles": [
+          "will",
+          "move the fountain",
+          "carefully",
+          "during the renovation",
+          "moved"
+        ],
+        "answers": [
+          [
+            "will",
+            "move the fountain",
+            "carefully",
+            "during the renovation"
+          ],
+          [
+            "will",
+            "carefully",
+            "move the fountain",
+            "during the renovation"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Where did this recipe originally come from?",
+        "frame": "We ___ ___ ___ ___ ___ forgotten.",
+        "tiles": [
+          "should",
+          "write down",
+          "this wartime recipe",
+          "before",
+          "it is",
+          "wrote down"
+        ],
+        "answers": [
+          [
+            "should",
+            "write down",
+            "this wartime recipe",
+            "before",
+            "it is"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "What can I help you with after class?",
+        "frame": "I ___ ___ ___ ___ ___ due.",
+        "tiles": [
+          "should",
+          "confirm",
+          "the required textbook edition",
+          "before",
+          "the semester's first assignment is",
+          "confirms"
+        ],
+        "answers": [
+          [
+            "should",
+            "confirm",
+            "the required textbook edition",
+            "before",
+            "the semester's first assignment is"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "I think the café would help us relax more than the library while we study.",
+        "frame": "___ ___ ___ ___ ___ ___ before the upcoming final exam.",
+        "tiles": [
+          "the quiet library",
+          "will",
+          "suit",
+          "our study group",
+          "much",
+          "better",
+          "suited"
+        ],
+        "answers": [
+          [
+            "the quiet library",
+            "will",
+            "suit",
+            "our study group",
+            "much",
+            "better"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "I'd like to turn that vacant lot on Elm Street into a community garden.",
+        "frame": "___ ___ ___ ___ ___ ___ the whole neighborhood.",
+        "tiles": [
+          "the council",
+          "believes",
+          "that turning the lot into a garden",
+          "could",
+          "greatly",
+          "benefit",
+          "believe"
+        ],
+        "answers": [
+          [
+            "the council",
+            "believes",
+            "that turning the lot into a garden",
+            "could",
+            "greatly",
+            "benefit"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "After years of dedicated service, would you like to lead next month's cleanup event?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ next month.",
+        "tiles": [
+          "the volunteers",
+          "who helped last year",
+          "would",
+          "be glad",
+          "to see me lead",
+          "the event",
+          "again",
+          "helps"
+        ],
+        "answers": [
+          [
+            "the volunteers",
+            "who helped last year",
+            "would",
+            "be glad",
+            "to see me lead",
+            "the event",
+            "again"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Our lab has been monitoring habitat biodiversity for the past ten years.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ the decade?",
+        "tiles": [
+          "how",
+          "exactly",
+          "does",
+          "your lab's monitoring method",
+          "track",
+          "biodiversity change",
+          "over",
+          "do"
+        ],
+        "answers": [
+          [
+            "how",
+            "exactly",
+            "does",
+            "your lab's monitoring method",
+            "track",
+            "biodiversity change",
+            "over"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Our recording software dropped the audio partway through your interview segment, so we'll need to redo it.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "the entire interview segment",
+          "was",
+          "unfortunately cut short",
+          "and",
+          "will need",
+          "to be carefully recorded",
+          "again",
+          "from the very beginning",
+          "recording"
+        ],
+        "answers": [
+          [
+            "the entire interview segment",
+            "was",
+            "unfortunately cut short",
+            "and",
+            "will need",
+            "to be carefully recorded",
+            "again",
+            "from the very beginning"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Is it safe to display your festival piece without a protective case?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "the fragile ceramic piece",
+          "was judged safe",
+          "for display",
+          "without a case",
+          "and",
+          "the artist herself",
+          "personally",
+          "confirmed",
+          "the decision",
+          "judges"
+        ],
+        "answers": [
+          [
+            "the fragile ceramic piece",
+            "was judged safe",
+            "for display",
+            "without a case",
+            "and",
+            "the artist herself",
+            "personally",
+            "confirmed",
+            "the decision"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You are part of a weekly carpool that shares driving duty among four neighbors. Your car unexpectedly needed emergency repairs, so you were unable to drive on your assigned day this week. Now you need to email the carpool organizer to apologize, propose a plan to make up your turn, and confirm the group's updated schedule.",
+    "to": "Dana Whitfield, Maple Street carpool organizer",
+    "subject": "Missed Carpool Day – Schedule Update",
+    "bullets": [
+      "Apologize for missing your assigned carpool day this week.",
+      "Propose swapping driving days with another member of the group.",
+      "Ask the organizer to confirm the updated rotation schedule."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Introduction to Public History",
+    "professorName": "Professor Elena Ruiz",
+    "professorPost": "Many towns are reconsidering the names of public landmarks that honor historical figures whose legacies look different under closer scrutiny. In our town, the Whitfield Memorial Bridge still bears the name of a nineteenth-century figure once celebrated as a civic founder, but newly emphasized parts of his record have complicated that reputation. Should the town rename the bridge, or should the original name stay in place? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Priya",
+        "post": "I think the town should rename the bridge. Once we know a historical figure caused real harm, continuing to honor him with a landmark sends the message that we're comfortable overlooking that harm. Renaming doesn't erase history — it just stops celebrating the parts of it we no longer want to honor."
+      },
+      {
+        "name": "Tomas",
+        "post": "I disagree with Priya. The bridge's name isn't really about celebrating one person anymore — it's part of how residents give directions and identify their neighborhood. Renaming it risks erasing that everyday connection without actually addressing the harm she's talking about, which deserves its own separate conversation."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "history-social-change",
+          "situation": "A visiting genealogist asks a heritage society archivist for help locating a specific decade's immigration ledger before touching any fragile pages.",
+          "participantRoles": [
+            "visiting genealogist tracing a family branch",
+            "heritage society reading-room archivist"
+          ],
+          "noveltyKey": "heritage-society-immigration-ledger-request",
+          "requiredConcepts": [
+            "a specific decade's immigration ledger",
+            "handling gloves before touching fragile pages"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7024b060",
+              "reason": "That item is a coordinator explaining a new consent-form requirement for recordings; this is a visitor requesting help locating a specific ledger, with no policy change involved."
+            },
+            {
+              "setId": "wri-8f7e61bf",
+              "reason": "That item is about a misfiling error being corrected; this is a straightforward assistance request with nothing filed incorrectly."
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A local preservation board debates whether to approve moving a century-old fountain during a downtown renovation, weighing historical significance against structural risk.",
+          "participantRoles": [
+            "preservation board chair",
+            "downtown renovation project engineer"
+          ],
+          "noveltyKey": "historic-fountain-relocation-vote",
+          "requiredConcepts": [
+            "moving the century-old fountain during the renovation",
+            "the fountain's original stone foundation"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-6023c170",
+              "reason": "That item is a descendant disputing a plaque's printed date; this is a board vote weighing whether to physically relocate a fountain, a structural and preservation decision."
+            },
+            {
+              "setId": "wri-6c0c961a",
+              "reason": "That item involves a mislabeling correction in an archive; this involves a live decision about moving a physical structure."
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A grandmother teaches a grandchild the origin of a family recipe tied to a wartime tradition, and the grandchild suggests writing it down before it's forgotten.",
+          "participantRoles": [
+            "grandmother who kept the tradition alive",
+            "grandchild wanting to preserve it"
+          ],
+          "noveltyKey": "family-recipe-wartime-tradition-transcription",
+          "requiredConcepts": [
+            "a wartime family recipe",
+            "writing the recipe down before it's forgotten"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7024b060",
+              "reason": "That item is an institutional consent-form requirement for recorded interviews; this is an informal, personal moment between family members with no institution involved."
+            }
+          ]
+        },
+        {
+          "domain": "campus-academics",
+          "situation": "A first-year student asks a course professor after class to clarify which textbook edition is required before the semester's first assignment.",
+          "participantRoles": [
+            "first-year student unsure about the syllabus",
+            "course professor answering after class"
+          ],
+          "noveltyKey": "campus-textbook-edition-clarification",
+          "requiredConcepts": [
+            "which textbook edition is required",
+            "the semester's first assignment"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7024b060",
+              "reason": "That item is about a room reassignment for a thesis defense; this is a simple clarification question about course materials, unrelated to scheduling or rooms."
+            },
+            {
+              "setId": "wri-6023c170",
+              "reason": "That item is a scheduling negotiation around a flight conflict; this is a one-off clarification with no negotiation involved."
+            }
+          ]
+        },
+        {
+          "domain": "campus-academics",
+          "situation": "Two students in a university study group disagree about whether to meet in the campus library or a nearby café before the final exam.",
+          "participantRoles": [
+            "student who prefers the quiet library",
+            "classmate who prefers the café"
+          ],
+          "noveltyKey": "study-group-meeting-location-disagreement",
+          "requiredConcepts": [
+            "meeting in the campus library versus a nearby café",
+            "the upcoming final exam"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-8f7e61bf",
+              "reason": "That item is a stockroom recount delay affecting a chemistry course; this is a peer disagreement about a study meeting location, with no delay or supply issue."
+            },
+            {
+              "setId": "wri-6c0c961a",
+              "reason": "That item is a safety-equipment shortage before a lab session; this is a casual scheduling preference disagreement between classmates."
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A neighborhood resident proposes to a city council member that a vacant lot become a community garden.",
+          "participantRoles": [
+            "neighborhood resident proposing the garden",
+            "city council member hearing the proposal"
+          ],
+          "noveltyKey": "vacant-lot-garden-proposal-council",
+          "requiredConcepts": [
+            "turning the vacant lot into a garden",
+            "the resident's proposal to the council member"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7024b060",
+              "reason": "That item is about a new safety-inspection requirement for donated benches; this is a resident's original proposal for a new garden, not a policy on existing donations."
+            },
+            {
+              "setId": "wri-6023c170",
+              "reason": "That item is a negotiation over a compromise site after a neighbor's objection; this is an initial proposal with no prior objection or negotiation yet."
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A civic volunteer coordinator thanks a longtime community volunteer and invites them to lead next month's public cleanup event.",
+          "participantRoles": [
+            "volunteer coordinator extending the invitation",
+            "longtime civic volunteer being invited"
+          ],
+          "noveltyKey": "civic-volunteer-cleanup-lead-invitation",
+          "requiredConcepts": [
+            "leading next month's cleanup event",
+            "years of volunteer service"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-8f7e61bf",
+              "reason": "That item is about a new insurance-certificate requirement for a permit; this is a warm invitation to lead an event, with no permit or requirement involved."
+            },
+            {
+              "setId": "wri-6c0c961a",
+              "reason": "That item is a schedule swap between two recurring pool classes; this is a one-time leadership invitation extended to a volunteer."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A visiting journalist asks a laboratory researcher how the lab measures habitat biodiversity change over a decade of environmental monitoring.",
+          "participantRoles": [
+            "visiting journalist writing a feature",
+            "laboratory researcher explaining the method"
+          ],
+          "noveltyKey": "lab-biodiversity-measurement-explanation",
+          "requiredConcepts": [
+            "measuring habitat biodiversity change over a decade",
+            "the lab's monitoring method"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7024b060",
+              "reason": "That item is a delay notice about a tide-forecast sampling schedule; this is an explanatory Q&A about a measurement method, with no delay involved."
+            },
+            {
+              "setId": "wri-6023c170",
+              "reason": "That item is a request for a grant-report extension after equipment recalibration; this is a journalist's methodology question with no deadline pressure."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A podcast producer asks a guest to redo an online interview segment because the recording software dropped digital audio partway through.",
+          "participantRoles": [
+            "podcast producer requesting the redo",
+            "guest being asked to return"
+          ],
+          "noveltyKey": "podcast-audio-dropout-reshoot-request",
+          "requiredConcepts": [
+            "the recording software dropping audio partway through",
+            "redoing the interview segment"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7024b060",
+              "reason": "That item is about a dashboard's analytics metrics being split after an update; this is a technical recording failure requiring a guest to redo a segment."
+            },
+            {
+              "setId": "wri-6c0c961a",
+              "reason": "That item is a login error affecting an ebook app; this is an audio-capture failure during a live recording session, a different kind of malfunction."
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A museum curator asks a local ceramic artist whether a festival piece can be safely displayed in the gallery without a protective case.",
+          "participantRoles": [
+            "museum curator planning the display",
+            "ceramic artist who made the piece"
+          ],
+          "noveltyKey": "ceramic-festival-piece-display-case-question",
+          "requiredConcepts": [
+            "displaying the festival piece without a protective case",
+            "the artist's safety judgment"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7024b060",
+              "reason": "That item is about repainting a damaged stage backdrop before a festival; this is a curator's safety question about displaying a finished ceramic piece."
+            },
+            {
+              "setId": "wri-6023c170",
+              "reason": "That item is a critic's assessment of a mural's finished color choices; this is a practical safety question about display method, not an aesthetic critique."
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "everyday-life",
+      "noveltyKey": "carpool-missed-day-swap-apology",
+      "requiredConcepts": [
+        "missed carpool day due to a car repair",
+        "swapping days with another member",
+        "confirming the updated schedule"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-bdbdd45c",
+          "reason": "That item is a tenant reporting a recurring package misdelivery problem to a building superintendent; this is a personal apology-and-proposal email about a missed carpool turn, unrelated to mail or a building."
+        }
+      ],
+      "situation": "Writer missed their assigned day in a weekly carpool rotation after a sudden car repair and must email the organizer to apologize, propose swapping days with another member, and confirm the updated schedule.",
+      "recipientRole": "the member who organizes the weekly carpool rotation schedule",
+      "communicativeActs": [
+        "Apologize for missing the assigned carpool day.",
+        "Propose swapping driving days with another member.",
+        "Request confirmation of the updated rotation schedule."
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "history-social-change",
+      "noveltyKey": "landmark-rename-historical-legacy-debate",
+      "requiredConcepts": [
+        "renaming the landmark named after the historical figure",
+        "newly emphasized parts of his historical record",
+        "residents' attachment to the landmark's long-standing name"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-550947bf",
+          "reason": "That discussion is about descendants revising a personal family tradition after new facts surface; this one is a town's civic decision about renaming a public landmark honoring a historical figure."
+        }
+      ],
+      "proposition": "Whether a town should rename a landmark honoring a historical figure once celebrated but now viewed critically due to newly emphasized parts of his record.",
+      "competingValues": [
+        "Preserving historical continuity and residents' long-standing attachment to the landmark's name",
+        "Correcting the historical record and withdrawing honor from actions residents no longer wish to celebrate"
+      ]
+    }
+  }
+}

@@ -1,0 +1,3012 @@
+{
+  "id": "lsn-c2be0600",
+  "source": "generated",
+  "createdAt": "2026-08-23T10:10:34.595Z",
+  "kind": "listening",
+  "advisoryNotes": [
+    {
+      "check": "catalog-novelty",
+      "detail": "containment",
+      "taskType": "listen_choose",
+      "itemPosition": 14,
+      "score": 0.818
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 82,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 109.9,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 133.9,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 117.9,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "first",
+      "measuredWpm": 130.2,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "first",
+      "measuredWpm": 111.6,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "announcement",
+      "take": "retake",
+      "measuredWpm": 139,
+      "targetWpm": 150,
+      "minWpm": 140,
+      "maxWpm": 160
+    },
+    {
+      "check": "speech-rate",
+      "detail": "announcement",
+      "take": "retake",
+      "measuredWpm": 139.9,
+      "targetWpm": 150,
+      "minWpm": 140,
+      "maxWpm": 160
+    },
+    {
+      "check": "speech-rate",
+      "detail": "academic-talk",
+      "take": "retake",
+      "measuredWpm": 132.4,
+      "targetWpm": 148,
+      "minWpm": 140,
+      "maxWpm": 155
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "first",
+      "measuredWpm": 116.8,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 111.6,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 114.7,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 128.9,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 105,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "announcement",
+      "take": "first",
+      "measuredWpm": 138.2,
+      "targetWpm": 150,
+      "minWpm": 140,
+      "maxWpm": 160
+    },
+    {
+      "check": "speech-rate",
+      "detail": "announcement",
+      "take": "retake",
+      "measuredWpm": 138.1,
+      "targetWpm": 150,
+      "minWpm": 140,
+      "maxWpm": 160
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 135.1,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "first",
+      "measuredWpm": 129.3,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "first",
+      "measuredWpm": 98,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "academic-talk",
+      "take": "first",
+      "measuredWpm": 137,
+      "targetWpm": 148,
+      "minWpm": 140,
+      "maxWpm": 155
+    }
+  ],
+  "router": {
+    "timeLimitSec": 1080,
+    "listenChoose": [
+      {
+        "id": "lcr-r1",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-r1.mp3",
+        "speaker": {
+          "id": "lcr-r1-sp",
+          "role": "librarian",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Sadaltager",
+          "provider": "gemini"
+        },
+        "utterance": "That copy has a hold.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Could you return it by tomorrow?"
+          },
+          {
+            "id": "b",
+            "text": "Then I’ll place my own request."
+          },
+          {
+            "id": "c",
+            "text": "The new shelves look great."
+          },
+          {
+            "id": "d",
+            "text": "I already paid the printing fee."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "inference",
+        "explanationZh": "聽到「has a hold」表示別人已預約，續借不可行；提出自己預約最合適。其餘分別談歸還、書架與列印費，未回應預約狀況。"
+      },
+      {
+        "id": "lcr-r2",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-r2.mp3",
+        "speaker": {
+          "id": "lcr-r2-sp",
+          "role": "coworker",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Leda",
+          "provider": "gemini"
+        },
+        "utterance": "Friday's yours; cover Saturday?",
+        "options": [
+          {
+            "id": "a",
+            "text": "I finished the invoice before lunch today."
+          },
+          {
+            "id": "b",
+            "text": "I can, but I must leave by five."
+          },
+          {
+            "id": "c",
+            "text": "Our meeting moved to next Tuesday morning."
+          },
+          {
+            "id": "d",
+            "text": "The store stays open until six tonight."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "function",
+        "explanationZh": "原話詢問能否接週六的班；「I can, but I must leave by five」明確回應可否代班。其餘談營業時間、發票和會議，未處理排班。"
+      },
+      {
+        "id": "lcr-r3",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-r3.mp3",
+        "speaker": {
+          "id": "lcr-r3-sp",
+          "role": "event organizer",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Achird",
+          "provider": "gemini"
+        },
+        "utterance": "The band passed curfew.",
+        "options": [
+          {
+            "id": "a",
+            "text": "That park needs several new benches."
+          },
+          {
+            "id": "b",
+            "text": "We should distribute the extra flyers."
+          },
+          {
+            "id": "c",
+            "text": "The tickets disappeared before noon."
+          },
+          {
+            "id": "d",
+            "text": "I’ll ask them to wrap up."
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "inference",
+        "explanationZh": "「passed curfew」表示演出超過規定時間，應請樂團立刻結束。售票、公園設施與宣傳品都未處理逾時問題。"
+      },
+      {
+        "id": "lcr-r4",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-r4.mp3",
+        "speaker": {
+          "id": "lcr-r4-sp",
+          "role": "park ranger",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Gacrux",
+          "provider": "gemini"
+        },
+        "utterance": "Shrubs arrive Saturday—can you dig?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Yes, I'll bring the shovels."
+          },
+          {
+            "id": "b",
+            "text": "Please latch the gate behind you."
+          },
+          {
+            "id": "c",
+            "text": "The trail map needs updating soon."
+          },
+          {
+            "id": "d",
+            "text": "I misplaced my water bottle yesterday."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "function",
+        "explanationZh": "「can you dig」是在詢問能否協助種植；帶鏟子正好回應挖土工作。地圖更新、關門與水瓶遺失都沒有處理這項園藝請求。"
+      },
+      {
+        "id": "lcr-r5",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-r5.mp3",
+        "speaker": {
+          "id": "lcr-r5-sp",
+          "role": "livestream producer",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Puck",
+          "provider": "gemini"
+        },
+        "utterance": "Could you tell viewers we're delayed?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The episode needs a clearer title."
+          },
+          {
+            "id": "b",
+            "text": "I borrowed your headphones yesterday."
+          },
+          {
+            "id": "c",
+            "text": "Sure, I’ll post an update now."
+          },
+          {
+            "id": "d",
+            "text": "That guest studies marine biology."
+          }
+        ],
+        "correctOptionId": "c",
+        "skill": "function",
+        "explanationZh": "「tell viewers」要求向觀眾說明延遲；「post an update」直接答應處理。標題、耳機和來賓背景都未回應通知要求。"
+      },
+      {
+        "id": "lcr-r6",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-r6.mp3",
+        "speaker": {
+          "id": "lcr-r6-sp",
+          "role": "gallery designer",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Vindemiatrix",
+          "provider": "gemini"
+        },
+        "utterance": "Make the west wall darker?",
+        "options": [
+          {
+            "id": "a",
+            "text": "That may help the prints stand out."
+          },
+          {
+            "id": "b",
+            "text": "I packed the sculptures for transport already."
+          },
+          {
+            "id": "c",
+            "text": "The reception is scheduled for seven tonight."
+          },
+          {
+            "id": "d",
+            "text": "The catalog should include additional photographs."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "inference",
+        "explanationZh": "把西牆漆深是為襯托作品；「prints stand out」合理說明效果。開幕時間、搬運雕塑和目錄照片都未評估牆面配色。"
+      },
+      {
+        "id": "lcr-r7",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-r7.mp3",
+        "speaker": {
+          "id": "lcr-r7-sp",
+          "role": "pharmacist",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Charon",
+          "provider": "gemini"
+        },
+        "utterance": "This note doubles the dose.",
+        "options": [
+          {
+            "id": "a",
+            "text": "I’ll correct the instructions before you leave."
+          },
+          {
+            "id": "b",
+            "text": "Your insurance card expires at month’s end."
+          },
+          {
+            "id": "c",
+            "text": "The clinic opens at eight tomorrow morning."
+          },
+          {
+            "id": "d",
+            "text": "The café serves sandwiches after lunch daily."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "detail",
+        "explanationZh": "「doubles the dose」表示用藥說明有危險錯誤；更正 instructions 才能避免錯誤劑量。診所時間、保險期限與餐點都無法處理此問題。"
+      },
+      {
+        "id": "lcr-r8",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-r8.mp3",
+        "speaker": {
+          "id": "lcr-r8-sp",
+          "role": "archive clerk",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Autonoe",
+          "provider": "gemini"
+        },
+        "utterance": "May I copy this correspondence?",
+        "options": [
+          {
+            "id": "a",
+            "text": "I can reserve a study desk."
+          },
+          {
+            "id": "b",
+            "text": "The exhibit closes next month."
+          },
+          {
+            "id": "c",
+            "text": "Those boxes arrived yesterday."
+          },
+          {
+            "id": "d",
+            "text": "Only the cataloged pages; the rest are restricted."
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "detail",
+        "explanationZh": "「copy this correspondence」詢問能否複製館藏；「cataloged pages」限定可處理的頁面，直接給出規則。展期、到貨箱子與預約座位皆未回答此請求。"
+      },
+      {
+        "id": "lcr-r9",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-r9.mp3",
+        "speaker": {
+          "id": "lcr-r9-sp",
+          "role": "classmate",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Iapetus",
+          "provider": "gemini"
+        },
+        "utterance": "They’re talking through the wall.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Let’s reserve a private booth."
+          },
+          {
+            "id": "b",
+            "text": "The test is scheduled for Monday."
+          },
+          {
+            "id": "c",
+            "text": "I returned the borrowed textbook."
+          },
+          {
+            "id": "d",
+            "text": "Your charger is in the library."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "inference",
+        "explanationZh": "「through the wall」表示隔壁聲音干擾，訂私人隔間最合適。考試日期、歸還課本與充電器位置都不能解決噪音。"
+      },
+      {
+        "id": "lcr-r10",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-r10.mp3",
+        "speaker": {
+          "id": "lcr-r10-sp",
+          "role": "manager",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Kore",
+          "provider": "gemini"
+        },
+        "utterance": "I saved you a seat by the exit.",
+        "options": [
+          {
+            "id": "a",
+            "text": "The report needs two charts."
+          },
+          {
+            "id": "b",
+            "text": "That supplier called earlier."
+          },
+          {
+            "id": "c",
+            "text": "I'm taking a vacation day."
+          },
+          {
+            "id": "d",
+            "text": "Thanks—I have to leave early."
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "inference",
+        "explanationZh": "關鍵是「by the exit」；需要提早離開的人會感謝這個位置。報告圖表、休假與供應商來電都不能解釋為何出口旁座位合適。"
+      }
+    ],
+    "conversations": [
+      {
+        "id": "conv-r1",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-c2be0600/conv-r1.mp3",
+        "setting": "campus dining hall",
+        "speakers": [
+          {
+            "id": "conv-r1-sp1",
+            "role": "resident advisor",
+            "gender": "male",
+            "accent": "british",
+            "voice": "Zubenelgenubi",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-r1-sp2",
+            "role": "first-year student",
+            "gender": "female",
+            "accent": "australian",
+            "voice": "Sulafat",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-r1-sp2",
+            "text": "I’m surprised my meal swipes are almost gone. It’s only the middle of the month."
+          },
+          {
+            "speakerId": "conv-r1-sp1",
+            "text": "Have you been using them for coffee at the express counter? Those count the same as lunch."
+          },
+          {
+            "speakerId": "conv-r1-sp2",
+            "text": "Oh, that explains it. I thought drinks used a separate balance."
+          },
+          {
+            "speakerId": "conv-r1-sp1",
+            "text": "Also, check the new dining schedule. Starting Monday, this hall closes earlier on weekends, so the express counter may be your only evening choice."
+          },
+          {
+            "speakerId": "conv-r1-sp2",
+            "text": "Then I should plan meals before Friday. Can I see my balance online?"
+          },
+          {
+            "speakerId": "conv-r1-sp1",
+            "text": "Yes, the housing portal shows it, and it can help you avoid running short again."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-r1-q1",
+            "stem": "Why are the student's meal swipes running low?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Lunches at the main hall use two meal swipes."
+              },
+              {
+                "id": "b",
+                "text": "The housing portal deducts swipes during balance checks."
+              },
+              {
+                "id": "c",
+                "text": "Drinks use a separate meal balance on campus."
+              },
+              {
+                "id": "d",
+                "text": "Coffee at the express counter uses meal swipes."
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "「coffee at the express counter」也算餐次，所以會減少餐次餘額。兩餐次、飲料獨立餘額與查詢扣點都未被提及或與原文相反。"
+          },
+          {
+            "id": "conv-r1-q2",
+            "stem": "What will change starting Monday?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The express counter will stop serving after dinner."
+              },
+              {
+                "id": "b",
+                "text": "The housing portal will hide balances on Fridays."
+              },
+              {
+                "id": "c",
+                "text": "Weekend meals will require an extra swipe each."
+              },
+              {
+                "id": "d",
+                "text": "The dining hall will close earlier on weekends."
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "原文說「Starting Monday」後餐廳週末會提早關門。餐飲櫃檯停供、額外扣餐次及入口網站隱藏餘額都沒有提到。"
+          }
+        ]
+      },
+      {
+        "id": "conv-r2",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-c2be0600/conv-r2.mp3",
+        "setting": "campus career center business info desk",
+        "speakers": [
+          {
+            "id": "conv-r2-sp1",
+            "role": "career counselor",
+            "gender": "female",
+            "accent": "north-american",
+            "voice": "Zephyr",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-r2-sp2",
+            "role": "company recruiter",
+            "gender": "male",
+            "accent": "british",
+            "voice": "Umbriel",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-r2-sp1",
+            "text": "Thanks for coming to the career center. I heard your company is hiring interns for the fall."
+          },
+          {
+            "speakerId": "conv-r2-sp2",
+            "text": "That’s right. We’re looking for students who can help our marketing team analyze customer feedback."
+          },
+          {
+            "speakerId": "conv-r2-sp1",
+            "text": "Several students asked whether they need previous business experience."
+          },
+          {
+            "speakerId": "conv-r2-sp2",
+            "text": "It helps, but it isn’t required. We care more about clear writing and basic spreadsheet skills."
+          },
+          {
+            "speakerId": "conv-r2-sp1",
+            "text": "Good to know. Should interested students apply through your website?"
+          },
+          {
+            "speakerId": "conv-r2-sp2",
+            "text": "Yes, by October tenth. We’ll also hold short interviews here next Tuesday afternoon, so students can ask about the work before applying."
+          },
+          {
+            "speakerId": "conv-r2-sp1",
+            "text": "I’ll post that deadline and interview time on our job board today."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-r2-q1",
+            "stem": "What kind of work would the interns mainly do?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Design advertisements for new products"
+              },
+              {
+                "id": "b",
+                "text": "Train customers to use spreadsheets"
+              },
+              {
+                "id": "c",
+                "text": "Analyze feedback for the marketing team"
+              },
+              {
+                "id": "d",
+                "text": "Organize interviews for recruiters"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "招募者說實習生要為行銷團隊「analyze customer feedback」。設計廣告、教試算表、安排面試都未被說成實習工作。"
+          },
+          {
+            "id": "conv-r2-q2",
+            "stem": "What does the recruiter suggest students do next Tuesday?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Ask about the internship during interviews"
+              },
+              {
+                "id": "b",
+                "text": "Submit applications by the deadline"
+              },
+              {
+                "id": "c",
+                "text": "Practice spreadsheet skills at a workshop"
+              },
+              {
+                "id": "d",
+                "text": "Meet the marketing team at its office"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "招募者提到下週二下午在此進行短訪談，學生可先「ask about the work」。十月十日才是申請期限；其餘活動原文未提。"
+          }
+        ]
+      },
+      {
+        "id": "conv-r3",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-c2be0600/conv-r3.mp3",
+        "setting": "campus greenhouse workroom",
+        "speakers": [
+          {
+            "id": "conv-r3-sp1",
+            "role": "botany major",
+            "gender": "female",
+            "accent": "australian",
+            "voice": "Laomedeia",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-r3-sp2",
+            "role": "greenhouse assistant",
+            "gender": "male",
+            "accent": "north-american",
+            "voice": "Algieba",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-r3-sp1",
+            "text": "Hi, I’m labeling the seedlings for my botany lab, but several tags are missing. Do you know whether they were moved?"
+          },
+          {
+            "speakerId": "conv-r3-sp2",
+            "text": "Probably. We rearranged the workroom this morning because the watering system was being repaired. Check the blue tray beside the potting bench; I put loose tags there so they wouldn't get wet."
+          },
+          {
+            "speakerId": "conv-r3-sp1",
+            "text": "Great. I also need two small pots for the cuttings. Are those still in the cabinet?"
+          },
+          {
+            "speakerId": "conv-r3-sp2",
+            "text": "The small ones are, but please use the recycled-paper pots on the middle shelf. The plastic pots are reserved for tomorrow's outreach workshop."
+          },
+          {
+            "speakerId": "conv-r3-sp1",
+            "text": "Got it. I’ll return the labels after I finish."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-r3-q1",
+            "stem": "Why were the seedling tags placed in the blue tray?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To prepare them for a workshop"
+              },
+              {
+                "id": "b",
+                "text": "To keep them dry during repairs"
+              },
+              {
+                "id": "c",
+                "text": "To store them near the cabinet"
+              },
+              {
+                "id": "d",
+                "text": "To sort them for the lab class"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "助理說把鬆散標籤放入藍色托盤，是為了「wouldn't get wet」。分類、工作坊與櫃子位置都未提及。"
+          },
+          {
+            "id": "conv-r3-q2",
+            "stem": "What does the greenhouse assistant ask the student to do?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Move the plastic pots to the cabinet"
+              },
+              {
+                "id": "b",
+                "text": "Use the paper pots on the middle shelf"
+              },
+              {
+                "id": "c",
+                "text": "Bring extra pots to the outreach workshop"
+              },
+              {
+                "id": "d",
+                "text": "Label the pots beside the potting bench"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "function",
+            "explanationZh": "助理說「please use the recycled-paper pots on the middle shelf」。塑膠盆是留給工作坊，其他做法皆非其要求。"
+          }
+        ]
+      }
+    ],
+    "announcements": [
+      {
+        "id": "ann-r1",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-c2be0600/ann-r1.mp3",
+        "setting": "biology building lecture hall PA system",
+        "speaker": {
+          "id": "ann-r1-sp",
+          "role": "lab safety coordinator",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Achird",
+          "provider": "gemini"
+        },
+        "transcript": "Attention biology students: this week’s laboratory safety training has moved from Wednesday morning to Thursday afternoon at two in Lecture Hall B. Please arrive ten minutes early and sign the sheet at the door before taking a seat. Students who miss the session may not begin laboratory work until they complete the make-up training next month.",
+        "questions": [
+          {
+            "id": "ann-r1-q1",
+            "stem": "When is the safety training now scheduled?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Next month after laboratory work."
+              },
+              {
+                "id": "b",
+                "text": "Thursday afternoon at two."
+              },
+              {
+                "id": "c",
+                "text": "Thursday morning before class."
+              },
+              {
+                "id": "d",
+                "text": "Wednesday morning at ten."
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "公告說訓練「moved ... to Thursday afternoon at two」。其他時間不是新安排，或是補訓相關資訊。"
+          },
+          {
+            "id": "ann-r1-q2",
+            "stem": "What must students do before taking a seat?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Bring a safety manual from home."
+              },
+              {
+                "id": "b",
+                "text": "Sign the sheet at the door."
+              },
+              {
+                "id": "c",
+                "text": "Complete laboratory work first."
+              },
+              {
+                "id": "d",
+                "text": "Request a make-up session online."
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "原文要求「sign the sheet at the door before taking a seat」。實驗、線上補訓和手冊均未被要求。"
+          }
+        ]
+      },
+      {
+        "id": "ann-r2",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-c2be0600/ann-r2.mp3",
+        "setting": "campus health center waiting room announcement board",
+        "speaker": {
+          "id": "ann-r2-sp",
+          "role": "campus health center announcer",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Callirrhoe",
+          "provider": "gemini"
+        },
+        "transcript": "Campus Health Center notice: walk-in flu shots are still available this week, but each visitor must bring a completed and signed consent form. During the busiest afternoon hours, the waiting room has limited capacity, so additional visitors may be asked to return later. Students who need assistance finding the form may ask at the reception desk.",
+        "questions": [
+          {
+            "id": "ann-r2-q1",
+            "stem": "What is newly required for walk-in flu shots?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A completed signed consent form."
+              },
+              {
+                "id": "b",
+                "text": "Payment at the waiting-room door."
+              },
+              {
+                "id": "c",
+                "text": "A student ID from another campus."
+              },
+              {
+                "id": "d",
+                "text": "An appointment with a physician."
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "公告指出每位訪客必須帶「completed and signed consent form」。預約、外校證件和門口付款都未說明。"
+          },
+          {
+            "id": "ann-r2-q2",
+            "stem": "Why might some visitors be asked to return later?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Physicians are attending an off-campus event."
+              },
+              {
+                "id": "b",
+                "text": "Reception closes before the forms arrive."
+              },
+              {
+                "id": "c",
+                "text": "The waiting room has limited peak-hour capacity."
+              },
+              {
+                "id": "d",
+                "text": "The flu shots are given only in the morning."
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "原文說下午尖峰時段等候室「limited capacity」，因此可能請人稍後再來。其餘原因均未提及。"
+          }
+        ]
+      },
+      {
+        "id": "ann-r3",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-c2be0600/ann-r3.mp3",
+        "setting": "history department hallway PA announcement",
+        "speaker": {
+          "id": "ann-r3-sp",
+          "role": "history department chair",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Iapetus",
+          "provider": "gemini"
+        },
+        "transcript": "The History Department congratulates our debate team on winning the regional championship this weekend. Their final round focused on public memory and local monuments. All history majors are invited to a reception this Friday at four in the department lounge, where the team will display its research materials and accept questions from students.",
+        "questions": [
+          {
+            "id": "ann-r3-q1",
+            "stem": "What achievement is announced?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The debate team won a regional championship."
+              },
+              {
+                "id": "b",
+                "text": "The department opened a monument exhibit."
+              },
+              {
+                "id": "c",
+                "text": "The lounge received new research equipment."
+              },
+              {
+                "id": "d",
+                "text": "A student published a local history book."
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "gist",
+            "explanationZh": "開頭祝賀辯論隊「winning the regional championship」。紀念碑、出版品及設備皆不是公告的成就。"
+          },
+          {
+            "id": "ann-r3-q2",
+            "stem": "Who is invited to the Friday reception?",
+            "options": [
+              {
+                "id": "a",
+                "text": "All students majoring in history."
+              },
+              {
+                "id": "b",
+                "text": "All regional competition judges."
+              },
+              {
+                "id": "c",
+                "text": "Only students with research materials."
+              },
+              {
+                "id": "d",
+                "text": "Only members of the debate team."
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "公告明說「All history majors are invited」。隊員、評審和持有資料者都不是限定的受邀對象。"
+          }
+        ]
+      }
+    ],
+    "academicTalks": [
+      {
+        "id": "talk-r1",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-c2be0600/talk-r1.mp3",
+        "discipline": "life science",
+        "speaker": {
+          "id": "talk-r1-sp",
+          "role": "professor",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Erinome",
+          "provider": "gemini"
+        },
+        "transcript": "Today, let’s look at how mangrove trees survive along tropical coasts. Their roots grow in muddy shorelines where saltwater rises and falls with the tides. Most plants would lose too much water in such salty soil, but mangroves use several strategies. First, some species block much of the salt before it enters their roots. Others take in salt but store it in old leaves, which later fall off. Mangroves also have unusual aerial roots that rise above the mud. At low tide, tiny pores in these roots absorb oxygen from the air, because waterlogged mud contains very little oxygen. These adaptations do more than help individual trees survive. Dense root systems slow waves and hold sediment in place, reducing coastal erosion. The roots also create sheltered spaces where young fish and crabs can hide from larger animals. For that reason, when mangrove forests are cleared, nearby fishing communities may lose both shoreline protection and nursery habitat for seafood species. So mangroves are not simply trees growing near the ocean; they are living systems that connect plant survival, animal populations, and coastal stability.",
+        "questions": [
+          {
+            "id": "talk-r1-q1",
+            "stem": "What is the main purpose of the talk?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To describe methods for tracking tides beside tropical shorelines"
+              },
+              {
+                "id": "b",
+                "text": "To compare tropical fishing methods and their effects in several regions"
+              },
+              {
+                "id": "c",
+                "text": "To show why saltwater prevents every coastal tree from growing"
+              },
+              {
+                "id": "d",
+                "text": "To explain mangrove adaptations and their value to coastal ecosystems"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "gist",
+            "explanationZh": "主旨是紅樹林的存活策略及其保護海岸、提供棲地的作用，呼應「connect plant survival」。捕魚方法、測潮與無法耐鹽皆非主旨。"
+          },
+          {
+            "id": "talk-r1-q2",
+            "stem": "According to the talk, why do some mangrove roots rise above the mud?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To trap young fish when water moves through the roots"
+              },
+              {
+                "id": "b",
+                "text": "To release excess salt when ocean water reaches the roots"
+              },
+              {
+                "id": "c",
+                "text": "To absorb oxygen from the air when the tide is low"
+              },
+              {
+                "id": "d",
+                "text": "To keep older leaves from dropping into the water"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "原文說 aerial roots 在低潮時以小孔「absorb oxygen from the air」。排鹽、捕魚與落葉都不是這些根升出泥面的原因。"
+          },
+          {
+            "id": "talk-r1-q3",
+            "stem": "What can be inferred about mud in mangrove shorelines?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It prevents waves from reaching the coast"
+              },
+              {
+                "id": "b",
+                "text": "It contains no salt after the tide goes out"
+              },
+              {
+                "id": "c",
+                "text": "It provides little oxygen for roots below the surface"
+              },
+              {
+                "id": "d",
+                "text": "It is too firm for young fish and crabs to enter"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "教授說水淹泥土含氧很少，因此可推知地下根難取得氧氣。退潮後無鹽、泥太硬、泥本身擋浪都與「very little oxygen」不符。"
+          },
+          {
+            "id": "talk-r1-q4",
+            "stem": "Why does the professor mention young fish and crabs?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To show which animals remove salt from mangrove leaves"
+              },
+              {
+                "id": "b",
+                "text": "To explain why tides carry sediment away from shorelines"
+              },
+              {
+                "id": "c",
+                "text": "To illustrate how mangrove roots provide nursery habitat"
+              },
+              {
+                "id": "d",
+                "text": "To identify animals that damage aerial roots at low tide"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "function",
+            "explanationZh": "提到幼魚和螃蟹是為了舉例根系形成避難空間，即 nursery habitat。牠們不負責除鹽、帶走沉積物，也未被說成會破壞根。"
+          }
+        ]
+      }
+    ]
+  },
+  "lowerModule": {
+    "timeLimitSec": 420,
+    "listenChoose": [
+      {
+        "id": "lcr-lo1",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-lo1.mp3",
+        "speaker": {
+          "id": "lcr-lo1-sp",
+          "role": "sanitation worker",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Fenrir",
+          "provider": "gemini"
+        },
+        "utterance": "Our bin fills by Friday.",
+        "options": [
+          {
+            "id": "a",
+            "text": "The parade begins at noon."
+          },
+          {
+            "id": "b",
+            "text": "The pavement work ends today."
+          },
+          {
+            "id": "c",
+            "text": "I’ll arrange a second bin."
+          },
+          {
+            "id": "d",
+            "text": "Please save the delivery receipt."
+          }
+        ],
+        "correctOptionId": "c",
+        "skill": "inference",
+        "explanationZh": "「fills by Friday」表示現有垃圾桶容量不足，安排第二個垃圾桶合理。路面工程、遊行時間與收據都無法增加容量。"
+      },
+      {
+        "id": "lcr-lo2",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-lo2.mp3",
+        "speaker": {
+          "id": "lcr-lo2-sp",
+          "role": "lab partner",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Despina",
+          "provider": "gemini"
+        },
+        "utterance": "These seedlings need direct sun.",
+        "options": [
+          {
+            "id": "a",
+            "text": "I labeled the test tubes."
+          },
+          {
+            "id": "b",
+            "text": "We ordered more gloves."
+          },
+          {
+            "id": "c",
+            "text": "Let’s move them outside."
+          },
+          {
+            "id": "d",
+            "text": "The lecture was recorded."
+          }
+        ],
+        "correctOptionId": "c",
+        "skill": "inference",
+        "explanationZh": "幼苗需要直射陽光，因此搬到戶外最合適。試管、錄影課程與手套均未回應光照問題。"
+      },
+      {
+        "id": "lcr-lo3",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-lo3.mp3",
+        "speaker": {
+          "id": "lcr-lo3-sp",
+          "role": "audio technician",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Rasalgethi",
+          "provider": "gemini"
+        },
+        "utterance": "The mic cable is frayed.",
+        "options": [
+          {
+            "id": "a",
+            "text": "We mailed the posters."
+          },
+          {
+            "id": "b",
+            "text": "I can replace that section."
+          },
+          {
+            "id": "c",
+            "text": "Your playlist sounds good."
+          },
+          {
+            "id": "d",
+            "text": "The studio is booked tomorrow."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "function",
+        "explanationZh": "「cable is frayed」表示麥克風線損壞；提出更換線段最適當。錄音室、播放清單與海報都不處理故障。"
+      },
+      {
+        "id": "lcr-lo4",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-lo4.mp3",
+        "speaker": {
+          "id": "lcr-lo4-sp",
+          "role": "costume designer",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Leda",
+          "provider": "gemini"
+        },
+        "utterance": "The hem needs more stitching.",
+        "options": [
+          {
+            "id": "a",
+            "text": "The orchestra will begin soon."
+          },
+          {
+            "id": "b",
+            "text": "I’m afraid delivery will be late."
+          },
+          {
+            "id": "c",
+            "text": "That singer has learned the song."
+          },
+          {
+            "id": "d",
+            "text": "We printed extra playbills."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "attitude",
+        "explanationZh": "「needs more stitching」表示服裝尚未完成，遺憾地說交件會延後最合適。演出開始、節目冊與歌手練歌皆無關。"
+      },
+      {
+        "id": "lcr-lo5",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-lo5.mp3",
+        "speaker": {
+          "id": "lcr-lo5-sp",
+          "role": "clinic receptionist",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Umbriel",
+          "provider": "gemini"
+        },
+        "utterance": "You’re booked Tuesday, not Thursday.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Please use the west entrance."
+          },
+          {
+            "id": "b",
+            "text": "I left my umbrella downstairs."
+          },
+          {
+            "id": "c",
+            "text": "Thanks, I’ll change my calendar."
+          },
+          {
+            "id": "d",
+            "text": "The doctor recommended that journal."
+          }
+        ],
+        "correctOptionId": "c",
+        "skill": "detail",
+        "explanationZh": "「Tuesday, not Thursday」是在更正預約日期，修改行事曆最合適。醫師推薦、雨傘與入口資訊都未回應日期更正。"
+      }
+    ],
+    "conversations": [
+      {
+        "id": "conv-lo1",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-c2be0600/conv-lo1.mp3",
+        "setting": "campus podcast recording studio booth",
+        "speakers": [
+          {
+            "id": "conv-lo1-sp1",
+            "role": "broadcast student",
+            "gender": "male",
+            "accent": "british",
+            "voice": "Puck",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-lo1-sp2",
+            "role": "sound engineer",
+            "gender": "female",
+            "accent": "australian",
+            "voice": "Vindemiatrix",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-lo1-sp1",
+            "text": "Hi, I booked the podcast booth for our student history show, but the recording sounds a little hollow. Is there a quick way to improve it before my partner arrives?"
+          },
+          {
+            "speakerId": "conv-lo1-sp2",
+            "text": "Sure. The booth's wall panels help, but only if the microphone faces the desk, not the glass window. Also, pull the curtain closed behind you."
+          },
+          {
+            "speakerId": "conv-lo1-sp1",
+            "text": "I had the microphone pointed toward the window so I could see my notes. Should I move the notes too?"
+          },
+          {
+            "speakerId": "conv-lo1-sp2",
+            "text": "You can place them beside the monitor. Then wear these headphones and make a short test recording. Listen for room echo before you begin the actual interview."
+          },
+          {
+            "speakerId": "conv-lo1-sp1",
+            "text": "Great. I'll adjust the microphone, close the curtain, and test it first. Thanks for catching that."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-lo1-q1",
+            "stem": "What problem does the broadcast student mention at the beginning of the conversation?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A partner has not prepared any notes."
+              },
+              {
+                "id": "b",
+                "text": "The headphones are not working properly."
+              },
+              {
+                "id": "c",
+                "text": "The recording has too much room echo."
+              },
+              {
+                "id": "d",
+                "text": "The booth reservation was canceled."
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "開頭說錄音聽起來「a little hollow」，指房間回音。夥伴、預約與耳機都沒有被說成問題。"
+          },
+          {
+            "id": "conv-lo1-q2",
+            "stem": "What does the sound engineer recommend doing before the interview?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Placing the microphone beside the glass window."
+              },
+              {
+                "id": "b",
+                "text": "Reading the notes aloud through the headphones."
+              },
+              {
+                "id": "c",
+                "text": "Making a short recording and checking for echo."
+              },
+              {
+                "id": "d",
+                "text": "Keeping the curtain open during the recording."
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "function",
+            "explanationZh": "工程師說先「make a short test recording」並聽是否有回音。麥克風不該朝窗戶、窗簾要關上；耳機是用來監聽測試錄音，不是先朗讀筆記。"
+          }
+        ]
+      },
+      {
+        "id": "conv-lo2",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-c2be0600/conv-lo2.mp3",
+        "setting": "campus gallery back room",
+        "speakers": [
+          {
+            "id": "conv-lo2-sp1",
+            "role": "studio art major",
+            "gender": "female",
+            "accent": "north-american",
+            "voice": "Autonoe",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-lo2-sp2",
+            "role": "gallery assistant",
+            "gender": "male",
+            "accent": "british",
+            "voice": "Algieba",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-lo2-sp1",
+            "text": "Hi, I brought the three framed prints for the student exhibit. Where should I leave them?"
+          },
+          {
+            "speakerId": "conv-lo2-sp2",
+            "text": "Thanks. Put them on the padded table, not against the wall. We’re checking the hanging hardware first."
+          },
+          {
+            "speakerId": "conv-lo2-sp1",
+            "text": "Oh, I thought the wall labels were already finished."
+          },
+          {
+            "speakerId": "conv-lo2-sp2",
+            "text": "Most are, but your series needs one small change. The title card says the prints were made this spring, while your entry form says last fall."
+          },
+          {
+            "speakerId": "conv-lo2-sp1",
+            "text": "Last fall is right. I’ll correct the card now. Do you still need the artist statement?"
+          },
+          {
+            "speakerId": "conv-lo2-sp2",
+            "text": "Yes, please email it by four today. Then we can proofread it before the gallery opens tomorrow morning."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-lo2-q1",
+            "stem": "Why does the gallery assistant tell the student not to place the prints against the wall?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The hanging hardware is being checked first."
+              },
+              {
+                "id": "b",
+                "text": "The gallery will repaint the wall this afternoon."
+              },
+              {
+                "id": "c",
+                "text": "The framed prints need to be photographed first."
+              },
+              {
+                "id": "d",
+                "text": "The wall labels still need to be printed."
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "助理說「checking the hanging hardware first」，所以要先放在有墊的桌上。標籤只需改資料；重漆與拍照都未提及。"
+          },
+          {
+            "id": "conv-lo2-q2",
+            "stem": "What will the studio art major most likely do next?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Revise the title card for the print series."
+              },
+              {
+                "id": "b",
+                "text": "Submit a new entry form for the exhibit."
+              },
+              {
+                "id": "c",
+                "text": "Install the hanging hardware personally."
+              },
+              {
+                "id": "d",
+                "text": "Move the prints to a different gallery."
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "學生確認作品是「last fall」完成，接著說會立刻更正卡片，因此最可能修改標題卡。換展場、重交表格與自行安裝皆無依據。"
+          }
+        ]
+      }
+    ],
+    "announcements": [
+      {
+        "id": "ann-lo1",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-c2be0600/ann-lo1.mp3",
+        "setting": "campus career fair business check-in desk PA system",
+        "speaker": {
+          "id": "ann-lo1-sp",
+          "role": "career fair coordinator",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Sulafat",
+          "provider": "gemini"
+        },
+        "transcript": "Career Fair update: employer booths have been moved from the central hall to the east wing of the student center. Please follow the blue signs from the check-in desk. Employers will accept printed resumes only at table three, where staff will sort them by company. Students may still use the central hall for workshops and short résumé reviews.",
+        "questions": [
+          {
+            "id": "ann-lo1-q1",
+            "stem": "Where are the employer booths now located?",
+            "options": [
+              {
+                "id": "a",
+                "text": "At the student center's east wing."
+              },
+              {
+                "id": "b",
+                "text": "In the career center's interview rooms."
+              },
+              {
+                "id": "c",
+                "text": "At table three by the check-in desk."
+              },
+              {
+                "id": "d",
+                "text": "At the central hall's workshop area."
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "公告說攤位「moved ... to the east wing」。中央大廳保留給工作坊；桌三只收履歷；面試室未提及。"
+          },
+          {
+            "id": "ann-lo1-q2",
+            "stem": "What should students do with printed resumes?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Leave them at any employer booth."
+              },
+              {
+                "id": "b",
+                "text": "Take them to table three for sorting."
+              },
+              {
+                "id": "c",
+                "text": "Mail them to the student center."
+              },
+              {
+                "id": "d",
+                "text": "Submit them during a résumé review."
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "原文指定「printed resumes only at table three」。任一攤位、履歷諮詢與郵寄皆不符合公告流程。"
+          }
+        ]
+      },
+      {
+        "id": "ann-lo2",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-c2be0600/ann-lo2.mp3",
+        "setting": "campus study-abroad travel office recorded phone line",
+        "speaker": {
+          "id": "ann-lo2-sp",
+          "role": "study-abroad office voicemail announcer",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Achird",
+          "provider": "gemini"
+        },
+        "transcript": "This is the Study-Abroad Office with an application reminder. The deadline for spring programs has moved one week earlier, to October tenth. Before attending the required information session, applicants must upload a clear copy of their passport. The session will explain visa steps and program deposits, but it cannot accept missing passport documents in person.",
+        "questions": [
+          {
+            "id": "ann-lo2-q1",
+            "stem": "What has changed for spring-program applicants?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Visa steps no longer require a passport."
+              },
+              {
+                "id": "b",
+                "text": "The information session is now optional."
+              },
+              {
+                "id": "c",
+                "text": "The application deadline is one week earlier."
+              },
+              {
+                "id": "d",
+                "text": "Program deposits are due at the office."
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "語音公告說截止日「moved one week earlier, to October tenth」。說明會、護照與訂金的其餘說法皆與原文不符。"
+          },
+          {
+            "id": "ann-lo2-q2",
+            "stem": "What must applicants do before the information session?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Upload a clear copy of their passport."
+              },
+              {
+                "id": "b",
+                "text": "Pay the entire program deposit."
+              },
+              {
+                "id": "c",
+                "text": "Bring visa documents to the office."
+              },
+              {
+                "id": "d",
+                "text": "Schedule an individual interview."
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "公告要求會前「upload a clear copy of their passport」。訂金、親送文件與個別面談均未要求。"
+          }
+        ]
+      }
+    ],
+    "academicTalks": []
+  },
+  "upperModule": {
+    "timeLimitSec": 660,
+    "listenChoose": [
+      {
+        "id": "lcr-up1",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-up1.mp3",
+        "speaker": {
+          "id": "lcr-up1-sp",
+          "role": "history club officer",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Gacrux",
+          "provider": "gemini"
+        },
+        "utterance": "Want to read mill workers' letters?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Absolutely—eyewitness accounts fascinate me."
+          },
+          {
+            "id": "b",
+            "text": "That bus reaches downtown near the library."
+          },
+          {
+            "id": "c",
+            "text": "The building needs replacement windows this year."
+          },
+          {
+            "id": "d",
+            "text": "I returned the archive key before noon today."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "attitude",
+        "explanationZh": "原話邀請看工人的書信；「eyewitness accounts fascinate me」表達對原始史料感興趣，適切接受邀請。窗戶、鑰匙與公車資訊皆無關。"
+      },
+      {
+        "id": "lcr-up2",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-up2.mp3",
+        "speaker": {
+          "id": "lcr-up2-sp",
+          "role": "professor",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Zubenelgenubi",
+          "provider": "gemini"
+        },
+        "utterance": "Could your draft wait till Friday?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The lecture hall gets crowded after lunch."
+          },
+          {
+            "id": "b",
+            "text": "I selected a different textbook this term."
+          },
+          {
+            "id": "c",
+            "text": "Yes, that still leaves me enough time."
+          },
+          {
+            "id": "d",
+            "text": "Our group met in the library yesterday."
+          }
+        ],
+        "correctOptionId": "c",
+        "skill": "inference",
+        "explanationZh": "原話問草稿能否延後；「that still leaves me enough time」表示延後仍來得及，因此可行。其他選項談教室、教材和小組會面，未回應時程。"
+      },
+      {
+        "id": "lcr-up3",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-up3.mp3",
+        "speaker": {
+          "id": "lcr-up3-sp",
+          "role": "warehouse supervisor",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Callirrhoe",
+          "provider": "gemini"
+        },
+        "utterance": "This pallet has the wrong batch.",
+        "options": [
+          {
+            "id": "a",
+            "text": "We ordered more tape."
+          },
+          {
+            "id": "b",
+            "text": "The loading dock opens early."
+          },
+          {
+            "id": "c",
+            "text": "That shipment arrived safely."
+          },
+          {
+            "id": "d",
+            "text": "I’ll hold it for relabeling."
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "inference",
+        "explanationZh": "棧板批號錯誤，應暫停並重新標示。碼頭時間、膠帶與到貨安全都未處理錯標。"
+      },
+      {
+        "id": "lcr-up4",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-up4.mp3",
+        "speaker": {
+          "id": "lcr-up4-sp",
+          "role": "neighbor",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Alnilam",
+          "provider": "gemini"
+        },
+        "utterance": "Need a ride to cleanup?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Sure—could two bags fit in the back?"
+          },
+          {
+            "id": "b",
+            "text": "That notice arrived in my mailbox this morning."
+          },
+          {
+            "id": "c",
+            "text": "I locked the garden shed before dinner yesterday."
+          },
+          {
+            "id": "d",
+            "text": "The leaves changed color after last night’s frost."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "inference",
+        "explanationZh": "原話提供前往清理活動的車程；詢問車後方能否放兩袋，合理承接共乘與清理情境。其餘談葉色、工具間和通知，沒有回應安排。"
+      },
+      {
+        "id": "lcr-up5",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-c2be0600/lcr-up5.mp3",
+        "speaker": {
+          "id": "lcr-up5-sp",
+          "role": "field research assistant",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Zephyr",
+          "provider": "gemini"
+        },
+        "utterance": "Storms arrive before noon.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Then we should reschedule the survey."
+          },
+          {
+            "id": "b",
+            "text": "I counted twelve samples this morning."
+          },
+          {
+            "id": "c",
+            "text": "That trail has many wildflowers nearby."
+          },
+          {
+            "id": "d",
+            "text": "The field guide has useful maps."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "inference",
+        "explanationZh": "「Storms arrive before noon」表示戶外工作有天候風險，應延期調查。指南、樣本數和野花都未處理即將來臨的暴風雨。"
+      }
+    ],
+    "conversations": [
+      {
+        "id": "conv-up1",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-c2be0600/conv-up1.mp3",
+        "setting": "campus fitness center exercise floor",
+        "speakers": [
+          {
+            "id": "conv-up1-sp1",
+            "role": "gym member",
+            "gender": "male",
+            "accent": "north-american",
+            "voice": "Fenrir",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-up1-sp2",
+            "role": "front desk staffer",
+            "gender": "female",
+            "accent": "british",
+            "voice": "Despina",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-up1-sp1",
+            "text": "Hi, I reserved a treadmill for six, but the screen says my booking disappeared."
+          },
+          {
+            "speakerId": "conv-up1-sp2",
+            "text": "Let me check. Ah, the system moved all six o'clock reservations because a technician is replacing a belt on row three."
+          },
+          {
+            "speakerId": "conv-up1-sp1",
+            "text": "So do I need to make a new reservation?"
+          },
+          {
+            "speakerId": "conv-up1-sp2",
+            "text": "No, your reservation is still active. We've reassigned you to treadmill twelve near the windows. It will be ready at six fifteen."
+          },
+          {
+            "speakerId": "conv-up1-sp1",
+            "text": "That's fine. Will the delay affect the thirty-minute time limit?"
+          },
+          {
+            "speakerId": "conv-up1-sp2",
+            "text": "Not today. Since the equipment problem was ours, your session will begin when you actually start, and I'll add ten extra minutes."
+          },
+          {
+            "speakerId": "conv-up1-sp1",
+            "text": "Great, thanks. Could you point out number twelve?"
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-up1-q1",
+            "stem": "What caused the reservation change?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A fitness class needed the treadmill area."
+              },
+              {
+                "id": "b",
+                "text": "A technician was repairing a treadmill belt."
+              },
+              {
+                "id": "c",
+                "text": "The booking system was updated for a new schedule."
+              },
+              {
+                "id": "d",
+                "text": "The windows near the machines were being cleaned."
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "職員說「replacing a belt on row three」，所以是維修跑步機皮帶。課程、擦窗與系統更新皆未提及。"
+          },
+          {
+            "id": "conv-up1-q2",
+            "stem": "What will the staff member do for the gym member?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Transfer the member's session to another day."
+              },
+              {
+                "id": "b",
+                "text": "Reserve a different treadmill for a full hour."
+              },
+              {
+                "id": "c",
+                "text": "Add ten minutes to the member's workout session."
+              },
+              {
+                "id": "d",
+                "text": "Waive the fee for the member's canceled booking."
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "職員說「add ten extra minutes」，會在實際開始後多給十分鐘；免除取消費、改到別天及預約整小時都未提及。"
+          }
+        ]
+      },
+      {
+        "id": "conv-up2",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-c2be0600/conv-up2.mp3",
+        "setting": "campus study-abroad travel office",
+        "speakers": [
+          {
+            "id": "conv-up2-sp1",
+            "role": "exchange applicant",
+            "gender": "female",
+            "accent": "australian",
+            "voice": "Laomedeia",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-up2-sp2",
+            "role": "study-abroad advisor",
+            "gender": "male",
+            "accent": "north-american",
+            "voice": "Iapetus",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-up2-sp1",
+            "text": "Hi, I’m applying for the exchange program in Spain, and I’m confused about the travel steps. Do I book my flight before my visa appointment?"
+          },
+          {
+            "speakerId": "conv-up2-sp2",
+            "text": "Wait until the consulate approves your visa. You can compare fares now, but buy a ticket only after approval. The program office sends an arrival window in June, so choose a flight that lands during those dates."
+          },
+          {
+            "speakerId": "conv-up2-sp1",
+            "text": "Okay. I also saw a travel insurance form in the portal. Is that for the visa?"
+          },
+          {
+            "speakerId": "conv-up2-sp2",
+            "text": "It’s required by the host university, not the consulate. Upload proof of coverage before you leave, and bring a printed copy when you check in abroad."
+          },
+          {
+            "speakerId": "conv-up2-sp1",
+            "text": "That clears it up. I’ll schedule the visa appointment first and hold off on buying anything."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-up2-q1",
+            "stem": "What does the advisor recommend that the applicant do before buying a flight ticket?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Receive a printed insurance certificate."
+              },
+              {
+                "id": "b",
+                "text": "Attend an orientation at the program office."
+              },
+              {
+                "id": "c",
+                "text": "Wait for visa approval from the consulate."
+              },
+              {
+                "id": "d",
+                "text": "Confirm housing with the host university."
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "顧問說「Wait until the consulate approves your visa」，所以須先等簽證核准。保險、住宿與說明會都不是購票前提出的條件。"
+          },
+          {
+            "id": "conv-up2-q2",
+            "stem": "Why does the applicant need to submit proof of travel insurance?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The airline requests it when a ticket is purchased."
+              },
+              {
+                "id": "b",
+                "text": "The program office uses it to select an arrival date."
+              },
+              {
+                "id": "c",
+                "text": "The host university requires it before departure."
+              },
+              {
+                "id": "d",
+                "text": "The consulate needs it to approve the visa."
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "顧問明說保險「required by the host university, not the consulate」，且要在離開前上傳。簽證、航空公司與抵達日期均未被說成保險用途。"
+          }
+        ]
+      }
+    ],
+    "announcements": [],
+    "academicTalks": [
+      {
+        "id": "talk-up1",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-c2be0600/talk-up1.mp3",
+        "discipline": "physical science",
+        "speaker": {
+          "id": "talk-up1-sp",
+          "role": "guest lecturer",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Orus",
+          "provider": "gemini"
+        },
+        "transcript": "Today I’d like to introduce thermal conductivity, which is simply how readily heat moves through a material. Imagine placing one end of a metal spoon in hot soup. Before long, the handle feels warm because energy travels through the spoon. In metals, tiny charged particles called electrons can move freely and carry energy quickly. That is why a copper pan heats more evenly than a wooden spoon.\n\nWood and foam contain many small pockets of air. Air does not transfer heat efficiently, so those pockets slow the movement of energy. Materials that slow heat transfer are called insulators. Winter jackets use this idea: their fluffy filling traps air near the body and reduces heat loss.\n\nEngineers choose materials by considering both conductivity and purpose. A cooking-pot base should conduct heat well, but its handle should be insulated so a cook can hold it safely. The same principle helps architects select wall materials that keep buildings comfortable while reducing the energy needed for heating or cooling. So, thermal conductivity is not just a laboratory measurement; it affects ordinary objects and larger designs alike.",
+        "questions": [
+          {
+            "id": "talk-up1-q1",
+            "stem": "What is the main purpose of the talk?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To describe why cooks select different kitchen utensils"
+              },
+              {
+                "id": "b",
+                "text": "To argue that wooden tools are safest for cooking"
+              },
+              {
+                "id": "c",
+                "text": "To explain how materials differ in transferring heat"
+              },
+              {
+                "id": "d",
+                "text": "To compare how various materials measure room temperatures"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "gist",
+            "explanationZh": "原文先定義「thermal conductivity」，再比較金屬、木材與泡棉的傳熱。氣溫量測、廚具選擇與木製工具最安全都不是主旨。"
+          },
+          {
+            "id": "talk-up1-q2",
+            "stem": "According to the talk, why does a copper pan heat more evenly than a wooden spoon?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Copper's mobile electrons carry energy quickly"
+              },
+              {
+                "id": "b",
+                "text": "Copper's filling reduces heat loss to the air"
+              },
+              {
+                "id": "c",
+                "text": "Copper traps air pockets around the heat source"
+              },
+              {
+                "id": "d",
+                "text": "Copper keeps heat from leaving the soup entirely"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "原文說金屬中「electrons can move freely」並快速帶能量，所以銅鍋導熱均勻。空氣層與填充物是絕緣例子；原文未說銅能完全阻止熱離開湯。"
+          },
+          {
+            "id": "talk-up1-q3",
+            "stem": "What can be inferred about the filling in a winter jacket?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It traps air and slows body-heat loss"
+              },
+              {
+                "id": "b",
+                "text": "It makes the jacket's outer layer metallic"
+              },
+              {
+                "id": "c",
+                "text": "It creates heat by moving free electrons"
+              },
+              {
+                "id": "d",
+                "text": "It moves heat quickly through the jacket"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "原文說蓬鬆填充物「traps air」並「reduces heat loss」，可推知它用於保溫。快速導熱、電子生熱與金屬外層皆未符合說明。"
+          },
+          {
+            "id": "talk-up1-q4",
+            "stem": "Why does the speaker mention a cooking pot with an insulated handle?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To explain why spoons become warmer than metal pans"
+              },
+              {
+                "id": "b",
+                "text": "To show that air pockets make cookware heat faster"
+              },
+              {
+                "id": "c",
+                "text": "To show that every pot component should conduct heat well"
+              },
+              {
+                "id": "d",
+                "text": "To show one object can combine contrasting heat properties"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "function",
+            "explanationZh": "原文說鍋底要導熱、把手要絕緣；此例說明可依用途結合相反的傳熱性質。其餘說法與原文不符。"
+          }
+        ]
+      },
+      {
+        "id": "talk-up2",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-c2be0600/talk-up2.mp3",
+        "discipline": "history",
+        "speaker": {
+          "id": "talk-up2-sp",
+          "role": "teaching assistant",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Kore",
+          "provider": "gemini"
+        },
+        "transcript": "In the late nineteenth and early twentieth centuries, many towns in the United States established free public libraries. Earlier libraries often charged subscriptions, meaning users paid a fee to borrow books. Reform advocates wanted a different model: libraries supported by local taxes and open to all residents. They argued that literacy, the ability to read and write, served democracy. A voter who could read newspapers, compare arguments, and find information could participate more fully in public life. Tax funding also made it possible for a library to buy books for children and workers who could not afford private collections. Not everyone approved. Some residents objected to paying taxes for books they might never borrow. Private booksellers worried that free lending would reduce sales. Supporters answered that libraries did not simply replace stores; they provided shared access to information and often encouraged new readers to buy books later. The debate shows that a public library was not viewed only as a building. It was a proposal about who should pay for knowledge and who should be able to use it.",
+        "questions": [
+          {
+            "id": "talk-up2-q1",
+            "stem": "How did the proposed public-library model differ from earlier libraries?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It charged residents a subscription to borrow books."
+              },
+              {
+                "id": "b",
+                "text": "It used local taxes and served all residents."
+              },
+              {
+                "id": "c",
+                "text": "It depended on private booksellers to lend books."
+              },
+              {
+                "id": "d",
+                "text": "It limited borrowing to children and workers."
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "原文說新模式由「local taxes」支持，並向所有居民開放。收訂閱費是早期作法；書商並未經營借閱；也沒有排除其他居民。"
+          },
+          {
+            "id": "talk-up2-q2",
+            "stem": "Why did reform advocates connect literacy with democracy?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Children could replace school lessons with library books."
+              },
+              {
+                "id": "b",
+                "text": "Libraries could stop purchasing local newspapers."
+              },
+              {
+                "id": "c",
+                "text": "Booksellers could receive money from local taxes."
+              },
+              {
+                "id": "d",
+                "text": "Readers could participate more fully in public life."
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "倡議者說能讀報、比較論點並查找資訊的人可「participate more fully in public life」。其餘皆非原文提出的民主理由。"
+          },
+          {
+            "id": "talk-up2-q3",
+            "stem": "What concern did private booksellers have?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Tax money would fund only newspapers."
+              },
+              {
+                "id": "b",
+                "text": "Libraries would charge higher subscription fees."
+              },
+              {
+                "id": "c",
+                "text": "Workers would stop learning to read."
+              },
+              {
+                "id": "d",
+                "text": "Free lending might reduce book sales."
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "原文說書商擔心「free lending would reduce sales」。訂閱費、報紙專款和停止識字都不是其憂慮。"
+          },
+          {
+            "id": "talk-up2-q4",
+            "stem": "What is the lecturer's main point about the debate?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It focused on choosing books for one school."
+              },
+              {
+                "id": "b",
+                "text": "It proved that booksellers opposed literacy."
+              },
+              {
+                "id": "c",
+                "text": "It concerned access to knowledge and its public funding."
+              },
+              {
+                "id": "d",
+                "text": "It determined the best architectural style for libraries."
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "gist",
+            "explanationZh": "結尾說爭論是「who should pay for knowledge」及誰能使用。建築、反識字與單一學校選書都不是核心。"
+          }
+        ]
+      },
+      {
+        "id": "talk-up3",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-c2be0600/talk-up3.mp3",
+        "discipline": "business and economics",
+        "speaker": {
+          "id": "talk-up3-sp",
+          "role": "professor",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Sadaltager",
+          "provider": "gemini"
+        },
+        "transcript": "Today, let's look at why a small price change can sometimes produce a large change in sales. Economists call this price elasticity of demand. It measures how sensitive buyers are to a change in price. Suppose a campus café raises the price of its reusable water bottle from ten dollars to twelve. If students can easily buy similar bottles elsewhere, many may switch stores. Demand is elastic, meaning sales respond strongly to price. But imagine the café sells a textbook required for one course and available nowhere else on campus. A small price increase may reduce sales very little. That demand is inelastic because buyers have few alternatives. Time also matters. Right before classes begin, students may need the textbook immediately. Later, they can search online or borrow a copy, so demand can become more elastic. Businesses use this idea when setting prices. They do not simply ask, \"Will customers dislike a higher price?\" They ask whether the extra money earned per item will be greater than the money lost when fewer items are sold. The answer depends on available substitutes, how necessary the product is, and how much time buyers have to adjust.",
+        "questions": [
+          {
+            "id": "talk-up3-q1",
+            "stem": "What is the main purpose of the talk?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To argue that price increases always reduce profits"
+              },
+              {
+                "id": "b",
+                "text": "To explain why demand reacts differently to price changes"
+              },
+              {
+                "id": "c",
+                "text": "To describe how cafés choose reusable products"
+              },
+              {
+                "id": "d",
+                "text": "To compare textbook costs at several universities"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "gist",
+            "explanationZh": "教授用水瓶與課本說明價格彈性：需求對價格變動的反應不同。其他選項分別縮小成成本、產品或錯稱一定虧損，非講題重點。"
+          },
+          {
+            "id": "talk-up3-q2",
+            "stem": "Why is demand for the café's reusable water bottle likely to be elastic?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Students can obtain similar bottles from other sellers"
+              },
+              {
+                "id": "b",
+                "text": "Students must buy the bottle for a required course"
+              },
+              {
+                "id": "c",
+                "text": "The café changes the bottle's design each semester"
+              },
+              {
+                "id": "d",
+                "text": "The bottle is sold only before classes begin"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "原文說學生可在別處買到「similar bottles」，因此容易改買別家。課程必需與無替代品是課本情境；設計與販售時段都未提及。"
+          },
+          {
+            "id": "talk-up3-q3",
+            "stem": "What does the professor imply about the required textbook later in the term?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The café will lower its price below online sellers"
+              },
+              {
+                "id": "b",
+                "text": "The course will stop requiring the textbook altogether"
+              },
+              {
+                "id": "c",
+                "text": "Students may have more ways to avoid buying it at the café"
+              },
+              {
+                "id": "d",
+                "text": "Students will need the book more urgently than before"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "教授說之後可上網找或借書，表示替代方法增加，較能不在咖啡館購買。其餘說法與「search online or borrow」不符或未提。"
+          },
+          {
+            "id": "talk-up3-q4",
+            "stem": "Why does the professor mention the money lost from fewer sales?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To show that students dislike paying for textbooks"
+              },
+              {
+                "id": "b",
+                "text": "To show what businesses consider when choosing a price"
+              },
+              {
+                "id": "c",
+                "text": "To explain how cafés calculate their supply costs"
+              },
+              {
+                "id": "d",
+                "text": "To define why every product is a necessary purchase"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "function",
+            "explanationZh": "「extra money earned」與「money lost」用來說明企業定價時比較收入增加和銷量下降。它不是在談必需品、供應成本或學生態度。"
+          }
+        ]
+      }
+    ]
+  },
+  "audioProfile": {
+    "version": "ets-2026-listening-v1",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview"
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "listening",
+    "listenChoose": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "library-renewal-blocked-by-hold",
+        "requiredConcepts": [
+          "renewal blocked by another patron's hold"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-7c5cf3f6",
+            "reason": "that entry asks whether the library will extend study hours, not a renewal blocked by a hold."
+          }
+        ],
+        "topic": "a library book renewal blocked by another patron's hold",
+        "speakerRole": "librarian"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "employee-shift-swap-offer",
+        "requiredConcepts": [
+          "trading Friday's closing shift for Saturday"
+        ],
+        "distinguishesFrom": [],
+        "topic": "swapping an employee's closing shift for someone else's",
+        "speakerRole": "coworker"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "neighborhood-event-noise-complaint",
+        "requiredConcepts": [
+          "music too loud past the posted curfew"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-7c5cf3f6",
+            "reason": "that entry is about a new recycling bin's placement, not noise at an event."
+          }
+        ],
+        "topic": "music too loud past a neighborhood event's posted curfew",
+        "speakerRole": "event organizer"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "weekend-habitat-planting-invitation",
+        "requiredConcepts": [
+          "Saturday morning replanting of native shrubs"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-7c5cf3f6",
+            "reason": "that entry checks a freezer alarm's status overnight, not an invitation to a planting event."
+          }
+        ],
+        "topic": "a weekend invitation to replant native habitat shrubs",
+        "speakerRole": "park ranger"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "podcast-livestream-delay-apology",
+        "requiredConcepts": [
+          "livestream start pushed back twenty minutes"
+        ],
+        "distinguishesFrom": [],
+        "topic": "apologizing for a podcast livestream starting late",
+        "speakerRole": "livestream producer"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "gallery-wall-color-suggestion",
+        "requiredConcepts": [
+          "west gallery wall repainted a darker gray"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-7c5cf3f6",
+            "reason": "that entry invites someone to see an exhibit, not suggesting a wall color change."
+          }
+        ],
+        "topic": "suggesting a darker paint color for the gallery's west wall",
+        "speakerRole": "gallery designer"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "clinic-dosage-note-correction",
+        "requiredConcepts": [
+          "dosage note listing twice the prescribed amount"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-7c5cf3f6",
+            "reason": "that entry suggests adding protein to a meal plan, not correcting a dosage note."
+          }
+        ],
+        "topic": "correcting a clinic prescription dosage note",
+        "speakerRole": "pharmacist"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "heritage-letters-photo-permission",
+        "requiredConcepts": [
+          "gloves required before touching the letters"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-7c5cf3f6",
+            "reason": "that entry dates a donated photograph, not seeking permission to photograph archived letters."
+          }
+        ],
+        "topic": "asking permission to photograph letters in the heritage archive",
+        "speakerRole": "archive clerk"
+      },
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "campus-study-room-noise-complaint",
+        "requiredConcepts": [
+          "group next door talking through the wall"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-7c5cf3f6",
+            "reason": "that entry borrows a pen before a lecture starts, not a complaint about study-room noise."
+          }
+        ],
+        "topic": "a complaint about noise from the next campus study room",
+        "speakerRole": "classmate"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "office-lunch-meeting-invitation",
+        "requiredConcepts": [
+          "extra seat saved at the corner table"
+        ],
+        "distinguishesFrom": [],
+        "topic": "inviting a coworker to an office lunch meeting",
+        "speakerRole": "manager"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "municipal-recycling-bin-request",
+        "requiredConcepts": [
+          "block's single bin overflowing by Friday"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-7c5cf3f6",
+            "reason": "that entry is about a new bin's placement, not a request for an additional bin."
+          }
+        ],
+        "topic": "requesting an extra municipal recycling bin for the block",
+        "speakerRole": "sanitation worker"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "greenhouse-biology-sample-suggestion",
+        "requiredConcepts": [
+          "seedlings need direct sun, not the shelf"
+        ],
+        "distinguishesFrom": [],
+        "topic": "suggesting a biology sample be moved outdoors for direct sun",
+        "speakerRole": "lab partner"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "digital-microphone-cable-fix-offer",
+        "requiredConcepts": [
+          "cable frayed right where it meets the mic"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-7c5cf3f6",
+            "reason": "that entry reports a device that won't charge, not a frayed microphone cable."
+          }
+        ],
+        "topic": "offering to fix a frayed digital microphone cable",
+        "speakerRole": "audio technician"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "festival-costume-delivery-apology",
+        "requiredConcepts": [
+          "hem still needs stitching before dress rehearsal"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-7c5cf3f6",
+            "reason": "that entry offers a kiln firing slot, not an apology for a late costume delivery."
+          }
+        ],
+        "topic": "apologizing for a late festival costume delivery",
+        "speakerRole": "costume designer"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "clinic-appointment-day-swap-correction",
+        "requiredConcepts": [
+          "booked for Tuesday instead of Thursday"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-7c5cf3f6",
+            "reason": "that entry reminds a patient about a stress-management session, not a mixed-up appointment day."
+          }
+        ],
+        "topic": "correcting a clinic appointment mixed up between Tuesday and Thursday",
+        "speakerRole": "clinic receptionist"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "heritage-history-lecture-invitation",
+        "requiredConcepts": [
+          "mill workers' letters from the 1920s"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-7c5cf3f6",
+            "reason": "that entry asks what tradition is kept during an anniversary, not an invitation to a lecture."
+          }
+        ],
+        "topic": "inviting someone to a heritage history guest lecture",
+        "speakerRole": "history club officer"
+      },
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "late-assignment-permission-request",
+        "requiredConcepts": [
+          "draft due Friday instead of Wednesday"
+        ],
+        "distinguishesFrom": [],
+        "topic": "asking a professor for permission to submit an assignment late",
+        "speakerRole": "professor"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "warehouse-mislabeled-boxes-complaint",
+        "requiredConcepts": [
+          "pallet labeled with the wrong batch number"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-7c5cf3f6",
+            "reason": "that entry reports a printer out of toner, not mislabeled warehouse pallets."
+          }
+        ],
+        "topic": "a complaint about a company warehouse pallet with the wrong batch label",
+        "speakerRole": "warehouse supervisor"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "volunteer-carpool-offer",
+        "requiredConcepts": [
+          "riders needed for Saturday's cleanup shift"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-7c5cf3f6",
+            "reason": "that entry offers to water a garden plot while a neighbor is away, not a carpool to a cleanup."
+          }
+        ],
+        "topic": "offering to carpool to a Saturday volunteer cleanup",
+        "speakerRole": "neighbor"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "habitat-field-survey-reschedule-request",
+        "requiredConcepts": [
+          "storm moving in before the survey's noon start"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-7c5cf3f6",
+            "reason": "that entry double-checks a temperature reading, not rescheduling a field survey."
+          }
+        ],
+        "topic": "requesting to reschedule an outdoor habitat field survey before a storm",
+        "speakerRole": "field research assistant"
+      }
+    ],
+    "conversations": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "dining-hall-swipe-balance-schedule-change",
+        "requiredConcepts": [
+          "meal swipe balance running unexpectedly low",
+          "dining hall switching to a new weekly schedule"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "that entry is a writing-center thesis-statement tutoring session, not a dining-hall meal-swipe issue."
+          }
+        ],
+        "setting": "campus dining hall",
+        "speakerRoles": [
+          "resident advisor",
+          "first-year student"
+        ]
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "career-center-recruiter-internship-deadline",
+        "requiredConcepts": [
+          "internship listing closing applications early",
+          "recruiter offering an on-campus interview slot"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-6de33148",
+            "reason": "that entry is a last-minute client slide-deck revision, not a career-center recruiting conversation."
+          }
+        ],
+        "setting": "campus career center business info desk",
+        "speakerRoles": [
+          "career counselor",
+          "company recruiter"
+        ]
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "greenhouse-biodiversity-volunteer-schedule",
+        "requiredConcepts": [
+          "greenhouse biodiversity project needs more volunteers",
+          "watering schedule shifting to early mornings"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-24b8d4fa",
+            "reason": "that entry is a wetland sampling-trip weather delay, not a volunteer recruitment conversation."
+          }
+        ],
+        "setting": "campus greenhouse workroom",
+        "speakerRoles": [
+          "botany major",
+          "greenhouse assistant"
+        ]
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "podcast-studio-recording-slot-conflict",
+        "requiredConcepts": [
+          "podcast episode needs a new intro clip",
+          "recording slot double-booked with another show"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "that entry is a dead-microphone-channel equipment failure, not a double-booked recording slot."
+          }
+        ],
+        "setting": "campus podcast recording studio booth",
+        "speakerRoles": [
+          "broadcast student",
+          "sound engineer"
+        ]
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "gallery-opening-reception-reschedule",
+        "requiredConcepts": [
+          "gallery opening reception moved to Friday night",
+          "framed prints still waiting on wall labels"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-6de33148",
+            "reason": "that entry is a cracked ceramic bowl needing a refire, not gallery opening logistics."
+          }
+        ],
+        "setting": "campus gallery back room",
+        "speakerRoles": [
+          "studio art major",
+          "gallery assistant"
+        ]
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "fitness-class-capacity-membership-discount",
+        "requiredConcepts": [
+          "exercise class capacity already full",
+          "membership renewal discount ending this week"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "that entry is a physical-therapy discomfort followup, not a fitness class capacity issue."
+          }
+        ],
+        "setting": "campus fitness center exercise floor",
+        "speakerRoles": [
+          "gym member",
+          "front desk staffer"
+        ]
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "study-abroad-visa-paperwork-deposit",
+        "requiredConcepts": [
+          "travel visa paperwork missing a signature",
+          "program deposit deadline moved up a week"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "that entry is a cruise cabin upgrade request, not study-abroad visa paperwork."
+          }
+        ],
+        "setting": "campus study-abroad travel office",
+        "speakerRoles": [
+          "exchange applicant",
+          "study-abroad advisor"
+        ]
+      }
+    ],
+    "announcements": [
+      {
+        "domain": "science-environment",
+        "noveltyKey": "biology-lab-safety-training-time-change",
+        "requiredConcepts": [
+          "lab safety training moved to Thursday afternoon",
+          "sign-in sheet required at the door"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-03948a55",
+            "reason": "that entry is a wetland habitat survey announcement, not a safety-training schedule change."
+          }
+        ],
+        "setting": "biology building lecture hall PA system",
+        "speakerRole": "lab safety coordinator"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "health-center-walkin-flu-shot-rule-change",
+        "requiredConcepts": [
+          "walk-in flu shots now require a signed form",
+          "waiting room capacity limited during peak hours"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-6de33148",
+            "reason": "that entry is a new walk-in flu-shot hours addition, not a signed-form rule change."
+          }
+        ],
+        "setting": "campus health center waiting room announcement board",
+        "speakerRole": "campus health center announcer"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "history-department-debate-team-championship",
+        "requiredConcepts": [
+          "debate team's regional championship win",
+          "reception open to all history majors Friday"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "that entry is a heritage walking-tour time change, not a student achievement announcement."
+          }
+        ],
+        "setting": "history department hallway PA announcement",
+        "speakerRole": "history department chair"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "career-fair-business-booth-relocation-directions",
+        "requiredConcepts": [
+          "employer booths moved to the east wing",
+          "printed resumes accepted only at table three"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-03948a55",
+            "reason": "that entry is a remote-work policy trial, not career-fair check-in directions."
+          }
+        ],
+        "setting": "campus career fair business check-in desk PA system",
+        "speakerRole": "career fair coordinator"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "study-abroad-travel-deadline-schedule-change",
+        "requiredConcepts": [
+          "program application deadline moved a week earlier",
+          "passport copies required before the info session"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ac7788d4",
+            "reason": "that entry is an express bus route pilot announcement, not a study-abroad deadline notice."
+          }
+        ],
+        "setting": "campus study-abroad travel office recorded phone line",
+        "speakerRole": "study-abroad office voicemail announcer"
+      }
+    ],
+    "academicTalks": [
+      {
+        "domain": "science-environment",
+        "noveltyKey": "bird-magnetic-navigation-habitat-lecture",
+        "requiredConcepts": [
+          "birds sense magnetic fields through eye proteins",
+          "coastal habitat stopovers along the flyway",
+          "same route used generation after generation"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-ed0a8e87",
+            "reason": "that entry is a kelp forest recovery study, not bird magnetic migration."
+          }
+        ],
+        "discipline": "life science",
+        "speakerRole": "professor"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "sidewalk-thermal-expansion-cracking-lecture",
+        "requiredConcepts": [
+          "concrete expands slightly when temperatures rise",
+          "repeated freezing and thawing widens tiny cracks",
+          "expansion joints are cut in ahead of time"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "that entry is about daily hunger-hormone rhythms, not sidewalk thermal cracking."
+          }
+        ],
+        "discipline": "physical science",
+        "speakerRole": "guest lecturer"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "reform-era-public-library-founding-lecture",
+        "requiredConcepts": [
+          "free public libraries funded by local taxes",
+          "reform advocates argued literacy served democracy",
+          "opposition worried about funding private booksellers"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-03948a55",
+            "reason": "that entry covers factory labor-hour reform, not public library funding."
+          }
+        ],
+        "discipline": "history",
+        "speakerRole": "teaching assistant"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "small-business-cooperative-purchasing-lecture",
+        "requiredConcepts": [
+          "small retailers pool orders for bulk discounts",
+          "shared warehouse space cuts storage costs",
+          "membership dues fund the buying group's staff"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-14659f38",
+            "reason": "that entry is about small-company product pricing decisions, not cooperative bulk purchasing."
+          }
+        ],
+        "discipline": "business and economics",
+        "speakerRole": "professor"
+      }
+    ]
+  }
+}

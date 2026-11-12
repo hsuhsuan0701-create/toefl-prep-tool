@@ -1,0 +1,116 @@
+{
+  "clips": [
+    {
+      "sourceUrl": "https://www.ets.org/content/dam/ets-org/pdfs/toefl/teacher-practice-test-5-audio-files.zip",
+      "profileVersion": "ets-2026-v1",
+      "role": "lr-briefing",
+      "sourceFile": "Listen and Repeat/Speaking_Listen_Repeat_Directions.ogg",
+      "wordCount": 23,
+      "durationSec": 8.75102,
+      "wpm": 157.6959028776074
+    },
+    {
+      "sourceUrl": "https://www.ets.org/content/dam/ets-org/pdfs/toefl/teacher-practice-test-5-audio-files.zip",
+      "profileVersion": "ets-2026-v1",
+      "role": "lr-item",
+      "sourceFile": "Listen and Repeat/Speaking_Listen_Repeat_1.ogg",
+      "wordCount": 9,
+      "durationSec": 2.678617,
+      "wpm": 201.59657017035283
+    },
+    {
+      "sourceUrl": "https://www.ets.org/content/dam/ets-org/pdfs/toefl/teacher-practice-test-5-audio-files.zip",
+      "profileVersion": "ets-2026-v1",
+      "role": "lr-item",
+      "sourceFile": "Listen and Repeat/Speaking_Listen_Repeat_2.ogg",
+      "wordCount": 8,
+      "durationSec": 2.272653,
+      "wpm": 211.20690224156527
+    },
+    {
+      "sourceUrl": "https://www.ets.org/content/dam/ets-org/pdfs/toefl/teacher-practice-test-5-audio-files.zip",
+      "profileVersion": "ets-2026-v1",
+      "role": "lr-item",
+      "sourceFile": "Listen and Repeat/Speaking_Listen_Repeat_3.ogg",
+      "wordCount": 11,
+      "durationSec": 3.004082,
+      "wpm": 219.70106009090298
+    },
+    {
+      "sourceUrl": "https://www.ets.org/content/dam/ets-org/pdfs/toefl/teacher-practice-test-5-audio-files.zip",
+      "profileVersion": "ets-2026-v1",
+      "role": "lr-item",
+      "sourceFile": "Listen and Repeat/Speaking_Listen_Repeat_4.ogg",
+      "wordCount": 9,
+      "durationSec": 3.082449,
+      "wpm": 175.18538019607138
+    },
+    {
+      "sourceUrl": "https://www.ets.org/content/dam/ets-org/pdfs/toefl/teacher-practice-test-5-audio-files.zip",
+      "profileVersion": "ets-2026-v1",
+      "role": "lr-item",
+      "sourceFile": "Listen and Repeat/Speaking_Listen_Repeat_5.ogg",
+      "wordCount": 9,
+      "durationSec": 3.014036,
+      "wpm": 179.1617618369522
+    },
+    {
+      "sourceUrl": "https://www.ets.org/content/dam/ets-org/pdfs/toefl/teacher-practice-test-5-audio-files.zip",
+      "profileVersion": "ets-2026-v1",
+      "role": "lr-item",
+      "sourceFile": "Listen and Repeat/Speaking_Listen_Repeat_6.ogg",
+      "wordCount": 13,
+      "durationSec": 4.675918,
+      "wpm": 166.81216394299472
+    },
+    {
+      "sourceUrl": "https://www.ets.org/content/dam/ets-org/pdfs/toefl/teacher-practice-test-5-audio-files.zip",
+      "profileVersion": "ets-2026-v1",
+      "role": "lr-item",
+      "sourceFile": "Listen and Repeat/Speaking_Listen_Repeat_7.ogg",
+      "wordCount": 14,
+      "durationSec": 4.675918,
+      "wpm": 179.6438688616866
+    },
+    {
+      "sourceUrl": "https://www.ets.org/content/dam/ets-org/pdfs/toefl/teacher-practice-test-5-audio-files.zip",
+      "profileVersion": "ets-2026-v1",
+      "role": "interview-question",
+      "sourceFile": "Interview/Speaking_Interview_1.mp4",
+      "wordCount": 48,
+      "durationSec": 18.227664,
+      "wpm": 158.00159581611774
+    },
+    {
+      "sourceUrl": "https://www.ets.org/content/dam/ets-org/pdfs/toefl/teacher-practice-test-5-audio-files.zip",
+      "profileVersion": "ets-2026-v1",
+      "role": "interview-question",
+      "sourceFile": "Interview/Speaking_Interview_2.mp4",
+      "wordCount": 20,
+      "durationSec": 8.730703,
+      "wpm": 137.44597657256236
+    },
+    {
+      "sourceUrl": "https://www.ets.org/content/dam/ets-org/pdfs/toefl/teacher-practice-test-5-audio-files.zip",
+      "profileVersion": "ets-2026-v1",
+      "role": "interview-question",
+      "sourceFile": "Interview/Speaking_Interview_3.mp4",
+      "wordCount": 47,
+      "durationSec": 18.134785,
+      "wpm": 155.50225712629071
+    },
+    {
+      "sourceUrl": "https://www.ets.org/content/dam/ets-org/pdfs/toefl/teacher-practice-test-5-audio-files.zip",
+      "profileVersion": "ets-2026-v1",
+      "role": "interview-question",
+      "sourceFile": "Interview/Speaking_Interview_4.mp4",
+      "wordCount": 40,
+      "durationSec": 14.628571,
+      "wpm": 164.0625048065187
+    }
+  ],
+  "groupMedians": {
+    "listenAndRepeatItems": 179.6438688616866,
+    "interviewQuestions": 156.75192647120423
+  }
+}

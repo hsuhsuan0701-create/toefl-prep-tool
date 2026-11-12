@@ -1,0 +1,588 @@
+{
+  "id": "wri-7024b060",
+  "source": "generated",
+  "createdAt": "2026-08-26T12:42:01.939Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "My thesis defense was moved from the seminar hall to the library conference room — why?",
+        "frame": "The hall ___ ___ ___ ___ a last-minute scheduling conflict.",
+        "tiles": [
+          "was",
+          "double-booked",
+          "because",
+          "of",
+          "were"
+        ],
+        "answers": [
+          [
+            "was",
+            "double-booked",
+            "because",
+            "of"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Can I drop off the donated bench at the park this weekend?",
+        "frame": "Every donated bench ___ ___ ___ ___ before installation.",
+        "tiles": [
+          "needs",
+          "to pass",
+          "a",
+          "safety inspection",
+          "need"
+        ],
+        "answers": [
+          [
+            "needs",
+            "to pass",
+            "a",
+            "safety inspection"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "As the new research assistant, should I set up the coastal sampling gear for tomorrow morning?",
+        "frame": "Because of ___ ___ ___ ___ ___ a day.",
+        "tiles": [
+          "an unusually strong tide forecast",
+          "we",
+          "have",
+          "pushed",
+          "the sampling back",
+          "has"
+        ],
+        "answers": [
+          [
+            "an unusually strong tide forecast",
+            "we",
+            "have",
+            "pushed",
+            "the sampling back"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "I just logged into my podcast dashboard — did something change with the numbers?",
+        "frame": "After the recent update, the dashboard ___ ___ ___ ___ ___ plays.",
+        "tiles": [
+          "now",
+          "separates",
+          "downloads",
+          "from",
+          "streaming",
+          "separate"
+        ],
+        "answers": [
+          [
+            "now",
+            "separates",
+            "downloads",
+            "from",
+            "streaming"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "The set backdrop looks damaged — will it be ready for Saturday's preview?",
+        "frame": "___ ___ ___ ___ ___ ___ before Saturday's preview.",
+        "tiles": [
+          "because",
+          "the base coat",
+          "chipped",
+          "during transport",
+          "we need to repaint",
+          "the backdrop",
+          "chipping"
+        ],
+        "answers": [
+          [
+            "because",
+            "the base coat",
+            "chipped",
+            "during transport",
+            "we need to repaint",
+            "the backdrop"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "The clinic front desk left a message about my sleep consultation appointment.",
+        "frame": "___ ___ ___ ___ ___ ___ a training conflict?",
+        "tiles": [
+          "was",
+          "my sleep consultation",
+          "moved earlier",
+          "because",
+          "the coordinator",
+          "has",
+          "were"
+        ],
+        "answers": [
+          [
+            "was",
+            "my sleep consultation",
+            "moved earlier",
+            "because",
+            "the coordinator",
+            "has"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "I'm at the ticket counter — is the express train still leaving on time this evening?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ underway.",
+        "tiles": [
+          "the express train's",
+          "evening departure",
+          "has been pushed back",
+          "by twenty minutes",
+          "because",
+          "a signal inspection",
+          "is",
+          "was"
+        ],
+        "answers": [
+          [
+            "the express train's",
+            "evening departure",
+            "has been pushed back",
+            "by twenty minutes",
+            "because",
+            "a signal inspection",
+            "is"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Can I start recording interviews about the mill closure for the archive next week?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ the permanent archive.",
+        "tiles": [
+          "recordings",
+          "about",
+          "the mill closure",
+          "now need",
+          "a signed consent form",
+          "before",
+          "they can enter",
+          "needs"
+        ],
+        "answers": [
+          [
+            "recordings",
+            "about",
+            "the mill closure",
+            "now need",
+            "a signed consent form",
+            "before",
+            "they can enter"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Where can I print my documents? The printer on my floor won't turn on.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "the shared printer",
+          "has been",
+          "out of service",
+          "since",
+          "the replacement part",
+          "ordered from the vendor",
+          "never",
+          "arrived",
+          "arrives"
+        ],
+        "answers": [
+          [
+            "the shared printer",
+            "has been",
+            "out of service",
+            "since",
+            "the replacement part",
+            "ordered from the vendor",
+            "never",
+            "arrived"
+          ],
+          [
+            "since",
+            "the replacement part",
+            "ordered from the vendor",
+            "never",
+            "arrived",
+            "the shared printer",
+            "has been",
+            "out of service"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "I noticed the kitchen recycling bins look different — did something change?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "the recycling",
+          "bins",
+          "were relabeled",
+          "last week",
+          "so that",
+          "glass and plastic",
+          "now",
+          "stay",
+          "in separate containers",
+          "stays"
+        ],
+        "answers": [
+          [
+            "the recycling",
+            "bins",
+            "were relabeled",
+            "last week",
+            "so that",
+            "glass and plastic",
+            "now",
+            "stay",
+            "in separate containers"
+          ],
+          [
+            "last week",
+            "the recycling",
+            "bins",
+            "were relabeled",
+            "so that",
+            "glass and plastic",
+            "now",
+            "stay",
+            "in separate containers"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "Last weekend you took the self-guided outdoor tour at Willowbrook Art Garden. The printed stop map you were handed at the entrance numbered each sculpture differently from the numbered signs posted at the actual stops, and by the third stop you and other visitors were unsure which artwork matched which map entry.",
+    "to": "visitorprograms@willowbrookartgarden.org",
+    "subject": "Mismatched Stop Numbers on the Garden Tour Map",
+    "bullets": [
+      "Describe how the printed stop map's numbers did not match the posted signs at each stop.",
+      "Explain at what point during the tour you and other visitors became confused.",
+      "Request a corrected map before the next scheduled tour."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Media and Technology Studies",
+    "professorName": "Professor Alvarez",
+    "professorPost": "Many streaming platforms now sign new users up for an algorithm-curated \"discovery playlist\" instead of a blank personal library that a listener would build track by track. This changes the first experience a new user has with the platform, and it also determines what data the algorithm has to work with. Do you think platforms should default new users into curated playlists, or should new users start with an empty library and build it themselves? Why?",
+    "studentPosts": [
+      {
+        "name": "Maya",
+        "post": "I think curated playlists are the better default. Most new users don't know what to search for on an unfamiliar platform, and a blank library feels like extra work before you've even decided if you like the service. A ready-made playlist gets people listening immediately, and they can adjust it later."
+      },
+      {
+        "name": "Tomas",
+        "post": "I disagree with Maya. If the algorithm curates your very first listening sessions, it starts shaping your taste before you've had any chance to explore on your own, and those early plays become the data it leans on afterward. A blank library takes more effort at first, but it keeps your early recommendations tied to choices you actually made."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "campus-academics",
+          "situation": "A university registrar clerk tells a graduate student that the thesis defense room was reassigned from the seminar hall to a smaller library conference room because of a last-minute scheduling conflict.",
+          "participantRoles": [
+            "a university registrar clerk explaining the room reassignment",
+            "a graduate student preparing for a thesis defense"
+          ],
+          "noveltyKey": "thesis-defense-room-reassignment",
+          "requiredConcepts": [
+            "thesis defense room reassignment",
+            "seminar hall moved to library conference room",
+            "last-minute scheduling conflict"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-b5e4cabe",
+              "reason": "that campus entry changes a course reserve checkout limit, not a thesis defense room assignment."
+            },
+            {
+              "setId": "wri-f8adc240",
+              "reason": "that entry raises the weight of peer evaluation in a grading rubric, unrelated to room scheduling."
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A city parks department clerk tells a neighborhood volunteer that the public bench donation program now requires a municipal safety inspection before installation.",
+          "participantRoles": [
+            "a city parks department clerk announcing the new requirement",
+            "a neighborhood volunteer coordinating bench donations"
+          ],
+          "noveltyKey": "park-bench-donation-safety-inspection",
+          "requiredConcepts": [
+            "public bench donation program",
+            "municipal safety inspection required",
+            "inspection before installation"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "that entry moves a trail cleanup meeting point, not a bench donation inspection requirement."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A marine biology laboratory technician tells an incoming research assistant that the coastal water sampling schedule was pushed back a day because of an unusually strong tide forecast.",
+          "participantRoles": [
+            "a marine biology laboratory technician explaining the delay",
+            "an incoming research assistant preparing for fieldwork"
+          ],
+          "noveltyKey": "coastal-tide-forecast-sampling-delay",
+          "requiredConcepts": [
+            "coastal water sampling schedule delay",
+            "unusually strong tide forecast",
+            "incoming research assistant briefed"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-6d6c11da",
+              "reason": "that entry pauses a habitat survey for a broken rain gauge, not a tide-driven sampling delay."
+            },
+            {
+              "setId": "wri-90026a0d",
+              "reason": "that entry pauses a chemical waste experiment for fume hood airflow, a different cause and setting."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A podcast hosting platform's support agent tells an independent podcaster that the episode analytics dashboard now separates downloads from streaming plays after a software update.",
+          "participantRoles": [
+            "a podcast hosting platform's support agent explaining the update",
+            "an independent podcaster reviewing episode analytics"
+          ],
+          "noveltyKey": "podcast-analytics-dashboard-split-metrics",
+          "requiredConcepts": [
+            "episode analytics dashboard update",
+            "downloads separated from streaming plays",
+            "independent podcaster account"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-b5e4cabe",
+              "reason": "that entry reports a subtitle sync bug, not an analytics dashboard metric change."
+            },
+            {
+              "setId": "wri-90026a0d",
+              "reason": "that entry is a stuck episode download stalled in cache, a different malfunction."
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A local theater's props coordinator tells a new stagehand that the wooden set backdrop needs re-painting before Saturday's festival preview because the base coat chipped during transport.",
+          "participantRoles": [
+            "a local theater's props coordinator explaining the repair",
+            "a new stagehand assisting with the set"
+          ],
+          "noveltyKey": "theater-backdrop-repaint-before-festival",
+          "requiredConcepts": [
+            "theater set backdrop repainting",
+            "chipped base coat during transport",
+            "festival preview deadline"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-6d6c11da",
+              "reason": "that entry relocates a costume fitting to a smaller studio, not a backdrop repaint."
+            },
+            {
+              "setId": "wri-b5e4cabe",
+              "reason": "that entry relocates a theatre's will-call counter, unrelated to set repainting."
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A local clinic's front desk clerk tells a new patient that the sleep consultation appointment was moved earlier because the wellbeing coordinator has a conflicting training session.",
+          "participantRoles": [
+            "a local clinic's front desk clerk explaining the change",
+            "a new patient scheduled for a sleep consultation"
+          ],
+          "noveltyKey": "clinic-sleep-consultation-time-moved",
+          "requiredConcepts": [
+            "sleep consultation appointment moved earlier",
+            "conflicting staff training session",
+            "clinic front desk notification"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "that entry moves a balance assessment to a different room, not a sleep consultation to an earlier time."
+            },
+            {
+              "setId": "wri-6d6c11da",
+              "reason": "that entry adds an advance registration requirement to a stress workshop, a different kind of change."
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A regional train station's ticket agent tells a commuter that the express route's evening departure was pushed back twenty minutes because of a signal inspection.",
+          "participantRoles": [
+            "a regional train station's ticket agent explaining the delay",
+            "a commuter waiting for the express route"
+          ],
+          "noveltyKey": "train-evening-departure-signal-inspection-delay",
+          "requiredConcepts": [
+            "evening departure pushed back twenty minutes",
+            "signal inspection cause",
+            "commuter notified at ticket counter"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-b5e4cabe",
+              "reason": "that entry reroutes an airport shuttle for road construction, not a train departure delay."
+            },
+            {
+              "setId": "wri-90026a0d",
+              "reason": "that entry is about a full luggage compartment, a different problem than a delayed departure."
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A town historical society's oral history coordinator tells a newly trained interviewer that recordings about the old textile mill closure must now include a signed consent form before they can be added to the permanent archive.",
+          "participantRoles": [
+            "a town historical society's oral history coordinator explaining the rule",
+            "a newly trained interviewer recording testimonies"
+          ],
+          "noveltyKey": "oral-history-consent-form-requirement",
+          "requiredConcepts": [
+            "oral history recordings about a mill closure",
+            "signed consent form requirement",
+            "addition to the permanent archive"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-6d6c11da",
+              "reason": "that entry photographs a donated trunk before storage, not a consent form for oral recordings."
+            },
+            {
+              "setId": "wri-f8adc240",
+              "reason": "that entry restricts a pamphlet to photographs instead of photocopies, a different access rule."
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "An office facilities manager tells a new employee that the shared printer on the third floor is out of service until a replacement part arrives from the vendor.",
+          "participantRoles": [
+            "an office facilities manager explaining the outage",
+            "a new employee looking for a working printer"
+          ],
+          "noveltyKey": "office-printer-out-of-service-vendor-part",
+          "requiredConcepts": [
+            "shared office printer out of service",
+            "replacement part from the vendor",
+            "new employee told of the workaround"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-b5e4cabe",
+              "reason": "that entry downgrades a helpdesk ticket's priority during a migration, not a broken printer."
+            },
+            {
+              "setId": "wri-90026a0d",
+              "reason": "that entry reschedules a forklift certification test, unrelated to office equipment."
+            }
+          ]
+        },
+        {
+          "domain": "everyday-life",
+          "situation": "A tenant tells their new roommate that the shared kitchen's recycling bins were relabeled last week to separate glass from plastic.",
+          "participantRoles": [
+            "a tenant explaining the household change",
+            "a new roommate learning the kitchen routine"
+          ],
+          "noveltyKey": "roommate-kitchen-recycling-bin-relabeling",
+          "requiredConcepts": [
+            "shared kitchen recycling bins relabeled",
+            "separating glass from plastic",
+            "new roommate briefed on the change"
+          ],
+          "distinguishesFrom": []
+        }
+      ]
+    },
+    "email": {
+      "domain": "arts-culture",
+      "noveltyKey": "art-garden-tour-map-mismatch",
+      "requiredConcepts": [
+        "printed stop map mismatched with posted signs",
+        "confusion during guided outdoor tour",
+        "request for a corrected map before next tour"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-bbbfc85e",
+          "reason": "that entry reports a wallet left behind at a ceramic workshop, not a mismatched tour map."
+        },
+        {
+          "setId": "wri-b5e4cabe",
+          "reason": "that science-environment entry is a wrong workshop attachment, a different problem in a different domain."
+        }
+      ],
+      "situation": "After attending a local art garden's guided outdoor tour, the writer found that the printed stop map handed out at the entrance numbers the sculptures differently from the posted signs at each stop, causing confusion mid-tour.",
+      "recipientRole": "the art garden's visitor programs coordinator",
+      "communicativeActs": [
+        "report the mismatch between the printed stop map and the posted sculpture signs",
+        "explain when during the tour the confusion occurred",
+        "request a corrected map before the next scheduled tour"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "technology-media",
+      "noveltyKey": "streaming-default-discovery-playlist-vs-blank-library",
+      "requiredConcepts": [
+        "algorithm-curated discovery playlist as default",
+        "blank personal library requiring manual building",
+        "opting out of the curated default"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-2936d16f",
+          "reason": "that entry is about full-season release timing for a podcast, not default playlist curation versus a blank library."
+        }
+      ],
+      "proposition": "Some online streaming platforms should default new users into algorithm-curated discovery playlists rather than a blank personal library that users must build themselves.",
+      "competingValues": [
+        "immediate curated listening that lowers the barrier for new users",
+        "the effort of independently building a library so early taste shapes recommendations less"
+      ]
+    }
+  }
+}

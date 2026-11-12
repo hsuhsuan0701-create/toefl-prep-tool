@@ -1,0 +1,2741 @@
+{
+  "id": "lsn-03948a55",
+  "source": "generated",
+  "createdAt": "2026-08-11T19:51:19.888Z",
+  "kind": "listening",
+  "router": {
+    "timeLimitSec": 1080,
+    "listenChoose": [
+      {
+        "id": "lcr-r1",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-r1.mp3",
+        "speaker": {
+          "id": "lcr-r1-sp",
+          "role": "professor",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Sadaltager",
+          "provider": "gemini"
+        },
+        "utterance": "I can give you two extra days.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Great, that should be plenty."
+          },
+          {
+            "id": "b",
+            "text": "Could I have a different grader?"
+          },
+          {
+            "id": "c",
+            "text": "I'd rather have a full week."
+          },
+          {
+            "id": "d",
+            "text": "I already submitted it yesterday."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "function",
+        "explanationZh": "教授只答應延兩天(“two extra days”)，學生應表達感謝並接受，故答案為表示時間夠用的選項。「已經交了」與情境矛盾；「換改作業的人」答非所問；「要一整週」忽視教授已明確限定天數，語氣不合宜。"
+      },
+      {
+        "id": "lcr-r2",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-r2.mp3",
+        "speaker": {
+          "id": "lcr-r2-sp",
+          "role": "library staff member",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Leda",
+          "provider": "gemini"
+        },
+        "utterance": "Your reserved book still hasn't arrived.",
+        "options": [
+          {
+            "id": "a",
+            "text": "I never actually placed a hold on any book."
+          },
+          {
+            "id": "b",
+            "text": "Okay, please tell me when it comes in."
+          },
+          {
+            "id": "c",
+            "text": "Can I renew my parking permit at this counter?"
+          },
+          {
+            "id": "d",
+            "text": "Thanks, I already returned it last Friday afternoon."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "function",
+        "explanationZh": "館員告知書尚未到(“hasn't arrived”)，學生應請對方到貨後通知，故答案為請館員告知的選項。「已經星期五還了」誤把情境當作已借到書；「停車證」離題；「我沒預約」與情境矛盾。"
+      },
+      {
+        "id": "lcr-r3",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-r3.mp3",
+        "speaker": {
+          "id": "lcr-r3-sp",
+          "role": "office manager",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Achird",
+          "provider": "gemini"
+        },
+        "utterance": "One late day won't hurt your review.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Should I go ahead and reschedule the entire review meeting?"
+          },
+          {
+            "id": "b",
+            "text": "That's a relief, thanks."
+          },
+          {
+            "id": "c",
+            "text": "Can you extend my lunch break instead of doing that?"
+          },
+          {
+            "id": "d",
+            "text": "I'll make sure to arrive even later than usual from now on."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "attitude",
+        "explanationZh": "主管安撫「一次遲到不影響考核」，員工應表達放心並致謝，故答案為表示鬆一口氣的選項。「以後還會遲到」語氣不合宜；「重新安排考核會議」誤解主管其實已表態考核不受影響；「延長午休」離題。"
+      },
+      {
+        "id": "lcr-r4",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-r4.mp3",
+        "speaker": {
+          "id": "lcr-r4-sp",
+          "role": "customer service employee",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Gacrux",
+          "provider": "gemini"
+        },
+        "utterance": "Your refund is delayed by a system update.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Great, I'll spend it right away."
+          },
+          {
+            "id": "b",
+            "text": "I'd like to cancel my subscription instead."
+          },
+          {
+            "id": "c",
+            "text": "I never requested a refund at all."
+          },
+          {
+            "id": "d",
+            "text": "I see, how much longer will it take?"
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "detail",
+        "explanationZh": "客服說明退款因系統更新(“system update”)延遲，顧客合理反應是詢問還要多久，故為正解。「我馬上花掉」誤以為已收到退款；「取消訂閱」答非所問；「我沒申請退款」與情境矛盾。"
+      },
+      {
+        "id": "lcr-r5",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-r5.mp3",
+        "speaker": {
+          "id": "lcr-r5-sp",
+          "role": "municipal clerk",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Puck",
+          "provider": "gemini"
+        },
+        "utterance": "You'll need to apply two weeks early.",
+        "options": [
+          {
+            "id": "a",
+            "text": "I already held the party last week."
+          },
+          {
+            "id": "b",
+            "text": "Perfect, the party is happening tonight."
+          },
+          {
+            "id": "c",
+            "text": "Got it, I'll submit the form today."
+          },
+          {
+            "id": "d",
+            "text": "Can I get a refund on my taxes?"
+          }
+        ],
+        "correctOptionId": "c",
+        "skill": "function",
+        "explanationZh": "職員說明需提前兩週申請(“two weeks early”)，居民應表示會盡快提交申請，故為正解。「派對就在今晚」與提前兩週規定矛盾；「退稅」離題；「上週已辦過派對」與情境不符。"
+      },
+      {
+        "id": "lcr-r6",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-r6.mp3",
+        "speaker": {
+          "id": "lcr-r6-sp",
+          "role": "volunteer coordinator",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Vindemiatrix",
+          "provider": "gemini"
+        },
+        "utterance": "Sign in at the table over there.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Do you sell tickets at that table?"
+          },
+          {
+            "id": "b",
+            "text": "I'd rather skip the cleanup today."
+          },
+          {
+            "id": "c",
+            "text": "Sure, I'll head over now."
+          },
+          {
+            "id": "d",
+            "text": "Thanks, I already finished my shift."
+          }
+        ],
+        "correctOptionId": "c",
+        "skill": "function",
+        "explanationZh": "協調員指示到那邊的桌子簽到(“sign in at the table”)，志工應表示會前往，故為正解。「已完成班次」與剛開始的情境矛盾；「賣票」誤解桌子用途；「不想參加」態度不合作，答非所問。"
+      },
+      {
+        "id": "lcr-r7",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-r7.mp3",
+        "speaker": {
+          "id": "lcr-r7-sp",
+          "role": "laboratory technician",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Charon",
+          "provider": "gemini"
+        },
+        "utterance": "This sample needs to stay refrigerated.",
+        "options": [
+          {
+            "id": "a",
+            "text": "I'll label it for tomorrow's workshop instead."
+          },
+          {
+            "id": "b",
+            "text": "Sure, I'll leave it out on the counter overnight."
+          },
+          {
+            "id": "c",
+            "text": "Okay, I'll put it back."
+          },
+          {
+            "id": "d",
+            "text": "Should I heat it up in the microwave first?"
+          }
+        ],
+        "correctOptionId": "c",
+        "skill": "detail",
+        "explanationZh": "技術員強調樣本需冷藏(“stay refrigerated”)，助理應表示會放回冰箱，故為正解。「整晚放外面」與冷藏要求矛盾；「先加熱」違反原意；「標記給工作坊用」答非所問。"
+      },
+      {
+        "id": "lcr-r8",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-r8.mp3",
+        "speaker": {
+          "id": "lcr-r8-sp",
+          "role": "park ranger",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Autonoe",
+          "provider": "gemini"
+        },
+        "utterance": "This trail's closed to protect nesting birds.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Great, I'll set up camp right here."
+          },
+          {
+            "id": "b",
+            "text": "Can I feed the birds instead?"
+          },
+          {
+            "id": "c",
+            "text": "Understood, I'll take a different path."
+          },
+          {
+            "id": "d",
+            "text": "I already hiked that trail yesterday."
+          }
+        ],
+        "correctOptionId": "c",
+        "skill": "function",
+        "explanationZh": "巡護員說明步道因保護築巢鳥類而封閉(“protect nesting birds”)，遊客應表示改走別條路，故為正解。「就在這裡紮營」與封閉規定矛盾；「餵鳥」不當且離題；「昨天已走過」答非所問。"
+      },
+      {
+        "id": "lcr-r9",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-r9.mp3",
+        "speaker": {
+          "id": "lcr-r9-sp",
+          "role": "podcast host",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Iapetus",
+          "provider": "gemini"
+        },
+        "utterance": "A software issue delayed this episode.",
+        "options": [
+          {
+            "id": "a",
+            "text": "No worries, I can wait a bit."
+          },
+          {
+            "id": "b",
+            "text": "Can you fix my computer too?"
+          },
+          {
+            "id": "c",
+            "text": "I never listen to this show."
+          },
+          {
+            "id": "d",
+            "text": "Great, I'll download it right now."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "attitude",
+        "explanationZh": "主持人解釋軟體問題(“software issue”)延誤集數上架，聽眾合理回應是表示可以等待，故為正解。「現在就下載」誤以為已上架；「順便修我的電腦」離題；「我從不聽這節目」與情境矛盾。"
+      },
+      {
+        "id": "lcr-r10",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-r10.mp3",
+        "speaker": {
+          "id": "lcr-r10-sp",
+          "role": "software support technician",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Kore",
+          "provider": "gemini"
+        },
+        "utterance": "Your app version is out of date.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Oh, I'll update it right now."
+          },
+          {
+            "id": "b",
+            "text": "I just installed the app today."
+          },
+          {
+            "id": "c",
+            "text": "Thanks, my payment went through fine."
+          },
+          {
+            "id": "d",
+            "text": "Can you reset my email password?"
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "detail",
+        "explanationZh": "技術人員指出應用程式版本過舊(“out of date”)導致付款失敗，使用者應表示會立即更新，故為正解。「付款順利完成」與情境矛盾；「重設信箱密碼」離題；「今天才剛安裝」與版本過舊的說法不符。"
+      }
+    ],
+    "conversations": [
+      {
+        "id": "conv-r1",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-03948a55/conv-r1.mp3",
+        "setting": "a professor's office during posted office hours",
+        "speakers": [
+          {
+            "id": "conv-r1-sp1",
+            "role": "professor",
+            "gender": "male",
+            "accent": "british",
+            "voice": "Zubenelgenubi",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-r1-sp2",
+            "role": "student seeking feedback on a research proposal",
+            "gender": "female",
+            "accent": "australian",
+            "voice": "Sulafat",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-r1-sp1",
+            "text": "So you want to look at coastal erosion patterns — that's a strong topic, but right now it's too broad for a ten-page paper."
+          },
+          {
+            "speakerId": "conv-r1-sp2",
+            "text": "I was worried about that. Should I focus on one specific coastline?"
+          },
+          {
+            "speakerId": "conv-r1-sp1",
+            "text": "Exactly. Pick one region, maybe the stretch you visited last summer, and compare two decades of data."
+          },
+          {
+            "speakerId": "conv-r1-sp2",
+            "text": "That's a great idea. Do you have any readings you'd recommend?"
+          },
+          {
+            "speakerId": "conv-r1-sp1",
+            "text": "There's one more article I'll add to the syllabus — it covers measurement techniques you'll need."
+          },
+          {
+            "speakerId": "conv-r1-sp2",
+            "text": "Thanks. I'm just nervous about the deadline next Friday."
+          },
+          {
+            "speakerId": "conv-r1-sp1",
+            "text": "You have time if you narrow the focus today. Come back Wednesday with an outline."
+          },
+          {
+            "speakerId": "conv-r1-sp2",
+            "text": "I will. That helps a lot."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-r1-q1",
+            "stem": "What does the professor suggest the student do to narrow the research proposal?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Extend the paper to twenty pages"
+              },
+              {
+                "id": "b",
+                "text": "Focus on one specific region and compare data across two decades"
+              },
+              {
+                "id": "c",
+                "text": "Interview local residents about erosion"
+              },
+              {
+                "id": "d",
+                "text": "Switch to a completely different topic"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "教授建議選一個地區並比較二十年的資料(“compare two decades of data”)，故為正解。其餘選項均未於對話中提及，與原文無關。"
+          },
+          {
+            "id": "conv-r1-q2",
+            "stem": "Why is the student anxious?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The student missed a scheduled meeting"
+              },
+              {
+                "id": "b",
+                "text": "The paper deadline is next Friday"
+              },
+              {
+                "id": "c",
+                "text": "The professor might drop the course"
+              },
+              {
+                "id": "d",
+                "text": "The syllabus reading is too difficult"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "學生說「nervous about the deadline next Friday」，故為正解。其餘選項均未出現在對話中，屬無根據的推測。"
+          }
+        ]
+      },
+      {
+        "id": "conv-r2",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-03948a55/conv-r2.mp3",
+        "setting": "a small company's break room during a shift change",
+        "speakers": [
+          {
+            "id": "conv-r2-sp1",
+            "role": "employee requesting a schedule swap",
+            "gender": "female",
+            "accent": "north-american",
+            "voice": "Zephyr",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-r2-sp2",
+            "role": "office manager",
+            "gender": "male",
+            "accent": "british",
+            "voice": "Umbriel",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-r2-sp1",
+            "text": "Hey, I need to swap my Saturday shift — a family thing came up."
+          },
+          {
+            "speakerId": "conv-r2-sp2",
+            "text": "Let me check who's free this weekend. Actually, Maria mentioned yesterday that she wanted some extra hours."
+          },
+          {
+            "speakerId": "conv-r2-sp1",
+            "text": "That would be perfect for both of us. Can you ask her today, before end of shift?"
+          },
+          {
+            "speakerId": "conv-r2-sp2",
+            "text": "I'll message her right now during my break. If she agrees, I'll update the posted schedule by tonight."
+          },
+          {
+            "speakerId": "conv-r2-sp1",
+            "text": "Great, should I still come in for my regular Sunday shift, or does that change too?"
+          },
+          {
+            "speakerId": "conv-r2-sp2",
+            "text": "Yes, nothing changes there. Just Saturday needs confirming before the weekend starts."
+          },
+          {
+            "speakerId": "conv-r2-sp1",
+            "text": "Understood. Thanks for sorting this out so quickly, I really appreciate it."
+          },
+          {
+            "speakerId": "conv-r2-sp2",
+            "text": "No problem at all — I'll let you know the moment Maria replies."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-r2-q1",
+            "stem": "Why does the employee want to swap the Saturday shift?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A family matter came up"
+              },
+              {
+                "id": "b",
+                "text": "The employee wants a longer weekend"
+              },
+              {
+                "id": "c",
+                "text": "The employee is sick"
+              },
+              {
+                "id": "d",
+                "text": "The store is closing early"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "員工表示「a family thing came up」，故為正解。其餘選項對話中皆未提及，屬無根據的推測。"
+          },
+          {
+            "id": "conv-r2-q2",
+            "stem": "What does the manager plan to do about the Sunday shift?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Cancel it entirely"
+              },
+              {
+                "id": "b",
+                "text": "Leave it unchanged"
+              },
+              {
+                "id": "c",
+                "text": "Extend it by two hours"
+              },
+              {
+                "id": "d",
+                "text": "Move it to Maria"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "主管說「nothing changes there」指週日班次不變，故為正解。其餘選項均與對話內容矛盾或無根據。"
+          }
+        ]
+      },
+      {
+        "id": "conv-r3",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-03948a55/conv-r3.mp3",
+        "setting": "a research laboratory before an afternoon experiment",
+        "speakers": [
+          {
+            "id": "conv-r3-sp1",
+            "role": "laboratory supervisor",
+            "gender": "male",
+            "accent": "australian",
+            "voice": "Fenrir",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-r3-sp2",
+            "role": "research assistant preparing samples",
+            "gender": "female",
+            "accent": "north-american",
+            "voice": "Callirrhoe",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-r3-sp1",
+            "text": "Before we start, are all the samples holding a stable temperature?"
+          },
+          {
+            "speakerId": "conv-r3-sp2",
+            "text": "Most of them, yes. But I think I forgot to log the ten a.m. measurement."
+          },
+          {
+            "speakerId": "conv-r3-sp1",
+            "text": "That's okay, we can note it as missing. Going forward, though, let's label every sample with its collection time."
+          },
+          {
+            "speakerId": "conv-r3-sp2",
+            "text": "Good idea. Should I add that to the existing tags, or use a new system?"
+          },
+          {
+            "speakerId": "conv-r3-sp1",
+            "text": "Let's start a new system — color-coded labels by hour, so it's easier to check at a glance."
+          },
+          {
+            "speakerId": "conv-r3-sp2",
+            "text": "I'll prepare those this afternoon before the next batch arrives."
+          },
+          {
+            "speakerId": "conv-r3-sp1",
+            "text": "Perfect. That should keep us from losing track again."
+          },
+          {
+            "speakerId": "conv-r3-sp2",
+            "text": "Agreed. I'll have the first set ready within the hour."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-r3-q1",
+            "stem": "What did the assistant forget to do?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Inform the supervisor about a delay"
+              },
+              {
+                "id": "b",
+                "text": "Log the ten a.m. measurement"
+              },
+              {
+                "id": "c",
+                "text": "Refrigerate the samples"
+              },
+              {
+                "id": "d",
+                "text": "Label the new batch"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "助理說「forgot to log the ten a.m. measurement」，故為正解。其餘選項均未於對話中提及，屬無根據推測。"
+          },
+          {
+            "id": "conv-r3-q2",
+            "stem": "What new system does the supervisor propose?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Digital barcodes for each sample"
+              },
+              {
+                "id": "b",
+                "text": "Color-coded labels showing collection hour"
+              },
+              {
+                "id": "c",
+                "text": "A shared spreadsheet log"
+              },
+              {
+                "id": "d",
+                "text": "Numbered storage shelves"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "主管提議「color-coded labels by hour」，故為正解。其餘選項對話中皆未提及，屬無根據推測。"
+          }
+        ]
+      }
+    ],
+    "announcements": [
+      {
+        "id": "ann-r1",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-03948a55/ann-r1.mp3",
+        "setting": "a campus-wide announcement about library hours during exam week",
+        "speaker": {
+          "id": "ann-r1-sp",
+          "role": "university library administrator",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Algieba",
+          "provider": "gemini"
+        },
+        "transcript": "Attention students: during final exam week, the library will stay open until two a.m. every night to support your studying. The third floor will be reserved as a silent study space, with no group work permitted. Please note that after ten p.m., you'll need to show a valid student ID at the entrance. We wish everyone a productive and successful exam week.",
+        "questions": [
+          {
+            "id": "ann-r1-q1",
+            "stem": "What is reserved as a silent study space?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The main lobby"
+              },
+              {
+                "id": "b",
+                "text": "The reading room"
+              },
+              {
+                "id": "c",
+                "text": "The third floor"
+              },
+              {
+                "id": "d",
+                "text": "The computer lab"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "公告提到「third floor will be reserved as a silent study space」，故為正解。其餘選項均未提及，屬無根據推測。"
+          },
+          {
+            "id": "ann-r1-q2",
+            "stem": "What must students show after 10 p.m.?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A printed exam schedule"
+              },
+              {
+                "id": "b",
+                "text": "A valid student ID"
+              },
+              {
+                "id": "c",
+                "text": "A library membership card"
+              },
+              {
+                "id": "d",
+                "text": "A class registration slip"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "公告說明十點後需出示「valid student ID」，故為正解。其餘選項對話中皆未提及。"
+          }
+        ]
+      },
+      {
+        "id": "ann-r2",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-03948a55/ann-r2.mp3",
+        "setting": "a staff meeting announcement at a small company",
+        "speaker": {
+          "id": "ann-r2-sp",
+          "role": "office manager",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Despina",
+          "provider": "gemini"
+        },
+        "transcript": "Starting next Monday, all full-time employees may work from home up to two days each week. During this trial period, please send a short weekly report summarizing your progress to your manager every Friday. This new policy will be reviewed carefully after a two-month trial period, and adjustments may be made based on feedback. Thanks for your cooperation.",
+        "questions": [
+          {
+            "id": "ann-r2-q1",
+            "stem": "What must employees send weekly during the trial?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A list of home office expenses"
+              },
+              {
+                "id": "b",
+                "text": "A signed attendance form"
+              },
+              {
+                "id": "c",
+                "text": "A proposal for future policy changes"
+              },
+              {
+                "id": "d",
+                "text": "A short report summarizing their progress"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "公告要求每週寄「short weekly report summarizing your progress」，故為正解。其餘選項未於原文中提及。"
+          },
+          {
+            "id": "ann-r2-q2",
+            "stem": "When will the remote-work policy be reviewed?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Only if requested by employees"
+              },
+              {
+                "id": "b",
+                "text": "After the first week"
+              },
+              {
+                "id": "c",
+                "text": "After a two-month trial period"
+              },
+              {
+                "id": "d",
+                "text": "At the end of the year"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "公告說明政策將於「two-month trial period」後檢討，故為正解。其餘選項均與原文矛盾或無根據。"
+          }
+        ]
+      },
+      {
+        "id": "ann-r3",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-03948a55/ann-r3.mp3",
+        "setting": "a local radio segment announcing a wildlife habitat survey",
+        "speaker": {
+          "id": "ann-r3-sp",
+          "role": "environmental researcher",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Achird",
+          "provider": "gemini"
+        },
+        "transcript": "Beginning next month, our research team will start a full survey of the wetland habitat just outside town. The survey will measure changes in local biodiversity, including bird and amphibian populations. The results will help guide future conservation efforts throughout the region for years to come. Community members are welcome to volunteer for data collection on weekends.",
+        "questions": [
+          {
+            "id": "ann-r3-q1",
+            "stem": "What will the survey measure?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Soil composition"
+              },
+              {
+                "id": "b",
+                "text": "Changes in local biodiversity"
+              },
+              {
+                "id": "c",
+                "text": "Tourism impact on the wetland"
+              },
+              {
+                "id": "d",
+                "text": "Water pollution levels"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "公告說明調查將測量「changes in local biodiversity」，故為正解。其餘選項均未提及，屬無根據推測。"
+          },
+          {
+            "id": "ann-r3-q2",
+            "stem": "How can community members get involved?",
+            "options": [
+              {
+                "id": "a",
+                "text": "By volunteering for data collection on weekends"
+              },
+              {
+                "id": "b",
+                "text": "By submitting written reports"
+              },
+              {
+                "id": "c",
+                "text": "By attending a public hearing"
+              },
+              {
+                "id": "d",
+                "text": "By donating equipment to the research team"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "公告邀請民眾「volunteer for data collection on weekends」，故為正解。其餘選項均與原文無關。"
+          }
+        ]
+      }
+    ],
+    "academicTalks": [
+      {
+        "id": "talk-r1",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-03948a55/talk-r1.mp3",
+        "discipline": "life science",
+        "speaker": {
+          "id": "talk-r1-sp",
+          "role": "biology lecturer",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Erinome",
+          "provider": "gemini"
+        },
+        "transcript": "Today let's talk about how coral reefs are responding to rising ocean temperatures. Coral reefs are built by tiny animals called coral polyps, which live in a close partnership with microscopic algae. These algae give coral its color and much of its energy through photosynthesis. When water gets too warm, the algae leave the coral, a process called bleaching, and the coral turns white and becomes stressed. For years, scientists assumed that most coral colonies had little ability to handle this heat. Recent studies, though, have found that some coral colonies show early signs of heat tolerance — they can survive slightly warmer water without bleaching as severely as their neighbors. Researchers believe this tolerance may come from certain algae partners that handle heat better, or from genetic differences within the coral itself. To understand the bigger picture, teams are now tracking biodiversity loss across affected reefs, comparing areas with heat-tolerant colonies to areas without them. If scientists can identify what makes these colonies more resilient, that knowledge could help guide future reef conservation efforts worldwide.",
+        "questions": [
+          {
+            "id": "talk-r1-q1",
+            "stem": "What is the main topic of the talk?",
+            "options": [
+              {
+                "id": "a",
+                "text": "How ocean currents influence the migration patterns of coral larvae"
+              },
+              {
+                "id": "b",
+                "text": "How rising ocean temperatures are causing widespread coral bleaching worldwide"
+              },
+              {
+                "id": "c",
+                "text": "Signs that some corals tolerate warmer water"
+              },
+              {
+                "id": "d",
+                "text": "How reef ecosystems recovered completely after previous bleaching events"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "gist",
+            "explanationZh": "演講主軸為部分珊瑚展現「early signs of heat tolerance」，故為正解。其餘選項皆非本篇主旨。"
+          },
+          {
+            "id": "talk-r1-q2",
+            "stem": "What happens to coral during bleaching?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It permanently stops producing any microscopic algae partners"
+              },
+              {
+                "id": "b",
+                "text": "Its polyps begin reproducing at a much faster rate"
+              },
+              {
+                "id": "c",
+                "text": "Its surface gradually darkens due to increased stress hormones"
+              },
+              {
+                "id": "d",
+                "text": "Its algae leave and it turns white"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "原文說「algae leave the coral…turns white」，故為正解。其餘選項與原文矛盾或無根據。"
+          },
+          {
+            "id": "talk-r1-q3",
+            "stem": "What might explain why some coral colonies tolerate heat better?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Heat-tolerant algae partners or genetic differences"
+              },
+              {
+                "id": "b",
+                "text": "Their location in much deeper and colder ocean water"
+              },
+              {
+                "id": "c",
+                "text": "A thicker outer shell that blocks direct sunlight exposure"
+              },
+              {
+                "id": "d",
+                "text": "Their distance from human coastal development and pollution"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "原文提到耐熱可能來自「algae partners」或「genetic differences」，故為正解。其餘選項未於原文中提及。"
+          },
+          {
+            "id": "talk-r1-q4",
+            "stem": "Why are researchers comparing reef areas with and without heat-tolerant colonies?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To test new coral feeding methods"
+              },
+              {
+                "id": "b",
+                "text": "To decide which reefs to close to tourists"
+              },
+              {
+                "id": "c",
+                "text": "To find out what causes some colonies' greater resilience"
+              },
+              {
+                "id": "d",
+                "text": "To measure coral growth rates in warmer water"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "原文指出比較的目的是找出使部分珊瑚群落更具韌性的原因，以利未來保育工作，故為正解。其餘選項於原文均無根據。"
+          }
+        ]
+      }
+    ]
+  },
+  "lowerModule": {
+    "timeLimitSec": 420,
+    "listenChoose": [
+      {
+        "id": "lcr-lo1",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-lo1.mp3",
+        "speaker": {
+          "id": "lcr-lo1-sp",
+          "role": "museum guide",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Puck",
+          "provider": "gemini"
+        },
+        "utterance": "That wing's closed for a new installation.",
+        "options": [
+          {
+            "id": "a",
+            "text": "I already saw that exhibit last month."
+          },
+          {
+            "id": "b",
+            "text": "I see, I'll check out the other wings."
+          },
+          {
+            "id": "c",
+            "text": "Great, the new installation opens today then."
+          },
+          {
+            "id": "d",
+            "text": "Can I buy a ticket for the theater?"
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "function",
+        "explanationZh": "導覽員說明展廳因新裝置藝術(“new installation”)暫時關閉，訪客應表示改看其他展廳，故為正解。「裝置今天開幕」與「暫時關閉」矛盾；「買劇院票」離題；「上個月已看過」答非所問。"
+      },
+      {
+        "id": "lcr-lo2",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-lo2.mp3",
+        "speaker": {
+          "id": "lcr-lo2-sp",
+          "role": "theater staff member",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Vindemiatrix",
+          "provider": "gemini"
+        },
+        "utterance": "Rehearsal moved to the main theater.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Can I buy tickets for tonight's show?"
+          },
+          {
+            "id": "b",
+            "text": "Thanks, I'll head there instead."
+          },
+          {
+            "id": "c",
+            "text": "Great, I'll stay in this room then."
+          },
+          {
+            "id": "d",
+            "text": "I already rehearsed there last week."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "detail",
+        "explanationZh": "工作人員說明排練改到主劇場(“moved to the main theater”)，演員應表示會過去，故為正解。「留在這房間」與地點改變矛盾；「買今晚票」離題；「上週已在那排練過」答非所問。"
+      },
+      {
+        "id": "lcr-lo3",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-lo3.mp3",
+        "speaker": {
+          "id": "lcr-lo3-sp",
+          "role": "clinic nurse",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Rasalgethi",
+          "provider": "gemini"
+        },
+        "utterance": "Your appointment moved since the specialist's away.",
+        "options": [
+          {
+            "id": "a",
+            "text": "I never scheduled an appointment here."
+          },
+          {
+            "id": "b",
+            "text": "Okay, when's the new appointment time?"
+          },
+          {
+            "id": "c",
+            "text": "Can you fill my prescription now?"
+          },
+          {
+            "id": "d",
+            "text": "Great, I'll see the specialist today then."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "detail",
+        "explanationZh": "護理師說明專科醫師不在(“specialist's away”)故改期，病患合理反應是詢問新時間，故為正解。「今天就能看診」與改期矛盾；「開藥」離題；「從未預約」與情境矛盾。"
+      },
+      {
+        "id": "lcr-lo4",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-lo4.mp3",
+        "speaker": {
+          "id": "lcr-lo4-sp",
+          "role": "fitness trainer",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Laomedeia",
+          "provider": "gemini"
+        },
+        "utterance": "Mild soreness like that is totally normal.",
+        "options": [
+          {
+            "id": "a",
+            "text": "I'm actually not sore at all."
+          },
+          {
+            "id": "b",
+            "text": "The pain is sharp and constant."
+          },
+          {
+            "id": "c",
+            "text": "Good to know, thanks for checking."
+          },
+          {
+            "id": "d",
+            "text": "Should I sign up for another class?"
+          }
+        ],
+        "correctOptionId": "c",
+        "skill": "attitude",
+        "explanationZh": "教練說明輕微痠痛屬正常(“totally normal”)，會員應表示放心並致謝，故為正解。「完全不痠」與提問前提矛盾；「報名其他課程」離題；「劇烈且持續」暗示異常疼痛，與教練的安撫語意不符。"
+      },
+      {
+        "id": "lcr-lo5",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-lo5.mp3",
+        "speaker": {
+          "id": "lcr-lo5-sp",
+          "role": "train station agent",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Iapetus",
+          "provider": "gemini"
+        },
+        "utterance": "There's a signal problem down the line.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Can I get a refund on my hotel reservation?"
+          },
+          {
+            "id": "b",
+            "text": "I already boarded the train twenty minutes ago."
+          },
+          {
+            "id": "c",
+            "text": "Great, my train is leaving right on schedule today."
+          },
+          {
+            "id": "d",
+            "text": "Alright, how long's the delay?"
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "detail",
+        "explanationZh": "站務員說明因號誌問題(“signal problem”)延誤，乘客合理反應是詢問延誤多久，故為正解。「準時出發」與延誤矛盾；「退旅館費用」離題；「二十分鐘前已上車」與尚未出發的情境矛盾。"
+      }
+    ],
+    "conversations": [
+      {
+        "id": "conv-lo1",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-03948a55/conv-lo1.mp3",
+        "setting": "a local media studio during a podcast recording session",
+        "speakers": [
+          {
+            "id": "conv-lo1-sp1",
+            "role": "guest reviewing a digital script before recording",
+            "gender": "female",
+            "accent": "british",
+            "voice": "Leda",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-lo1-sp2",
+            "role": "podcast producer",
+            "gender": "male",
+            "accent": "australian",
+            "voice": "Umbriel",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-lo1-sp1",
+            "text": "Before we record, could we change this section of the script? I think it's a bit long."
+          },
+          {
+            "speakerId": "conv-lo1-sp2",
+            "text": "Sure, we have time. Actually, we're running a little behind schedule anyway — a software glitch delayed the studio setup this morning."
+          },
+          {
+            "speakerId": "conv-lo1-sp1",
+            "text": "Oh, is everything working now?"
+          },
+          {
+            "speakerId": "conv-lo1-sp2",
+            "text": "Yes, it's fixed. Let's test the microphone first, then we can revise the script together."
+          },
+          {
+            "speakerId": "conv-lo1-sp1",
+            "text": "Sounds good. I'll trim the section while you check the levels."
+          },
+          {
+            "speakerId": "conv-lo1-sp2",
+            "text": "Perfect. Once the mic sounds clear, we'll start recording from the top."
+          },
+          {
+            "speakerId": "conv-lo1-sp1",
+            "text": "Great, I should be done editing in a couple of minutes."
+          },
+          {
+            "speakerId": "conv-lo1-sp2",
+            "text": "Take your time — we're not in a rush anymore."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-lo1-q1",
+            "stem": "Why is the recording running behind schedule?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The guest arrived late"
+              },
+              {
+                "id": "b",
+                "text": "The studio was double-booked"
+              },
+              {
+                "id": "c",
+                "text": "A software glitch delayed the setup"
+              },
+              {
+                "id": "d",
+                "text": "The script wasn't finished"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "製作人提到「a software glitch delayed the studio setup」，故為正解。其餘選項均未提及，屬無根據推測。"
+          },
+          {
+            "id": "conv-lo1-q2",
+            "stem": "What do the guest and producer agree to do before recording?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Call in a technician"
+              },
+              {
+                "id": "b",
+                "text": "Rewrite the entire script"
+              },
+              {
+                "id": "c",
+                "text": "Test the microphone"
+              },
+              {
+                "id": "d",
+                "text": "Reschedule the session"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "對話中提議「test the microphone first」，故為正解。其餘選項均與原文矛盾或無根據。"
+          }
+        ]
+      },
+      {
+        "id": "conv-lo2",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-03948a55/conv-lo2.mp3",
+        "setting": "a museum workshop room after a ceramic class",
+        "speakers": [
+          {
+            "id": "conv-lo2-sp1",
+            "role": "workshop participant asking about a cracked piece",
+            "gender": "male",
+            "accent": "north-american",
+            "voice": "Zubenelgenubi",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-lo2-sp2",
+            "role": "ceramic instructor",
+            "gender": "female",
+            "accent": "british",
+            "voice": "Sulafat",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-lo2-sp1",
+            "text": "My piece cracked during the first firing — is there anything I can do?"
+          },
+          {
+            "speakerId": "conv-lo2-sp2",
+            "text": "Don't worry, that happens sometimes. I can refire it next week if you'd like."
+          },
+          {
+            "speakerId": "conv-lo2-sp1",
+            "text": "That would help, but the gallery display deadline is in ten days."
+          },
+          {
+            "speakerId": "conv-lo2-sp2",
+            "text": "That should still work out fine. Refiring only takes a couple of days once it's back in the kiln."
+          },
+          {
+            "speakerId": "conv-lo2-sp1",
+            "text": "Okay, that's a relief. Should I bring it in Monday?"
+          },
+          {
+            "speakerId": "conv-lo2-sp2",
+            "text": "Yes, Monday morning is perfect — I'll have kiln space ready by then."
+          },
+          {
+            "speakerId": "conv-lo2-sp1",
+            "text": "Thank you so much. I was worried I'd miss the display."
+          },
+          {
+            "speakerId": "conv-lo2-sp2",
+            "text": "You won't. We'll get it fixed in plenty of time."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-lo2-q1",
+            "stem": "Why is the participant worried?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The piece cannot be refired at all"
+              },
+              {
+                "id": "b",
+                "text": "The instructor is unavailable next week"
+              },
+              {
+                "id": "c",
+                "text": "The piece might not be ready before the gallery display deadline"
+              },
+              {
+                "id": "d",
+                "text": "The kiln is broken"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "參與者提到「gallery display deadline is in ten days」而擔心，故為正解。其餘選項均與對話矛盾或無根據。"
+          },
+          {
+            "id": "conv-lo2-q2",
+            "stem": "When does the instructor ask the participant to bring the piece back?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Next Friday afternoon"
+              },
+              {
+                "id": "b",
+                "text": "Later that same day"
+              },
+              {
+                "id": "c",
+                "text": "Monday morning"
+              },
+              {
+                "id": "d",
+                "text": "The day of the display"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "指導老師說「Monday morning is perfect」，故為正解。其餘選項均未於對話中提及。"
+          }
+        ]
+      }
+    ],
+    "announcements": [
+      {
+        "id": "ann-lo1",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-03948a55/ann-lo1.mp3",
+        "setting": "an online update posted for a podcast platform's listeners",
+        "speaker": {
+          "id": "ann-lo1-sp",
+          "role": "podcast platform administrator",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Callirrhoe",
+          "provider": "gemini"
+        },
+        "transcript": "We're excited to announce a new feature: listeners can now download episodes for offline listening anytime. This same update also fixes a login bug that a number of users reported last month. The new offline feature launches together with our next scheduled app update, arriving early next week. Thanks so much for your patience and your continued support of the show.",
+        "questions": [
+          {
+            "id": "ann-lo1-q1",
+            "stem": "What problem does the update fix?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A login bug"
+              },
+              {
+                "id": "b",
+                "text": "A payment error"
+              },
+              {
+                "id": "c",
+                "text": "A slow download speed"
+              },
+              {
+                "id": "d",
+                "text": "A missing episode"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "公告提到更新修復了「login bug」，故為正解。其餘選項均未提及，屬無根據推測。"
+          },
+          {
+            "id": "ann-lo1-q2",
+            "stem": "When does the new feature launch?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Immediately after this announcement"
+              },
+              {
+                "id": "b",
+                "text": "With the next scheduled update, early next week"
+              },
+              {
+                "id": "c",
+                "text": "At the end of the month"
+              },
+              {
+                "id": "d",
+                "text": "Only for paid subscribers"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "公告說明功能將隨「next scheduled update, arriving early next week」推出，故為正解。其餘選項均與原文矛盾或無根據。"
+          }
+        ]
+      },
+      {
+        "id": "ann-lo2",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-03948a55/ann-lo2.mp3",
+        "setting": "an opening-night announcement at a local theater",
+        "speaker": {
+          "id": "ann-lo2-sp",
+          "role": "theater house manager",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Algieba",
+          "provider": "gemini"
+        },
+        "transcript": "Good evening, and thank you for joining us tonight. Tonight's performance will begin about twenty minutes later than scheduled. While you wait, the lobby display for ticket holders is now open early, so feel free to explore it. If you arrive after the show starts, please wait in the lobby until the first scene break to be seated. Thank you for your patience.",
+        "questions": [
+          {
+            "id": "ann-lo2-q1",
+            "stem": "What is now open early for ticket holders?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The theater balcony"
+              },
+              {
+                "id": "b",
+                "text": "The gift shop"
+              },
+              {
+                "id": "c",
+                "text": "The lobby display"
+              },
+              {
+                "id": "d",
+                "text": "The backstage tour"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "公告提到「lobby display for ticket holders is now open early」，故為正解。其餘選項均未提及。"
+          },
+          {
+            "id": "ann-lo2-q2",
+            "stem": "What should latecomers do?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Wait in the lobby until the first scene break"
+              },
+              {
+                "id": "b",
+                "text": "Request a refund at the box office"
+              },
+              {
+                "id": "c",
+                "text": "Watch from the lobby on a screen"
+              },
+              {
+                "id": "d",
+                "text": "Find a seat immediately, quietly"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "公告要求遲到者「wait in the lobby until the first scene break」，故為正解。其餘選項均與原文矛盾或無根據。"
+          }
+        ]
+      }
+    ],
+    "academicTalks": []
+  },
+  "upperModule": {
+    "timeLimitSec": 660,
+    "listenChoose": [
+      {
+        "id": "lcr-up1",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-up1.mp3",
+        "speaker": {
+          "id": "lcr-up1-sp",
+          "role": "hotel front desk clerk",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Gacrux",
+          "provider": "gemini"
+        },
+        "utterance": "Your booking was filed under the wrong date.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Ah, can you fix it under today's date?"
+          },
+          {
+            "id": "b",
+            "text": "Great, my room's ready as planned then."
+          },
+          {
+            "id": "c",
+            "text": "I never made a reservation here."
+          },
+          {
+            "id": "d",
+            "text": "Can I add a rental car to my trip?"
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "detail",
+        "explanationZh": "櫃檯人員說明訂房被歸到錯誤日期(“wrong date”)，房客應請對方更正到今天，故為正解。「房間已準備好」與問題矛盾；「加租車」離題；「從未訂房」與情境矛盾。"
+      },
+      {
+        "id": "lcr-up2",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-up2.mp3",
+        "speaker": {
+          "id": "lcr-up2-sp",
+          "role": "heritage site guide",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Fenrir",
+          "provider": "gemini"
+        },
+        "utterance": "A regional grant funded this restoration.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Interesting, when was that?"
+          },
+          {
+            "id": "b",
+            "text": "Great, so this building was actually never damaged at all."
+          },
+          {
+            "id": "c",
+            "text": "I heard the city government paid for everything here."
+          },
+          {
+            "id": "d",
+            "text": "Can I donate to the museum's gift shop later?"
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "detail",
+        "explanationZh": "導覽員說明修復經費來自區域補助(“regional grant”)，訪客合理反應是追問補助時間，故為正解。「從未受損」與需要修復的前提矛盾；「捐款給禮品店」離題；「城市政府全額出資」與原文的補助來源不符。"
+      },
+      {
+        "id": "lcr-up3",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-up3.mp3",
+        "speaker": {
+          "id": "lcr-up3-sp",
+          "role": "heritage guide",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Despina",
+          "provider": "gemini"
+        },
+        "utterance": "The square was renamed after a reform movement.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Can you show me the train schedule?"
+          },
+          {
+            "id": "b",
+            "text": "Oh, what was it called before that?"
+          },
+          {
+            "id": "c",
+            "text": "I think the square was built last year."
+          },
+          {
+            "id": "d",
+            "text": "Great, so the name never changed."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "detail",
+        "explanationZh": "導覽員說明廣場因改革運動而更名(“renamed after a reform movement”)，訪客合理反應是追問原名，故為正解。「名稱從未改變」與更名前提矛盾；「火車時刻表」離題；「去年才建成」與歷史事件的年代不符。"
+      },
+      {
+        "id": "lcr-up4",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-up4.mp3",
+        "speaker": {
+          "id": "lcr-up4-sp",
+          "role": "roommate",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Alnilam",
+          "provider": "gemini"
+        },
+        "utterance": "I unplugged it so someone could fix a shelf.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Ah, that makes sense, thanks for explaining."
+          },
+          {
+            "id": "b",
+            "text": "Great, everything inside should still be cold."
+          },
+          {
+            "id": "c",
+            "text": "I never noticed it was plugged in."
+          },
+          {
+            "id": "d",
+            "text": "Can you fix my laptop while you're at it?"
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "function",
+        "explanationZh": "室友解釋為了修架子而拔掉冰箱插頭(“unplugged it so someone could fix a shelf”)，對方應表示理解並致謝，故為正解。「裡面東西應該還是冰的」與斷電矛盾；「順便修筆電」離題；「從沒注意到插著電」答非所問。"
+      },
+      {
+        "id": "lcr-up5",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-03948a55/lcr-up5.mp3",
+        "speaker": {
+          "id": "lcr-up5-sp",
+          "role": "friend",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Autonoe",
+          "provider": "gemini"
+        },
+        "utterance": "A delivery truck blocked the driveway all morning.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Ah, that explains why I couldn't park."
+          },
+          {
+            "id": "b",
+            "text": "I didn't order anything this week."
+          },
+          {
+            "id": "c",
+            "text": "Great, I got out early with no trouble."
+          },
+          {
+            "id": "d",
+            "text": "Can you order more furniture for me?"
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "inference",
+        "explanationZh": "朋友解釋貨車整個早上擋住車道(“blocked the driveway all morning”)，對方合理反應是聯想到自己停不了車，故為正解。「順利開出去」與擋住車道矛盾；「幫忙訂家具」離題；「這週沒訂東西」誤解情境是自己收貨。"
+      }
+    ],
+    "conversations": [
+      {
+        "id": "conv-up1",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-03948a55/conv-up1.mp3",
+        "setting": "a train station ticket counter",
+        "speakers": [
+          {
+            "id": "conv-up1-sp1",
+            "role": "traveler asking about a missed connection",
+            "gender": "female",
+            "accent": "north-american",
+            "voice": "Zephyr",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-up1-sp2",
+            "role": "ticket agent",
+            "gender": "male",
+            "accent": "british",
+            "voice": "Achird",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-up1-sp1",
+            "text": "I missed my connecting train because my first one arrived late."
+          },
+          {
+            "speakerId": "conv-up1-sp2",
+            "text": "I'm sorry to hear that. Let me check — I can put you on the next available route to your destination instead."
+          },
+          {
+            "speakerId": "conv-up1-sp1",
+            "text": "That would be great. Will I need to pay for a new ticket?"
+          },
+          {
+            "speakerId": "conv-up1-sp2",
+            "text": "No, since the delay wasn't your fault, your original ticket price still applies."
+          },
+          {
+            "speakerId": "conv-up1-sp1",
+            "text": "That's a relief. When does the next train leave?"
+          },
+          {
+            "speakerId": "conv-up1-sp2",
+            "text": "In about forty minutes, from platform six. I'll print your new ticket now."
+          },
+          {
+            "speakerId": "conv-up1-sp1",
+            "text": "Thank you so much for sorting this out."
+          },
+          {
+            "speakerId": "conv-up1-sp2",
+            "text": "Of course — just make sure to board a little early this time."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-up1-q1",
+            "stem": "Why doesn't the traveler have to pay for a new ticket?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The new connecting route turned out to be much shorter"
+              },
+              {
+                "id": "b",
+                "text": "The traveler had previously paid for premium seating already"
+              },
+              {
+                "id": "c",
+                "text": "The delay was not the traveler's own fault"
+              },
+              {
+                "id": "d",
+                "text": "The travel agent decided to offer a loyalty discount instead"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "站務員表示「since the delay wasn't your fault, your original ticket price still applies」，故為正解。其餘選項皆與對話內容矛盾或未提及。"
+          },
+          {
+            "id": "conv-up1-q2",
+            "stem": "When does the next train depart?",
+            "options": [
+              {
+                "id": "a",
+                "text": "In two hours, once the next train arrives"
+              },
+              {
+                "id": "b",
+                "text": "Immediately, before the platform gets too crowded"
+              },
+              {
+                "id": "c",
+                "text": "The following morning after a full overnight delay"
+              },
+              {
+                "id": "d",
+                "text": "In about forty minutes"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "站務員說「In about forty minutes, from platform six」，故為正解。其餘選項皆與原文矛盾。"
+          }
+        ]
+      },
+      {
+        "id": "conv-up2",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-03948a55/conv-up2.mp3",
+        "setting": "a neighborhood association meeting room",
+        "speakers": [
+          {
+            "id": "conv-up2-sp1",
+            "role": "resident proposing a new park bench",
+            "gender": "male",
+            "accent": "australian",
+            "voice": "Puck",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-up2-sp2",
+            "role": "civic association coordinator",
+            "gender": "female",
+            "accent": "north-american",
+            "voice": "Vindemiatrix",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-up2-sp1",
+            "text": "I'd like to propose adding a bench near the community garden."
+          },
+          {
+            "speakerId": "conv-up2-sp2",
+            "text": "That's a nice idea, and a good spot too. We'd need municipal approval first, though, since it's public land."
+          },
+          {
+            "speakerId": "conv-up2-sp1",
+            "text": "How long does that approval process usually take?"
+          },
+          {
+            "speakerId": "conv-up2-sp2",
+            "text": "Typically a few weeks, once we submit a formal request along with a location sketch to the city office."
+          },
+          {
+            "speakerId": "conv-up2-sp1",
+            "text": "I can draw that up. Would volunteers be able to help install it afterward?"
+          },
+          {
+            "speakerId": "conv-up2-sp2",
+            "text": "Definitely — once it's approved, we can organize a volunteer day for installation."
+          },
+          {
+            "speakerId": "conv-up2-sp1",
+            "text": "Great, I'll bring the sketch to the next meeting."
+          },
+          {
+            "speakerId": "conv-up2-sp2",
+            "text": "Perfect, we'll add it to the agenda then."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-up2-q1",
+            "stem": "What does the resident offer to prepare for the proposal?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A budget estimate"
+              },
+              {
+                "id": "b",
+                "text": "A location sketch"
+              },
+              {
+                "id": "c",
+                "text": "A construction timeline"
+              },
+              {
+                "id": "d",
+                "text": "A petition with signatures"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "居民表示會準備「location sketch」，故為正解。其餘選項均未於對話中提及。"
+          },
+          {
+            "id": "conv-up2-q2",
+            "stem": "When might volunteers help with the bench?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Only if the city refuses funding"
+              },
+              {
+                "id": "b",
+                "text": "During the next association meeting"
+              },
+              {
+                "id": "c",
+                "text": "After the proposal is approved"
+              },
+              {
+                "id": "d",
+                "text": "Before the proposal is submitted"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "協調員說「once it's approved, we can organize a volunteer day」，故為正解。其餘選項均與原文矛盾或無根據。"
+          }
+        ]
+      }
+    ],
+    "announcements": [],
+    "academicTalks": [
+      {
+        "id": "talk-up1",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-03948a55/talk-up1.mp3",
+        "discipline": "art and music",
+        "speaker": {
+          "id": "talk-up1-sp",
+          "role": "music history lecturer",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Orus",
+          "provider": "gemini"
+        },
+        "transcript": "Let's look at how a well-known regional music festival got its start. Long before it became a major event with large stages and ticketed crowds, the festival began as a simple gathering of traveling musicians who met once a year to trade songs and techniques. These musicians moved between towns, often performing in exchange for food or lodging, and their informal gatherings gradually attracted local audiences. A regional museum eventually began collecting recordings of these early performances, preserving them in an archive that still exists today. Those recordings capture styles that might otherwise have been lost, including certain playing techniques unique to this region. Over the following decades, the gathering grew into an organized festival, though organizers worked hard to keep its informal spirit alive. Today's performers often study the archived recordings directly, blending the older traveling-musician style with the festival's now-modern stages and sound systems. This connection between old and new is part of what makes the festival distinct from other regional music events, giving audiences a direct link to its earliest days.",
+        "questions": [
+          {
+            "id": "talk-up1-q1",
+            "stem": "What is the talk mainly about?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Two competing festivals and their rival histories in the region"
+              },
+              {
+                "id": "b",
+                "text": "A famous musician's rise to fame"
+              },
+              {
+                "id": "c",
+                "text": "How a regional festival started and was recorded"
+              },
+              {
+                "id": "d",
+                "text": "Modern ticket prices at regional festivals today"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "gist",
+            "explanationZh": "全篇講述音樂節如何從傳統音樂人聚會發展而來，並提及博物館保存早期錄音，故「地區音樂節如何開始並被記錄下來」為正解。原文未提及對立的音樂節，未討論票價，也不是單一音樂人的傳記，其餘選項均無根據。"
+          },
+          {
+            "id": "talk-up1-q2",
+            "stem": "How did the festival begin?",
+            "options": [
+              {
+                "id": "a",
+                "text": "As a competition organized by a local government"
+              },
+              {
+                "id": "b",
+                "text": "As a fundraiser for a music school"
+              },
+              {
+                "id": "c",
+                "text": "As a broadcast event on regional radio"
+              },
+              {
+                "id": "d",
+                "text": "As an informal gathering of traveling musicians"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "原文說音樂節起源於「informal gathering of traveling musicians」，故為正解。其餘選項均未於原文中提及。"
+          },
+          {
+            "id": "talk-up1-q3",
+            "stem": "What did the regional museum do?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Trained new musicians to perform at festivals"
+              },
+              {
+                "id": "b",
+                "text": "Sold tickets for the earliest gatherings held annually"
+              },
+              {
+                "id": "c",
+                "text": "Preserved recordings of early performances"
+              },
+              {
+                "id": "d",
+                "text": "Organized annual concerts featuring traveling musicians across many towns"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "原文提到博物館「collecting recordings of these early performances」並建立archive保存至今，故「保存早期演出的錄音」為正解。其餘選項在原文中皆無根據，屬於干擾選項。"
+          },
+          {
+            "id": "talk-up1-q4",
+            "stem": "How do the archived recordings influence today's performers?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They use them only for academic research, not performance"
+              },
+              {
+                "id": "b",
+                "text": "They avoid them entirely to protect their own original style"
+              },
+              {
+                "id": "c",
+                "text": "They study them and blend old techniques with modern staging"
+              },
+              {
+                "id": "d",
+                "text": "They replaced modern instruments with historical ones entirely"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "原文提到表演者「study the archived recordings directly, blending」舊風格與現代舞台結合，故選「研究這些錄音，並把舊技法與現代舞台結合」。其餘選項皆與原文矛盾或無根據。"
+          }
+        ]
+      },
+      {
+        "id": "talk-up2",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-03948a55/talk-up2.mp3",
+        "discipline": "history",
+        "speaker": {
+          "id": "talk-up2-sp",
+          "role": "historian",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Kore",
+          "provider": "gemini"
+        },
+        "transcript": "During the early industrial period, factory workers in many growing cities faced extremely long shifts, sometimes lasting fourteen hours or more without a scheduled break. Conditions in these factories were often unsafe, and injuries were common. Frustrated by these demands, groups of workers began organizing after a series of especially long shifts, forming committees to negotiate directly with factory owners. When owners refused to change their practices, workers organized public demonstrations, drawing attention from local newspapers and eventually from lawmakers. Their persistence led to a significant outcome: a new law was passed that limited the number of hours an employee could be required to work each day. This law didn't apply to every industry at first, but it set an important precedent. Over the following years, similar rules spread to other sectors as more workers organized using the same strategies. Historians consider this an early labor reform movement, one that later influenced national labor policy far beyond the cities where it began, shaping how governments regulated working hours for generations afterward.",
+        "questions": [
+          {
+            "id": "talk-up2-q1",
+            "stem": "What is the main focus of the talk?",
+            "options": [
+              {
+                "id": "a",
+                "text": "An early labor reform movement"
+              },
+              {
+                "id": "b",
+                "text": "New machinery invented for factories"
+              },
+              {
+                "id": "c",
+                "text": "Wage comparisons across different industries"
+              },
+              {
+                "id": "d",
+                "text": "The founding of a single specific factory"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "gist",
+            "explanationZh": "全篇描述工人組織、抗爭、立法限制工時，並指出此為「early labor reform movement」且影響後世勞工政策，故（a）為正解；其餘選項皆未在原文提及。"
+          },
+          {
+            "id": "talk-up2-q2",
+            "stem": "Why did factory workers begin organizing?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They wanted higher pay than office workers"
+              },
+              {
+                "id": "b",
+                "text": "Shifts were too long and conditions unsafe"
+              },
+              {
+                "id": "c",
+                "text": "They opposed introducing new machinery entirely"
+              },
+              {
+                "id": "d",
+                "text": "They were protesting the factory's chosen new location"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "原文指出工人因「extremely long shifts」與「unsafe」的工作環境而開始組織委員會，故「輪班時間過長且工作環境不安全」正確；其餘選項於原文中並無根據。"
+          },
+          {
+            "id": "talk-up2-q3",
+            "stem": "What did the new law do?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Guaranteed workers a fixed daily wage"
+              },
+              {
+                "id": "b",
+                "text": "Limited the number of hours an employee could work each day"
+              },
+              {
+                "id": "c",
+                "text": "Required factories to provide housing for workers"
+              },
+              {
+                "id": "d",
+                "text": "Banned the use of certain factory machines"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "原文明確指出新法「limited the number of hours…each day」，故為正解。其餘選項均無根據。"
+          },
+          {
+            "id": "talk-up2-q4",
+            "stem": "What can be inferred about the movement's long-term impact?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It later influenced national labor policy beyond its original cities"
+              },
+              {
+                "id": "b",
+                "text": "It had no effect outside the original factories"
+              },
+              {
+                "id": "c",
+                "text": "It was quickly reversed once the law passed"
+              },
+              {
+                "id": "d",
+                "text": "It was limited entirely to one specific industry"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "原文說此運動「later influenced national labor policy far beyond the cities」，故為正解。其餘選項均與原文矛盾。"
+          }
+        ]
+      },
+      {
+        "id": "talk-up3",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-03948a55/talk-up3.mp3",
+        "discipline": "business and economics",
+        "speaker": {
+          "id": "talk-up3-sp",
+          "role": "business lecturer",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Sadaltager",
+          "provider": "gemini"
+        },
+        "transcript": "Let's examine how one company changed its decision-making by building a customer feedback system into its sales process. After every purchase, the company now adds a short survey asking customers to rate their experience and leave optional comments. This might seem like a small addition, but it generates a steady stream of data the company didn't have before. Each month, managers from different departments meet to review trends in the survey results, looking for patterns such as recurring complaints or repeated praise for a particular feature. These monthly reviews have become a central part of company strategy: when the feedback consistently points to a problem, that information shapes decisions about new products before they're even designed. For example, if survey comments repeatedly mention wanting a smaller version of a popular item, the product team can factor that directly into early planning. Rather than guessing what customers want, the company now bases many decisions on direct, ongoing feedback. This approach has become a model that other departments within the company are beginning to adopt for their own planning processes.",
+        "questions": [
+          {
+            "id": "talk-up3-q1",
+            "stem": "What is the talk mainly about?",
+            "options": [
+              {
+                "id": "a",
+                "text": "How to train employees to handle customer complaints"
+              },
+              {
+                "id": "b",
+                "text": "How a company uses customer feedback to guide business decisions"
+              },
+              {
+                "id": "c",
+                "text": "How companies set prices for new products"
+              },
+              {
+                "id": "d",
+                "text": "How advertising influences customer purchasing habits"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "gist",
+            "explanationZh": "演講主軸為公司如何運用顧客回饋系統來引導決策，故為正解。其餘選項皆非本篇主旨。"
+          },
+          {
+            "id": "talk-up3-q2",
+            "stem": "When does the company ask customers to complete a survey?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Once a year, during a company event"
+              },
+              {
+                "id": "b",
+                "text": "After every purchase"
+              },
+              {
+                "id": "c",
+                "text": "Only when a customer files a complaint"
+              },
+              {
+                "id": "d",
+                "text": "Before a customer decides to buy anything"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "原文說「after every purchase」公司會加入問卷，故為正解。其餘選項均無根據。"
+          },
+          {
+            "id": "talk-up3-q3",
+            "stem": "What do managers do with the survey results each month?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Review trends and look for patterns"
+              },
+              {
+                "id": "b",
+                "text": "Send personalized replies to every customer"
+              },
+              {
+                "id": "c",
+                "text": "Delete outdated feedback automatically"
+              },
+              {
+                "id": "d",
+                "text": "Publish the results publicly online"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "原文提到經理們每月「review trends…looking for patterns」，故為正解。其餘選項均無根據。"
+          },
+          {
+            "id": "talk-up3-q4",
+            "stem": "How does customer feedback influence new products?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It replaces the need for a product design team"
+              },
+              {
+                "id": "b",
+                "text": "It only affects marketing slogans, not the products themselves"
+              },
+              {
+                "id": "c",
+                "text": "It is reviewed but rarely acted upon"
+              },
+              {
+                "id": "d",
+                "text": "It directly shapes early planning decisions, such as sizing"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "inference",
+            "explanationZh": "原文舉例回饋提到想要「smaller version」，產品團隊便納入早期規劃，故為正解。其餘選項均與原文矛盾。"
+          }
+        ]
+      }
+    ]
+  },
+  "audioProfile": {
+    "version": "ets-2026-listening-v1",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview"
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "listening",
+    "listenChoose": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "course-paper-deadline-extension",
+        "requiredConcepts": [
+          "extra weekend needed to finish a course paper",
+          "professor allows only a two-day extension"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a student requesting an extension on a course paper deadline",
+        "speakerRole": "professor responding to a student about a paper deadline"
+      },
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "library-reserve-book-delay",
+        "requiredConcepts": [
+          "reserved textbook delayed past pickup date"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a student asking a librarian why a reserved textbook has not arrived",
+        "speakerRole": "campus library staff member explaining a delayed book reservation"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "late-arrival-performance-review",
+        "requiredConcepts": [
+          "one late arrival won't affect the annual review"
+        ],
+        "distinguishesFrom": [],
+        "topic": "an employee asking a manager whether a late arrival will affect a performance review",
+        "speakerRole": "office manager reassuring an employee about a single late arrival"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "refund-delay-billing-update",
+        "requiredConcepts": [
+          "refund delayed by a billing system update"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a customer asking a company representative about a delayed refund",
+        "speakerRole": "customer service employee explaining a refund processing delay"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "block-party-permit-notice",
+        "requiredConcepts": [
+          "block party permit requires two weeks advance notice"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a resident asking a city clerk about a permit for a neighborhood block party",
+        "speakerRole": "municipal clerk explaining block party permit requirements"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "cleanup-shift-checkin-table",
+        "requiredConcepts": [
+          "volunteers check in at a table before a cleanup shift"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a volunteer asking a coordinator where to report for a neighborhood cleanup shift",
+        "speakerRole": "civic volunteer coordinator directing a new volunteer to a check-in table"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "sample-refrigeration-requirement",
+        "requiredConcepts": [
+          "sample degrades quickly outside refrigeration"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a lab assistant asking a technician why an experiment sample must be refrigerated",
+        "speakerRole": "laboratory technician explaining a temperature requirement for a sample"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "wetland-trail-habitat-closure",
+        "requiredConcepts": [
+          "trail closed to protect a nesting habitat area"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a park ranger explaining to a visitor why a wetland habitat trail is temporarily closed",
+        "speakerRole": "park ranger describing a habitat trail closure"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "podcast-episode-late-release",
+        "requiredConcepts": [
+          "episode delayed by a software editing problem"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a listener asking a podcast host why a new episode was posted late",
+        "speakerRole": "podcast host explaining a delayed episode release"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "app-online-payment-failure",
+        "requiredConcepts": [
+          "online payment fails due to an outdated app version"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a user asking a technician why a mobile app will not accept an online payment",
+        "speakerRole": "software support technician troubleshooting an online payment error"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "museum-gallery-wing-closure",
+        "requiredConcepts": [
+          "gallery wing closed for a new art installation"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a visitor asking a museum guide why a gallery wing is closed",
+        "speakerRole": "museum guide explaining a temporary gallery closure"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "rehearsal-room-theater-change",
+        "requiredConcepts": [
+          "rehearsal moved for a festival event in the theater"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a performer asking a theater manager why a rehearsal was moved to a different room",
+        "speakerRole": "theater staff member explaining a rehearsal room change"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "clinic-appointment-reschedule-reason",
+        "requiredConcepts": [
+          "appointment moved because the specialist is unavailable"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a patient asking a nurse why a clinic appointment was rescheduled",
+        "speakerRole": "clinic nurse explaining an appointment reschedule"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "exercise-soreness-reassurance",
+        "requiredConcepts": [
+          "mild soreness after exercise is normal but sharp pain is not"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a gym member asking a trainer whether a sore muscle from exercise is normal",
+        "speakerRole": "fitness trainer reassuring a member about post-exercise soreness"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "train-departure-signal-delay",
+        "requiredConcepts": [
+          "train delayed by a signal problem on the route"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a passenger asking a station agent about a delayed train departure",
+        "speakerRole": "train station agent explaining a delayed departure"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "hotel-reservation-missing-booking",
+        "requiredConcepts": [
+          "reservation was filed under the wrong booking date"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a guest asking a hotel clerk about a missing reservation",
+        "speakerRole": "hotel front desk clerk resolving a missing reservation"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "heritage-building-restoration-origin",
+        "requiredConcepts": [
+          "restoration funded by a regional heritage grant"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a visitor asking a heritage guide about the origin of a building's restoration",
+        "speakerRole": "heritage site guide explaining a building's restoration history"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "town-square-renaming-reform",
+        "requiredConcepts": [
+          "square renamed after a local reform movement"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a visitor asking a heritage guide why a historic town square was renamed decades ago",
+        "speakerRole": "heritage guide explaining why a town square was renamed"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "roommate-refrigerator-unplugged-repair",
+        "requiredConcepts": [
+          "refrigerator unplugged so a technician could fix a shelf"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a roommate asking why the shared refrigerator was unplugged overnight",
+        "speakerRole": "roommate explaining that the refrigerator was unplugged for a repair"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "driveway-blocked-delivery-truck",
+        "requiredConcepts": [
+          "driveway blocked because of a scheduled furniture drop-off"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a friend asking why a shared driveway was blocked by a delivery truck all morning",
+        "speakerRole": "friend explaining that a delivery truck blocked the driveway during a scheduled drop-off"
+      }
+    ],
+    "conversations": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "research-proposal-office-hours-narrowing",
+        "requiredConcepts": [
+          "research proposal needs a narrower focus",
+          "professor suggests one additional course reading",
+          "student worried about the upcoming deadline"
+        ],
+        "distinguishesFrom": [],
+        "setting": "a professor's office during posted office hours",
+        "speakerRoles": [
+          "professor",
+          "student seeking feedback on a research proposal"
+        ]
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "shift-swap-schedule-confirmation",
+        "requiredConcepts": [
+          "employee needs to swap a weekend shift",
+          "manager checks whether another employee can cover",
+          "new schedule must be confirmed before the weekend"
+        ],
+        "distinguishesFrom": [],
+        "setting": "a small company's break room during a shift change",
+        "speakerRoles": [
+          "office manager",
+          "employee requesting a schedule swap"
+        ]
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "lab-sample-labeling-temperature-log",
+        "requiredConcepts": [
+          "experiment requires the samples kept at a stable temperature",
+          "assistant forgot to log an early measurement",
+          "supervisor sets a new labeling system for future samples"
+        ],
+        "distinguishesFrom": [],
+        "setting": "a research laboratory before an afternoon experiment",
+        "speakerRoles": [
+          "laboratory supervisor",
+          "research assistant preparing samples"
+        ]
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "podcast-script-revision-software-glitch",
+        "requiredConcepts": [
+          "guest wants to change a section of the digital script",
+          "producer explains a software glitch delayed recording",
+          "both agree to test the microphone before starting"
+        ],
+        "distinguishesFrom": [],
+        "setting": "a local media studio during a podcast recording session",
+        "speakerRoles": [
+          "podcast producer",
+          "guest reviewing a digital script before recording"
+        ]
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "ceramic-piece-crack-refiring-deadline",
+        "requiredConcepts": [
+          "piece cracked during an early firing stage",
+          "instructor offers to refire the piece next week",
+          "participant worried about missing a gallery display deadline"
+        ],
+        "distinguishesFrom": [],
+        "setting": "a museum workshop room after a ceramic class",
+        "speakerRoles": [
+          "ceramic instructor",
+          "workshop participant asking about a cracked piece"
+        ]
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "missed-connection-ticket-reissue",
+        "requiredConcepts": [
+          "traveler missed a connecting train due to a late arrival",
+          "agent offers a seat on the next available route",
+          "traveler asks if the original ticket price still applies"
+        ],
+        "distinguishesFrom": [],
+        "setting": "a train station ticket counter",
+        "speakerRoles": [
+          "ticket agent",
+          "traveler asking about a missed connection"
+        ]
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "park-bench-proposal-municipal-approval",
+        "requiredConcepts": [
+          "resident proposes adding a bench near the community garden",
+          "coordinator explains the municipal approval process",
+          "both discuss where volunteers could help install it"
+        ],
+        "distinguishesFrom": [],
+        "setting": "a neighborhood association meeting room",
+        "speakerRoles": [
+          "civic association coordinator",
+          "resident proposing a new park bench"
+        ]
+      }
+    ],
+    "announcements": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "library-exam-week-extended-hours",
+        "requiredConcepts": [
+          "library extends closing hours during exam week",
+          "a quiet study floor is reserved for silent work",
+          "students must show a valid ID after ten at night"
+        ],
+        "distinguishesFrom": [],
+        "setting": "a campus-wide announcement about library hours during exam week",
+        "speakerRole": "university library administrator announcing extended hours"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "remote-work-policy-trial-period",
+        "requiredConcepts": [
+          "employees may work from home two days a week",
+          "manager requests a weekly attendance report",
+          "policy takes effect after a short trial period"
+        ],
+        "distinguishesFrom": [],
+        "setting": "a staff meeting announcement at a small company",
+        "speakerRole": "office manager announcing a new remote-work policy"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "wetland-habitat-survey-announcement",
+        "requiredConcepts": [
+          "researchers will survey a wetland habitat next month",
+          "the survey measures changes in local biodiversity",
+          "results will guide future conservation efforts"
+        ],
+        "distinguishesFrom": [],
+        "setting": "a local radio segment announcing a wildlife habitat survey",
+        "speakerRole": "environmental researcher announcing an upcoming habitat survey"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "podcast-offline-download-feature-launch",
+        "requiredConcepts": [
+          "listeners can now download episodes for offline listening",
+          "the software update also fixes a login bug",
+          "the feature launches with the next scheduled update"
+        ],
+        "distinguishesFrom": [],
+        "setting": "an online update posted for a podcast platform's listeners",
+        "speakerRole": "podcast platform administrator announcing a new digital feature"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "theater-show-delay-lobby-display",
+        "requiredConcepts": [
+          "the evening show is delayed by twenty minutes",
+          "the gallery lobby display opens early for ticket holders",
+          "latecomers must wait for a break between scenes"
+        ],
+        "distinguishesFrom": [],
+        "setting": "an opening-night announcement at a local theater",
+        "speakerRole": "theater house manager announcing a schedule change for a play"
+      }
+    ],
+    "academicTalks": [
+      {
+        "domain": "science-environment",
+        "noveltyKey": "coral-reef-heat-tolerance-adaptation",
+        "requiredConcepts": [
+          "rising water temperature stresses coral habitat",
+          "some coral colonies show early signs of heat tolerance",
+          "researchers track biodiversity loss across affected reefs"
+        ],
+        "distinguishesFrom": [],
+        "discipline": "biology",
+        "speakerRole": "biology lecturer explaining coral reef temperature adaptation"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "regional-music-festival-origin-lecture",
+        "requiredConcepts": [
+          "festival began as a gathering of traveling musicians",
+          "museum archive preserves early performance recordings",
+          "modern performers blend old style with festival stages"
+        ],
+        "distinguishesFrom": [],
+        "discipline": "music history",
+        "speakerRole": "music history lecturer discussing the origins of a regional festival tradition"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "early-labor-reform-movement-lecture",
+        "requiredConcepts": [
+          "factory workers organized after a series of long shifts",
+          "a new law limited daily working hours",
+          "the reform movement later influenced national labor policy"
+        ],
+        "distinguishesFrom": [],
+        "discipline": "history",
+        "speakerRole": "historian lecturing on an early labor reform movement"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "customer-feedback-system-business-lecture",
+        "requiredConcepts": [
+          "a company adds a short survey after every customer purchase",
+          "managers review survey trends every month",
+          "decisions about new products depend on customer feedback"
+        ],
+        "distinguishesFrom": [],
+        "discipline": "business management",
+        "speakerRole": "business lecturer explaining how a company's customer feedback system shapes decisions"
+      }
+    ]
+  }
+}

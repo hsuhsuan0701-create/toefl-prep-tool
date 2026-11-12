@@ -1,0 +1,226 @@
+{
+  "id": "spk-4fe1e9b2",
+  "source": "generated",
+  "createdAt": "2026-08-24T17:26:23.702Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Bindery Workshop Setup",
+    "scenarioDescription": "It's early morning in the bindery workshop of a small print shop, and a big order rush is about to start. Listen to the shop's senior bindery technician walk her new part-time employee through the morning setup, and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-4fe1e9b2/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-4fe1e9b2.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Bindery Workshop Setup. It's early morning in the bindery workshop of a small print shop, and a big order rush is about to start. Listen to the shop's senior bindery technician walk her new part-time employee through the morning setup, and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Let's start with the paper trimmer today.\n- The blade guard and the safety switch need checking.\n- We test the staple alignment on a scrap sheet first.\n- The stitcher folds the pages, and then it staples the spine.\n- Before you package it, you match the job sheet to each order.\n- Once the job sheet matches the order, it gets set aside for packaging.\n- Orders bound and stacked near the counter get shrink-wrapped and sealed for pickup.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Let's start with the paper trimmer today.",
+        "audio": "stimuli/spk-4fe1e9b2/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.063,
+          "y": 0.301,
+          "w": 0.231,
+          "h": 0.244
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The blade guard and the safety switch need checking.",
+        "audio": "stimuli/spk-4fe1e9b2/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "We test the staple alignment on a scrap sheet first.",
+        "audio": "stimuli/spk-4fe1e9b2/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The stitcher folds the pages, and then it staples the spine.",
+        "audio": "stimuli/spk-4fe1e9b2/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.575,
+          "y": 0.15,
+          "w": 0.261,
+          "h": 0.222
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Before you package it, you match the job sheet to each order.",
+        "audio": "stimuli/spk-4fe1e9b2/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.537,
+          "y": 0.361,
+          "w": 0.089,
+          "h": 0.071
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Once the job sheet matches the order, it gets set aside for packaging.",
+        "audio": "stimuli/spk-4fe1e9b2/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.229,
+          "y": 0.536,
+          "w": 0.117,
+          "h": 0.112
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Orders bound and stacked near the counter get shrink-wrapped and sealed for pickup.",
+        "audio": "stimuli/spk-4fe1e9b2/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.749,
+          "y": 0.56,
+          "w": 0.154,
+          "h": 0.144
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Home Composting Habits",
+    "intro": "Thank you for speaking with me today. I'm calling on behalf of a local group researching ways households can reduce waste and protect the environment. Do you have a few minutes to talk about how you compost food scraps at home?",
+    "introAudio": "stimuli/spk-4fe1e9b2/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, do you currently compost your food scraps at home? Where do you keep the bin or pile, and about how often do you turn it?",
+        "audio": "stimuli/spk-4fe1e9b2/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Good, thanks. Can you walk me through a specific time recently when you composted something, like banana peels or coffee grounds, instead of throwing it in the trash?",
+        "audio": "stimuli/spk-4fe1e9b2/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "That's helpful. Some people say composting is easy once you get into the habit, while others find it inconvenient or worry about smells and pests near the bin. Which is closer to your own experience, and why?",
+        "audio": "stimuli/spk-4fe1e9b2/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "One last question. Some people think every household should be required to compost food waste to help the environment, while others believe it should stay a personal choice. What's your view, and why?",
+        "audio": "stimuli/spk-4fe1e9b2/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 212.2,
+      "targetWpm": 184,
+      "minWpm": 156,
+      "maxWpm": 209
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "workplace-business",
+      "noveltyKey": "print-shop-bindery-workshop-orientation",
+      "requiredConcepts": [
+        "trimmer blade guard checked before power-on",
+        "saddle-stitch staple alignment tested on scrap paper",
+        "job sheet matched to each bindery order before packaging",
+        "finished order shrink-wrapped and sealed for pickup"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-7a8b422f",
+          "reason": "Both are workplace onboarding orientations, but that one is a hardware store's paint-mixing counter before a sale; this one is a print shop's bindery workshop before an order rush — different trade, tools, and task sequence."
+        },
+        {
+          "setId": "spk-c68f245c",
+          "reason": "Both are pre-open orientations at small businesses, but that one is a bakery kitchen's closing routine; this one is a print shop bindery's run-up to opening — an unrelated trade at a different point in the day."
+        }
+      ],
+      "setting": "the bindery workshop of a small print shop, just before the shop opens for a same-day order rush",
+      "speakerRole": "the shop's senior bindery technician training a newly hired part-time employee",
+      "communicativePurpose": "Orient the new employee through each step of the bindery workshop in the correct order — trimmer check, stapling, packaging — so orders are bound and shipped correctly before the shop opens."
+    },
+    "interview": {
+      "domain": "science-environment",
+      "noveltyKey": "home-food-waste-composting-habit",
+      "requiredConcepts": [
+        "kitchen scrap bin kept under the sink",
+        "compost pile turned once a week",
+        "banana peels and coffee grounds set aside",
+        "smell or pest concern near the bin"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-d340295a",
+          "reason": "Both are home sustainability habits, but that one asks about collecting and reusing rainwater; this one asks about composting food scraps — different resource and routine."
+        },
+        {
+          "setId": "spk-ee3629c8",
+          "reason": "Both are household environmental habits, but that one covers reducing electricity and appliance energy use; this one covers diverting food waste from the trash through composting."
+        },
+        {
+          "setId": "spk-dd6dcb3d",
+          "reason": "Both are casual home environment habits reached by an unannounced call, but that one is about watching backyard wildlife; this one is a hands-on waste-management routine with no observation component."
+        }
+      ],
+      "topic": "How the test taker composts food waste at home",
+      "premise": "A residential waste-reduction research group focused on protecting the local environment makes a brief unannounced phone call about how people compost food waste at home.",
+      "questionArc": [
+        "The caller introduces a home waste-reduction survey and confirms the test taker has a few minutes to talk.",
+        "Asks whether the test taker currently composts food scraps at home and where the compost bin or pile is kept.",
+        "Asks for a specific recent example of food waste the test taker composted instead of throwing away.",
+        "Asks what, if anything, makes composting difficult or inconvenient in the test taker's daily routine."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "australian",
+      "voice": "Sadaltager",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Umbriel",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

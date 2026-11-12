@@ -1,0 +1,168 @@
+{
+  "id": "spk-3813889d",
+  "source": "generated",
+  "createdAt": "2026-08-23T14:04:06.270Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Poll Worker Orientation",
+    "scenarioDescription": "You are a newly hired poll worker at the city election office, meeting the night before the municipal election. Listen to the lead trainer walk you through the voting station setup and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-3813889d/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-3813889d.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Poll Worker Orientation. You are a newly hired poll worker at the city election office, meeting the night before the municipal election. Listen to the lead trainer walk you through the voting station setup and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Let's set up each voting station carefully.\n- Check the voter roster and the ballot count together.\n- Set up the privacy shield and position it at each booth.\n- Keep the provisional ballots separate, but log each one immediately.\n- Record the ballot box seal number before you open the doors tomorrow.\n- After each roster check, place the privacy shield and greet the next voter.\n- Any voter whose ballot count doesn't match the roster needs a supervisor's help.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Let's set up each voting station carefully.",
+        "audio": "stimuli/spk-3813889d/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Check the voter roster and the ballot count together.",
+        "audio": "stimuli/spk-3813889d/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Set up the privacy shield and position it at each booth.",
+        "audio": "stimuli/spk-3813889d/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Keep the provisional ballots separate, but log each one immediately.",
+        "audio": "stimuli/spk-3813889d/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Record the ballot box seal number before you open the doors tomorrow.",
+        "audio": "stimuli/spk-3813889d/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "After each roster check, place the privacy shield and greet the next voter.",
+        "audio": "stimuli/spk-3813889d/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Any voter whose ballot count doesn't match the roster needs a supervisor's help.",
+        "audio": "stimuli/spk-3813889d/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Handling a Difficult Customer Complaint",
+    "intro": "Hi, thank you so much for taking a few minutes to speak with me. I'm a workplace training researcher, and I'm calling to ask a few quick questions about how you handle problems with customers during your shifts. There's no need to prepare anything — just answer naturally.",
+    "introAudio": "stimuli/spk-3813889d/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, what type of customer complaint do you most often handle at your job, and what's usually the first thing you do when it comes up?",
+        "audio": "stimuli/spk-3813889d/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thanks for that. Now, can you tell me about one specific complaint that was especially hard to resolve? What happened, and how did it turn out?",
+        "audio": "stimuli/spk-3813889d/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK, I'd like to ask your opinion next. Some people believe employees should be allowed to offer a refund on the spot without getting manager approval first, while others think every refund should require a manager's sign-off. Which view do you agree with, and why?",
+        "audio": "stimuli/spk-3813889d/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. For my last question, more generally, how do you think companies should train their employees to stay calm and handle upset customers well?",
+        "audio": "stimuli/spk-3813889d/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "community-civic",
+      "noveltyKey": "municipal-election-poll-worker-orientation",
+      "requiredConcepts": [
+        "voter roster checked against printed ballot count",
+        "privacy shield positioned at each voting booth",
+        "provisional ballot envelope kept in separate bin",
+        "ballot box seal number recorded before doors open"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-fd38f94c",
+          "reason": "that set is a general community center volunteer intake orientation; this is election-day poll worker setup involving ballots, voting booths, and a sealed ballot box"
+        }
+      ],
+      "setting": "a city election office, the evening before a municipal election, as newly hired poll workers get walked through each voting station before polls open",
+      "speakerRole": "the election office's lead poll worker trainer",
+      "communicativePurpose": "orient newly hired poll workers through each voting station setup step so the polling place opens smoothly without a supervisor's guidance"
+    },
+    "interview": {
+      "domain": "workplace-business",
+      "noveltyKey": "customer-complaint-handling-part-time-job",
+      "requiredConcepts": [
+        "customer complaint handled without manager involved",
+        "refund offered on the spot versus needing approval",
+        "one especially difficult complaint remembered clearly",
+        "training employees to stay calm under pressure"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-e0f4f676",
+          "reason": "that set covers ordering duties at the start of a shift; this covers resolving a customer complaint and refund authority, a different skill and scenario"
+        }
+      ],
+      "topic": "handling a difficult customer complaint during a part-time job shift",
+      "premise": "a workplace training researcher makes a brief unannounced phone call to ask how the test taker responds when a customer complains during a shift at their job",
+      "questionArc": [
+        "ask which type of customer complaint the test taker most often handles at their job and what they usually do first",
+        "ask about one specific past complaint that was especially hard to resolve and what happened",
+        "ask whether employees should be allowed to offer a refund on the spot without manager approval, and why",
+        "ask for a broader recommendation on how companies should train employees to stay calm and handle upset customers"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Charon",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Achird",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

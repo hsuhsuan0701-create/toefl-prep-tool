@@ -1,0 +1,1254 @@
+[
+  {
+    "academicTalks": [
+      {
+        "domain": "science-environment",
+        "noveltyKey": "coral-bleaching-recovery-lecture",
+        "requiredConcepts": [
+          "coral polyps expel algae under heat stress",
+          "bleaching reversible within a few weeks",
+          "reef recovery depends on water temperature"
+        ],
+        "distinguishesFrom": [],
+        "discipline": "life science",
+        "speakerRole": "biology lecturer"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "energy-loss-insulation-lecture",
+        "requiredConcepts": [
+          "kinetic energy converts to heat through friction",
+          "insulation reduces energy loss in buildings",
+          "efficiency measured before and after upgrades"
+        ],
+        "distinguishesFrom": [],
+        "discipline": "physical science",
+        "speakerRole": "energy systems teaching assistant"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "four-day-workweek-trial-lecture",
+        "requiredConcepts": [
+          "four-day workweek trial cut overtime costs",
+          "productivity measured through completed projects",
+          "employee turnover dropped after the trial"
+        ],
+        "distinguishesFrom": [],
+        "discipline": "business and economics",
+        "speakerRole": "business economics lecturer"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "printing-press-literacy-lecture",
+        "requiredConcepts": [
+          "printing press lowered the cost of pamphlets",
+          "literacy rates rose across three decades",
+          "local presses multiplied after patents expired"
+        ],
+        "distinguishesFrom": [],
+        "discipline": "history",
+        "speakerRole": "history lecturer"
+      }
+    ],
+    "announcements": [
+      {
+        "domain": "technology-media",
+        "noveltyKey": "software-launch-event-announcement",
+        "requiredConcepts": [
+          "new update rolling out this weekend",
+          "free trial extended for early registrants",
+          "backup your files before installing"
+        ],
+        "distinguishesFrom": [],
+        "setting": "software company product launch event",
+        "speakerRole": "software company spokesperson"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "community-center-yoga-cancellation",
+        "requiredConcepts": [
+          "evening yoga class canceled tonight",
+          "new sign-up sheet posted at the front desk"
+        ],
+        "distinguishesFrom": [],
+        "setting": "municipal community center",
+        "speakerRole": "community center coordinator"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "art-festival-stage-relocation",
+        "requiredConcepts": [
+          "main stage performance moved indoors",
+          "food vendor area closes at eight"
+        ],
+        "distinguishesFrom": [],
+        "setting": "local art festival grounds",
+        "speakerRole": "festival organizer"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "bus-terminal-platform-closure",
+        "requiredConcepts": [
+          "platform three closed for repairs",
+          "replacement shuttle route announced"
+        ],
+        "distinguishesFrom": [],
+        "setting": "regional bus terminal",
+        "speakerRole": "bus terminal announcer"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "heritage-restoration-tour-resume",
+        "requiredConcepts": [
+          "scaffolding removed next month",
+          "walking tours resume in the spring"
+        ],
+        "distinguishesFrom": [],
+        "setting": "heritage building restoration site",
+        "speakerRole": "heritage restoration site supervisor"
+      }
+    ],
+    "conversations": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "dining-hall-meal-plan-balance",
+        "requiredConcepts": [
+          "meal plan balance running low",
+          "new salad bar station added this week"
+        ],
+        "distinguishesFrom": [],
+        "setting": "campus dining hall",
+        "speakerRoles": [
+          "student",
+          "dining hall staff member"
+        ]
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "train-station-delay-refund",
+        "requiredConcepts": [
+          "afternoon train delayed by twenty minutes",
+          "refund policy for a missed connection"
+        ],
+        "distinguishesFrom": [],
+        "setting": "train station ticket counter",
+        "speakerRoles": [
+          "passenger",
+          "train station clerk"
+        ]
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "new-hire-office-badge-access",
+        "requiredConcepts": [
+          "new hire's parking pass not yet active",
+          "badge access starts next Monday"
+        ],
+        "distinguishesFrom": [],
+        "setting": "small business office",
+        "speakerRoles": [
+          "new employee",
+          "office manager"
+        ]
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "theater-lobby-coat-check-tag",
+        "requiredConcepts": [
+          "intermission running longer than usual",
+          "misplaced coat check tag from intermission"
+        ],
+        "distinguishesFrom": [],
+        "setting": "downtown theater lobby",
+        "speakerRoles": [
+          "theater patron",
+          "theater usher"
+        ]
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "clinic-appointment-slot-swap",
+        "requiredConcepts": [
+          "earlier appointment slot opened up",
+          "stress related sleep issue follow-up"
+        ],
+        "distinguishesFrom": [],
+        "setting": "health clinic waiting room",
+        "speakerRoles": [
+          "patient",
+          "clinic nurse"
+        ]
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "lab-storage-sample-mislabeling",
+        "requiredConcepts": [
+          "mislabeled sample containers from last week",
+          "backup generator during a power outage"
+        ],
+        "distinguishesFrom": [],
+        "setting": "biology laboratory storage room",
+        "speakerRoles": [
+          "research assistant",
+          "laboratory technician"
+        ]
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "heritage-archive-letter-boxes",
+        "requiredConcepts": [
+          "boxes of unsorted letters from the 1960s",
+          "original signatures needing preservation"
+        ],
+        "distinguishesFrom": [],
+        "setting": "local heritage archive reading room",
+        "speakerRoles": [
+          "archive visitor",
+          "heritage archivist"
+        ]
+      }
+    ],
+    "kind": "listening",
+    "listenChoose": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "library-overdue-book-fine",
+        "requiredConcepts": [
+          "book three days overdue",
+          "fine waived if returned today"
+        ],
+        "distinguishesFrom": [],
+        "topic": "returning an overdue library book",
+        "speakerRole": "campus librarian"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "manager-time-off-request",
+        "requiredConcepts": [
+          "Friday afternoon off for a dentist visit"
+        ],
+        "distinguishesFrom": [],
+        "topic": "requesting time off from a manager",
+        "speakerRole": "office manager"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "neighborhood-cleanup-signup",
+        "requiredConcepts": [
+          "Saturday morning cleanup near the park entrance"
+        ],
+        "distinguishesFrom": [],
+        "topic": "signing up for a neighborhood cleanup",
+        "speakerRole": "volunteer coordinator"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "lab-goggles-borrow",
+        "requiredConcepts": [
+          "goggles needed for the acid dilution step"
+        ],
+        "distinguishesFrom": [],
+        "topic": "borrowing lab safety goggles",
+        "speakerRole": "laboratory assistant"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "laptop-screen-frozen-repair",
+        "requiredConcepts": [
+          "screen frozen since this morning's update"
+        ],
+        "distinguishesFrom": [],
+        "topic": "fixing a frozen laptop screen",
+        "speakerRole": "device repair technician"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "gallery-opening-reservation",
+        "requiredConcepts": [
+          "opening night spot for the printmaking show"
+        ],
+        "distinguishesFrom": [],
+        "topic": "reserving a spot for gallery opening",
+        "speakerRole": "gallery attendant"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "clinic-appointment-reschedule",
+        "requiredConcepts": [
+          "Tuesday visit moved to next Thursday"
+        ],
+        "distinguishesFrom": [],
+        "topic": "rescheduling a clinic appointment",
+        "speakerRole": "clinic receptionist"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "bus-seat-change-request",
+        "requiredConcepts": [
+          "aisle seat swapped for a window seat"
+        ],
+        "distinguishesFrom": [],
+        "topic": "changing a bus seat request",
+        "speakerRole": "bus driver"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "heritage-photo-donation",
+        "requiredConcepts": [
+          "grandmother's photo from the 1950s festival"
+        ],
+        "distinguishesFrom": [],
+        "topic": "donating an old family photograph to a heritage archive",
+        "speakerRole": "heritage archivist"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "borrow-umbrella-from-friend",
+        "requiredConcepts": [
+          "umbrella needed before the evening rain"
+        ],
+        "distinguishesFrom": [],
+        "topic": "borrowing a spare umbrella from a friend",
+        "speakerRole": "close friend"
+      },
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "course-deadline-extension",
+        "requiredConcepts": [
+          "deadline pushed two extra days"
+        ],
+        "distinguishesFrom": [],
+        "topic": "extending a course project deadline",
+        "speakerRole": "course instructor"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "invoice-number-inquiry",
+        "requiredConcepts": [
+          "invoice number missing from the email"
+        ],
+        "distinguishesFrom": [],
+        "topic": "asking about a client's invoice",
+        "speakerRole": "customer service employee"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "public-bench-repair-report",
+        "requiredConcepts": [
+          "bench slats cracked near the fountain"
+        ],
+        "distinguishesFrom": [],
+        "topic": "reporting a broken public bench",
+        "speakerRole": "city parks staff"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "lab-experiment-results-check",
+        "requiredConcepts": [
+          "pH readings ready an hour early"
+        ],
+        "distinguishesFrom": [],
+        "topic": "checking today's laboratory experiment results",
+        "speakerRole": "environment research assistant"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "podcast-recording-static-issue",
+        "requiredConcepts": [
+          "static noise during the interview segment"
+        ],
+        "distinguishesFrom": [],
+        "topic": "explaining a podcast recording issue",
+        "speakerRole": "podcast producer"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "ceramic-workshop-registration-extend",
+        "requiredConcepts": [
+          "glazing session added next weekend"
+        ],
+        "distinguishesFrom": [],
+        "topic": "extending a ceramic workshop registration",
+        "speakerRole": "ceramic studio staff"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "nutrition-session-reschedule",
+        "requiredConcepts": [
+          "session moved earlier before the exam"
+        ],
+        "distinguishesFrom": [],
+        "topic": "adjusting a nutrition counseling session",
+        "speakerRole": "nutrition counselor"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "hotel-checkout-time-change",
+        "requiredConcepts": [
+          "late checkout until two in the afternoon"
+        ],
+        "distinguishesFrom": [],
+        "topic": "changing a hotel checkout time",
+        "speakerRole": "hotel front-desk clerk"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "oral-history-recording-session",
+        "requiredConcepts": [
+          "grandfather's recording from the factory strike"
+        ],
+        "distinguishesFrom": [],
+        "topic": "discussing an oral history recording session",
+        "speakerRole": "history project assistant"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "dinner-plan-decision",
+        "requiredConcepts": [
+          "pasta instead of leftover soup"
+        ],
+        "distinguishesFrom": [],
+        "topic": "deciding what to cook for dinner",
+        "speakerRole": "roommate"
+      }
+    ],
+    "version": "cross-set-diversity-v1"
+  },
+  {
+    "academicTalks": [
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "talk-history-trade-routes",
+        "requiredConcepts": [
+          "trade routes shifted after new roads built",
+          "local guild records reveal price changes",
+          "oral histories preserved through recorded interviews"
+        ],
+        "distinguishesFrom": [],
+        "discipline": "history",
+        "speakerRole": "history lecturer"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "talk-biology-coral-reef",
+        "requiredConcepts": [
+          "coral polyps build reef structures slowly",
+          "symbiotic algae provide reef color",
+          "warmer water stresses coral bleaching threshold"
+        ],
+        "distinguishesFrom": [],
+        "discipline": "life science",
+        "speakerRole": "biology guest lecturer"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "talk-physical-science-energy-systems",
+        "requiredConcepts": [
+          "kinetic energy converts during turbine spin",
+          "friction reduces overall energy efficiency",
+          "stored energy released through controlled reaction"
+        ],
+        "distinguishesFrom": [],
+        "discipline": "physical science",
+        "speakerRole": "energy systems research fellow"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "talk-business-economics-flex-scheduling",
+        "requiredConcepts": [
+          "flexible scheduling reduces employee turnover",
+          "productivity measured through output per hour",
+          "remote work shifts office space demand"
+        ],
+        "distinguishesFrom": [],
+        "discipline": "business and economics",
+        "speakerRole": "business economics analyst"
+      }
+    ],
+    "announcements": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "ann-campus-library-hours",
+        "requiredConcepts": [
+          "extended hours during exam week",
+          "quiet study floor reservations open",
+          "overdue fine waiver this month"
+        ],
+        "distinguishesFrom": [],
+        "setting": "campus library",
+        "speakerRole": "library staff announcer"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "ann-public-meeting-hall-update",
+        "requiredConcepts": [
+          "public comment period extended",
+          "volunteer sign-up table added",
+          "meeting moved to larger room"
+        ],
+        "distinguishesFrom": [],
+        "setting": "neighborhood public meeting hall",
+        "speakerRole": "municipal outreach coordinator"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "ann-digital-newsroom-update",
+        "requiredConcepts": [
+          "new digital archive launched today",
+          "online submission deadline moved up",
+          "podcast segment schedule changed"
+        ],
+        "distinguishesFrom": [],
+        "setting": "digital newsroom",
+        "speakerRole": "newsroom producer"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "ann-wellness-clinic-lobby-notice",
+        "requiredConcepts": [
+          "walk-in vaccination hours added",
+          "clinic closing early for training",
+          "new patient forms updated online"
+        ],
+        "distinguishesFrom": [],
+        "setting": "wellness clinic lobby",
+        "speakerRole": "clinic administrator"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "ann-bus-terminal-route-detour",
+        "requiredConcepts": [
+          "route detour due to construction",
+          "earlier departure added this week",
+          "ticket counter closing ten minutes early"
+        ],
+        "distinguishesFrom": [],
+        "setting": "bus terminal",
+        "speakerRole": "transit announcer"
+      }
+    ],
+    "conversations": [
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "conv-office-supply-inventory",
+        "requiredConcepts": [
+          "monthly toner order confirmed",
+          "broken stapler replacement requested",
+          "inventory count due friday"
+        ],
+        "distinguishesFrom": [],
+        "setting": "office supply room during inventory check",
+        "speakerRoles": [
+          "office manager",
+          "new employee"
+        ]
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "conv-community-center-volunteer-signup",
+        "requiredConcepts": [
+          "weekend shift availability discussed",
+          "background check requirement mentioned",
+          "orientation session scheduled"
+        ],
+        "distinguishesFrom": [],
+        "setting": "community center front desk during volunteer sign-up",
+        "speakerRoles": [
+          "community center volunteer coordinator",
+          "prospective volunteer"
+        ]
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "conv-podcast-studio-recording-break",
+        "requiredConcepts": [
+          "microphone levels adjusted before recording",
+          "guest segment moved earlier",
+          "episode release date confirmed"
+        ],
+        "distinguishesFrom": [],
+        "setting": "podcast production studio during a recording break",
+        "speakerRoles": [
+          "podcast host",
+          "sound engineer"
+        ]
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "conv-health-clinic-waiting-room",
+        "requiredConcepts": [
+          "appointment running twenty minutes late",
+          "insurance card needed at check-in",
+          "follow-up visit scheduled"
+        ],
+        "distinguishesFrom": [],
+        "setting": "health clinic waiting room",
+        "speakerRoles": [
+          "clinic receptionist",
+          "patient"
+        ]
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "conv-train-station-ticket-counter",
+        "requiredConcepts": [
+          "cheaper off-peak ticket suggested",
+          "platform change announced",
+          "refund policy explained"
+        ],
+        "distinguishesFrom": [],
+        "setting": "train station ticket counter",
+        "speakerRoles": [
+          "ticket agent",
+          "commuter"
+        ]
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "conv-museum-gift-shop-closing",
+        "requiredConcepts": [
+          "postcards discounted before closing",
+          "special exhibit catalog sold out",
+          "membership discount mentioned"
+        ],
+        "distinguishesFrom": [],
+        "setting": "museum gift shop near closing time",
+        "speakerRoles": [
+          "museum shop clerk",
+          "visiting tourist"
+        ]
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "conv-environmental-lab-equipment-setup",
+        "requiredConcepts": [
+          "water samples logged before storage",
+          "equipment calibration checked twice",
+          "results shared with research team"
+        ],
+        "distinguishesFrom": [],
+        "setting": "environmental research laboratory during equipment setup",
+        "speakerRoles": [
+          "laboratory technician",
+          "research assistant"
+        ]
+      }
+    ],
+    "kind": "listening",
+    "listenChoose": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "lcr-overdue-library-book-renewal",
+        "requiredConcepts": [
+          "overdue library book renewal denied"
+        ],
+        "distinguishesFrom": [],
+        "topic": "returning an overdue library book",
+        "speakerRole": "campus librarian"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "lcr-neighbor-borrows-ladder",
+        "requiredConcepts": [
+          "ladder borrowed for weekend gutter cleaning"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a neighbor asking to borrow a ladder",
+        "speakerRole": "next-door neighbor"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "lcr-missed-last-shuttle-bus",
+        "requiredConcepts": [
+          "shuttle already left five minutes early"
+        ],
+        "distinguishesFrom": [],
+        "topic": "missing the last shuttle bus",
+        "speakerRole": "shuttle bus driver"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "lcr-physical-therapy-reschedule",
+        "requiredConcepts": [
+          "physical therapy session moved to friday"
+        ],
+        "distinguishesFrom": [],
+        "topic": "rescheduling a physical therapy exercise session",
+        "speakerRole": "physical therapist"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "lcr-ceramics-workshop-postponed",
+        "requiredConcepts": [
+          "ceramics workshop postponed one week"
+        ],
+        "distinguishesFrom": [],
+        "topic": "postponing a ceramics workshop",
+        "speakerRole": "ceramics workshop instructor"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "lcr-lab-goggles-forgotten",
+        "requiredConcepts": [
+          "safety goggles missing before laboratory experiment"
+        ],
+        "distinguishesFrom": [],
+        "topic": "forgetting safety goggles before a laboratory experiment",
+        "speakerRole": "laboratory partner"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "lcr-taxi-fare-split-roommates",
+        "requiredConcepts": [
+          "taxi fare split unevenly among roommates"
+        ],
+        "distinguishesFrom": [],
+        "topic": "splitting a taxi fare unevenly",
+        "speakerRole": "roommate"
+      },
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "lcr-course-section-switch",
+        "requiredConcepts": [
+          "course section full switch to another"
+        ],
+        "distinguishesFrom": [],
+        "topic": "switching to a different course section",
+        "speakerRole": "academic advisor"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "lcr-letters-donated-heritage-archive",
+        "requiredConcepts": [
+          "handwritten letters donated to heritage archive"
+        ],
+        "distinguishesFrom": [],
+        "topic": "donating handwritten letters to a heritage archive",
+        "speakerRole": "heritage archive assistant"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "lcr-train-boarding-delay",
+        "requiredConcepts": [
+          "train boarding delayed twenty minutes"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a delayed train boarding announcement",
+        "speakerRole": "train station attendant"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "lcr-stress-workshop-earlier",
+        "requiredConcepts": [
+          "stress relief workshop moved earlier"
+        ],
+        "distinguishesFrom": [],
+        "topic": "moving a stress-relief workshop earlier",
+        "speakerRole": "stress management coach"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "lcr-climate-trip-reschedule",
+        "requiredConcepts": [
+          "climate data trip rescheduled for rain"
+        ],
+        "distinguishesFrom": [],
+        "topic": "rescheduling a climate data collection trip",
+        "speakerRole": "environmental science teaching assistant"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "lcr-apartment-viewing-canceled",
+        "requiredConcepts": [
+          "apartment viewing canceled last minute"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a canceled apartment viewing",
+        "speakerRole": "apartment building superintendent"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "lcr-gallery-opening-reschedule",
+        "requiredConcepts": [
+          "gallery opening pushed back a week"
+        ],
+        "distinguishesFrom": [],
+        "topic": "rescheduling a gallery opening",
+        "speakerRole": "gallery coordinator"
+      },
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "lcr-course-paper-deadline-extended",
+        "requiredConcepts": [
+          "course paper deadline extended three days"
+        ],
+        "distinguishesFrom": [],
+        "topic": "extending a course paper deadline",
+        "speakerRole": "course professor"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "lcr-historical-district-tour-postponed",
+        "requiredConcepts": [
+          "historical district walking tour postponed"
+        ],
+        "distinguishesFrom": [],
+        "topic": "postponing a walking tour of a historical district",
+        "speakerRole": "local history tour guide"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "lcr-hotel-room-upgrade",
+        "requiredConcepts": [
+          "hotel room upgrade offered at check-in"
+        ],
+        "distinguishesFrom": [],
+        "topic": "upgrading a hotel room",
+        "speakerRole": "hotel front desk clerk"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "lcr-umbrella-shared-downpour",
+        "requiredConcepts": [
+          "umbrella shared during sudden downpour"
+        ],
+        "distinguishesFrom": [],
+        "topic": "sharing an umbrella during a sudden downpour",
+        "speakerRole": "passerby"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "lcr-nutrition-consult-canceled",
+        "requiredConcepts": [
+          "nutrition consultation canceled this week"
+        ],
+        "distinguishesFrom": [],
+        "topic": "canceling a nutrition consultation",
+        "speakerRole": "clinic dietitian"
+      },
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "lcr-dorm-key-swap-students",
+        "requiredConcepts": [
+          "dormitory room keys swapped between students"
+        ],
+        "distinguishesFrom": [],
+        "topic": "swapping dormitory room keys",
+        "speakerRole": "student resident advisor"
+      }
+    ],
+    "version": "cross-set-diversity-v1"
+  },
+  {
+    "academicTalks": [
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "historical-reform-trade-patterns",
+        "requiredConcepts": [
+          "a historical reform reshaped regional trade patterns",
+          "merchants adapted to new tax policies overnight"
+        ],
+        "distinguishesFrom": [],
+        "discipline": "history",
+        "speakerRole": "visiting historian"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "coral-algae-symbiosis",
+        "requiredConcepts": [
+          "coral polyps host photosynthetic algae inside their tissue",
+          "algae supply energy the coral cannot produce alone",
+          "bleaching happens when coral expel algae under high heat"
+        ],
+        "distinguishesFrom": [],
+        "discipline": "life science",
+        "speakerRole": "biology teaching assistant"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "ice-skate-melting-friction",
+        "requiredConcepts": [
+          "thin layer of meltwater forms under skate blades",
+          "pressure and friction both lower the melting point",
+          "the water layer lets the blade glide smoothly"
+        ],
+        "distinguishesFrom": [],
+        "discipline": "physical science",
+        "speakerRole": "physics teaching assistant"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "plaza-seating-social-behavior",
+        "requiredConcepts": [
+          "shaded public benches keep people seated longer",
+          "noise from nearby traffic shortens visits",
+          "researchers tracked visitors across three plazas"
+        ],
+        "distinguishesFrom": [],
+        "discipline": "social science",
+        "speakerRole": "urban studies researcher"
+      }
+    ],
+    "announcements": [
+      {
+        "domain": "community-civic",
+        "noveltyKey": "community-center-cleanup-notice",
+        "requiredConcepts": [
+          "saturday morning volunteer cleanup event",
+          "sign-up sheet posted at the front desk"
+        ],
+        "distinguishesFrom": [],
+        "setting": "neighborhood community center bulletin",
+        "speakerRole": "community center coordinator"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "train-platform-change",
+        "requiredConcepts": [
+          "platform change for the express train",
+          "ticket holders should board immediately"
+        ],
+        "distinguishesFrom": [],
+        "setting": "train station platform",
+        "speakerRole": "station announcer"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "office-elevator-maintenance",
+        "requiredConcepts": [
+          "elevator maintenance scheduled this weekend",
+          "employees should use the north stairwell"
+        ],
+        "distinguishesFrom": [],
+        "setting": "office building lobby notice board",
+        "speakerRole": "building manager"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "clinic-extended-hours",
+        "requiredConcepts": [
+          "extended clinic hours starting next month",
+          "walk-in appointments now accepted daily"
+        ],
+        "distinguishesFrom": [],
+        "setting": "wellness clinic waiting room",
+        "speakerRole": "clinic administrator"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "museum-exhibit-opening",
+        "requiredConcepts": [
+          "special exhibit opens next friday",
+          "group tours require advance reservation"
+        ],
+        "distinguishesFrom": [],
+        "setting": "art museum front hall",
+        "speakerRole": "museum docent"
+      }
+    ],
+    "conversations": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "bookstore-textbook-price",
+        "requiredConcepts": [
+          "textbook price higher than expected",
+          "used copy available in back room"
+        ],
+        "distinguishesFrom": [],
+        "setting": "campus bookstore checkout line",
+        "speakerRoles": [
+          "bookstore clerk",
+          "student"
+        ]
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "supply-closet-paper-restock",
+        "requiredConcepts": [
+          "missing box of printer paper",
+          "employee restocks from storage room"
+        ],
+        "distinguishesFrom": [],
+        "setting": "small business supply closet",
+        "speakerRoles": [
+          "office manager",
+          "new employee"
+        ]
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "biology-lab-fieldwork-prep",
+        "requiredConcepts": [
+          "borrow field notebooks and sample vials",
+          "weather delay possible for tomorrow's fieldwork"
+        ],
+        "distinguishesFrom": [],
+        "setting": "biology laboratory before a fieldwork trip",
+        "speakerRoles": [
+          "lab instructor",
+          "research assistant"
+        ]
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "electronics-device-return",
+        "requiredConcepts": [
+          "device screen cracked during shipping",
+          "replacement unit ships next week"
+        ],
+        "distinguishesFrom": [],
+        "setting": "electronics store device return counter",
+        "speakerRoles": [
+          "shopper",
+          "store technician"
+        ]
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "heritage-archive-migration-records",
+        "requiredConcepts": [
+          "migration records from the 1920s",
+          "handwritten ledger needs careful handling"
+        ],
+        "distinguishesFrom": [],
+        "setting": "local heritage archive reading room",
+        "speakerRoles": [
+          "archivist",
+          "graduate researcher"
+        ]
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "theater-backstage-costume-mixup",
+        "requiredConcepts": [
+          "costume rack missing two jackets",
+          "opening night rehearsal starts late"
+        ],
+        "distinguishesFrom": [],
+        "setting": "theater backstage before opening night rehearsal",
+        "speakerRoles": [
+          "director",
+          "stagehand"
+        ]
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "wellness-clinic-walkin-slot",
+        "requiredConcepts": [
+          "walk-in slot opened after a cancellation",
+          "insurance card needs updating"
+        ],
+        "distinguishesFrom": [],
+        "setting": "wellness clinic front desk during a busy morning",
+        "speakerRoles": [
+          "clinic receptionist",
+          "patient"
+        ]
+      }
+    ],
+    "kind": "listening",
+    "listenChoose": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "course-extension-request",
+        "requiredConcepts": [
+          "extra two days for the course paper"
+        ],
+        "distinguishesFrom": [],
+        "topic": "extension request for an overdue course paper",
+        "speakerRole": "professor"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "office-chair-refund",
+        "requiredConcepts": [
+          "refund for the broken office chair"
+        ],
+        "distinguishesFrom": [],
+        "topic": "refund request for a broken office chair",
+        "speakerRole": "store manager"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "neighborhood-cleanup-signup",
+        "requiredConcepts": [
+          "saturday morning neighborhood cleanup"
+        ],
+        "distinguishesFrom": [],
+        "topic": "signing up neighbors for a public cleanup",
+        "speakerRole": "volunteer coordinator"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "lab-experiment-spill",
+        "requiredConcepts": [
+          "spilled solution ruined the experiment batch"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a spilled solution during a laboratory experiment",
+        "speakerRole": "lab partner"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "software-update-failure",
+        "requiredConcepts": [
+          "software update fails every time"
+        ],
+        "distinguishesFrom": [],
+        "topic": "a software update that keeps failing",
+        "speakerRole": "tech support agent"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "museum-gallery-closure",
+        "requiredConcepts": [
+          "east gallery closed for the day"
+        ],
+        "distinguishesFrom": [],
+        "topic": "pointing out the closed east gallery",
+        "speakerRole": "museum guide"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "exercise-break-suggestion",
+        "requiredConcepts": [
+          "short exercise break relieves stress"
+        ],
+        "distinguishesFrom": [],
+        "topic": "suggesting a short exercise break to reduce stress",
+        "speakerRole": "wellness coach"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "train-departure-delay",
+        "requiredConcepts": [
+          "train delayed by twenty minutes"
+        ],
+        "distinguishesFrom": [],
+        "topic": "announcing a delayed train departure",
+        "speakerRole": "station agent"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "heritage-sign-correction",
+        "requiredConcepts": [
+          "heritage sign has the wrong date"
+        ],
+        "distinguishesFrom": [],
+        "topic": "correcting a date on a heritage building sign",
+        "speakerRole": "heritage site guide"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "borrow-neighbor-ladder",
+        "requiredConcepts": [
+          "borrow the ladder for the weekend"
+        ],
+        "distinguishesFrom": [],
+        "topic": "borrowing a neighbor's ladder for the weekend",
+        "speakerRole": "next-door neighbor"
+      },
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "exam-study-group-invite",
+        "requiredConcepts": [
+          "student joins the exam study group"
+        ],
+        "distinguishesFrom": [],
+        "topic": "inviting a student to join an exam study group",
+        "speakerRole": "teaching assistant"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "meeting-miss-apology",
+        "requiredConcepts": [
+          "employee missed the scheduled meeting"
+        ],
+        "distinguishesFrom": [],
+        "topic": "apologizing to an employee for missing the meeting",
+        "speakerRole": "team lead"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "flyer-posting-permission",
+        "requiredConcepts": [
+          "permission to post community flyers"
+        ],
+        "distinguishesFrom": [],
+        "topic": "asking permission to post flyers downtown",
+        "speakerRole": "city clerk"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "habitat-survey-invite",
+        "requiredConcepts": [
+          "weekend habitat survey trip"
+        ],
+        "distinguishesFrom": [],
+        "topic": "inviting a classmate to a habitat survey trip",
+        "speakerRole": "biology classmate"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "podcast-air-date-correction",
+        "requiredConcepts": [
+          "podcast episode aired a week later"
+        ],
+        "distinguishesFrom": [],
+        "topic": "correcting a claim about a podcast episode's air date",
+        "speakerRole": "podcast producer"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "museum-exhibit-help",
+        "requiredConcepts": [
+          "help finding the sculpture exhibit"
+        ],
+        "distinguishesFrom": [],
+        "topic": "offering help finding a museum exhibit",
+        "speakerRole": "gallery attendant"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "clinic-appointment-reschedule",
+        "requiredConcepts": [
+          "appointment moved to next tuesday"
+        ],
+        "distinguishesFrom": [],
+        "topic": "rescheduling a clinic appointment",
+        "speakerRole": "clinic receptionist"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "hotel-room-noise-apology",
+        "requiredConcepts": [
+          "quieter hotel room available upstairs"
+        ],
+        "distinguishesFrom": [],
+        "topic": "apologizing for a noisy hotel room",
+        "speakerRole": "hotel receptionist"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "monument-date-correction",
+        "requiredConcepts": [
+          "monument founded a decade later"
+        ],
+        "distinguishesFrom": [],
+        "topic": "correcting the founding date of a historical monument",
+        "speakerRole": "tour guide"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "dinner-invite-tonight",
+        "requiredConcepts": [
+          "dinner together later tonight"
+        ],
+        "distinguishesFrom": [],
+        "topic": "inviting a friend over for dinner tonight",
+        "speakerRole": "close friend"
+      }
+    ],
+    "version": "cross-set-diversity-v1"
+  }
+]

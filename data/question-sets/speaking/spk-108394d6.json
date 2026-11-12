@@ -1,0 +1,248 @@
+{
+  "id": "spk-108394d6",
+  "source": "generated",
+  "createdAt": "2026-08-23T07:54:30.469Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Moving Company Front Office Walkthrough",
+    "scenarioDescription": "In the front office of a local moving and storage company, before the day's first walk-in appointment, the office manager is training you, a newly hired front-desk employee. Listen to the office manager and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-108394d6/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-108394d6.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Moving Company Front Office Walkthrough. In the front office of a local moving and storage company, before the day's first walk-in appointment, the office manager is training you, a newly hired front-desk employee. Listen to the office manager and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- New customers sign the clipboard by the door.\n- The folders and files are organized by moving date.\n- The price list is taped to the counter beside the register.\n- Spare tape rolls stay in the bottom drawer, but restock them weekly.\n- Check the break schedule pinned near the back office if you're unsure.\n- The customer folders sorted by moving date make busy mornings much easier.\n- The desk drawer, which holds the spare tape rolls, is right below the counter.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "New customers sign the clipboard by the door.",
+        "audio": "stimuli/spk-108394d6/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.16,
+          "y": 0.4,
+          "w": 0.06,
+          "h": 0.1
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The folders and files are organized by moving date.",
+        "audio": "stimuli/spk-108394d6/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.44,
+          "y": 0.11,
+          "w": 0.15,
+          "h": 0.17
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "The price list is taped to the counter beside the register.",
+        "audio": "stimuli/spk-108394d6/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.54,
+          "y": 0.51,
+          "w": 0.09,
+          "h": 0.1
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Spare tape rolls stay in the bottom drawer, but restock them weekly.",
+        "audio": "stimuli/spk-108394d6/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.58,
+          "y": 0.61,
+          "w": 0.11,
+          "h": 0.1
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Check the break schedule pinned near the back office if you're unsure.",
+        "audio": "stimuli/spk-108394d6/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.63,
+          "y": 0.11,
+          "w": 0.13,
+          "h": 0.13
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The customer folders sorted by moving date make busy mornings much easier.",
+        "audio": "stimuli/spk-108394d6/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.44,
+          "y": 0.11,
+          "w": 0.15,
+          "h": 0.17
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The desk drawer, which holds the spare tape rolls, is right below the counter.",
+        "audio": "stimuli/spk-108394d6/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.58,
+          "y": 0.61,
+          "w": 0.11,
+          "h": 0.1
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Home Composting Habits",
+    "intro": "Thank you for speaking with me today. I'm calling from the city's environmental program, and I'd like to ask you a few quick questions about composting food scraps at home.",
+    "introAudio": "stimuli/spk-108394d6/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, could you tell me what you use to collect food scraps in your kitchen, and how often you turn your compost bin outside?",
+        "audio": "stimuli/spk-108394d6/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thanks. Now, can you describe one specific time recently when you added scraps to your compost, and what made you do it that day?",
+        "audio": "stimuli/spk-108394d6/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK, good to know. Some people say composting is worth the daily hassle for the environmental benefit, while others feel it's too much extra work, especially if they're worried about attracting pests outdoors. Which view is closer to yours, and why?",
+        "audio": "stimuli/spk-108394d6/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. For my last question, finished compost is often mixed right into garden soil to enrich it. Should local governments require composting for every household, or should it stay optional? What do you think?",
+        "audio": "stimuli/spk-108394d6/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-briefing",
+      "take": "retake",
+      "measuredWpm": 141,
+      "targetWpm": 165,
+      "minWpm": 145,
+      "maxWpm": 195
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "first",
+      "measuredWpm": 167.9,
+      "targetWpm": 208,
+      "minWpm": 183,
+      "maxWpm": 233
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "workplace-business",
+      "noveltyKey": "moving-company-front-office-walkthrough",
+      "requiredConcepts": [
+        "sign-in clipboard by the front door",
+        "customer file folders sorted by moving date",
+        "packing supply price list taped to the counter",
+        "spare box tape rolls in the bottom drawer",
+        "employee break schedule pinned near the back office"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-8fed5241",
+          "reason": "That Set orients a new worker at a campus international-services counter for drop-in academic advising; this one orders a moving company's front office for customer walk-ins with no academic content."
+        },
+        {
+          "setId": "spk-663e848c",
+          "reason": "That Set trains a technician on loaner equipment checkout procedures; this one trains a front-desk employee on customer file handling and supply stock, with no device inventory."
+        },
+        {
+          "setId": "spk-f9fe8bad",
+          "reason": "That Set is a lost-and-found counter at a train station recovering passenger items; this one is a moving company's welcome desk preparing for scheduled customer appointments, not lost property."
+        }
+      ],
+      "setting": "the front office of a local moving and storage company, before the office's first walk-in appointment of the day",
+      "speakerRole": "the office manager training a newly hired front-desk employee",
+      "communicativePurpose": "walking the new employee through each front-desk area in order so walk-in customers are helped smoothly without the manager's guidance"
+    },
+    "interview": {
+      "domain": "science-environment",
+      "noveltyKey": "home-composting-habit",
+      "requiredConcepts": [
+        "kitchen scrap bucket by the sink",
+        "compost bin turned once a week",
+        "worry about attracting pests outdoors",
+        "finished compost mixed into garden soil"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-663e848c",
+          "reason": "That Set asks about a general household energy-saving habit; this one is specifically about kitchen food-scrap composting and garden soil, with no energy-use content."
+        },
+        {
+          "setId": "spk-a87a3b41",
+          "reason": "That Set covers weekly household chore rotation and division of labor among housemates; this one is a single respondent's personal composting routine, not chore-sharing."
+        }
+      ],
+      "topic": "respondent's habit of composting food scraps at home to reduce environmental waste",
+      "premise": "A local environmental program staffer places a brief, unannounced phone call about the resident's habit of composting household food scraps to reduce environmental waste and support garden soil health.",
+      "questionArc": [
+        "asks which composting method or container the respondent currently uses at home",
+        "asks the respondent to recall a specific recent time they added scraps to the compost and what prompted it",
+        "presents two contrasting views on whether composting is worth the daily inconvenience, asks respondent to pick a side and justify it",
+        "asks whether local governments should require composting for all households, inviting an evaluation or recommendation"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v4",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "british",
+      "voice": "Charon",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        200,
+        208,
+        215,
+        180,
+        178,
+        176,
+        175
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "north-american",
+      "voice": "Umbriel",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

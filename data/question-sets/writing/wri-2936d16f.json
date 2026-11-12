@@ -1,0 +1,546 @@
+{
+  "id": "wri-2936d16f",
+  "source": "generated",
+  "createdAt": "2026-08-07T02:35:22.321Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Why can’t I use the upstairs office doors yet?",
+        "frame": "The yellow temporary badge ___ ___ ___ ___ ___ tomorrow.",
+        "tiles": [
+          "provides",
+          "provide",
+          "lobby-only access,",
+          "and",
+          "your photo badge",
+          "will be ready"
+        ],
+        "answers": [
+          [
+            "provides",
+            "lobby-only access,",
+            "and",
+            "your photo badge",
+            "will be ready"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Why was my balcony seat changed for tonight’s performance?",
+        "frame": "Because ___ ___ ___ ___ ___ at the same ticket price.",
+        "tiles": [
+          "the loose balcony handrail",
+          "is unsafe,",
+          "are unsafe,",
+          "we moved you",
+          "to a main-floor",
+          "replacement seat"
+        ],
+        "answers": [
+          [
+            "the loose balcony handrail",
+            "is unsafe,",
+            "we moved you",
+            "to a main-floor",
+            "replacement seat"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Can I still use this transfer ticket from my earlier bus trip?",
+        "frame": "The time printed on the transfer ___ ___ ___ ___ ___ after the deadline.",
+        "tiles": [
+          "starts",
+          "start",
+          "the ninety-minute transfer window,",
+          "so",
+          "you need",
+          "a new fare"
+        ],
+        "answers": [
+          [
+            "starts",
+            "the ninety-minute transfer window,",
+            "so",
+            "you need",
+            "a new fare"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-4",
+        "prompt": "When should I stretch my calves, and why shouldn’t I stretch them first?",
+        "frame": "The five-minute warm-up, ___ ___ ___ ___ ___ after light jogging.",
+        "tiles": [
+          "which prevents",
+          "stretching cold muscles",
+          "before movement,",
+          "places",
+          "place",
+          "the calf stretch"
+        ],
+        "answers": [
+          [
+            "which prevents",
+            "stretching cold muscles",
+            "before movement,",
+            "places",
+            "the calf stretch"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Why must the control jar both block light and remain suitable for comparison?",
+        "frame": "The foil-wrapped control jar ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "preserves",
+          "preserve",
+          "the light-sensitive solution",
+          "that",
+          "must remain",
+          "an unchanged",
+          "comparison sample"
+        ],
+        "answers": [
+          [
+            "preserves",
+            "the light-sensitive solution",
+            "that",
+            "must remain",
+            "an unchanged",
+            "comparison sample"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-6",
+        "prompt": "When may I put out my sale sign, and when must I take it down?",
+        "frame": "For the sidewalk sale sign, ___ ___ ___ ___ ___ ___ before sunset.",
+        "tiles": [
+          "the permit",
+          "allows",
+          "allow",
+          "display after eight",
+          "in the morning",
+          "and requires",
+          "removal"
+        ],
+        "answers": [
+          [
+            "the permit",
+            "allows",
+            "display after eight",
+            "in the morning",
+            "and requires",
+            "removal"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Why does the label beside this carved figure show two dates?",
+        "frame": "The two dates on the object label ___ ___ ___ ___ ___ ___ the figure.",
+        "tiles": [
+          "mark",
+          "marks",
+          "the original carving date",
+          "and",
+          "the later base replacement",
+          "that",
+          "preserved"
+        ],
+        "answers": [
+          [
+            "mark",
+            "the original carving date",
+            "and",
+            "the later base replacement",
+            "that",
+            "preserved"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Why was my reservation moved, and where can I find my new seat number?",
+        "frame": "The carriage heating fault, ___ ___ ___ ___ ___ ___ on the ticket.",
+        "tiles": [
+          "which made",
+          "which make",
+          "the original coach unusable,",
+          "led us to assign",
+          "a same-class window seat",
+          "and print",
+          "the updated seat number"
+        ],
+        "answers": [
+          [
+            "which made",
+            "the original coach unusable,",
+            "led us to assign",
+            "a same-class window seat",
+            "and print",
+            "the updated seat number"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-9",
+        "prompt": "What evidence shows that this room was once used as a shop before it was converted?",
+        "frame": "The faded shop number above the bricked-up doorway ___ ___ ___ ___ ___ ___ as a shop.",
+        "tiles": [
+          "is evidence that",
+          "are evidence that",
+          "the later room conversion",
+          "concealed",
+          "a space",
+          "that",
+          "once served"
+        ],
+        "answers": [
+          [
+            "is evidence that",
+            "the later room conversion",
+            "concealed",
+            "a space",
+            "that",
+            "once served"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Why are we leaving the new planting area out of this year’s survey?",
+        "frame": "Because the newly planted strip ___ ___ ___ ___ ___ ___ long-term change.",
+        "tiles": [
+          "has not met",
+          "have not met",
+          "the five-year habitat threshold,",
+          "including it",
+          "would distort",
+          "the baseline biodiversity comparison",
+          "used to measure"
+        ],
+        "answers": [
+          [
+            "has not met",
+            "the five-year habitat threshold,",
+            "including it",
+            "would distort",
+            "the baseline biodiversity comparison",
+            "used to measure"
+          ]
+        ],
+        "timeLimitSec": 40
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You attended a weekend biology workshop at a laboratory. Before a hands-on activity, you discovered that only oversized protective gloves were available. Write an email to the field-program coordinator about the problem and what should be done before the next activity.",
+    "to": "fieldprogram@greenvalleylab.org",
+    "subject": "Protective gloves for the biology workshop",
+    "bullets": [
+      "Express appreciation for the clear safety demonstration.",
+      "Report that only oversized protective gloves were available.",
+      "Propose providing smaller gloves before the next activity."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Digital Media Production",
+    "professorName": "Dr. Rivera",
+    "professorPost": "Some podcast producers use a full-season podcast release, while others follow a weekly episode schedule. Do you think a podcast series should release its entire season at once rather than publish one episode each week? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Maya",
+        "post": "I support a full-season podcast release because it gives listeners control over pacing. Someone with a long commute might hear several episodes together, while a busy listener can pause without waiting for the publisher. Immediate access also makes it easier to revisit earlier details before reaching the ending."
+      },
+      {
+        "name": "Jonah",
+        "post": "I prefer a weekly episode schedule because waiting creates shared anticipation and ongoing audience discussion. Listeners can compare predictions after each installment, and the creators have time to respond to questions or release bonus material. If every episode appears immediately, the conversation may peak quickly and disappear."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "workplace-business",
+          "situation": "An office receptionist explains why a temporary badge gives a new employee access only to the lobby.",
+          "participantRoles": [
+            "office receptionist",
+            "new employee"
+          ],
+          "noveltyKey": "office-badge-door-limit",
+          "requiredConcepts": [
+            "yellow temporary badge",
+            "lobby-only access",
+            "photo badge ready tomorrow"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-00c1e95f",
+              "reason": "Focuses on an office access badge with limited doors rather than an unresolved wait."
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A theater usher explains why a patron's balcony seat must be relocated for the evening.",
+          "participantRoles": [
+            "theater usher",
+            "patron"
+          ],
+          "noveltyKey": "theater-balcony-reseating",
+          "requiredConcepts": [
+            "loose balcony handrail",
+            "main-floor replacement seat",
+            "same ticket price"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-bbbfc85e",
+              "reason": "Uses theater seating and a handrail closure rather than transportation to a museum."
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A bus passenger asks a fare inspector whether a transfer ticket from an earlier trip is still valid.",
+          "participantRoles": [
+            "bus passenger",
+            "fare inspector"
+          ],
+          "noveltyKey": "bus-transfer-window",
+          "requiredConcepts": [
+            "ninety-minute transfer window",
+            "time printed on the transfer",
+            "new fare after the deadline"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-8a7f1e12",
+              "reason": "Tests the validity window of a bus transfer rather than choosing between routes."
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "An exercise coach explains when a class member should stretch during a new warm-up routine.",
+          "participantRoles": [
+            "exercise coach",
+            "class member"
+          ],
+          "noveltyKey": "exercise-warmup-sequence",
+          "requiredConcepts": [
+            "five-minute warm-up",
+            "calf stretch after light jogging",
+            "cold muscles before movement"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "Concerns exercise warm-up sequencing rather than changing a sleep schedule."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A laboratory trainee asks why the control jar in an experiment is wrapped in foil.",
+          "participantRoles": [
+            "laboratory trainee",
+            "research technician"
+          ],
+          "noveltyKey": "experiment-foil-control",
+          "requiredConcepts": [
+            "foil-wrapped control jar",
+            "light-sensitive solution",
+            "unchanged comparison sample"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "Explains foil around an experiment control jar rather than culture-plate orientation."
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A city permit clerk tells a resident when a sidewalk sale sign may be displayed and removed.",
+          "participantRoles": [
+            "city permit clerk",
+            "resident"
+          ],
+          "noveltyKey": "city-sign-display-hours",
+          "requiredConcepts": [
+            "sidewalk sale sign",
+            "display after eight in the morning",
+            "removal before sunset"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "Concerns the allowed display period for a city sign rather than repair timing."
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A museum curator explains why the label beside a carved figure lists two different dates.",
+          "participantRoles": [
+            "museum curator",
+            "visitor"
+          ],
+          "noveltyKey": "museum-object-two-dates",
+          "requiredConcepts": [
+            "original carving date",
+            "later base replacement",
+            "two dates on the object label"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-bbbfc85e",
+              "reason": "Distinguishes two dates on a museum object rather than asking how someone arrived."
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A train attendant explains why a passenger's reserved window seat has been reassigned.",
+          "participantRoles": [
+            "train attendant",
+            "passenger"
+          ],
+          "noveltyKey": "train-carriage-reassignment",
+          "requiredConcepts": [
+            "carriage heating fault",
+            "same-class window seat",
+            "updated seat number on the ticket"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-8a7f1e12",
+              "reason": "Explains a train seat reassignment caused by a carriage fault rather than route choice."
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A heritage guide explains how a bricked-up doorway reveals that a room once served as a shop.",
+          "participantRoles": [
+            "heritage guide",
+            "restoration apprentice"
+          ],
+          "noveltyKey": "heritage-blocked-doorway",
+          "requiredConcepts": [
+            "bricked-up doorway",
+            "faded shop number",
+            "later room conversion"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "Infers an earlier doorway use from heritage clues rather than dating a personal diary."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "An ecologist explains why a newly planted strip is excluded from a biodiversity baseline survey.",
+          "participantRoles": [
+            "environment survey coordinator",
+            "ecologist"
+          ],
+          "noveltyKey": "biodiversity-baseline-boundary",
+          "requiredConcepts": [
+            "newly planted strip",
+            "five-year habitat threshold",
+            "baseline biodiversity comparison"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "Defines an environment survey boundary by planting age rather than sunrise timing."
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "science-environment",
+      "noveltyKey": "laboratory-glove-size-shortage",
+      "requiredConcepts": [
+        "weekend biology workshop",
+        "only oversized protective gloves",
+        "smaller gloves before the next activity",
+        "clear safety demonstration"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-aaa3d20f",
+          "reason": "Uses a laboratory protective-gear shortage rather than an incorrect registration record."
+        },
+        {
+          "setId": "wri-bbbfc85e",
+          "reason": "The biology workshop issue concerns glove sizes before an activity rather than a lost possession."
+        }
+      ],
+      "situation": "After a weekend biology workshop at a laboratory, a participant finds that only oversized protective gloves are available for a hands-on activity and writes to the field-program coordinator.",
+      "recipientRole": "field-program coordinator",
+      "communicativeActs": [
+        "express appreciation for the clear safety demonstration",
+        "report the lack of correctly sized protective gloves",
+        "propose providing smaller gloves before the next activity"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "technology-media",
+      "noveltyKey": "podcast-season-release-timing",
+      "requiredConcepts": [
+        "full-season podcast release",
+        "weekly episode schedule",
+        "listener control over pacing",
+        "ongoing audience discussion"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-cd14eb34",
+          "reason": "Centers on podcast release timing and listener choice rather than rules for personal devices."
+        },
+        {
+          "setId": "wri-00c1e95f",
+          "reason": "Examines a media publishing schedule rather than disclosure during hiring."
+        }
+      ],
+      "proposition": "A podcast series should release its entire season at once rather than publish one episode each week.",
+      "competingValues": [
+        "listener control over pacing and immediate access",
+        "shared anticipation and sustained audience discussion"
+      ]
+    }
+  }
+}

@@ -1,0 +1,508 @@
+{
+  "id": "wri-b5e4cabe",
+  "source": "generated",
+  "createdAt": "2026-08-24T17:19:25.303Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "The temporary login still isn't working — what's happening with my ticket?",
+        "frame": "Your ticket ___ ___ ___ low priority during the migration.",
+        "tiles": [
+          "was",
+          "downgraded",
+          "to",
+          "were"
+        ],
+        "answers": [
+          [
+            "was",
+            "downgraded",
+            "to"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Why hasn't recycling been picked up this week?",
+        "frame": "Collection on your block ___ ___ ___ now, with Wednesdays confirmed as your new pickup day.",
+        "tiles": [
+          "has",
+          "switched",
+          "to biweekly",
+          "have"
+        ],
+        "answers": [
+          [
+            "has",
+            "switched",
+            "to biweekly"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Since I first flagged this bug in my review, has anything happened?",
+        "frame": "Our engineers ___ ___ ___ ___ since your review, but we can't confirm a fix timeline yet.",
+        "tiles": [
+          "have",
+          "been",
+          "investigating",
+          "the bug",
+          "has"
+        ],
+        "answers": [
+          [
+            "have",
+            "been",
+            "investigating",
+            "the bug"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Do we know when the new shipment will arrive?",
+        "frame": "Because of a supplier issue, the shipment ___ ___ ___ ___ this week, and we don't have a new date, so please hold off on updating the inventory count.",
+        "tiles": [
+          "will",
+          "not",
+          "be",
+          "arriving",
+          "arrive"
+        ],
+        "answers": [
+          [
+            "will",
+            "not",
+            "be",
+            "arriving"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Why do I need extra time to fill this out before my appointment?",
+        "frame": "Starting today, the form ___ ___ ___ ___ ___ your sleep and exercise habits, so we've added a few extra minutes.",
+        "tiles": [
+          "will",
+          "also",
+          "ask",
+          "patients",
+          "about",
+          "asks"
+        ],
+        "answers": [
+          [
+            "will",
+            "also",
+            "ask",
+            "patients",
+            "about"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Has anything changed with the airport shuttle?",
+        "frame": "I should mention ___ ___ ___ ___ ___ at the side entrance, so the ride takes a few minutes longer.",
+        "tiles": [
+          "that",
+          "the shuttle",
+          "now",
+          "picks up",
+          "guests",
+          "pick up"
+        ],
+        "answers": [
+          [
+            "that",
+            "the shuttle",
+            "now",
+            "picks up",
+            "guests"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "What's the plan for the reform-era ledger before it goes back into storage?",
+        "frame": "The ledger ___ ___ ___ ___ ___ before it returns to storage, so please log the page count as you go.",
+        "tiles": [
+          "that",
+          "dates from the reform era",
+          "is",
+          "being",
+          "scanned",
+          "was"
+        ],
+        "answers": [
+          [
+            "that",
+            "dates from the reform era",
+            "is",
+            "being",
+            "scanned"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "I need two reserve copies for my group project — is that possible under the new rule?",
+        "frame": "I should explain ___ ___ ___ ___ ___ ___ each student this semester, but group projects can request an exception.",
+        "tiles": [
+          "that",
+          "the new limit",
+          "applies",
+          "to",
+          "each course",
+          "rather than",
+          "apply"
+        ],
+        "answers": [
+          [
+            "that",
+            "the new limit",
+            "applies",
+            "to",
+            "each course",
+            "rather than"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Can I return this after 30 days since it's the holidays?",
+        "frame": "The return window ___ ___ ___ ___ ___ ___ made this month, but you'll still need your receipt.",
+        "tiles": [
+          "extended",
+          "for",
+          "the holidays",
+          "only",
+          "covers",
+          "purchases",
+          "extending"
+        ],
+        "answers": [
+          [
+            "extended",
+            "for",
+            "the holidays",
+            "only",
+            "covers",
+            "purchases"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Where do I pick up my reserved tickets?",
+        "frame": "Will-call ___ ___ ___ ___ ___ ___, where signs now guide patrons, and your seats are still held under your name.",
+        "tiles": [
+          "has",
+          "been",
+          "relocated",
+          "to",
+          "the other side",
+          "of the lobby",
+          "was"
+        ],
+        "answers": [
+          [
+            "has",
+            "been",
+            "relocated",
+            "to",
+            "the other side",
+            "of the lobby"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You recently attended a workshop on home solar panel basics at the Riverside Energy Education Center. Afterward, you emailed the coordinator to request the session's handout, but the file attached in the reply turned out to be for a different workshop.",
+    "to": "workshops@riversideenergy.org",
+    "subject": "Handout for the Solar Panel Workshop",
+    "bullets": [
+      "Thank the coordinator for running a clear and informative workshop.",
+      "Explain that the handout you received matches a different workshop session.",
+      "Request that the coordinator send the correct handout for the home solar panel workshop."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Introduction to Transportation Policy",
+    "professorName": "Professor Hale",
+    "professorPost": "Airports have traditionally reserved airline lounge access for travelers with premium tickets or elite status. Recently, some airports have begun selling day passes that let any traveler, regardless of ticket class, pay to use a lounge for a single visit. What do you think? Should lounge access be opened to any paying traveler, or should it stay reserved for premium ticket holders? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Maya",
+        "post": "I think day passes make sense. If someone is willing to pay for a quiet place to work or rest between flights, why should their ticket class decide whether they can? Airlines already sell extra comfort separately, like seat upgrades, so letting anyone buy lounge access just extends that same idea to a different service."
+      },
+      {
+        "name": "Owen",
+        "post": "I get Maya's point about paying for comfort, but I think day passes ruin what makes lounges valuable in the first place. Premium travelers already pay more for their tickets partly because of that quieter space, and once day passes are sold widely, lounges get crowded and noisy, so the benefit premium passengers paid extra for basically disappears."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "workplace-business",
+          "situation": "A workplace IT helpdesk technician tells an office employee that their password reset ticket was downgraded to low priority during a system migration.",
+          "participantRoles": [
+            "helpdesk technician explaining the ticket priority change",
+            "office employee waiting on a password reset"
+          ],
+          "noveltyKey": "helpdesk-ticket-priority-downgrade-migration",
+          "requiredConcepts": [
+            "password reset ticket downgraded to low priority",
+            "system migration cause cited for the delay",
+            "temporary workaround login offered meanwhile"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "wri-90026a0d's workplace-business items cover a fire drill time change and a badge photo retake, not an IT ticket priority downgrade"
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A city public works clerk tells a neighborhood resident that recycling collection on their block is shifting from weekly to biweekly.",
+          "participantRoles": [
+            "city public works clerk announcing the schedule change",
+            "neighborhood resident asking about the new collection day"
+          ],
+          "noveltyKey": "recycling-collection-biweekly-shift-one-block",
+          "requiredConcepts": [
+            "recycling collection moving from weekly to biweekly",
+            "change applies to one specific block only",
+            "new collection day confirmed for residents"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "wri-90026a0d's community-civic item is a trail cleanup meeting point moved to a different lot, not a recycling collection frequency change"
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A streaming media platform's support agent tells an online reviewer that the subtitle sync bug they reported is now being investigated.",
+          "participantRoles": [
+            "platform support agent acknowledging the reported bug",
+            "online reviewer who first flagged the subtitle sync issue"
+          ],
+          "noveltyKey": "streaming-subtitle-sync-bug-reviewer-report",
+          "requiredConcepts": [
+            "subtitle sync bug now under investigation",
+            "issue reported by an online reviewer first",
+            "fix timeline not yet confirmed"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "wri-90026a0d's technology-media items are a meeting device sync failure and a stalled podcast download, not a subtitle sync bug report"
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "An art museum gift shop coordinator tells a part-time shop assistant that a restock shipment is delayed because of a supplier issue.",
+          "participantRoles": [
+            "museum gift shop coordinator explaining the restock delay",
+            "part-time shop assistant helping cover the gift shop"
+          ],
+          "noveltyKey": "museum-giftshop-restock-supplier-delay",
+          "requiredConcepts": [
+            "restock shipment delayed by a supplier issue",
+            "new delivery date not yet confirmed",
+            "shop assistant asked to hold current inventory count"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "wri-90026a0d's arts-culture item is a costume fit relocated to a smaller studio, not a gift shop restock delay"
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A clinic front desk clerk tells a patient that the intake form now asks about sleep and exercise habits.",
+          "participantRoles": [
+            "clinic front desk clerk explaining the updated intake form",
+            "patient filling out the form before an appointment"
+          ],
+          "noveltyKey": "clinic-intake-form-sleep-exercise-update",
+          "requiredConcepts": [
+            "intake form now asks about sleep and exercise habits",
+            "update applies before the next appointment",
+            "patient given a few extra minutes to complete it"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "wri-90026a0d's health-wellbeing item is a balance assessment moved to a different room, not an intake form content update"
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A hotel front desk agent tells a guest that the airport shuttle bus route changed because of road construction.",
+          "participantRoles": [
+            "hotel front desk agent explaining the shuttle change",
+            "guest asking about the airport shuttle timing"
+          ],
+          "noveltyKey": "hotel-airport-shuttle-route-construction-change",
+          "requiredConcepts": [
+            "shuttle bus route changed due to road construction",
+            "pickup point moved to the side entrance",
+            "overall travel time slightly longer"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-90026a0d",
+              "reason": "wri-90026a0d's services-travel item is a full luggage compartment prompting a different train, not a hotel shuttle route change"
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A local historical society archivist tells a records assistant that a reform-era ledger is being digitized before it goes back into storage.",
+          "participantRoles": [
+            "historical society archivist explaining the digitization step",
+            "records assistant helping prepare items for storage"
+          ],
+          "noveltyKey": "historical-society-reform-ledger-digitization",
+          "requiredConcepts": [
+            "reform-era ledger being digitized before storage",
+            "records assistant asked to log page counts",
+            "original ledger returns to storage after scanning"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7a20b90b",
+              "reason": "wri-7a20b90b's history-social-change item is a donated ledger needing photography before handling, not digitization before storage"
+            }
+          ]
+        },
+        {
+          "domain": "campus-academics",
+          "situation": "A university library clerk tells a student that the course reserve checkout limit changed for the semester.",
+          "participantRoles": [
+            "university library clerk explaining the new checkout limit",
+            "student trying to check out a course reserve item"
+          ],
+          "noveltyKey": "library-course-reserve-checkout-limit-change",
+          "requiredConcepts": [
+            "course reserve checkout limit changed this semester",
+            "limit now applies per course rather than per student",
+            "exception process explained for group projects"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7a20b90b",
+              "reason": "wri-7a20b90b's campus-academics item is a study-abroad deadline moved earlier, not a course reserve checkout limit change"
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A retail customer service manager tells a customer that the store's return policy timeline was extended for the holiday season.",
+          "participantRoles": [
+            "customer service manager explaining the policy change",
+            "customer asking about returning a recent purchase"
+          ],
+          "noveltyKey": "retail-return-policy-timeline-holiday-extension",
+          "requiredConcepts": [
+            "return policy timeline extended for the holiday season",
+            "extension applies only to purchases made this month",
+            "receipt still required for any return"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7a20b90b",
+              "reason": "wri-7a20b90b's workplace-business item is a badge photo retake before printing, not a return policy timeline extension"
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A local theatre box office coordinator tells a patron that the will-call counter moved to a different lobby location.",
+          "participantRoles": [
+            "theatre box office coordinator explaining the will-call move",
+            "patron picking up reserved seats before a show"
+          ],
+          "noveltyKey": "theatre-will-call-counter-lobby-relocation",
+          "requiredConcepts": [
+            "will-call counter moved to a different lobby spot",
+            "signage added to direct patrons to the new location",
+            "reserved seats still held under the same name"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7a20b90b",
+              "reason": "wri-7a20b90b's arts-culture item is an act moved to a smaller side stage, not a will-call counter relocation"
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "science-environment",
+      "noveltyKey": "energy-workshop-handout-wrong-session-attachment",
+      "requiredConcepts": [
+        "emailed handout matches a different workshop session",
+        "correct home solar panel handout still needed",
+        "appreciation expressed for the workshop itself"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-2936d16f",
+          "reason": "wri-2936d16f's science-environment email reports an oversized-glove equipment shortage at a biology workshop, not a wrong-session handout attachment"
+        }
+      ],
+      "situation": "After attending a local energy education center's workshop on home solar panel basics, the writer requested the session's handout by email but received a different workshop's materials attached.",
+      "recipientRole": "the energy education center's workshop coordinator",
+      "communicativeActs": [
+        "thank the coordinator for a clear and informative workshop",
+        "report that the emailed handout was for a different session",
+        "request the correct home solar panel handout"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "services-travel",
+      "noveltyKey": "airport-lounge-day-pass-ticket-class-debate",
+      "requiredConcepts": [
+        "day-pass lounge access sold regardless of ticket class",
+        "lounges traditionally reserved for premium ticket holders",
+        "crowding concern when day passes are sold"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-aaa3d20f",
+          "reason": "wri-aaa3d20f's services-travel discussion debates a quiet train carriage, not lounge access sold by day pass regardless of ticket class"
+        }
+      ],
+      "proposition": "Some airports now let travelers buy day-pass access to airline lounges regardless of their ticket class, rather than reserving lounges for premium ticket holders only.",
+      "competingValues": [
+        "equal purchasing access to comfortable travel amenities for any paying traveler",
+        "reserved comfort and value for travelers who already pay a premium ticket price"
+      ]
+    }
+  }
+}

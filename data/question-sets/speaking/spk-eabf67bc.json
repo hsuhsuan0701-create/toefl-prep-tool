@@ -1,0 +1,234 @@
+{
+  "id": "spk-eabf67bc",
+  "source": "generated",
+  "createdAt": "2026-08-31T15:33:00.138Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Food Pantry Sorting Warehouse Orientation",
+    "scenarioDescription": "You are a new volunteer at a neighborhood food pantry. Before the weekly distribution begins, the volunteer coordinator walks you through the sorting warehouse, station by station. Listen to what she says at each stop, and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-eabf67bc/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-eabf67bc.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Food Pantry Sorting Warehouse Orientation. You are a new volunteer at a neighborhood food pantry. Before the weekly distribution begins, the volunteer coordinator walks you through the sorting warehouse, station by station. Listen to what she says at each stop, and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- The sign-in sheet's right by the warehouse door.\n- Canned goods and boxed pasta go on the far shelf.\n- We sort canned goods by their expiration dates each morning.\n- Check each piece of produce for damage, and set spoiled ones aside.\n- After you check the produce, place it neatly on the shelves.\n- The volunteer sign-in sheet by the door tracks everyone's shift hours.\n- The distribution line, which opens at ten, forms along the sidewalk outside.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "The sign-in sheet's right by the warehouse door.",
+        "audio": "stimuli/spk-eabf67bc/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.584,
+          "y": 0.597,
+          "w": 0.126,
+          "h": 0.11
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Canned goods and boxed pasta go on the far shelf.",
+        "audio": "stimuli/spk-eabf67bc/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.43,
+          "y": 0.063,
+          "w": 0.203,
+          "h": 0.147
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "We sort canned goods by their expiration dates each morning.",
+        "audio": "stimuli/spk-eabf67bc/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.337,
+          "y": 0.218,
+          "w": 0.292,
+          "h": 0.21
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Check each piece of produce for damage, and set spoiled ones aside.",
+        "audio": "stimuli/spk-eabf67bc/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.485,
+          "y": 0.407,
+          "w": 0.197,
+          "h": 0.16
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "After you check the produce, place it neatly on the shelves.",
+        "audio": "stimuli/spk-eabf67bc/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.725,
+          "y": 0.347,
+          "w": 0.205,
+          "h": 0.177
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The volunteer sign-in sheet by the door tracks everyone's shift hours.",
+        "audio": "stimuli/spk-eabf67bc/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.584,
+          "y": 0.597,
+          "w": 0.126,
+          "h": 0.11
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The distribution line, which opens at ten, forms along the sidewalk outside.",
+        "audio": "stimuli/spk-eabf67bc/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.038,
+          "y": 0.665,
+          "w": 0.487,
+          "h": 0.264
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Evening Wind-Down Routine",
+    "intro": "Hi, thanks for taking a moment to talk with me. I'm calling from a sleep habits research group, and I have just four quick questions about how you wind down before bed. Let's get started.",
+    "introAudio": "stimuli/spk-eabf67bc/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, what does your usual wind-down routine look like in the last half hour before you fall asleep — do you dim your phone screen, read a few pages before lights out, or something else, and do you keep the same bedtime even on weekends?",
+        "audio": "stimuli/spk-eabf67bc/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thanks for sharing that. Now, can you describe one specific night recently when that routine got disrupted — for example, after a particularly stressful day — and tell me what happened?",
+        "audio": "stimuli/spk-eabf67bc/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK, next I'd like to hear your opinion. Some people think screen use right before bed matters more than any other bedtime habit, while others say things like a consistent bedtime or reading matter just as much. Which view do you agree with, and why?",
+        "audio": "stimuli/spk-eabf67bc/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. For my last question, do you think workplaces or schools should actively encourage people to build an evening wind-down routine? What would you recommend they do?",
+        "audio": "stimuli/spk-eabf67bc/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 153.4,
+      "targetWpm": 184,
+      "minWpm": 156,
+      "maxWpm": 209
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "community-civic",
+      "noveltyKey": "food-pantry-volunteer-sorting-orientation",
+      "requiredConcepts": [
+        "canned goods sorted by expiration date",
+        "fresh produce checked for damage before shelving",
+        "volunteer sign-in sheet by the warehouse door",
+        "distribution line opens at ten"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-3813889d",
+          "reason": "that Set is an election poll worker orientation at a city office; this is a food pantry sorting warehouse before a weekly distribution, a different civic setting and task"
+        },
+        {
+          "setId": "spk-fd38f94c",
+          "reason": "that Set walks a volunteer through a general community center intake counter; this walks a volunteer through pantry sorting stations, a distinct physical task sequence"
+        }
+      ],
+      "setting": "a neighborhood food pantry's volunteer sorting warehouse",
+      "speakerRole": "the pantry's volunteer coordinator",
+      "communicativePurpose": "orient a newly arrived volunteer through each sorting station before the weekly distribution begins"
+    },
+    "interview": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "evening-sleep-wind-down-routine",
+      "requiredConcepts": [
+        "phone screen dimmed before bed",
+        "reading a few pages before lights out",
+        "regular bedtime kept even on weekends",
+        "trouble falling asleep after a stressful day"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-dc5e3d5f",
+          "reason": "that Set covers remembering to take a daily vitamin/medication; this covers an evening wind-down routine before sleep, a different habit and different time of day"
+        },
+        {
+          "setId": "spk-4ed5798a",
+          "reason": "that Set covers a short exercise break during a study session; this covers pre-sleep wind-down behavior, not movement or study breaks"
+        }
+      ],
+      "topic": "evening wind-down routine before sleep",
+      "premise": "a sleep habits research group makes a brief unannounced phone call asking how the test taker winds down in the half hour before falling asleep",
+      "questionArc": [
+        "Ask what the test taker typically does in the last half hour before falling asleep on an ordinary night.",
+        "Ask about one specific recent night when that wind-down routine got disrupted, and why.",
+        "Introduce two contrasting views on whether screen use before bed matters more than other bedtime habits, and ask the test taker to take a side.",
+        "Broaden to whether workplaces or schools should actively encourage people to adopt an evening wind-down practice, inviting a recommendation."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "british",
+      "voice": "Alnilam",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "north-american",
+      "voice": "Vindemiatrix",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

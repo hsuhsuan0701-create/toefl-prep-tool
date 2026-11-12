@@ -1,0 +1,529 @@
+{
+  "id": "wri-4313e236",
+  "source": "generated",
+  "createdAt": "2026-09-01T10:09:21.995Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "The glass bin overflowed overnight, and we need it sorted before the truck arrives.",
+        "frame": "I ___ ___ ___ ___ right now.",
+        "tiles": [
+          "will",
+          "start",
+          "sorting",
+          "it",
+          "would"
+        ],
+        "answers": [
+          [
+            "will",
+            "start",
+            "sorting",
+            "it"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Your pavilion permit for Saturday overlaps with a civic budget forum in the same space.",
+        "frame": "We ___ ___ ___ ___ instead.",
+        "tiles": [
+          "can",
+          "hold",
+          "it",
+          "next weekend",
+          "held"
+        ],
+        "answers": [
+          [
+            "can",
+            "hold",
+            "it",
+            "next weekend"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "We've had to postpone opening night until next week because of a stage rigging repair.",
+        "frame": "I ___ ___ ___ ___ ___ the new date.",
+        "tiles": [
+          "understand",
+          "the delay",
+          "and",
+          "will",
+          "attend",
+          "attended"
+        ],
+        "answers": [
+          [
+            "understand",
+            "the delay",
+            "and",
+            "will",
+            "attend"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "The shipped exhibit crate has been held at customs and won't arrive before the reception.",
+        "frame": "I ___ ___ ___ ___ ___ instead.",
+        "tiles": [
+          "have",
+          "already",
+          "prepared",
+          "a backup",
+          "piece",
+          "prepare"
+        ],
+        "answers": [
+          [
+            "have",
+            "already",
+            "prepared",
+            "a backup",
+            "piece"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Your nutrition counseling slot was moved earlier because the counselor has a conflicting training session.",
+        "frame": "___ ___ ___ ___ ___ ___ my lunch break?",
+        "tiles": [
+          "will",
+          "the",
+          "earlier appointment",
+          "still",
+          "fit",
+          "around",
+          "fits"
+        ],
+        "answers": [
+          [
+            "will",
+            "the",
+            "earlier appointment",
+            "still",
+            "fit",
+            "around"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "The stress-relief yoga class you wanted has reached capacity for this session.",
+        "frame": "___ ___ ___ ___ ___ ___ to the waitlist.",
+        "tiles": [
+          "since",
+          "the class",
+          "is already full",
+          "please",
+          "add",
+          "me",
+          "was"
+        ],
+        "answers": [
+          [
+            "since",
+            "the class",
+            "is already full",
+            "please",
+            "add",
+            "me"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "The express ticket you bought isn't valid on the delayed replacement bus that's running instead.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ separate ticket.",
+        "tiles": [
+          "it",
+          "turns out",
+          "that",
+          "this particular",
+          "replacement bus",
+          "needs",
+          "its own",
+          "need"
+        ],
+        "answers": [
+          [
+            "it",
+            "turns out",
+            "that",
+            "this particular",
+            "replacement bus",
+            "needs",
+            "its own"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Your requested late checkout conflicts with an incoming group's early check-in today.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ until then.",
+        "tiles": [
+          "the luggage storage option",
+          "that",
+          "your front desk staff",
+          "offered",
+          "should",
+          "work",
+          "fine",
+          "offers"
+        ],
+        "answers": [
+          [
+            "the luggage storage option",
+            "that",
+            "your front desk staff",
+            "offered",
+            "should",
+            "work",
+            "fine"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "This donated migration-era diary is already showing signs of damage and needs climate-controlled storage right away.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "the fragile diary",
+          "must",
+          "be",
+          "carefully",
+          "moved",
+          "into climate-controlled storage",
+          "by",
+          "our conservation team",
+          "moves"
+        ],
+        "answers": [
+          [
+            "the fragile diary",
+            "must",
+            "be",
+            "carefully",
+            "moved",
+            "into climate-controlled storage",
+            "by",
+            "our conservation team"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "The proposed landmark reform vote has been postponed until a full historical survey of the site is completed.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "what",
+          "worries",
+          "many longtime residents",
+          "is",
+          "that",
+          "the added delay",
+          "could",
+          "stretch on",
+          "for several more months",
+          "worry"
+        ],
+        "answers": [
+          [
+            "what",
+            "worries",
+            "many longtime residents",
+            "is",
+            "that",
+            "the added delay",
+            "could",
+            "stretch on",
+            "for several more months"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You submitted your expense reimbursement for last month's regional sales conference through the company finance portal. When you checked the confirmation today, the recorded total was noticeably lower than the amount your receipts show, and the payroll cutoff for this cycle is only a few days away.",
+    "to": "payroll@meridian-consulting.com",
+    "subject": "Reimbursement Total Discrepancy – Conference Expenses",
+    "bullets": [
+      "Explain the mismatch between the receipt total and the amount recorded in the portal.",
+      "Request a corrected reimbursement amount before the payroll cutoff.",
+      "Offer to resend the itemized receipts for verification."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Introduction to Environmental Data Science",
+    "professorName": "Professor Alvarez",
+    "professorPost": "Traditionally, environmental monitoring agencies released climate data only after a formal review period, once researchers had checked the readings for errors. Some agencies now publish raw sensor data from their climate stations openly online the moment it is collected, with no review step at all. Should agencies release raw climate data immediately, or wait until it has been reviewed? Why?",
+    "studentPosts": [
+      {
+        "name": "Marcus",
+        "post": "I think agencies should publish raw data right away. Immediate access lets independent researchers, journalists, and local communities track changes in real time instead of waiting weeks for an official report. Transparency also builds public trust, since people can see exactly what the instruments recorded rather than a processed summary decided by someone else."
+      },
+      {
+        "name": "Priya",
+        "post": "While I understand Marcus's point about trust, unreviewed readings can be seriously misleading. Sensors malfunction, and a single faulty reading posted online can spread as alarming news before anyone catches the error. A short review period protects the public from misinterpreting noise as a genuine trend, which matters more than a few weeks of delay."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "community-civic",
+          "situation": "municipal recycling center manager tells a new volunteer sorter that the glass bin overflowed overnight and needs immediate sorting before the truck arrives",
+          "participantRoles": [
+            "municipal recycling center manager",
+            "new volunteer sorter"
+          ],
+          "noveltyKey": "recycling-center-glass-bin-overflow",
+          "requiredConcepts": [
+            "glass bin overflow before truck pickup",
+            "truck pickup deadline for sorting"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "town hall noise ordinance dispute, not a recycling sorting logistics issue"
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "city parks department scheduler tells a neighborhood cleanup volunteer that the public pavilion permit for Saturday overlaps with a civic budget forum",
+          "participantRoles": [
+            "city parks department scheduler",
+            "neighborhood cleanup volunteer"
+          ],
+          "noveltyKey": "park-pavilion-permit-overlap-civic-forum",
+          "requiredConcepts": [
+            "pavilion permit overlap with budget forum",
+            "alternate weekend date offered"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "noise ordinance dispute at a council meeting, not a permit/room double-booking issue"
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "downtown theater box office manager tells a longtime patron that the opening night show was moved to the following week because of a stage rigging repair",
+          "participantRoles": [
+            "theater box office manager",
+            "longtime patron"
+          ],
+          "noveltyKey": "theater-opening-night-rigging-repair-delay",
+          "requiredConcepts": [
+            "opening night postponed one week",
+            "stage rigging repair before use"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "choir rehearsal hall double-booking, not a stage rigging repair delay"
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "museum registrar tells a visiting ceramic artist that a shipped exhibit crate was held at customs and won't arrive before the gallery reception",
+          "participantRoles": [
+            "museum registrar",
+            "visiting ceramic artist"
+          ],
+          "noveltyKey": "museum-crate-customs-hold-before-reception",
+          "requiredConcepts": [
+            "exhibit crate held up at customs",
+            "crate arrival after reception date"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-77a01da4",
+              "reason": "gallery crate arrived cracked at reception, not held at customs beforehand"
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "clinic scheduling nurse tells a patient that the nutrition counseling slot was moved earlier because the counselor has a conflicting training session",
+          "participantRoles": [
+            "clinic scheduling nurse",
+            "patient"
+          ],
+          "noveltyKey": "clinic-nutrition-slot-moved-counselor-training",
+          "requiredConcepts": [
+            "nutrition counseling slot moved earlier",
+            "counselor's conflicting training session"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "hospice workshop shift conflict, not a nutrition counseling reschedule"
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "wellness center front desk staffer tells a new member that the stress-relief yoga class reached capacity and offers a waitlist spot",
+          "participantRoles": [
+            "wellness center front desk staffer",
+            "new member"
+          ],
+          "noveltyKey": "wellness-center-yoga-class-capacity-waitlist",
+          "requiredConcepts": [
+            "stress-relief yoga class at capacity",
+            "waitlist spot for next session"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-77a01da4",
+              "reason": "physical therapy slot moved for staffing, not a class-capacity waitlist"
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "regional bus station ticket agent tells a commuter that the express route ticket she bought is not valid on the delayed replacement bus",
+          "participantRoles": [
+            "bus station ticket agent",
+            "commuter"
+          ],
+          "noveltyKey": "bus-station-express-ticket-invalid-replacement",
+          "requiredConcepts": [
+            "express ticket invalid on replacement bus",
+            "new fare needed for delayed bus"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "airport shuttle overbooking dispute, not a ticket-validity issue on a replacement bus"
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "hotel front desk clerk tells a traveler that the requested late checkout conflicts with an incoming group's early check-in",
+          "participantRoles": [
+            "hotel front desk clerk",
+            "traveler"
+          ],
+          "noveltyKey": "hotel-late-checkout-conflict-group-checkin",
+          "requiredConcepts": [
+            "late checkout conflicts with group check-in",
+            "luggage storage offered instead"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-91d6d3b8",
+              "reason": "cruise excursion headcount shortfall, not a hotel checkout/check-in conflict"
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "local heritage society coordinator tells a trainee archivist that a donated migration-era diary needs urgent climate-controlled storage before it degrades further",
+          "participantRoles": [
+            "heritage society coordinator",
+            "trainee archivist"
+          ],
+          "noveltyKey": "heritage-society-migration-diary-storage-urgency",
+          "requiredConcepts": [
+            "migration-era diary needs climate storage",
+            "diary showing early signs of degradation"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "heritage artifact loan-policy dispute, not an urgent storage/degradation issue"
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "town preservation office historian tells a local resident that the proposed landmark reform vote was postponed pending a historical survey",
+          "participantRoles": [
+            "town preservation office historian",
+            "local resident"
+          ],
+          "noveltyKey": "landmark-reform-vote-postponed-historical-survey",
+          "requiredConcepts": [
+            "landmark reform vote postponed",
+            "pending historical survey of the site"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-550947bf",
+              "reason": "tradition-vs-fact revision debate, not a landmark reform vote postponement"
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "workplace-business",
+      "noveltyKey": "conference-expense-reimbursement-receipt-mismatch",
+      "requiredConcepts": [
+        "reimbursement total mismatched with receipts",
+        "corrected reimbursement needed before payroll cutoff"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-1696d60a",
+          "reason": "damaged company laptop needing replacement, not a reimbursement receipt-total mismatch"
+        }
+      ],
+      "situation": "after submitting a business conference expense reimbursement, an employee discovers the finance portal recorded a lower total than the receipts show, threatening to miss the month-end payroll cutoff",
+      "recipientRole": "company finance and payroll coordinator handling reimbursement requests",
+      "communicativeActs": [
+        "state the receipt-total mismatch in the reimbursement submission",
+        "request a corrected reimbursement amount before payroll cutoff",
+        "propose resending the itemized receipts for verification"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "science-environment",
+      "noveltyKey": "open-access-environmental-sensor-data-vs-restricted",
+      "requiredConcepts": [
+        "raw climate sensor data published openly online",
+        "sensor data restricted to vetted researchers",
+        "risk of public misreading unreviewed raw readings"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-6023c170",
+          "reason": "content-moderation transparency mandate for social platforms, not a raw environmental sensor-data release policy"
+        },
+        {
+          "setId": "wri-8f7e61bf",
+          "reason": "rooftop beehive habitat permit tradeoff, not a sensor-data access policy debate"
+        }
+      ],
+      "proposition": "some environmental monitoring agencies now publish all raw sensor data from their climate stations openly online the moment it's collected, rather than releasing it only to vetted researchers after a review period",
+      "competingValues": [
+        "public transparency and faster independent verification of climate findings",
+        "protecting data quality and public understanding from unreviewed or easily misread raw readings"
+      ]
+    }
+  }
+}

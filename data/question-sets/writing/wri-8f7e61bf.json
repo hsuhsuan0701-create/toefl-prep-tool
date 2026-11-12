@@ -1,0 +1,502 @@
+{
+  "id": "wri-8f7e61bf",
+  "source": "generated",
+  "createdAt": "2026-08-25T13:49:36.441Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "This week's inventory recount pushed back our restock delivery, so I've rescheduled it for Friday.",
+        "frame": "No problem — I'll ___ ___ ___.",
+        "tiles": [
+          "learn",
+          "the recount",
+          "procedure",
+          "learned"
+        ],
+        "answers": [
+          [
+            "learn",
+            "the recount",
+            "procedure"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Heads up — the accounting team is closing the books early, so the expense report deadline moved up.",
+        "frame": "Got it — I'll ___ ___ ___.",
+        "tiles": [
+          "submit",
+          "my report",
+          "early",
+          "submitted"
+        ],
+        "answers": [
+          [
+            "submit",
+            "my report",
+            "early"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Your street-fair permit can't move forward until we get an updated insurance certificate.",
+        "frame": "Understood — I ___ ___ ___ ___ by Friday.",
+        "tiles": [
+          "must",
+          "resubmit",
+          "an updated",
+          "certificate",
+          "resubmitted"
+        ],
+        "answers": [
+          [
+            "must",
+            "resubmit",
+            "an updated",
+            "certificate"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Are we still collecting water samples today?",
+        "frame": "Because ___ ___ ___, ___ the trip.",
+        "tiles": [
+          "the flood levels",
+          "rose",
+          "overnight",
+          "we postponed",
+          "rise"
+        ],
+        "answers": [
+          [
+            "the flood levels",
+            "rose",
+            "overnight",
+            "we postponed"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Why hasn't my laptop screen shipped yet?",
+        "frame": "The parts tracker ___ ___ ___, ___ ___ your order.",
+        "tiles": [
+          "showed",
+          "the wrong",
+          "warehouse",
+          "which",
+          "delayed",
+          "shows"
+        ],
+        "answers": [
+          [
+            "showed",
+            "the wrong",
+            "warehouse",
+            "which",
+            "delayed"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Why did today's rehearsal prop list change?",
+        "frame": "It changed because the lantern ___ ___ ___ ___ ___.",
+        "tiles": [
+          "that arrived",
+          "this morning",
+          "had",
+          "a cracked",
+          "handle",
+          "has"
+        ],
+        "answers": [
+          [
+            "that arrived",
+            "this morning",
+            "had",
+            "a cracked",
+            "handle"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Why was my sleep-study appointment moved earlier?",
+        "frame": "We moved it because the technician said ___ ___ ___ ___ ___.",
+        "tiles": [
+          "that",
+          "the monitoring equipment",
+          "needed",
+          "recalibration",
+          "soon",
+          "need"
+        ],
+        "answers": [
+          [
+            "that",
+            "the monitoring equipment",
+            "needed",
+            "recalibration",
+            "soon"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Does the express fare include any new charges?",
+        "frame": "Yes, ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "the fare",
+          "now includes",
+          "a surcharge",
+          "that applies",
+          "only",
+          "on weekends",
+          "include"
+        ],
+        "answers": [
+          [
+            "the fare",
+            "now includes",
+            "a surcharge",
+            "that applies",
+            "only",
+            "on weekends"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Why are the reform-era scans so hard to find?",
+        "frame": "They ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "were filed",
+          "under the wrong",
+          "decade folder",
+          "by",
+          "a previous",
+          "intern",
+          "was filed"
+        ],
+        "answers": [
+          [
+            "were filed",
+            "under the wrong",
+            "decade folder",
+            "by",
+            "a previous",
+            "intern"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Do you know the new Wi-Fi password after last night's outage?",
+        "frame": "Whoever ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "resets it",
+          "next time",
+          "should write",
+          "the password down",
+          "before anyone",
+          "forgets it again",
+          "reset"
+        ],
+        "answers": [
+          [
+            "resets it",
+            "next time",
+            "should write",
+            "the password down",
+            "before anyone",
+            "forgets it again"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You just finished a weekend ceramic-glazing workshop at Riverside Art Studio. When you checked the pickup roster before leaving, your finished mug was listed under another participant's name, and the studio is closed until Tuesday.",
+    "to": "workshops@riversideartstudio.org",
+    "subject": "Pickup Roster Error – Weekend Glazing Workshop",
+    "bullets": [
+      "Express your appreciation for the ceramic-glazing workshop.",
+      "Report that the pickup roster lists your finished mug under someone else's name.",
+      "Request confirmation of how the roster will be corrected before you pick up your piece."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Urban Ecology",
+    "professorName": "Professor Alvarez",
+    "professorPost": "This week we're examining a new municipal policy: several city governments now require residents to obtain an official habitat-impact permit before installing a beehive on a rooftop. Supporters argue the review protects declining pollinator populations by confirming hives are sited responsibly, while critics worry it burdens homeowners and does little to address neighbors' safety concerns about stings. Should cities require this kind of permit for rooftop beehives? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Priya",
+        "post": "I think the permit makes sense. Rooftop hives can genuinely boost pollinator biodiversity in a neighborhood, but that benefit shouldn't come at a neighbor's expense. A habitat-impact review lets the city confirm the hive is placed safely away from shared yards before stings become a real problem."
+      },
+      {
+        "name": "Marcus",
+        "post": "While I get Priya's point about safety, I think the permit just adds bureaucracy without protecting anyone. Bees rarely sting unless directly provoked, and most rooftop hives sit far from ground-level activity anyway. Requiring a formal review mainly discourages people from keeping bees at all."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "campus-academics",
+          "situation": "A campus chemistry department's stockroom supervisor tells a new work-study student that this week's chemical inventory recount pushed back the scheduled restock delivery.",
+          "participantRoles": [
+            "chemistry stockroom supervisor",
+            "work-study student"
+          ],
+          "noveltyKey": "chem-stockroom-inventory-recount-delay",
+          "requiredConcepts": [
+            "chemical inventory recount delaying the restock delivery",
+            "student learning the new stockroom recount procedure",
+            "supervisor rescheduling the restock delivery window"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-b5e4cabe",
+              "reason": "A library checkout-limit change versus a stockroom inventory recount delaying a delivery — different campus process entirely."
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A regional office manager tells a new employee that this month's expense report deadline moved up because the accounting team is closing the books early.",
+          "participantRoles": [
+            "regional office manager",
+            "new employee"
+          ],
+          "noveltyKey": "office-expense-report-deadline-moved-up",
+          "requiredConcepts": [
+            "expense report deadline moved up",
+            "accounting team closing the books early",
+            "employee adjusting the submission timeline"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-b5e4cabe",
+              "reason": "A helpdesk ticket priority downgrade versus an expense report deadline change — different workplace process and no IT system involved."
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A city permit coordinator tells a community group organizer that their public street-fair permit needs an updated insurance certificate before approval.",
+          "participantRoles": [
+            "city permit coordinator",
+            "community group organizer"
+          ],
+          "noveltyKey": "civic-street-fair-permit-insurance-certificate",
+          "requiredConcepts": [
+            "street fair permit needing an updated insurance certificate",
+            "organizer resubmitting paperwork before approval",
+            "coordinator explaining the missing document"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-6d6c11da",
+              "reason": "A tree-planting event's lot relocation versus a street-fair permit paperwork issue — different civic process and no venue change."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A wetland research station's field coordinator tells a visiting graduate researcher that this week's water-sample collection was postponed because the habitat's flood levels rose overnight.",
+          "participantRoles": [
+            "wetland field coordinator",
+            "visiting graduate researcher"
+          ],
+          "noveltyKey": "wetland-flood-level-sample-postponement",
+          "requiredConcepts": [
+            "water sample collection postponed by rising flood levels",
+            "habitat conditions delaying fieldwork",
+            "coordinator rescheduling the collection trip"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-6d6c11da",
+              "reason": "A wind-turbine inspection moved indoors for lightning risk versus a wetland sample trip postponed by flooding — different equipment and different hazard."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A device repair shop's online support agent tells a client that their laptop's screen-replacement order was delayed because the digital parts tracker showed the wrong warehouse.",
+          "participantRoles": [
+            "online support agent",
+            "client awaiting laptop repair"
+          ],
+          "noveltyKey": "device-repair-parts-tracker-warehouse-error",
+          "requiredConcepts": [
+            "screen replacement order delayed by tracker error",
+            "digital parts tracker showing the wrong warehouse",
+            "agent explaining the corrected shipping timeline"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1696d60a",
+              "reason": "A newly arrived cracked laptop screen versus a delayed replacement order caused by a tracker error — different failure point in the repair process."
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A local theater's props coordinator tells a volunteer stagehand that Thursday's rehearsal prop list changed because the lantern prop arrived with a cracked handle.",
+          "participantRoles": [
+            "theater props coordinator",
+            "volunteer stagehand"
+          ],
+          "noveltyKey": "theater-lantern-prop-crack-list-change",
+          "requiredConcepts": [
+            "rehearsal prop list changed",
+            "lantern prop arriving with a cracked handle",
+            "stagehand fetching the backup prop"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-6d6c11da",
+              "reason": "A costume fitting relocated to a smaller studio versus a damaged prop changing the rehearsal prop list — different item and different cause."
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A health clinic's front-desk coordinator tells a patient that their sleep-study appointment was moved earlier because the monitoring equipment needs recalibration.",
+          "participantRoles": [
+            "clinic front-desk coordinator",
+            "patient scheduled for a sleep study"
+          ],
+          "noveltyKey": "clinic-sleep-study-device-recalibration-reschedule",
+          "requiredConcepts": [
+            "sleep study appointment moved earlier",
+            "monitoring equipment needing recalibration",
+            "coordinator confirming the new appointment time"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "An incorrect food-allergy record versus a sleep-study appointment moved for equipment recalibration — different clinic issue and different fix."
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A regional train station's ticket counter clerk tells a traveler that the express-route fare now includes a new weekend surcharge starting this month.",
+          "participantRoles": [
+            "train ticket counter clerk",
+            "traveler buying an express-route ticket"
+          ],
+          "noveltyKey": "train-express-route-weekend-surcharge",
+          "requiredConcepts": [
+            "express route fare including a new weekend surcharge",
+            "traveler asking when the surcharge starts",
+            "clerk explaining the surcharge schedule"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A local historical society's archivist tells a part-time cataloger that the reform-era newspaper scans were filed under the wrong decade folder.",
+          "participantRoles": [
+            "historical society archivist",
+            "part-time cataloger"
+          ],
+          "noveltyKey": "archive-reform-era-newspaper-decade-folder-error",
+          "requiredConcepts": [
+            "reform-era scans filed under the wrong decade folder",
+            "cataloger correcting the folder labels",
+            "archivist explaining the filing error"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-6d6c11da",
+              "reason": "A donated trunk needing photographing before storage versus newspaper scans misfiled under the wrong decade folder — different item and different task."
+            }
+          ]
+        },
+        {
+          "domain": "everyday-life",
+          "situation": "Two roommates sharing an apartment negotiate who resets the home Wi-Fi router password after last night's outage, since neither wrote down the new one.",
+          "participantRoles": [
+            "roommate who reset the router",
+            "roommate needing the new Wi-Fi password"
+          ],
+          "noveltyKey": "roommate-wifi-router-reset-password-mixup",
+          "requiredConcepts": [
+            "home Wi-Fi router reset after an outage",
+            "neither roommate writing down the new password",
+            "roommates agreeing on who resets it next time"
+          ],
+          "distinguishesFrom": []
+        }
+      ]
+    },
+    "email": {
+      "domain": "arts-culture",
+      "noveltyKey": "ceramic-mug-pickup-roster-wrong-name",
+      "requiredConcepts": [
+        "pickup roster listing the mug under the wrong name",
+        "studio closed until Tuesday",
+        "workshop coordinator confirming the correction"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-bbbfc85e",
+          "reason": "A lost personal wallet left behind versus a finished piece mislabeled on the pickup roster — different problem and different resolution needed."
+        }
+      ],
+      "situation": "After finishing a weekend ceramic-glazing workshop at a local art studio, the writer discovers the studio's pickup roster lists their finished mug under someone else's name, and the studio is closed until Tuesday.",
+      "recipientRole": "the art studio's workshop coordinator",
+      "communicativeActs": [
+        "express appreciation for the ceramic-glazing workshop",
+        "report that the pickup roster lists the mug under the wrong name",
+        "request confirmation of how to correct the roster before pickup"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "science-environment",
+      "noveltyKey": "rooftop-beehive-habitat-permit-debate",
+      "requiredConcepts": [
+        "rooftop hives boosting pollinator biodiversity nearby",
+        "habitat-impact permit review process",
+        "neighbor concern about bee stings near shared yards"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-90026a0d",
+          "reason": "Native-species tree-planting policy versus a rooftop-beehive habitat permit debate — different intervention and different stakeholder conflict."
+        },
+        {
+          "setId": "wri-bdbdd45c",
+          "reason": "Lab equipment sustainability choice versus a residential rooftop-beehive permit debate — different setting and different competing values."
+        }
+      ],
+      "proposition": "Some local governments now require an official habitat-impact permit before residents can install rooftop beehives, weighing pollinator biodiversity gains against neighbor safety concerns.",
+      "competingValues": [
+        "biodiversity benefits from urban pollinators",
+        "neighbor safety and consent near shared yards"
+      ]
+    }
+  }
+}

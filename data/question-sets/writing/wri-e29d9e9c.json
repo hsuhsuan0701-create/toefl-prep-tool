@@ -1,0 +1,529 @@
+{
+  "id": "wri-e29d9e9c",
+  "source": "generated",
+  "createdAt": "2026-08-31T15:35:02.628Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "This new noise ordinance sets a strict decibel limit after ten p.m.",
+        "frame": "Twenty ___ ___ ___ ___ against it.",
+        "tiles": [
+          "neighbors",
+          "already",
+          "signed",
+          "a petition",
+          "sign"
+        ],
+        "answers": [
+          [
+            "neighbors",
+            "already",
+            "signed",
+            "a petition"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Can we still use the rehearsal hall tonight?",
+        "frame": "The ___ ___ ___ ___ with a theater group.",
+        "tiles": [
+          "hall",
+          "was",
+          "already",
+          "double-booked",
+          "were"
+        ],
+        "answers": [
+          [
+            "hall",
+            "was",
+            "already",
+            "double-booked"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Can you attend the stress management workshop on Tuesday?",
+        "frame": "I ___ ___ ___ ___ ___ that afternoon instead.",
+        "tiles": [
+          "have",
+          "already",
+          "arranged",
+          "a",
+          "replacement aide",
+          "arrange"
+        ],
+        "answers": [
+          [
+            "have",
+            "already",
+            "arranged",
+            "a",
+            "replacement aide"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Is there room for us on the next shuttle to the airport?",
+        "frame": "That shuttle ___ ___ ___ ___ ___ the next route.",
+        "tiles": [
+          "is",
+          "already",
+          "full",
+          "so",
+          "you need",
+          "are"
+        ],
+        "answers": [
+          [
+            "is",
+            "already",
+            "full",
+            "so",
+            "you need"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "I'd like to borrow the artifact for my lecture next week.",
+        "frame": "___ ___ ___ ___ ___ ___ instead?",
+        "tiles": [
+          "have",
+          "you",
+          "considered",
+          "an",
+          "on-site",
+          "viewing appointment",
+          "consider"
+        ],
+        "answers": [
+          [
+            "have",
+            "you",
+            "considered",
+            "an",
+            "on-site",
+            "viewing appointment"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Is my poster ready to print for the conference?",
+        "frame": "___ ___ ___ ___ ___ ___ across campus.",
+        "tiles": [
+          "the",
+          "printer",
+          "that",
+          "jammed earlier",
+          "needs",
+          "a replacement",
+          "need"
+        ],
+        "answers": [
+          [
+            "the",
+            "printer",
+            "that",
+            "jammed earlier",
+            "needs",
+            "a replacement"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Did the weekend count match the register totals?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ by dozens of units.",
+        "tiles": [
+          "the",
+          "count",
+          "that",
+          "the weekend crew",
+          "finished",
+          "was",
+          "off",
+          "were"
+        ],
+        "answers": [
+          [
+            "the",
+            "count",
+            "that",
+            "the weekend crew",
+            "finished",
+            "was",
+            "off"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Are the rooftop sensors reading correctly?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ the storm.",
+        "tiles": [
+          "the",
+          "sensor",
+          "that",
+          "drifted overnight",
+          "needs",
+          "recalibration",
+          "before",
+          "need"
+        ],
+        "answers": [
+          [
+            "the",
+            "sensor",
+            "that",
+            "drifted overnight",
+            "needs",
+            "recalibration",
+            "before"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "What's going on with the paywall complaints?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "a",
+          "patch",
+          "that",
+          "engineers",
+          "wrote overnight",
+          "should",
+          "fix",
+          "the paywall glitch",
+          "write"
+        ],
+        "answers": [
+          [
+            "a",
+            "patch",
+            "that",
+            "engineers",
+            "wrote overnight",
+            "should",
+            "fix",
+            "the paywall glitch"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "When can I get the ladder back?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "the",
+          "ladder",
+          "will",
+          "come back Friday evening",
+          "because",
+          "the paint job",
+          "ran",
+          "into",
+          "the weekend",
+          "runs"
+        ],
+        "answers": [
+          [
+            "the",
+            "ladder",
+            "will",
+            "come back Friday evening",
+            "because",
+            "the paint job",
+            "ran",
+            "into",
+            "the weekend"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You recently signed up for a free sleep-hygiene workshop offered by a local health clinic. This morning you received a confirmation email, but it lists the workshop starting at 6:00 p.m. instead of the 5:00 p.m. time you selected, and the workshop is scheduled for tomorrow. Write an email to the clinic's workshop scheduling coordinator.",
+    "to": "workshops@willowbrookclinic.org",
+    "subject": "Sleep-Hygiene Workshop Confirmation Time",
+    "bullets": [
+      "Express appreciation for the clinic offering the free sleep-hygiene workshop.",
+      "Point out that the confirmation email lists 6:00 p.m. instead of the correct 5:00 p.m. start time.",
+      "Request a corrected confirmation before tomorrow's session."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Transportation Policy and Planning",
+    "professorName": "Professor Alvarez",
+    "professorPost": "Long-distance rail operators are debating whether to require every passenger to hold an advance seat reservation, eliminating standing-room walk-up tickets during peak travel periods. Supporters argue reservations let operators plan capacity and guarantee every rider a seat, while critics worry that commuters who cannot book far ahead would lose access during the busiest hours. What do you think? Should reservations be mandatory for every passenger, or should operators keep offering walk-up tickets during peak periods? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Priya",
+        "post": "I support mandatory reservations. Operators can only plan enough cars and staff if they know exactly how many passengers are coming. Standing-room ticket sales lead to an overcrowded platform and packed aisles during rush hour, which feels unsafe and makes the ride uncomfortable for everyone who paid for a seat."
+      },
+      {
+        "name": "Marcus",
+        "post": "Requiring a reservation for every passenger would hurt commuters whose plans change at the last minute, like someone catching an earlier train after a meeting runs long. Walk-up tickets keep rail travel flexible and accessible. Overcrowding could be managed with more frequent trains instead of shutting spontaneous riders out entirely."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "community-civic",
+          "situation": "At a city council public meeting, a resident argues a new noise ordinance unfairly targets a quiet residential street near downtown.",
+          "participantRoles": [
+            "city council member fielding noise complaints",
+            "resident whose street is named in the proposed ordinance"
+          ],
+          "noveltyKey": "town-hall-noise-ordinance-exemption",
+          "requiredConcepts": [
+            "proposed decibel limit after 10 pm",
+            "petition signed by twenty neighbors",
+            "one-street exemption request"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7d7e0b05",
+              "reason": "that set's civic scenario is a vacant-lot community garden proposal, not a noise ordinance dispute at a council meeting"
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "An amateur choir director tells a church music coordinator that the shared rehearsal hall was double-booked with a theater group the same evening.",
+          "participantRoles": [
+            "amateur choir director scheduling rehearsals",
+            "church music coordinator who manages the shared hall"
+          ],
+          "noveltyKey": "community-choir-venue-double-booking",
+          "requiredConcepts": [
+            "rehearsal hall double-booked same evening",
+            "theater group's earlier reservation",
+            "alternate practice room downstairs"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A hospice program coordinator tells a longtime patient-visit aide that a stress management workshop conflicts with their usual Tuesday shift.",
+          "participantRoles": [
+            "hospice program coordinator building the visit schedule",
+            "longtime aide who visits patients every Tuesday"
+          ],
+          "noveltyKey": "hospice-shift-workshop-conflict",
+          "requiredConcepts": [
+            "stress management workshop on Tuesday",
+            "weekly patient-visit shift",
+            "replacement aide for that afternoon"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-91d6d3b8",
+              "reason": "that set's health scenario is a physical therapy waitlist opening from a cancellation, not a hospice scheduling conflict"
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "An airport shuttle dispatcher tells a hotel concierge that the next shuttle already has a full bus and two guests will need the following route.",
+          "participantRoles": [
+            "airport shuttle dispatcher tracking seat counts",
+            "hotel concierge booking guest rides"
+          ],
+          "noveltyKey": "airport-shuttle-overbooked-seats",
+          "requiredConcepts": [
+            "shuttle bus already full",
+            "two guests needing the next route",
+            "fifteen-minute wait for departure"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-91d6d3b8",
+              "reason": "that scenario is a cruise excursion headcount short at the dock, not an overbooked airport shuttle"
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A regional heritage archive registrar tells a visiting historian that a requested artifact cannot leave the building under the archive's loan policy.",
+          "participantRoles": [
+            "heritage archive registrar enforcing the loan policy",
+            "visiting historian requesting the artifact for a lecture"
+          ],
+          "noveltyKey": "heritage-artifact-loan-dispute",
+          "requiredConcepts": [
+            "artifact barred from leaving the building",
+            "climate-controlled display case requirement",
+            "on-site viewing appointment instead"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7d7e0b05",
+              "reason": "that build_sentence situation is a genealogist requesting an immigration ledger, not an artifact loan dispute"
+            }
+          ]
+        },
+        {
+          "domain": "campus-academics",
+          "situation": "A university print shop clerk tells an undergraduate researcher that the poster printer is down and the conference deadline is tomorrow morning.",
+          "participantRoles": [
+            "university print shop clerk managing the queue",
+            "undergraduate researcher facing a conference deadline"
+          ],
+          "noveltyKey": "research-poster-printing-deadline-conflict",
+          "requiredConcepts": [
+            "poster printer down since morning",
+            "conference deadline tomorrow morning",
+            "backup printer across campus"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-7d7e0b05",
+              "reason": "that scenario is a first-year clarifying a textbook edition, not a poster-printing deadline crisis"
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A retail store manager tells a part-time employee that the weekend inventory count doesn't match the register totals by dozens of units.",
+          "participantRoles": [
+            "retail store manager reviewing the count",
+            "part-time employee who ran the weekend inventory"
+          ],
+          "noveltyKey": "retail-inventory-count-discrepancy",
+          "requiredConcepts": [
+            "inventory count off by dozens of units",
+            "register totals from the weekend",
+            "recount before Monday delivery"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-91d6d3b8",
+              "reason": "that set's workplace scenario is a projector cable fix before a client pitch, not an inventory count discrepancy"
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "An environmental laboratory technician tells a new field assistant that the rooftop sensor's humidity readings drifted and need recalibration before the storm.",
+          "participantRoles": [
+            "environmental laboratory technician overseeing the sensors",
+            "new field assistant checking equipment before the storm"
+          ],
+          "noveltyKey": "rooftop-weather-station-calibration-dispute",
+          "requiredConcepts": [
+            "humidity readings drifted overnight",
+            "recalibration before the incoming storm",
+            "backup sensor mounted nearby"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A local news website's digital editor tells a subscriber-support intern that the paywall software is blocking readers who already paid.",
+          "participantRoles": [
+            "digital editor troubleshooting the paywall",
+            "subscriber-support intern fielding reader complaints"
+          ],
+          "noveltyKey": "local-news-website-paywall-glitch",
+          "requiredConcepts": [
+            "paywall blocking already-paid subscribers",
+            "software patch scheduled for tonight",
+            "temporary free-access workaround"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-91d6d3b8",
+              "reason": "that build_sentence scenario is a livestream chat moderator banning a username, not a paywall software glitch"
+            }
+          ]
+        },
+        {
+          "domain": "everyday-life",
+          "situation": "A tenant tells the person renting the unit down the hall that the borrowed ladder is taking longer to return because a paint job ran late.",
+          "participantRoles": [
+            "tenant who borrowed the ladder",
+            "person renting the unit down the hall who is waiting to reclaim it"
+          ],
+          "noveltyKey": "borrowed-ladder-return-delay",
+          "requiredConcepts": [
+            "ladder needed back by Saturday",
+            "paint job that ran into the weekend",
+            "offer to drop it off Friday evening instead"
+          ],
+          "distinguishesFrom": []
+        }
+      ]
+    },
+    "email": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "clinic-workshop-wrong-confirmation-time",
+      "requiredConcepts": [
+        "free sleep-hygiene workshop signup",
+        "confirmation email listing 6 PM instead of 5 PM",
+        "corrected confirmation needed before tomorrow"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-90026a0d",
+          "reason": "that email is a stretch class confirmation listing the wrong room location, not a wrong workshop start time"
+        },
+        {
+          "setId": "wri-aaa3d20f",
+          "reason": "that email is a nutrition workshop registration listing the wrong food allergy, not a mistaken workshop time"
+        }
+      ],
+      "situation": "After signing up for a local clinic's free sleep-hygiene workshop, the writer received a confirmation email listing the wrong session time, and the workshop is tomorrow.",
+      "recipientRole": "the local clinic's workshop scheduling coordinator",
+      "communicativeActs": [
+        "express appreciation for the clinic's free sleep-hygiene workshop offering",
+        "report that the confirmation email lists 6 PM instead of the correct 5 PM start time",
+        "request a corrected confirmation before tomorrow's session"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "services-travel",
+      "noveltyKey": "mandatory-train-reservation-vs-walkup-standing",
+      "requiredConcepts": [
+        "mandatory advance seat reservation for every passenger",
+        "standing-room walk-up ticket during peak periods",
+        "overcrowded platform at rush hour"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-aaa3d20f",
+          "reason": "that discussion is about designating one quiet carriage on every train, not mandatory reservations versus walk-up standing tickets"
+        },
+        {
+          "setId": "wri-b5e4cabe",
+          "reason": "that discussion is about airport lounge day-pass access regardless of ticket class, not train seat reservation policy"
+        }
+      ],
+      "proposition": "Long-distance train operators should require advance seat reservations for every passenger rather than continue selling standing-room walk-up tickets during peak periods.",
+      "competingValues": [
+        "guaranteed seating and predictable capacity planning for every reserved passenger",
+        "flexible, spontaneous travel access for commuters who cannot book far ahead"
+      ]
+    }
+  }
+}

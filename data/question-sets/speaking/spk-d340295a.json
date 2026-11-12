@@ -1,0 +1,232 @@
+{
+  "id": "spk-d340295a",
+  "source": "generated",
+  "createdAt": "2026-08-24T17:21:24.922Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Textile Conservation Lab Orientation",
+    "scenarioDescription": "You are the lead textile conservator in the campus textile conservation lab, guiding a new student handling assistant through the fabric intake room minutes before a family arrives to donate a historical costume collection for the heritage exhibit. Listen to each instruction and repeat what you hear. Repeat only once.",
+    "introAudio": "stimuli/spk-d340295a/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-d340295a.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Textile Conservation Lab Orientation. You are the lead textile conservator in the campus textile conservation lab, guiding a new student handling assistant through the fabric intake room minutes before a family arrives to donate a historical costume collection for the heritage exhibit. Listen to each instruction and repeat what you hear. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Please put on these cotton gloves first.\n- Gloves and clean hands protect the antique threads.\n- We examine each garment and write a condition note.\n- Layer acid-free tissue between the folds, and handle each piece gently.\n- Before you shelve the garment, log its donor's name and date.\n- Each catalogued garment gets a shelf assignment in our temperature-controlled storage room.\n- The number you receive today will follow this collection into the exhibit.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Please put on these cotton gloves first.",
+        "audio": "stimuli/spk-d340295a/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.155,
+          "y": 0.24,
+          "w": 0.095,
+          "h": 0.175
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Gloves and clean hands protect the antique threads.",
+        "audio": "stimuli/spk-d340295a/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.342,
+          "y": 0.305,
+          "w": 0.103,
+          "h": 0.115
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "We examine each garment and write a condition note.",
+        "audio": "stimuli/spk-d340295a/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.5,
+          "y": 0.355,
+          "w": 0.125,
+          "h": 0.115
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Layer acid-free tissue between the folds, and handle each piece gently.",
+        "audio": "stimuli/spk-d340295a/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.405,
+          "y": 0.58,
+          "w": 0.165,
+          "h": 0.145
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Before you shelve the garment, log its donor's name and date.",
+        "audio": "stimuli/spk-d340295a/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.705,
+          "y": 0.61,
+          "w": 0.105,
+          "h": 0.115
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Each catalogued garment gets a shelf assignment in our temperature-controlled storage room.",
+        "audio": "stimuli/spk-d340295a/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.675,
+          "y": 0.2,
+          "w": 0.09,
+          "h": 0.105
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The number you receive today will follow this collection into the exhibit.",
+        "audio": "stimuli/spk-d340295a/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.15,
+          "y": 0.685,
+          "w": 0.11,
+          "h": 0.09
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Rainwater Collection at Home",
+    "intro": "Hi, thank you for taking a moment to speak with me. I'm calling from a local water-conservation research group, and we're curious about how people collect and reuse rainwater at home. I have four quick questions for you.",
+    "introAudio": "stimuli/spk-d340295a/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, what container or system do you use at home to collect rainwater, and where do you keep it?",
+        "audio": "stimuli/spk-d340295a/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thanks. Can you tell me about a specific recent time when the rainwater you collected actually saved you water or helped one of your plants? What made that occasion stand out to you?",
+        "audio": "stimuli/spk-d340295a/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some people believe every household should be required to install a rainwater collection system to help protect the environment. Others think that decision should stay voluntary. Which view do you agree with, and why?",
+        "audio": "stimuli/spk-d340295a/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. What could neighborhoods do to encourage more households to start collecting and reusing rainwater?",
+        "audio": "stimuli/spk-d340295a/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-briefing",
+      "take": "first",
+      "measuredWpm": 141.3,
+      "targetWpm": 165,
+      "minWpm": 145,
+      "maxWpm": 195
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "history-social-change",
+      "noveltyKey": "textile-conservation-lab-donation-intake-orientation",
+      "requiredConcepts": [
+        "cotton gloves before touching donated fabric",
+        "a condition note before storage",
+        "acid-free tissue between fabric folds",
+        "a donation log entry for each garment",
+        "a temperature-controlled shelf assignment"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-8663cea7",
+          "reason": "that Set is an archive room orienting a helper through sorting donated letters into acid-free folders; this one is a textile conservation lab prepping a donated costume collection, garment-handling stations rather than paper sorting"
+        }
+      ],
+      "setting": "a campus textile conservation lab's fabric intake room, shortly before a scheduled donation appointment",
+      "speakerRole": "the lab's lead textile conservator, training a newly hired student handling assistant",
+      "communicativePurpose": "walk the new assistant through each garment-handling station before a family donates a historical costume collection for the heritage exhibit"
+    },
+    "interview": {
+      "domain": "science-environment",
+      "noveltyKey": "home-rainwater-collection-habit",
+      "requiredConcepts": [
+        "rain barrel placement under a downspout",
+        "watering the garden with collected rainwater",
+        "a specific week the rain barrel nearly overflowed",
+        "mandatory rainwater system requirement debate",
+        "neighborhood incentive for rainwater collection"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-ee3629c8",
+          "reason": "that Set covers household electricity/appliance conservation habits; this one is a physical rainwater-collection and reuse routine, not energy use"
+        },
+        {
+          "setId": "spk-dd6dcb3d",
+          "reason": "that Set covers casual backyard wildlife watching; this one covers a water-conservation chore routine, no animal observation involved"
+        }
+      ],
+      "topic": "how the test taker collects and reuses rainwater at home for the garden or household chores",
+      "premise": "a residential water-conservation research group makes a brief unannounced phone call about how people collect and reuse rainwater at home to help the environment",
+      "questionArc": [
+        "asks which container or system the test taker uses at home to collect rainwater and where it is kept",
+        "asks the test taker to recall a specific recent time collected rainwater saved water or helped a plant, and why that occasion stands out",
+        "presents two views on whether households should be required to install rainwater collection systems and asks the test taker to pick a side with reasons",
+        "broadens to a general recommendation about how neighborhoods could encourage more households to collect rainwater to protect the environment"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "british",
+      "voice": "Erinome",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "north-american",
+      "voice": "Despina",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

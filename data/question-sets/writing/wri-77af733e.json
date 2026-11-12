@@ -1,0 +1,266 @@
+{
+  "id": "wri-77af733e",
+  "source": "generated",
+  "createdAt": "2026-07-27T17:09:35.187Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Where should I put these boxes?",
+        "frame": "You ___ ___ ___ ___ door.",
+        "tiles": [
+          "can",
+          "leave them",
+          "by",
+          "the",
+          "leave it"
+        ],
+        "answers": [
+          [
+            "can",
+            "leave them",
+            "by",
+            "the"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-2",
+        "prompt": "How was the museum?",
+        "frame": "We ___ ___ ___ ___.",
+        "tiles": [
+          "enjoyed",
+          "the",
+          "photography",
+          "exhibit",
+          "enjoy"
+        ],
+        "answers": [
+          [
+            "enjoyed",
+            "the",
+            "photography",
+            "exhibit"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Why is the reading room closed today?",
+        "frame": "The ___ ___ ___ ___.",
+        "tiles": [
+          "shelves",
+          "are",
+          "being",
+          "replaced",
+          "is"
+        ],
+        "answers": [
+          [
+            "shelves",
+            "are",
+            "being",
+            "replaced"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Did you find the report I mentioned?",
+        "frame": "I ___ ___ ___ it ___.",
+        "tiles": [
+          "haven't",
+          "looked",
+          "for",
+          "yet",
+          "didn't"
+        ],
+        "answers": [
+          [
+            "haven't",
+            "looked",
+            "for",
+            "yet"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Do you know when the results will be posted?",
+        "frame": "The professor ___ ___ ___ ___ ___ on Friday.",
+        "tiles": [
+          "said",
+          "that",
+          "they",
+          "would be",
+          "posted",
+          "would post"
+        ],
+        "answers": [
+          [
+            "said",
+            "that",
+            "they",
+            "would be",
+            "posted"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Should I bring anything to the potluck?",
+        "frame": "You ___ ___ ___ ___ ___ want to.",
+        "tiles": [
+          "don't",
+          "need to bring",
+          "anything",
+          "unless",
+          "you",
+          "doesn't"
+        ],
+        "answers": [
+          [
+            "don't",
+            "need to bring",
+            "anything",
+            "unless",
+            "you"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Why didn't you call me back last night?",
+        "frame": "My phone ___ ___ ___ ___ time I got home.",
+        "tiles": [
+          "had",
+          "run out of battery",
+          "by",
+          "the",
+          "has"
+        ],
+        "answers": [
+          [
+            "had",
+            "run out of battery",
+            "by",
+            "the"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Which laptop did you end up buying?",
+        "frame": "I ___ ___ ___ ___ ___ on sale.",
+        "tiles": [
+          "bought",
+          "the one",
+          "that",
+          "the store",
+          "had",
+          "who"
+        ],
+        "answers": [
+          [
+            "bought",
+            "the one",
+            "that",
+            "the store",
+            "had"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Why was the hiking trip postponed?",
+        "frame": "The trip ___ ___ ___ ___ ___ heavy rain.",
+        "tiles": [
+          "was",
+          "postponed",
+          "because",
+          "the forecast",
+          "warned of",
+          "were"
+        ],
+        "answers": [
+          [
+            "was",
+            "postponed",
+            "because",
+            "the forecast",
+            "warned of"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-10",
+        "prompt": "So the noise was coming from the heater?",
+        "frame": "No, it was ___ ___ ___ ___ ___ ___ noise.",
+        "tiles": [
+          "the pipes",
+          "behind the wall",
+          "that",
+          "were",
+          "making",
+          "the",
+          "was"
+        ],
+        "answers": [
+          [
+            "the pipes",
+            "behind the wall",
+            "that",
+            "were",
+            "making",
+            "the"
+          ]
+        ],
+        "timeLimitSec": 40
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "Your university recently launched a bike-share program, and you have been reserving a bike each morning to reach your early classes. Last Tuesday the bike you had reserved was not at its station, and you had to walk across campus and arrived late. The program office has invited students to send in written feedback.",
+    "to": "bikeshare@westbrook.edu",
+    "subject": "Feedback on the campus bike-share program",
+    "bullets": [
+      "Explain how the program has been useful to you.",
+      "Report the problem you had with your reservation.",
+      "Suggest one change that would keep the problem from happening again."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Introduction to Urban Studies",
+    "professorName": "Dr. Lindqvist",
+    "professorPost": "Many cities are rethinking how downtown street space is allocated. Some have converted curbside parking into wider sidewalks, bike lanes, or outdoor seating for restaurants, while others have kept the parking in order to preserve convenient access for drivers. Each choice creates trade-offs for residents, local businesses, and visitors. What do you think? Should cities convert downtown street parking into public space? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Priya",
+        "post": "I support the change. When my neighborhood replaced two rows of parking with wider sidewalks and outdoor seating, the street became somewhere people wanted to spend an afternoon instead of somewhere they drove through. The cafés stayed busy much later, and I no longer worried about my little sister stepping off a narrow curb."
+      },
+      {
+        "name": "Marcus",
+        "post": "I'm against removing the parking. My grandmother cannot walk more than a block, and the bus from her neighborhood runs only once an hour, so a space near the door is the only way she can reach her pharmacy downtown. Making driving harder punishes people who have no realistic alternative."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "id": "spk-6ea06d6c",
+  "source": "generated",
+  "createdAt": "2026-07-30T07:25:58.732Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Campus Media Center Equipment Tour",
+    "scenarioDescription": "You are learning how to help students borrow equipment from a campus media center. Listen to the center manager as you walk through the equipment area and repeat what she says. Repeat only once.",
+    "image": {
+      "file": "images/scenarios/spk-6ea06d6c.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Campus Media Center Equipment Tour. You are learning how to help students borrow equipment from a campus media center. Listen to the center manager as you walk through the equipment area and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- This desk holds our loan forms.\n- Cameras and tripods stay inside these locked cabinets.\n- You'll check each camera and record its condition at this counter.\n- The batteries charge on this shelf, and spare cables belong in the drawer below.\n- Before you hand out any equipment, make sure the student has signed the loan agreement.\n- If a device comes back damaged, place it in the clearly labeled repair bin beside the office door.\n- The editing room at the end of the hallway, which requires a reservation, is available until nine each evening.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "This desk holds our loan forms.",
+        "audio": "stimuli/spk-6ea06d6c/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.09,
+          "y": 0.63,
+          "w": 0.2,
+          "h": 0.08
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Cameras and tripods stay inside these locked cabinets.",
+        "audio": "stimuli/spk-6ea06d6c/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.05,
+          "y": 0.27,
+          "w": 0.23,
+          "h": 0.36
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "You'll check each camera and record its condition at this counter.",
+        "audio": "stimuli/spk-6ea06d6c/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.41,
+          "y": 0.38,
+          "w": 0.14,
+          "h": 0.07
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The batteries charge on this shelf, and spare cables belong in the drawer below.",
+        "audio": "stimuli/spk-6ea06d6c/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.42,
+          "y": 0.17,
+          "w": 0.17,
+          "h": 0.19
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Before you hand out any equipment, make sure the student has signed the loan agreement.",
+        "audio": "stimuli/spk-6ea06d6c/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "If a device comes back damaged, place it in the clearly labeled repair bin beside the office door.",
+        "audio": "stimuli/spk-6ea06d6c/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.8,
+          "y": 0.43,
+          "w": 0.1,
+          "h": 0.11
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The editing room at the end of the hallway, which requires a reservation, is available until nine each evening.",
+        "audio": "stimuli/spk-6ea06d6c/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.75,
+          "y": 0.05,
+          "w": 0.16,
+          "h": 0.16
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Staying Focused While Studying",
+    "intro": "You have agreed to take part in a campus research study about how students maintain focus while studying. You will have a short online interview with a researcher. The researcher will ask you some questions.",
+    "introAudio": "stimuli/spk-6ea06d6c/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thank you for speaking with me today. Where do you usually study, and what kinds of tasks do you typically complete there?",
+        "audio": "stimuli/spk-6ea06d6c/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Think of a time when something interrupted your concentration while you were studying. What happened, and why do you think the interruption affected you?",
+        "audio": "stimuli/spk-6ea06d6c/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some students prefer to study with music or background noise, while others need complete silence. Which environment helps people concentrate better, in your view, and why?",
+        "audio": "stimuli/spk-6ea06d6c/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Some colleges offer workshops that teach students how to manage distractions and develop better study habits. Do you think all first-year students should be encouraged to attend such workshops? Why or why not?",
+        "audio": "stimuli/spk-6ea06d6c/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  }
+}

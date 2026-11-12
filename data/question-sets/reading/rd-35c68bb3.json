@@ -1,0 +1,1781 @@
+{
+  "id": "rd-35c68bb3",
+  "source": "generated",
+  "createdAt": "2026-08-17T16:07:04.422Z",
+  "kind": "reading",
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "domain-drift",
+      "taskType": "academic_passage",
+      "itemPosition": 0
+    }
+  ],
+  "router": {
+    "timeLimitSec": 1200,
+    "ctwPassages": [
+      {
+        "id": "ctw-r1",
+        "taskType": "complete_words",
+        "topic": "library overdue fine waiver policy",
+        "segments": [
+          {
+            "type": "text",
+            "text": "The campus library recently introduced a policy that treats a first late return far more gently than before. A "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g1"
+          },
+          {
+            "type": "text",
+            "text": " who "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g2"
+          },
+          {
+            "type": "text",
+            "text": " a "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g3"
+          },
+          {
+            "type": "text",
+            "text": " back "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g4"
+          },
+          {
+            "type": "text",
+            "text": " its "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g5"
+          },
+          {
+            "type": "text",
+            "text": " for "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g6"
+          },
+          {
+            "type": "text",
+            "text": " very "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g7"
+          },
+          {
+            "type": "text",
+            "text": " time "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g8"
+          },
+          {
+            "type": "text",
+            "text": " receives "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g9"
+          },
+          {
+            "type": "text",
+            "text": " automatic "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g10"
+          },
+          {
+            "type": "text",
+            "text": ", since the fee simply disappears instead of being charged. This result gets logged quietly on the account, so staff can spot a pattern if it happens again. A second late return works differently: that same record gains a temporary hold, and no further items can be borrowed until the charge from that visit is settled."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-r1-g1",
+            "prefix": "stu",
+            "completion": "dent",
+            "blankLength": 4,
+            "explanationZh": "此處需要一個名詞作為子句主詞，指「借書逾期的人」。後文以 who 引導的關係子句描述其行為（brings a title back past its deadline），且與圖書館情境相符，故填入 student（學生）。"
+          },
+          {
+            "id": "ctw-r1-g2",
+            "prefix": "bri",
+            "completion": "ngs",
+            "blankLength": 3,
+            "explanationZh": "此處需要及物動詞，與主詞 A student（第三人稱單數）搭配現在式，並與後方 back 構成片語動詞 bring...back（歸還），故填入 brings，時態上也與同句稍後的 receives 一致。"
+          },
+          {
+            "id": "ctw-r1-g3",
+            "prefix": "ti",
+            "completion": "tle",
+            "blankLength": 3,
+            "explanationZh": "此處需要名詞作為動詞 brings back 的受詞，指被歸還的物品。因主題是圖書館逾期還書政策，借閱物在圖書館語境中常稱為 title（書名／書籍），故填入 title。"
+          },
+          {
+            "id": "ctw-r1-g4",
+            "prefix": "pa",
+            "completion": "st",
+            "blankLength": 2,
+            "explanationZh": "此處需要介系詞，表示「超過期限」之意，與後方名詞 deadline 搭配構成 past its deadline（超過截止日），故填入 past。"
+          },
+          {
+            "id": "ctw-r1-g5",
+            "prefix": "dead",
+            "completion": "line",
+            "blankLength": 4,
+            "explanationZh": "此處需要名詞作為介系詞 past 的受詞，指還書的截止日期，與句意「逾期歸還」直接對應，故填入 deadline。"
+          },
+          {
+            "id": "ctw-r1-g6",
+            "prefix": "t",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "此處需要定冠詞，用於片語 for the very first time（第一次），因為此為特定、獨一無二的「第一次」概念，須用 the 而非不定冠詞，故填入 the。"
+          },
+          {
+            "id": "ctw-r1-g7",
+            "prefix": "fi",
+            "completion": "rst",
+            "blankLength": 3,
+            "explanationZh": "此處需要序數詞，與 very 搭配構成強調語氣的 very first time（真正的第一次），呼應段首提到的「首次逾期」政策差異，故填入 first。"
+          },
+          {
+            "id": "ctw-r1-g8",
+            "prefix": "n",
+            "completion": "ow",
+            "blankLength": 2,
+            "explanationZh": "此處需要副詞，表示與「以前」（than before）相對的「現在」，凸顯新政策生效後的當下情況，與句首 recently introduced 及 far more gently than before 形成時間對比，故填入 now。"
+          },
+          {
+            "id": "ctw-r1-g9",
+            "prefix": "a",
+            "completion": "n",
+            "blankLength": 1,
+            "explanationZh": "此處需要不定冠詞，置於以母音開頭的形容詞 automatic 之前，依英文文法須用 an 而非 a，故填入 an。"
+          },
+          {
+            "id": "ctw-r1-g10",
+            "prefix": "par",
+            "completion": "don",
+            "blankLength": 3,
+            "explanationZh": "此處需要名詞，作為動詞 receives 的受詞，指學生獲得的處置結果。後文說明「fee simply disappears instead of being charged」，正是「被免除、獲得寬恕」之意，故填入 pardon（免罰／寬恕）。"
+          }
+        ],
+        "sourceParagraph": "The campus library recently introduced a policy that treats a first late return far more gently than before. A student who brings a title back past its deadline for the very first time now receives an automatic pardon, since the fee simply disappears instead of being charged. This result gets logged quietly on the account, so staff can spot a pattern if it happens again. A second late return works differently: that same record gains a temporary hold, and no further items can be borrowed until the charge from that visit is settled."
+      },
+      {
+        "id": "ctw-r2",
+        "taskType": "complete_words",
+        "topic": "retail cross-training between departments",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Many retail stores now train employees to work in more than one department instead of just one fixed role. Each "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g1"
+          },
+          {
+            "type": "text",
+            "text": " spends a short "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g2"
+          },
+          {
+            "type": "text",
+            "text": " learning "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g3"
+          },
+          {
+            "type": "text",
+            "text": " in a different "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g4"
+          },
+          {
+            "type": "text",
+            "text": " before "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g5"
+          },
+          {
+            "type": "text",
+            "text": " to "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g6"
+          },
+          {
+            "type": "text",
+            "text": " area "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g7"
+          },
+          {
+            "type": "text",
+            "text": ". A "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g8"
+          },
+          {
+            "type": "text",
+            "text": " of "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g9"
+          },
+          {
+            "type": "text",
+            "text": " kind "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g10"
+          },
+          {
+            "type": "text",
+            "text": " that someone besides the regular person can always cover a shift when a coworker is sick or away. Managers publish the upcoming schedule roughly seven days ahead, so every employee already knows which assignment they will support next."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-r2-g1",
+            "prefix": "wor",
+            "completion": "ker",
+            "blankLength": 3,
+            "explanationZh": "前方主詞是「Each」,表示指涉單一個體,後面應接單數名詞「worker」(員工),與動詞 spends 的單數主詞一致,語意上呼應前句提到每位員工被訓練支援多個部門。"
+          },
+          {
+            "id": "ctw-r2-g2",
+            "prefix": "per",
+            "completion": "iod",
+            "blankLength": 3,
+            "explanationZh": "「a short ___」需要一個可被 short 修飾的單數名詞,「period」(一段時間)符合語意,表示員工花一小段時間學習任務,且與後面的動名詞 learning 銜接自然。"
+          },
+          {
+            "id": "ctw-r2-g3",
+            "prefix": "ta",
+            "completion": "sks",
+            "blankLength": 3,
+            "explanationZh": "動詞 learning 之後需要受詞,「tasks」(任務、工作項目)符合語境,指員工在不同部門學習的具體工作內容,且與前後複數用法一致。"
+          },
+          {
+            "id": "ctw-r2-g4",
+            "prefix": "sec",
+            "completion": "tion",
+            "blankLength": 4,
+            "explanationZh": "「in a different ___」需要單數名詞作介系詞受詞,「section」(部門、區域)符合語意,呼應前句提到的 department,表示員工在不同區域學習任務。"
+          },
+          {
+            "id": "ctw-r2-g5",
+            "prefix": "rota",
+            "completion": "ting",
+            "blankLength": 4,
+            "explanationZh": "「before ___ to another area」中 before 為介系詞,後面須接動名詞,「rotating」(輪調)符合語法與語意,表示學習完後接著輪調到另一個區域。"
+          },
+          {
+            "id": "ctw-r2-g6",
+            "prefix": "ano",
+            "completion": "ther",
+            "blankLength": 4,
+            "explanationZh": "「to ___ area completely」需要限定詞修飾單數名詞 area,「another」(另一個)符合語意,表示員工完全輪調到另一個不同的工作區域。"
+          },
+          {
+            "id": "ctw-r2-g7",
+            "prefix": "compl",
+            "completion": "etely",
+            "blankLength": 5,
+            "explanationZh": "「another area ___」需要副詞修飾整個輪調動作,「completely」(完全地)符合語意,強調員工是完全轉換到新的區域而非部分兼顧原區域。"
+          },
+          {
+            "id": "ctw-r2-g8",
+            "prefix": "rota",
+            "completion": "tion",
+            "blankLength": 4,
+            "explanationZh": "句首「A ___ of this kind」需要單數名詞作主詞,「rotation」(輪調制度)呼應前文描述的員工輪流學習不同部門任務的做法,並與後面單數動詞 guarantees 一致。"
+          },
+          {
+            "id": "ctw-r2-g9",
+            "prefix": "th",
+            "completion": "is",
+            "blankLength": 2,
+            "explanationZh": "「of ___ kind」需要指示詞修飾 kind,「this」(這種)符合語意,指涉前文剛描述過的輪調方式,屬於指示代名詞的典型用法。"
+          },
+          {
+            "id": "ctw-r2-g10",
+            "prefix": "guara",
+            "completion": "ntees",
+            "blankLength": 5,
+            "explanationZh": "主詞「A rotation of this kind」為單數,動詞須用第三人稱單數形式,「guarantees」(保證)符合語法,且語意上表示這種輪調制度確保總有人能代班。"
+          }
+        ],
+        "sourceParagraph": "Many retail stores now train employees to work in more than one department instead of just one fixed role. Each worker spends a short period learning tasks in a different section before rotating to another area completely. A rotation of this kind guarantees that someone besides the regular person can always cover a shift when a coworker is sick or away. Managers publish the upcoming schedule roughly seven days ahead, so every employee already knows which assignment they will support next."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-r1",
+        "taskType": "daily_life",
+        "genre": "web page",
+        "text": "Riverside Heritage Society\nHome | Events | Membership | Donate\n\nMonthly History Walk\nJoin our free guided walking tour on the first Saturday of every month. Local historians lead small groups through the oldest part of downtown, pointing out buildings that shaped the town's early years.\n\nMeeting Point: Old courthouse steps, 10:00 AM\nGroup Size: Limited to 20 walkers so everyone can hear the guide clearly\n\nSign up online before Friday at noon; spots fill quickly during the summer months. Wear comfortable shoes, since the route covers uneven brick sidewalks and a few short hills.\n\nQuestions? Email tours@riversideheritage.org",
+        "questions": [
+          {
+            "id": "dl-r1-q1",
+            "stem": "What is the main purpose of this web page?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "To notify residents that the historic courthouse building will be closed for renovations next month"
+              },
+              {
+                "id": "o2",
+                "text": "To announce the schedule and sign-up process for a monthly walking tour"
+              },
+              {
+                "id": "o3",
+                "text": "To recommend restaurants situated along the historic downtown route"
+              },
+              {
+                "id": "o4",
+                "text": "To promote yearly membership packages offered by the heritage society"
+              }
+            ],
+            "correctOptionId": "o2",
+            "skill": "purpose",
+            "explanationZh": "網頁重點在說明每月導覽團的時間與報名流程，提及的會員方案、courthouse整修關閉、餐廳推薦等內容原文並未提及。"
+          },
+          {
+            "id": "dl-r1-q2",
+            "stem": "Where does the walking tour begin?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "At the old courthouse steps"
+              },
+              {
+                "id": "o2",
+                "text": "At the riverside park pavilion"
+              },
+              {
+                "id": "o3",
+                "text": "At the heritage society office"
+              },
+              {
+                "id": "o4",
+                "text": "At the town library entrance"
+              }
+            ],
+            "correctOptionId": "o1",
+            "skill": "detail",
+            "explanationZh": "原文明確寫出集合地點為old courthouse steps，其餘地點皆未在原文中出現。"
+          },
+          {
+            "id": "dl-r1-q3",
+            "stem": "What can be inferred about the tour during the summer months?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "It expands its group size limit to accommodate extra demand"
+              },
+              {
+                "id": "o2",
+                "text": "It could reach capacity before the sign-up deadline closes"
+              },
+              {
+                "id": "o3",
+                "text": "It relocates indoors to avoid crowding on the sidewalks"
+              },
+              {
+                "id": "o4",
+                "text": "It gets cancelled entirely once summer heat becomes intense"
+              }
+            ],
+            "correctOptionId": "o2",
+            "skill": "inference",
+            "explanationZh": "原文提到spots fill quickly during the summer months，暗示夏季名額可能在報名截止前額滿；提及活動取消、擴大人數、移至室內的選項原文皆無根據。"
+          }
+        ]
+      },
+      {
+        "id": "dl-r2",
+        "taskType": "daily_life",
+        "genre": "text-message chain",
+        "text": "Mia: Hey, quick update — the couch delivery got pushed back again.\nJordan: Ugh, seriously? That's the third time.\nMia: I know. The company says a truck broke down on their route today.\nJordan: Okay, when's the new date?\nMia: They offered Thursday between 1 and 4 pm, or Saturday morning instead.\nJordan: Thursday afternoon works better for me since I'm off that day.\nMia: Great, I'll confirm Thursday with them and text you the exact time once it's set.\nJordan: Sounds good, thanks for handling it!",
+        "questions": [
+          {
+            "id": "dl-r2-q1",
+            "stem": "Why does Mia send these messages to Jordan?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "To ask Jordan to pick up the couch himself since the delivery truck broke down"
+              },
+              {
+                "id": "o2",
+                "text": "To let Jordan know the couch order has been cancelled"
+              },
+              {
+                "id": "o3",
+                "text": "To complain to Jordan about how unreliable the delivery company has become lately"
+              },
+              {
+                "id": "o4",
+                "text": "To update Jordan about the delay and offer new delivery time options"
+              }
+            ],
+            "correctOptionId": "o4",
+            "skill": "purpose",
+            "explanationZh": "Mia說明沙發配送再度延誤，並提供新的到貨時段供Jordan選擇；她並未要求Jordan自行取貨、抱怨公司，也未取消訂單。"
+          },
+          {
+            "id": "dl-r2-q2",
+            "stem": "What two delivery options does the company offer?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "Saturday afternoon or Sunday morning"
+              },
+              {
+                "id": "o2",
+                "text": "Thursday morning or Friday afternoon"
+              },
+              {
+                "id": "o3",
+                "text": "Thursday afternoon or Saturday morning"
+              },
+              {
+                "id": "o4",
+                "text": "Wednesday evening or next Monday afternoon"
+              }
+            ],
+            "correctOptionId": "o3",
+            "skill": "detail",
+            "explanationZh": "對話中明確提到公司提供Thursday between 1 and 4 pm或Saturday morning兩個選項。"
+          },
+          {
+            "id": "dl-r2-q3",
+            "stem": "What can be inferred about this couch delivery?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "It was delivered successfully this morning"
+              },
+              {
+                "id": "o2",
+                "text": "It was cancelled due to a billing issue"
+              },
+              {
+                "id": "o3",
+                "text": "It will now be delivered by a different company"
+              },
+              {
+                "id": "o4",
+                "text": "It has been delayed more than once before"
+              }
+            ],
+            "correctOptionId": "o4",
+            "skill": "inference",
+            "explanationZh": "Jordan提到That's the third time，可推知這已是本次配送第三度延誤，其餘選項原文並未提及。"
+          }
+        ]
+      },
+      {
+        "id": "dl-r3",
+        "taskType": "daily_life",
+        "genre": "poster/sign/notice",
+        "text": "COMMUNITY PARK CLEANUP\nThis Saturday, 9:00 AM to 11:00 AM\nMeet at the Elm Street park entrance\n\nHelp keep our neighborhood green space clean and welcoming!\nGloves and trash bags provided on site — no need to bring your own.\nAll ages welcome. Light refreshments after the cleanup.\n\nSign up at the front desk of the community center, or just show up Saturday morning.\n\nQuestions? Ask any staff member at the community center.",
+        "questions": [
+          {
+            "id": "dl-r3-q1",
+            "stem": "What is the main purpose of this notice?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "To explain the new sign-up procedure required for community center membership"
+              },
+              {
+                "id": "o2",
+                "text": "To notify residents that the park will remain closed during renovation work"
+              },
+              {
+                "id": "o3",
+                "text": "To invite neighborhood residents to help clean up the local park this weekend"
+              },
+              {
+                "id": "o4",
+                "text": "To publicize an update to the community center's regular operating hours"
+              }
+            ],
+            "correctOptionId": "o3",
+            "skill": "purpose",
+            "explanationZh": "海報邀請居民本週末協助清潔社區公園，並未提及會員申請、公園整修關閉或中心營業時間變更。"
+          },
+          {
+            "id": "dl-r3-q2",
+            "stem": "What will volunteers be given on site?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "T-shirts and name tags"
+              },
+              {
+                "id": "o2",
+                "text": "Gloves and trash bags"
+              },
+              {
+                "id": "o3",
+                "text": "Tools and safety vests"
+              },
+              {
+                "id": "o4",
+                "text": "Water bottles and hats"
+              }
+            ],
+            "correctOptionId": "o2",
+            "skill": "detail",
+            "explanationZh": "原文寫明Gloves and trash bags provided on site，其餘物品原文皆未提到。"
+          },
+          {
+            "id": "dl-r3-q3",
+            "stem": "What can be inferred about signing up for the cleanup?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "Sign-ups must be completed at least a week ahead"
+              },
+              {
+                "id": "o2",
+                "text": "Participants must meet a minimum age requirement"
+              },
+              {
+                "id": "o3",
+                "text": "Registering in advance is not necessary"
+              },
+              {
+                "id": "o4",
+                "text": "Membership at the community center is required"
+              }
+            ],
+            "correctOptionId": "o3",
+            "skill": "inference",
+            "explanationZh": "原文提到「or just show up Saturday morning」，暗示不需事先報名也能參加。會員資格、提前一週報名、年齡限制原文皆未提及，屬無根據的推論。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-r1",
+        "taskType": "academic_passage",
+        "title": "Why Willpower Feels Different by Time of Day",
+        "discipline": "social science",
+        "text": "Psychologists who study self-control have noticed a curious pattern: people often make sharper decisions in the morning than they do by late afternoon. One explanation centers on the sheer number of small choices a person makes across an ordinary day. Deciding what to wear, which email to answer first, or whether to skip a meeting all draw on the same limited mental resource. Even when each choice feels trivial, the cumulative effect can be considerable by the time evening arrives.\n\nResearchers describe this decline as a gradual narrowing of attention rather than a sudden collapse. Without any pause for rest, judgment becomes noticeably less careful, and people tend to default to whichever option requires the least effort, regardless of whether it is the best one. A cashier might unconsciously round a bill in the customer's favor; a manager might approve a request simply to end a long meeting.\n\nInterestingly, the effect is not permanent. A short break, even ten or fifteen minutes away from ongoing tasks, appears to restore much of the lost sharpness. Some workplaces have begun scheduling brief rest periods into the middle of the day for exactly this reason, treating attention less as a fixed trait and more as a resource that predictably rises and falls.",
+        "questions": [
+          {
+            "id": "ap-r1-q1",
+            "stem": "What is the passage mainly about?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "A comparison of how offices schedule morning and afternoon meetings"
+              },
+              {
+                "id": "o2",
+                "text": "The reason judgment typically weakens as the day progresses"
+              },
+              {
+                "id": "o3",
+                "text": "The physical causes of fatigue following short mental tasks"
+              },
+              {
+                "id": "o4",
+                "text": "The specific tasks that consume the most daily mental effort"
+              }
+            ],
+            "correctOptionId": "o2",
+            "skill": "main_idea",
+            "explanationZh": "全文說明判斷力如何隨著一天推移而逐漸減弱，此為文章核心主旨，其餘選項僅涉及次要或非重點內容。"
+          },
+          {
+            "id": "ap-r1-q2",
+            "stem": "In the passage, what does \"cumulative\" most likely mean?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "reversed quickly by one action"
+              },
+              {
+                "id": "o2",
+                "text": "sudden and unexpected in nature"
+              },
+              {
+                "id": "o3",
+                "text": "occurring only one time"
+              },
+              {
+                "id": "o4",
+                "text": "adding up little by little"
+              }
+            ],
+            "correctOptionId": "o4",
+            "skill": "vocabulary",
+            "explanationZh": "cumulative指效果隨時間逐漸累積疊加，而非單次、突然或可被單一動作逆轉，符合上下文描述決定持續累積的意涵。"
+          },
+          {
+            "id": "ap-r1-q3",
+            "stem": "What can be inferred about a manager who approves a request just to end a meeting?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "The manager received formal training in delegation skills"
+              },
+              {
+                "id": "o2",
+                "text": "The manager intends to undo the decision the next day"
+              },
+              {
+                "id": "o3",
+                "text": "The manager's judgment has weakened from many earlier decisions"
+              },
+              {
+                "id": "o4",
+                "text": "The manager privately disagrees but approves to be polite"
+              }
+            ],
+            "correctOptionId": "o3",
+            "skill": "inference",
+            "explanationZh": "文章指出經過多次選擇後判斷力下降，經理為求盡快結束會議而同意請求，可推知其判斷力已因先前決定而受影響。"
+          },
+          {
+            "id": "ap-r1-q4",
+            "stem": "How does the passage relate small daily decisions to the described decline in judgment?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "It treats small decisions as the gradual cause of the decline"
+              },
+              {
+                "id": "o2",
+                "text": "It claims the decline causes people to avoid making small decisions"
+              },
+              {
+                "id": "o3",
+                "text": "It suggests the decline follows only one major daily decision"
+              },
+              {
+                "id": "o4",
+                "text": "It argues the two developments merely happen to occur together"
+              }
+            ],
+            "correctOptionId": "o1",
+            "skill": "organization",
+            "explanationZh": "文章先描述一天中累積的大量小決定，再說明它們如何逐漸導致判斷力下降，呈現因果鋪陳的組織方式。"
+          },
+          {
+            "id": "ap-r1-q5",
+            "stem": "What is the purpose of mentioning workplaces that schedule brief rest periods?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "To criticize companies for wasting employee time"
+              },
+              {
+                "id": "o2",
+                "text": "To compare rest periods across different industries in detail"
+              },
+              {
+                "id": "o3",
+                "text": "To illustrate a practical response some workplaces have adopted based on the described pattern"
+              },
+              {
+                "id": "o4",
+                "text": "To argue that all breaks should last at least an hour"
+              }
+            ],
+            "correctOptionId": "o3",
+            "skill": "purpose",
+            "explanationZh": "作者舉出安排休息時段的職場為例，說明這是根據前述現象所採取的實際因應做法。"
+          }
+        ]
+      }
+    ]
+  },
+  "lowerModule": {
+    "timeLimitSec": 540,
+    "ctwPassages": [
+      {
+        "id": "ctw-lo1",
+        "taskType": "complete_words",
+        "topic": "shade trees as a climate cooling strategy for sidewalks",
+        "segments": [
+          {
+            "type": "text",
+            "text": "City planners often plant shade trees along busy sidewalks to help cool hot pavement. A "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g1"
+          },
+          {
+            "type": "text",
+            "text": " blocks "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g2"
+          },
+          {
+            "type": "text",
+            "text": " sun "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g3"
+          },
+          {
+            "type": "text",
+            "text": " hitting "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g4"
+          },
+          {
+            "type": "text",
+            "text": " ground "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g5"
+          },
+          {
+            "type": "text",
+            "text": " it. "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g6"
+          },
+          {
+            "type": "text",
+            "text": " often "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g7"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g8"
+          },
+          {
+            "type": "text",
+            "text": " temperature "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g9"
+          },
+          {
+            "type": "text",
+            "text": " noon "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g10"
+          },
+          {
+            "type": "text",
+            "text": " a hot day. One with a wider canopy can cool a longer stretch of sidewalk. This simple method lowers cost while keeping streets more pleasant to walk on. Many towns now choose trees that grow quickly so shade arrives sooner."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-lo1-g1",
+            "prefix": "tr",
+            "completion": "ee",
+            "blankLength": 2,
+            "explanationZh": "前一句已提到 planners 種植的是 shade trees，本句要指稱其中「一棵樹」擋住陽光，故單數主詞須填 tree，與後面单数動詞 blocks 一致。"
+          },
+          {
+            "id": "ctw-lo1-g2",
+            "prefix": "dir",
+            "completion": "ect",
+            "blankLength": 3,
+            "explanationZh": "句意是樹擋住「直射」的陽光才會在地面形成陰影降溫，所以要用 direct 修飾 sun，表示未經遮蔽、直接照射的陽光。"
+          },
+          {
+            "id": "ctw-lo1-g3",
+            "prefix": "fr",
+            "completion": "om",
+            "blankLength": 2,
+            "explanationZh": "此處為固定搭配 block A from Ving，表示「阻止陽光照到地面」，故填 from，銜接後面的動名詞 hitting。"
+          },
+          {
+            "id": "ctw-lo1-g4",
+            "prefix": "t",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "ground 指的是樹下那塊特定的地面（人行道路面），屬於上文已界定的特定對象，故須用定冠詞 the，而非泛指的 a。"
+          },
+          {
+            "id": "ctw-lo1-g5",
+            "prefix": "be",
+            "completion": "low",
+            "blankLength": 3,
+            "explanationZh": "樹遮蔭的位置是在樹「下方」的地面，below 表示位於樹冠之下，符合前句樹擋住陽光落在地面的空間關係。"
+          },
+          {
+            "id": "ctw-lo1-g6",
+            "prefix": "Wor",
+            "completion": "kers",
+            "blankLength": 4,
+            "explanationZh": "本句新引入执行檢查工作的人，作句子主詞，且與後面動詞 check（無第三人稱單數 s）搭配，故用複數名詞 Workers。"
+          },
+          {
+            "id": "ctw-lo1-g7",
+            "prefix": "ch",
+            "completion": "eck",
+            "blankLength": 3,
+            "explanationZh": "主詞 Workers 為複數，動詞不加 s，且語意是工人「檢查」路面溫度，故填 check，與 often 副詞搭配的一般現在式動詞。"
+          },
+          {
+            "id": "ctw-lo1-g8",
+            "prefix": "sur",
+            "completion": "face",
+            "blankLength": 4,
+            "explanationZh": "工人測量的是路面（人行道）表層的溫度，而非空氣溫度，故用 surface temperature 表示「表面溫度」。"
+          },
+          {
+            "id": "ctw-lo1-g9",
+            "prefix": "aro",
+            "completion": "und",
+            "blankLength": 3,
+            "explanationZh": "此處表示檢查的時間大約在中午，並非精確時刻，故用 around noon 表示「大約中午時分」。"
+          },
+          {
+            "id": "ctw-lo1-g10",
+            "prefix": "o",
+            "completion": "n",
+            "blankLength": 1,
+            "explanationZh": "on a hot day 是固定的時間介系詞搭配，表示「在炎熱的一天」，用 on 銜接特定的一天。"
+          }
+        ],
+        "sourceParagraph": "City planners often plant shade trees along busy sidewalks to help cool hot pavement. A tree blocks direct sun from hitting the ground below it. Workers often check the surface temperature around noon on a hot day. One with a wider canopy can cool a longer stretch of sidewalk. This simple method lowers cost while keeping streets more pleasant to walk on. Many towns now choose trees that grow quickly so shade arrives sooner."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-lo1",
+        "taskType": "daily_life",
+        "genre": "schedule",
+        "text": "Maple Street Health Clinic — Weekly Schedule\n\nWalk-In Hours\nTuesday: 9:00 AM to 12:00 PM\nThursday: 9:00 AM to 12:00 PM\nNo appointment needed during these hours.\n\nFlu Shots\nMonday: 1:00 PM to 3:00 PM\nWednesday: 1:00 PM to 3:00 PM\nPlease check in at the front desk.\n\nAll Other Services\nBy appointment only. Call the clinic to book a time.",
+        "questions": [
+          {
+            "id": "dl-lo1-q1",
+            "stem": "On which days can patients walk in without an appointment?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "Tuesday and Thursday"
+              },
+              {
+                "id": "o2",
+                "text": "Saturday and Sunday"
+              },
+              {
+                "id": "o3",
+                "text": "Monday and Wednesday"
+              },
+              {
+                "id": "o4",
+                "text": "Every weekday"
+              }
+            ],
+            "correctOptionId": "o1",
+            "skill": "detail",
+            "explanationZh": "時刻表清楚列出Walk-In Hours為Tuesday與Thursday，且註明無需預約。"
+          },
+          {
+            "id": "dl-lo1-q2",
+            "stem": "If a patient wants a flu shot on Tuesday morning, what should the patient do instead?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "Call ahead to request a Tuesday exception"
+              },
+              {
+                "id": "o2",
+                "text": "Visit a different clinic entirely"
+              },
+              {
+                "id": "o3",
+                "text": "Walk in during Tuesday's regular hours"
+              },
+              {
+                "id": "o4",
+                "text": "Return on Monday or Wednesday afternoon"
+              }
+            ],
+            "correctOptionId": "o4",
+            "skill": "inference",
+            "explanationZh": "流感疫苗僅在Monday與Wednesday下午提供，Tuesday並無此服務，故需改期前往。"
+          }
+        ]
+      },
+      {
+        "id": "dl-lo2",
+        "taskType": "daily_life",
+        "genre": "receipt",
+        "text": "Riverside Art Supply\nReceipt #4482\n\nCeramic Glaze - Cobalt Blue (2 jars): $18.00\nCeramic Glaze - Clear (1 jar): $9.00\nBrush Set - Assorted Sizes (1): $24.00\nCanvas Panel, 11x14 (2): $16.00\n\nSubtotal: $67.00\nTax: $4.02\nTotal Due at Pickup: $71.02\n\nItems held for 5 business days.",
+        "questions": [
+          {
+            "id": "dl-lo2-q1",
+            "stem": "How much does one jar of clear glaze cost?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "$18.00"
+              },
+              {
+                "id": "o2",
+                "text": "$16.00"
+              },
+              {
+                "id": "o3",
+                "text": "$9.00"
+              },
+              {
+                "id": "o4",
+                "text": "$24.00"
+              }
+            ],
+            "correctOptionId": "o3",
+            "skill": "detail",
+            "explanationZh": "收據列出Ceramic Glaze - Clear (1 jar)價格為$9.00，其餘金額對應其他品項。"
+          },
+          {
+            "id": "dl-lo2-q2",
+            "stem": "What is the main purpose of this document?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "To confirm a refund for returned brushes"
+              },
+              {
+                "id": "o2",
+                "text": "To explain the store's policy for holding unpaid items after five business days"
+              },
+              {
+                "id": "o3",
+                "text": "To advertise a discount on ceramic glaze"
+              },
+              {
+                "id": "o4",
+                "text": "To record each item purchased and the total due at pickup"
+              }
+            ],
+            "correctOptionId": "o4",
+            "skill": "purpose",
+            "explanationZh": "收據列出各項購買品項、數量與價格，並註明取貨時應付總額，故此文件的主要目的是記錄消費明細與應付款項，而非說明保管政策、廣告折扣或退款事宜。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-lo1",
+        "taskType": "academic_passage",
+        "title": "How Folk Music Instrument Makers Adapted to Modern Materials",
+        "discipline": "art and music",
+        "text": "For centuries, makers of traditional folk instruments used only wood, animal skin, and natural fiber. Today, many of these craftspeople blend synthetic materials into their instruments while still keeping much of the traditional wood. A guitar body might combine a solid wood top with a synthetic back panel, for example. This change did not happen quickly, and it did not happen without careful testing.\n\nBefore selling a new instrument, most makers compare its sound closely with an older, fully wooden version. They play both instruments side by side, listening for warmth, volume, and how long a note rings out. Only when the new version sounds close enough to the old one do makers consider the change successful. Many early attempts failed this test and were quietly abandoned.\n\nOne major reason for the shift is cost. Certain types of wood have become harder to find and far more expensive than they once were. Synthetic materials are more affordable and easier to shape consistently. By combining the two, makers can lower their prices without giving up the tone that customers expect. As a result, more people can afford a well-made instrument, and old musical traditions continue to reach new players.",
+        "questions": [
+          {
+            "id": "ap-lo1-q1",
+            "stem": "According to the passage, what has caused certain types of wood to become expensive?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "New environmental protection regulations imposed on all timber imports"
+              },
+              {
+                "id": "o2",
+                "text": "A shortage of skilled woodworkers"
+              },
+              {
+                "id": "o3",
+                "text": "Increased demand from furniture makers"
+              },
+              {
+                "id": "o4",
+                "text": "The wood has become harder to find"
+              }
+            ],
+            "correctOptionId": "o4",
+            "skill": "detail",
+            "explanationZh": "原文提到特定木材becoming harder to find，導致成本上升，其餘原因（家具需求、進口法規、工匠短缺）原文皆未提及。"
+          },
+          {
+            "id": "ap-lo1-q2",
+            "stem": "What does \"abandoned\" mean in the passage?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "Sold at a discounted price"
+              },
+              {
+                "id": "o2",
+                "text": "Given up and no longer pursued"
+              },
+              {
+                "id": "o3",
+                "text": "Refined through several additional rounds of testing"
+              },
+              {
+                "id": "o4",
+                "text": "Reported to industry regulators"
+              }
+            ],
+            "correctOptionId": "o2",
+            "skill": "vocabulary",
+            "explanationZh": "abandoned在此指嘗試失敗後被放棄，而非經多輪測試改良、降價出售或通報主管機關。"
+          },
+          {
+            "id": "ap-lo1-q3",
+            "stem": "What can be inferred about an instrument that fails the sound comparison test?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "It is still sold, but at a lower price"
+              },
+              {
+                "id": "o2",
+                "text": "It is likely not released for sale"
+              },
+              {
+                "id": "o3",
+                "text": "It is repaired using only synthetic material"
+              },
+              {
+                "id": "o4",
+                "text": "It is exclusively used for teaching beginners"
+              }
+            ],
+            "correctOptionId": "o2",
+            "skill": "inference",
+            "explanationZh": "原文指出通過測試才會被視為成功，可推知未通過音色比較的樂器通常不會上市銷售。"
+          },
+          {
+            "id": "ap-lo1-q4",
+            "stem": "How does the passage organize its explanation of the change described?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "It weighs two rival explanations for shrinking timber supplies before choosing one"
+              },
+              {
+                "id": "o2",
+                "text": "It introduces a material change, then explains its testing and its cause"
+              },
+              {
+                "id": "o3",
+                "text": "It ranks folk instruments by when each design was first invented"
+              },
+              {
+                "id": "o4",
+                "text": "It outlines a lasting conflict between traditional and modern instrument makers"
+              }
+            ],
+            "correctOptionId": "o2",
+            "skill": "organization",
+            "explanationZh": "文章先介紹材質轉變，再說明如何測試音色是否合格，最後解釋成本為何促成此轉變，屬於先陳述現象、再解釋原因與驗證方式的組織方式。"
+          },
+          {
+            "id": "ap-lo1-q5",
+            "stem": "Why does the passage mention that makers compare new instruments with fully wooden versions?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "To illustrate how makers ensure the tone quality is preserved before adopting the change"
+              },
+              {
+                "id": "o2",
+                "text": "To argue that synthetic materials always sound better"
+              },
+              {
+                "id": "o3",
+                "text": "To explain a step required by government instrument-safety regulation"
+              },
+              {
+                "id": "o4",
+                "text": "To show that fully wooden instruments are no longer being produced"
+              }
+            ],
+            "correctOptionId": "o1",
+            "skill": "purpose",
+            "explanationZh": "作者提及與純木製樂器比較音色，用意在說明工匠如何確保改變材質後仍保留傳統音色品質。"
+          }
+        ]
+      }
+    ]
+  },
+  "upperModule": {
+    "timeLimitSec": 540,
+    "ctwPassages": [
+      {
+        "id": "ctw-up1",
+        "taskType": "complete_words",
+        "topic": "a digital media platform's recommendation algorithm narrowing exposure",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Digital media platforms increasingly rely on recommendation engines that quietly reshape what each user later encounters online. Because "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g1"
+          },
+          {
+            "type": "text",
+            "text": " clicks "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g2"
+          },
+          {
+            "type": "text",
+            "text": " heavy "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g3"
+          },
+          {
+            "type": "text",
+            "text": " inside "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g4"
+          },
+          {
+            "type": "text",
+            "text": " underlying "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g5"
+          },
+          {
+            "type": "text",
+            "text": ", a "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g6"
+          },
+          {
+            "type": "text",
+            "text": " of "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g7"
+          },
+          {
+            "type": "text",
+            "text": " choices "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g8"
+          },
+          {
+            "type": "text",
+            "text": " steers "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g9"
+          },
+          {
+            "type": "text",
+            "text": " of "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g10"
+          },
+          {
+            "type": "text",
+            "text": " suggestions. Once this pattern takes hold, recommended options increasingly converge toward a single narrow category rather than reflecting broader interests. Consequently, unfamiliar genres and unexpected viewpoints surface far less often, even when a viewer might have genuinely valued them."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-up1-g1",
+            "prefix": "ear",
+            "completion": "lier",
+            "blankLength": 4,
+            "explanationZh": "此處填 earlier 修飾 clicks（點擊行為),表示「較早期的點擊」，並與後文 subsequent（後續的）建立時間對比，說明系統之所以能被早期行為左右，正是因為那些點擊發生在「較早」的時間點。"
+          },
+          {
+            "id": "ctw-up1-g2",
+            "prefix": "ca",
+            "completion": "rry",
+            "blankLength": 3,
+            "explanationZh": "主詞 earlier clicks 為複數，需搭配動詞原形 carry（而非 carries）以符合主動詞一致；carry heavy influence 意為「帶有強大影響力」，銜接後面 inside the underlying system。"
+          },
+          {
+            "id": "ctw-up1-g3",
+            "prefix": "infl",
+            "completion": "uence",
+            "blankLength": 5,
+            "explanationZh": "influence 作為 carry 的受詞（carry heavy influence），指「早期點擊在系統內部具有的影響力」，是整句「早期行為主導後續推薦」論點的關鍵名詞。"
+          },
+          {
+            "id": "ctw-up1-g4",
+            "prefix": "t",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "the 為定冠詞，用於修飾後面特定且前文已暗示的名詞 underlying system（推薦引擎背後運作的系統），指涉前一句提到的 recommendation engines，故需用定冠詞而非不定冠詞。"
+          },
+          {
+            "id": "ctw-up1-g5",
+            "prefix": "sys",
+            "completion": "tem",
+            "blankLength": 3,
+            "explanationZh": "system 承接 the underlying，構成 the underlying system（底層運作的系統），呼應上一句 recommendation engines 背後的運作機制，是本句主要討論的對象。"
+          },
+          {
+            "id": "ctw-up1-g6",
+            "prefix": "han",
+            "completion": "dful",
+            "blankLength": 4,
+            "explanationZh": "handful 與 a...of 搭配構成片語 a handful of initial choices（少數幾個最初的選擇），強調只需極少數的早期選擇即可產生長期影響，符合全文「少量早期行為造成大範圍偏移」的論點。"
+          },
+          {
+            "id": "ctw-up1-g7",
+            "prefix": "ini",
+            "completion": "tial",
+            "blankLength": 4,
+            "explanationZh": "initial 修飾 choices，意為「最初的選擇」，與前句 earlier clicks 語意呼應，同時與後文 subsequent suggestions 形成時間先後對比。"
+          },
+          {
+            "id": "ctw-up1-g8",
+            "prefix": "of",
+            "completion": "ten",
+            "blankLength": 3,
+            "explanationZh": "often 為副詞，修飾動詞 steers，表示「常常主導、影響」後續數月的建議內容，說明此現象並非偶發，而是具有一定頻率的普遍模式。"
+          },
+          {
+            "id": "ctw-up1-g9",
+            "prefix": "mon",
+            "completion": "ths",
+            "blankLength": 3,
+            "explanationZh": "months 作為 steers 的受詞核心（months of subsequent suggestions），表示最初的選擇會左右「數個月」的後續推薦內容，凸顯影響時間之長。"
+          },
+          {
+            "id": "ctw-up1-g10",
+            "prefix": "subse",
+            "completion": "quent",
+            "blankLength": 5,
+            "explanationZh": "subsequent 修飾 suggestions，意為「後續的建議」，與前文 earlier clicks、initial choices 形成時間對比，說明早期行為如何持續影響之後的推薦結果。"
+          }
+        ],
+        "sourceParagraph": "Digital media platforms increasingly rely on recommendation engines that quietly reshape what each user later encounters online. Because earlier clicks carry heavy influence inside the underlying system, a handful of initial choices often steers months of subsequent suggestions. Once this pattern takes hold, recommended options increasingly converge toward a single narrow category rather than reflecting broader interests. Consequently, unfamiliar genres and unexpected viewpoints surface far less often, even when a viewer might have genuinely valued them."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-up1",
+        "taskType": "daily_life",
+        "genre": "invoice",
+        "text": "Summit Charter Coach - Invoice #7735\n\nCharter Details: Weekend group trip, 42-passenger coach\nBase Rental Rate: $650.00\nRoute Fee (mountain pass surcharge): $85.00\nFuel Surcharge: $60.00\nDriver Gratuity (optional): $40.00\n\nSubtotal: $835.00\nTotal Due: $835.00\n\nPayment due 3 business days before departure. A signed contract must accompany payment.",
+        "questions": [
+          {
+            "id": "dl-up1-q1",
+            "stem": "How many passengers does the chartered coach hold?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "35"
+              },
+              {
+                "id": "o2",
+                "text": "50"
+              },
+              {
+                "id": "o3",
+                "text": "28"
+              },
+              {
+                "id": "o4",
+                "text": "42"
+              }
+            ],
+            "correctOptionId": "o4",
+            "skill": "detail",
+            "explanationZh": "發票標明為42-passenger coach，其餘數字皆未出現於原文。"
+          },
+          {
+            "id": "dl-up1-q2",
+            "stem": "What does the route fee specifically cover?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "Extra fuel for a long detour"
+              },
+              {
+                "id": "o2",
+                "text": "An additional driver for the trip"
+              },
+              {
+                "id": "o3",
+                "text": "A mountain pass surcharge"
+              },
+              {
+                "id": "o4",
+                "text": "A toll road crossing fee"
+              }
+            ],
+            "correctOptionId": "o3",
+            "skill": "detail",
+            "explanationZh": "發票中Route Fee旁註明為mountain pass surcharge，其餘選項原文並未提及。"
+          },
+          {
+            "id": "dl-up1-q3",
+            "stem": "What can be inferred about the driver gratuity charge?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "It is not required for payment"
+              },
+              {
+                "id": "o2",
+                "text": "It is included in the base rental rate"
+              },
+              {
+                "id": "o3",
+                "text": "It must be paid in cash separately"
+              },
+              {
+                "id": "o4",
+                "text": "It increases with the number of passengers"
+              }
+            ],
+            "correctOptionId": "o1",
+            "skill": "inference",
+            "explanationZh": "發票在Driver Gratuity旁標註optional，可推知此費用並非強制支付。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-up1",
+        "taskType": "academic_passage",
+        "title": "How Housing Cooperatives Pool Maintenance Costs",
+        "discipline": "business and economics",
+        "text": "A housing cooperative differs from a conventional apartment building in that residents collectively own shares in the corporation that holds the property, rather than owning individual units outright. This structure creates a distinctive method for managing maintenance, one that spreads financial risk across the entire community of resident-owners rather than concentrating it on whoever happens to occupy a unit when a problem arises.\n\nEach month, residents contribute a fixed amount into a shared reserve fund, calculated according to their proportional share in the cooperative. This contribution is deliberately kept separate from routine operating expenses such as utilities or staff wages. Over years, the reserve accumulates enough capital to absorb costly, infrequent repairs, a failing roof or an outdated elevator, without requiring a sudden, disruptive assessment charged to residents all at once.\n\nCritics sometimes argue that this arrangement penalizes newer residents, who begin paying into a fund built partly for repairs that predate their arrival. Proponents counter that any resident, new or long-standing, ultimately benefits from a well-maintained building and predictable monthly costs, rather than facing an unpredictable emergency bill whenever a major system fails. Because the reserve is pooled rather than assigned to individual units, cooperatives can undertake major repairs promptly, without waiting for enough owners to agree to an unplanned, one-time payment.",
+        "questions": [
+          {
+            "id": "ap-up1-q1",
+            "stem": "According to the passage, what is the monthly reserve fund contribution kept separate from?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "Property taxes owed to the local government"
+              },
+              {
+                "id": "o2",
+                "text": "Membership dues charged only to newly arrived residents"
+              },
+              {
+                "id": "o3",
+                "text": "Utilities, staff wages, and other routine operating costs"
+              },
+              {
+                "id": "o4",
+                "text": "The upfront purchase price paid for cooperative ownership shares"
+              }
+            ],
+            "correctOptionId": "o3",
+            "skill": "detail",
+            "explanationZh": "原文明確指出，每月提撥的準備金與utilities、staff wages等日常營運費用分開處理，以便長期累積用於重大維修。"
+          },
+          {
+            "id": "ap-up1-q2",
+            "stem": "In the passage, what does \"proponents\" most likely mean?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "New residents who recently joined the cooperative"
+              },
+              {
+                "id": "o2",
+                "text": "People who support the reserve fund arrangement"
+              },
+              {
+                "id": "o3",
+                "text": "People who oppose the reserve fund system"
+              },
+              {
+                "id": "o4",
+                "text": "Government officials who regulate cooperatives"
+              }
+            ],
+            "correctOptionId": "o2",
+            "skill": "vocabulary",
+            "explanationZh": "Proponents在文中與批評者critics相對，指支持此制度安排的人，而非反對者或新住戶。"
+          },
+          {
+            "id": "ap-up1-q3",
+            "stem": "What can be inferred about a cooperative that lacked a pooled reserve fund?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "It would receive government subsidies to cover repairs"
+              },
+              {
+                "id": "o2",
+                "text": "It would be legally required to convert to individual ownership immediately upon a repair failure"
+              },
+              {
+                "id": "o3",
+                "text": "It would automatically raise everyone's monthly payments each year"
+              },
+              {
+                "id": "o4",
+                "text": "It would probably need to bill residents a lump sum for major repairs"
+              }
+            ],
+            "correctOptionId": "o4",
+            "skill": "inference",
+            "explanationZh": "文章指出儲備金可避免sudden, disruptive assessment；若缺乏此基金，重大維修恐需一次性向住戶收取費用。"
+          },
+          {
+            "id": "ap-up1-q4",
+            "stem": "How does the passage present the criticism of the reserve fund system?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "It presents the criticism, then follows it with a counterargument from supporters"
+              },
+              {
+                "id": "o2",
+                "text": "It ignores the criticism entirely and focuses only on benefits"
+              },
+              {
+                "id": "o3",
+                "text": "It uses the criticism to argue cooperatives should be abolished"
+              },
+              {
+                "id": "o4",
+                "text": "It shows the criticism was later proven false by legal rulings"
+              }
+            ],
+            "correctOptionId": "o1",
+            "skill": "organization",
+            "explanationZh": "文章先提出對此制度的批評，接著提出支持者的反駁論點，呈現先陳述異議再回應的組織方式。"
+          },
+          {
+            "id": "ap-up1-q5",
+            "stem": "What is the purpose of the passage as a whole?",
+            "options": [
+              {
+                "id": "o1",
+                "text": "To compare the cost of cooperatives with that of traditional rentals in detail"
+              },
+              {
+                "id": "o2",
+                "text": "To recommend that all apartment buildings convert to cooperatives"
+              },
+              {
+                "id": "o3",
+                "text": "To criticize cooperatives for penalizing new residents unfairly"
+              },
+              {
+                "id": "o4",
+                "text": "To explain how housing cooperatives share maintenance costs through a pooled fund"
+              }
+            ],
+            "correctOptionId": "o4",
+            "skill": "purpose",
+            "explanationZh": "全文旨在說明住宅合作社如何透過共同儲備金分攤建物維護成本，而非比較租金或建議制度轉換。"
+          }
+        ]
+      }
+    ]
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "reading",
+    "ctwPassages": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "library-fine-waiver-first-offense",
+        "requiredConcepts": [
+          "first offense fine waived automatically",
+          "second late return triggers a hold",
+          "waiver noted on the borrower's account"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "prior campus CtW covers tutor scheduling by course demand, not a library fine waiver policy"
+          }
+        ],
+        "topic": "library overdue fine waiver policy",
+        "angle": "a campus library forgives a student's first overdue fine automatically but flags a second late return for follow-up"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "retail-cross-training-rotation",
+        "requiredConcepts": [
+          "short rotation through each department",
+          "backup coverage during absences",
+          "schedule posted a week ahead"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-eef47b63",
+            "reason": "prior workplace CtW covers a shift handoff log, not cross-department rotation training"
+          }
+        ],
+        "topic": "retail cross-training between departments",
+        "angle": "a store manager rotates staff briefly through other departments so someone can always cover an absence"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "shade-tree-sidewalk-cooling",
+        "requiredConcepts": [
+          "shade blocks direct sun on pavement",
+          "surface temperature measured at midday",
+          "wider canopy cools a larger stretch"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-eef47b63",
+            "reason": "prior science CtW covers lake fish habitat capacity, not street tree shade cooling"
+          }
+        ],
+        "topic": "shade trees as a climate cooling strategy for sidewalks",
+        "angle": "why planners plant shade trees along sidewalks as a simple climate strategy to lower pavement surface temperature on hot afternoons"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "recommendation-algorithm-narrowing-exposure",
+        "requiredConcepts": [
+          "earlier clicks weighted heavily",
+          "suggestions converge toward one type",
+          "diverse content surfaces less often"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "prior technology CtW covers transcript editing accuracy, not recommendation narrowing"
+          }
+        ],
+        "topic": "a digital media platform's recommendation algorithm narrowing exposure",
+        "angle": "how a digital media platform's recommendation system can gradually narrow what a user sees online by reinforcing earlier clicks"
+      }
+    ],
+    "dailyLifeTexts": [
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "heritage-walking-tour-webpage",
+        "requiredConcepts": [
+          "monthly guided walking tour sign-up link",
+          "meeting point at the old courthouse steps",
+          "group size capped for the tour"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "prior history text is a news article about restoration funding; this is a web page promoting a walking tour"
+          }
+        ],
+        "genre": "web page",
+        "scenario": "a town heritage society's web page listing this month's guided history walking tour sign-up and meeting point"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "furniture-delivery-reschedule-texts",
+        "requiredConcepts": [
+          "delayed furniture delivery rescheduled",
+          "new pickup window proposed",
+          "confirmation reply requested"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-eef47b63",
+            "reason": "prior everyday-life text is an invoice about a late bicycle repair pickup; this is a text chain rescheduling a delivery"
+          }
+        ],
+        "genre": "text-message chain",
+        "scenario": "two apartment residents texting to reschedule a delayed furniture delivery"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "park-cleanup-volunteer-notice",
+        "requiredConcepts": [
+          "Saturday morning cleanup meeting time",
+          "gloves and bags provided on site",
+          "sign-up sheet at the community center desk"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "prior community text is a price list for center programs; this is a poster recruiting cleanup volunteers"
+          }
+        ],
+        "genre": "poster/sign/notice",
+        "scenario": "a printed notice posted at the community center inviting volunteers to a weekend park cleanup"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "clinic-walkin-flu-shot-schedule",
+        "requiredConcepts": [
+          "Tuesday and Thursday walk-in hours",
+          "flu-shot slots listed separately",
+          "no appointment needed for walk-in hours"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-eef47b63",
+            "reason": "prior health text is a physical therapy intake form; this is a schedule of clinic walk-in hours"
+          }
+        ],
+        "genre": "schedule",
+        "scenario": "a printed weekly schedule showing walk-in hours and flu-shot slots at a small health clinic"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "art-supply-store-receipt",
+        "requiredConcepts": [
+          "ceramic glaze charged per jar",
+          "brush set itemized separately",
+          "total due at pickup"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-eef47b63",
+            "reason": "prior arts-culture receipt is a ceramics studio firing fee; this is an art supply store purchase receipt"
+          }
+        ],
+        "genre": "receipt",
+        "scenario": "a receipt from an art supply store itemizing ceramic glaze and brushes bought for a painting class"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "bus-charter-invoice",
+        "requiredConcepts": [
+          "seat count for the charter trip",
+          "fuel surcharge line item",
+          "route fee separate from base rate"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-eef47b63",
+            "reason": "prior services-travel text is a ferry timetable; this is a bus charter invoice, a different genre and transport mode"
+          }
+        ],
+        "genre": "invoice",
+        "scenario": "an invoice from a bus charter company itemizing seat count, fuel surcharge, and route fee for a weekend trip"
+      }
+    ],
+    "academicPassages": [
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "decision-fatigue-across-the-day",
+        "requiredConcepts": [
+          "small decisions add up during the day",
+          "self-control dips later without rest",
+          "a short break restores decision quality"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "prior social-science passage examines classroom consultation attendance; this one examines daily decision-fatigue timing, an unrelated topic"
+          }
+        ],
+        "title": "Why Willpower Feels Different by Time of Day",
+        "discipline": "social science",
+        "angle": "why people's self-control and decision quality change across an ordinary day as small choices accumulate"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "folk-instrument-maker-material-shift",
+        "requiredConcepts": [
+          "synthetic material blended with traditional wood",
+          "tone tested against older instruments",
+          "cost pressure driving the change"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "prior arts-culture passage traces ceramic craft revival through festivals and apprenticeships; this one covers instrument makers adapting materials, an unrelated craft and mechanism"
+          }
+        ],
+        "title": "How Folk Music Instrument Makers Adapted to Modern Materials",
+        "discipline": "art and music",
+        "angle": "how makers of traditional folk music instruments began blending synthetic materials with wood without losing the instrument's traditional tone"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "housing-cooperative-maintenance-pooling",
+        "requiredConcepts": [
+          "monthly reserve fund contribution",
+          "large repairs funded from pooled reserve",
+          "cost shared across resident owners"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "prior community-civic passage is social science on associations influencing municipal policy via petitions; this one is business/economics on cost-pooling mechanisms, a different discipline and mechanism"
+          }
+        ],
+        "title": "How Housing Cooperatives Pool Maintenance Costs",
+        "discipline": "business and economics",
+        "angle": "how a member-owned housing cooperative spreads building maintenance costs across its community of resident-owners through a shared reserve fund"
+      }
+    ]
+  }
+}

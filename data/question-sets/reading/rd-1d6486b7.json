@@ -1,0 +1,1773 @@
+{
+  "id": "rd-1d6486b7",
+  "source": "generated",
+  "createdAt": "2026-08-11T12:43:42.059Z",
+  "kind": "reading",
+  "router": {
+    "timeLimitSec": 1200,
+    "ctwPassages": [
+      {
+        "id": "ctw-r1",
+        "taskType": "complete_words",
+        "topic": "peer tutoring center scheduling",
+        "segments": [
+          {
+            "type": "text",
+            "text": "The campus tutoring center matches student tutors to the courses they know best at the start of each term. A "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g1"
+          },
+          {
+            "type": "text",
+            "text": " posts a printed "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g2"
+          },
+          {
+            "type": "text",
+            "text": " listing "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g3"
+          },
+          {
+            "type": "text",
+            "text": " time "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g4"
+          },
+          {
+            "type": "text",
+            "text": " near "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g5"
+          },
+          {
+            "type": "text",
+            "text": " front "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g6"
+          },
+          {
+            "type": "text",
+            "text": ", and "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g7"
+          },
+          {
+            "type": "text",
+            "text": " write "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g8"
+          },
+          {
+            "type": "text",
+            "text": " names "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g9"
+          },
+          {
+            "type": "text",
+            "text": " whichever "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g10"
+          },
+          {
+            "type": "text",
+            "text": " fits their schedule. Courses that attract unusually heavy enrollment, such as introductory chemistry, receive additional tutoring hours so fewer learners face long waits. Tutors who cover more than one subject split their assigned hours between them equally. Midway through the term, staff examine these sign-up patterns and move unused hours toward whichever course shows the strongest demand."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-r1-g1",
+            "prefix": "coord",
+            "completion": "inator",
+            "blankLength": 6,
+            "explanationZh": "此處為句子主詞，緊接著的動作是「posts a printed grid」（張貼一份表格），指負責安排家教中心時段的人員，因此應填「coordinator」（協調員），呼應段落主旨——有人在管理媒合與排程作業。"
+          },
+          {
+            "id": "ctw-r1-g2",
+            "prefix": "gr",
+            "completion": "id",
+            "blankLength": 2,
+            "explanationZh": "動詞 posts 後面的受詞，並由「listing weekly time slots」修飾，說明這是一份列出時段的表格，故填「grid」（表格／方格圖），與前面的形容詞 printed（印製的）搭配合理。"
+          },
+          {
+            "id": "ctw-r1-g3",
+            "prefix": "wee",
+            "completion": "kly",
+            "blankLength": 3,
+            "explanationZh": "此字修飾後面的「time slots」，說明表格上列出的是「每週」固定重複的時段，符合家教中心每學期開始就安排常態時段的情境，故填「weekly」。"
+          },
+          {
+            "id": "ctw-r1-g4",
+            "prefix": "sl",
+            "completion": "ots",
+            "blankLength": 3,
+            "explanationZh": "「weekly time ___」加上後面「near the front desk」，指的是表格中列出的多個時間區段，且與後文單數的 slot 相呼應（學生各自選一個），故此處為複數「slots」。"
+          },
+          {
+            "id": "ctw-r1-g5",
+            "prefix": "t",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "此處為定冠詞，修飾後面的「front desk」，指的是文中已特定情境中那個櫃台（家教中心的服務台），為特指用法，故填「the」。"
+          },
+          {
+            "id": "ctw-r1-g6",
+            "prefix": "de",
+            "completion": "sk",
+            "blankLength": 2,
+            "explanationZh": "「near the front ___」為固定搭配，指公告張貼的位置在服務台附近，符合家教中心讓學生方便看到並報名的情境，故填「desk」。"
+          },
+          {
+            "id": "ctw-r1-g7",
+            "prefix": "stud",
+            "completion": "ents",
+            "blankLength": 4,
+            "explanationZh": "此處為新分句的主詞，動作是「write their names beside…」，指的是查看表格並報名的人，也就是段落開頭提到的「student tutors」所服務的對象，故填「students」。"
+          },
+          {
+            "id": "ctw-r1-g8",
+            "prefix": "th",
+            "completion": "eir",
+            "blankLength": 3,
+            "explanationZh": "「students write ___ names」需要所有格代名詞，指學生自己的名字，故填「their」，與主詞 students（複數）一致。"
+          },
+          {
+            "id": "ctw-r1-g9",
+            "prefix": "bes",
+            "completion": "ide",
+            "blankLength": 3,
+            "explanationZh": "「write their names ___ whichever slot」表示學生把名字寫在對應時段的「旁邊」以完成報名，符合表格簽名報名的情境，故填介系詞「beside」。"
+          },
+          {
+            "id": "ctw-r1-g10",
+            "prefix": "sl",
+            "completion": "ot",
+            "blankLength": 2,
+            "explanationZh": "「whichever ___ fits their schedule」指學生從表格中選出一個符合自己課表的時段，與前面複數的 slots 呼應但此處為單數個別時段，故填「slot」。"
+          }
+        ],
+        "sourceParagraph": "The campus tutoring center matches student tutors to the courses they know best at the start of each term. A coordinator posts a printed grid listing weekly time slots near the front desk, and students write their names beside whichever slot fits their schedule. Courses that attract unusually heavy enrollment, such as introductory chemistry, receive additional tutoring hours so fewer learners face long waits. Tutors who cover more than one subject split their assigned hours between them equally. Midway through the term, staff examine these sign-up patterns and move unused hours toward whichever course shows the strongest demand."
+      },
+      {
+        "id": "ctw-r2",
+        "taskType": "complete_words",
+        "topic": "podcast episode transcription accuracy",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Podcast production teams increasingly rely on automatic transcription software to generate a rough written record of every recorded episode. Although "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g1"
+          },
+          {
+            "type": "text",
+            "text": " recognizes "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g2"
+          },
+          {
+            "type": "text",
+            "text": " speech "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g3"
+          },
+          {
+            "type": "text",
+            "text": " well, a human "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g4"
+          },
+          {
+            "type": "text",
+            "text": " still "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g5"
+          },
+          {
+            "type": "text",
+            "text": " each "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g6"
+          },
+          {
+            "type": "text",
+            "text": " closely, "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g7"
+          },
+          {
+            "type": "text",
+            "text": " unfamiliar "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g8"
+          },
+          {
+            "type": "text",
+            "text": ", technical "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g9"
+          },
+          {
+            "type": "text",
+            "text": ", and "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g10"
+          },
+          {
+            "type": "text",
+            "text": " vocabulary that the program frequently misreads. Once corrections are complete, the finished transcript is posted publicly alongside the audio file before the show officially releases, giving listeners who prefer reading a dependable alternative to hearing it aloud."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-r2-g1",
+            "prefix": "i",
+            "completion": "t",
+            "blankLength": 1,
+            "explanationZh": "it 是代名詞,回指前一句提到的 automatic transcription software(自動轉錄軟體),作為 Although 子句「it recognizes ordinary speech reasonably well」的主詞,指軟體本身辨識語音的能力。"
+          },
+          {
+            "id": "ctw-r2-g2",
+            "prefix": "ordi",
+            "completion": "nary",
+            "blankLength": 4,
+            "explanationZh": "ordinary 修飾 speech,指軟體能應付的「一般、普通」語音,與後半句列出的 unfamiliar names、technical terms、specific vocabulary(軟體常誤判的特殊內容)形成對比,凸顯讓步句 Although 的轉折。"
+          },
+          {
+            "id": "ctw-r2-g3",
+            "prefix": "reaso",
+            "completion": "nably",
+            "blankLength": 5,
+            "explanationZh": "reasonably 是副詞,修飾 well,表示軟體辨識一般語音的程度是「還算、相當」不錯,但非完美,呼應後文仍需人工編輯逐句檢查的必要性。"
+          },
+          {
+            "id": "ctw-r2-g4",
+            "prefix": "edi",
+            "completion": "tor",
+            "blankLength": 3,
+            "explanationZh": "editor 是主詞,指「人類編輯」,與前句的自動軟體(automatic transcription software)形成對比,說明即使軟體辨識尚可,仍需要人工角色來把關逐字稿品質。"
+          },
+          {
+            "id": "ctw-r2-g5",
+            "prefix": "exam",
+            "completion": "ines",
+            "blankLength": 4,
+            "explanationZh": "examines 是及物動詞,主詞為 a human editor,採現在式第三人稱單數形態(examines),與 still 搭配表示編輯「仍會」仔細檢查逐字稿初稿。"
+          },
+          {
+            "id": "ctw-r2-g6",
+            "prefix": "dr",
+            "completion": "aft",
+            "blankLength": 3,
+            "explanationZh": "draft 指軟體產出、尚待校正的逐字稿初稿,呼應前句 a rough written record,說明編輯所檢查的對象正是這份未經修正的草稿。"
+          },
+          {
+            "id": "ctw-r2-g7",
+            "prefix": "chec",
+            "completion": "king",
+            "blankLength": 4,
+            "explanationZh": "checking 是現在分詞,引導說明編輯「examines」時具體在做什麼動作,後接受詞 unfamiliar names, technical terms, and specific vocabulary,構成分詞片語補充描述檢查內容。"
+          },
+          {
+            "id": "ctw-r2-g8",
+            "prefix": "na",
+            "completion": "mes",
+            "blankLength": 3,
+            "explanationZh": "names 與後方的 technical terms、specific vocabulary 並列,指軟體常誤判的「人名等專有名詞」,屬於編輯需要特別檢查、軟體容易辨識錯誤的內容之一。"
+          },
+          {
+            "id": "ctw-r2-g9",
+            "prefix": "te",
+            "completion": "rms",
+            "blankLength": 3,
+            "explanationZh": "terms 與 technical 搭配構成 technical terms(專業術語),是編輯需檢查、軟體常誤讀的另一類內容,與 names、specific vocabulary 並列成三項清單。"
+          },
+          {
+            "id": "ctw-r2-g10",
+            "prefix": "spec",
+            "completion": "ific",
+            "blankLength": 4,
+            "explanationZh": "specific 修飾 vocabulary,指「特定、專門」的詞彙,涵蓋前面 names、terms 之外其他容易被軟體誤讀的用字,呼應句末 the program frequently misreads 的說明。"
+          }
+        ],
+        "sourceParagraph": "Podcast production teams increasingly rely on automatic transcription software to generate a rough written record of every recorded episode. Although it recognizes ordinary speech reasonably well, a human editor still examines each draft closely, checking unfamiliar names, technical terms, and specific vocabulary that the program frequently misreads. Once corrections are complete, the finished transcript is posted publicly alongside the audio file before the show officially releases, giving listeners who prefer reading a dependable alternative to hearing it aloud."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-r1",
+        "taskType": "daily_life",
+        "genre": "form",
+        "text": "Campus Photography Workshop — Registration Form\n\nName: ______________\nStudent ID: ______________\nEmail: ______________\n\nSession Choice (select one):\n[ ] Saturday, Sept 12, 10:00 AM–12:00 PM — Beginner Basics\n[ ] Saturday, Sept 12, 1:00 PM–3:00 PM — Portrait Lighting\n[ ] Sunday, Sept 13, 10:00 AM–12:00 PM — Outdoor Landscapes\n\nMaterial Fee: $15 (Beginner Basics), $20 (Portrait Lighting), $25 (Outdoor Landscapes) — due at check-in\n\nEquipment: Participants must bring their own camera (DSLR, mirrorless, or smartphone accepted). Tripods available for loan, limited quantity.\n\nExperience Level: [ ] None [ ] Some [ ] Advanced\n\nSignature: ______________ Date: ______________",
+        "questions": [
+          {
+            "id": "dl-r1-q1",
+            "stem": "According to the form, what must participants provide themselves?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Their own camera"
+              },
+              {
+                "id": "b",
+                "text": "A tripod"
+              },
+              {
+                "id": "c",
+                "text": "A memory card"
+              },
+              {
+                "id": "d",
+                "text": "A printed copy of the registration form"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "表格明確寫出「Participants must bring their own camera」,故正確答案為自備相機。腳架是中心提供出借,並非要求自備;報名表本身就是要填寫的文件,不需另外印出;記憶卡從未在表格中被提及。"
+          },
+          {
+            "id": "dl-r1-q2",
+            "stem": "What is the main purpose of offering three separate session options?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To automatically match each participant's declared experience level with a session's difficulty"
+              },
+              {
+                "id": "b",
+                "text": "To assign tripod loan priority based on which session each participant selects"
+              },
+              {
+                "id": "c",
+                "text": "To give participants a choice of session time and topic that fits their schedule"
+              },
+              {
+                "id": "d",
+                "text": "To set a different material fee for each session depending on its specific topic"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "purpose",
+            "explanationZh": "三個場次分別對應不同時段與主題,方便學員依自己的時間與興趣選擇合適場次,這才是設置多場次的目的。腳架借用優先順序、依經驗程度自動配對難度、依主題收取不同材料費,表格皆未提及或僅為次要事實,並非開設多場次的原因。"
+          },
+          {
+            "id": "dl-r1-q3",
+            "stem": "What does \"due at check-in\" most likely mean on this form?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The fee must be mailed in advance before the scheduled session date"
+              },
+              {
+                "id": "b",
+                "text": "The fee must be paid in person when participants arrive for their session"
+              },
+              {
+                "id": "c",
+                "text": "The fee is waived for participants who bring their own tripod equipment"
+              },
+              {
+                "id": "d",
+                "text": "The fee is fully refunded if a participant cancels before the session begins"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "vocabulary",
+            "explanationZh": "「due at check-in」指參加者於報到當天現場繳費,而非提前郵寄。表格未提及取消可退費,也未提及自備腳架可免除材料費,腳架借用僅為租借服務,與繳費方式無關。"
+          }
+        ]
+      },
+      {
+        "id": "dl-r2",
+        "taskType": "daily_life",
+        "genre": "invoice",
+        "text": "Summit Office Furniture Repair — Invoice #4471\n\nBill To: Harborview Consulting, 220 Elm Street, Suite 400\n\nDate of Service: March 3\nInvoice Date: March 10\n\nDescription | Qty | Amount\nDesk hinge replacement (left drawer) | 1 | $45.00\nLabor — desk repair, 2 hours | 2 | $110.00\nRush inspection fee | 1 | $20.00\n\nSubtotal: $175.00\nTax: $10.50\nTotal Due: $185.50\n\nNote: Repair completed four days later than the original appointment due to a delayed part shipment. A 10% service credit has been applied to next month's invoice.\n\nPayment Terms: Due within 15 days. Late payments incur a 5% monthly charge.",
+        "questions": [
+          {
+            "id": "dl-r2-q1",
+            "stem": "How much did the replacement desk hinge cost, separate from labor?",
+            "options": [
+              {
+                "id": "a",
+                "text": "$20.00"
+              },
+              {
+                "id": "b",
+                "text": "$185.50"
+              },
+              {
+                "id": "c",
+                "text": "$45.00"
+              },
+              {
+                "id": "d",
+                "text": "$110.00"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "表格中鉸鏈更換費用單獨列為45美元,與人工費分開計算。110美元是人工費、20美元是加急檢查費、185.50美元是含稅總金額,皆與鉸鏈本身費用不同。"
+          },
+          {
+            "id": "dl-r2-q2",
+            "stem": "What did the company do to make up for the delay?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Extended the payment deadline by fifteen additional days"
+              },
+              {
+                "id": "b",
+                "text": "Refunded the entire amount the customer had already paid for the repair"
+              },
+              {
+                "id": "c",
+                "text": "Waived the rush inspection fee for this repair"
+              },
+              {
+                "id": "d",
+                "text": "Applied a 10% discount to the next invoice"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "inference",
+            "explanationZh": "註記說明因延誤四天,公司已將下月發票金額打九折作為補償。加急檢查費仍照常收取,並未取消;文中沒有提到退還已付款項;付款期限維持15天,並未延長。"
+          },
+          {
+            "id": "dl-r2-q3",
+            "stem": "What is the purpose of the note about the four-day delay?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To dispute an error found in the customer's original repair request"
+              },
+              {
+                "id": "b",
+                "text": "To formally request an extension on the customer's payment deadline for this invoice"
+              },
+              {
+                "id": "c",
+                "text": "To explain the reason for the delay and the credit applied"
+              },
+              {
+                "id": "d",
+                "text": "To advertise a discount available on future rush inspection services"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "purpose",
+            "explanationZh": "這段註記說明維修延誤的原因(零件延遲到貨),並說明公司已提供的九折補償。文中沒有要求延長付款期限、沒有宣傳加急檢查折扣,也沒有對客戶原始需求提出爭議。"
+          }
+        ]
+      },
+      {
+        "id": "dl-r3",
+        "taskType": "daily_life",
+        "genre": "email",
+        "text": "Subject: Your Recent Air Quality Test Results\n\nDear Ms. Alvarez,\n\nThank you for letting our team collect an air sample from your backyard on March 14. The results are ready.\n\nParticulate levels at your property were within the normal residential range. Carbon monoxide readings were slightly higher than the neighborhood average, though still below any level of concern. We recommend keeping windows open while cooking to help lower this further.\n\nWe would like to schedule a follow-up test around June 14 to confirm the readings stay stable. Please reply with a date that works for you.\n\nThank you for taking part in our neighborhood monitoring project.\n\nSincerely,\nPriya Nandan\nRiverside Environmental Lab",
+        "questions": [
+          {
+            "id": "dl-r3-q1",
+            "stem": "Where was the air sample collected?",
+            "options": [
+              {
+                "id": "a",
+                "text": "From the resident's backyard"
+              },
+              {
+                "id": "b",
+                "text": "From inside the resident's kitchen"
+              },
+              {
+                "id": "c",
+                "text": "From the neighborhood park"
+              },
+              {
+                "id": "d",
+                "text": "From a nearby street corner"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "信件開頭提到team在住戶後院採集空氣樣本,故樣本採自後院。信中並未提到樣本來自社區公園、住家廚房內部或街角。"
+          },
+          {
+            "id": "dl-r3-q2",
+            "stem": "Why does the email suggest keeping windows open while cooking?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To meet a requirement of the monitoring project"
+              },
+              {
+                "id": "b",
+                "text": "To reduce the neighborhood's average particulate levels"
+              },
+              {
+                "id": "c",
+                "text": "To prepare the home for the next scheduled test"
+              },
+              {
+                "id": "d",
+                "text": "To help lower the slightly elevated carbon monoxide readings"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "inference",
+            "explanationZh": "信中提到一氧化碳讀數略高於鄰近地區平均值,因此建議烹飪時開窗以降低這項數值,而非降低鄰里整體懸浮微粒平均值、為下次檢測做準備,或符合監測計畫的規定。"
+          },
+          {
+            "id": "dl-r3-q3",
+            "stem": "What is the main purpose of this email?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To warn the resident about a serious health hazard in their home"
+              },
+              {
+                "id": "b",
+                "text": "To announce that the monitoring project has ended"
+              },
+              {
+                "id": "c",
+                "text": "To share recent test results and propose a follow-up testing date"
+              },
+              {
+                "id": "d",
+                "text": "To request payment for the air quality testing service"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "purpose",
+            "explanationZh": "這封信主要在說明近期空氣品質檢測結果,並提議約三個月後進行追蹤檢測。信中指出各項數值都在正常範圍或低於疑慮標準,並非嚴重健康危害警告;信中也沒有要求付款或宣布計畫結束。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-r1",
+        "taskType": "academic_passage",
+        "title": "How Neighborhood Associations Shape Local Decisions",
+        "discipline": "social science",
+        "text": "In many cities, small groups of volunteer residents organize themselves into neighborhood associations to represent local interests to city government. These associations typically form when residents notice a shared concern, such as traffic safety, a proposed construction project, or the loss of a public park. Once established, an association often collects signatures for a petition, which members present at a city council meeting or mail directly to elected officials. Petitions alone rarely change policy, but they signal that a measurable number of residents care about an issue, which can prompt officials to investigate further.\n\nNeighborhood associations also hold regular public meetings where residents raise concerns directly, ask questions of visiting officials, and vote on positions the association will formally support. These meetings give quieter voices a structured setting to speak, something an individual phone call to city hall rarely achieves. Over time, a consistently active association can gain enough credibility that planning departments consult it before finalizing decisions, such as where to place a new crosswalk or how to zone an empty lot. This influence remains informal in most cities; associations hold no legal veto over municipal decisions. Even so, officials who ignore a well-organized association's repeated objections risk facing public criticism at the next election, which gives neighborhood groups real, if indirect, leverage over local policy.",
+        "questions": [
+          {
+            "id": "ap-r1-q1",
+            "stem": "What is the main idea of this passage?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Neighborhood associations give residents informal but real influence over city decisions"
+              },
+              {
+                "id": "b",
+                "text": "Neighborhood associations possess full legal veto power over any municipal project they dislike, allowing them to block construction outright"
+              },
+              {
+                "id": "c",
+                "text": "City law requires residents to form a registered association before any local construction can proceed"
+              },
+              {
+                "id": "d",
+                "text": "Neighborhood associations exist primarily to plan social gatherings and events for local residents"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "main_idea",
+            "explanationZh": "文章主旨:社區協會透過請願與公開會議,對地方決策產生非正式但實際的影響力。文章明確指出協會沒有法定否決權,故b錯;文中未提及強制註冊規定,故c錯;協會目的並非辦理社交活動,故d錯。"
+          },
+          {
+            "id": "ap-r1-q2",
+            "stem": "In the passage, what does \"leverage\" most nearly mean?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A sum of money paid informally to influence officials' decisions"
+              },
+              {
+                "id": "b",
+                "text": "A legally protected right or entitlement guaranteed by statute"
+              },
+              {
+                "id": "c",
+                "text": "A formal vote officially cast during a scheduled election"
+              },
+              {
+                "id": "d",
+                "text": "The power to influence a result"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "vocabulary",
+            "explanationZh": "此處leverage意指「影響局勢的力量」,呼應協會能促使官員正視其意見。文章明確說協會沒有法定否決權,故「受法律保障的權利」錯;文中未提及金錢給付,故「私下付錢影響官員」錯;也未提正式投票,故「選舉中的正式投票」錯。"
+          },
+          {
+            "id": "ap-r1-q3",
+            "stem": "Based on the passage, what can be inferred about an individual resident who calls city hall alone?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Alone, their concern carries less influence than one raised through an association"
+              },
+              {
+                "id": "b",
+                "text": "Their phone call is automatically added to whichever petition the association next circulates"
+              },
+              {
+                "id": "c",
+                "text": "City hall keeps absolutely no written or electronic record of individual residents' phone calls"
+              },
+              {
+                "id": "d",
+                "text": "City officials must legally respond to every individual phone call within a specific, legally mandated number of business days"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "文章指出個人打電話「rarely achieves」與有組織會議相同的效果,可推論個人意見較難單獨產生影響力,故「個人單獨提出的意見,影響力不如透過協會提出」為合理推論。文章未提法定回覆期限、電話自動併入請願或市府不留紀錄,均缺乏文本依據。"
+          },
+          {
+            "id": "ap-r1-q4",
+            "stem": "How does the second paragraph relate to the first?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It shifts to a completely different topic, focusing on how associations organize social gatherings"
+              },
+              {
+                "id": "b",
+                "text": "It describes an additional method, public meetings, that associations use alongside petitions to influence officials"
+              },
+              {
+                "id": "c",
+                "text": "It summarizes the same information from the first paragraph using different wording"
+              },
+              {
+                "id": "d",
+                "text": "It contradicts the first paragraph by showing that petitions never influence local government"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "organization",
+            "explanationZh": "第二段介紹協會另一種發揮影響力的方式——公開會議,是第一段請願方式之外的補充,而非否定第一段內容、轉向社交活動,或只是換句話重述第一段。"
+          },
+          {
+            "id": "ap-r1-q5",
+            "stem": "Why does the author mention that neighborhood associations \"hold no legal veto over municipal decisions\"?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To explain why most residents choose not to join an association"
+              },
+              {
+                "id": "b",
+                "text": "To argue that neighborhood associations should be granted more formal legal authority"
+              },
+              {
+                "id": "c",
+                "text": "To criticize city governments for ignoring resident concerns entirely"
+              },
+              {
+                "id": "d",
+                "text": "To clarify that their influence, while real, is informal rather than an enforceable legal power"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "purpose",
+            "explanationZh": "作者提到協會「沒有法定否決權」,是為了釐清協會的影響力屬於非正式性質,而非具有強制力的法律權力。文章並非主張應給予協會更多法定權力,也沒有解釋居民為何不加入協會,更沒有全盤批評政府忽視居民意見。"
+          }
+        ]
+      }
+    ]
+  },
+  "lowerModule": {
+    "timeLimitSec": 540,
+    "ctwPassages": [
+      {
+        "id": "ctw-lo1",
+        "taskType": "complete_words",
+        "topic": "neighborhood tool-sharing program",
+        "segments": [
+          {
+            "type": "text",
+            "text": "A community center in one neighborhood now lets residents borrow tools instead of buying their own equipment. Each "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g1"
+          },
+          {
+            "type": "text",
+            "text": " may "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g2"
+          },
+          {
+            "type": "text",
+            "text": " a "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g3"
+          },
+          {
+            "type": "text",
+            "text": ", saw, "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g4"
+          },
+          {
+            "type": "text",
+            "text": " ladder "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g5"
+          },
+          {
+            "type": "text",
+            "text": " two "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g6"
+          },
+          {
+            "type": "text",
+            "text": " before "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g7"
+          },
+          {
+            "type": "text",
+            "text": " it "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g8"
+          },
+          {
+            "type": "text",
+            "text": " a "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g9"
+          },
+          {
+            "type": "text",
+            "text": ". Every "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g10"
+          },
+          {
+            "type": "text",
+            "text": " item receives a careful inspection so it stays safe for whoever needs it next. Anyone joining for the first time skips the standard enrollment fee completely. That small incentive persuades more households to give the program a try."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-lo1-g1",
+            "prefix": "parti",
+            "completion": "cipant",
+            "blankLength": 6,
+            "explanationZh": "此句主詞指借用工具的居民個人,「Each participant」意為「每位參與者」,呼應前句 residents borrow tools 的身分,且與後面 may keep 的單數動詞一致,故填 participant。"
+          },
+          {
+            "id": "ctw-lo1-g2",
+            "prefix": "ke",
+            "completion": "ep",
+            "blankLength": 2,
+            "explanationZh": "情態動詞 may 之後須接原形動詞,語意為「可以保留」一項工具兩週,故填 keep。"
+          },
+          {
+            "id": "ctw-lo1-g3",
+            "prefix": "le",
+            "completion": "vel",
+            "blankLength": 3,
+            "explanationZh": "與後方並列的 saw、ladder(鋸子、梯子)同屬可借用的工具項目,此處指「水平儀」,故填 level。"
+          },
+          {
+            "id": "ctw-lo1-g4",
+            "prefix": "o",
+            "completion": "r",
+            "blankLength": 1,
+            "explanationZh": "用於連接列舉清單中的最後一個選項(saw, or ladder),表示三者擇一借用,故填 or。"
+          },
+          {
+            "id": "ctw-lo1-g5",
+            "prefix": "f",
+            "completion": "or",
+            "blankLength": 2,
+            "explanationZh": "介系詞 for 後接時間長度 two weeks,表示保留工具的期限,故填 for。"
+          },
+          {
+            "id": "ctw-lo1-g6",
+            "prefix": "we",
+            "completion": "eks",
+            "blankLength": 3,
+            "explanationZh": "two 為數量詞,後面須接複數名詞表示「兩週」,對應歸還前可保留工具的期限,故填 weeks。"
+          },
+          {
+            "id": "ctw-lo1-g7",
+            "prefix": "brin",
+            "completion": "ging",
+            "blankLength": 4,
+            "explanationZh": "介系詞 before 之後須接動名詞形式,表示歸還前所做的動作「攜帶」,故填 bringing。"
+          },
+          {
+            "id": "ctw-lo1-g8",
+            "prefix": "t",
+            "completion": "o",
+            "blankLength": 1,
+            "explanationZh": "介系詞 to 表示動作的對象或方向,指把工具交還給志工,故填 to。"
+          },
+          {
+            "id": "ctw-lo1-g9",
+            "prefix": "volu",
+            "completion": "nteer",
+            "blankLength": 5,
+            "explanationZh": "承接下句 Every returned item receives a careful inspection 可知,負責檢查歸還工具的人即是志工,故此處填 volunteer。"
+          },
+          {
+            "id": "ctw-lo1-g10",
+            "prefix": "retu",
+            "completion": "rned",
+            "blankLength": 4,
+            "explanationZh": "此處為過去分詞作形容詞,修飾 item,表示「已歸還的」物品才會接受仔細檢查,故填 returned。"
+          }
+        ],
+        "sourceParagraph": "A community center in one neighborhood now lets residents borrow tools instead of buying their own equipment. Each participant may keep a level, saw, or ladder for two weeks before bringing it to a volunteer. Every returned item receives a careful inspection so it stays safe for whoever needs it next. Anyone joining for the first time skips the standard enrollment fee completely. That small incentive persuades more households to give the program a try."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-lo1",
+        "taskType": "daily_life",
+        "genre": "news article",
+        "text": "Historic Town Hall Restoration Nears Completion\n\nRiverdale — Workers are finishing a two-year restoration of the town hall using a $400,000 heritage grant. The project repaired the roof and replaced damaged wooden beams while keeping the original brick walls and stone entrance steps intact. Restoration crews matched new materials as closely as possible to the building's original 1920s design. City officials say the building will reopen to the public on October 3, with a small ceremony planned that morning. The town hall has served as a meeting space and event venue since it was first built.",
+        "questions": [
+          {
+            "id": "dl-lo1-q1",
+            "stem": "What funded the town hall restoration?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Ticket sales from public events"
+              },
+              {
+                "id": "b",
+                "text": "A local property tax increase"
+              },
+              {
+                "id": "c",
+                "text": "A donation from a private company"
+              },
+              {
+                "id": "d",
+                "text": "A $400,000 heritage grant"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "文章明確指出修復工程由40萬美元的文化資產補助金支應,並非地方稅增加、私人企業捐款,或活動門票收入。"
+          },
+          {
+            "id": "dl-lo1-q2",
+            "stem": "What can be inferred about the restoration crew's approach to materials?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They tried to preserve the building's original historical appearance"
+              },
+              {
+                "id": "b",
+                "text": "They replaced all original materials with modern, low-cost alternatives"
+              },
+              {
+                "id": "c",
+                "text": "They left the roof and beams unrepaired to save money"
+              },
+              {
+                "id": "d",
+                "text": "They redesigned the building to look completely different from the original"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "文章提到修復團隊盡量讓新材料貼近1920年代原始設計,並保留原有磚牆與石階,可推論其目標是維持建築原有的歷史外觀,而非改用低成本現代材料、放著屋頂樑柱不修,或把建築改造成完全不同的樣貌。"
+          }
+        ]
+      },
+      {
+        "id": "dl-lo2",
+        "taskType": "daily_life",
+        "genre": "menu",
+        "text": "Riverside Community Center — Fall Program Price List\n\nSwimming Lessons\nAges 4–6, Saturdays 9:00–9:30 AM — $60/month\nAges 7–12, Saturdays 9:45–10:30 AM — $65/month\nAdult Lap Swim, weekday evenings — $40/month\n\nPottery Workshop\nAges 8–14, Tuesdays 4:00–5:30 PM — $55/month, materials included\nAdult Pottery, Thursdays 6:00–8:00 PM — $70/month, materials included\n\nHomework Tutoring\nAges 6–12, Monday–Friday 3:30–5:00 PM — $8/session\nAges 13–17, Monday–Friday 3:30–5:00 PM — $10/session\n\nRegistration open at the front desk. Sibling discount: 10% off a second program.",
+        "questions": [
+          {
+            "id": "dl-lo2-q1",
+            "stem": "How much does the Adult Pottery workshop cost per month?",
+            "options": [
+              {
+                "id": "a",
+                "text": "$40"
+              },
+              {
+                "id": "b",
+                "text": "$65"
+              },
+              {
+                "id": "c",
+                "text": "$70"
+              },
+              {
+                "id": "d",
+                "text": "$55"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "價目表清楚列出成人陶藝課程每月70美元。55美元是兒童陶藝、40美元是成人自由游泳、65美元則是7至12歲游泳課程,皆與成人陶藝費用不同。"
+          },
+          {
+            "id": "dl-lo2-q2",
+            "stem": "What is the purpose of the sibling discount mentioned at the bottom of the list?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To reduce the price of swimming lessons only"
+              },
+              {
+                "id": "b",
+                "text": "To waive the registration fee for new members"
+              },
+              {
+                "id": "c",
+                "text": "To encourage families to enroll in more than one program"
+              },
+              {
+                "id": "d",
+                "text": "To reward students who tutor younger children"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "purpose",
+            "explanationZh": "手足折扣鼓勵家庭讓不只一位孩子或多項課程一起報名,並非只適用於游泳課程、免除報名費,或用來獎勵擔任小老師的學生,這些內容價目表都沒有提到。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-lo1",
+        "taskType": "academic_passage",
+        "title": "The Revival of a Regional Ceramic Craft",
+        "discipline": "art and music",
+        "text": "For much of the twentieth century, a traditional style of ceramic glazing in one rural region nearly disappeared. Fewer young people wanted to learn the slow, difficult steps needed to mix and apply the glaze correctly, and most trained potters had grown old or stopped working. By the 1990s, only a handful of elderly craftspeople still remembered the full process.\n\nA local arts festival changed this trend. Organizers invited the remaining potters to demonstrate their techniques in public, live, in front of curious visitors. The demonstrations drew unexpected crowds, and several younger attendees asked whether they could learn the craft themselves. Festival organizers responded by setting up a small apprenticeship program, pairing each interested learner with an experienced potter for hands-on training.\n\nOver the next decade, the program trained dozens of new potters. Apprentices spent months practicing basic shaping before they were allowed to attempt the traditional glaze at all, since a mistake at that late stage could ruin weeks of earlier work. Today, the craft is taught regularly at the festival, and pieces made in the traditional style are sold at markets across the region. Older potters who once feared the tradition would vanish now describe the current interest as the strongest it has been in decades, crediting the festival for giving the craft a public stage it had long lacked.",
+        "questions": [
+          {
+            "id": "ap-lo1-q1",
+            "stem": "What eventually happened after the festival began featuring live demonstrations by the remaining potters?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The remaining potters refused to teach anyone the craft"
+              },
+              {
+                "id": "b",
+                "text": "The craft was banned from being sold at markets"
+              },
+              {
+                "id": "c",
+                "text": "The festival stopped inviting potters after the first year"
+              },
+              {
+                "id": "d",
+                "text": "An apprenticeship program was created to train new potters"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "文章提到藝術節邀請僅存的陶藝師公開示範後,吸引年輕人詢問學習機會,於是主辦單位設立學徒制度加以培訓。文章明確指出這項工藝如今仍在藝術節定期教授、作品也在市集販售,並非停辦活動或陶藝師拒絕傳授技藝。"
+          },
+          {
+            "id": "ap-lo1-q2",
+            "stem": "In the passage, what does \"vanish\" most nearly mean?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Change into a new form"
+              },
+              {
+                "id": "b",
+                "text": "Spread to other regions"
+              },
+              {
+                "id": "c",
+                "text": "Disappear completely"
+              },
+              {
+                "id": "d",
+                "text": "Become extremely valuable"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "vocabulary",
+            "explanationZh": "vanish在此指「完全消失」,呼應年長陶藝師曾擔心這項技藝失傳。文中沒有提到變得珍貴、轉變成新形式,也沒有提到技藝擴散到其他地區,方向恰好相反。"
+          },
+          {
+            "id": "ap-lo1-q3",
+            "stem": "What can be inferred about learning the traditional glaze technique?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It no longer requires any hands-on practice"
+              },
+              {
+                "id": "b",
+                "text": "It can be learned within a single afternoon workshop"
+              },
+              {
+                "id": "c",
+                "text": "It requires a solid foundation in basic shaping before it can be safely attempted"
+              },
+              {
+                "id": "d",
+                "text": "It was easier to learn than the shaping techniques"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "文章提到學徒要先花數月練習基本塑形,才被允許嘗試傳統上釉,可推論上釉需要先具備穩固的基本功。文章沒有說釉法能一個下午學會、不需實作練習,也沒有說釉法比塑形容易。"
+          },
+          {
+            "id": "ap-lo1-q4",
+            "stem": "How does the second paragraph relate to the first?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It argues that the decline described in the first paragraph never actually happened"
+              },
+              {
+                "id": "b",
+                "text": "It explains the specific event that reversed the decline described in the first paragraph"
+              },
+              {
+                "id": "c",
+                "text": "It restates the first paragraph's information without adding anything new"
+              },
+              {
+                "id": "d",
+                "text": "It describes a second, unrelated decline in a different regional craft"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "organization",
+            "explanationZh": "第二段說明第一段所述技藝衰落後,是什麼具體事件(藝術節示範與學徒制度)扭轉了這個趨勢,而非描述另一項不相關工藝的衰落、單純重述第一段,或主張衰落根本沒發生過。"
+          },
+          {
+            "id": "ap-lo1-q5",
+            "stem": "Why does the author mention that \"a mistake at that late stage could ruin weeks of earlier work\"?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To argue that the traditional glazing technique should be simplified"
+              },
+              {
+                "id": "b",
+                "text": "To explain why apprentices practice basic shaping extensively before attempting the glaze"
+              },
+              {
+                "id": "c",
+                "text": "To criticize the festival for training apprentices too quickly"
+              },
+              {
+                "id": "d",
+                "text": "To suggest that the craft is now less risky than it once was"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "purpose",
+            "explanationZh": "作者提到「上釉階段出錯會毀掉先前數週的成果」,是為了解釋學徒為何要先大量練習基本塑形才能碰觸上釉。這句話並非主張應簡化傳統上釉技法、批評藝術節訓練太倉促,也沒有暗示這項工藝現在風險變低了。"
+          }
+        ]
+      }
+    ]
+  },
+  "upperModule": {
+    "timeLimitSec": 540,
+    "ctwPassages": [
+      {
+        "id": "ctw-up1",
+        "taskType": "complete_words",
+        "topic": "overnight train sleeper cabin booking",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Overnight train operators calculate sleeper cabin prices using a formula that accounts for how far the train travels, seasonal demand, and how far in advance a passenger books. During "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g1"
+          },
+          {
+            "type": "text",
+            "text": " travel "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g2"
+          },
+          {
+            "type": "text",
+            "text": ", such "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g3"
+          },
+          {
+            "type": "text",
+            "text": " major "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g4"
+          },
+          {
+            "type": "text",
+            "text": ", rates "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g5"
+          },
+          {
+            "type": "text",
+            "text": " sharply "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g6"
+          },
+          {
+            "type": "text",
+            "text": " available "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g7"
+          },
+          {
+            "type": "text",
+            "text": " become "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g8"
+          },
+          {
+            "type": "text",
+            "text": " relative "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g9"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g10"
+          },
+          {
+            "type": "text",
+            "text": " of travelers seeking a place to sleep on board. Routes spanning greater distances typically cost more than short regional connections. Passengers who reserve several weeks early often receive a meaningful discount."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-up1-g1",
+            "prefix": "pe",
+            "completion": "ak",
+            "blankLength": 2,
+            "explanationZh": "此處與後面的 travel periods 搭配成 peak travel periods（旺季/尖峰旅遊期間），呼應下文 major holidays 導致票源稀少、票價上漲的情境，故填 peak。"
+          },
+          {
+            "id": "ctw-up1-g2",
+            "prefix": "per",
+            "completion": "iods",
+            "blankLength": 4,
+            "explanationZh": "peak travel periods 為固定搭配，periods 指「一段期間」，指涉旅遊需求特別高的時段，與後文 such as major holidays 舉例呼應，故填 periods。"
+          },
+          {
+            "id": "ctw-up1-g3",
+            "prefix": "a",
+            "completion": "s",
+            "blankLength": 1,
+            "explanationZh": "such as 為固定片語，用來引出前述 peak travel periods 的具體例子，即後面的 major holidays，故填 as。"
+          },
+          {
+            "id": "ctw-up1-g4",
+            "prefix": "holi",
+            "completion": "days",
+            "blankLength": 4,
+            "explanationZh": "此處緊接 such as major，需要一個名詞說明是哪種尖峰期間，holidays（假期）正是造成旅遊需求暴增、票價上漲的典型例子，故填 holidays。"
+          },
+          {
+            "id": "ctw-up1-g5",
+            "prefix": "cl",
+            "completion": "imb",
+            "blankLength": 3,
+            "explanationZh": "主詞 rates 之後需要動詞說明票價的變化，climb sharply（急遽攀升）符合旺季票源稀少、需求大於供給時價格上漲的邏輯，故填 climb。"
+          },
+          {
+            "id": "ctw-up1-g6",
+            "prefix": "bec",
+            "completion": "ause",
+            "blankLength": 4,
+            "explanationZh": "此處連接「rates climb sharply」與其原因子句「available berths become scarce...」，because 表示因果關係，說明票價上漲是因為臥鋪稀少，故填 because。"
+          },
+          {
+            "id": "ctw-up1-g7",
+            "prefix": "ber",
+            "completion": "ths",
+            "blankLength": 3,
+            "explanationZh": "此處主詞需為可預訂的臥鋪空間，全句主題是 sleeper cabin（臥鋪車廂），berths 指火車上的臥鋪／床位，與 become scarce（變得稀少）及後文 a place to sleep on board 呼應，故填 berths。"
+          },
+          {
+            "id": "ctw-up1-g8",
+            "prefix": "sca",
+            "completion": "rce",
+            "blankLength": 3,
+            "explanationZh": "berths become 之後需要形容詞說明臥鋪的供給狀況，scarce（稀少的）符合旺季時床位供不應求、進而推高票價的邏輯，故填 scarce。"
+          },
+          {
+            "id": "ctw-up1-g9",
+            "prefix": "t",
+            "completion": "o",
+            "blankLength": 1,
+            "explanationZh": "relative to 為固定片語，意為「相對於」，用來比較臥鋪數量與尋求床位的旅客人數，故填 to。"
+          },
+          {
+            "id": "ctw-up1-g10",
+            "prefix": "num",
+            "completion": "ber",
+            "blankLength": 3,
+            "explanationZh": "此處指「旅客的人數」，number of travelers 說明相對於稀少臥鋪的是大量尋求床位的旅客人數，符合供需失衡導致漲價的語意，故填 number。"
+          }
+        ],
+        "sourceParagraph": "Overnight train operators calculate sleeper cabin prices using a formula that accounts for how far the train travels, seasonal demand, and how far in advance a passenger books. During peak travel periods, such as major holidays, rates climb sharply because available berths become scarce relative to the number of travelers seeking a place to sleep on board. Routes spanning greater distances typically cost more than short regional connections. Passengers who reserve several weeks early often receive a meaningful discount."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-up1",
+        "taskType": "daily_life",
+        "genre": "social media post",
+        "text": "🎧 Big update coming to StreamCast! Starting next week, Premium subscribers can download episodes for offline listening — perfect for flights, commutes, or anywhere without signal. Each subscriber can keep up to 20 downloaded episodes at a time; delete one to make room for the next. Free accounts still stream only, but stay tuned — more features on the way. Update your app when the new version drops! #StreamCast #PodcastLife #OfflineListening",
+        "questions": [
+          {
+            "id": "dl-up1-q1",
+            "stem": "According to the post, how many episodes can a Premium subscriber store offline at once?",
+            "options": [
+              {
+                "id": "a",
+                "text": "An unlimited number"
+              },
+              {
+                "id": "b",
+                "text": "Up to 5"
+              },
+              {
+                "id": "c",
+                "text": "Up to 20"
+              },
+              {
+                "id": "d",
+                "text": "Up to 10"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "貼文明確寫出訂閱用戶最多可同時儲存20集離線內容,並非10集、無上限,或5集。"
+          },
+          {
+            "id": "dl-up1-q2",
+            "stem": "What can be inferred about free account holders based on this post?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They will get offline downloads sooner than Premium users"
+              },
+              {
+                "id": "b",
+                "text": "They must pay a separate one-time fee to unlock downloads"
+              },
+              {
+                "id": "c",
+                "text": "They can download unlimited episodes without upgrading their plan"
+              },
+              {
+                "id": "d",
+                "text": "They cannot use the new offline download feature"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "inference",
+            "explanationZh": "貼文提到「Free accounts still stream only」,可推論免費帳號無法使用新的離線下載功能,而非比訂閱用戶更早取得此功能、需另外支付一次性費用解鎖下載,或不升級也能無限下載。"
+          },
+          {
+            "id": "dl-up1-q3",
+            "stem": "What is the main purpose of this social media post?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To inform users that the free streaming tier will be discontinued soon"
+              },
+              {
+                "id": "b",
+                "text": "To apologize for a technical outage that affected the app recently"
+              },
+              {
+                "id": "c",
+                "text": "To describe the new offline download feature for subscribers"
+              },
+              {
+                "id": "d",
+                "text": "To promote a limited-time discount on Premium subscriptions"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "purpose",
+            "explanationZh": "這則貼文主要目的是說明新的離線下載功能如何運作,並非為技術故障道歉、宣傳訂閱折扣,或宣布免費方案即將取消(文中免費帳號仍可使用串流)。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-up1",
+        "taskType": "academic_passage",
+        "title": "The Physics of Sound Inside a Noise-Cancelling Device",
+        "discipline": "physical science",
+        "text": "Active noise-cancelling headphones rely on a principle of wave physics called destructive interference to reduce the ambient sound a listener perceives. A small microphone mounted on the device continuously captures the surrounding sound wave, particularly low-frequency, repetitive noise such as an airplane engine's hum or a running fan. This signal is fed to a processor that generates a second wave with the same amplitude and frequency as the captured noise but shifted precisely out of phase, meaning its peaks align with the original wave's troughs and vice versa.\n\nWhen the device emits this inverted wave through the same speaker that plays music or podcast audio, the two waves arrive at the listener's ear at nearly the same instant and interfere with one another. Where the peak of one wave coincides with the trough of the other, the combined air pressure change is close to zero, and the listener perceives comparatively little of the original noise. This process works best against steady, predictable, low-frequency sounds, since the processor can track and invert them with minimal delay. Sudden, irregular sounds, such as a dog barking or a door slamming, change too quickly for the system to generate an accurate inverted wave in time, which is why noise-cancelling devices are far less effective against sharp or unpredictable noise than against a steady mechanical drone.",
+        "questions": [
+          {
+            "id": "ap-up1-q1",
+            "stem": "What is the main idea of this passage?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Active noise-cancelling headphones use destructive interference to reduce steady ambient noise."
+              },
+              {
+                "id": "b",
+                "text": "Active noise-cancelling headphones are equally effective at silencing every kind of sound a listener might encounter, from steady mechanical drones to sudden, unpredictable noises such as a barking dog or a slamming door."
+              },
+              {
+                "id": "c",
+                "text": "Active noise-cancelling headphones raise the volume of music until it overpowers any background noise."
+              },
+              {
+                "id": "d",
+                "text": "Active noise-cancelling headphones physically block sound waves from reaching the ear by sealing the ear canal with a solid barrier built into the ear cup."
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "main_idea",
+            "explanationZh": "文章主旨在說明主動降噪耳機透過產生與環境噪音相位相反的聲波,利用波的干涉原理抵銷穩定的環境噪音。文章明確指出此技術對突發、不規則聲音效果較差,並非對所有聲音都同樣有效;耳機也不是靠實體屏障封住耳道阻隔聲音,更不是把音樂音量調高蓋過噪音。"
+          },
+          {
+            "id": "ap-up1-q2",
+            "stem": "In the passage, what does \"coincides\" most nearly mean?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Cancels out the noise for good"
+              },
+              {
+                "id": "b",
+                "text": "Happens to closely resemble, purely by chance"
+              },
+              {
+                "id": "c",
+                "text": "Becomes noticeably louder than"
+              },
+              {
+                "id": "d",
+                "text": "Lines up with"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "vocabulary",
+            "explanationZh": "此處coincides指兩個聲波的波峰與波谷「在同一時間點對齊」,也就是lines up with,而非日常語意中「碰巧相似」的意思;文中也未提到音量大小的比較,也沒有說噪音被永久消除。"
+          },
+          {
+            "id": "ap-up1-q3",
+            "stem": "Based on the passage, why would noise-cancelling headphones likely struggle to cancel a sudden door slam?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A door slam does not produce a sound wave that the microphone can measure at all."
+              },
+              {
+                "id": "b",
+                "text": "The speaker responsible for playing the cancellation wave is too weak to reproduce a sound as loud as a slamming door."
+              },
+              {
+                "id": "c",
+                "text": "A door slam changes too quickly for the processor to generate an accurately inverted wave in time."
+              },
+              {
+                "id": "d",
+                "text": "The microphone built into the headphones is physically incapable of detecting any sound that exceeds a certain volume threshold, regardless of how quickly that sound occurs."
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "文章最後提到系統處理突發、不規則聲音時來不及即時產生準確的反向聲波,故關門聲這類快速聲音較難被抵銷。文章沒有提到麥克風有音量偵測上限、關門聲不會產生可偵測的聲波,也沒有說喇叭功率不足以播放大聲聲音。"
+          },
+          {
+            "id": "ap-up1-q4",
+            "stem": "How does the second paragraph build on the first?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It contradicts the first paragraph by claiming inverted waves are never actually used in real headphones"
+              },
+              {
+                "id": "b",
+                "text": "It repeats the first paragraph's explanation of how the microphone captures sound"
+              },
+              {
+                "id": "c",
+                "text": "It explains what physically happens when the inverted wave generated in the first paragraph meets the original noise, and where the method's limits lie"
+              },
+              {
+                "id": "d",
+                "text": "It introduces an entirely different noise-cancellation method unrelated to inverted waves"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "organization",
+            "explanationZh": "第二段承接第一段所建立的反向聲波概念,進一步說明這個聲波實際抵銷噪音時發生的物理過程,以及此方法的限制,而非介紹另一種無關的降噪方式、否定第一段內容,或重複第一段對麥克風收音的描述。"
+          },
+          {
+            "id": "ap-up1-q5",
+            "stem": "Why does the author include the example of an airplane engine's hum and a running fan?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To warn readers that these specific sounds can damage the headphone's microphone"
+              },
+              {
+                "id": "b",
+                "text": "To compare the cost of different noise-cancelling devices"
+              },
+              {
+                "id": "c",
+                "text": "To give concrete examples of the steady, low-frequency noise this technology cancels most effectively"
+              },
+              {
+                "id": "d",
+                "text": "To argue that airplane engines are the loudest source of ambient noise"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "purpose",
+            "explanationZh": "作者舉飛機引擎聲與風扇運轉聲為例,是為了具體說明這項技術最擅長抵銷的是持續、低頻的噪音,並非警告這類聲音會損壞麥克風、比較不同降噪耳機的價格,也沒有主張飛機引擎是最大聲的環境噪音來源。"
+          }
+        ]
+      }
+    ]
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "reading",
+    "ctwPassages": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "campus-tutor-schedule-by-course-demand",
+        "requiredConcepts": [
+          "student tutors matched to course subjects",
+          "weekly time slots posted at the tutoring center",
+          "high-demand courses given extra tutor hours"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "catalog's complete_words set covers workplace ergonomics, sleep-exercise links, time-zone history, and ceramic restoration — none touch campus tutoring scheduling."
+          }
+        ],
+        "topic": "peer tutoring center scheduling",
+        "angle": "explains how a campus tutoring center assigns student tutors to subject-specific time slots based on course demand."
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "podcast-transcript-human-edit-pass",
+        "requiredConcepts": [
+          "automatic transcription draft from audio",
+          "human editor checks names and technical terms",
+          "corrected transcript posted before episode release"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "catalog's complete_words entries are workplace, health, history, and arts-culture topics; none address podcast transcription workflows."
+          }
+        ],
+        "topic": "podcast episode transcription accuracy",
+        "angle": "explains why automatic transcription software still requires human editing before podcast episodes are published online."
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "neighborhood-tool-share-program",
+        "requiredConcepts": [
+          "members borrow repair tools for a set period",
+          "returned tools inspected before next loan",
+          "membership fee waived for first-time borrowers"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "no catalog complete_words entry covers a civic tool-sharing program; closest is unrelated office ergonomics content."
+          }
+        ],
+        "topic": "neighborhood tool-sharing program",
+        "angle": "explains how a community tool-sharing program lets residents borrow repair equipment instead of buying it."
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "overnight-sleeper-cabin-price-season",
+        "requiredConcepts": [
+          "cabin price rises during peak travel season",
+          "route length affects overnight cabin cost",
+          "early booking discount for sleeper cabins"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "catalog complete_words set has no travel-booking content; sleeper cabin pricing is a new angle."
+          }
+        ],
+        "topic": "overnight train sleeper cabin booking",
+        "angle": "explains why overnight train operators price sleeper cabins differently based on route demand and season."
+      }
+    ],
+    "dailyLifeTexts": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "photography-workshop-registration-form",
+        "requiredConcepts": [
+          "session date and time selection",
+          "material fee listed per session",
+          "camera equipment brought by participant"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "catalog's daily-life set has no campus-academics text; existing entries are civic, travel, tech, everyday, health, and arts genres only."
+          }
+        ],
+        "genre": "form",
+        "scenario": "a workshop registration form for a campus photography workshop listing sessions, fees, and material requirements."
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "office-furniture-repair-invoice",
+        "requiredConcepts": [
+          "itemized charge for delayed desk repair",
+          "replacement part cost separate from labor",
+          "late completion note on invoice"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "catalog's daily-life set includes no workplace-business text; this fills that gap with an invoice genre not yet used."
+          }
+        ],
+        "genre": "invoice",
+        "scenario": "an invoice from an office furniture repair company billing a company for a delayed desk repair with itemized charges."
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "lab-air-quality-monitoring-email",
+        "requiredConcepts": [
+          "recent air quality test results summarized",
+          "sample collected from a residential location",
+          "next testing date proposed"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "catalog's daily-life set has no science-environment text; existing entries don't cover lab or climate monitoring content."
+          }
+        ],
+        "genre": "email",
+        "scenario": "an email from a laboratory air-quality monitoring team to a resident summarizing recent climate test results."
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "town-hall-restoration-news-article",
+        "requiredConcepts": [
+          "grant funding restoration costs",
+          "original building materials preserved",
+          "reopening date announced"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "catalog's daily-life set has no history-social-change text; existing entries don't cover heritage-restoration content."
+          }
+        ],
+        "genre": "news article",
+        "scenario": "a local news article reporting the historical restoration of a town hall funded by a heritage grant."
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "community-center-program-price-list",
+        "requiredConcepts": [
+          "price listed beside each seasonal program",
+          "swimming session times for different ages",
+          "pottery and tutoring sessions offered"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "catalog's community-civic entry is a volunteer park-cleanup poster; this uses a program price-list menu genre instead, with no volunteer recruitment content."
+          }
+        ],
+        "genre": "menu",
+        "scenario": "a community center's price list for seasonal youth programs including swimming, pottery, and tutoring sessions."
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "podcast-app-offline-download-post",
+        "requiredConcepts": [
+          "offline download feature for subscribers",
+          "download limit per episode mentioned",
+          "feature available in the next update"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "catalog's technology-media entry is a budget app's changelog web page; this is a podcast platform's social-media announcement, a different genre and product."
+          }
+        ],
+        "genre": "social media post",
+        "scenario": "a podcast platform's social media post announcing a new digital offline-download feature for subscribers."
+      }
+    ],
+    "academicPassages": [
+      {
+        "domain": "community-civic",
+        "noveltyKey": "neighborhood-association-local-policy",
+        "requiredConcepts": [
+          "petitions submitted to local officials",
+          "public meetings where residents raise concerns",
+          "association influence on a zoning decision"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "catalog's academic passages cover business/economics, life science, and history disciplines; this adds a social-science civic-participation angle not yet used."
+          }
+        ],
+        "title": "How Neighborhood Associations Shape Local Decisions",
+        "discipline": "social science",
+        "angle": "examines how volunteer-run neighborhood associations influence municipal policy through petitions and public meetings."
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "ceramic-craft-festival-revival",
+        "requiredConcepts": [
+          "festival demonstrations reviving interest",
+          "apprentices learning long-held glazing steps",
+          "craft nearly disappearing before revival"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "catalog's academic passages don't include an art-and-music discipline; ceramic-craft revival is a new topic and domain."
+          }
+        ],
+        "title": "The Revival of a Regional Ceramic Craft",
+        "discipline": "art and music",
+        "angle": "traces how a local ceramic craft was revived through festival demonstrations and hands-on apprenticeship workshops."
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "noise-cancelling-device-physics",
+        "requiredConcepts": [
+          "microphone captures ambient sound wave",
+          "device generates an inverted sound wave",
+          "two waves cancel out before reaching the ear"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "catalog's academic passages don't cover physical science or technology-media; noise-cancelling device physics is new on both axes."
+          }
+        ],
+        "title": "The Physics of Sound Inside a Noise-Cancelling Device",
+        "discipline": "physical science",
+        "angle": "explains how digital devices use sound wave interference to cancel ambient noise for media listeners."
+      }
+    ]
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "id": "spk-e1e07aba",
+  "source": "generated",
+  "createdAt": "2026-08-25T13:53:27.223Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Bike-Share Depot Tune-Up Orientation",
+    "scenarioDescription": "In the bike-share depot warehouse next to the loading dock, the senior fleet mechanic is walking a new seasonal technician through the morning tune-up routine before the bikes go out on their routes. Listen to the mechanic and repeat what they say. Repeat only once.",
+    "introAudio": "stimuli/spk-e1e07aba/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-e1e07aba.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Bike-Share Depot Tune-Up Orientation. In the bike-share depot warehouse next to the loading dock, the senior fleet mechanic is walking a new seasonal technician through the morning tune-up routine before the bikes go out on their routes. Listen to the mechanic and repeat what they say. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- I'll show you our full tune-up routine today.\n- The helmet bins and the tag rack sit here.\n- We check each helmet size and note it on the tag.\n- Squeeze the brake lever hard, but listen for a clean click.\n- Before you redock a bike, always squeeze both brake levers twice.\n- The tire pressure gauge reading always gets logged on the technician's tag.\n- Bikes that pass every check get a fresh chain lubrication before they redock.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "I'll show you our full tune-up routine today.",
+        "audio": "stimuli/spk-e1e07aba/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The helmet bins and the tag rack sit here.",
+        "audio": "stimuli/spk-e1e07aba/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "We check each helmet size and note it on the tag.",
+        "audio": "stimuli/spk-e1e07aba/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Squeeze the brake lever hard, but listen for a clean click.",
+        "audio": "stimuli/spk-e1e07aba/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Before you redock a bike, always squeeze both brake levers twice.",
+        "audio": "stimuli/spk-e1e07aba/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The tire pressure gauge reading always gets logged on the technician's tag.",
+        "audio": "stimuli/spk-e1e07aba/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Bikes that pass every check get a fresh chain lubrication before they redock.",
+        "audio": "stimuli/spk-e1e07aba/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Travel Habits Phone Survey",
+    "intro": "Thank you for speaking with me today. I'm calling as part of a short travel habits survey, and I just have a few quick questions about how you plan short trips. Do you have a few minutes to talk?",
+    "introAudio": "stimuli/spk-e1e07aba/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Great, thanks. When you're planning a short trip away from home, how do you usually decide where to stay?",
+        "audio": "stimuli/spk-e1e07aba/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "OK. Now think about a specific trip you took recently. Can you describe that trip and explain what made you choose that particular hotel or rental?",
+        "audio": "stimuli/spk-e1e07aba/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "Good, thank you. Some travelers say a hotel is worth paying more for because of the service and reliability, while others prefer a short-term rental because it feels more like a real home. Which side do you agree with more, and why?",
+        "audio": "stimuli/spk-e1e07aba/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question: when you're choosing where to stay, does the budget for a weekend trip matter more to you than the location, or is it the other way around? Why?",
+        "audio": "stimuli/spk-e1e07aba/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "services-travel",
+      "noveltyKey": "bikeshare-depot-tune-up-orientation",
+      "requiredConcepts": [
+        "helmet size check before bike leaves depot",
+        "brake lever squeeze test before redocking",
+        "tire pressure gauge reading logged on tag",
+        "chain lubrication before redock"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-c2aa29f2",
+          "reason": "c2aa29f2 is a rental-car return garage inspection; this set is a bike-share depot tune-up on shared bicycles, a different vehicle and setting."
+        },
+        {
+          "setId": "spk-4ed5798a",
+          "reason": "4ed5798a orients a bellhop around guest luggage handling, not a mechanical safety-check sequence on vehicles."
+        }
+      ],
+      "setting": "the bike-share depot warehouse next to the loading dock",
+      "speakerRole": "the depot's senior fleet mechanic training a newly hired seasonal technician",
+      "communicativePurpose": "to walk the new technician through each tune-up and safety-check step, in order, before the bikes go back out on the morning routes"
+    },
+    "interview": {
+      "domain": "services-travel",
+      "noveltyKey": "trip-lodging-choice-habit",
+      "requiredConcepts": [
+        "hotel versus short-term rental preference",
+        "specific past trip lodging decision",
+        "budget limit for a weekend stay"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-dec524bd",
+          "reason": "dec524bd covers packing and logistics routine before a trip; this set targets the separate reasoning behind choosing where to stay."
+        },
+        {
+          "setId": "spk-4ed5798a",
+          "reason": "4ed5798a is a scripted hotel bellhop orientation (listen_repeat), not a personal-habit phone interview about lodging choice."
+        }
+      ],
+      "topic": "how test taker decides where to stay when planning a short trip away from home",
+      "premise": "A short travel-habits phone survey asks how the respondent chooses a hotel or rental when planning a short trip.",
+      "questionArc": [
+        "Caller introduces a brief travel habits survey and confirms the respondent has a few minutes to talk.",
+        "Caller asks how the respondent usually decides where to stay when planning a short trip away from home.",
+        "Caller asks the respondent to describe a specific recent trip and what made them choose that hotel or rental.",
+        "Caller asks whether budget or location matters more when making that choice."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Alnilam",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "australian",
+      "voice": "Sulafat",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "id": "spk-fbe10c5d",
+  "source": "generated",
+  "createdAt": "2026-08-07T07:17:01.010Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Marsh Laboratory Gear Walkthrough",
+    "scenarioDescription": "Listen to a wetland technician walk a new field assistant along the bench of a small laboratory beside a marsh, showing where the sampling gear is kept, and repeat what the technician says. Repeat only once.",
+    "introAudio": "stimuli/spk-fbe10c5d/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-fbe10c5d.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Marsh Laboratory Gear Walkthrough. Listen to a wetland technician walk a new field assistant along the bench of a small laboratory beside a marsh, showing where the sampling gear is kept, and repeat what the technician says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- The boot rack is beside the back door.\n- Your boots and your gloves dry out there overnight.\n- Over by the window, we keep the sample fridge set to four degrees.\n- The laboratory sink is used only for rinsing gear, and mugs stay in the kitchen.\n- When you get back, write the time in the habitat notebook kept on the drying bench.\n- Since the marsh water out there carries so much silt, the water sampling bottles get rinsed twice before use.\n- Anything that comes back muddy goes straight into the sink, and the log sheet on the fridge gets a note.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "The boot rack is beside the back door.",
+        "audio": "stimuli/spk-fbe10c5d/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.163,
+          "y": 0.366,
+          "w": 0.147,
+          "h": 0.165
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Your boots and your gloves dry out there overnight.",
+        "audio": "stimuli/spk-fbe10c5d/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Over by the window, we keep the sample fridge set to four degrees.",
+        "audio": "stimuli/spk-fbe10c5d/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.428,
+          "y": 0.237,
+          "w": 0.134,
+          "h": 0.165
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The laboratory sink is used only for rinsing gear, and mugs stay in the kitchen.",
+        "audio": "stimuli/spk-fbe10c5d/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "When you get back, write the time in the habitat notebook kept on the drying bench.",
+        "audio": "stimuli/spk-fbe10c5d/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.686,
+          "y": 0.741,
+          "w": 0.126,
+          "h": 0.111
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Since the marsh water out there carries so much silt, the water sampling bottles get rinsed twice before use.",
+        "audio": "stimuli/spk-fbe10c5d/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.612,
+          "y": 0.57,
+          "w": 0.076,
+          "h": 0.106
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Anything that comes back muddy goes straight into the sink, and the log sheet on the fridge gets a note.",
+        "audio": "stimuli/spk-fbe10c5d/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.828,
+          "y": 0.363,
+          "w": 0.153,
+          "h": 0.339
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Music Through an Ordinary Day",
+    "intro": "In this task, you will take part in a short recorded interview for a listening-habits project. The interviewer wants to know how music fits into a normal day for you. You will hear four questions, one after another, and you will answer each one right away. There is no preparation time.",
+    "introAudio": "stimuli/spk-fbe10c5d/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thank you for speaking with me today. To start, I'd like to ask about a normal day for you. What kind of music do you usually put on, and at what point in the day do you play it? Some people have music playing during the first hour of the day; others wait until much later.",
+        "audio": "stimuli/spk-fbe10c5d/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now I'd like to hear about one particular time. Tell me about a song that changed a bad mood for you — maybe something you played on your own, or a performance you heard at a festival. What was going on that day, and why do you think the music affected you the way it did?",
+        "audio": "stimuli/spk-fbe10c5d/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion — music while working versus complete silence. Some people say a familiar playlist carries them through a long task; others say any sound at all pulls their attention away. Which side are you on when you have something difficult to finish, and why?",
+        "audio": "stimuli/spk-fbe10c5d/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question, a broader one. Cafes and shops playing music all day is completely normal now, whether the customers asked for it or not. Do you think that's a good thing? And more generally, what would you recommend for shared rooms where nobody chose the music together?",
+        "audio": "stimuli/spk-fbe10c5d/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "science-environment",
+      "noveltyKey": "marsh-laboratory-sampling-gear-walkthrough",
+      "requiredConcepts": [
+        "boot rack beside the back door",
+        "sample fridge set to four degrees",
+        "water sampling bottles rinsed twice before use",
+        "habitat notebook kept on the drying bench",
+        "laboratory sink used only for rinsing gear"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-43ab8b09",
+          "reason": "That walkthrough waters potted plants in a greenhouse; here the work is rinsing bottles and logging marsh samples inside a laboratory."
+        },
+        {
+          "setId": "spk-89911631",
+          "reason": "That set hands out recording equipment; here the gear is sampling bottles, a habitat notebook, and a fridge log."
+        }
+      ],
+      "setting": "A small freshwater laboratory beside a marsh, with a drying bench along one wall, a sample fridge, a deep rinsing sink, and a boot rack by the back door.",
+      "speakerRole": "A wetland technician who looks after the laboratory's sampling gear and the day's water samples",
+      "communicativePurpose": "Walking a newly arrived field assistant along the bench, saying each instruction once, so the assistant learns where every piece of sampling gear is kept and how samples get logged before the first collection round."
+    },
+    "interview": {
+      "domain": "arts-culture",
+      "noveltyKey": "music-chosen-through-an-ordinary-day",
+      "requiredConcepts": [
+        "music playing during the first hour of the day",
+        "a song that changed a bad mood",
+        "music while working versus complete silence",
+        "cafes and shops playing music all day"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-57f76698",
+          "reason": "That set asks about family customs passed down through generations; this one stays on music a person chooses across one ordinary day."
+        },
+        {
+          "setId": "spk-0d5886fd",
+          "reason": "That set asks how breaks are taken during long stretches of studying; this one asks nothing about breaks and centers on music."
+        }
+      ],
+      "topic": "Music people choose for different parts of an ordinary day",
+      "premise": "A short recorded interview for a listening-habits project, asking one person how music fits into a normal day. Four questions, answered one after another with no preparation time.",
+      "questionArc": [
+        "Factual: which music they usually put on, and at what point in the day that happens.",
+        "Experience: one occasion when a particular song or a festival performance shifted their mood, and why they think it did.",
+        "Opinion: music while working versus complete silence, with both views named, then a side taken and defended.",
+        "Opinion: whether cafes and shops should play music all day, broadened into a general recommendation about music in shared rooms."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v1",
+    "provider": "openai",
+    "model": "gpt-4o-mini-tts",
+    "listenAndRepeat": {
+      "accent": "new-zealand",
+      "voice": "marin",
+      "briefingTargetWpm": 165,
+      "itemTargetWpm": 180
+    },
+    "interview": {
+      "accent": "australian",
+      "voice": "cedar",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

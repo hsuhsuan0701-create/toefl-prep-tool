@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.base.json",
+  // `../scripts` is in THIS project rather than a tsconfig of its own (issue #106). The operator
+  // scripts are not a fourth workspace: they have no package.json, they import server internals by
+  // relative path (`../server/src/...`) and nothing else but `shared` and node builtins, and they
+  // resolve `better-sqlite3`/`@types/node` out of the root hoist that the server workspace's own
+  // dependencies put there. They are the server's compilation unit spelled with a different prefix,
+  // so they compile under the server's options with no duplication. Keeping them here also keeps
+  // root `npm run typecheck` at ONE `tsc -p`, so there is no second project for a future command to
+  // forget — the exact silent-hole shape #106 exists to close. Emitting is never a concern: the
+  // server has no build step (tsx at runtime) and this project is only ever run with `--noEmit`.
+  "include": ["src", "test", "../scripts"]
+}

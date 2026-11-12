@@ -1,0 +1,204 @@
+{
+  "supersessions": [
+    {
+      "setId": "lsn-14659f38",
+      "supersededBy": "lsn-03948a55",
+      "supersededAt": "2026-08-11 20:07:09"
+    },
+    {
+      "setId": "lsn-2e77a970",
+      "supersededBy": "lsn-7c5cf3f6",
+      "supersededAt": "2026-08-23 13:21:03"
+    },
+    {
+      "setId": "lsn-6de33148",
+      "supersededBy": "lsn-0488674a",
+      "supersededAt": "2026-08-23 13:21:03"
+    },
+    {
+      "setId": "lsn-ed0a8e87",
+      "supersededBy": "lsn-93ee51c8",
+      "supersededAt": "2026-08-23 13:21:03"
+    },
+    {
+      "setId": "lsn-fc96bdab",
+      "supersededBy": "lsn-c2be0600",
+      "supersededAt": "2026-08-23 13:21:03"
+    },
+    {
+      "setId": "rd-6d02b750",
+      "supersededBy": "rd-1d6486b7",
+      "supersededAt": "2026-08-11 20:08:30"
+    },
+    {
+      "setId": "rd-eef47b63",
+      "supersededBy": "rd-47ae9ca3",
+      "supersededAt": "2026-08-23 13:21:03"
+    },
+    {
+      "setId": "rd-efd07fb4",
+      "supersededBy": "rd-04b2ae46",
+      "supersededAt": "2026-08-23 13:21:03"
+    },
+    {
+      "setId": "spk-0d5886fd",
+      "supersededBy": "spk-55acbaf7",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-108394d6",
+      "supersededBy": "spk-dd6dcb3d",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-210471e3",
+      "supersededBy": "spk-e0f4f676",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-26132ac6",
+      "supersededBy": "spk-50c1bede",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-29dc6236",
+      "supersededBy": "spk-a87a3b41",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-4272b8cc",
+      "supersededBy": "spk-e0d7a688",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-43ab8b09",
+      "supersededBy": "spk-4272b8cc",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-49400fda",
+      "supersededBy": "spk-071d01af",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-50c1bede",
+      "supersededBy": "spk-9dbd086f",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-55acbaf7",
+      "supersededBy": "spk-dec524bd",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-57f76698",
+      "supersededBy": "spk-c42dd828",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-663e848c",
+      "supersededBy": "spk-1ba26e29",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-6a7e0b2a",
+      "supersededBy": "spk-d9a49a14",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-6ea06d6c",
+      "supersededBy": "spk-210471e3",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-70c8a41a",
+      "supersededBy": "spk-9ae7fbc2",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-7546a04e",
+      "supersededBy": "spk-307f62cd",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-7ed36c39",
+      "supersededBy": "spk-8c8caaa0",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-82a09237",
+      "supersededBy": "spk-663e848c",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-87780d29",
+      "supersededBy": "spk-c68f245c",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-89911631",
+      "supersededBy": "spk-6a7e0b2a",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-8c8caaa0",
+      "supersededBy": "spk-3813889d",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-8d9ee619",
+      "supersededBy": "spk-108394d6",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-8fed5241",
+      "supersededBy": "spk-ee3629c8",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-9ae7fbc2",
+      "supersededBy": "spk-bbb69428",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-a87a3b41",
+      "supersededBy": "spk-fd38f94c",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-c42dd828",
+      "supersededBy": "spk-6800cfd7",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-d58bb9d4",
+      "supersededBy": "spk-49400fda",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-e5b2b735",
+      "supersededBy": "spk-8fed5241",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-f22a5687",
+      "supersededBy": "spk-87780d29",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-f5506f40",
+      "supersededBy": "spk-7546a04e",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-f9fe8bad",
+      "supersededBy": "spk-4ed5798a",
+      "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "spk-fbe10c5d",
+      "supersededBy": "spk-f9fe8bad",
+      "supersededAt": "2026-08-23 15:03:27"
+    }
+  ]
+}

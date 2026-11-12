@@ -1,0 +1,229 @@
+{
+  "id": "spk-8663cea7",
+  "source": "generated",
+  "createdAt": "2026-08-24T12:58:00.303Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Archive Room Orientation",
+    "scenarioDescription": "You're a newly arrived collections helper at the campus history museum, and the lead collections archivist is walking you through each station of the archive room before it opens to outside researchers. Listen to the archivist and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-8663cea7/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-8663cea7.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Archive Room Orientation. You're a newly arrived collections helper at the campus history museum, and the lead collections archivist is walking you through each station of the archive room before it opens to outside researchers. Listen to the archivist and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- This room holds the museum's oldest documents.\n- Donated letters and journals fill these decade-labeled boxes.\n- Acid-free folders inside every box protect these fragile pages.\n- Sign the visitor log by the door, and date your entry clearly.\n- Because they're so fragile, the oldest town records stay in a locked cabinet.\n- Reform-era newspaper clippings are brittle, so you'll need gloves before touching them.\n- The helper who works this station will greet researchers once we open.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "This room holds the museum's oldest documents.",
+        "audio": "stimuli/spk-8663cea7/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Donated letters and journals fill these decade-labeled boxes.",
+        "audio": "stimuli/spk-8663cea7/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.15,
+          "y": 0.16,
+          "w": 0.24,
+          "h": 0.15
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Acid-free folders inside every box protect these fragile pages.",
+        "audio": "stimuli/spk-8663cea7/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.37,
+          "y": 0.3,
+          "w": 0.14,
+          "h": 0.12
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Sign the visitor log by the door, and date your entry clearly.",
+        "audio": "stimuli/spk-8663cea7/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.18,
+          "y": 0.65,
+          "w": 0.18,
+          "h": 0.14
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Because they're so fragile, the oldest town records stay in a locked cabinet.",
+        "audio": "stimuli/spk-8663cea7/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.54,
+          "y": 0.06,
+          "w": 0.13,
+          "h": 0.21
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Reform-era newspaper clippings are brittle, so you'll need gloves before touching them.",
+        "audio": "stimuli/spk-8663cea7/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.82,
+          "y": 0.28,
+          "w": 0.08,
+          "h": 0.07
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The helper who works this station will greet researchers once we open.",
+        "audio": "stimuli/spk-8663cea7/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.67,
+          "y": 0.41,
+          "w": 0.13,
+          "h": 0.15
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "City Council Awareness Check-In",
+    "intro": "Hello! Thank you for taking a moment to speak with me. I'm calling from the city's civic engagement office, and we're checking in with residents about how they learn about and take part in local government decisions. I just have four short questions, so please answer in your own words.",
+    "introAudio": "stimuli/spk-8663cea7/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Which public notice or meeting channel do you check most often for city council news — the city's website, a mailed notice, a local paper, or something else?",
+        "audio": "stimuli/spk-8663cea7/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of a specific time you learned about a city council decision that changed something in your neighborhood. What was the decision, and how did you first hear about it?",
+        "audio": "stimuli/spk-8663cea7/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some people believe residents should attend city council meetings in person to have their voice heard. Others think it's enough to read the published minutes online afterward. Which view do you agree with, and why?",
+        "audio": "stimuli/spk-8663cea7/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Looking at the bigger picture, do you think cities should do more to make council meetings accessible to residents? What would you recommend?",
+        "audio": "stimuli/spk-8663cea7/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "first",
+      "measuredWpm": 154.3,
+      "targetWpm": 226,
+      "minWpm": 156,
+      "maxWpm": 251
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "history-social-change",
+      "noveltyKey": "campus-history-museum-archive-orientation",
+      "requiredConcepts": [
+        "donated letters sorted into decade-labeled boxes",
+        "acid-free folders protecting fragile pages",
+        "the archive room's signature log for visitors",
+        "gloves required for reform-era newspaper clippings",
+        "the locked cabinet for the oldest town records"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-fd38f94c",
+          "reason": "prior Set is a civic volunteer intake counter walkthrough; this Set is a museum archive room with document-handling and preservation stations"
+        },
+        {
+          "setId": "spk-4ed5798a",
+          "reason": "prior Set covers hotel luggage and key-packet logistics; this Set covers historical-document handling protocols in an archive"
+        },
+        {
+          "setId": "spk-1ba26e29",
+          "reason": "prior Set is a campus writing center tutoring orientation; this Set is a campus museum's archive preservation orientation"
+        }
+      ],
+      "setting": "the campus history museum's archive room",
+      "speakerRole": "the museum's lead collections archivist",
+      "communicativePurpose": "walk a newly arrived collections helper through each station of the archive room before it opens to outside researchers"
+    },
+    "interview": {
+      "domain": "community-civic",
+      "noveltyKey": "city-council-meeting-awareness-habit",
+      "requiredConcepts": [
+        "a public meeting notice checked most often",
+        "a city decision that changed a neighborhood routine",
+        "attending meetings in person versus reading minutes online",
+        "whether cities should make public meetings more accessible"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-6800cfd7",
+          "reason": "prior Set covers casual bulletin-board browsing for neighborhood events; this Set covers formal awareness of and participation in city council decisions and meetings"
+        }
+      ],
+      "topic": "keeping track of city council decisions and public meetings",
+      "premise": "A city civic engagement office calls unannounced to ask how residents learn about and take part in local government decisions.",
+      "questionArc": [
+        "asks which public notice or meeting channel the test taker checks most often for city council news",
+        "asks about a specific time the test taker learned of a council decision affecting their neighborhood, and how they found out",
+        "presents two views on requiring in-person attendance at council meetings versus allowing residents to follow minutes online, and asks the test taker to take a side",
+        "broadens to whether cities should do more to make council meetings accessible to residents, asking for a recommendation"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Charon",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Sulafat",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

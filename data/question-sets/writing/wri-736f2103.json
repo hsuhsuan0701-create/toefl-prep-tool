@@ -1,0 +1,538 @@
+{
+  "id": "wri-736f2103",
+  "source": "generated",
+  "createdAt": "2026-08-17T15:36:17.864Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Why did my downloaded show disappear overnight?",
+        "frame": "Your ___ ___ ___ ___.",
+        "tiles": [
+          "storage",
+          "limit",
+          "reset",
+          "resetting",
+          "overnight"
+        ],
+        "answers": [
+          [
+            "storage",
+            "limit",
+            "reset",
+            "overnight"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Why does my assistant keep answering to the wrong name?",
+        "frame": "Two ___ ___ ___ ___ name.",
+        "tiles": [
+          "speakers",
+          "share",
+          "shares",
+          "the",
+          "same"
+        ],
+        "answers": [
+          [
+            "speakers",
+            "share",
+            "the",
+            "same"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Why are my captions lagging so much right now?",
+        "frame": "Captions ___ ___ ___ ___ on your device.",
+        "tiles": [
+          "lag",
+          "lags",
+          "because",
+          "processing",
+          "now happens"
+        ],
+        "answers": [
+          [
+            "lag",
+            "because",
+            "processing",
+            "now happens"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Can I get a vision screening sometime this week?",
+        "frame": "The ___ ___ ___ ___ ___ phone consultation.",
+        "tiles": [
+          "screening",
+          "has",
+          "have",
+          "a two-week waitlist,",
+          "but I can offer",
+          "an earlier"
+        ],
+        "answers": [
+          [
+            "screening",
+            "has",
+            "a two-week waitlist,",
+            "but I can offer",
+            "an earlier"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Did you notice anything wrong in my exercise log?",
+        "frame": "You ___ ___ ___ ___ ___ ___ next visit.",
+        "tiles": [
+          "performed",
+          "performs",
+          "one stretch",
+          "on the wrong side,",
+          "so I'll show you",
+          "the correct side",
+          "before your"
+        ],
+        "answers": [
+          [
+            "performed",
+            "one stretch",
+            "on the wrong side,",
+            "so I'll show you",
+            "the correct side",
+            "before your"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-6",
+        "prompt": "I missed the stress-management session — is there anything I can do?",
+        "frame": "Since ___ ___ ___ ___ ___ ___ in advance.",
+        "tiles": [
+          "you missed",
+          "the session,",
+          "we're offering",
+          "were offering",
+          "a shorter makeup session",
+          "next week",
+          "if you sign up"
+        ],
+        "answers": [
+          [
+            "you missed",
+            "the session,",
+            "we're offering",
+            "a shorter makeup session",
+            "next week",
+            "if you sign up"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Is the oral-history transcript complete?",
+        "frame": "One ___ ___ ___ ___ ___ ___ before the deadline.",
+        "tiles": [
+          "section",
+          "is missing,",
+          "are missing,",
+          "but we checked",
+          "the original recording",
+          "and will correct",
+          "the transcript"
+        ],
+        "answers": [
+          [
+            "section",
+            "is missing,",
+            "but we checked",
+            "the original recording",
+            "and will correct",
+            "the transcript"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Why is the archive being moved this month?",
+        "frame": "The ___ ___ ___ ___ ___ ___ before the move.",
+        "tiles": [
+          "archive is moving",
+          "to a new storage room",
+          "because the old one",
+          "is needed for another use,",
+          "was needed for another use,",
+          "so we're labeling",
+          "boxes by decade"
+        ],
+        "answers": [
+          [
+            "archive is moving",
+            "to a new storage room",
+            "because the old one",
+            "is needed for another use,",
+            "so we're labeling",
+            "boxes by decade"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Is yesterday's humidity reading in the log accurate?",
+        "frame": "The ___ ___ ___ ___ ___ ___ before the weekly report.",
+        "tiles": [
+          "entry",
+          "that was recorded",
+          "who was recorded",
+          "in the wrong column",
+          "has been confirmed",
+          "against the backup sensor",
+          "and corrected"
+        ],
+        "answers": [
+          [
+            "entry",
+            "that was recorded",
+            "in the wrong column",
+            "has been confirmed",
+            "against the backup sensor",
+            "and corrected"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-10",
+        "prompt": "How long can I leave my flyer up on the notice board?",
+        "frame": "Flyers ___ ___ ___ ___ ___ ___ since expired flyers are cleared every Friday.",
+        "tiles": [
+          "that are posted here",
+          "that is posted here",
+          "may stay up",
+          "for two weeks",
+          "if the removal date",
+          "is written",
+          "in the corner,"
+        ],
+        "answers": [
+          [
+            "that are posted here",
+            "may stay up",
+            "for two weeks",
+            "if the removal date",
+            "is written",
+            "in the corner,"
+          ]
+        ],
+        "timeLimitSec": 40
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You spent last Saturday at the Elm Street Historical Society learning how to catalog donated letters as a new volunteer. While shelving items afterward, you noticed a diary from the 1920s that had recently been donated was sitting without any acid-free protective sleeve.",
+    "to": "collections@elmstreethistoricalsociety.org",
+    "subject": "Saturday's Orientation and a Diary I Noticed",
+    "bullets": [
+      "Thank the collections manager for Saturday's cataloging orientation.",
+      "Describe the 1920s donated diary you found without a protective sleeve.",
+      "Ask that a protective sleeve be added before the diary is handled further."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Health and Recreation Management",
+    "professorName": "Professor Rivera",
+    "professorPost": "Many fitness centers are considering requiring members to reserve specific time slots for popular exercise machines during peak hours, rather than allowing first-come, first-served access. Supporters say this would guarantee everyone a fair chance to use the equipment they need. Critics worry it would eliminate the flexibility to drop in whenever a schedule allows. Should fitness centers require reservation slots for exercise machines during peak hours? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Maya",
+        "post": "I think reservation slots make sense during peak hours. Right now I sometimes wait twenty minutes just to use a squat rack, and a reservation system would guarantee me access instead of hoping the machine opens up. As long as slots aren't too long, most members could still fit a workout into their schedule."
+      },
+      {
+        "name": "Dmitri",
+        "post": "I understand Maya's frustration with the wait, but reservations would ruin what I like most about the gym: dropping in whenever I have a free hour between classes. If I had to book ahead, I'd probably skip workouts on busy weeks instead of just going when I could."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "technology-media",
+          "situation": "A streaming device support agent explains to a subscriber why a downloaded show disappeared after the app's storage limit reset overnight.",
+          "participantRoles": [
+            "streaming device support agent",
+            "subscriber whose downloaded show disappeared"
+          ],
+          "noveltyKey": "streaming-app-download-limit",
+          "requiredConcepts": [
+            "download removed after storage limit reset",
+            "cache cleared during overnight app update",
+            "redownload allowed under new storage limit"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "That item is a podcast producer troubleshooting uneven exported audio volume; this one is a subscriber's downloaded show being removed by an automatic storage-limit reset, a different cause and different fix."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A smart speaker help-line agent tells a caller why their voice assistant keeps responding to the wrong device name.",
+          "participantRoles": [
+            "smart speaker help-line agent",
+            "caller whose voice assistant responds to the wrong device"
+          ],
+          "noveltyKey": "voice-assistant-pairing-mismatch",
+          "requiredConcepts": [
+            "voice assistant answering wrong device name",
+            "duplicate device name causing mix-up",
+            "device renamed to fix the mix-up"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "That item is about a rejected login password on an account; this one is a device-naming conflict between two paired speakers, an unrelated authentication-free problem."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A video conferencing platform's software support rep explains to a user why live captions are lagging several seconds behind speech, caused by processing shifting from an online server to the local device.",
+          "participantRoles": [
+            "video conferencing software support rep",
+            "user whose live captions are lagging"
+          ],
+          "noveltyKey": "video-call-caption-delay",
+          "requiredConcepts": [
+            "live captions lagging several seconds",
+            "caption processing moved to local device",
+            "delay expected to shrink after the switch"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "That item concerns uneven exported podcast audio volume; this one concerns a real-time captioning delay caused by a processing-location switch during a live call, a different technical symptom and cause."
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A clinic front-desk assistant tells a patient that the vision screening she requested has a two-week waitlist and offers an earlier phone consultation instead.",
+          "participantRoles": [
+            "clinic front-desk assistant",
+            "patient requesting a vision screening"
+          ],
+          "noveltyKey": "vision-screening-waitlist",
+          "requiredConcepts": [
+            "vision screening two-week waitlist",
+            "earlier phone consultation offered instead",
+            "waitlist spot opening on short notice"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "That item is about an eight-hour fasting instruction before a health screen; this one is a scheduling waitlist problem with an alternative offered, not a preparation instruction."
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A physical therapist reviews a patient's home exercise log and points out one stretch performed on the wrong side.",
+          "participantRoles": [
+            "physical therapist",
+            "patient reviewing a home exercise log"
+          ],
+          "noveltyKey": "physical-therapy-exercise-log-review",
+          "requiredConcepts": [
+            "home exercise log reviewed together",
+            "one stretch performed on the wrong side",
+            "corrected side shown before next visit"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2936d16f",
+              "reason": "That item is a coach explaining a brand-new warmup sequence to a class; this one is a therapist correcting an error found while reviewing a patient's already-completed exercise log, a review rather than an introduction."
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A wellness coordinator tells a participant who missed the stress-management session that a shorter makeup session is offered next week.",
+          "participantRoles": [
+            "wellness coordinator",
+            "participant who missed the stress-management session"
+          ],
+          "noveltyKey": "stress-workshop-makeup-session",
+          "requiredConcepts": [
+            "missed stress-management session",
+            "shorter makeup session next week",
+            "advance sign-up for the makeup slot"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "That item is about adjusting a client's bedtime by fifteen minutes; this one is about scheduling a makeup session for a missed stress-management workshop, a different scenario and no sleep angle."
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "An archive volunteer tells a historian that one section of an immigrant's oral-history recording is missing from the transcript.",
+          "participantRoles": [
+            "archive volunteer",
+            "historian reviewing the oral-history transcript"
+          ],
+          "noveltyKey": "oral-history-transcript-gap",
+          "requiredConcepts": [
+            "missing section in the oral-history transcript",
+            "original recording checked for the gap",
+            "corrected transcript before the deadline"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "That item is about two migration records using different family names; this one is a missing section in an oral-history transcript found during review, an entirely different documentary problem."
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A historical society volunteer explains to a new volunteer why the town's paper archive is being relocated to a new storage room this month.",
+          "participantRoles": [
+            "historical society volunteer",
+            "new volunteer helping with the archive relocation"
+          ],
+          "noveltyKey": "town-archive-relocation-notice",
+          "requiredConcepts": [
+            "paper archive moved to new storage room",
+            "boxes labeled by decade before the move",
+            "old storage room needed for other use"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2936d16f",
+              "reason": "That item is about a bricked-up doorway discovered during restoration; this one is a planned physical relocation of a paper archive to new storage, a scheduling matter rather than a discovery."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A greenhouse research assistant tells a laboratory supervisor that yesterday's humidity log entry was recorded in the wrong column.",
+          "participantRoles": [
+            "greenhouse research assistant",
+            "laboratory supervisor reviewing the humidity log"
+          ],
+          "noveltyKey": "greenhouse-humidity-log-correction",
+          "requiredConcepts": [
+            "humidity log entry in wrong column",
+            "correct value confirmed from backup sensor",
+            "log corrected before weekly report"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-aaa3d20f",
+              "reason": "That item is about a rule for storing a culture plate upside down; this one is about correcting a misrecorded humidity log entry, a data-logging error rather than a storage-orientation rule."
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A city clerk tells a resident that flyers on the public notice board may only stay up for two weeks before removal.",
+          "participantRoles": [
+            "city clerk",
+            "resident posting a flyer on the public notice board"
+          ],
+          "noveltyKey": "public-notice-board-posting-rule",
+          "requiredConcepts": [
+            "flyers allowed two weeks on notice board",
+            "removal date written on flyer corner",
+            "expired flyers cleared every Friday"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2936d16f",
+              "reason": "That item is about permitted display hours for a sidewalk sale sign; this one is about the two-week posting duration allowed for flyers on a public notice board, a different rule and different object."
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "history-social-change",
+      "noveltyKey": "donated-diary-missing-protective-sleeve",
+      "requiredConcepts": [
+        "1920s diary donated to the archive",
+        "missing acid-free protective sleeve",
+        "sleeve requested before further handling"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-8a7f1e12",
+          "reason": "That email reports a missed archive appointment caused by a cancelled train; this one reports a preservation gap — a donated diary shelved without a protective sleeve — with no appointment or travel problem involved."
+        },
+        {
+          "setId": "wri-703ea6d7",
+          "reason": "Different domain and problem entirely: a malfunctioning online poetry submission form versus a physical preservation issue with a donated historical diary."
+        }
+      ],
+      "situation": "After spending a Saturday cataloging letters at the town historical society, the writer noticed a donated 1920s diary was shelved without any acid-free protective sleeve.",
+      "recipientRole": "historical society collections manager",
+      "communicativeActs": [
+        "express appreciation for the cataloging orientation",
+        "report the diary's missing protective sleeve",
+        "request a protective sleeve be added before further handling"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "fitness-center-reservation-slots-for-exercise-machines",
+      "requiredConcepts": [
+        "exercise machines during peak hours",
+        "reservation slots guaranteeing access",
+        "drop-in flexibility lost by reserving"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-8a7f1e12",
+          "reason": "That discussion debates converting mown park lawns to uncut wildflower meadow; this one debates reserving exercise machines at peak hours — no park, lawn, or rewilding angle at all."
+        },
+        {
+          "setId": "wri-b91a8955",
+          "reason": "Different domain and stakes entirely — internal promotion versus external hiring in a workplace, not access to shared fitness equipment."
+        }
+      ],
+      "proposition": "Whether fitness centers should require reservation slots for exercise machines during peak hours, even though reservations remove drop-in flexibility.",
+      "competingValues": [
+        "guaranteed access through reservations",
+        "spontaneous drop-in flexibility"
+      ]
+    }
+  }
+}

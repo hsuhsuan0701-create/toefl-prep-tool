@@ -1,0 +1,3052 @@
+{
+  "id": "lsn-6de33148",
+  "source": "generated",
+  "createdAt": "2026-08-16T09:21:52.815Z",
+  "kind": "listening",
+  "advisoryNotes": [
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 129.3,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 111.9,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "first",
+      "measuredWpm": 129.3,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 106.4,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 88,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "conversation",
+      "take": "retake",
+      "measuredWpm": 142.4,
+      "targetWpm": 162,
+      "minWpm": 150,
+      "maxWpm": 175
+    },
+    {
+      "check": "speech-rate",
+      "detail": "academic-talk",
+      "take": "retake",
+      "measuredWpm": 138.7,
+      "targetWpm": 148,
+      "minWpm": 140,
+      "maxWpm": 155
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "first",
+      "measuredWpm": 130.6,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 129.3,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 128.2,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 121.5,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lcr-utterance",
+      "take": "retake",
+      "measuredWpm": 123,
+      "targetWpm": 160,
+      "minWpm": 150,
+      "maxWpm": 170
+    },
+    {
+      "check": "speech-rate",
+      "detail": "conversation",
+      "take": "retake",
+      "measuredWpm": 177.4,
+      "targetWpm": 162,
+      "minWpm": 150,
+      "maxWpm": 175
+    },
+    {
+      "check": "speech-rate",
+      "detail": "academic-talk",
+      "take": "retake",
+      "measuredWpm": 138.8,
+      "targetWpm": 148,
+      "minWpm": 140,
+      "maxWpm": 155
+    },
+    {
+      "check": "speech-rate",
+      "detail": "academic-talk",
+      "take": "retake",
+      "measuredWpm": 133.2,
+      "targetWpm": 148,
+      "minWpm": 140,
+      "maxWpm": 155
+    }
+  ],
+  "router": {
+    "timeLimitSec": 1080,
+    "listenChoose": [
+      {
+        "id": "lcr-r1",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-r1.mp3",
+        "speaker": {
+          "id": "lcr-r1-sp",
+          "role": "university registrar clerk",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Sadaltager",
+          "provider": "gemini"
+        },
+        "utterance": "Your makeup exam's set for Wednesday.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Great, that time works for me."
+          },
+          {
+            "id": "b",
+            "text": "Could you resend the parking permit form?"
+          },
+          {
+            "id": "c",
+            "text": "I'd rather switch to the morning shift."
+          },
+          {
+            "id": "d",
+            "text": "Sorry, I already dropped that class."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "function",
+        "explanationZh": "職員告知「makeup exam's set for Wednesday」，學生應表示接受安排；其餘選項分別答非所問（換班、停車證、退選），與此通知無關。"
+      },
+      {
+        "id": "lcr-r2",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-r2.mp3",
+        "speaker": {
+          "id": "lcr-r2-sp",
+          "role": "student",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Leda",
+          "provider": "gemini"
+        },
+        "utterance": "This room's projector just quit working.",
+        "options": [
+          {
+            "id": "a",
+            "text": "I'll send a technician up now."
+          },
+          {
+            "id": "b",
+            "text": "Quiet hours start at eight tonight."
+          },
+          {
+            "id": "c",
+            "text": "You can renew that book online."
+          },
+          {
+            "id": "d",
+            "text": "The elevator's out of service today."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "function",
+        "explanationZh": "學生反映會議室投影機突然無法運作，館員應主動安排技術人員前往處理；其餘選項涉及續借書籍、安靜時段、電梯故障，皆答非所問。"
+      },
+      {
+        "id": "lcr-r3",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-r3.mp3",
+        "speaker": {
+          "id": "lcr-r3-sp",
+          "role": "new employee",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Achird",
+          "provider": "gemini"
+        },
+        "utterance": "Why hasn't my direct deposit started?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It's still pending bank verification."
+          },
+          {
+            "id": "b",
+            "text": "You can pick a new parking spot."
+          },
+          {
+            "id": "c",
+            "text": "Your badge photo needs to be retaken."
+          },
+          {
+            "id": "d",
+            "text": "The break room's being repainted today."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "function",
+        "explanationZh": "新進員工詢問「direct deposit hasn't started」的原因，人資應說明銀行驗證尚在進行；其餘選項答非所問，涉及識別證照片、休息室、停車位。"
+      },
+      {
+        "id": "lcr-r4",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-r4.mp3",
+        "speaker": {
+          "id": "lcr-r4-sp",
+          "role": "employee",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Gacrux",
+          "provider": "gemini"
+        },
+        "utterance": "My badge won't open the side door.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Try the elevator on the second floor."
+          },
+          {
+            "id": "b",
+            "text": "I'll issue you a temporary one."
+          },
+          {
+            "id": "c",
+            "text": "The printer's out of toner again."
+          },
+          {
+            "id": "d",
+            "text": "Lunch orders close at noon today."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "function",
+        "explanationZh": "員工反映「badge won't open the side door」，經理應提供臨時識別證；其餘選項分別提及電梯、印表機、訂餐時間，皆離題。"
+      },
+      {
+        "id": "lcr-r5",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-r5.mp3",
+        "speaker": {
+          "id": "lcr-r5-sp",
+          "role": "resident",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Puck",
+          "provider": "gemini"
+        },
+        "utterance": "Is there a fee for our cleanup permit?",
+        "options": [
+          {
+            "id": "a",
+            "text": "The pavilion closes at sunset."
+          },
+          {
+            "id": "b",
+            "text": "Trail maps are by the entrance."
+          },
+          {
+            "id": "c",
+            "text": "You'll need a fishing license instead."
+          },
+          {
+            "id": "d",
+            "text": "It's waived for volunteer events."
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "function",
+        "explanationZh": "居民詢問清潔活動許可證是否收費，職員應說明志工活動可免費；其餘選項提及釣魚證、涼亭、步道地圖，均與收費問題無關。"
+      },
+      {
+        "id": "lcr-r6",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-r6.mp3",
+        "speaker": {
+          "id": "lcr-r6-sp",
+          "role": "resident",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Vindemiatrix",
+          "provider": "gemini"
+        },
+        "utterance": "Could we move the bulletin board over there?",
+        "options": [
+          {
+            "id": "a",
+            "text": "You can renew your permit online."
+          },
+          {
+            "id": "b",
+            "text": "The recycling bins get picked up Friday."
+          },
+          {
+            "id": "c",
+            "text": "Streetlights are inspected every spring."
+          },
+          {
+            "id": "d",
+            "text": "That needs council approval first."
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "function",
+        "explanationZh": "居民提議移動公告板位置，職員應說明需先經委員會核准；其餘選項提及回收桶、路燈檢查、線上續證，皆與此提議無關。"
+      },
+      {
+        "id": "lcr-r7",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-r7.mp3",
+        "speaker": {
+          "id": "lcr-r7-sp",
+          "role": "field intern",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Charon",
+          "provider": "gemini"
+        },
+        "utterance": "I think I mixed up the sample labels.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Turn in your timesheet Friday."
+          },
+          {
+            "id": "b",
+            "text": "Let's fix that before we begin."
+          },
+          {
+            "id": "c",
+            "text": "The centrifuge needs a filter."
+          },
+          {
+            "id": "d",
+            "text": "The van left the lot an hour ago."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "function",
+        "explanationZh": "實習生坦承弄混了樣本標籤，主任應建議先處理好再開始工作；其餘選項提到離心機濾芯、工時單、廂型車位置，與問題無關。"
+      },
+      {
+        "id": "lcr-r8",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-r8.mp3",
+        "speaker": {
+          "id": "lcr-r8-sp",
+          "role": "laboratory intern",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Autonoe",
+          "provider": "gemini"
+        },
+        "utterance": "The humidity sensor's giving weird readings.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Your badge access expires next week."
+          },
+          {
+            "id": "b",
+            "text": "The freezer log's on the clipboard."
+          },
+          {
+            "id": "c",
+            "text": "I'll swap in the calibrated spare."
+          },
+          {
+            "id": "d",
+            "text": "The thermostat's set for six degrees."
+          }
+        ],
+        "correctOptionId": "c",
+        "skill": "function",
+        "explanationZh": "助理指出濕度感測器讀數異常，技術員應提供已校準的備用感測器；其餘選項提及恆溫器、識別證到期、冷凍櫃紀錄，均與感測器故障無關。"
+      },
+      {
+        "id": "lcr-r9",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-r9.mp3",
+        "speaker": {
+          "id": "lcr-r9-sp",
+          "role": "subscriber",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Iapetus",
+          "provider": "gemini"
+        },
+        "utterance": "My account got billed twice this month.",
+        "options": [
+          {
+            "id": "a",
+            "text": "You can leave a rating there."
+          },
+          {
+            "id": "b",
+            "text": "I'll issue that refund immediately."
+          },
+          {
+            "id": "c",
+            "text": "Your episode list just synced."
+          },
+          {
+            "id": "d",
+            "text": "New episodes drop each Friday."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "function",
+        "explanationZh": "訂閱者反映本月帳戶被重複扣款兩次，客服應回應將立即處理退款；其餘選項提到節目同步、新集數上線時間、評分功能，皆與扣款問題無關，非恰當回應。"
+      },
+      {
+        "id": "lcr-r10",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-r10.mp3",
+        "speaker": {
+          "id": "lcr-r10-sp",
+          "role": "podcast listener",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Kore",
+          "provider": "gemini"
+        },
+        "utterance": "My downloaded episodes just vanished.",
+        "options": [
+          {
+            "id": "a",
+            "text": "You can skip the intro music."
+          },
+          {
+            "id": "b",
+            "text": "Try clearing the storage cache."
+          },
+          {
+            "id": "c",
+            "text": "Ratings reset every calendar year."
+          },
+          {
+            "id": "d",
+            "text": "The host just posted a new bio."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "function",
+        "explanationZh": "聽眾表示下載的節目集數消失，客服應建議清除儲存快取；其餘選項提及主持人簡介、評分重置、跳過片頭音樂，均與遺失下載無關。"
+      }
+    ],
+    "conversations": [
+      {
+        "id": "conv-r1",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-6de33148/conv-r1.mp3",
+        "setting": "university writing center's group tutoring room during a walk-in session, after the usual tutor fell ill",
+        "speakers": [
+          {
+            "id": "conv-r1-sp1",
+            "role": "writing center substitute tutor",
+            "gender": "female",
+            "accent": "british",
+            "voice": "Zephyr",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-r1-sp2",
+            "role": "transfer student",
+            "gender": "male",
+            "accent": "australian",
+            "voice": "Umbriel",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-r1-sp1",
+            "text": "Hi, I'm covering for Ms. Reyes today—she's out sick. You wanted feedback on your transfer statement?"
+          },
+          {
+            "speakerId": "conv-r1-sp2",
+            "text": "Yeah, exactly. I've read it so many times I can't tell if it even sounds like me anymore."
+          },
+          {
+            "speakerId": "conv-r1-sp1",
+            "text": "Well, it's clear and organized, but honestly it reads a little too formal—like a legal memo, almost."
+          },
+          {
+            "speakerId": "conv-r1-sp2",
+            "text": "Really? I was trying to sound serious since it's for admissions."
+          },
+          {
+            "speakerId": "conv-r1-sp1",
+            "text": "Serious is good, but you can still sound like yourself. Try cutting some of the stiff phrasing and adding one specific story."
+          },
+          {
+            "speakerId": "conv-r1-sp2",
+            "text": "Okay, so loosen the tone but keep one concrete example in there."
+          },
+          {
+            "speakerId": "conv-r1-sp1",
+            "text": "Exactly. That balance usually works best for transfer essays."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-r1-q1",
+            "stem": "What is the tutor's main criticism of the student's personal statement?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It focuses on the wrong topic"
+              },
+              {
+                "id": "b",
+                "text": "It's too short for admissions"
+              },
+              {
+                "id": "c",
+                "text": "It sounds too formal"
+              },
+              {
+                "id": "d",
+                "text": "It lacks a clear structure"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "家教指出文章「reads a little too formal—like a legal memo」，應是語氣過於正式；其餘選項提到篇幅太短、缺乏結構、主題錯誤，原文皆未提及。"
+          },
+          {
+            "id": "conv-r1-q2",
+            "stem": "Why is a substitute tutor helping the student today?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The regular tutor retired"
+              },
+              {
+                "id": "b",
+                "text": "The student switched programs"
+              },
+              {
+                "id": "c",
+                "text": "The regular tutor is sick"
+              },
+              {
+                "id": "d",
+                "text": "The writing center is closed"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "代課老師開場提到「covering for Ms. Reyes today—she's out sick」，說明是因原本老師生病；其餘選項提到轉系、中心關閉、退休，原文均未提及。"
+          }
+        ]
+      },
+      {
+        "id": "conv-r2",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-6de33148/conv-r2.mp3",
+        "setting": "small marketing company's shared workspace the morning before a client presentation",
+        "speakers": [
+          {
+            "id": "conv-r2-sp1",
+            "role": "company manager",
+            "gender": "male",
+            "accent": "north-american",
+            "voice": "Zubenelgenubi",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-r2-sp2",
+            "role": "marketing coordinator",
+            "gender": "female",
+            "accent": "british",
+            "voice": "Sulafat",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-r2-sp1",
+            "text": "Morning. I looked at the slides for today's client presentation, and I'm worried about the budget slide — the numbers don't match what I approved last week."
+          },
+          {
+            "speakerId": "conv-r2-sp2",
+            "text": "You're right. I updated it after the vendor changed the quote but forgot to fix the deck. Should I correct it before the ten o'clock meeting?"
+          },
+          {
+            "speakerId": "conv-r2-sp1",
+            "text": "Yes, please. As the manager, I have to sign off before this goes to the client, so I can't present numbers I haven't verified."
+          },
+          {
+            "speakerId": "conv-r2-sp2",
+            "text": "Understood. I'll revise the budget slide now and send it back within twenty minutes so you can check it before we walk in."
+          },
+          {
+            "speakerId": "conv-r2-sp1",
+            "text": "Good. Since you're coordinating all the materials, also make sure the printed handouts match the digital version this time."
+          },
+          {
+            "speakerId": "conv-r2-sp2",
+            "text": "Will do — I'll compare them once the slide is fixed."
+          }
+        ],
+        "questions": [
+          {
+            "id": "q1",
+            "stem": "What problem does the manager notice about the presentation materials?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The printed handouts are missing from the folder."
+              },
+              {
+                "id": "b",
+                "text": "The vendor sent an incorrect quote to the client."
+              },
+              {
+                "id": "c",
+                "text": "The client meeting time was changed without notice."
+              },
+              {
+                "id": "d",
+                "text": "The budget slide's numbers don't match the figures the manager approved."
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "經理提到「the numbers don't match what I approved last week」，指出問題在於預算投影片上的數字與自己先前核准的金額不符,故答案為提到預算投影片數字與經理核准金額不符的選項。提到手冊遺漏的選項、提到會議時間更動的選項,以及提到廠商報價錯誤的選項,對話中皆無根據,均為錯誤選項。"
+          },
+          {
+            "id": "q2",
+            "stem": "What does the coordinator agree to do before the ten o'clock meeting?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Contact the vendor about the new quote."
+              },
+              {
+                "id": "b",
+                "text": "Print new handouts for the client."
+              },
+              {
+                "id": "c",
+                "text": "Reschedule the meeting to a later time."
+              },
+              {
+                "id": "d",
+                "text": "Revise the budget slide and send it back within twenty minutes."
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "協調員回應「I'll revise the budget slide now and send it back within twenty minutes」,明確表示會在十點會議前修正預算投影片並於二十分鐘內回傳給經理確認,故答案為提到修正投影片並於二十分鐘內回傳的選項。提到列印新手冊、更改會議時間,以及聯絡廠商報價的選項,對話中均無根據。"
+          }
+        ]
+      },
+      {
+        "id": "conv-r3",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-6de33148/conv-r3.mp3",
+        "setting": "a wildlife research station's equipment room the evening before a scheduled habitat survey",
+        "speakers": [
+          {
+            "id": "conv-r3-sp1",
+            "role": "field biologist",
+            "gender": "male",
+            "accent": "australian",
+            "voice": "Fenrir",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-r3-sp2",
+            "role": "research assistant",
+            "gender": "female",
+            "accent": "north-american",
+            "voice": "Callirrhoe",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-r3-sp1",
+            "text": "Before we finish packing tonight, I want to check the forecast one more time for tomorrow's survey."
+          },
+          {
+            "speakerId": "conv-r3-sp2",
+            "text": "I checked an hour ago—there's a storm moving in right around dawn."
+          },
+          {
+            "speakerId": "conv-r3-sp1",
+            "text": "That's not great. Our early window really depends on calm water for the boat count to be accurate."
+          },
+          {
+            "speakerId": "conv-r3-sp2",
+            "text": "Should we push the whole survey to the day after instead?"
+          },
+          {
+            "speakerId": "conv-r3-sp1",
+            "text": "Let's push it back just one day. The forecast clears up by Thursday afternoon."
+          },
+          {
+            "speakerId": "conv-r3-sp2",
+            "text": "Okay, I'll notify the rest of the team right away and reschedule the boat for Thursday morning."
+          },
+          {
+            "speakerId": "conv-r3-sp1",
+            "text": "Thanks. Let's leave the gear packed so we're ready to head out first thing Thursday."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-r3-q1",
+            "stem": "Why do the speakers decide to postpone the survey?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The boat needs repairs"
+              },
+              {
+                "id": "b",
+                "text": "Equipment hasn't arrived yet"
+              },
+              {
+                "id": "c",
+                "text": "A team member is unavailable"
+              },
+              {
+                "id": "d",
+                "text": "A storm is expected around dawn"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "助理提到「there's a storm moving in right around dawn」，是延後調查的原因；其餘選項提到船隻維修、人員請假、設備未到，原文皆未提及。"
+          },
+          {
+            "id": "conv-r3-q2",
+            "stem": "When do the speakers agree to conduct the survey instead?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The following Thursday"
+              },
+              {
+                "id": "b",
+                "text": "The following Monday"
+              },
+              {
+                "id": "c",
+                "text": "Two weeks later"
+              },
+              {
+                "id": "d",
+                "text": "Later that same night"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "生物學家說「forecast clears up by Thursday afternoon」並改為週四出發，故延後一天至週四；其餘選項提到當晚、兩週後、下週一，原文均未提及。"
+          }
+        ]
+      }
+    ],
+    "announcements": [
+      {
+        "id": "ann-r1",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-6de33148/ann-r1.mp3",
+        "setting": "campus student union's digital bulletin screen loop before the spring career fair",
+        "speaker": {
+          "id": "ann-r1-sp",
+          "role": "career center program coordinator",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Algieba",
+          "provider": "gemini"
+        },
+        "transcript": "A quick update for Thursday's spring career fair: three new employers have just been added to the list, bringing the total to over forty companies. The updated employer list is posted on the career center's website. Students are asked to bring several printed copies of their resumes, since not every table will have a way to scan digital versions. Check-in opens at nine in the student union ballroom.",
+        "questions": [
+          {
+            "id": "ann-r1-q1",
+            "stem": "What has changed about the career fair since the last update?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Three new employers were added to the list"
+              },
+              {
+                "id": "b",
+                "text": "The fair was moved to a different building"
+              },
+              {
+                "id": "c",
+                "text": "The number of interview slots was reduced"
+              },
+              {
+                "id": "d",
+                "text": "The fair's date was postponed"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "公告提到「three new employers have just been added to the list」，說明是新增雇主；其餘選項提到場地更換、延期、面試名額減少，原文皆未提及。"
+          },
+          {
+            "id": "ann-r1-q2",
+            "stem": "What are students asked to bring to the career fair?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A laptop for digital applications"
+              },
+              {
+                "id": "b",
+                "text": "Several printed copies of their resumes"
+              },
+              {
+                "id": "c",
+                "text": "A student ID for scanning"
+              },
+              {
+                "id": "d",
+                "text": "A copy of their class schedule"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "公告要求學生「bring several printed copies of their resumes」；其餘選項提到課表、學生證掃描、筆電，原文均未提及。"
+          }
+        ]
+      },
+      {
+        "id": "ann-r2",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-6de33148/ann-r2.mp3",
+        "setting": "city hall's public notice board the week before a scheduled park cleanup",
+        "speaker": {
+          "id": "ann-r2-sp",
+          "role": "municipal parks department coordinator",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Despina",
+          "provider": "gemini"
+        },
+        "transcript": "This weekend, the parks department is holding a cleanup at Riverside Park starting Saturday morning at eight. Volunteers will help clear litter along the walking trails and repaint a few of the older benches. Gloves and trash bags will be provided on site, so there's no need to bring your own. Anyone interested can sign up in person at the community center front desk before Friday afternoon.",
+        "questions": [
+          {
+            "id": "ann-r2-q1",
+            "stem": "What will volunteers do at the cleanup?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Plant new trees along the trail"
+              },
+              {
+                "id": "b",
+                "text": "Repair the playground equipment"
+              },
+              {
+                "id": "c",
+                "text": "Clean out the park's fountain"
+              },
+              {
+                "id": "d",
+                "text": "Clear litter and repaint benches"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "公告說明志工將「clear litter along the walking trails and repaint a few of the older benches」；其餘選項提到種樹、修理遊樂設施、清理噴泉，原文均未提及。"
+          },
+          {
+            "id": "ann-r2-q2",
+            "stem": "How can someone sign up to volunteer?",
+            "options": [
+              {
+                "id": "a",
+                "text": "By calling the parks department office"
+              },
+              {
+                "id": "b",
+                "text": "Through an online registration form"
+              },
+              {
+                "id": "c",
+                "text": "By emailing the cleanup coordinator"
+              },
+              {
+                "id": "d",
+                "text": "In person at the community center front desk"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "公告指出報名方式為「sign up in person at the community center front desk」；其餘選項提到電話報名、線上表單、電子郵件，原文皆未提及。"
+          }
+        ]
+      },
+      {
+        "id": "ann-r3",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-6de33148/ann-r3.mp3",
+        "setting": "a software company's internal messaging channel announcing a scheduled maintenance window",
+        "speaker": {
+          "id": "ann-r3-sp",
+          "role": "IT operations lead",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Achird",
+          "provider": "gemini"
+        },
+        "transcript": "Quick heads-up: our main servers will go down for scheduled maintenance tonight from eleven to one in the morning. During that window, the internal dashboard and file-sharing tools will be unavailable. Please save any open work and log out before eleven to avoid losing changes. Everything should be back up and running normally by the time most of you log in tomorrow morning.",
+        "questions": [
+          {
+            "id": "ann-r3-q1",
+            "stem": "What should employees do before eleven tonight?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Submit a maintenance request form"
+              },
+              {
+                "id": "b",
+                "text": "Save their work and log out"
+              },
+              {
+                "id": "c",
+                "text": "Notify their team lead individually"
+              },
+              {
+                "id": "d",
+                "text": "Back up their files to an external drive"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "公告提醒員工「save any open work and log out before eleven」；其餘選項提到外接硬碟備份、提交維護表單、個別通知組長，原文均未提及。"
+          },
+          {
+            "id": "ann-r3-q2",
+            "stem": "When will the affected tools be unavailable?",
+            "options": [
+              {
+                "id": "a",
+                "text": "From eleven to one in the morning"
+              },
+              {
+                "id": "b",
+                "text": "From nine in the evening until midnight"
+              },
+              {
+                "id": "c",
+                "text": "Only during lunch hours tomorrow"
+              },
+              {
+                "id": "d",
+                "text": "All day tomorrow"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "公告指出維護時段為「tonight from eleven to one in the morning」；其餘選項提到晚上九點到午夜、隔天全天、午休時段，原文皆未提及。"
+          }
+        ]
+      }
+    ],
+    "academicTalks": [
+      {
+        "id": "talk-r1",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-6de33148/talk-r1.mp3",
+        "discipline": "higher education studies",
+        "speaker": {
+          "id": "talk-r1-sp",
+          "role": "education studies lecturer",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Erinome",
+          "provider": "gemini"
+        },
+        "transcript": "Today I want to talk about peer mentoring programs and how they affect whether first-year students stay enrolled. In a peer mentoring program, a returning student—usually in their second or third year—is paired with an incoming first-year student to offer guidance on things like choosing classes, finding study groups, and adjusting to campus life. Several universities have tracked retention, meaning how many students return for a second year, comparing students who were paired with a mentor to those who weren't. Across multiple campuses, first-year students with a mentor returned at noticeably higher rates than students without one. Researchers point to two likely reasons. First, mentors help students solve small problems—like navigating financial aid forms—before those problems become reasons to leave. Second, having one dedicated point of contact seems to reduce the sense of isolation that many first-year students report, especially in their first few months. It's worth noting that mentoring seems to matter most for students living far from home, where that built-in support network is otherwise missing entirely.",
+        "questions": [
+          {
+            "id": "talk-r1-q1",
+            "stem": "What is the main topic of this talk?",
+            "options": [
+              {
+                "id": "a",
+                "text": "How peer mentoring affects first-year student retention"
+              },
+              {
+                "id": "b",
+                "text": "How class schedules are assigned to first-year students"
+              },
+              {
+                "id": "c",
+                "text": "How universities select mentors for programs"
+              },
+              {
+                "id": "d",
+                "text": "How financial aid forms are processed"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "gist",
+            "explanationZh": "講者一開始說明主題是「peer mentoring programs and how they affect whether first-year students stay enrolled」；其餘選項提到選拔導師、財務表格處理、排課，原文均未提及主旨。"
+          },
+          {
+            "id": "talk-r1-q2",
+            "stem": "According to the talk, what does a peer mentor typically help with?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Choosing classes and adjusting to campus life"
+              },
+              {
+                "id": "b",
+                "text": "Grading first-year students' course assignments"
+              },
+              {
+                "id": "c",
+                "text": "Approving students' financial aid applications"
+              },
+              {
+                "id": "d",
+                "text": "Assigning first-year students to dorm rooms"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "講者提到導師協助「choosing classes, finding study groups, and adjusting to campus life」；其餘選項提到批改作業、宿舍分配、核准助學金，原文皆未提及。"
+          },
+          {
+            "id": "talk-r1-q3",
+            "stem": "Why does mentoring seem to matter most for students who live far from home?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They receive less financial aid than local students"
+              },
+              {
+                "id": "b",
+                "text": "They take more difficult courses"
+              },
+              {
+                "id": "c",
+                "text": "They otherwise lack a built-in support network"
+              },
+              {
+                "id": "d",
+                "text": "They have fewer opportunities to join clubs"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "講者指出遠離家鄉的學生「that built-in support network is otherwise missing entirely」，因此導師計畫影響更明顯；其餘選項提到助學金較少、課程較難、社團機會少，原文均未提及。"
+          },
+          {
+            "id": "talk-r1-q4",
+            "stem": "What is one reason researchers give for mentoring improving retention?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Mentors are paid to keep students enrolled"
+              },
+              {
+                "id": "b",
+                "text": "Mentored students receive better grades automatically"
+              },
+              {
+                "id": "c",
+                "text": "Mentors help resolve small problems before they cause students to leave"
+              },
+              {
+                "id": "d",
+                "text": "Mentors replace academic advisors entirely"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "講者說明導師「help students solve small problems...before those problems become reasons to leave」；其餘選項提到導師支薪留才、成績自動提升、取代學術顧問，原文皆未提及。"
+          }
+        ]
+      }
+    ]
+  },
+  "lowerModule": {
+    "timeLimitSec": 420,
+    "listenChoose": [
+      {
+        "id": "lcr-lo1",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-lo1.mp3",
+        "speaker": {
+          "id": "lcr-lo1-sp",
+          "role": "gallery visitor",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Puck",
+          "provider": "gemini"
+        },
+        "utterance": "I'm disappointed the exhibit's delayed a week.",
+        "options": [
+          {
+            "id": "a",
+            "text": "Membership renewals start in June."
+          },
+          {
+            "id": "b",
+            "text": "The elevator's out for repairs."
+          },
+          {
+            "id": "c",
+            "text": "The gift shop closes at five."
+          },
+          {
+            "id": "d",
+            "text": "Here's a free preview pass instead."
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "function",
+        "explanationZh": "訪客抱怨展覽延後開幕，館方人員應提供免費預覽票作補償；其餘選項提及禮品店關門、會員續約、電梯維修，皆與此無關。"
+      },
+      {
+        "id": "lcr-lo2",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-lo2.mp3",
+        "speaker": {
+          "id": "lcr-lo2-sp",
+          "role": "musician",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Vindemiatrix",
+          "provider": "gemini"
+        },
+        "utterance": "Why'd my set get cut short?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Another act ran way over time."
+          },
+          {
+            "id": "b",
+            "text": "Merch sales close at nine tonight."
+          },
+          {
+            "id": "c",
+            "text": "The lighting rig needs new bulbs."
+          },
+          {
+            "id": "d",
+            "text": "Sound check starts an hour early."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "function",
+        "explanationZh": "音樂人質疑表演時段被縮短，舞台經理應解釋是前一組表演超時所致；其餘選項提及燈光設備、周邊銷售、音控檢查時間，均答非所問。"
+      },
+      {
+        "id": "lcr-lo3",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-lo3.mp3",
+        "speaker": {
+          "id": "lcr-lo3-sp",
+          "role": "patient",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Rasalgethi",
+          "provider": "gemini"
+        },
+        "utterance": "My refill's stuck on hold again.",
+        "options": [
+          {
+            "id": "a",
+            "text": "The pharmacy closes early on Sundays."
+          },
+          {
+            "id": "b",
+            "text": "Your file needs a new address."
+          },
+          {
+            "id": "c",
+            "text": "The flu shots are walk-in only."
+          },
+          {
+            "id": "d",
+            "text": "I can give you a few days' bridge."
+          }
+        ],
+        "correctOptionId": "d",
+        "skill": "function",
+        "explanationZh": "病患反映處方箋補領被保險卡住，藥師應提供短期過渡藥量；其餘選項提及流感疫苗、地址更新、周日提早打烊，皆與補藥延遲無關。"
+      },
+      {
+        "id": "lcr-lo4",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-lo4.mp3",
+        "speaker": {
+          "id": "lcr-lo4-sp",
+          "role": "clinic member",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Laomedeia",
+          "provider": "gemini"
+        },
+        "utterance": "Why was the sleep workshop cancelled?",
+        "options": [
+          {
+            "id": "a",
+            "text": "Your membership card needs renewing."
+          },
+          {
+            "id": "b",
+            "text": "Not enough people signed up."
+          },
+          {
+            "id": "c",
+            "text": "The scale in room two is broken."
+          },
+          {
+            "id": "d",
+            "text": "The pool's being resurfaced this week."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "function",
+        "explanationZh": "會員詢問睡眠工作坊取消原因，教練應說明是報名人數不足；其餘選項提及泳池整修、會員卡續辦、體重計故障，皆離題。"
+      },
+      {
+        "id": "lcr-lo5",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-lo5.mp3",
+        "speaker": {
+          "id": "lcr-lo5-sp",
+          "role": "passenger",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Iapetus",
+          "provider": "gemini"
+        },
+        "utterance": "I never got my ticket confirmation.",
+        "options": [
+          {
+            "id": "a",
+            "text": "The next platform change is gate four."
+          },
+          {
+            "id": "b",
+            "text": "I'll print your pass right here."
+          },
+          {
+            "id": "c",
+            "text": "Luggage storage closes at eight."
+          },
+          {
+            "id": "d",
+            "text": "Refunds take about a week."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "function",
+        "explanationZh": "乘客表示未收到車票確認信，站務員應現場補印憑證；其餘選項提及月台變更、行李寄存、退款時間，皆與補印確認無關。"
+      }
+    ],
+    "conversations": [
+      {
+        "id": "conv-lo1",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-6de33148/conv-lo1.mp3",
+        "setting": "a community ceramic studio's kiln room the day after a group firing",
+        "speakers": [
+          {
+            "id": "conv-lo1-sp1",
+            "role": "studio member",
+            "gender": "male",
+            "accent": "british",
+            "voice": "Zubenelgenubi",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-lo1-sp2",
+            "role": "ceramic studio instructor",
+            "gender": "female",
+            "accent": "australian",
+            "voice": "Sulafat",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-lo1-sp1",
+            "text": "Hey, I just found my glazed bowl came out cracked along the rim this morning."
+          },
+          {
+            "speakerId": "conv-lo1-sp2",
+            "text": "Let me see... yeah, that's a firing crack, not a glaze issue."
+          },
+          {
+            "speakerId": "conv-lo1-sp1",
+            "text": "Is there any way to fix it before the studio's exhibit deadline next month?"
+          },
+          {
+            "speakerId": "conv-lo1-sp2",
+            "text": "We can refire it as long as the clay body's still solid underneath the glaze."
+          },
+          {
+            "speakerId": "conv-lo1-sp1",
+            "text": "It looks solid to me, just that one crack near the rim."
+          },
+          {
+            "speakerId": "conv-lo1-sp2",
+            "text": "Then I'll slot it into next week's firing—that's still well before your exhibit date."
+          },
+          {
+            "speakerId": "conv-lo1-sp1",
+            "text": "That's a relief. Do you know what caused it in the first place?"
+          },
+          {
+            "speakerId": "conv-lo1-sp2",
+            "text": "Probably cooled too fast. I'll adjust the kiln schedule for round two."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-lo1-q1",
+            "stem": "What does the instructor identify as the cause of the crack?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The bowl cooled too quickly"
+              },
+              {
+                "id": "b",
+                "text": "The kiln door was left open"
+              },
+              {
+                "id": "c",
+                "text": "The clay had air bubbles"
+              },
+              {
+                "id": "d",
+                "text": "The glaze was applied too thick"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "老師最後說「probably cooled too fast」，推測是冷卻過快導致裂痕；其餘選項提到釉料過厚、黏土有氣泡、窯門未關，原文均未提及。"
+          },
+          {
+            "id": "conv-lo1-q2",
+            "stem": "What does the instructor decide to do about the cracked bowl?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Refire it after the exhibit ends"
+              },
+              {
+                "id": "b",
+                "text": "Sell it at a discount as-is"
+              },
+              {
+                "id": "c",
+                "text": "Refire it in next week's firing, before the exhibit"
+              },
+              {
+                "id": "d",
+                "text": "Discard it and remake a new bowl"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "老師表示會將碗排入「next week's firing—that's still well before your exhibit date」，安排展覽前重新燒製；其餘選項提到丟棄重做、展後才燒、打折出售，原文皆未提及。"
+          }
+        ]
+      },
+      {
+        "id": "conv-lo2",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-6de33148/conv-lo2.mp3",
+        "setting": "a community wellness clinic's consultation room during a routine nutrition follow-up",
+        "speakers": [
+          {
+            "id": "conv-lo2-sp1",
+            "role": "clinic nutritionist",
+            "gender": "male",
+            "accent": "north-american",
+            "voice": "Fenrir",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-lo2-sp2",
+            "role": "patient tracking a new meal plan",
+            "gender": "female",
+            "accent": "british",
+            "voice": "Callirrhoe",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-lo2-sp1",
+            "text": "So it's been three weeks on the new meal plan—how's your energy been?"
+          },
+          {
+            "speakerId": "conv-lo2-sp2",
+            "text": "Honestly, it's been up and down. Mornings I feel great, but by afternoon I'm exhausted."
+          },
+          {
+            "speakerId": "conv-lo2-sp1",
+            "text": "That's a common pattern when meals are spaced too far apart."
+          },
+          {
+            "speakerId": "conv-lo2-sp2",
+            "text": "I usually eat breakfast early and then don't eat again until dinner."
+          },
+          {
+            "speakerId": "conv-lo2-sp1",
+            "text": "Let's add a small snack around midday—something with protein to bridge that gap."
+          },
+          {
+            "speakerId": "conv-lo2-sp2",
+            "text": "That makes sense. Should I still keep the same dinner portions?"
+          },
+          {
+            "speakerId": "conv-lo2-sp1",
+            "text": "Yes, keep dinner as is. Just shift a little of it earlier into that midday snack."
+          },
+          {
+            "speakerId": "conv-lo2-sp2",
+            "text": "Got it, I'll try that and let you know at the next check-in."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-lo2-q1",
+            "stem": "What problem does the patient report about her energy levels?",
+            "options": [
+              {
+                "id": "a",
+                "text": "She has trouble sleeping at night"
+              },
+              {
+                "id": "b",
+                "text": "She feels dizzy after breakfast"
+              },
+              {
+                "id": "c",
+                "text": "She has no appetite at dinner"
+              },
+              {
+                "id": "d",
+                "text": "She feels tired by the afternoon"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "病患說「by afternoon I'm exhausted」，反映下午容易疲累；其餘選項提到夜間失眠、早餐後暈眩、晚餐沒食慾，原文皆未提及。"
+          },
+          {
+            "id": "conv-lo2-q2",
+            "stem": "What change does the nutritionist recommend?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Eating dinner earlier in the day"
+              },
+              {
+                "id": "b",
+                "text": "Adding a midday protein snack"
+              },
+              {
+                "id": "c",
+                "text": "Skipping breakfast entirely"
+              },
+              {
+                "id": "d",
+                "text": "Doubling her breakfast portion"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "營養師建議「add a small snack around midday—something with protein」，以銜接餐間空檔；其餘選項提到提早吃晚餐、跳過早餐、加倍早餐份量，原文均未提及。"
+          }
+        ]
+      }
+    ],
+    "announcements": [
+      {
+        "id": "ann-lo1",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-6de33148/ann-lo1.mp3",
+        "setting": "a community clinic's waiting room display screen",
+        "speaker": {
+          "id": "ann-lo1-sp",
+          "role": "clinic front desk supervisor",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Despina",
+          "provider": "gemini"
+        },
+        "transcript": "Starting this week, the clinic is adding walk-in hours for flu shots every weekday afternoon from two to five. No appointment is needed—just check in at the front desk when you arrive. Please bring your insurance card if you have one, though it isn't required. These walk-in hours will continue through the end of the month, so there's no rush to come in on any particular day.",
+        "questions": [
+          {
+            "id": "ann-lo1-q1",
+            "stem": "What is new about the clinic's flu shot service?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Flu shots are now free for everyone"
+              },
+              {
+                "id": "b",
+                "text": "Walk-in hours were added on weekday afternoons"
+              },
+              {
+                "id": "c",
+                "text": "Appointments are now required"
+              },
+              {
+                "id": "d",
+                "text": "Shots are only available on weekends"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "公告說明新增「walk-in hours for flu shots every weekday afternoon」；其餘選項提到免費施打、需預約、僅週末開放，原文均未提及。"
+          },
+          {
+            "id": "ann-lo1-q2",
+            "stem": "What does the announcement say about insurance cards?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Bringing one is optional"
+              },
+              {
+                "id": "b",
+                "text": "It is required to get a shot"
+              },
+              {
+                "id": "c",
+                "text": "Cards must be mailed in advance"
+              },
+              {
+                "id": "d",
+                "text": "Only certain insurance providers are accepted"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "公告提到「bring your insurance card if you have one, though it isn't required」，說明並非必要；其餘選項提到強制要求、需提前郵寄、限定保險公司，原文皆未提及。"
+          }
+        ]
+      },
+      {
+        "id": "ann-lo2",
+        "taskType": "announcement",
+        "audio": "stimuli/lsn-6de33148/ann-lo2.mp3",
+        "setting": "a community theater's lobby display before evening performances",
+        "speaker": {
+          "id": "ann-lo2-sp",
+          "role": "theater box office lead",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Umbriel",
+          "provider": "gemini"
+        },
+        "transcript": "Due to popular demand, we've added a Sunday matinee performance to this weekend's run. The extra show starts at two in the afternoon and features the same full cast as the evening performances. Tickets for the matinee are only available at the box office, not online, so please stop by in person. We expect this added show to sell out quickly, so early arrival is recommended.",
+        "questions": [
+          {
+            "id": "ann-lo2-q1",
+            "stem": "Why was the matinee performance added?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Because of popular demand"
+              },
+              {
+                "id": "b",
+                "text": "Because the cast requested an extra rehearsal"
+              },
+              {
+                "id": "c",
+                "text": "Because of a scheduling conflict with another event"
+              },
+              {
+                "id": "d",
+                "text": "Because the evening show sold out completely"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "公告開頭說明「due to popular demand」加開場次；其餘選項提到晚場售罄、演員要求加排、場地檔期衝突，原文均未提及。"
+          },
+          {
+            "id": "ann-lo2-q2",
+            "stem": "How can someone get tickets for the matinee?",
+            "options": [
+              {
+                "id": "a",
+                "text": "By calling the theater hotline"
+              },
+              {
+                "id": "b",
+                "text": "Through a mobile ticketing app"
+              },
+              {
+                "id": "c",
+                "text": "Only through the theater's website"
+              },
+              {
+                "id": "d",
+                "text": "Only in person at the box office"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "公告指出「available at the box office, not online」；其餘選項提到官網、電話熱線、手機APP購票，原文皆未提及。"
+          }
+        ]
+      }
+    ],
+    "academicTalks": []
+  },
+  "upperModule": {
+    "timeLimitSec": 660,
+    "listenChoose": [
+      {
+        "id": "lcr-up1",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-up1.mp3",
+        "speaker": {
+          "id": "lcr-up1-sp",
+          "role": "hotel guest",
+          "gender": "female",
+          "accent": "british",
+          "voice": "Gacrux",
+          "provider": "gemini"
+        },
+        "utterance": "Our room's so loud by the elevator.",
+        "options": [
+          {
+            "id": "a",
+            "text": "The pool towels are by the desk."
+          },
+          {
+            "id": "b",
+            "text": "I'll move you to a quieter floor."
+          },
+          {
+            "id": "c",
+            "text": "Checkout's been extended till noon."
+          },
+          {
+            "id": "d",
+            "text": "Breakfast starts at seven downstairs."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "function",
+        "explanationZh": "房客抱怨房間靠近電梯太吵，禮賓應提議換到較安靜樓層；其餘選項提及早餐時間、延遲退房、泳池毛巾，均與噪音問題無關。"
+      },
+      {
+        "id": "lcr-up2",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-up2.mp3",
+        "speaker": {
+          "id": "lcr-up2-sp",
+          "role": "heritage archive intern",
+          "gender": "male",
+          "accent": "australian",
+          "voice": "Puck",
+          "provider": "gemini"
+        },
+        "utterance": "This letter's date doesn't quite add up.",
+        "options": [
+          {
+            "id": "a",
+            "text": "The donor box got relabeled today."
+          },
+          {
+            "id": "b",
+            "text": "Let's check the old shipping log."
+          },
+          {
+            "id": "c",
+            "text": "Our scanner needs a new bulb soon."
+          },
+          {
+            "id": "d",
+            "text": "The exhibit reopens again in March."
+          }
+        ],
+        "correctOptionId": "b",
+        "skill": "function",
+        "explanationZh": "實習生指出信件日期有出入，館員建議查核舊船運紀錄以核實；其餘選項涉及捐贈箱貼標、掃描器燈泡、展覽重開日期，皆離題。"
+      },
+      {
+        "id": "lcr-up3",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-up3.mp3",
+        "speaker": {
+          "id": "lcr-up3-sp",
+          "role": "archive assistant",
+          "gender": "female",
+          "accent": "north-american",
+          "voice": "Vindemiatrix",
+          "provider": "gemini"
+        },
+        "utterance": "This old ledger's not in English.",
+        "options": [
+          {
+            "id": "a",
+            "text": "I'll line up a bilingual reviewer."
+          },
+          {
+            "id": "b",
+            "text": "Our tour starts in ten minutes."
+          },
+          {
+            "id": "c",
+            "text": "That box was already catalogued."
+          },
+          {
+            "id": "d",
+            "text": "The photocopier's jammed again upstairs."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "function",
+        "explanationZh": "助理表示舊帳冊非英文寫成，協調員應安排雙語審閱人員協助；其餘選項提及影印機故障、導覽開始時間、箱子已編目，均與翻譯需求無關。"
+      },
+      {
+        "id": "lcr-up4",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-up4.mp3",
+        "speaker": {
+          "id": "lcr-up4-sp",
+          "role": "friend",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Alnilam",
+          "provider": "gemini"
+        },
+        "utterance": "Could I borrow a folding chair Saturday?",
+        "options": [
+          {
+            "id": "a",
+            "text": "I already returned your umbrella."
+          },
+          {
+            "id": "b",
+            "text": "The picnic's moved to next month."
+          },
+          {
+            "id": "c",
+            "text": "Sure, swing by in the morning."
+          },
+          {
+            "id": "d",
+            "text": "The park closes right at dusk."
+          }
+        ],
+        "correctOptionId": "c",
+        "skill": "function",
+        "explanationZh": "朋友請求週六借用摺疊椅，回應者應同意並約好取件時間；其餘選項提及公園關閉時間、已歸還雨傘、野餐延期，皆答非所問。"
+      },
+      {
+        "id": "lcr-up5",
+        "taskType": "listen_choose",
+        "audio": "stimuli/lsn-6de33148/lcr-up5.mp3",
+        "speaker": {
+          "id": "lcr-up5-sp",
+          "role": "sibling",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Leda",
+          "provider": "gemini"
+        },
+        "utterance": "Why won't our streaming password work?",
+        "options": [
+          {
+            "id": "a",
+            "text": "It got reset after that update."
+          },
+          {
+            "id": "b",
+            "text": "The remote needs new batteries."
+          },
+          {
+            "id": "c",
+            "text": "The bill's due again on Friday."
+          },
+          {
+            "id": "d",
+            "text": "Our show got cancelled last week."
+          }
+        ],
+        "correctOptionId": "a",
+        "skill": "function",
+        "explanationZh": "手足詢問共用串流密碼失效原因，另一方應說明因更新而重設；其餘選項提及遙控器電池、節目取消、帳單到期日，均與密碼問題無關。"
+      }
+    ],
+    "conversations": [
+      {
+        "id": "conv-up1",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-6de33148/conv-up1.mp3",
+        "setting": "a shared apartment kitchen on a weekday evening",
+        "speakers": [
+          {
+            "id": "conv-up1-sp1",
+            "role": "roommate returning from a long shift",
+            "gender": "male",
+            "accent": "north-american",
+            "voice": "Zubenelgenubi",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-up1-sp2",
+            "role": "roommate who used the last of the groceries",
+            "gender": "female",
+            "accent": "british",
+            "voice": "Sulafat",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-up1-sp1",
+            "text": "Whoa, the fridge is basically empty. Didn't we just go shopping Sunday?"
+          },
+          {
+            "speakerId": "conv-up1-sp2",
+            "text": "Sorry, I used the last of the eggs and rice for dinner last night."
+          },
+          {
+            "speakerId": "conv-up1-sp1",
+            "text": "No worries, I just wasn't expecting it after such a long shift."
+          },
+          {
+            "speakerId": "conv-up1-sp2",
+            "text": "I meant to restock today, but my shift ran late and the store closed."
+          },
+          {
+            "speakerId": "conv-up1-sp1",
+            "text": "Same here, honestly. I've got a closing shift again tomorrow, so I can't go either."
+          },
+          {
+            "speakerId": "conv-up1-sp2",
+            "text": "I'm off in the morning, actually. I can swing by before my afternoon shift starts."
+          },
+          {
+            "speakerId": "conv-up1-sp1",
+            "text": "That works. I'll send you the list of what we're out of."
+          },
+          {
+            "speakerId": "conv-up1-sp2",
+            "text": "Perfect, I'll grab everything and we should be set for the week."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-up1-q1",
+            "stem": "Why hasn't either roommate restocked the groceries yet?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Their overlapping shifts have kept them from the store"
+              },
+              {
+                "id": "b",
+                "text": "The neighborhood store has been closed for repairs all week"
+              },
+              {
+                "id": "c",
+                "text": "They spent their grocery budget on takeout meals this week"
+              },
+              {
+                "id": "d",
+                "text": "They are waiting for the weekend farmers market to open"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "兩人分別提到「shift ran late and the store closed」和隔天要「closing shift」，顯示是排班互相衝突所致；其餘選項提到外食、店面整修、等假日市集，原文均未提及。"
+          },
+          {
+            "id": "conv-up1-q2",
+            "stem": "What do the roommates agree to do?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Order all of their groceries online for next-day delivery instead"
+              },
+              {
+                "id": "b",
+                "text": "Split the entire shopping list evenly between each other"
+              },
+              {
+                "id": "c",
+                "text": "Wait together until the weekend farmers market opens up"
+              },
+              {
+                "id": "d",
+                "text": "Shop for groceries in the morning before her shift"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "對方表示「I'm off in the morning...can swing by before my afternoon shift」，同意提早去採購；其餘選項提到叫外送、平分清單、等假日市集，原文皆未提及。"
+          }
+        ]
+      },
+      {
+        "id": "conv-up2",
+        "taskType": "conversation",
+        "audio": "stimuli/lsn-6de33148/conv-up2.mp3",
+        "setting": "a regional bus company's customer service counter the morning after a missed connection",
+        "speakers": [
+          {
+            "id": "conv-up2-sp1",
+            "role": "traveler whose connecting bus left early",
+            "gender": "male",
+            "accent": "australian",
+            "voice": "Fenrir",
+            "provider": "gemini"
+          },
+          {
+            "id": "conv-up2-sp2",
+            "role": "bus company customer service agent",
+            "gender": "female",
+            "accent": "north-american",
+            "voice": "Callirrhoe",
+            "provider": "gemini"
+          }
+        ],
+        "transcript": [
+          {
+            "speakerId": "conv-up2-sp1",
+            "text": "My connecting bus left before I even got to the gate yesterday."
+          },
+          {
+            "speakerId": "conv-up2-sp2",
+            "text": "I'm sorry about that. Let me pull up your ticket and see what happened."
+          },
+          {
+            "speakerId": "conv-up2-sp1",
+            "text": "The app still said it was on time when I was walking over."
+          },
+          {
+            "speakerId": "conv-up2-sp2",
+            "text": "It looks like that route left about four minutes ahead of schedule."
+          },
+          {
+            "speakerId": "conv-up2-sp1",
+            "text": "Four minutes doesn't sound like much, but it was enough to miss it completely."
+          },
+          {
+            "speakerId": "conv-up2-sp2",
+            "text": "You're right, and that's on us. I can rebook you on the next route at no charge."
+          },
+          {
+            "speakerId": "conv-up2-sp1",
+            "text": "I appreciate that. Is there one leaving soon, or will I be waiting a while?"
+          },
+          {
+            "speakerId": "conv-up2-sp2",
+            "text": "There's one in twenty minutes—I'll print your new ticket right now."
+          }
+        ],
+        "questions": [
+          {
+            "id": "conv-up2-q1",
+            "stem": "Why did the traveler miss his connecting bus?",
+            "options": [
+              {
+                "id": "a",
+                "text": "He waited at the wrong departure gate"
+              },
+              {
+                "id": "b",
+                "text": "His ticket listed an incorrect travel date"
+              },
+              {
+                "id": "c",
+                "text": "The bus service was cancelled that day"
+              },
+              {
+                "id": "d",
+                "text": "The bus left minutes ahead of schedule"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "客服查詢後說「that route left about four minutes ahead of schedule」，說明公車提早幾分鐘發車；其餘選項提到走錯月台、班次取消、車票日期錯誤，原文均未提及。"
+          },
+          {
+            "id": "conv-up2-q2",
+            "stem": "What does the agent offer the traveler?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A refund for the missed fare"
+              },
+              {
+                "id": "b",
+                "text": "An upgrade on the same route"
+              },
+              {
+                "id": "c",
+                "text": "A voucher for a future trip"
+              },
+              {
+                "id": "d",
+                "text": "A free spot on the next bus"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "客服表示「I can rebook you on the next route at no charge」，提供免費改訂座位；其餘選項提到退款、折扣券、座位升等，原文皆未提及。"
+          }
+        ]
+      }
+    ],
+    "announcements": [],
+    "academicTalks": [
+      {
+        "id": "talk-up1",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-6de33148/talk-up1.mp3",
+        "discipline": "organizational behavior",
+        "speaker": {
+          "id": "talk-up1-sp",
+          "role": "business lecturer",
+          "gender": "male",
+          "accent": "british",
+          "voice": "Orus",
+          "provider": "gemini"
+        },
+        "transcript": "Let's look at how flexible shift scheduling affects employee turnover in retail companies. Turnover here just means how often employees quit and need to be replaced. Traditionally, retail shifts are assigned by managers with little employee input, which can clash with school schedules, childcare, or second jobs. Some retail chains have started letting employees submit preferred shift windows and swap shifts directly with coworkers through an app. Researchers compared turnover rates at stores before and after this kind of flexible scheduling was introduced. Stores that adopted flexible scheduling saw turnover drop by roughly a quarter within the first year. Exit interviews with employees who left the traditional stores often cited scheduling conflicts as a major reason for quitting, even more often than pay. Interestingly, the effect was strongest among part-time employees juggling multiple commitments, since they benefited most from being able to trade shifts without needing manager approval each time. Full-time employees showed a smaller, though still positive, change in turnover, suggesting flexible scheduling helps every worker but especially those balancing several roles.",
+        "questions": [
+          {
+            "id": "talk-up1-q1",
+            "stem": "What is this talk mainly about?",
+            "options": [
+              {
+                "id": "a",
+                "text": "How retail companies set and periodically revise employee pay structures"
+              },
+              {
+                "id": "b",
+                "text": "How new retail store managers are trained and evaluated"
+              },
+              {
+                "id": "c",
+                "text": "How customer satisfaction surveys are collected in retail chains"
+              },
+              {
+                "id": "d",
+                "text": "Flexible shift scheduling and retail employee turnover"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "gist",
+            "explanationZh": "講者開頭即點出主題「how flexible shift scheduling affects employee turnover in retail companies」，全文圍繞此展開；其餘選項提到薪資制度、經理培訓、顧客滿意度調查，原文均未提及。"
+          },
+          {
+            "id": "talk-up1-q2",
+            "stem": "What change did some retail chains introduce?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Increasing hourly wages and offering signing bonuses for all part-time retail staff"
+              },
+              {
+                "id": "b",
+                "text": "Letting employees submit preferred shifts and trade shifts via an app"
+              },
+              {
+                "id": "c",
+                "text": "Requiring store managers to personally approve every single schedule change request"
+              },
+              {
+                "id": "d",
+                "text": "Reducing the total number of scheduled weekly shifts company-wide"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "講者提到部分連鎖店讓員工「submit preferred shift windows and swap shifts directly with coworkers through an app」；其餘選項提到加薪與簽約獎金、減少班次、需經理逐一核准，原文皆未提及。"
+          },
+          {
+            "id": "talk-up1-q3",
+            "stem": "What did exit interviews reveal about employees who quit traditional stores?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Long daily commute times were the most common complaint raised"
+              },
+              {
+                "id": "b",
+                "text": "Higher-paying job offers elsewhere were the top reason employees left"
+              },
+              {
+                "id": "c",
+                "text": "Scheduling conflicts were cited more often than pay"
+              },
+              {
+                "id": "d",
+                "text": "Poor management training was the most frequently cited reason for leaving"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "講者指出離職員工「often cited scheduling conflicts as a major reason for quitting, even more often than pay」；其餘選項提到管理培訓不佳、更高薪工作機會、通勤時間長，原文均未提及。"
+          },
+          {
+            "id": "talk-up1-q4",
+            "stem": "Why was the effect of flexible scheduling strongest among part-time employees?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They were newer employees with comparatively less job seniority overall"
+              },
+              {
+                "id": "b",
+                "text": "They were juggling multiple outside commitments"
+              },
+              {
+                "id": "c",
+                "text": "They received the largest hourly pay increases among all store employees"
+              },
+              {
+                "id": "d",
+                "text": "They worked evening and weekend shifts exclusively at every location"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "inference",
+            "explanationZh": "講者解釋兼職員工「juggling multiple commitments」，最受益於能自行換班而不必逐次獲經理批准；其餘選項提到加薪幅度最大、資歷較淺、只上特定班次，原文皆未提及。"
+          }
+        ]
+      },
+      {
+        "id": "talk-up2",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-6de33148/talk-up2.mp3",
+        "discipline": "urban planning",
+        "speaker": {
+          "id": "talk-up2-sp",
+          "role": "urban planning lecturer",
+          "gender": "female",
+          "accent": "australian",
+          "voice": "Kore",
+          "provider": "gemini"
+        },
+        "transcript": "Today's topic is participatory budgeting, a process where residents vote directly on how a portion of a city's budget gets spent, rather than leaving every decision to elected officials alone. Typically, a city sets aside a fixed amount—often a small percentage of the total budget—and residents propose and then vote on specific projects, like repairing a playground or adding streetlights to a dark intersection. Cities that have adopted participatory budgeting over the past decade show a consistent pattern: spending shifts noticeably toward small, neighborhood-level projects rather than large citywide infrastructure. Before participatory budgeting, most discretionary funds went to larger projects chosen by city planners, which sometimes overlooked smaller but urgently needed repairs in specific neighborhoods. Once residents vote directly, projects like sidewalk repairs, community garden funding, and park benches tend to win more often than they would under a traditional budget process. Planners see this less as residents ignoring the bigger picture and more as residents having direct knowledge of problems that citywide planning sometimes misses entirely.",
+        "questions": [
+          {
+            "id": "talk-up2-q1",
+            "stem": "What does this talk mainly describe?",
+            "options": [
+              {
+                "id": "a",
+                "text": "How city council members get elected by local district voters"
+              },
+              {
+                "id": "b",
+                "text": "How participatory budgeting reshapes city spending priorities"
+              },
+              {
+                "id": "c",
+                "text": "How annual property tax assessments get calculated by assessors"
+              },
+              {
+                "id": "d",
+                "text": "How construction permits get approved by municipal building inspectors"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "gist",
+            "explanationZh": "講者說明主題為「participatory budgeting」如何改變城市支出優先順序，使小型社區型專案更常獲得經費；其餘選項提到市議會選舉、財產稅稅率、建照核准，原文均未提及。"
+          },
+          {
+            "id": "talk-up2-q2",
+            "stem": "In participatory budgeting, who decides how a portion of the budget is spent?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A permanent committee made up entirely of professional city planners"
+              },
+              {
+                "id": "b",
+                "text": "An outside consulting firm hired specifically for this purpose"
+              },
+              {
+                "id": "c",
+                "text": "The mayor's office, acting alone without resident input"
+              },
+              {
+                "id": "d",
+                "text": "Residents themselves, by voting directly on submitted proposals"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "講者說明是「residents propose and then vote on specific projects」；其餘選項提到規劃委員會、市長辦公室、外部顧問公司，原文皆未提及。"
+          },
+          {
+            "id": "talk-up2-q3",
+            "stem": "What kind of projects tend to win more often under participatory budgeting?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Projects that city planners select without resident involvement"
+              },
+              {
+                "id": "b",
+                "text": "Small neighborhood projects such as sidewalk and bench repairs"
+              },
+              {
+                "id": "c",
+                "text": "Large citywide infrastructure projects spanning multiple districts"
+              },
+              {
+                "id": "d",
+                "text": "Whichever projects happen to have the lowest overall cost"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "講者指出支出「shifts noticeably toward small, neighborhood-level projects」如人行道修繕；其餘選項提到大型城市基礎建設、規劃師提案、成本最低專案，原文均未提及。"
+          },
+          {
+            "id": "talk-up2-q4",
+            "stem": "Why do planners think smaller neighborhood projects win more votes under this process?",
+            "options": [
+              {
+                "id": "a",
+                "text": "City planners have entirely stopped proposing any projects now"
+              },
+              {
+                "id": "b",
+                "text": "Voting rules currently require residents to pick local projects only"
+              },
+              {
+                "id": "c",
+                "text": "Residents know local needs planners can miss"
+              },
+              {
+                "id": "d",
+                "text": "Smaller projects are always cheaper to promote to local voters"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "講者認為居民「having direct knowledge of problems that citywide planning sometimes misses entirely」；其餘選項提到宣傳成本較低、規定須投當地案、規劃師不再提案，原文皆未提及。"
+          }
+        ]
+      },
+      {
+        "id": "talk-up3",
+        "taskType": "academic_talk",
+        "audio": "stimuli/lsn-6de33148/talk-up3.mp3",
+        "discipline": "behavioral psychology",
+        "speaker": {
+          "id": "talk-up3-sp",
+          "role": "psychology lecturer",
+          "gender": "male",
+          "accent": "north-american",
+          "voice": "Sadaltager",
+          "provider": "gemini"
+        },
+        "transcript": "Why are small daily routines easier to stick with than big lifestyle overhauls? Psychologists have studied this by comparing two groups: one group tries to adopt one small daily habit, like a five-minute walk after lunch, while another group commits to a much larger change, like a complete diet and exercise overhaul starting all at once. Using habit-tracking apps, researchers followed both groups over several months. The small-habit group showed dramatically higher completion rates—people kept doing their five-minute walk long after the large-change group had mostly abandoned their bigger plans. One explanation is that small habits require very little willpower, so they survive busy or stressful days when motivation is low. Large overhauls, by contrast, depend on consistently high motivation every single day, and even one missed day can feel like total failure, which often leads people to quit entirely rather than just skip a day and continue. Researchers also found that small habits tend to naturally expand over time—people who stuck with the short walk often added other small changes later, building up gradually instead of all at once.",
+        "questions": [
+          {
+            "id": "talk-up3-q1",
+            "stem": "What is the main point of this talk?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Missing even one day guarantees people will quit their routine"
+              },
+              {
+                "id": "b",
+                "text": "Small habits are easier to maintain than big lifestyle changes"
+              },
+              {
+                "id": "c",
+                "text": "Habit-tracking apps are the most reliable way to measure success"
+              },
+              {
+                "id": "d",
+                "text": "Willpower decides whether daily routines survive stressful days"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "gist",
+            "explanationZh": "講者主旨為「small habits are easier to maintain than large overhauls」；(b)僅為支持性解釋而非主旨、(c)原文未評價APP可靠性、(d)過度推論「一天沒做就放棄」為必然結果，原文僅稱這種情況「常導致」放棄，非絕對。"
+          },
+          {
+            "id": "talk-up3-q2",
+            "stem": "How did researchers compare the two groups in the study?",
+            "options": [
+              {
+                "id": "a",
+                "text": "By surveying participants' friends and family"
+              },
+              {
+                "id": "b",
+                "text": "By using habit-tracking apps to follow their progress over months"
+              },
+              {
+                "id": "c",
+                "text": "By interviewing participants once at the end of the study"
+              },
+              {
+                "id": "d",
+                "text": "By measuring participants' weight loss only"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "講者說明研究方法為「using habit-tracking apps, researchers followed both groups over several months」；其餘選項提到僅訪談一次、只量體重、詢問親友，原文皆未提及。"
+          },
+          {
+            "id": "talk-up3-q3",
+            "stem": "Why does missing one day often cause people to quit large lifestyle overhauls entirely?",
+            "options": [
+              {
+                "id": "a",
+                "text": "One missed day can feel like total failure under a high-motivation plan"
+              },
+              {
+                "id": "b",
+                "text": "Large overhauls require special equipment"
+              },
+              {
+                "id": "c",
+                "text": "People forget the plan's original goal"
+              },
+              {
+                "id": "d",
+                "text": "Large overhauls are more expensive to maintain"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "講者說明大改變「even one missed day can feel like total failure」，容易讓人乾脆放棄；其餘選項提到花費較高、需要特殊器材、忘記目標，原文均未提及。"
+          },
+          {
+            "id": "talk-up3-q4",
+            "stem": "What did researchers observe about people who stuck with a small habit like the short walk?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They eventually switched to a large overhaul instead"
+              },
+              {
+                "id": "b",
+                "text": "They often added other small changes gradually over time"
+              },
+              {
+                "id": "c",
+                "text": "They reported no long-term benefit at all"
+              },
+              {
+                "id": "d",
+                "text": "They stopped tracking their progress after a month"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "講者提到「people who stuck with the short walk often added other small changes later」，逐步累積改變；其餘選項提到後來改採大改造、追蹤一個月後停止、無長期效益，原文皆未提及。"
+          }
+        ]
+      }
+    ]
+  },
+  "audioProfile": {
+    "version": "ets-2026-listening-v1",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview"
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "listening",
+    "listenChoose": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "makeup-exam-illness-reschedule",
+        "requiredConcepts": [
+          "makeup exam approved after a documented illness",
+          "new exam date set for the following week"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: tutor study-group invitation vs missed-exam rescheduling"
+          }
+        ],
+        "topic": "A student who missed a midterm due to illness asks the university registrar's office to schedule a makeup exam.",
+        "speakerRole": "student and university registrar clerk"
+      },
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "library-charger-loaner-request",
+        "requiredConcepts": [
+          "broken outlet at a library study desk",
+          "loaner charger available at the circulation desk"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: reserve-item renewal vs charger loan request"
+          }
+        ],
+        "topic": "A student whose laptop charger stopped working at a library study desk asks a librarian for a replacement.",
+        "speakerRole": "student and university librarian"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "direct-deposit-verification-delay",
+        "requiredConcepts": [
+          "direct deposit held for bank verification",
+          "first paycheck issued as a paper check"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: shift cover offer vs payroll deposit delay"
+          }
+        ],
+        "topic": "A new employee asks a human resources coordinator why their direct deposit has not started.",
+        "speakerRole": "new employee and human resources coordinator"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "office-badge-lockout-reissue",
+        "requiredConcepts": [
+          "badge stopped working at the side entrance",
+          "temporary badge issued for the week"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: retail invoice mischarge vs office badge lockout"
+          }
+        ],
+        "topic": "An employee locked out by a malfunctioning badge asks the office manager for a temporary replacement.",
+        "speakerRole": "employee and office manager"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "neighborhood-cleanup-permit-waiver",
+        "requiredConcepts": [
+          "a public cleanup event needing a city permit",
+          "fee waived for volunteer-run events"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: construction noise complaint vs cleanup permit waiver"
+          }
+        ],
+        "topic": "A resident planning a small neighborhood cleanup asks a city parks clerk about the permit fee.",
+        "speakerRole": "resident and city parks department clerk"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "bulletin-board-relocation-request",
+        "requiredConcepts": [
+          "a community bulletin board proposed for a new corner",
+          "approval needed from the neighborhood council"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: permit delay apology vs bulletin board relocation"
+          }
+        ],
+        "topic": "A resident asks a municipal clerk what is required to move a public bulletin board to a busier corner.",
+        "speakerRole": "resident and municipal clerk"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "mislabeled-water-sample-relabel",
+        "requiredConcepts": [
+          "water samples mislabeled after collection",
+          "relabeling protocol before the experiment"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: spilled sample apology vs mislabeled sample correction"
+          }
+        ],
+        "topic": "A field intern who mislabeled water samples asks a laboratory director how to correct the error before analysis.",
+        "speakerRole": "field intern and laboratory director"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "humidity-sensor-malfunction-swap",
+        "requiredConcepts": [
+          "a humidity sensor giving inconsistent readings",
+          "spare sensor calibrated before the experiment"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: postponing an outdoor experiment vs swapping a faulty sensor"
+          }
+        ],
+        "topic": "A laboratory intern reports a malfunctioning humidity sensor in a climate laboratory and asks for a replacement.",
+        "speakerRole": "laboratory intern and laboratory technician"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "streaming-duplicate-billing-refund",
+        "requiredConcepts": [
+          "a digital subscription charged twice in one cycle",
+          "refund processed within a few business days"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: messaging app suggestion vs duplicate billing refund"
+          }
+        ],
+        "topic": "A subscriber contacts a streaming service's software support agent about being charged twice for the same digital subscription.",
+        "speakerRole": "subscriber and software support agent"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "podcast-app-missing-downloads",
+        "requiredConcepts": [
+          "downloaded podcast episodes disappearing",
+          "storage cache reset restoring the episodes"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: missed release apology vs missing downloaded episodes"
+          }
+        ],
+        "topic": "A listener whose downloaded podcast episodes vanished after a software update contacts app support.",
+        "speakerRole": "podcast listener and app support agent"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "gallery-exhibit-opening-delay-pass",
+        "requiredConcepts": [
+          "exhibit opening pushed back a week",
+          "complimentary preview pass offered instead"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: gallery hour correction vs exhibit opening delay"
+          }
+        ],
+        "topic": "A visitor disappointed by a delayed gallery exhibit opening asks front desk staff about compensation.",
+        "speakerRole": "gallery visitor and gallery front desk staff"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "festival-set-time-shortened",
+        "requiredConcepts": [
+          "a performance set shortened by fifteen minutes",
+          "conflict caused by another act running long"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: headline invite vs shortened set time"
+          }
+        ],
+        "topic": "A musician asks a festival stage manager why their performance slot was shortened.",
+        "speakerRole": "musician and festival stage manager"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "prescription-refill-insurance-hold",
+        "requiredConcepts": [
+          "prescription refill delayed by an insurance hold",
+          "pharmacist offering a short bridge supply"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: stress checkup reschedule vs prescription refill delay"
+          }
+        ],
+        "topic": "A patient asks a clinic pharmacist why a routine prescription refill has been delayed.",
+        "speakerRole": "patient and clinic pharmacist"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "sleep-workshop-cancellation-online",
+        "requiredConcepts": [
+          "a sleep workshop cancelled for low enrollment",
+          "a recorded session offered as substitute"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: exercise routine adjustment vs workshop cancellation"
+          }
+        ],
+        "topic": "A clinic member asks a wellness trainer why a scheduled sleep workshop was cancelled.",
+        "speakerRole": "clinic member and wellness trainer"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "lost-ticket-confirmation-reprint",
+        "requiredConcepts": [
+          "missing ticket confirmation before departure",
+          "boarding pass reprinted at the counter"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: late hotel checkout vs lost ticket reprint"
+          }
+        ],
+        "topic": "A passenger who never received a ticket confirmation email asks a train station agent for a reprinted pass.",
+        "speakerRole": "passenger and train station agent"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "hotel-noisy-room-elevator-swap",
+        "requiredConcepts": [
+          "a hotel room too noisy near the elevator",
+          "a quieter room offered on a higher floor"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: bus route upgrade offer vs noisy hotel room swap"
+          }
+        ],
+        "topic": "A hotel guest complains to a concierge about noise near their room and requests a change.",
+        "speakerRole": "hotel guest and hotel concierge"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "donated-letter-date-crosscheck",
+        "requiredConcepts": [
+          "a donated letter with a mismatched date",
+          "cross-checked against an old shipping ledger"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: landmark founding-decade correction vs letter date discrepancy"
+          }
+        ],
+        "topic": "An intern asks a heritage archive archivist how to resolve a date discrepancy on a newly donated historical letter.",
+        "speakerRole": "heritage archive intern and heritage archive archivist"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "immigration-ledger-translation-request",
+        "requiredConcepts": [
+          "an old immigration ledger in another language",
+          "a bilingual reviewer arranged for translation"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: migration-record delay apology vs translation request"
+          }
+        ],
+        "topic": "An archive assistant asks a heritage society coordinator for help translating an old immigration record.",
+        "speakerRole": "archive assistant and heritage society coordinator"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "folding-chair-picnic-loan",
+        "requiredConcepts": [
+          "a folding chair needed for a picnic",
+          "pickup time agreed for Saturday morning"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: bike borrow request vs folding chair loan"
+          }
+        ],
+        "topic": "A friend asks to borrow a folding chair for a weekend picnic and arranges a pickup time.",
+        "speakerRole": "two friends"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "shared-streaming-password-reset",
+        "requiredConcepts": [
+          "a shared streaming password no longer working",
+          "password reset after a security update"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: charger borrow permission vs shared password reset"
+          }
+        ],
+        "topic": "A sibling asks why a shared streaming account password stopped working and learns it was recently reset.",
+        "speakerRole": "two siblings"
+      }
+    ],
+    "conversations": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "personal-statement-tone-substitute-tutor",
+        "requiredConcepts": [
+          "a personal statement for a transfer application",
+          "a substitute tutor filling in for a colleague",
+          "tone flagged as too formal"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-03948a55",
+            "reason": "different content: thesis-statement office-hour feedback vs personal-statement tone review with a substitute tutor"
+          }
+        ],
+        "setting": "university writing center's group tutoring room during a walk-in session, after the usual tutor fell ill",
+        "speakerRoles": [
+          "writing center substitute tutor",
+          "transfer student revising a personal statement"
+        ]
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "client-slide-deck-last-minute-revision",
+        "requiredConcepts": [
+          "a client presentation scheduled later that day",
+          "outdated pricing figures found in the deck",
+          "dividing the correction work"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-03948a55",
+            "reason": "different content: weekend shift-swap confirmation vs last-minute slide deck correction"
+          }
+        ],
+        "setting": "small marketing company's shared workspace the morning before a client presentation",
+        "speakerRoles": [
+          "marketing coordinator",
+          "company manager reviewing the slide deck"
+        ]
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "habitat-survey-weather-postponement",
+        "requiredConcepts": [
+          "a habitat survey planned for early morning",
+          "a storm forecast threatening the survey window",
+          "agreeing to postpone by a day"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: gear checklist review vs weather-driven survey postponement"
+          }
+        ],
+        "setting": "a wildlife research station's equipment room the evening before a scheduled habitat survey",
+        "speakerRoles": [
+          "field biologist",
+          "research assistant preparing survey equipment"
+        ]
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "ceramic-bowl-crack-refir-timeline",
+        "requiredConcepts": [
+          "a glazed bowl cracked during firing",
+          "a refiring offered before the studio's exhibit deadline",
+          "explaining what caused the crack"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-03948a55",
+            "reason": "different content: crack near a museum gallery deadline vs crack near a studio exhibit deadline, different cause"
+          }
+        ],
+        "setting": "a community ceramic studio's kiln room the day after a group firing",
+        "speakerRoles": [
+          "ceramic studio instructor",
+          "studio member whose glazed bowl cracked"
+        ]
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "meal-plan-progress-checkin",
+        "requiredConcepts": [
+          "a meal plan started three weeks earlier",
+          "inconsistent energy levels reported",
+          "adjusting the plan's meal timing"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: nutrition consult wait vs meal-plan progress check-in"
+          }
+        ],
+        "setting": "a community wellness clinic's consultation room during a routine nutrition follow-up",
+        "speakerRoles": [
+          "clinic nutritionist",
+          "patient tracking a new meal plan"
+        ]
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "grocery-restock-schedule-conflict",
+        "requiredConcepts": [
+          "groceries used up before a planned restock",
+          "conflicting work shifts delaying the store run",
+          "agreeing on who goes tomorrow"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: bill-splitting and chore swap vs grocery restock scheduling conflict"
+          }
+        ],
+        "setting": "a shared apartment kitchen on a weekday evening",
+        "speakerRoles": [
+          "roommate returning from a long shift",
+          "roommate who used the last of the groceries"
+        ]
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "missed-bus-connection-rebooking",
+        "requiredConcepts": [
+          "a connecting bus that departed early",
+          "a free rebooking on the next route",
+          "an explanation for the early departure"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-03948a55",
+            "reason": "different content: missed train connection vs missed bus connection with rebooking"
+          }
+        ],
+        "setting": "a regional bus company's customer service counter the morning after a missed connection",
+        "speakerRoles": [
+          "bus company customer service agent",
+          "traveler whose connecting bus left early"
+        ]
+      }
+    ],
+    "announcements": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "career-fair-employer-list-update",
+        "requiredConcepts": [
+          "career fair employer list updated",
+          "printed resumes requested at check-in"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-03948a55",
+            "reason": "different content: extended exam-week library hours vs career fair employer list update"
+          }
+        ],
+        "setting": "campus student union's digital bulletin screen loop before the spring career fair",
+        "speakerRole": "career center program coordinator"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "public-park-cleanup-volunteer-signup",
+        "requiredConcepts": [
+          "a public park cleanup this weekend",
+          "volunteer sign-up at the community center desk"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: recreation center schedule changes vs park cleanup volunteer sign-up"
+          }
+        ],
+        "setting": "city hall's public notice board the week before a scheduled park cleanup",
+        "speakerRole": "municipal parks department coordinator"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "software-maintenance-window-downtime",
+        "requiredConcepts": [
+          "scheduled downtime for a maintenance window",
+          "staff advised to save work first"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-03948a55",
+            "reason": "different content: offline podcast download launch vs software maintenance downtime"
+          }
+        ],
+        "setting": "a software company's internal messaging channel announcing a scheduled maintenance window",
+        "speakerRole": "IT operations lead"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "clinic-flu-shot-walk-in-hours",
+        "requiredConcepts": [
+          "walk-in flu shot hours added",
+          "no appointment needed"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: workshop and stress session schedule changes vs new walk-in flu shot hours"
+          }
+        ],
+        "setting": "a community clinic's waiting room display screen",
+        "speakerRole": "clinic front desk supervisor"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "theater-matinee-added-performance",
+        "requiredConcepts": [
+          "an additional matinee added by demand",
+          "tickets available only at the box office"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-03948a55",
+            "reason": "different content: evening show delay vs newly added matinee performance"
+          }
+        ],
+        "setting": "a community theater's lobby display before evening performances",
+        "speakerRole": "theater box office lead"
+      }
+    ],
+    "academicTalks": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "peer-mentoring-first-year-retention",
+        "requiredConcepts": [
+          "campus peer mentoring paired with first-year students",
+          "retention compared across mentored cohorts"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: informal study-network ties vs formal peer mentoring retention data"
+          }
+        ],
+        "discipline": "higher education studies",
+        "speakerRole": "education studies lecturer explaining how peer mentoring programs affect first-year retention"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "flexible-scheduling-retail-turnover",
+        "requiredConcepts": [
+          "flexible shift scheduling at retail companies",
+          "turnover tracked before and after the change"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-03948a55",
+            "reason": "different content: customer feedback survey system vs flexible scheduling and turnover"
+          }
+        ],
+        "discipline": "organizational behavior",
+        "speakerRole": "business lecturer explaining how flexible scheduling affects employee turnover in retail companies"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "participatory-budgeting-spending-priorities",
+        "requiredConcepts": [
+          "residents voting on part of the municipal budget",
+          "spending shifting toward neighborhood projects"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: public comment period on an existing budget vs residents directly voting on allocation"
+          }
+        ],
+        "discipline": "urban planning",
+        "speakerRole": "urban planning lecturer explaining how participatory budgeting changes municipal spending priorities"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "small-routine-versus-lifestyle-change",
+        "requiredConcepts": [
+          "small daily routines sustained longer than overhauls",
+          "habit tracking showing higher completion rates"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "lsn-23b1b036",
+            "reason": "different content: hunger hormone rhythm biology vs behavioral psychology of routine sustainability"
+          }
+        ],
+        "discipline": "behavioral psychology",
+        "speakerRole": "psychology lecturer explaining why small daily routines are easier to sustain than large lifestyle changes"
+      }
+    ]
+  }
+}

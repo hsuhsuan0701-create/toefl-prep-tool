@@ -1,0 +1,488 @@
+{
+  "id": "wri-550947bf",
+  "source": "generated",
+  "createdAt": "2026-08-22T08:04:17.838Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Is there still time to change the name on my diploma?",
+        "frame": "Submit ___ ___ ___ ___.",
+        "tiles": [
+          "your",
+          "diploma name change request",
+          "before",
+          "until",
+          "the printing deadline"
+        ],
+        "answers": [
+          [
+            "your",
+            "diploma name change request",
+            "before",
+            "the printing deadline"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Can I retake the placement exam this month if I'm not happy with my score?",
+        "frame": "The placement exam retake ___ ___ ___ ___.",
+        "tiles": [
+          "is",
+          "are",
+          "only",
+          "offered",
+          "once per semester"
+        ],
+        "answers": [
+          [
+            "is",
+            "only",
+            "offered",
+            "once per semester"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-3",
+        "prompt": "What happens if I miss the monthly deadline for submitting my expense report?",
+        "frame": "Expense reports submitted after the deadline ___ ___ ___ ___.",
+        "tiles": [
+          "roll",
+          "rolls",
+          "over",
+          "automatically",
+          "to the next month"
+        ],
+        "answers": [
+          [
+            "roll",
+            "over",
+            "automatically",
+            "to the next month"
+          ],
+          [
+            "automatically",
+            "roll",
+            "over",
+            "to the next month"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Do we need anything special to start painting the community mural next week?",
+        "frame": "The community mural project ___ ___ ___ ___ ___.",
+        "tiles": [
+          "now requires",
+          "now require",
+          "a public safety permit",
+          "from the city",
+          "before painting",
+          "can begin"
+        ],
+        "answers": [
+          [
+            "now requires",
+            "a public safety permit",
+            "from the city",
+            "before painting",
+            "can begin"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-5",
+        "prompt": "How often do I need to check the energy readings for the climate monitoring project?",
+        "frame": "The energy readings ___ ___ ___ ___ without exception.",
+        "tiles": [
+          "for the climate monitoring project",
+          "must be",
+          "must have",
+          "logged",
+          "every hour"
+        ],
+        "answers": [
+          [
+            "for the climate monitoring project",
+            "must be",
+            "logged",
+            "every hour"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Should we keep counting the same habitat area again this week?",
+        "frame": "The survey crew ___ ___ ___ ___ ___.",
+        "tiles": [
+          "must rotate",
+          "must rotates",
+          "sampling zones",
+          "each week",
+          "to protect",
+          "local biodiversity"
+        ],
+        "answers": [
+          [
+            "must rotate",
+            "sampling zones",
+            "each week",
+            "to protect",
+            "local biodiversity"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Can I just drop off my ceramic pieces at the gallery like last time?",
+        "frame": "The ceramic pieces ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "that",
+          "are being displayed",
+          "is being displayed",
+          "will need",
+          "extra insurance",
+          "before",
+          "the festival opens"
+        ],
+        "answers": [
+          [
+            "that",
+            "are being displayed",
+            "will need",
+            "extra insurance",
+            "before",
+            "the festival opens"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Is there anything I need to do before my sleep study appointment?",
+        "frame": "The sleep study appointment ___ ___ ___ ___ ___ beforehand.",
+        "tiles": [
+          "now requires",
+          "now require",
+          "a stress questionnaire",
+          "that",
+          "must be",
+          "completed"
+        ],
+        "answers": [
+          [
+            "now requires",
+            "a stress questionnaire",
+            "that",
+            "must be",
+            "completed"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-9",
+        "prompt": "My express ticket doesn't have a seat number on it. Is that a mistake?",
+        "frame": "The express ticket ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "that you purchased",
+          "no longer",
+          "includes",
+          "include",
+          "a seat reservation",
+          "on the new",
+          "express route"
+        ],
+        "answers": [
+          [
+            "that you purchased",
+            "no longer",
+            "includes",
+            "a seat reservation",
+            "on the new",
+            "express route"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Can I start my reform-movement tour group right after the one ahead of us finishes?",
+        "frame": "Consecutive tour groups ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "must stay",
+          "ten minutes",
+          "apart",
+          "so that",
+          "they don't overlap",
+          "they doesn't overlap",
+          "at the courthouse steps"
+        ],
+        "answers": [
+          [
+            "must stay",
+            "ten minutes",
+            "apart",
+            "so that",
+            "they don't overlap",
+            "at the courthouse steps"
+          ]
+        ],
+        "timeLimitSec": 40
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You were recently approved to lead a free weekly walking tour through the city's civic outreach program, using a reserved community meeting room to gather participants before each tour begins. For the past two sessions, another group has already been using that room at your scheduled start time, forcing you to begin late both times. You want the coordinator to know about this and to make sure it does not keep happening.",
+    "to": "the city's civic outreach coordinator",
+    "subject": "Room Conflict for the Weekly Walking Tour",
+    "bullets": [
+      "Thank the coordinator for approving you to lead the weekly walking tour.",
+      "Explain that the reserved meeting room has been double-booked for the past two sessions.",
+      "Request a guaranteed room reservation for future tour sessions."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Cultural Heritage and Memory",
+    "professorName": "Professor Alvarez",
+    "professorPost": "Family traditions often rest on origin stories that get retold for generations, but historical research sometimes uncovers facts that don't match those stories. For example, a family might learn that the ancestor they always credited with starting a beloved holiday recipe actually adapted it from someone else's, or that a founding date they've celebrated for decades is inaccurate. When new evidence like this surfaces, should descendants revise the tradition to reflect what actually happened, or keep it unchanged because of what it means to the family? Why?",
+    "studentPosts": [
+      {
+        "name": "Maya",
+        "post": "I think families should revise the tradition once they know the truth. Traditions are supposed to honor real history, and continuing to celebrate something inaccurate almost feels dishonest to future generations. My family recently found out a 'founding' story was wrong, and updating it actually made the tradition feel more meaningful, not less."
+      },
+      {
+        "name": "Dominic",
+        "post": "I get Maya's point, but I'd keep the tradition as it is. The value isn't really about historical accuracy; it's about the shared ritual and the emotional connection between generations. Rewriting the story to match new facts can feel like erasing the version that actually shaped the family's identity, even if it wasn't perfectly true."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "campus-academics",
+          "situation": "A university registrar tells a graduating student that the diploma name change request must be submitted before the printing deadline.",
+          "participantRoles": [
+            "university registrar",
+            "graduating student"
+          ],
+          "noveltyKey": "diploma-name-change-printing-deadline",
+          "requiredConcepts": [
+            "diploma name change request",
+            "printing deadline cutoff"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "campus-academics",
+          "situation": "A campus academic advisor tells an incoming student that the placement exam retake is only offered once per semester.",
+          "participantRoles": [
+            "campus academic advisor",
+            "incoming student"
+          ],
+          "noveltyKey": "placement-exam-retake-once-per-semester",
+          "requiredConcepts": [
+            "placement exam retake",
+            "once-per-semester limit"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "An office manager tells a new employee that expense reports submitted after the company's monthly deadline roll over automatically.",
+          "participantRoles": [
+            "office manager",
+            "new employee"
+          ],
+          "noveltyKey": "expense-report-deadline-rollover",
+          "requiredConcepts": [
+            "expense report deadline",
+            "automatic rollover to next month"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-bdbdd45c",
+              "reason": "that item covers a loading dock's early Friday closure; this one is an expense-report submission deadline, a different office process."
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A city parks clerk tells a neighborhood volunteer that the community mural project now requires a public safety permit.",
+          "participantRoles": [
+            "city parks clerk",
+            "neighborhood volunteer"
+          ],
+          "noveltyKey": "mural-project-public-safety-permit",
+          "requiredConcepts": [
+            "community mural project",
+            "public safety permit requirement"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-bdbdd45c",
+              "reason": "that item covers a park permit renewal deadline moving earlier; this one is a new permit requirement for a mural project, a different civic process."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A laboratory director tells a new research assistant that the climate monitoring project's energy readings must be logged hourly.",
+          "participantRoles": [
+            "laboratory director",
+            "new research assistant"
+          ],
+          "noveltyKey": "climate-monitoring-energy-log-hourly",
+          "requiredConcepts": [
+            "climate monitoring project",
+            "hourly energy reading log"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A field biology instructor tells the survey crew that the habitat count must rotate sampling zones each week to protect local biodiversity.",
+          "participantRoles": [
+            "field biology instructor",
+            "survey crew member"
+          ],
+          "noveltyKey": "habitat-count-rotation-sampling-zones",
+          "requiredConcepts": [
+            "habitat count rotation",
+            "weekly sampling zone change"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-736f2103",
+              "reason": "that item covers correcting a greenhouse humidity log entry; this one is a weekly rotation of habitat survey sampling zones, a different field procedure."
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A museum registrar tells a visiting sculptor that the gallery's ceramic pieces need extra insurance before the festival opening.",
+          "participantRoles": [
+            "museum registrar",
+            "visiting sculptor"
+          ],
+          "noveltyKey": "ceramic-gallery-insurance-before-festival",
+          "requiredConcepts": [
+            "ceramic gallery pieces",
+            "extra insurance before the festival"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A clinic scheduler tells a patient that the sleep study appointment now requires a stress questionnaire beforehand.",
+          "participantRoles": [
+            "clinic scheduler",
+            "patient"
+          ],
+          "noveltyKey": "sleep-study-stress-questionnaire",
+          "requiredConcepts": [
+            "sleep study appointment",
+            "stress questionnaire beforehand"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-736f2103",
+              "reason": "that item covers a vision-screening waitlist; this one is a new pre-appointment stress questionnaire requirement for a sleep study, a different clinical process."
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A train station agent tells a commuter that the express ticket no longer includes a seat reservation on the new route.",
+          "participantRoles": [
+            "train station agent",
+            "commuter"
+          ],
+          "noveltyKey": "express-ticket-no-seat-reservation",
+          "requiredConcepts": [
+            "express ticket",
+            "no seat reservation on new route"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-bdbdd45c",
+              "reason": "that item covers an express ticket being invalid on a local train; this one is an express ticket that no longer includes a seat reservation, a different ticketing limitation."
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A heritage society coordinator tells a new walking-tour guide that consecutive reform-movement tour groups must stay ten minutes apart to avoid overlapping at the courthouse steps.",
+          "participantRoles": [
+            "heritage society coordinator",
+            "walking-tour guide"
+          ],
+          "noveltyKey": "reform-tour-ten-minute-gap",
+          "requiredConcepts": [
+            "reform-movement walking tour",
+            "ten-minute gap between groups"
+          ],
+          "distinguishesFrom": []
+        }
+      ]
+    },
+    "email": {
+      "domain": "community-civic",
+      "noveltyKey": "civic-walking-tour-room-double-booking",
+      "requiredConcepts": [
+        "weekly civic walking tour",
+        "community meeting room double-booked twice",
+        "request for a guaranteed room reservation"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-b91a8955",
+          "reason": "that item covers a shared water tap access problem at a community garden; this one is a meeting-room double-booking problem for a civic walking tour, a different resource and setting."
+        }
+      ],
+      "situation": "After volunteering to lead a free weekly walking tour through the city's civic outreach program, the organizer finds the reserved community meeting room double-booked with a different group for the past two sessions.",
+      "recipientRole": "the city's civic outreach coordinator",
+      "communicativeActs": [
+        "express appreciation for being approved to lead the walking tour",
+        "report the recurring room double-booking problem",
+        "request a guaranteed room reservation for future sessions"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "history-social-change",
+      "noveltyKey": "tradition-revision-vs-historical-accuracy",
+      "requiredConcepts": [
+        "family tradition built on an inaccurate origin story",
+        "choice to revise the tradition or keep it unchanged",
+        "historical accuracy weighed against emotional attachment"
+      ],
+      "distinguishesFrom": [],
+      "proposition": "When newly uncovered historical facts contradict a family's long-held tradition about its own origins, should descendants revise the tradition or preserve it as inherited?",
+      "competingValues": [
+        "preserving an inherited tradition even after the facts change",
+        "valuing historical accuracy over sentimental attachment"
+      ]
+    }
+  }
+}

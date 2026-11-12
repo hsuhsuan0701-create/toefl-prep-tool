@@ -1,0 +1,184 @@
+{
+  "id": "spk-9dbd086f",
+  "source": "generated",
+  "createdAt": "2026-08-23T13:58:58.180Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Rooftop Weather Station Walkthrough",
+    "scenarioDescription": "You're shadowing the lab's senior weather station operator on the rooftop of the environmental science building, running through the morning checklist before the day's official readings begin. Listen to each instruction and repeat what the operator says. Repeat only once.",
+    "introAudio": "stimuli/spk-9dbd086f/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-9dbd086f.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Rooftop Weather Station Walkthrough. You're shadowing the lab's senior weather station operator on the rooftop of the environmental science building, running through the morning checklist before the day's official readings begin. Listen to each instruction and repeat what the operator says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- We start every round at the gauge.\n- Check the collection cup and the overflow tube for debris.\n- Empty the cup into the drain, then reset it fully.\n- Wipe the temperature sensor shield, but don't disturb the wiring underneath.\n- After you wipe away the morning dew, check the sensor's calibration sticker.\n- Initial the wind vane's calibration log at each stop before moving on.\n- Upload the hourly readings you collect to the shared data folder.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "We start every round at the gauge.",
+        "audio": "stimuli/spk-9dbd086f/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Check the collection cup and the overflow tube for debris.",
+        "audio": "stimuli/spk-9dbd086f/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Empty the cup into the drain, then reset it fully.",
+        "audio": "stimuli/spk-9dbd086f/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Wipe the temperature sensor shield, but don't disturb the wiring underneath.",
+        "audio": "stimuli/spk-9dbd086f/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "After you wipe away the morning dew, check the sensor's calibration sticker.",
+        "audio": "stimuli/spk-9dbd086f/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Initial the wind vane's calibration log at each stop before moving on.",
+        "audio": "stimuli/spk-9dbd086f/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Upload the hourly readings you collect to the shared data folder.",
+        "audio": "stimuli/spk-9dbd086f/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Software Update Habits Phone Survey",
+    "intro": "Hi, thanks for picking up! I'm calling from a university technology usability research group — we're running a brief, unannounced phone survey about how people decide when to install software updates on their personal devices. It'll only take a few minutes. Thank you for speaking with me today.",
+    "introAudio": "stimuli/spk-9dbd086f/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, which personal device do you update most often — your phone, your laptop, or something else — and how do you usually find out an update is ready, say, from a notification on your locked screen?",
+        "audio": "stimuli/spk-9dbd086f/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now tell me about one specific recent time this happened — maybe you postponed an update because it came up right before an important meeting or exam, or your device just installed updates automatically overnight without asking. What happened, and why did you make that choice?",
+        "audio": "stimuli/spk-9dbd086f/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK, next I'd like your opinion. Some people install every update the moment it's offered, while others prefer to wait and see how other users react before updating. Which approach do you think is better, and why?",
+        "audio": "stimuli/spk-9dbd086f/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask one final question. Sometimes a device maker pushes through a mandatory security update that users can't skip or delay. Should device makers always let users postpone every update indefinitely, or is forcing some updates through sometimes the right call? Why?",
+        "audio": "stimuli/spk-9dbd086f/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-briefing",
+      "take": "retake",
+      "measuredWpm": 142.4,
+      "targetWpm": 165,
+      "minWpm": 145,
+      "maxWpm": 195
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "science-environment",
+      "noveltyKey": "rooftop-weather-station-observer-orientation",
+      "requiredConcepts": [
+        "rain gauge collection cup checked and emptied",
+        "wind vane calibration log initialed at each stop",
+        "temperature sensor shield wiped clear of morning dew",
+        "hourly readings uploaded to the shared data folder"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-bbb69428",
+          "reason": "spk-bbb69428 orients a new assistant through plant-care stations in a greenhouse biology lab; this plans a rooftop weather-instrument walkthrough, a different setting and content focus within the same domain."
+        }
+      ],
+      "setting": "a rooftop weather observation station beside the environmental science building, just before the morning data-collection round",
+      "speakerRole": "the environmental science laboratory's senior weather station operator training a newly hired observer",
+      "communicativePurpose": "orient the new observer through each instrument stop in order so morning climate readings run smoothly without supervision"
+    },
+    "interview": {
+      "domain": "technology-media",
+      "noveltyKey": "device-update-decision-habit",
+      "requiredConcepts": [
+        "software update notification appearing on a locked screen",
+        "delaying an update before an important meeting or exam",
+        "automatic updates installed overnight without asking",
+        "a device maker forcing a mandatory security update"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-8fed5241",
+          "reason": "spk-8fed5241 covers a digital reminder app's daily task habit; this plans a software update installation decision on a personal device, a different everyday tech behavior within the same domain."
+        }
+      ],
+      "topic": "deciding when to install software updates on a personal device",
+      "premise": "a technology usability research group places a brief unannounced phone call about how people decide when to install software updates on their personal device",
+      "questionArc": [
+        "asks which personal device the test taker updates most often and how they usually find out an update is available",
+        "asks the test taker to recall a specific recent time they installed or postponed a software update, and why they made that choice",
+        "presents two views, install updates immediately versus wait and see how others react first, and asks the test taker to pick a side",
+        "broadens to whether device makers should let users delay every update indefinitely, asking the test taker to evaluate that policy"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "british",
+      "voice": "Gacrux",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "north-american",
+      "voice": "Sulafat",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

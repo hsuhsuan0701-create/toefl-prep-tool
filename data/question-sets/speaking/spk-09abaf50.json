@@ -1,0 +1,225 @@
+{
+  "id": "spk-09abaf50",
+  "source": "generated",
+  "createdAt": "2026-08-25T13:50:13.403Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Blood Donation Station Orientation",
+    "scenarioDescription": "You're volunteering at a community clinic. Listen to the lead phlebotomy coordinator train a new volunteer greeter before the clinic's monthly blood donation drive, and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-09abaf50/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-09abaf50.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Blood Donation Station Orientation. You're volunteering at a community clinic. Listen to the lead phlebotomy coordinator train a new volunteer greeter before the clinic's monthly blood donation drive, and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Please greet every donor with a warm smile.\n- Hand each new donor a clipboard and a pen.\n- Collect the clipboard and review the eligibility screening checklist together.\n- The coordinator checks each form, and she waves donors toward the chairs.\n- Once donors finish giving blood, guide them to the recovery snack table.\n- If a donor feels faint, lower the chair and alert the coordinator immediately.\n- Restock the juice and cookies at the table that welcomes each donor.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Please greet every donor with a warm smile.",
+        "audio": "stimuli/spk-09abaf50/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.562,
+          "y": 0.391,
+          "w": 0.12,
+          "h": 0.15
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Hand each new donor a clipboard and a pen.",
+        "audio": "stimuli/spk-09abaf50/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Collect the clipboard and review the eligibility screening checklist together.",
+        "audio": "stimuli/spk-09abaf50/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.117,
+          "y": 0.16,
+          "w": 0.201,
+          "h": 0.182
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The coordinator checks each form, and she waves donors toward the chairs.",
+        "audio": "stimuli/spk-09abaf50/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.404,
+          "y": 0.106,
+          "w": 0.093,
+          "h": 0.13
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Once donors finish giving blood, guide them to the recovery snack table.",
+        "audio": "stimuli/spk-09abaf50/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "If a donor feels faint, lower the chair and alert the coordinator immediately.",
+        "audio": "stimuli/spk-09abaf50/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.714,
+          "y": 0.301,
+          "w": 0.193,
+          "h": 0.16
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Restock the juice and cookies at the table that welcomes each donor.",
+        "audio": "stimuli/spk-09abaf50/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.665,
+          "y": 0.62,
+          "w": 0.252,
+          "h": 0.215
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Entryway Tidying Before Guests",
+    "intro": "A home-organization researcher calls you out of the blue for a quick survey. She explains she's collecting short, informal answers about how people get their entryway ready before guests arrive, and asks if you have a few minutes to talk.",
+    "introAudio": "stimuli/spk-09abaf50/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thanks so much for chatting with me! To start, how do you usually tidy your entryway before guests arrive — do you do things like straighten the shoe rack by the door, clear off the coat hooks, or something else entirely?",
+        "audio": "stimuli/spk-09abaf50/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thanks! Now think of a specific time recently when you knew guests were coming — can you walk me through what you actually did to get the entryway ready that day? For example, did you shake out the doormat, or was it something else?",
+        "audio": "stimuli/spk-09abaf50/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "That's really helpful. Here's a question with two sides: some people say the very last thing before guests knock should be practical — like checking the shoe rack is tidy — while others say it should be a finishing touch, like fluffing the doormat. Which do you do last, and why?",
+        "audio": "stimuli/spk-09abaf50/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good point. Last question: some people think a tidy entryway shapes a guest's whole first impression, while others think it barely matters once guests step inside. What's your view — how much does entryway tidiness really affect that first impression, and why?",
+        "audio": "stimuli/spk-09abaf50/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-briefing",
+      "take": "retake",
+      "measuredWpm": 138.9,
+      "targetWpm": 165,
+      "minWpm": 145,
+      "maxWpm": 195
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "clinic-blood-donation-station-orientation",
+      "requiredConcepts": [
+        "donor eligibility screening checklist",
+        "recovery snack table setup",
+        "fainting response protocol",
+        "juice and cookie station restock"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-d9a49a14",
+          "reason": "that set orients a vision/hearing screening room, a different clinic station"
+        },
+        {
+          "setId": "spk-dec524bd",
+          "reason": "that set orients a physical therapy intake area, a different clinic station"
+        }
+      ],
+      "setting": "a community clinic's blood donation station",
+      "speakerRole": "the clinic's lead phlebotomy coordinator training a newly hired volunteer greeter",
+      "communicativePurpose": "orient the volunteer through each donor-intake station step in order before the clinic's monthly donation drive begins"
+    },
+    "interview": {
+      "domain": "everyday-life",
+      "noveltyKey": "entryway-tidying-before-guests-habit",
+      "requiredConcepts": [
+        "shoe rack reorganized near the door",
+        "coat hooks cleared before guests arrive",
+        "doormat shaken out each week"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-1866e2c0",
+          "reason": "that set covers weekly laundry sorting, not entryway tidying before guests"
+        },
+        {
+          "setId": "spk-c68f245c",
+          "reason": "that set covers weekly grocery list habits, an unrelated everyday routine"
+        },
+        {
+          "setId": "spk-fd38f94c",
+          "reason": "that set covers houseplant care, a different everyday-life habit"
+        }
+      ],
+      "topic": "keeping the home entryway tidy before guests arrive",
+      "premise": "A home-organization lifestyle researcher makes a brief unannounced phone call asking how the respondent tidies the entryway before guests arrive.",
+      "questionArc": [
+        "Researcher introduces a home-organization survey and confirms the respondent has a few minutes to talk.",
+        "Asks how the respondent usually tidies the entryway before guests arrive.",
+        "Asks the respondent to recall a specific recent time guests were expected.",
+        "Asks what part of the entryway routine the respondent handles last before guests knock."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "australian",
+      "voice": "Sadaltager",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "north-american",
+      "voice": "Sulafat",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

@@ -1,0 +1,270 @@
+{
+  "id": "wri-787b9d66",
+  "source": "generated",
+  "createdAt": "2026-07-28T12:04:27.864Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Where did you put my keys?",
+        "frame": "I ___ ___ ___ ___ kitchen table.",
+        "tiles": [
+          "left",
+          "them",
+          "on",
+          "the",
+          "leave"
+        ],
+        "answers": [
+          [
+            "left",
+            "them",
+            "on",
+            "the"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Why is Marcus not at practice today?",
+        "frame": "He ___ ___ ___ ___ afternoon.",
+        "tiles": [
+          "has",
+          "a",
+          "doctor's appointment",
+          "this",
+          "have"
+        ],
+        "answers": [
+          [
+            "has",
+            "a",
+            "doctor's appointment",
+            "this"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Has anyone fixed the printer on the third floor?",
+        "frame": "It ___ ___ Monday ___ ___ team.",
+        "tiles": [
+          "was repaired",
+          "on",
+          "by",
+          "the facilities",
+          "were repaired"
+        ],
+        "answers": [
+          [
+            "was repaired",
+            "on",
+            "by",
+            "the facilities"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-4",
+        "prompt": "How was the seminar this morning?",
+        "frame": "It ___ ___ ___ ___ first.",
+        "tiles": [
+          "was",
+          "hard",
+          "to follow",
+          "at",
+          "were"
+        ],
+        "answers": [
+          [
+            "was",
+            "hard",
+            "to follow",
+            "at"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Did anyone tell the committee about the delay?",
+        "frame": "I ___ ___ Priya ___ ___ them.",
+        "tiles": [
+          "think",
+          "that",
+          "already",
+          "emailed",
+          "thinks"
+        ],
+        "answers": [
+          [
+            "think",
+            "that",
+            "already",
+            "emailed"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-6",
+        "prompt": "How did Nadia get the report so fast?",
+        "frame": "The intern ___ ___ ___ ___ night.",
+        "tiles": [
+          "sent",
+          "her",
+          "the file",
+          "last",
+          "to her"
+        ],
+        "answers": [
+          [
+            "sent",
+            "her",
+            "the file",
+            "last"
+          ],
+          [
+            "sent",
+            "the file",
+            "to her",
+            "last"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Is the new apartment as noisy as your old place?",
+        "frame": "It ___ ___ ___ ___ ___ old one.",
+        "tiles": [
+          "is",
+          "a lot",
+          "quieter",
+          "than",
+          "my",
+          "more"
+        ],
+        "answers": [
+          [
+            "is",
+            "a lot",
+            "quieter",
+            "than",
+            "my"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-8",
+        "prompt": "So the storm caused the power outage?",
+        "frame": "No, it was ___ ___ ___ ___ ___ power.",
+        "tiles": [
+          "a failure",
+          "at the substation",
+          "that",
+          "cut",
+          "the",
+          "cuts"
+        ],
+        "answers": [
+          [
+            "a failure",
+            "at the substation",
+            "that",
+            "cut",
+            "the"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Which of the applicants did the panel choose?",
+        "frame": "They ___ ___ ___ ___ ___ a similar program before.",
+        "tiles": [
+          "chose",
+          "the",
+          "candidate",
+          "who",
+          "had run",
+          "have run"
+        ],
+        "answers": [
+          [
+            "chose",
+            "the",
+            "candidate",
+            "who",
+            "had run"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Was the field trip worth the long drive?",
+        "frame": "Not only ___ ___ ___, but we also ___ ___ ___ designed it.",
+        "tiles": [
+          "did we",
+          "tour",
+          "the wetland",
+          "met",
+          "the team",
+          "that",
+          "we did"
+        ],
+        "answers": [
+          [
+            "did we",
+            "tour",
+            "the wetland",
+            "met",
+            "the team",
+            "that"
+          ]
+        ],
+        "timeLimitSec": 40
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You ordered a set of storage shelves from a local furniture workshop that builds every piece to order. The delivery arrived on the promised date and was carefully packed, but one of the wooden side panels is cracked and the mounting brackets are missing from the box. You have decided to write to the workshop's customer service manager.",
+    "to": "orders@fernwoodworkshop.com",
+    "subject": "Order #4127 - damaged panel and missing brackets",
+    "bullets": [
+      "Express appreciation for something the workshop did well.",
+      "Describe the problem you found with the delivered shelves.",
+      "Propose a specific solution and say when you need it resolved."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Urban Studies 210: Cities and Public Space",
+    "professorName": "Professor Nakamura",
+    "professorPost": "Many cities are rethinking what curb space is for. Some have converted downtown street parking into wider sidewalks, bike lanes, and outdoor seating, while others argue that removing parking drives shoppers and workers out to suburban retail parks instead. There are reasonable arguments on both sides. What do you think? Should a city convert downtown street parking into space for pedestrians and cyclists? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Elena",
+        "post": "In my hometown the council replaced two blocks of parking with wide sidewalks and outdoor seating, and a street that used to be empty after five o'clock was crowded within a year. Curb space is public land, and giving it away to a handful of parked cars for free is a poor use of it."
+      },
+      {
+        "name": "Tobias",
+        "post": "That may work in a dense downtown, but my parents run a hardware store, and most of their customers drive because they are carrying lumber and paint home. Take the parking away and those customers simply go to the retail park outside town. Cities should fix the buses first and remove spaces afterward."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  }
+}

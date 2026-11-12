@@ -1,0 +1,136 @@
+{
+  "id": "spk-26132ac6",
+  "source": "generated",
+  "createdAt": "2026-07-28T14:24:21.546Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Campus Food Pantry Volunteer Walkthrough",
+    "scenarioDescription": "You have signed up to volunteer at the campus food pantry. A staff member is walking you through the space before your first shift. Listen to the staff member and repeat what they say. Repeat only once.",
+    "image": {
+      "file": "images/scenarios/spk-26132ac6.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Campus Food Pantry Volunteer Walkthrough. You have signed up to volunteer at the campus food pantry. A staff member is walking you through the space before your first shift. Listen to the staff member and repeat what they say. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- The front desk is right by the door.\n- Our volunteers and our staff both sign in here.\n- You'll grab a cart and push it down the middle aisle.\n- The canned goods go on these shelves, but the bread stays up front.\n- When a shipment arrives, we check the dates before anything goes on the shelf.\n- If the cooler door won't shut all the way, let someone at the desk know right away.\n- The clipboard hanging by the back door lists all the items that we're running low on this week.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "The front desk is right by the door.",
+        "audio": "stimuli/spk-26132ac6/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.1,
+          "y": 0.53,
+          "w": 0.23,
+          "h": 0.2
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Our volunteers and our staff both sign in here.",
+        "audio": "stimuli/spk-26132ac6/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.1,
+          "y": 0.53,
+          "w": 0.23,
+          "h": 0.2
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "You'll grab a cart and push it down the middle aisle.",
+        "audio": "stimuli/spk-26132ac6/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.49,
+          "y": 0.52,
+          "w": 0.13,
+          "h": 0.18
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The canned goods go on these shelves, but the bread stays up front.",
+        "audio": "stimuli/spk-26132ac6/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.62,
+          "y": 0.52,
+          "w": 0.22,
+          "h": 0.24
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "When a shipment arrives, we check the dates before anything goes on the shelf.",
+        "audio": "stimuli/spk-26132ac6/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.21,
+          "y": 0.24,
+          "w": 0.22,
+          "h": 0.21
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "If the cooler door won't shut all the way, let someone at the desk know right away.",
+        "audio": "stimuli/spk-26132ac6/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.78,
+          "y": 0.25,
+          "w": 0.17,
+          "h": 0.32
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The clipboard hanging by the back door lists all the items that we're running low on this week.",
+        "audio": "stimuli/spk-26132ac6/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.63,
+          "y": 0.12,
+          "w": 0.08,
+          "h": 0.11
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Learning a Skill Outside of Class",
+    "intro": "A research team at your school is studying how students learn new skills on their own, outside of their regular classes. A researcher will ask you four questions about your own experience. There is no preparation time. Answer each question as completely as you can.",
+    "introAudio": "stimuli/spk-26132ac6/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thank you for speaking with me today. To start, what is something you have taught yourself outside of class, such as a skill or a hobby, and how do you usually practice it?",
+        "audio": "stimuli/spk-26132ac6/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think back to a time when your learning was not going well and you felt stuck. Tell me what happened and what you did about it. Why do you think you reacted that way?",
+        "audio": "stimuli/spk-26132ac6/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I would like to ask your opinion. Some people believe the best way to learn a new skill is to take a formal class, where a teacher corrects your mistakes. Others find they learn faster on their own, using videos and a lot of practice. Which approach works better for you, and why?",
+        "audio": "stimuli/spk-26132ac6/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Suppose a school gave every student one free afternoon each week, with no classes, just time to work on a skill of their own choosing. Would that be a good use of school time? What do you think would happen, and what advice would you give the school?",
+        "audio": "stimuli/spk-26132ac6/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  }
+}

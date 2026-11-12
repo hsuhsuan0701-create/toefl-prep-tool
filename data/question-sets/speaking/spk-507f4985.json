@@ -1,0 +1,190 @@
+{
+  "id": "spk-507f4985",
+  "source": "generated",
+  "createdAt": "2026-08-25T13:52:40.985Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Composing Room Orientation",
+    "scenarioDescription": "Listen to the senior letterpress printer welcome a new apprentice to the composing room before the shop opens, and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-507f4985/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-507f4985.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Composing Room Orientation. Listen to the senior letterpress printer welcome a new apprentice to the composing room before the shop opens, and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Today you'll set type for our morning demonstration.\n- The type cases and the composing stick sit here.\n- We sort the type by size and store it carefully.\n- You'll pick each letter carefully, and you'll load the stick letter by letter.\n- Once the type is sorted by size, we lock it into the frame.\n- The heavy iron frame that holds the locked type must sit level.\n- The rollers, inked evenly before the first pull, need one final check.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Today you'll set type for our morning demonstration.",
+        "audio": "stimuli/spk-507f4985/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The type cases and the composing stick sit here.",
+        "audio": "stimuli/spk-507f4985/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "We sort the type by size and store it carefully.",
+        "audio": "stimuli/spk-507f4985/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "You'll pick each letter carefully, and you'll load the stick letter by letter.",
+        "audio": "stimuli/spk-507f4985/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Once the type is sorted by size, we lock it into the frame.",
+        "audio": "stimuli/spk-507f4985/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The heavy iron frame that holds the locked type must sit level.",
+        "audio": "stimuli/spk-507f4985/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The rollers, inked evenly before the first pull, need one final check.",
+        "audio": "stimuli/spk-507f4985/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Phone Photo Habits Survey",
+    "intro": "A mobile-technology usability researcher is calling to ask about everyday phone habits. She confirms you have a few minutes, then turns to how you organize the photos on your phone.",
+    "introAudio": "stimuli/spk-507f4985/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Hi, thanks so much for taking a moment — I'm calling about a quick survey on phone habits, and I promise this won't take long. To start, how do you currently organize the photos stored on your phone?",
+        "audio": "stimuli/spk-507f4985/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Thanks, that's helpful. Could you give me one specific recent example — maybe a time you sorted pictures into an album after a weekend outing?",
+        "audio": "stimuli/spk-507f4985/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "Good example. Now, some people delete old photos right away to free up storage, while others keep everything just in case they need it later. Which of those sounds more like you, and why?",
+        "audio": "stimuli/spk-507f4985/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "That makes sense. Last question — in general, do you think people should make a habit of clearing out old photos, or is holding onto everything harmless? What would you recommend, and how would you decide what to remove?",
+        "audio": "stimuli/spk-507f4985/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 212.4,
+      "targetWpm": 184,
+      "minWpm": 156,
+      "maxWpm": 209
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "history-social-change",
+      "noveltyKey": "letterpress-heritage-workshop-orientation",
+      "requiredConcepts": [
+        "type sorted by size before the frame locks",
+        "rollers inked evenly before the first pull",
+        "the composing stick loaded letter by letter"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-d340295a",
+          "reason": "That set is a textile conservation lab orienting a handling assistant around garment donations; this set is a letterpress workshop orienting an apprentice around type-setting steps."
+        },
+        {
+          "setId": "spk-8663cea7",
+          "reason": "That set is a campus history museum archive orienting a collection helper around archival storage; this set is a working letterpress shop orienting an apprentice around printing steps, not archival storage."
+        }
+      ],
+      "setting": "a heritage letterpress workshop's composing room, half an hour before the shop opens for a demonstration of the historical printing tradition it keeps alive",
+      "speakerRole": "the workshop's senior letterpress printer training a newly hired apprentice",
+      "communicativePurpose": "orient the apprentice through each type-setting station in order — sorting type by size, locking the frame, inking the rollers — before the demonstration crowd arrives"
+    },
+    "interview": {
+      "domain": "technology-media",
+      "noveltyKey": "phone-photo-organization-habit",
+      "requiredConcepts": [
+        "photos sorted into an album after an outing",
+        "old photos deleted to free up storage",
+        "a specific recent sorting example given"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-fb16d13c",
+          "reason": "That set covers managing notification alerts on a personal device; this set covers organizing photos already stored on the device, a different maintenance habit."
+        },
+        {
+          "setId": "spk-9dbd086f",
+          "reason": "That set covers deciding whether to install a software update; this set covers sorting and deleting photos, not update decisions."
+        }
+      ],
+      "topic": "how the respondent organizes photos stored on a personal phone",
+      "premise": "A mobile-technology usability researcher makes a brief unannounced phone call about everyday photo habits on personal devices, confirms the respondent has a few minutes, then turns to how they currently organize the photos on their phone.",
+      "questionArc": [
+        "The caller introduces a phone-use habits survey and confirms the respondent can spare a few minutes to talk.",
+        "The caller asks how the respondent currently organizes the photos stored on their phone.",
+        "The caller asks for a specific recent example, such as sorting pictures into an album after a weekend outing.",
+        "The caller asks whether the respondent ever deletes old photos to free up storage, and how they decide what to remove."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "australian",
+      "voice": "Sadaltager",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Algieba",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

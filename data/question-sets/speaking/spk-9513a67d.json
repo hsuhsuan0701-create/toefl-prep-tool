@@ -1,0 +1,199 @@
+{
+  "id": "spk-9513a67d",
+  "source": "generated",
+  "createdAt": "2026-08-31T15:34:06.867Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Stained-Glass Restoration Studio Orientation",
+    "scenarioDescription": "You're a newly hired apprentice in an art restoration studio's stained-glass workshop bay, quiet before the museum's reopening morning. Listen to the senior restorer walk you through each cleaning and inspection station and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-9513a67d/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-9513a67d.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Stained-Glass Restoration Studio Orientation. You're a newly hired apprentice in an art restoration studio's stained-glass workshop bay, quiet before the museum's reopening morning. Listen to the senior restorer walk you through each cleaning and inspection station and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- This bay holds every panel we're restoring.\n- Gloves and a soft brush sit on this tray.\n- We check each panel and note every crack we find.\n- The glass looks clean, but the lead lines still need a closer look.\n- We always check the lead came for cracks before any solder touches it.\n- The senior restorer testing the solution always checks a hidden corner first.\n- Every restored panel gets photographed before it returns to its museum window.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "This bay holds every panel we're restoring.",
+        "audio": "stimuli/spk-9513a67d/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Gloves and a soft brush sit on this tray.",
+        "audio": "stimuli/spk-9513a67d/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "We check each panel and note every crack we find.",
+        "audio": "stimuli/spk-9513a67d/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The glass looks clean, but the lead lines still need a closer look.",
+        "audio": "stimuli/spk-9513a67d/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "We always check the lead came for cracks before any solder touches it.",
+        "audio": "stimuli/spk-9513a67d/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The senior restorer testing the solution always checks a hidden corner first.",
+        "audio": "stimuli/spk-9513a67d/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Every restored panel gets photographed before it returns to its museum window.",
+        "audio": "stimuli/spk-9513a67d/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Office Hours Habits Phone Survey",
+    "intro": "Hi, thank you for picking up — this is a short call for an academic-habits survey about visiting professors during office hours. Do you have a few minutes to talk about one of your university courses?",
+    "introAudio": "stimuli/spk-9513a67d/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Great, thanks for the time. First — when you're taking a course, how do you usually decide whether to go to your professor's office hours?",
+        "audio": "stimuli/spk-9513a67d/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "That's helpful. Now, could you tell me about one specific time you actually went — maybe the most recent course where you visited a professor's office hours?",
+        "audio": "stimuli/spk-9513a67d/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "Thanks for that story. Some students say a visit is only worth it if they leave with a concrete answer, while others say it's worth it just to be recognized by the professor. Looking back, what made your visit feel worth attending?",
+        "audio": "stimuli/spk-9513a67d/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question — do you think professors should require every student to visit office hours at least once during a course, or is it better left optional the way it usually is now?",
+        "audio": "stimuli/spk-9513a67d/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-briefing",
+      "take": "retake",
+      "measuredWpm": 125.9,
+      "targetWpm": 165,
+      "minWpm": 145,
+      "maxWpm": 195
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "first",
+      "measuredWpm": 149.6,
+      "targetWpm": 184,
+      "minWpm": 156,
+      "maxWpm": 209
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "arts-culture",
+      "noveltyKey": "stained-glass-restoration-studio-orientation",
+      "requiredConcepts": [
+        "cracked lead came checked before any solder touches it",
+        "cleaning solution tested on a hidden corner first",
+        "each restored panel photographed before reinstallation"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-307f62cd",
+          "reason": "that entry orients a backstage assistant through a theater light board, a different craft and setting from glass restoration"
+        },
+        {
+          "setId": "spk-e0d7a688",
+          "reason": "that entry orients a weekend monitor through an open ceramic studio, a different medium and purpose than a pre-open cleaning-and-inspection walkthrough"
+        }
+      ],
+      "setting": "an art restoration studio's stained-glass workshop bay, quiet before the museum's reopening morning",
+      "speakerRole": "the studio's senior glass restorer training a newly hired restoration apprentice",
+      "communicativePurpose": "orienting the apprentice through each cleaning and inspection station in order before the panels go back into the museum's windows"
+    },
+    "interview": {
+      "domain": "campus-academics",
+      "noveltyKey": "office-hours-visit-decision-habit",
+      "requiredConcepts": [
+        "questions saved up before walking over",
+        "posted office hour time checked against the class schedule",
+        "the professor's course visited most recently"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-7a8b422f",
+          "reason": "that entry covers lecture note-taking method habits, not the decision to attend a professor's office hours"
+        },
+        {
+          "setId": "spk-071d01af",
+          "reason": "that entry covers campus club participation, a different activity and setting from one-on-one office hours"
+        }
+      ],
+      "topic": "How the test taker decides whether to visit a professor's office hours during a university course",
+      "premise": "An academic-habits research group places a brief unannounced phone call about visiting professors during office hours; the caller confirms the test taker has a few minutes to talk before asking about a specific course.",
+      "questionArc": [
+        "The caller introduces a short academic-habits phone survey and confirms the test taker has a few minutes to talk about visiting professors during office hours.",
+        "The caller asks how the test taker usually decides whether to go to a professor's office hours during a course.",
+        "The caller asks about one specific recent time the test taker visited a professor's office hours.",
+        "The caller asks what made that particular office-hours visit feel worth attending."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "british",
+      "voice": "Rasalgethi",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "australian",
+      "voice": "Despina",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

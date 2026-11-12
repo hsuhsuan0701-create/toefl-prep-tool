@@ -1,0 +1,1787 @@
+{
+  "id": "rd-04b2ae46",
+  "source": "generated",
+  "createdAt": "2026-08-23T08:42:14.828Z",
+  "kind": "reading",
+  "advisoryNotes": [
+    {
+      "check": "content-gate",
+      "detail": "ctw-word-count-over",
+      "taskType": "complete_words"
+    },
+    {
+      "check": "content-gate",
+      "detail": "ctw-word-count-over",
+      "taskType": "complete_words"
+    },
+    {
+      "check": "content-gate",
+      "detail": "ctw-word-count-over",
+      "taskType": "complete_words"
+    }
+  ],
+  "router": {
+    "timeLimitSec": 1200,
+    "ctwPassages": [
+      {
+        "id": "ctw-r1",
+        "taskType": "complete_words",
+        "topic": "city seed-lending program for neighborhood gardeners",
+        "segments": [
+          {
+            "type": "text",
+            "text": "The city library now runs a program that lets residents borrow packets of vegetable and flower seeds for their own yards. Visitors "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g1"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g2"
+          },
+          {
+            "type": "text",
+            "text": " sorted "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g3"
+          },
+          {
+            "type": "text",
+            "text": " type, "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g4"
+          },
+          {
+            "type": "text",
+            "text": " sign a form "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g5"
+          },
+          {
+            "type": "text",
+            "text": " taking a packet "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g6"
+          },
+          {
+            "type": "text",
+            "text": ". Staff "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g7"
+          },
+          {
+            "type": "text",
+            "text": " each "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g8"
+          },
+          {
+            "type": "text",
+            "text": " in a log, "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g9"
+          },
+          {
+            "type": "text",
+            "text": " which "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g10"
+          },
+          {
+            "type": "text",
+            "text": " sprout successfully across gardens. At the end of the season, borrowers are encouraged to save extra stock from healthy plants and return it to the shelves. The habit has grown popular among neighbors who share a plot nearby, since it lowers the cost of starting new beds each spring."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-r1-g1",
+            "prefix": "bro",
+            "completion": "wse",
+            "blankLength": 3,
+            "explanationZh": "前文提到訪客到圖書館借種子,此句描述他們的行為:先「瀏覽」(browse)依類型排列的種子選項,才能決定要拿哪一包,語意上與後面「sorted by type」及「then sign a form」的動作順序相符,故填 browse。"
+          },
+          {
+            "id": "ctw-r1-g2",
+            "prefix": "sele",
+            "completion": "ction",
+            "blankLength": 5,
+            "explanationZh": "browse 的受詞須為可供瀏覽的「品項總稱」,selection 指圖書館提供、依類型排列的種子「選項/品項組合」,與前句 borrow packets of vegetable and flower seeds 呼應,故填 selection。"
+          },
+          {
+            "id": "ctw-r1-g3",
+            "prefix": "b",
+            "completion": "y",
+            "blankLength": 1,
+            "explanationZh": "sorted by type 是固定搭配,表示「依照…分類」,by 在此引導分類依據(type),為介系詞用法,故填 by。"
+          },
+          {
+            "id": "ctw-r1-g4",
+            "prefix": "th",
+            "completion": "en",
+            "blankLength": 2,
+            "explanationZh": "句中描述訪客的動作順序:先瀏覽選項,「接著」(then)簽表格,再拿走種子包,then 表示時間上的先後承接,故填 then。"
+          },
+          {
+            "id": "ctw-r1-g5",
+            "prefix": "bef",
+            "completion": "ore",
+            "blankLength": 3,
+            "explanationZh": "此處描述「簽表格」發生在「拿種子包回家」之前,before 表示時間先後,與前面 then sign a form 的動作順序一致,故填 before。"
+          },
+          {
+            "id": "ctw-r1-g6",
+            "prefix": "ho",
+            "completion": "me",
+            "blankLength": 2,
+            "explanationZh": "taking a packet home 呼應首句 borrow ... seeds for their own yards,訪客把種子帶「回家」種在自己院子,故填 home。"
+          },
+          {
+            "id": "ctw-r1-g7",
+            "prefix": "rec",
+            "completion": "ord",
+            "blankLength": 3,
+            "explanationZh": "工作人員的職責是把每次借閱「記錄」下來(record each checkout in a log),與後面 in a log(記錄本)搭配,故填 record。"
+          },
+          {
+            "id": "ctw-r1-g8",
+            "prefix": "chec",
+            "completion": "kout",
+            "blankLength": 4,
+            "explanationZh": "checkout 指「借出/領取」這項交易本身,呼應前文的 borrow 動作,是 record 的受詞,說明工作人員記錄的是每一次的借閱紀錄,故填 checkout。"
+          },
+          {
+            "id": "ctw-r1-g9",
+            "prefix": "trac",
+            "completion": "king",
+            "blankLength": 4,
+            "explanationZh": "工作人員記錄借閱資料的目的是「追蹤」(tracking)哪些品種發芽成功,tracking 與後面 which varieties sprout successfully 語意連貫,說明持續觀察的行為,故填 tracking。"
+          },
+          {
+            "id": "ctw-r1-g10",
+            "prefix": "vari",
+            "completion": "eties",
+            "blankLength": 5,
+            "explanationZh": "varieties 指不同「品種」的種子,呼應開頭 vegetable and flower seeds 的多樣性,說明工作人員追蹤的是哪些「品種」發芽良好,故填 varieties。"
+          }
+        ],
+        "sourceParagraph": "The city library now runs a program that lets residents borrow packets of vegetable and flower seeds for their own yards. Visitors browse the selection sorted by type, then sign a form before taking a packet home. Staff record each checkout in a log, tracking which varieties sprout successfully across gardens. At the end of the season, borrowers are encouraged to save extra stock from healthy plants and return it to the shelves. The habit has grown popular among neighbors who share a plot nearby, since it lowers the cost of starting new beds each spring."
+      },
+      {
+        "id": "ctw-r2",
+        "taskType": "complete_words",
+        "topic": "airport shuttle bus timing coordination",
+        "segments": [
+          {
+            "type": "text",
+            "text": "The airport now runs a shuttle bus service that connects the main terminal to nearby hotels around the clock. Vehicles "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g1"
+          },
+          {
+            "type": "text",
+            "text": " from "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g2"
+          },
+          {
+            "type": "text",
+            "text": " curb "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g3"
+          },
+          {
+            "type": "text",
+            "text": " fifteen "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g4"
+          },
+          {
+            "type": "text",
+            "text": " for "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g5"
+          },
+          {
+            "type": "text",
+            "text": " of "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g6"
+          },
+          {
+            "type": "text",
+            "text": " day, "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g7"
+          },
+          {
+            "type": "text",
+            "text": " drivers "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g8"
+          },
+          {
+            "type": "text",
+            "text": " pace "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g9"
+          },
+          {
+            "type": "text",
+            "text": " several "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g10"
+          },
+          {
+            "type": "text",
+            "text": " land close together. Staff study the arrival board each morning and add extra runs during those busy waves so travelers do not stand outside for long. The schedule change has shortened waiting periods near the pickup zone, and new signs at the stop display upcoming departure times. Officials say the updated system feels smoother than the old fixed timetable, which ignored actual traffic patterns."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-r2-g1",
+            "prefix": "dep",
+            "completion": "art",
+            "blankLength": 3,
+            "explanationZh": "主詞是複數的 Vehicles,後面接原形動詞表示習慣性動作,故用 depart(而非 departs);depart from the curb 表示「從路邊出發」,與後文 every fifteen minutes 的班次描述相符。"
+          },
+          {
+            "id": "ctw-r2-g2",
+            "prefix": "t",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "the curb 使用定冠詞是因為情境上的唯一性——指的是這座機場唯一的一個接送區路邊,而非前一句提過的特定地點(前一句只提到接駁車連接航廈與附近飯店,並未提及路邊)。讀者能從機場接駁車情境推知這是「那個」固定的上下車地點,因此用 the 而非 a。"
+          },
+          {
+            "id": "ctw-r2-g3",
+            "prefix": "ev",
+            "completion": "ery",
+            "blankLength": 3,
+            "explanationZh": "every fifteen minutes 是表示頻率的固定搭配,every + 時間長度表示「每隔多久」一次,用來說明車輛發車的間隔頻率。"
+          },
+          {
+            "id": "ctw-r2-g4",
+            "prefix": "min",
+            "completion": "utes",
+            "blankLength": 4,
+            "explanationZh": "fifteen 是數詞,後面須接複數名詞 minutes 作為單位,fifteen minutes 表示「十五分鐘」這段時間長度,對應 every 所需的時間單位。"
+          },
+          {
+            "id": "ctw-r2-g5",
+            "prefix": "mo",
+            "completion": "st",
+            "blankLength": 2,
+            "explanationZh": "most of the day 是固定用法,表示「一天中的大部分時間」,用來說明車輛在多數時間都維持固定的十五分鐘班距。"
+          },
+          {
+            "id": "ctw-r2-g6",
+            "prefix": "t",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "the day 在此指說話者與讀者共同理解、當下討論脈絡中的那一天(即接駁車運行的一整天),屬於語境上可辨識的特定指涉,故用定冠詞 the。"
+          },
+          {
+            "id": "ctw-r2-g7",
+            "prefix": "tho",
+            "completion": "ugh",
+            "blankLength": 3,
+            "explanationZh": "though 引導讓步子句,用來連接前面「多數時間維持固定班距」與後面「班距會依情況調整」這兩個略帶對比的訊息,表示雖然如此、但仍有例外。"
+          },
+          {
+            "id": "ctw-r2-g8",
+            "prefix": "adj",
+            "completion": "ust",
+            "blankLength": 3,
+            "explanationZh": "主詞是複數的 drivers,同樣需要原形動詞,故用 adjust(而非 adjusts);adjust pace 表示「調整發車節奏」,呼應後面 when several flights land close together 所描述的情況。"
+          },
+          {
+            "id": "ctw-r2-g9",
+            "prefix": "wh",
+            "completion": "en",
+            "blankLength": 2,
+            "explanationZh": "when 引導時間子句,說明司機調整節奏的觸發時機,即「當數個航班幾乎同時抵達時」,精確對應後文 several flights land close together 的描述。"
+          },
+          {
+            "id": "ctw-r2-g10",
+            "prefix": "fli",
+            "completion": "ghts",
+            "blankLength": 4,
+            "explanationZh": "flights 是 land 的主詞,several flights land close together 表示「數個航班相繼、幾乎同時降落」,說明造成接駁車需要調整班距的原因,與前文 several flights land 的情境一致。"
+          }
+        ],
+        "sourceParagraph": "The airport now runs a shuttle bus service that connects the main terminal to nearby hotels around the clock. Vehicles depart from the curb every fifteen minutes for most of the day, though drivers adjust pace when several flights land close together. Staff study the arrival board each morning and add extra runs during those busy waves so travelers do not stand outside for long. The schedule change has shortened waiting periods near the pickup zone, and new signs at the stop display upcoming departure times. Officials say the updated system feels smoother than the old fixed timetable, which ignored actual traffic patterns."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-r1",
+        "taskType": "daily_life",
+        "genre": "text-message chain",
+        "text": "Mia: Hey, did you grab the projector from the AV desk yet?\nJordan: Not yet, closes at 5. Can you go after your last class?\nMia: I'm out by 4:30, I'll swing by.\nJordan: Perfect. Remember we need it back by 9am tomorrow before Professor Lin's class.\nMia: Got it. I'll carry it to the group room tonight so we don't scramble in the morning.\nJordan: Sounds good. Thanks for handling this one!",
+        "questions": [
+          {
+            "id": "dl-r1-q1",
+            "stem": "What is the main purpose of this text exchange?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To complain about the AV desk's early closing hours"
+              },
+              {
+                "id": "b",
+                "text": "To schedule a group meeting for tomorrow's class"
+              },
+              {
+                "id": "c",
+                "text": "To ask Professor Lin about extending a deadline"
+              },
+              {
+                "id": "d",
+                "text": "To coordinate picking up and returning a projector"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "purpose",
+            "explanationZh": "對話從頭到尾都在安排誰去AV服務台領取投影機、何時歸還，此為訊息往來的核心目的；其餘選項提及的抱怨、教授延期或另約會議時間皆未出現在對話中。"
+          },
+          {
+            "id": "dl-r1-q2",
+            "stem": "By what time must the projector be returned?",
+            "options": [
+              {
+                "id": "a",
+                "text": "9:00 the next morning"
+              },
+              {
+                "id": "b",
+                "text": "Before the group presentation ends"
+              },
+              {
+                "id": "c",
+                "text": "4:30 the same day"
+              },
+              {
+                "id": "d",
+                "text": "5:00 the same day"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "Jordan明確提到需在隔天上午九點、Professor Lin的課前歸還，故答案為隔天上午九點；提到4:30與5:00的選項只是取件相關時間，非歸還期限。"
+          },
+          {
+            "id": "dl-r1-q3",
+            "stem": "What can be inferred about Mia's plan for the projector?",
+            "options": [
+              {
+                "id": "a",
+                "text": "She will ask Jordan to handle the return instead"
+              },
+              {
+                "id": "b",
+                "text": "She will leave the projector at the AV desk overnight"
+              },
+              {
+                "id": "c",
+                "text": "She will use it in a different class before returning it"
+              },
+              {
+                "id": "d",
+                "text": "She will bring it to the group room tonight"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "inference",
+            "explanationZh": "Mia明確表示會在當晚把投影機帶到group room，以避免隔天早上匆忙，可推知她計畫當晚就送到討論室，而非留在服務台、轉交Jordan或挪作他用。"
+          }
+        ]
+      },
+      {
+        "id": "dl-r2",
+        "taskType": "daily_life",
+        "genre": "receipt",
+        "text": "Office Supply Depot\n123 Market Street\nReceipt #48213\nDate: 03/14/2026  Time: 10:42 AM\nEmployee: Priya Nandan\n---\nWelcome notebook set      $12.50\nBranded pen (x3)          $9.00\nDesk organizer            $18.75\nLanyard with badge holder  $6.25\nWater bottle               $14.00\n---\nSubtotal                  $60.50\nTax                        $4.84\nTotal                     $65.34\nPayment: Company Card\nThank you for shopping with us!",
+        "questions": [
+          {
+            "id": "dl-r2-q1",
+            "stem": "What is the total amount paid on this receipt?",
+            "options": [
+              {
+                "id": "a",
+                "text": "$60.50"
+              },
+              {
+                "id": "b",
+                "text": "$18.75"
+              },
+              {
+                "id": "c",
+                "text": "$4.84"
+              },
+              {
+                "id": "d",
+                "text": "$65.34"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "收據底部明確列出含稅後的實際支付總額，即為此金額；另兩個數字分別是稅前小計與稅金，最後一個只是單項商品價格。"
+          },
+          {
+            "id": "dl-r2-q2",
+            "stem": "What is this receipt most likely documenting?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Items purchased for a new hire's welcome kit"
+              },
+              {
+                "id": "b",
+                "text": "A personal purchase charged to a company card"
+              },
+              {
+                "id": "c",
+                "text": "A routine restock of shared office supplies"
+              },
+              {
+                "id": "d",
+                "text": "A gift set assembled for a retiring employee"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "purpose",
+            "explanationZh": "收據品項含歡迎筆記本、識別證帶、置物架等新人到職相關用品，並以公司卡付款，顯示這是為新進員工準備的到職禮包；共用文具選項無法解釋識別證帶用途；歡送禮品通常不含識別證帶；個人購買則與公司卡付款矛盾。"
+          },
+          {
+            "id": "dl-r2-q3",
+            "stem": "How was the purchase paid for?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Personal credit card"
+              },
+              {
+                "id": "b",
+                "text": "Cash"
+              },
+              {
+                "id": "c",
+                "text": "Company card"
+              },
+              {
+                "id": "d",
+                "text": "Check"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "收據明確標示付款方式為公司卡，並非現金、個人信用卡或支票。"
+          }
+        ]
+      },
+      {
+        "id": "dl-r3",
+        "taskType": "daily_life",
+        "genre": "schedule",
+        "text": "Riverside Nature Center — Summer Guided Walks\nSaturdays, June through August\n9:00 AM — Pollinator Garden Tour (45 min) — Meet at Visitor Center desk\n10:30 AM — Wetland Habitat Walk (60 min) — Meet at Trailhead sign\n1:00 PM — Butterfly Meadow Tour (30 min) — Meet at Visitor Center desk\nAll walks are free. Groups limited to 15 people.\nAdvance registration recommended at the front desk or online.",
+        "questions": [
+          {
+            "id": "dl-r3-q1",
+            "stem": "Where should visitors meet for the Wetland Habitat Walk?",
+            "options": [
+              {
+                "id": "a",
+                "text": "At the online registration page"
+              },
+              {
+                "id": "b",
+                "text": "At the Butterfly Meadow"
+              },
+              {
+                "id": "c",
+                "text": "At the Trailhead sign"
+              },
+              {
+                "id": "d",
+                "text": "At the Visitor Center desk"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "行程表寫明Wetland Habitat Walk的集合地點為Trailhead sign，並非遊客中心櫃檯、蝴蝶草地或線上頁面。"
+          },
+          {
+            "id": "dl-r3-q2",
+            "stem": "What is the main purpose of this schedule?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To inform visitors of walk times and meeting points"
+              },
+              {
+                "id": "b",
+                "text": "To advertise the opening of a new visitor center building"
+              },
+              {
+                "id": "c",
+                "text": "To promote membership discounts at the nature center"
+              },
+              {
+                "id": "d",
+                "text": "To alert visitors that trails are temporarily closed for repairs"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "purpose",
+            "explanationZh": "此文件列出各場導覽的時間、地點與集合處，屬於活動時間表，主要目的是提供資訊給遊客參考，並非促銷會員、警告步道封閉或宣傳新建築。"
+          },
+          {
+            "id": "dl-r3-q3",
+            "stem": "What can be inferred about attending these walks?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Only nature center members can join"
+              },
+              {
+                "id": "b",
+                "text": "Walks are canceled if fewer than 15 people sign up"
+              },
+              {
+                "id": "c",
+                "text": "Space may be limited, so registering ahead is a good idea"
+              },
+              {
+                "id": "d",
+                "text": "Visitors must pay an entrance fee first"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "文中提到團體人數上限為15人，並建議提前報名，可推知名額有限，建議提前預約，而非需先付費入場、僅限會員或未達人數就取消。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-r1",
+        "taskType": "academic_passage",
+        "title": "Balancing Peak and Off-Peak Train Fares",
+        "discipline": "business and economics",
+        "text": "Regional train operators face a familiar problem: commuter trains are packed during the early morning and late afternoon rush, yet nearly empty in the middle of the day. To smooth out this uneven demand, many operators have adopted time-based pricing, charging lower fares for tickets purchased outside the busiest hours. A commuter traveling at 10 a.m. might pay forty percent less than one traveling at 8 a.m., even though the trip itself is identical.\n\nThis approach works because train travel is what economists call price-sensitive for many riders. Commuters with fixed office hours have little choice but to travel during peak times regardless of cost, but students, retirees, and workers with flexible schedules often shift their trips when a discount is available. As more of these flexible travelers move to off-peak hours, peak-hour trains become less crowded, while off-peak trains, once nearly empty, begin generating meaningful revenue instead of running at a loss.\n\nCritics argue that fare differences can feel unfair to riders who have no choice but to travel at peak times, since they end up paying the highest price for the most crowded service. Operators counter that without off-peak discounts, the whole network would need higher fares across the board to cover costs, so nearly everyone benefits from the arrangement in the end.",
+        "questions": [
+          {
+            "id": "ap-r1-q1",
+            "stem": "According to the passage, why do train operators offer lower off-peak fares?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To comply with a fare pricing regulation"
+              },
+              {
+                "id": "b",
+                "text": "To encourage riders to shift trip times"
+              },
+              {
+                "id": "c",
+                "text": "To lower maintenance costs on older trains"
+              },
+              {
+                "id": "d",
+                "text": "To attract new tourists to the network"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "文中指出離峰優惠是為了讓乘客改到人少的時段搭乘，藉此平衡尖峰與離峰人數，而非為了降低維修成本、符合票價法規或吸引觀光客。"
+          },
+          {
+            "id": "ap-r1-q2",
+            "stem": "The word \"price-sensitive\" in paragraph 2 is closest in meaning to",
+            "options": [
+              {
+                "id": "a",
+                "text": "unable to pay full fare"
+              },
+              {
+                "id": "b",
+                "text": "unaffected by ticket price"
+              },
+              {
+                "id": "c",
+                "text": "responsive to changes in cost"
+              },
+              {
+                "id": "d",
+                "text": "influenced by advertising claims"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "vocabulary",
+            "explanationZh": "「price-sensitive」意指乘客的行為會隨價格變動而改變，對應下文彈性行程的乘客因折扣改變搭乘時間，而非受廣告影響、無力負擔車資，或對票價毫不在意。"
+          },
+          {
+            "id": "ap-r1-q3",
+            "stem": "It can be inferred from the passage that riders with fixed office hours",
+            "options": [
+              {
+                "id": "a",
+                "text": "rarely choose to travel by train at all"
+              },
+              {
+                "id": "b",
+                "text": "often pay less than flexible commuters do"
+              },
+              {
+                "id": "c",
+                "text": "still travel at peak hours despite the cost"
+              },
+              {
+                "id": "d",
+                "text": "receive a discount to offset the inconvenience"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "文中提到固定上班時間的乘客不論票價高低仍須在尖峰時段搭乘，可推知這類乘客通常仍在尖峰時段搭乘，而非付費較少、很少搭火車或獲得折扣補償。"
+          },
+          {
+            "id": "ap-r1-q4",
+            "stem": "How does the third paragraph relate to the second paragraph?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It moves on to an unrelated ticketing topic"
+              },
+              {
+                "id": "b",
+                "text": "It restates the economic theory from before"
+              },
+              {
+                "id": "c",
+                "text": "It adds further evidence for the earlier claim"
+              },
+              {
+                "id": "d",
+                "text": "It raises an objection to the earlier benefits"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "organization",
+            "explanationZh": "第三段提出對離峰定價的質疑，屬於對第二段所述效益的反駁，而非重述理論、提供支持證據或轉向無關的售票科技話題。"
+          },
+          {
+            "id": "ap-r1-q5",
+            "stem": "What is the main purpose of the passage?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To explain how and why time-based train pricing works, along with a criticism of it"
+              },
+              {
+                "id": "b",
+                "text": "To recommend that all fares be made equal"
+              },
+              {
+                "id": "c",
+                "text": "To criticize regional train operators for unfair pricing"
+              },
+              {
+                "id": "d",
+                "text": "To compare train travel with other forms of transportation"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "purpose",
+            "explanationZh": "全文先說明尖峰離峰定價如何運作及其經濟原理，接著提出對此策略的批評，主旨在於解釋此定價方式的運作與其爭議，而非單純批評營運商、比較交通方式或主張票價齊一。"
+          }
+        ]
+      }
+    ]
+  },
+  "lowerModule": {
+    "timeLimitSec": 540,
+    "ctwPassages": [
+      {
+        "id": "ctw-lo1",
+        "taskType": "complete_words",
+        "topic": "historical town clock tower repair",
+        "segments": [
+          {
+            "type": "text",
+            "text": "The old clock tower in the town square finally works again after many years of silence. Workers "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g1"
+          },
+          {
+            "type": "text",
+            "text": " months "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g2"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g3"
+          },
+          {
+            "type": "text",
+            "text": " and "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g4"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g5"
+          },
+          {
+            "type": "text",
+            "text": " inside. "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g6"
+          },
+          {
+            "type": "text",
+            "text": " repair "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g7"
+          },
+          {
+            "type": "text",
+            "text": " just "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g8"
+          },
+          {
+            "type": "text",
+            "text": " time "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g9"
+          },
+          {
+            "type": "text",
+            "text": " a "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g10"
+          },
+          {
+            "type": "text",
+            "text": " anniversary celebration. Leaders chose this date because the community turned one hundred fifty years old. On the day of the event, people will gather at the site. They hope to hear it ring once more. A local carpenter who grew up nearby led most of the careful work. She said the project felt personal because her grandfather once cared for the same landmark long ago."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-lo1-g1",
+            "prefix": "sp",
+            "completion": "ent",
+            "blankLength": 3,
+            "explanationZh": "此處主詞是 Workers，後面接的是表示花費時間的片語「months + Ving」，故需要 spend 的過去式 spent，與前一句「finally works again」的過去時態一致，表示工人們「花費」數月時間進行維修。"
+          },
+          {
+            "id": "ctw-lo1-g2",
+            "prefix": "fix",
+            "completion": "ing",
+            "blankLength": 3,
+            "explanationZh": "spent months 後面須接動名詞表示「花時間做某事」，fixing 與後面的 cleaning 為對等的動名詞結構（fixing the gears and cleaning the bell），描述工人具體做的兩件事之一：修理齒輪。"
+          },
+          {
+            "id": "ctw-lo1-g3",
+            "prefix": "ge",
+            "completion": "ars",
+            "blankLength": 3,
+            "explanationZh": "fixing 的受詞須是鐘塔內會損壞、需要修理的機械零件，gears（齒輪）正是驅動時鐘運作的核心機械部件，與主題「鐘塔維修」高度相關。"
+          },
+          {
+            "id": "ctw-lo1-g4",
+            "prefix": "clea",
+            "completion": "ning",
+            "blankLength": 4,
+            "explanationZh": "與 fixing 並列的第二個動名詞，由 and 連接（fixing the gears and cleaning the bell），描述工人所做的另一項工作：清潔鐘（bell）。"
+          },
+          {
+            "id": "ctw-lo1-g5",
+            "prefix": "be",
+            "completion": "ll",
+            "blankLength": 2,
+            "explanationZh": "cleaning 的受詞需是鐘塔內部會需要清潔的物件，bell（鐘）呼應下文「hope to hear it ring once more」，指出他們清理的正是會發出鳴響聲的鐘。"
+          },
+          {
+            "id": "ctw-lo1-g6",
+            "prefix": "T",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "此處為新句的開頭，主詞是「repair」這件事，需搭配定冠詞 The 指稱前文已提到、特定的那次「修復工程」（the repair）。"
+          },
+          {
+            "id": "ctw-lo1-g7",
+            "prefix": "fini",
+            "completion": "shed",
+            "blankLength": 4,
+            "explanationZh": "主詞 The repair 需要一個過去式動詞來說明其完成狀態，finished 表示「（修復工程）完成」，並與後方 in time for 呼應，指工程準時完工。"
+          },
+          {
+            "id": "ctw-lo1-g8",
+            "prefix": "i",
+            "completion": "n",
+            "blankLength": 1,
+            "explanationZh": "finished 之後接固定片語 in time for，表示「及時趕上」，此處指修復工程正好趕在特別的週年慶典之前完成。"
+          },
+          {
+            "id": "ctw-lo1-g9",
+            "prefix": "f",
+            "completion": "or",
+            "blankLength": 2,
+            "explanationZh": "承接 in time 的固定搭配 in time for + N，for 引出所趕上的對象，即後方的 special anniversary celebration（特別的週年慶典）。"
+          },
+          {
+            "id": "ctw-lo1-g10",
+            "prefix": "spe",
+            "completion": "cial",
+            "blankLength": 4,
+            "explanationZh": "special 修飾 anniversary celebration，呼應下一句說明社區屆滿一百五十週年，強調這是別具意義、特殊的紀念慶典，而非普通活動。"
+          }
+        ],
+        "sourceParagraph": "The old clock tower in the town square finally works again after many years of silence. Workers spent months fixing the gears and cleaning the bell inside. The repair finished just in time for a special anniversary celebration. Leaders chose this date because the community turned one hundred fifty years old. On the day of the event, people will gather at the site. They hope to hear it ring once more. A local carpenter who grew up nearby led most of the careful work. She said the project felt personal because her grandfather once cared for the same landmark long ago."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-lo1",
+        "taskType": "daily_life",
+        "genre": "form",
+        "text": "QuickFix Phone Repair — Drop-Off Form\nCustomer Name: _______________\nPhone Model: _______________\nSerial Number: _______________\nReason for Visit:\n[ ] Screen Replacement   [ ] Battery Issue   [ ] Water Damage   [ ] Other\nDrop-Off Date: _______  Drop-Off Time: _______\nEstimated Completion: 2–3 business days\nNote: Please back up your data before leaving your device with us. We are not responsible for lost data.",
+        "questions": [
+          {
+            "id": "dl-lo1-q1",
+            "stem": "What is this form mainly used for?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To explain how to back up phone data before repair"
+              },
+              {
+                "id": "b",
+                "text": "To collect information about a phone being dropped off"
+              },
+              {
+                "id": "c",
+                "text": "To list the repair shop's business hours and holidays"
+              },
+              {
+                "id": "d",
+                "text": "To advertise special discounts on phone repair services for new customers"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "purpose",
+            "explanationZh": "表格請顧客填寫姓名、手機型號、序號與送修原因等資訊，用途是在顧客送修手機時蒐集必要資料，而非宣傳優惠、說明備份方式或公告營業時間與假期。"
+          },
+          {
+            "id": "dl-lo1-q2",
+            "stem": "According to the form, how long does a repair usually take?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It is not specified in the form"
+              },
+              {
+                "id": "b",
+                "text": "One to two business days"
+              },
+              {
+                "id": "c",
+                "text": "Five to seven business days"
+              },
+              {
+                "id": "d",
+                "text": "Two to three business days"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "表格中寫明預估完成時間為二至三個工作天，並非一至二天、五至七天，也並非未說明，該資訊已清楚列於表格上。"
+          }
+        ]
+      },
+      {
+        "id": "dl-lo2",
+        "taskType": "daily_life",
+        "genre": "poster/sign",
+        "text": "NOTICE: Harbor Ferry Route Closed\nThe North Harbor ferry route will be closed for two weeks starting April 6 for engine maintenance.\nDuring this time, please use Bus Route 12 to reach the North Harbor stop.\nBus tickets are free for ferry pass holders.\nService will resume on April 20.\nSorry for any inconvenience!",
+        "questions": [
+          {
+            "id": "dl-lo2-q1",
+            "stem": "Why is the ferry route closed?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A new dock is being built"
+              },
+              {
+                "id": "b",
+                "text": "Engine maintenance"
+              },
+              {
+                "id": "c",
+                "text": "Low passenger demand"
+              },
+              {
+                "id": "d",
+                "text": "Bad weather conditions"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "detail",
+            "explanationZh": "公告中寫明關閉原因為引擎保養，並非天候不佳、乘客量低或興建新碼頭。"
+          },
+          {
+            "id": "dl-lo2-q2",
+            "stem": "What can be inferred about ferry pass holders during the closure?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Their passes will not work until next season"
+              },
+              {
+                "id": "b",
+                "text": "They must buy a separate bus ticket"
+              },
+              {
+                "id": "c",
+                "text": "They will receive a refund automatically"
+              },
+              {
+                "id": "d",
+                "text": "They can ride the replacement bus for free"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "inference",
+            "explanationZh": "公告提到公車票對渡輪票卡持有者免費，可推知持卡乘客在停駛期間可免費搭乘替代公車，而非需另購票、票卡失效或自動退費。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-lo1",
+        "taskType": "academic_passage",
+        "title": "How Study Partnerships Form Among Students",
+        "discipline": "social science",
+        "text": "Many college students find a study partner without ever planning to. Researchers who studied this pattern noticed that it usually starts with something simple: two students happen to sit near each other in the same class for several weeks in a row. Because they already share a class schedule, meeting up to review notes feels easy and requires little extra effort.\n\nThe library often becomes the natural meeting spot for these new study pairs. It is quiet, it is open late, and both students are already used to going there between classes. Over time, a pair that first met by chance may begin setting regular times to meet, especially as exams get closer.\n\nThese informal partnerships tend to be different from study groups that a teacher organizes. Because the two students chose each other, they usually feel more comfortable asking basic questions or admitting they are confused about something. Researchers found that students in these self-formed pairs often report feeling less stressed before exams, even when their test scores do not change much. The simple act of having someone to review material with, it seems, matters as much for confidence as it does for learning content itself.",
+        "questions": [
+          {
+            "id": "ap-lo1-q1",
+            "stem": "According to the passage, what often starts a study partnership?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A teacher assigning students to specific study partners"
+              },
+              {
+                "id": "b",
+                "text": "Attending a mandatory academic orientation session together"
+              },
+              {
+                "id": "c",
+                "text": "Meeting for the first time during final exams week"
+              },
+              {
+                "id": "d",
+                "text": "Two students sitting near each other for weeks"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "文中提到夥伴關係通常始於兩名學生連續數週坐在同一堂課附近，並非老師指派、考試週才認識，或迎新活動促成的。"
+          },
+          {
+            "id": "ap-lo1-q2",
+            "stem": "The word \"informal\" in paragraph 3 most nearly means",
+            "options": [
+              {
+                "id": "a",
+                "text": "clearly unfriendly in tone"
+              },
+              {
+                "id": "b",
+                "text": "carelessly put together"
+              },
+              {
+                "id": "c",
+                "text": "not officially organized"
+              },
+              {
+                "id": "d",
+                "text": "strictly academic in focus"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "vocabulary",
+            "explanationZh": "「informal」在此指非正式、非由他人安排組成的夥伴關係，對應與教師安排的讀書小組做對比，並非指規劃不佳、不友善或學術性的。"
+          },
+          {
+            "id": "ap-lo1-q3",
+            "stem": "It can be inferred that students in self-formed study pairs feel comfortable asking basic questions because",
+            "options": [
+              {
+                "id": "a",
+                "text": "the library staff mediates any confusion between them"
+              },
+              {
+                "id": "b",
+                "text": "they deliberately chose a partner they already trust"
+              },
+              {
+                "id": "c",
+                "text": "their professor grades them individually each week"
+              },
+              {
+                "id": "d",
+                "text": "the university requires each partner to submit a report afterward"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "inference",
+            "explanationZh": "文中指出因為是自己選擇的夥伴，學生較願意問基本問題，可推知這份自在感來自彼此本來就熟識、自願組隊，而非因規定繳交報告、圖書館協調或教授評分。"
+          },
+          {
+            "id": "ap-lo1-q4",
+            "stem": "How does the second paragraph relate to the first paragraph?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It describes where these partnerships often continue meeting"
+              },
+              {
+                "id": "b",
+                "text": "It briefly summarizes every idea in the entire passage"
+              },
+              {
+                "id": "c",
+                "text": "It directly contradicts the main claim presented earlier"
+              },
+              {
+                "id": "d",
+                "text": "It shifts entirely to describing library operating hours and staff duties"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "organization",
+            "explanationZh": "第二段接續第一段提到的巧遇組隊情況，進一步說明這類夥伴通常在圖書館持續固定見面，是延伸說明而非反駁、離題或做總結。"
+          },
+          {
+            "id": "ap-lo1-q5",
+            "stem": "What is the main purpose of the passage?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To criticize teacher-organized study groups"
+              },
+              {
+                "id": "b",
+                "text": "To describe how informal study partnerships form and how students benefit from them"
+              },
+              {
+                "id": "c",
+                "text": "To argue that library hours should be extended"
+              },
+              {
+                "id": "d",
+                "text": "To compare test scores across different universities"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "purpose",
+            "explanationZh": "全文說明非正式讀書夥伴關係如何自然形成、以及它們為學生帶來的信心與情緒益處，主旨在描述此現象與其效益，而非批評正式小組、主張圖書館政策或比較成績。"
+          }
+        ]
+      }
+    ]
+  },
+  "upperModule": {
+    "timeLimitSec": 540,
+    "ctwPassages": [
+      {
+        "id": "ctw-up1",
+        "taskType": "complete_words",
+        "topic": "morning commute route optimization habit",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Over several months, a commuter methodically refined the walking route she took to work each morning. Rather "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g1"
+          },
+          {
+            "type": "text",
+            "text": " following "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g2"
+          },
+          {
+            "type": "text",
+            "text": " shortest "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g3"
+          },
+          {
+            "type": "text",
+            "text": ", she "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g4"
+          },
+          {
+            "type": "text",
+            "text": " each "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g5"
+          },
+          {
+            "type": "text",
+            "text": " of "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g6"
+          },
+          {
+            "type": "text",
+            "text": " journey, "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g7"
+          },
+          {
+            "type": "text",
+            "text": " where "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g8"
+          },
+          {
+            "type": "text",
+            "text": " or "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g9"
+          },
+          {
+            "type": "text",
+            "text": " signals "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g10"
+          },
+          {
+            "type": "text",
+            "text": " the most minutes. She discovered that a slightly longer detour avoided a notoriously slow crossing, saving a noticeable amount of time on average. She also learned that leaving slightly earlier let her reach a crucial intersection before a wave of office workers converged there. Combining these adjustments, she reduced her total commute by nearly twenty minutes each week, a gain that felt disproportionate to the modest effort involved."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-up1-g1",
+            "prefix": "th",
+            "completion": "an",
+            "blankLength": 2,
+            "explanationZh": "此處為「Rather than + Ving」的固定搭配，表示「與其⋯不如」，用來對比她並非走最短路徑，而是採取更講究的方式規劃路線，因此須填入 than。"
+          },
+          {
+            "id": "ctw-up1-g2",
+            "prefix": "t",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "following 之後接的是特定、唯一的「最短路徑」（the shortest path），指涉明確、聽者可辨識的對象，故需定冠詞 the。"
+          },
+          {
+            "id": "ctw-up1-g3",
+            "prefix": "pa",
+            "completion": "th",
+            "blankLength": 2,
+            "explanationZh": "the shortest 之後須接名詞才能構成完整的受詞片語，並與後文「計時每一段路程」呼應，指她原本要走的那條路線，故為 path。"
+          },
+          {
+            "id": "ctw-up1-g4",
+            "prefix": "ti",
+            "completion": "med",
+            "blankLength": 3,
+            "explanationZh": "主詞 she 之後需要一個過去式動詞，對應前一句「refined」、「methodically」等背景所鋪陳的行為模式：她針對路程的每一段進行「計時」，故填入 timed。"
+          },
+          {
+            "id": "ctw-up1-g5",
+            "prefix": "seg",
+            "completion": "ment",
+            "blankLength": 4,
+            "explanationZh": "timed each 之後須接單數可數名詞作受詞，指她把「旅程」拆成一段段來計時，故填入 segment，並與後方 of her journey 語意相符。"
+          },
+          {
+            "id": "ctw-up1-g6",
+            "prefix": "h",
+            "completion": "er",
+            "blankLength": 2,
+            "explanationZh": "segment of 之後須接所有格來說明「誰的」旅程，主詞為 she，故對應所有格代名詞 her，指她自己的通勤旅程。"
+          },
+          {
+            "id": "ctw-up1-g7",
+            "prefix": "not",
+            "completion": "ing",
+            "blankLength": 3,
+            "explanationZh": "此處以分詞構句補充說明她計時的同時做了什麼，動作與主句同時發生且主詞一致（she），故用現在分詞 noting，表示「同時注意到」。"
+          },
+          {
+            "id": "ctw-up1-g8",
+            "prefix": "conge",
+            "completion": "stion",
+            "blankLength": 5,
+            "explanationZh": "noting where 之後需接一個名詞作為她「注意到」的內容，此處指「交通壅塞」造成時間耗損，故填入 congestion，並與 or mistimed signals 並列，同為導致延誤的原因。"
+          },
+          {
+            "id": "ctw-up1-g9",
+            "prefix": "mist",
+            "completion": "imed",
+            "blankLength": 4,
+            "explanationZh": "此處與 congestion 並列，指另一種造成延誤的原因——「不同步／時機不對的號誌」，signals 前需要形容詞修飾，故填入 mistimed，呼應主題「計時」與「時機」的核心概念。"
+          },
+          {
+            "id": "ctw-up1-g10",
+            "prefix": "co",
+            "completion": "st",
+            "blankLength": 2,
+            "explanationZh": "主詞為 congestion or mistimed signals，其後需要動詞說明這些因素「造成」了最多的時間損失，故填入 cost，與 the most minutes 搭配表示「耗費最多分鐘」。"
+          }
+        ],
+        "sourceParagraph": "Over several months, a commuter methodically refined the walking route she took to work each morning. Rather than following the shortest path, she timed each segment of her journey, noting where congestion or mistimed signals cost the most minutes. She discovered that a slightly longer detour avoided a notoriously slow crossing, saving a noticeable amount of time on average. She also learned that leaving slightly earlier let her reach a crucial intersection before a wave of office workers converged there. Combining these adjustments, she reduced her total commute by nearly twenty minutes each week, a gain that felt disproportionate to the modest effort involved."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-up1",
+        "taskType": "daily_life",
+        "genre": "advertisement",
+        "text": "Spring Tune-Up Special — Ride Ready Bicycle Shop\nGet your bike ready for the season! Full brake and gear inspection, chain lubrication, and tire pressure check — all for just $35, down from our regular $55 rate.\nWalk-ins welcome, no appointment needed.\nOffer valid through May 31 only.\nStop by 220 Elm Street or call (555) 019-2244.",
+        "questions": [
+          {
+            "id": "dl-up1-q1",
+            "stem": "What is the main purpose of this flyer?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To advertise a discounted spring bike maintenance service"
+              },
+              {
+                "id": "b",
+                "text": "To recall bicycles sold with a faulty brake component"
+              },
+              {
+                "id": "c",
+                "text": "To announce the grand opening of a new bicycle repair shop"
+              },
+              {
+                "id": "d",
+                "text": "To recruit part-time mechanics for the busy spring season"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "purpose",
+            "explanationZh": "傳單以春季調校優惠為主軸，原價降至特價，目的是推廣此保養服務，並非宣布開幕、徵才，也不是召回瑕疵零件。"
+          },
+          {
+            "id": "dl-up1-q2",
+            "stem": "In this flyer, what does \"walk-ins welcome\" most likely mean?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Bicycles must be pushed in by hand rather than ridden inside"
+              },
+              {
+                "id": "b",
+                "text": "The shop accepts only cash, not card, for payment"
+              },
+              {
+                "id": "c",
+                "text": "Only people traveling on foot are permitted inside the shop"
+              },
+              {
+                "id": "d",
+                "text": "Customers do not need an appointment to receive service"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "vocabulary",
+            "explanationZh": "「Walk-ins welcome」指顧客不必預約即可上門消費，與後文「no appointment needed」呼應；並非限定步行者進入、限定牽車進店，也非限定付款方式。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-up1",
+        "taskType": "academic_passage",
+        "title": "Hydration Timing and Muscle Recovery After Exercise",
+        "discipline": "life science",
+        "text": "Athletes have long been advised to replace fluids lost during exercise, but recent research suggests that the timing of rehydration, not merely its total volume, meaningfully influences how quickly muscles recover. In a series of controlled trials, researchers compared athletes who consumed fluids steadily throughout a two-hour recovery window against athletes who consumed an identical volume all at once immediately after finishing exercise.\n\nMuscle biopsies revealed that the steady-intake group replenished glycogen, the stored form of carbohydrate muscles rely on for fuel, at a measurably faster rate than the immediate-bolus group, despite both groups ultimately consuming the same amount of fluid and carbohydrate. Researchers attribute this difference to gradual absorption: when large volumes are consumed rapidly, a portion passes through the digestive system before nutrients can be fully absorbed, whereas smaller, spaced intervals allow the body to extract nutrients more completely.\n\nInterestingly, self-reported recovery did not track precisely with the biological measurements. Some athletes in the immediate-bolus group described feeling fully recovered well before their glycogen levels had actually returned to baseline, suggesting that subjective confidence and physiological readiness can diverge. This finding has practical implications for coaches, who may need to rely on measured recovery markers rather than an athlete's own perception when determining readiness for subsequent training sessions.",
+        "questions": [
+          {
+            "id": "ap-up1-q1",
+            "stem": "According to the passage, what did muscle biopsies reveal about the steady-intake group?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They reported significantly higher levels of fatigue immediately after exercise"
+              },
+              {
+                "id": "b",
+                "text": "They needed a longer overall recovery period"
+              },
+              {
+                "id": "c",
+                "text": "They consumed a greater total volume of fluid during the trial than the other group did"
+              },
+              {
+                "id": "d",
+                "text": "They replenished glycogen faster than the immediate-bolus group"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "文中指出穩定補水組肌肉切片顯示肝醣補充速度較快於一次大量補水組，而兩組總攝取量相同，並非攝取量更多、更疲憊或恢復期更長。"
+          },
+          {
+            "id": "ap-up1-q2",
+            "stem": "The word \"bolus\" in paragraph 2 most nearly refers to",
+            "options": [
+              {
+                "id": "a",
+                "text": "a laboratory unit for measuring glycogen stores"
+              },
+              {
+                "id": "b",
+                "text": "a type of connective tissue in muscle fibers"
+              },
+              {
+                "id": "c",
+                "text": "a full dose taken all at once"
+              },
+              {
+                "id": "d",
+                "text": "a scheduled block of time for training"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "vocabulary",
+            "explanationZh": "「bolus」在此指一次性大量攝取的量，對應文中「immediate-bolus group」一次攝取相同容量，並非肌肉結締組織、肝醣測量單位，也不是訓練排程時段。"
+          },
+          {
+            "id": "ap-up1-q3",
+            "stem": "It can be inferred from the passage that rapid consumption of large fluid volumes",
+            "options": [
+              {
+                "id": "a",
+                "text": "is generally more effective for muscle recovery than gradual intake"
+              },
+              {
+                "id": "b",
+                "text": "may prevent some nutrients from being fully absorbed"
+              },
+              {
+                "id": "c",
+                "text": "has little to no measurable impact on recovery outcomes"
+              },
+              {
+                "id": "d",
+                "text": "guarantees that athletes will experience noticeable digestive discomfort during recovery"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "inference",
+            "explanationZh": "文中說明快速大量攝取時，部分液體會在養分完全吸收前通過消化系統，可推知這可能導致部分養分無法完全吸收，而非必然造成腸胃不適、效果更好或對恢復毫無影響。"
+          },
+          {
+            "id": "ap-up1-q4",
+            "stem": "How does the third paragraph relate to the passage as a whole?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It introduces a distinction between subjective feeling and physiological state"
+              },
+              {
+                "id": "b",
+                "text": "It directly contradicts the study's central finding regarding glycogen replenishment rates across both groups"
+              },
+              {
+                "id": "c",
+                "text": "It outlines the specific methodology and procedures used throughout the controlled trials"
+              },
+              {
+                "id": "d",
+                "text": "It offers historical context for research into athletic hydration practices"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "organization",
+            "explanationZh": "第三段說明部分運動員主觀感覺已恢復，但肝醣值尚未回到基準，點出主觀感受與生理狀態可能不一致，是對全文的補充延伸，並非反駁主要發現、方法摘要或歷史背景介紹。"
+          },
+          {
+            "id": "ap-up1-q5",
+            "stem": "What is the main purpose of the passage?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To present research findings on how rehydration timing affects muscle recovery"
+              },
+              {
+                "id": "b",
+                "text": "To criticize coaches for ignoring athlete feedback"
+              },
+              {
+                "id": "c",
+                "text": "To compare glycogen levels across different sports"
+              },
+              {
+                "id": "d",
+                "text": "To argue that athletes should avoid rehydrating during exercise"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "purpose",
+            "explanationZh": "全文說明研究如何比較不同補水時機對肌肉恢復的影響，並提出主觀感受與生理狀態可能脫節的發現，主旨在呈現此研究結果，而非主張避免補水、比較運動項目或批評教練。"
+          }
+        ]
+      }
+    ]
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "reading",
+    "ctwPassages": [
+      {
+        "domain": "community-civic",
+        "noveltyKey": "city-seed-lending-program",
+        "requiredConcepts": [
+          "seed packet checkout log",
+          "germination success tracked",
+          "return of unused seeds",
+          "neighborhood garden plot use"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "prior CtW paragraph covers a neighborhood tool-share program, not a municipal seed-lending program"
+          }
+        ],
+        "topic": "city seed-lending program for neighborhood gardeners",
+        "angle": "how a municipal seed-lending program run by city volunteers helps neighborhood gardeners track germination success each season"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "airport-shuttle-flight-coordination",
+        "requiredConcepts": [
+          "shuttle departure every fifteen minutes",
+          "flight arrival wave timing",
+          "reduced passenger wait time",
+          "bus stop signage update"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "prior CtW paragraph covers overnight sleeper cabin pricing, not airport shuttle bus timing"
+          }
+        ],
+        "topic": "airport shuttle bus timing coordination",
+        "angle": "how airport shuttle bus schedules coordinate arrival waves with incoming flights to reduce passenger wait at the terminal"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "historical-clock-tower-repair",
+        "requiredConcepts": [
+          "decades of disrepair repaired",
+          "town founding anniversary event",
+          "clock mechanism restoration work",
+          "town square ceremony planned"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-6d02b750",
+            "reason": "prior CtW paragraph covers time zone standardization reform, not a single clock tower's physical restoration"
+          }
+        ],
+        "topic": "historical town clock tower repair",
+        "angle": "how a historical clock tower in the town square was restored after decades of disrepair to mark the town's founding anniversary"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "morning-commute-route-optimization",
+        "requiredConcepts": [
+          "daily walking route adjusted",
+          "minutes saved each week",
+          "sidewalk crossing avoided",
+          "commute time tracked over months"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-47ae9ca3",
+            "reason": "prior CtW paragraph covers grocery aisle navigation, not a personal commute route habit"
+          }
+        ],
+        "topic": "morning commute route optimization habit",
+        "angle": "how a commuter incrementally adjusted a daily walking route over several months to shave minutes off the morning commute"
+      }
+    ],
+    "dailyLifeTexts": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "shared-projector-pickup-text",
+        "requiredConcepts": [
+          "projector pickup time confirmed",
+          "study group presentation tomorrow",
+          "return deadline before class",
+          "who carries the projector"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-47ae9ca3",
+            "reason": "prior campus-academics daily-life text is a dining hall menu, not a text-message chain"
+          },
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "prior campus-academics daily-life text is a workshop registration form, not a text-message chain"
+          }
+        ],
+        "genre": "text-message chain",
+        "scenario": "two university students texting about picking up a projector borrowed for their course study group presentation"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "onboarding-kit-purchase-receipt",
+        "requiredConcepts": [
+          "onboarding kit items listed",
+          "office supply store total",
+          "employee name on receipt",
+          "purchase date and time"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-47ae9ca3",
+            "reason": "prior workplace-business daily-life text is a text-message chain, not a receipt"
+          },
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "prior workplace-business daily-life text is a furniture repair invoice, not a purchase receipt"
+          }
+        ],
+        "genre": "receipt",
+        "scenario": "an itemized receipt from an office supply store showing items purchased for a new employee's onboarding kit"
+      },
+      {
+        "domain": "science-environment",
+        "noveltyKey": "nature-center-habitat-walk-schedule",
+        "requiredConcepts": [
+          "guided habitat walk times listed",
+          "pollinator garden tour slots",
+          "meeting point at nature center",
+          "advance registration recommended"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-47ae9ca3",
+            "reason": "prior science-environment daily-life text is a poster about an air quality station, not a walk schedule"
+          },
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "prior science-environment daily-life text summarizes lab air quality data, not a habitat walk schedule"
+          }
+        ],
+        "genre": "schedule",
+        "scenario": "a nature center's printed schedule listing guided habitat walks and pollinator garden tours throughout the summer"
+      },
+      {
+        "domain": "technology-media",
+        "noveltyKey": "phone-repair-dropoff-form",
+        "requiredConcepts": [
+          "device model and serial number",
+          "screen replacement request noted",
+          "drop-off date and time",
+          "estimated repair completion window"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "prior technology-media daily-life text is a social media post about a podcast app, not an intake form"
+          },
+          {
+            "setId": "rd-6d02b750",
+            "reason": "prior technology-media daily-life text is a budget app changelog page, not a repair intake form"
+          }
+        ],
+        "genre": "form",
+        "scenario": "a phone repair shop's device drop-off intake form for people requesting a screen replacement"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "ferry-route-suspension-poster",
+        "requiredConcepts": [
+          "route suspended two weeks",
+          "maintenance work explained",
+          "alternate bus connection offered",
+          "resumption date posted"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-35c68bb3",
+            "reason": "prior services-travel daily-life text is a bus charter invoice, not a route-suspension poster"
+          },
+          {
+            "setId": "rd-6d02b750",
+            "reason": "prior services-travel daily-life text is a regional train timetable, not a ferry route poster"
+          }
+        ],
+        "genre": "poster/sign",
+        "scenario": "a ferry terminal poster announcing a temporary route suspension for scheduled maintenance"
+      },
+      {
+        "domain": "everyday-life",
+        "noveltyKey": "bike-shop-tuneup-flyer",
+        "requiredConcepts": [
+          "spring tune-up discount price",
+          "flyer valid through May",
+          "walk-in appointments accepted",
+          "brake and gear check included"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-35c68bb3",
+            "reason": "prior everyday-life daily-life text is a text-message chain about furniture delivery, not a flyer"
+          },
+          {
+            "setId": "rd-6d02b750",
+            "reason": "prior everyday-life daily-life text is a grocery store receipt, not an advertisement flyer"
+          }
+        ],
+        "genre": "advertisement",
+        "scenario": "a local bike repair shop's seasonal flyer advertising a discounted spring tune-up special"
+      }
+    ],
+    "academicPassages": [
+      {
+        "domain": "services-travel",
+        "noveltyKey": "train-peak-offpeak-pricing",
+        "requiredConcepts": [
+          "off-peak fare discount structure",
+          "peak demand shifted to other times",
+          "ticket price adjusted by time of day",
+          "operator revenue and ridership balance"
+        ],
+        "distinguishesFrom": [],
+        "title": "Balancing Peak and Off-Peak Train Fares",
+        "discipline": "business and economics",
+        "angle": "how regional train operators use dynamic ticket pricing to shift passenger demand away from crowded peak departures toward quieter times of day"
+      },
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "student-study-partnership-formation",
+        "requiredConcepts": [
+          "shared class schedule overlap",
+          "informal study partnership forms",
+          "library as common meeting spot",
+          "review sessions before exams"
+        ],
+        "distinguishesFrom": [],
+        "title": "How Study Partnerships Form Among Students",
+        "discipline": "social science",
+        "angle": "how students in the same courses informally pair up to review material together, based on shared class schedules and library visits"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "post-exercise-hydration-recovery",
+        "requiredConcepts": [
+          "fluid intake timing after exercise",
+          "muscle glycogen replenishment rate",
+          "perceived recovery measured",
+          "dehydration effects on performance"
+        ],
+        "distinguishesFrom": [],
+        "title": "Hydration Timing and Muscle Recovery After Exercise",
+        "discipline": "life science",
+        "angle": "how the timing of fluid intake after exercise affects the rate of muscle glycogen replenishment and how quickly athletes perceive themselves recovering"
+      }
+    ]
+  }
+}

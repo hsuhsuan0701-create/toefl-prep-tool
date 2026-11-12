@@ -1,0 +1,130 @@
+{
+  "id": "spk-89911631",
+  "source": "generated",
+  "createdAt": "2026-07-30T07:15:13.359Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Campus Media Lab Orientation",
+    "scenarioDescription": "You are learning how to guide students through a campus media lab. Listen to the lab supervisor and repeat what she says. Repeat only once.",
+    "image": {
+      "file": "images/scenarios/spk-89911631.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Campus Media Lab Orientation. You are learning how to guide students through a campus media lab. Listen to the lab supervisor and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- This room holds our recording equipment.\n- Students borrow cameras and microphones at this desk.\n- You can check batteries and test each camera near the counter.\n- We store tripods along this wall, and you'll return them after each project.\n- Before you enter the sound booth, please switch your phone off and close the outer door.\n- The editing stations beside the windows are available whenever a class isn't using them for scheduled workshops.\n- Any student who reserves the podcast studio must collect the key from the supervisor working near the exit.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "This room holds our recording equipment.",
+        "audio": "stimuli/spk-89911631/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Students borrow cameras and microphones at this desk.",
+        "audio": "stimuli/spk-89911631/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.404,
+          "y": 0.183,
+          "w": 0.19,
+          "h": 0.133
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "You can check batteries and test each camera near the counter.",
+        "audio": "stimuli/spk-89911631/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.395,
+          "y": 0.316,
+          "w": 0.215,
+          "h": 0.132
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "We store tripods along this wall, and you'll return them after each project.",
+        "audio": "stimuli/spk-89911631/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.057,
+          "y": 0.31,
+          "w": 0.245,
+          "h": 0.165
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Before you enter the sound booth, please switch your phone off and close the outer door.",
+        "audio": "stimuli/spk-89911631/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.303,
+          "y": 0.63,
+          "w": 0.065,
+          "h": 0.145
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The editing stations beside the windows are available whenever a class isn't using them for scheduled workshops.",
+        "audio": "stimuli/spk-89911631/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.685,
+          "y": 0.21,
+          "w": 0.295,
+          "h": 0.25
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Any student who reserves the podcast studio must collect the key from the supervisor working near the exit.",
+        "audio": "stimuli/spk-89911631/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.58,
+          "y": 0.44,
+          "w": 0.34,
+          "h": 0.445
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Learning Practical Skills",
+    "intro": "You have agreed to participate in a campus research study about how people learn practical skills outside the classroom. You will have a short online interview with a researcher, who will ask you four questions.",
+    "introAudio": "stimuli/spk-89911631/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thank you for speaking with me today. What practical skill would you most like to learn, and where would you prefer to learn it?",
+        "audio": "stimuli/spk-89911631/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Think of a time when you successfully learned how to do something new. How did you learn it, and why do you think that method worked well for you?",
+        "audio": "stimuli/spk-89911631/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some people prefer learning practical skills from an instructor, while others prefer teaching themselves through videos or written guides. Which approach do you think is more effective, and why?",
+        "audio": "stimuli/spk-89911631/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Some colleges are considering offering more short courses in practical skills, such as cooking, basic repairs, or personal finance. Should colleges make these courses available to all students? Why or why not?",
+        "audio": "stimuli/spk-89911631/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "id": "spk-a66f30cf",
+  "source": "generated",
+  "createdAt": "2026-09-01T10:13:39.531Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Garage Sale Setup",
+    "scenarioDescription": "You are helping a neighbor get ready for a family garage sale before the doors open. Listen to the homeowner and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-a66f30cf/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-a66f30cf.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Garage Sale Setup. You are helping a neighbor get ready for a family garage sale before the doors open. Listen to the homeowner and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Let's set up the driveway tables first.\n- The toys and the kitchen items share this table.\n- We sort each table by category and set it up early.\n- Match each price tag to its color code, and attach it firmly.\n- Wrap anything fragile in newspaper before you set it on the table.\n- The cash box has to be counted and locked before the doors open.\n- The tables, which are grouped by category, make browsing simple for early shoppers.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Let's set up the driveway tables first.",
+        "audio": "stimuli/spk-a66f30cf/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The toys and the kitchen items share this table.",
+        "audio": "stimuli/spk-a66f30cf/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "We sort each table by category and set it up early.",
+        "audio": "stimuli/spk-a66f30cf/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Match each price tag to its color code, and attach it firmly.",
+        "audio": "stimuli/spk-a66f30cf/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Wrap anything fragile in newspaper before you set it on the table.",
+        "audio": "stimuli/spk-a66f30cf/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The cash box has to be counted and locked before the doors open.",
+        "audio": "stimuli/spk-a66f30cf/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The tables, which are grouped by category, make browsing simple for early shoppers.",
+        "audio": "stimuli/spk-a66f30cf/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Craft Fair Browsing Habits",
+    "intro": "Hello, thank you for speaking with me today. I'm a researcher with a local arts council, and I'm calling to ask a few quick questions about how you browse local craft fairs and art markets.",
+    "introAudio": "stimuli/spk-a66f30cf/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, when you go to a local craft fair, what kind of stall do you usually stop at first?",
+        "audio": "stimuli/spk-a66f30cf/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thank you. Now think back to a specific craft fair you visited. Can you describe one stall or item that caught your attention, and explain why you reacted the way you did?",
+        "audio": "stimuli/spk-a66f30cf/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "That's a great story. Some shoppers like to stop at every single stall at a craft fair, while others are much more selective about where they spend their time. Which approach do you think works better, and why?",
+        "audio": "stimuli/spk-a66f30cf/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Do you think craft fairs should group similar vendors together in the same area, or is it better to mix different kinds of stalls throughout the fair? Why?",
+        "audio": "stimuli/spk-a66f30cf/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "everyday-life",
+      "noveltyKey": "garage-sale-pricing-station-orientation",
+      "requiredConcepts": [
+        "price tags matched to sticker color codes",
+        "fragile items wrapped in newspaper before display",
+        "cash box counted before the doors open",
+        "tables arranged by item category"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-501742db",
+          "reason": "that Set is a homeowner briefing a house sitter on ongoing pet and plant care during a trip; this one is a homeowner briefing a helper on one morning's garage sale setup."
+        },
+        {
+          "setId": "spk-071d01af",
+          "reason": "that Set is a current tenant orienting an incoming roommate to shared everyday household routines; this one is a one-time garage sale walkthrough with a neighbor, not a household living arrangement."
+        }
+      ],
+      "setting": "the garage and driveway of a family home, set up with folding tables for a multi-family garage sale",
+      "speakerRole": "the homeowner running the garage sale",
+      "communicativePurpose": "orienting a helping neighbor to the pricing and item stations before the doors open to early shoppers"
+    },
+    "interview": {
+      "domain": "arts-culture",
+      "noveltyKey": "craft-fair-stall-browsing-habit",
+      "requiredConcepts": [
+        "a craft stall that gets a first stop",
+        "a handmade item bought on impulse",
+        "a vendor table skipped and why",
+        "browsing pace when the fair gets crowded"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-1ba26e29",
+          "reason": "that Set covers passive attendance at ticketed live music or theater performances; this one covers active browsing and buying at a craft/art market, a different behavior entirely."
+        },
+        {
+          "setId": "spk-bbb69428",
+          "reason": "that Set covers practicing one's own art or music hobby alone at home; this one covers public browsing of other people's handmade work at a market."
+        }
+      ],
+      "topic": "how the test taker browses stalls at a local craft or art fair",
+      "premise": "A researcher with a local arts council makes a brief unannounced phone call about how the test taker decides which craft fair or art market stalls to stop at and what, if anything, they end up buying.",
+      "questionArc": [
+        "Ask a concrete, retrievable fact about which stall or type of stall the test taker usually stops at first when browsing a craft fair.",
+        "Ask the test taker to narrate one specific past visit to a craft fair and explain why they reacted the way they did to a particular stall or item.",
+        "Present two contrasting views on browsing style (stopping everywhere versus being selective) and ask the test taker to take a side and justify it.",
+        "Broaden to a general claim about whether craft fairs should group similar vendors together, inviting evaluation or a recommendation."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Erinome",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Iapetus",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

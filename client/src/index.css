@@ -1,0 +1,243 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — see docs/design-system.md for what each role is for.
+ *
+ * The world these come from: an exam booklet on a desk. Warm paper, blue-black ink, a pencil for
+ * anything provisional (every band is an estimate), a teacher's red pen for corrections, ochre for
+ * "mind this", library green for "done right". Depth is ruled lines on paper, not shadows: only
+ * things that genuinely float (a dialog) cast one.
+ *
+ * ADDITIVE ONLY. Tailwind's default palette and sizes stay available because the pages that have
+ * not been restyled yet still use them; new code uses ONLY the names below (client/test/
+ * uiTokens.test.ts enforces that for src/ui/ and the design preview). Dark theme is a token swap:
+ * the `[data-theme="dark"]` block at the bottom reassigns these same --color-* names, so nothing
+ * that uses them needs a `dark:` variant.
+ */
+@theme {
+  /* ── Type families ─────────────────────────────────────────────────────────────────────────
+     Latin face first, then an explicit Traditional Chinese face per platform, so Han characters
+     never fall through to a Simplified or Japanese default. Every family is a system font: this
+     app runs offline and loads nothing from a network. */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI Variable Text", "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "PingFang TC", "Hiragino Sans CNS", "Microsoft JhengHei UI", "Microsoft JhengHei",
+    "Noto Sans TC", "Noto Sans CJK TC", "Source Han Sans TC", system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  /* Display only: page titles and score figures. Charter/Sitka/Cambria all draw lining figures,
+     so "5.5" never gets an old-style descending 5 (Georgia, last resort, would). */
+  --font-serif:
+    Charter, "Bitstream Charter", "Sitka Text", Cambria, "Iowan Old Style", "Noto Serif",
+    "Songti TC", "Noto Serif TC", "Noto Serif CJK TC", "Source Han Serif TC", Georgia, serif;
+  /* Identifiers only (Set ids, internal method names) — never prose, never numbers to compare. */
+  --font-mono:
+    ui-monospace, "SF Mono", "Cascadia Mono", "Segoe UI Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+
+  /* ── Type scale ────────────────────────────────────────────────────────────────────────────
+     Named by job, not by size. Planning screens default to `body`; long feedback uses `prose`;
+     exam Stimuli use `stimulus`. Figures are serif and always tabular. */
+  --text-caption: 0.75rem;
+  --text-caption--line-height: 1rem;
+  --text-meta: 0.8125rem;
+  --text-meta--line-height: 1.25rem;
+  --text-ui: 0.875rem;
+  --text-ui--line-height: 1.375rem;
+  --text-body: 0.9375rem;
+  --text-body--line-height: 1.5rem;
+  --text-prose: 1rem;
+  --text-prose--line-height: 1.75;
+  --text-stimulus: 1.0625rem;
+  --text-stimulus--line-height: 1.7;
+  --text-heading: 1.125rem;
+  --text-heading--line-height: 1.5rem;
+  --text-title: 1.75rem;
+  --text-title--line-height: 2.125rem;
+  --text-title--letter-spacing: -0.01em;
+  --text-clock: 1.375rem;
+  --text-clock--line-height: 1.75rem;
+  --text-figure-sm: 1.375rem;
+  --text-figure-sm--line-height: 1.75rem;
+  --text-figure: 2.5rem;
+  --text-figure--line-height: 1;
+  --text-figure--letter-spacing: -0.015em;
+  --text-figure-lg: 3.5rem;
+  --text-figure-lg--line-height: 1;
+  --text-figure-lg--letter-spacing: -0.02em;
+
+  /* ── Colour roles ──────────────────────────────────────────────────────────────────────────
+     Surfaces: the page is paper, a card is a sheet laid on it, a well is a recessed area. */
+  --color-paper: #f6f4ef;
+  --color-sheet: #fcfbf8;
+  --color-well: #efece5;
+  --color-field: #fffefb;
+  /* Ruled lines. `rule` separates; `rule-strong` outlines a control you can press or type in. */
+  --color-rule: #e2ddd2;
+  --color-rule-strong: #c9c1b2;
+  /* Text. ink > ink-soft > graphite > faint. graphite is also the pencil: the estimate colour. */
+  --color-ink: #1c2130;
+  --color-ink-soft: #474c58;
+  --color-graphite: #6a6862;
+  --color-faint: #a29d93;
+  /* The one accent: blue-black ink. Actions, links, the current place, focus. */
+  --color-accent: #2f4a86;
+  --color-accent-strong: #223866;
+  --color-accent-wash: #e7ebf4;
+  --color-accent-rule: #b8c3dc;
+  --color-on-accent: #fcfbf8;
+  --color-focus: #3a5cb4;
+  /* Semantic. Each has a text colour (the bare name), a wash (background) and a rule (border).
+     correction is pedagogy (a Deduction, a wrong answer: the teacher's red pen); critical is a
+     fault or a destructive act (scoring failed, Discard). They are different roles on purpose. */
+  --color-positive: #2c6a4a;
+  --color-positive-wash: #e3efe6;
+  --color-positive-rule: #a9cdb6;
+  --color-caution: #7f5a0e;
+  --color-caution-wash: #f5ebd0;
+  --color-caution-rule: #dfc68c;
+  --color-correction: #b0402a;
+  --color-correction-wash: #f8e6df;
+  --color-correction-rule: #e6b4a6;
+  --color-critical: #a3242c;
+  --color-critical-wash: #f7e2e2;
+  --color-critical-rule: #e2aeb0;
+  --color-on-critical: #fcfbf8;
+  /* The pencil. Estimates, and the dashed rule under every estimated figure. */
+  --color-estimate: #6a6862;
+  --color-estimate-rule: #9a958b;
+  /* Highlighter, for a phrase the User is pointed to inside a Stimulus. */
+  --color-highlight: #f6e7a6;
+
+  /* ── Space and measure ─────────────────────────────────────────────────────────────────────
+     Tailwind's 4px step stays the spacing unit. `gutter` is the page's side margin: 16px on a
+     phone, 32px from 640px up (redefined in the media query below). */
+  --spacing-gutter: 1rem;
+  --container-page: 64rem;
+  --container-measure: 42rem;
+  --container-exam: 76rem;
+
+  /* ── Radii ─────────────────────────────────────────────────────────────────────────────────
+     Small and even: a precise instrument, not a toy. */
+  --radius-chip: 0.1875rem;
+  --radius-control: 0.3125rem;
+  --radius-sheet: 0.5rem;
+
+  /* ── Elevation ─────────────────────────────────────────────────────────────────────────────
+     Borders do the layering. One shadow, for what floats above the page (dialog, popover). */
+  --shadow-overlay: 0 1px 2px rgb(28 33 48 / 0.06), 0 16px 40px -12px rgb(28 33 48 / 0.28);
+
+  /* ── Motion ────────────────────────────────────────────────────────────────────────────────
+     Quiet and quick. Use as `duration-(--duration-quick) ease-quiet`. Reduced-motion users get
+     none (see the base layer). */
+  --ease-quiet: cubic-bezier(0.2, 0, 0, 1);
+  --duration-quick: 120ms;
+  --duration-calm: 220ms;
+  --animate-skeleton: skeleton 1.6s ease-in-out infinite;
+
+  @keyframes skeleton {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.55;
+    }
+  }
+}
+
+@media (min-width: 40rem) {
+  :root {
+    --spacing-gutter: 2rem;
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-kerning: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* One focus ring for everything: visible on paper, sheet, well and accent fills alike. */
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  /* Traditional Chinese prose (feedback, Explanations, summaries). Prose.tsx sets lang="zh-Hant";
+     these rules depend on it. Never italic, never tracked, never uppercased. */
+  :lang(zh-Hant) {
+    line-break: strict;
+    font-style: normal;
+    letter-spacing: 0;
+    text-transform: none;
+    text-autospace: normal;
+    text-spacing-trim: normal;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Dark theme: the same role names, re-inked. Every file under client/src draws through these
+     roles (client/test/uiTokens.test.ts), so the swap reaches every screen. Not switched on anywhere
+     yet, because no one has reviewed every screen in it (docs/design-system.md, "Dark theme"). Opt a
+     subtree in with data-theme="dark". */
+  [data-theme="dark"] {
+    color-scheme: dark;
+    --color-paper: #15171c;
+    --color-sheet: #1b1e25;
+    --color-well: #111317;
+    --color-field: #1f232b;
+    --color-rule: #2c303a;
+    --color-rule-strong: #434958;
+    --color-ink: #ebe8e1;
+    --color-ink-soft: #bcb8af;
+    --color-graphite: #959188;
+    --color-faint: #625f59;
+    --color-accent: #9db3ea;
+    --color-accent-strong: #bccbf2;
+    --color-accent-wash: #222b42;
+    --color-accent-rule: #3e4c72;
+    --color-on-accent: #121621;
+    --color-focus: #9db3ea;
+    --color-positive: #86c8a2;
+    --color-positive-wash: #17271e;
+    --color-positive-rule: #2f5a41;
+    --color-caution: #e1b866;
+    --color-caution-wash: #2a2312;
+    --color-caution-rule: #5c4a1f;
+    --color-correction: #f09a82;
+    --color-correction-wash: #2d1b16;
+    --color-correction-rule: #6a3a2e;
+    --color-critical: #f08c8f;
+    --color-critical-wash: #2e1719;
+    --color-critical-rule: #6b2f33;
+    --color-on-critical: #15171c;
+    --color-estimate: #959188;
+    --color-estimate-rule: #6f6b63;
+    --color-highlight: #4a4120;
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+  }
+}
+
+/* Tabular lining figures for anything a User compares across rows or watches tick. */
+@utility figures {
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}

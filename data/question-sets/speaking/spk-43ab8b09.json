@@ -1,0 +1,130 @@
+{
+  "id": "spk-43ab8b09",
+  "source": "generated",
+  "createdAt": "2026-07-28T16:10:15.512Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Campus Greenhouse Volunteer Walkthrough",
+    "scenarioDescription": "You have volunteered to help take care of the plants in the campus greenhouse. A staff member is showing you around before your first shift. Listen to the staff member and repeat what she says. Repeat only once.",
+    "image": {
+      "file": "images/scenarios/spk-43ab8b09.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Campus Greenhouse Volunteer Walkthrough. You have volunteered to help take care of the plants in the campus greenhouse. A staff member is showing you around before your first shift. Listen to the staff member and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- The greenhouse opens at eight every morning.\n- Gloves and watering cans are by the door.\n- You'll fill the cans at the sink and start on the left.\n- The seedlings over here need water every day, but the plants in back don't.\n- When the sun gets strong in the afternoon, we pull the shades over these tables.\n- If a pot looks dry, give it a slow drink, and then move it closer to the window.\n- The green notebook that hangs by the back door lists every plant that we've started from seed this spring.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "The greenhouse opens at eight every morning.",
+        "audio": "stimuli/spk-43ab8b09/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Gloves and watering cans are by the door.",
+        "audio": "stimuli/spk-43ab8b09/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.14,
+          "y": 0.29,
+          "w": 0.09,
+          "h": 0.16
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "You'll fill the cans at the sink and start on the left.",
+        "audio": "stimuli/spk-43ab8b09/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.18,
+          "y": 0.38,
+          "w": 0.22,
+          "h": 0.22
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The seedlings over here need water every day, but the plants in back don't.",
+        "audio": "stimuli/spk-43ab8b09/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.04,
+          "y": 0.55,
+          "w": 0.34,
+          "h": 0.24
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "When the sun gets strong in the afternoon, we pull the shades over these tables.",
+        "audio": "stimuli/spk-43ab8b09/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.52,
+          "y": 0.43,
+          "w": 0.31,
+          "h": 0.19
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "If a pot looks dry, give it a slow drink, and then move it closer to the window.",
+        "audio": "stimuli/spk-43ab8b09/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.77,
+          "y": 0.61,
+          "w": 0.08,
+          "h": 0.08
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The green notebook that hangs by the back door lists every plant that we've started from seed this spring.",
+        "audio": "stimuli/spk-43ab8b09/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.63,
+          "y": 0.2,
+          "w": 0.07,
+          "h": 0.1
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "How Students Eat During the Week",
+    "intro": "A research team at your school is studying how students eat during a normal week. You have agreed to take part in a short online interview. The researcher will ask you four questions. There is no preparation time, so answer each question as completely as you can.",
+    "introAudio": "stimuli/spk-43ab8b09/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thank you for speaking with me today. To start, think about a typical weekday for you. Where do you usually eat your meals, and who do you eat them with?",
+        "audio": "stimuli/spk-43ab8b09/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think back to a meal you still remember clearly, for any reason at all. Tell me what the meal was and what was happening around it. Why do you think that one stayed with you?",
+        "audio": "stimuli/spk-43ab8b09/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some people believe that cooking your own food is worth the time it takes, because you eat better and spend less money. Others find that the time is better spent on work or rest, and that buying prepared food is simply more practical. Which view is closer to yours, and why?",
+        "audio": "stimuli/spk-43ab8b09/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Suppose a school decided to teach basic cooking to every student as a required course, the same way it teaches math or science. Do you think that would be a good use of school time? What effect would it have on students, and what would you recommend to the school?",
+        "audio": "stimuli/spk-43ab8b09/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  }
+}

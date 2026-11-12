@@ -1,0 +1,266 @@
+{
+  "id": "wri-cd14eb34",
+  "source": "generated",
+  "createdAt": "2026-07-28T18:00:10.288Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Who is covering the front desk this afternoon?",
+        "frame": "Lena ___ ___ ___ ___ afternoon.",
+        "tiles": [
+          "is",
+          "are",
+          "covering",
+          "it",
+          "this"
+        ],
+        "answers": [
+          [
+            "is",
+            "covering",
+            "it",
+            "this"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-2",
+        "prompt": "What did you do with the extra chairs?",
+        "frame": "I ___ ___ ___ ___ wall.",
+        "tiles": [
+          "stacked",
+          "stack",
+          "them",
+          "by",
+          "the"
+        ],
+        "answers": [
+          [
+            "stacked",
+            "them",
+            "by",
+            "the"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Are the exam results out yet?",
+        "frame": "The ___ ___ ___ ___ yet.",
+        "tiles": [
+          "grades",
+          "haven't",
+          "hasn't",
+          "been",
+          "posted"
+        ],
+        "answers": [
+          [
+            "grades",
+            "haven't",
+            "been",
+            "posted"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Is there space in the seminar for two more people?",
+        "frame": "There ___ ___ ___ ___ left.",
+        "tiles": [
+          "are",
+          "is",
+          "only",
+          "three",
+          "seats"
+        ],
+        "answers": [
+          [
+            "are",
+            "only",
+            "three",
+            "seats"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Why did you stop by the registrar's office?",
+        "frame": "I ___ ___ ___ ___ ___ transcript.",
+        "tiles": [
+          "went",
+          "there",
+          "to ask",
+          "for asking",
+          "about",
+          "my"
+        ],
+        "answers": [
+          [
+            "went",
+            "there",
+            "to ask",
+            "about",
+            "my"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Do I need to bring my own laptop to the session?",
+        "frame": "You ___ ___ ___ ___ ___ video.",
+        "tiles": [
+          "won't",
+          "doesn't",
+          "need one",
+          "unless",
+          "you plan",
+          "to edit"
+        ],
+        "answers": [
+          [
+            "won't",
+            "need one",
+            "unless",
+            "you plan",
+            "to edit"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Did you get to see the exhibit before it closed?",
+        "frame": "The line ___ ___ ___ ___ ___ up.",
+        "tiles": [
+          "was",
+          "so",
+          "such",
+          "long",
+          "that",
+          "we gave"
+        ],
+        "answers": [
+          [
+            "was",
+            "so",
+            "long",
+            "that",
+            "we gave"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Do you know when the results come out?",
+        "frame": "I'm not sure ___ ___ ___ ___ ___ posted.",
+        "tiles": [
+          "when",
+          "the",
+          "results",
+          "will",
+          "be",
+          "been"
+        ],
+        "answers": [
+          [
+            "when",
+            "the",
+            "results",
+            "will",
+            "be"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-9",
+        "prompt": "How did the committee narrow the applications down?",
+        "frame": "They ___ ___ ___ ___ ___ deadline.",
+        "tiles": [
+          "kept",
+          "only",
+          "the essays",
+          "submitted",
+          "that submitted",
+          "before the"
+        ],
+        "answers": [
+          [
+            "kept",
+            "only",
+            "the essays",
+            "submitted",
+            "before the"
+          ]
+        ],
+        "timeLimitSec": 40
+      },
+      {
+        "id": "bas-10",
+        "prompt": "When did you realize the data was wrong?",
+        "frame": "It wasn't until I ___ ___ ___ ___ I ___ the error.",
+        "tiles": [
+          "plotted",
+          "the",
+          "results",
+          "that",
+          "noticed",
+          "noticing"
+        ],
+        "answers": [
+          [
+            "plotted",
+            "the",
+            "results",
+            "that",
+            "noticed"
+          ]
+        ],
+        "timeLimitSec": 40
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "The Hillcrest Coastal Society, a student organization at your university, has invited you to speak about your summer fieldwork at a public panel on October 14. You would like to take part, but you will be away at a research station for the whole of that week and cannot attend. The society's events coordinator has asked for a reply by Friday.",
+    "to": "events@hillcrestcoastal.org",
+    "subject": "Reply to your invitation for the October panel",
+    "bullets": [
+      "Thank the coordinator for the invitation and say what interests you about the panel.",
+      "Decline the invitation for the date offered and explain why you cannot attend.",
+      "Suggest one alternative, such as a different date or another speaker."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Education 210: Technology and Learning",
+    "professorName": "Dr. Whitfield",
+    "professorPost": "Some instructors now ask students to put laptops and tablets away and take notes by hand, arguing that a class runs better without screens in the room. Others design their courses around the devices students already carry and would not want that option taken away. Universities are being asked to decide which instructors may set such a rule. What do you think? Should instructors be allowed to require that a class be device-free? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Mireia",
+        "post": "I would welcome it. In my largest lecture I sit behind a row of open laptops, and half of them are showing something other than the course. Even when I am trying to concentrate, my eyes follow whatever is moving on the screen in front of me, and I lose the thread of the lecture."
+      },
+      {
+        "name": "Devon",
+        "post": "A blanket rule ignores how differently people work. I type far faster than I write, and being able to search my own notes later is what makes them useful in the week before an exam. If some students are distracted, that is a problem with those students, not with the technology."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  }
+}

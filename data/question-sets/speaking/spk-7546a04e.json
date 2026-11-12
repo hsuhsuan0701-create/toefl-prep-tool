@@ -1,0 +1,232 @@
+{
+  "id": "spk-7546a04e",
+  "source": "generated",
+  "createdAt": "2026-08-23T07:03:14.622Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Archive Intern Orientation",
+    "scenarioDescription": "You are a new intern at a small heritage archive. Listen to the collections coordinator as she walks you through how to handle our donated historical letters, and repeat what she says. You will hear each sentence only once, so repeat only once.",
+    "introAudio": "stimuli/spk-7546a04e/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-7546a04e.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Archive Intern Orientation. You are a new intern at a small heritage archive. Listen to the collections coordinator as she walks you through how to handle our donated historical letters, and repeat what she says. You will hear each sentence only once, so repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- We log every donated letter by arrival date.\n- You and every intern wear cotton gloves in here.\n- Switch on the reading table lamp at the start of each shift.\n- Slide the letter into its acid-free folder, and close the flap gently.\n- Whenever a box moves shelves, update the sign-out sheet right away.\n- Because these pages are fragile, cotton gloves and acid-free folders protect them every time.\n- Letters logged today, protected by gloves and folders, are now ready for research.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "We log every donated letter by arrival date.",
+        "audio": "stimuli/spk-7546a04e/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "You and every intern wear cotton gloves in here.",
+        "audio": "stimuli/spk-7546a04e/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Switch on the reading table lamp at the start of each shift.",
+        "audio": "stimuli/spk-7546a04e/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Slide the letter into its acid-free folder, and close the flap gently.",
+        "audio": "stimuli/spk-7546a04e/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Whenever a box moves shelves, update the sign-out sheet right away.",
+        "audio": "stimuli/spk-7546a04e/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Because these pages are fragile, cotton gloves and acid-free folders protect them every time.",
+        "audio": "stimuli/spk-7546a04e/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Letters logged today, protected by gloves and folders, are now ready for research.",
+        "audio": "stimuli/spk-7546a04e/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "A Commuter's Bus and Train Choices",
+    "intro": "A transportation research team is calling residents to ask about how they get around town using local bus and train routes. You've picked up the phone, and the interviewer would like to ask you a few quick questions about your typical commute.",
+    "introAudio": "stimuli/spk-7546a04e/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thank you for speaking with me today. To start, could you tell me which bus or train route you usually take to get around town, and about how long that ride usually takes?",
+        "audio": "stimuli/spk-7546a04e/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thanks for sharing that. Now I'd like to ask about a specific trip. Can you describe a time when a delayed bus or a missed connection forced you to change your plans, and explain what caused it?",
+        "audio": "stimuli/spk-7546a04e/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK, I appreciate that story. Here's a question about choices people make. Some travelers pay more for a direct bus or train that gets them there faster, while others choose a cheaper route with extra transfers to save money. Which option would you pick, and why?",
+        "audio": "stimuli/spk-7546a04e/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Should local transit agencies focus on adding more direct routes, or should they focus on lowering ticket fares instead? Please explain your choice and predict how it would affect ridership in town.",
+        "audio": "stimuli/spk-7546a04e/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "first",
+      "measuredWpm": 158.7,
+      "targetWpm": 200,
+      "minWpm": 175,
+      "maxWpm": 225
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 178.6,
+      "targetWpm": 208,
+      "minWpm": 183,
+      "maxWpm": 233
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 151.9,
+      "targetWpm": 178,
+      "minWpm": 153,
+      "maxWpm": 203
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "first",
+      "measuredWpm": 140.6,
+      "targetWpm": 176,
+      "minWpm": 151,
+      "maxWpm": 201
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "first",
+      "measuredWpm": 145.1,
+      "targetWpm": 175,
+      "minWpm": 150,
+      "maxWpm": 200
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "history-social-change",
+      "noveltyKey": "heritage-archive-intake-orientation",
+      "requiredConcepts": [
+        "donated letters logged by arrival date",
+        "cotton gloves worn before touching fragile pages",
+        "acid-free folder used for each historical letter",
+        "reading table lamp switched on before handling begins",
+        "sign-out sheet updated whenever a box moves"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-a87a3b41",
+          "reason": "wildlife rehab intake handles live animals in a nature center; this handles fragile historical documents in a heritage archive"
+        },
+        {
+          "setId": "spk-7ed36c39",
+          "reason": "print studio orients a visiting printmaker to press equipment; this orients an intern to archival document-handling steps, no printmaking involved"
+        },
+        {
+          "setId": "spk-fbe10c5d",
+          "reason": "marsh laboratory orients a field assistant to water-sampling gear; this setting is a heritage archive with no scientific sampling"
+        }
+      ],
+      "setting": "a small heritage archive storage room",
+      "speakerRole": "the archive's collections coordinator",
+      "communicativePurpose": "guiding a new intern through each heritage document-handling step before independent work begins"
+    },
+    "interview": {
+      "domain": "services-travel",
+      "noveltyKey": "routine-bus-train-route-choices",
+      "requiredConcepts": [
+        "usual bus or train route taken to get around town",
+        "a missed connection that changed a trip plan",
+        "cheaper fares versus a more direct route",
+        "added direct routes versus lower ticket prices"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-c42dd828",
+          "reason": "that set covers a part-time workplace shift routine, not transit route or fare choices"
+        },
+        {
+          "setId": "spk-a87a3b41",
+          "reason": "that set covers household chore rotation among people who live together, not bus or train route decisions"
+        },
+        {
+          "setId": "spk-8d9ee619",
+          "reason": "that set asks broadly about a recent city visit; this narrows specifically to routine bus/train route choices and fare-versus-directness tradeoffs"
+        }
+      ],
+      "topic": "a typical commute using local bus or train routes",
+      "premise": "a transportation research team places brief unprepared phone calls asking residents how they get around town using bus and train routes",
+      "questionArc": [
+        "concrete facts about the bus or train route the person usually takes and how long the ride takes",
+        "a specific past trip where a delayed bus or missed connection forced a change of plan, and the reason it happened",
+        "a choice between a pricier direct route and a cheaper route with transfers, with justification for one side",
+        "whether local transit agencies should add more direct routes or lower ticket prices instead, with a prediction of the effect"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v4",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "british",
+      "voice": "Rasalgethi",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        200,
+        208,
+        215,
+        180,
+        178,
+        176,
+        175
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "north-american",
+      "voice": "Algieba",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

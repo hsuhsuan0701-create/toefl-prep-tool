@@ -1,0 +1,213 @@
+{
+  "id": "spk-1866e2c0",
+  "source": "generated",
+  "createdAt": "2026-08-24T17:20:05.679Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Diagnostic Bench Orientation",
+    "scenarioDescription": "You are a newly hired weekend associate at a small electronics repair shop. Before the shop opens, the senior technician walks you through the diagnostic bench. Listen to the technician and repeat what they say. Repeat only once.",
+    "introAudio": "stimuli/spk-1866e2c0/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-1866e2c0.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Diagnostic Bench Orientation. You are a newly hired weekend associate at a small electronics repair shop. Before the shop opens, the senior technician walks you through the diagnostic bench. Listen to the technician and repeat what they say. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Let's walk through the diagnostic bench together.\n- Turn on the monitor and the diagnostic laptop first.\n- Launch the diagnostic software and select the incoming device.\n- The software scans the device, and it flags any hardware faults.\n- Before you start the repair, log the device's serial number.\n- Stock the loaner shelf so it stays checked and ready for pickup.\n- Print the digital repair ticket that lists each step done at this bench.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Let's walk through the diagnostic bench together.",
+        "audio": "stimuli/spk-1866e2c0/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Turn on the monitor and the diagnostic laptop first.",
+        "audio": "stimuli/spk-1866e2c0/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Launch the diagnostic software and select the incoming device.",
+        "audio": "stimuli/spk-1866e2c0/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.409,
+          "y": 0.334,
+          "w": 0.098,
+          "h": 0.086
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The software scans the device, and it flags any hardware faults.",
+        "audio": "stimuli/spk-1866e2c0/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.505,
+          "y": 0.373,
+          "w": 0.092,
+          "h": 0.086
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Before you start the repair, log the device's serial number.",
+        "audio": "stimuli/spk-1866e2c0/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.294,
+          "y": 0.444,
+          "w": 0.065,
+          "h": 0.076
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Stock the loaner shelf so it stays checked and ready for pickup.",
+        "audio": "stimuli/spk-1866e2c0/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.742,
+          "y": 0.311,
+          "w": 0.086,
+          "h": 0.222
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Print the digital repair ticket that lists each step done at this bench.",
+        "audio": "stimuli/spk-1866e2c0/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.209,
+          "y": 0.622,
+          "w": 0.108,
+          "h": 0.084
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "A Quick Call About Laundry Habits",
+    "intro": "Hi there, thanks so much for picking up! I'm putting together a short piece on how people handle their laundry at home each week. Do you have just a few minutes to answer some quick questions?",
+    "introAudio": "stimuli/spk-1866e2c0/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, how do you usually sort your clothes into separate loads before you wash them, like keeping colors or delicate fabrics apart from everything else?",
+        "audio": "stimuli/spk-1866e2c0/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thanks for sharing that. Now, can you tell me about a recent week when your laundry piled up higher than usual? What happened, and how did you handle it?",
+        "audio": "stimuli/spk-1866e2c0/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "That makes sense. Some people insist on carefully separating colors and fabrics every single time, while others just toss everything into one load to save time. Which approach do you think works better, and why?",
+        "audio": "stimuli/spk-1866e2c0/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question: do you think people should set aside one specific day each week for washing, or is it better to just do laundry whenever it piles up? What would you recommend?",
+        "audio": "stimuli/spk-1866e2c0/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "technology-media",
+      "noveltyKey": "electronics-repair-shop-diagnostic-bench-orientation",
+      "requiredConcepts": [
+        "diagnostic software launched on each incoming device",
+        "device serial number logged before repair begins",
+        "loaner device shelf stocked and checked for pickup",
+        "digital repair ticket printed at the diagnostic bench"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-dd6dcb3d",
+          "reason": "dd6dcb3d orients a weekend equipment monitor at a college fabrication makerspace; this plan is a paid repair shop's diagnostic bench, a different setting and role."
+        },
+        {
+          "setId": "spk-e0f4f676",
+          "reason": "e0f4f676 orients a broadcast engineer in a campus radio control room; this plan has no broadcast or microphone content, only device repair intake."
+        }
+      ],
+      "setting": "the diagnostic bench inside a small electronics repair shop, before the shop opens",
+      "speakerRole": "the shop's senior repair technician training a newly hired weekend associate",
+      "communicativePurpose": "orient the new associate through each diagnostic bench step in order so devices are logged and tested correctly before the shop opens for weekend walk-in repairs"
+    },
+    "interview": {
+      "domain": "everyday-life",
+      "noveltyKey": "weekly-laundry-sorting-habit",
+      "requiredConcepts": [
+        "laundry sorted by color before washing",
+        "delicate fabrics washed in a separate load",
+        "a recent week when laundry piled up higher than usual",
+        "a specific day set aside for washing"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-c68f245c",
+          "reason": "c68f245c covers a weekly grocery list habit; this plan covers laundry sorting, a different household routine with no shopping content."
+        },
+        {
+          "setId": "spk-fd38f94c",
+          "reason": "fd38f94c covers houseplant watering care; this plan covers clothing/laundry handling, not plant care."
+        }
+      ],
+      "topic": "how the test taker sorts and manages weekly laundry loads at home",
+      "premise": "A home-organization lifestyle blogger makes a brief, unannounced phone call about how people sort their laundry into loads each week.",
+      "questionArc": [
+        "Caller introduces the home-organization survey and confirms the test taker has a few minutes to talk.",
+        "Asks how the test taker usually sorts laundry into separate loads each week.",
+        "Asks for a specific recent time the usual laundry routine broke down or had to change.",
+        "Asks whether the test taker keeps a set day for washing or does it only whenever needed."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "australian",
+      "voice": "Kore",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Achird",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

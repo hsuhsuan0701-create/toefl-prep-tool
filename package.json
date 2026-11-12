@@ -1,0 +1,31 @@
+{
+  "name": "toefl-prep-tool",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "workspaces": [
+    "shared",
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "predev": "node scripts/check-node.mjs",
+    "dev": "concurrently -n server,client \"npm:dev -w server\" \"npm:dev -w client\"",
+    "prestart": "node scripts/check-node.mjs",
+    "start": "npm run build -w client && concurrently -n server,client \"npm:start -w server\" \"npm:preview -w client\"",
+    "pretest": "node scripts/check-node.mjs",
+    "test": "npm test -w server && npm test -w client",
+    "predemo": "node scripts/check-node.mjs",
+    "demo": "tsx scripts/demo/run-demo.ts",
+    "predemo:seed": "node scripts/check-node.mjs",
+    "demo:seed": "tsx scripts/seed-demo-data.ts",
+    "typecheck": "tsc --noEmit -p server/tsconfig.json && tsc --noEmit -p shared/tsconfig.json && npm run typecheck -w client",
+    "audit:novelty": "tsx scripts/audit-set-novelty.ts",
+    "rubrics:check": "tsx scripts/check-rubrics.ts"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "id": "spk-fd38f94c",
+  "source": "generated",
+  "createdAt": "2026-08-23T13:28:12.676Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Checking In for Civic Volunteer Orientation",
+    "scenarioDescription": "You are checking in at the neighborhood community center before Saturday's civic volunteer orientation. Listen to the volunteer program coordinator and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-fd38f94c/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-fd38f94c.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Checking In for Civic Volunteer Orientation. You are checking in at the neighborhood community center before Saturday's civic volunteer orientation. Listen to the volunteer program coordinator and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Please write your name on the sign-in sheet.\n- A sign-in sheet and pen sit on the front table.\n- Pick up a task card from the rack near the door.\n- The card shows your route, and it lists your team leader's name.\n- After you read your card, choose a safety vest from the rack.\n- The vests are sorted by size on the rack, so check yours first.\n- The neighborhood map, marked with team zones, hangs beside the exit door.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Please write your name on the sign-in sheet.",
+        "audio": "stimuli/spk-fd38f94c/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "A sign-in sheet and pen sit on the front table.",
+        "audio": "stimuli/spk-fd38f94c/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Pick up a task card from the rack near the door.",
+        "audio": "stimuli/spk-fd38f94c/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The card shows your route, and it lists your team leader's name.",
+        "audio": "stimuli/spk-fd38f94c/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "After you read your card, choose a safety vest from the rack.",
+        "audio": "stimuli/spk-fd38f94c/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "The vests are sorted by size on the rack, so check yours first.",
+        "audio": "stimuli/spk-fd38f94c/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The neighborhood map, marked with team zones, hangs beside the exit door.",
+        "audio": "stimuli/spk-fd38f94c/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "A Quick Call About Houseplants",
+    "intro": "Thank you for speaking with me today. I write a home-and-garden blog, and I'm putting together a short post about how people actually take care of their houseplants at home. Do you mind if I ask you a few quick questions?",
+    "introAudio": "stimuli/spk-fd38f94c/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Which houseplant do you take care of the most at home, and about how often do you water it?",
+        "audio": "stimuli/spk-fd38f94c/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of a specific time when one of your houseplants nearly died because it got too much or too little water. What happened, and what did you do about it?",
+        "audio": "stimuli/spk-fd38f94c/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK, next I'd like to ask your opinion. Some people say that if your schedule is busy and unpredictable, you shouldn't bother keeping houseplants at all, since you can't water them reliably. Others say it's still worth the effort even with an irregular schedule. Which view is closer to yours, and why?",
+        "audio": "stimuli/spk-fd38f94c/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Do you think keeping houseplants at home actually makes a meaningful difference to someone's everyday well-being, or is that more of an overstatement? What's your view?",
+        "audio": "stimuli/spk-fd38f94c/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "speech-rate",
+      "detail": "lr-briefing",
+      "take": "retake",
+      "measuredWpm": 135.3,
+      "targetWpm": 165,
+      "minWpm": 145,
+      "maxWpm": 195
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 306.8,
+      "targetWpm": 226,
+      "minWpm": 156,
+      "maxWpm": 251
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 212.6,
+      "targetWpm": 184,
+      "minWpm": 156,
+      "maxWpm": 209
+    },
+    {
+      "check": "speech-rate",
+      "detail": "interview-question",
+      "take": "retake",
+      "measuredWpm": 185.8,
+      "targetWpm": 155,
+      "minWpm": 130,
+      "maxWpm": 180
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "community-civic",
+      "noveltyKey": "civic-volunteer-intake-walkthrough",
+      "requiredConcepts": [
+        "volunteer sign-in sheet at the front table",
+        "task assignment card for the canvassing route",
+        "safety vest sizes sorted by rack",
+        "neighborhood street map marked with team zones"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-50c1bede",
+          "reason": "that scenario sorts donated items by type into supply-room bins; this one checks volunteers in and assigns them to a canvassing route before an outreach event"
+        }
+      ],
+      "setting": "the neighborhood community center's front intake counter, before the center's monthly civic volunteer orientation morning",
+      "speakerRole": "the community center's volunteer program coordinator",
+      "communicativePurpose": "orient a newly arrived volunteer through each intake station in order, so the volunteer can join a neighborhood canvassing team without needing further instruction"
+    },
+    "interview": {
+      "domain": "everyday-life",
+      "noveltyKey": "houseplant-care-daily-habit",
+      "requiredConcepts": [
+        "houseplant watered most often at home",
+        "a plant nearly lost to neglect or overwatering",
+        "busy schedules versus keeping houseplants anyway",
+        "houseplants and everyday well-being"
+      ],
+      "distinguishesFrom": [],
+      "topic": "keeping houseplants at home",
+      "premise": "a home-and-garden lifestyle blogger making a brief unannounced phone call about how the respondent keeps houseplants at home",
+      "questionArc": [
+        "which houseplant the respondent takes care of most at home and how often it gets watered",
+        "a specific recent time a houseplant nearly died from too little or too much water and what the respondent did about it",
+        "whether people with busy, unpredictable schedules should still try to keep houseplants at home, weighing two contrasting views",
+        "whether keeping houseplants at home meaningfully improves someone's daily well-being, inviting a broader judgment"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "australian",
+      "voice": "Erinome",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Achird",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

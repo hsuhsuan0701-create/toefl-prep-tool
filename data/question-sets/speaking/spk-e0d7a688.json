@@ -1,0 +1,205 @@
+{
+  "id": "spk-e0d7a688",
+  "source": "generated",
+  "createdAt": "2026-08-23T13:52:05.738Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Studio Safety Walkthrough",
+    "scenarioDescription": "You'll hear the lead ceramic technician training a new weekend monitor in a print and ceramics studio, walking through each station before the studio opens. Listen to the technician and repeat each sentence. Repeat only once.",
+    "introAudio": "stimuli/spk-e0d7a688/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-e0d7a688.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Studio Safety Walkthrough. You'll hear the lead ceramic technician training a new weekend monitor in a print and ceramics studio, walking through each station before the studio opens. Listen to the technician and repeat each sentence. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Wipe down the ink station before we open.\n- Check the ink station and the drying rack every morning.\n- Move any scrap paper from the press bed into the recycling bin.\n- Check the ink levels, and refill any color that's running low.\n- After you wipe the ink station, walk over to check the kiln room.\n- Because the kiln room gets hot, check it twice before you start firing.\n- The drying rack, which holds the day's prints, should be cleared each evening.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Wipe down the ink station before we open.",
+        "audio": "stimuli/spk-e0d7a688/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.046,
+          "y": 0.31,
+          "w": 0.165,
+          "h": 0.11
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Check the ink station and the drying rack every morning.",
+        "audio": "stimuli/spk-e0d7a688/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Move any scrap paper from the press bed into the recycling bin.",
+        "audio": "stimuli/spk-e0d7a688/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.31,
+          "y": 0.521,
+          "w": 0.125,
+          "h": 0.113
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Check the ink levels, and refill any color that's running low.",
+        "audio": "stimuli/spk-e0d7a688/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.177,
+          "y": 0.188,
+          "w": 0.138,
+          "h": 0.108
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "After you wipe the ink station, walk over to check the kiln room.",
+        "audio": "stimuli/spk-e0d7a688/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Because the kiln room gets hot, check it twice before you start firing.",
+        "audio": "stimuli/spk-e0d7a688/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.735,
+          "y": 0.121,
+          "w": 0.175,
+          "h": 0.245
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The drying rack, which holds the day's prints, should be cleared each evening.",
+        "audio": "stimuli/spk-e0d7a688/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.68,
+          "y": 0.384,
+          "w": 0.245,
+          "h": 0.237
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Keeping a Family Tradition Alive",
+    "intro": "A researcher from a community heritage program is calling to ask about a story or tradition kept alive in your family. Listen to each question and answer within the time given.",
+    "introAudio": "stimuli/spk-e0d7a688/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Hi, thank you for taking a few minutes to speak with me today. I'm calling from a community heritage project, and I'm interested in family traditions. Which story or tradition does your family still keep alive, and who in your family usually leads or tells it?",
+        "audio": "stimuli/spk-e0d7a688/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thank you. Can you think of a specific, recent time when you took part in that tradition or heard that story again? What happened, and what made that particular time memorable for you?",
+        "audio": "stimuli/spk-e0d7a688/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "Thanks for sharing that. Now I'd like to ask your opinion. Some people believe younger family members should take responsibility for keeping family traditions alive as older relatives pass away. Others think a tradition should be allowed to fade if no one feels strongly pulled toward it. Which view do you agree with, and why?",
+        "audio": "stimuli/spk-e0d7a688/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Some communities fund programs that record and preserve family oral histories for future generations. Do you think this is a good use of public resources? Why or why not?",
+        "audio": "stimuli/spk-e0d7a688/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "arts-culture",
+      "noveltyKey": "print-ceramics-studio-monitor-orientation",
+      "requiredConcepts": [
+        "ink station wiped down before opening",
+        "press bed cleared of scrap paper",
+        "kiln room checked twice before firing",
+        "drying rack cleared for the day's prints"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-8c8caaa0",
+          "reason": "that Set trains an installation assistant to hang and light artwork before an exhibit opens; this one trains a studio monitor on daily equipment safety checks in a working print and ceramics studio, not exhibit installation."
+        }
+      ],
+      "setting": "a print and ceramics studio's workroom, tucked behind the gallery space, on a quiet weekday afternoon before the studio opens for open-studio hours",
+      "speakerRole": "the studio's lead ceramic technician training a newly hired weekend monitor",
+      "communicativePurpose": "walking the new monitor through each art station in order so the studio runs safely without the technician present"
+    },
+    "interview": {
+      "domain": "history-social-change",
+      "noveltyKey": "family-oral-tradition-passed-down-story",
+      "requiredConcepts": [
+        "family story retold at a yearly gathering",
+        "specific relative who leads the retelling",
+        "younger generation's responsibility to keep tradition alive",
+        "community program that records family oral histories"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-d9a49a14",
+          "reason": "that Set asks about awareness of a nearby historic landmark or old building; this one asks about a story or tradition kept alive inside the test taker's own family, not a public site."
+        }
+      ],
+      "topic": "a story or tradition passed down within the test taker's own family",
+      "premise": "a community heritage program researcher makes a brief unannounced phone call asking how the test taker's family keeps an old family story or tradition alive",
+      "questionArc": [
+        "factual: asks which specific family story or tradition the test taker's family still keeps, and who in the family usually tells or leads it",
+        "experience: asks the test taker to recall a specific recent time they took part in or heard that tradition, and what made it memorable",
+        "opinion: presents two contrasting views on whether younger family members should be responsible for keeping such traditions alive, and asks the test taker to take a side",
+        "opinion: broadens to whether communities should fund programs that record and preserve family oral histories, inviting an evaluation"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v6",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Sadaltager",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        226,
+        226,
+        226,
+        184,
+        184,
+        184,
+        184
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "australian",
+      "voice": "Despina",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

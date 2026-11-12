@@ -1,0 +1,4 @@
+{ "name": "@toefl-prep/shared", "private": true, "version": "0.0.1", "type": "module",
+  "engines": { "node": ">=24 <25" },
+  "exports": { ".": "./src/index.ts" },
+  "dependencies": { "zod": "^4.0.0" } }

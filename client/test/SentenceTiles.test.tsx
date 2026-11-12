@@ -1,0 +1,298 @@
+import { useState } from "react";
+import { describe, expect, it, vi } from "vitest";
+import { render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import SentenceTiles, { type BuildSentenceItem } from "../src/components/buildSentence/SentenceTiles";
+import { emptySlotsForFrame, tileIdOf, type SlotFill } from "../src/components/buildSentence/sentenceSlotFill";
+import { dragTile, dragTilesIntoBlanks, installTileDragLayout } from "./buildSentenceDrag";
+
+// The project's own reference Item (server/test/fixtures/build-a-sentence-reference-item.json): six
+// blanks, seven tiles, "was" the distractor. The drop arithmetic is covered in
+// sentenceSlotFill.test.ts; this file asserts the rendering, the drag wiring that reaches that
+// arithmetic, that a tap reaches nothing at all, and the controlled contract its owner relies on:
+// the arrangement is supplied, and every change to it is reported rather than kept.
+const REFERENCE_ITEM: BuildSentenceItem = {
+  id: "bas-ref-1",
+  prompt: "How did the museum visit go?",
+  frame: "The ___ ___ ___ ___ ___ ___ wonderful.",
+  tiles: ["were", "the", "was", "new wing", "led us through", "who", "volunteers"],
+};
+
+// Only the four this file names in assertions; the holes are the tiles it only ever drags by text.
+const [WERE, , , , LED, WHO, VOLUNTEERS] = REFERENCE_ITEM.tiles.map(tileIdOf);
+
+/** The reference answer, in blank order. */
+const REFERENCE_ANSWER = ["volunteers", "who", "led us through", "the", "new wing", "were"];
+
+/**
+ * The smallest possible owner of the arrangement. The component holds none of its own; in the app
+ * `BuildSentenceTask` keeps it in its run state for both the Writing Drill and the Writing
+ * Simulation. Interactions are driven through this so a test exercises the same loop the real owner
+ * does: report the new arrangement, store it, hand it back.
+ */
+function ControlledTiles({
+  item,
+  onSkip = vi.fn(),
+  onSlotsChange,
+}: {
+  item: BuildSentenceItem;
+  onSkip?: () => void;
+  onSlotsChange?: (slots: SlotFill) => void;
+}) {
+  const [slots, setSlots] = useState<SlotFill>(() => emptySlotsForFrame(item.frame));
+  return (
+    <SentenceTiles
+      item={item}
+      slots={slots}
+      onSlotsChange={(next) => {
+        onSlotsChange?.(next);
+        setSlots(next);
+      }}
+      onSkip={onSkip}
+    />
+  );
+}
+
+describe("SentenceTiles", () => {
+  installTileDragLayout();
+
+  it("renders the frame's fixed text with a blank at each gap, in order", () => {
+    render(<ControlledTiles item={REFERENCE_ITEM} />);
+
+    expect(screen.getByTestId("bas-frame")).toHaveTextContent(/^The\s+wonderful\.$/);
+    expect(screen.getAllByRole("group")).toHaveLength(6);
+    expect(screen.getByLabelText("Blank 1, empty")).toBeInTheDocument();
+    expect(screen.getByLabelText("Blank 6, empty")).toBeInTheDocument();
+    expect(screen.queryByLabelText("Blank 7, empty")).not.toBeInTheDocument();
+    // All seven tiles start in the tray, distractor included.
+    expect(screen.getByRole("button", { name: "was" })).toBeInTheDocument();
+  });
+
+  it("draws a supplied arrangement into the blanks it names and leaves the rest in the tray", () => {
+    render(
+      <SentenceTiles
+        item={REFERENCE_ITEM}
+        slots={[VOLUNTEERS, null, LED, null, null, WERE]}
+        onSlotsChange={vi.fn()}
+        onSkip={vi.fn()}
+      />,
+    );
+
+    expect(screen.getByTestId("bas-blank-0")).toHaveTextContent("volunteers");
+    expect(screen.getByTestId("bas-blank-2")).toHaveTextContent("led us through");
+    expect(screen.getByTestId("bas-blank-5")).toHaveTextContent("were");
+    // The empty blanks stay where the arrangement put them: three tiles do not arrive packed into
+    // blanks 0-2. This is the whole reason the arrangement travels in its lossless form.
+    expect(screen.getByLabelText("Blank 2, empty")).toBeInTheDocument();
+    expect(screen.getByLabelText("Blank 4, empty")).toBeInTheDocument();
+    expect(screen.getByLabelText("Blank 5, empty")).toBeInTheDocument();
+
+    const tray = within(screen.getByTestId("bas-tray"));
+    expect(tray.getAllByRole("button").map((tile) => tile.textContent)).toEqual([
+      "the",
+      "was",
+      "new wing",
+      "who",
+    ]);
+  });
+
+  it("puts a dragged tray tile in the blank it was dropped on, not in the next empty one", async () => {
+    const user = userEvent.setup();
+    render(<ControlledTiles item={REFERENCE_ITEM} />);
+
+    await dragTile(user, "were", { blank: 5 });
+
+    expect(screen.getByTestId("bas-blank-5")).toHaveTextContent("were");
+    expect(screen.getByLabelText("Blank 1, empty")).toBeInTheDocument();
+    expect(within(screen.getByTestId("bas-tray")).queryByRole("button", { name: "were" })).not.toBeInTheDocument();
+  });
+
+  it("swaps when a tile is dropped on a filled blank, and returns one dragged back to the tray", async () => {
+    const user = userEvent.setup();
+    render(<ControlledTiles item={REFERENCE_ITEM} />);
+
+    await dragTile(user, "who", { blank: 0 });
+    await dragTile(user, "volunteers", { blank: 1 });
+
+    // Blank to blank, onto an occupied blank: the two tiles exchange blanks in one gesture.
+    await dragTile(user, "who", { blank: 1 });
+    expect(screen.getByTestId("bas-blank-0")).toHaveTextContent("volunteers");
+    expect(screen.getByTestId("bas-blank-1")).toHaveTextContent("who");
+
+    // …and back to the tray, which is the only way a placed tile comes out.
+    await dragTile(user, "who", "tray");
+    expect(screen.getByLabelText("Blank 2, empty")).toBeInTheDocument();
+    expect(within(screen.getByTestId("bas-tray")).getByRole("button", { name: "who" })).toBeInTheDocument();
+  });
+
+  // The real exam places tiles by dragging and offers no tap, and tapping is a speed habit that
+  // mis-calibrates pacing practice. A press that never travels far enough to start a drag leaves the
+  // arrangement exactly where it was.
+  it("ignores a tap on a tray tile, on a placed tile and on a filled blank", async () => {
+    const user = userEvent.setup();
+    const onSlotsChange = vi.fn();
+    render(
+      <SentenceTiles
+        item={REFERENCE_ITEM}
+        slots={[VOLUNTEERS, null, null, null, null, null]}
+        onSlotsChange={onSlotsChange}
+        onSkip={vi.fn()}
+      />,
+    );
+
+    await user.click(screen.getByTestId(`bas-tile-${WHO}`)); // a tray tile: fills nothing
+    await user.click(screen.getByTestId(`bas-tile-${VOLUNTEERS}`)); // a placed tile: returns nothing
+    await user.click(screen.getByTestId("bas-blank-0")); // the blank around it: returns nothing
+
+    expect(onSlotsChange).not.toHaveBeenCalled();
+    expect(screen.getByTestId("bas-blank-0")).toHaveTextContent("volunteers");
+    expect(screen.getByLabelText("Blank 2, empty")).toBeInTheDocument();
+    expect(within(screen.getByTestId("bas-tray")).getByTestId(`bas-tile-${WHO}`)).toBeInTheDocument();
+  });
+
+  it("tells the User to drag, and never to tap — with the tray full or empty", () => {
+    const { unmount } = render(<ControlledTiles item={REFERENCE_ITEM} />);
+
+    expect(screen.getByText(/^Drag a tile onto the blank you want/)).toBeInTheDocument();
+    expect(document.body.textContent ?? "").not.toMatch(/tap/i);
+    unmount();
+
+    // The emptied tray says its own thing, and it must not offer a tap either. It only ever empties
+    // on an Item with no distractor, so this is one of those rather than the reference Item.
+    const noDistractor: BuildSentenceItem = { ...REFERENCE_ITEM, frame: "___ ___ good.", tiles: ["the", "food"] };
+    render(
+      <SentenceTiles
+        item={noDistractor}
+        slots={noDistractor.tiles.map(tileIdOf)}
+        onSlotsChange={vi.fn()}
+        onSkip={vi.fn()}
+      />,
+    );
+
+    expect(within(screen.getByTestId("bas-tray")).getByText(/Drag one back here/)).toBeInTheDocument();
+    expect(document.body.textContent ?? "").not.toMatch(/tap/i);
+  });
+
+  // Every draggable tile carries `touch-none`, in the tray and in a blank alike. The check is
+  // structural because jsdom cannot exercise a finger being claimed by the browser's pan gesture.
+  // `useDraggable` sets no `touch-action`, so without this class a touch drag is cancelled by
+  // `pointercancel` before it activates, and a Build a Sentence Item cannot be answered on a touch
+  // device at all.
+  it("marks every draggable tile touch-action:none, so a touch drag is not claimed as a pan", () => {
+    render(
+      <SentenceTiles
+        item={REFERENCE_ITEM}
+        slots={[VOLUNTEERS, null, null, null, null, null]}
+        onSlotsChange={vi.fn()}
+        onSkip={vi.fn()}
+      />,
+    );
+
+    const tiles = REFERENCE_ITEM.tiles.map(tileIdOf).map((id) => screen.getByTestId(`bas-tile-${id}`));
+    expect(tiles).toHaveLength(7);
+    for (const tile of tiles) {
+      expect(tile.className.split(/\s+/u)).toContain("touch-none");
+    }
+    // Including the one sitting in a blank, which is the same component in the other place.
+    expect(within(screen.getByTestId("bas-blank-0")).getByTestId(`bas-tile-${VOLUNTEERS}`).className)
+      .toContain("touch-none");
+  });
+
+  // The Response itself is produced when the Task commits (buildSentenceRun.ts, via blankOrderTexts);
+  // what this component owes it is the arrangement, blank by blank, in the order the blanks run.
+  it("arranges the tiles into the blanks in blank order", async () => {
+    const user = userEvent.setup();
+    const onSlotsChange = vi.fn();
+    render(<ControlledTiles item={REFERENCE_ITEM} onSlotsChange={onSlotsChange} />);
+
+    await dragTilesIntoBlanks(user, REFERENCE_ANSWER);
+
+    expect(onSlotsChange).toHaveBeenLastCalledWith(
+      REFERENCE_ANSWER.map((text) => tileIdOf(text, REFERENCE_ITEM.tiles.indexOf(text))),
+    );
+    REFERENCE_ANSWER.forEach((text, blank) => expect(screen.getByTestId(`bas-blank-${blank}`)).toHaveTextContent(text));
+  });
+
+  it("reports every arrangement change in its lossless form, so which blanks are empty survives", async () => {
+    const user = userEvent.setup();
+    const onSlotsChange = vi.fn();
+    render(<ControlledTiles item={REFERENCE_ITEM} onSlotsChange={onSlotsChange} />);
+
+    // Nothing is reported before the User touches anything: the caller seeded the empty arrangement
+    // itself, so the component has nothing to announce on mount.
+    expect(onSlotsChange).not.toHaveBeenCalled();
+
+    await dragTile(user, "volunteers", { blank: 0 });
+    expect(onSlotsChange).toHaveBeenLastCalledWith([VOLUNTEERS, null, null, null, null, null]);
+
+    await dragTile(user, "were", { blank: 1 });
+    expect(onSlotsChange).toHaveBeenLastCalledWith([VOLUNTEERS, WERE, null, null, null, null]);
+
+    // Returning a tile is a change too — and the blank it empties keeps its position. The submission
+    // form would report ["were"] here, losing the fact that blank 0 rather than blank 1 is the empty
+    // one, which is why the caller is handed this form instead.
+    await dragTile(user, "volunteers", "tray");
+    expect(onSlotsChange).toHaveBeenLastCalledWith([null, WERE, null, null, null, null]);
+  });
+
+  it("reports an interaction rather than acting on it, so nothing moves until the caller says so", async () => {
+    const user = userEvent.setup();
+    const onSlotsChange = vi.fn();
+    const supplied: SlotFill = [VOLUNTEERS, null, null, null, null, null];
+    render(
+      <SentenceTiles item={REFERENCE_ITEM} slots={supplied} onSlotsChange={onSlotsChange} onSkip={vi.fn()} />,
+    );
+
+    await dragTile(user, screen.getByTestId(`bas-tile-${WHO}`), { blank: 1 });
+
+    expect(onSlotsChange).toHaveBeenCalledWith([VOLUNTEERS, WHO, null, null, null, null]);
+    // The supplied arrangement is neither mutated nor shadowed by one of the component's own: this
+    // owner never hands the reported arrangement back, so the tile is still sitting in the tray.
+    expect(supplied).toEqual([VOLUNTEERS, null, null, null, null, null]);
+    expect(screen.getByTestId("bas-blank-1")).toHaveTextContent("");
+    expect(within(screen.getByTestId("bas-tray")).getByTestId(`bas-tile-${WHO}`)).toBeInTheDocument();
+  });
+
+  it("keeps duplicate tile texts distinguishable", async () => {
+    const user = userEvent.setup();
+    const item: BuildSentenceItem = {
+      ...REFERENCE_ITEM,
+      frame: "___ ___ ___ good.",
+      tiles: ["the", "food", "the"],
+    };
+    const onSlotsChange = vi.fn();
+    render(<ControlledTiles item={item} onSlotsChange={onSlotsChange} />);
+
+    // Two tiles read "the"; only their index-stable ids tell them apart, so they are dragged as
+    // elements rather than by name.
+    await dragTile(user, screen.getByTestId("bas-tile-the#0"), { blank: 0 });
+    await dragTile(user, screen.getByTestId("bas-tile-food#1"), { blank: 1 });
+    await dragTile(user, screen.getByTestId("bas-tile-the#2"), { blank: 2 });
+
+    expect(within(screen.getByTestId("bas-blank-0")).getByTestId("bas-tile-the#0")).toBeInTheDocument();
+    expect(within(screen.getByTestId("bas-blank-2")).getByTestId("bas-tile-the#2")).toBeInTheDocument();
+
+    // Returning one leaves the other in place, rather than both collapsing into one tile.
+    await dragTile(user, screen.getByTestId("bas-tile-the#0"), "tray");
+    expect(screen.getByTestId("bas-blank-0")).toHaveTextContent("");
+    expect(screen.getByTestId("bas-blank-2")).toHaveTextContent("the");
+
+    await dragTile(user, screen.getByTestId("bas-tile-the#0"), { blank: 0 });
+    expect(onSlotsChange).toHaveBeenLastCalledWith(["the#0", "food#1", "the#2"]);
+  });
+
+  it("shows a notice instead of an interactive Item when the Item has no frame", async () => {
+    const user = userEvent.setup();
+    const onSkip = vi.fn();
+    const { frame: _frame, ...frameless } = REFERENCE_ITEM;
+    render(<ControlledTiles item={frameless} onSkip={onSkip} />);
+
+    expect(screen.getByText(/no sentence frame/i)).toHaveTextContent("It comes from a Set made before sentence frames existed");
+    expect(screen.queryByTestId("bas-frame")).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "was" })).not.toBeInTheDocument();
+
+    // The way out of a Set made before sentence frames existed, not a second way to answer one.
+    await user.click(screen.getByRole("button", { name: "Skip this Item" }));
+    expect(onSkip).toHaveBeenCalledTimes(1);
+  });
+});

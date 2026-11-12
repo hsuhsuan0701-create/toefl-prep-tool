@@ -1,0 +1,492 @@
+{
+  "id": "wri-6023c170",
+  "source": "generated",
+  "createdAt": "2026-08-25T13:46:43.794Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Our equipment recalibration pushed back the season's whole data collection window, so I'm afraid our grant report will be late.",
+        "frame": "I ___ ___ ___ for your grant report.",
+        "tiles": [
+          "can",
+          "approve",
+          "a one-month extension",
+          "approves"
+        ],
+        "answers": [
+          [
+            "can",
+            "approve",
+            "a one-month extension"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "If we delay the launch, marketing will have to redo the whole announcement schedule.",
+        "frame": "The bug ___ ___ ___ users.",
+        "tiles": [
+          "still",
+          "blocks",
+          "screen-reader",
+          "block"
+        ],
+        "answers": [
+          [
+            "still",
+            "blocks",
+            "screen-reader"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Your finished mural's colors are so much brighter than the muted tones in the gallery-approved sketch.",
+        "frame": "I ___ ___ ___ ___ because the wall gets full sun.",
+        "tiles": [
+          "have",
+          "really",
+          "brightened",
+          "the palette",
+          "has"
+        ],
+        "answers": [
+          [
+            "have",
+            "really",
+            "brightened",
+            "the palette"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Could we skip the weigh-in today? I'd rather not see the number.",
+        "frame": "The scale ___ ___ ___ ___ your progress, but I can record it privately instead.",
+        "tiles": [
+          "still",
+          "helps",
+          "us",
+          "track",
+          "help"
+        ],
+        "answers": [
+          [
+            "still",
+            "helps",
+            "us",
+            "track"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "I was really looking forward to the scenic overlook — why isn't it on the route anymore?",
+        "frame": "Because ___ ___ ___ ___ ___, we've offered a different stop instead.",
+        "tiles": [
+          "a",
+          "sudden",
+          "road closure",
+          "blocked",
+          "the route",
+          "blocks"
+        ],
+        "answers": [
+          [
+            "a",
+            "sudden",
+            "road closure",
+            "blocked",
+            "the route"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Our land record lists 1892 as the homestead's founding year.",
+        "frame": "The account ___ ___ ___ ___ ___ from your record.",
+        "tiles": [
+          "that",
+          "our family",
+          "has",
+          "always told",
+          "differs",
+          "differ"
+        ],
+        "answers": [
+          [
+            "that",
+            "our family",
+            "has",
+            "always told",
+            "differs"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "One of my committee members just had her flight rebooked, so she can't make the original defense time.",
+        "frame": "I ___ ___ ___ ___ ___ a later slot.",
+        "tiles": [
+          "can confirm",
+          "that",
+          "the room",
+          "is available",
+          "for",
+          "are available"
+        ],
+        "answers": [
+          [
+            "can confirm",
+            "that",
+            "the room",
+            "is available",
+            "for"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "The neighbors near the original plot objected loudly because of the noise.",
+        "frame": "The site I'm ___ ___ ___ ___ ___ ___ the noise concern you raised.",
+        "tiles": [
+          "now",
+          "quietly",
+          "proposing",
+          "to you",
+          "actually",
+          "addresses",
+          "address"
+        ],
+        "answers": [
+          [
+            "now",
+            "quietly",
+            "proposing",
+            "to you",
+            "actually",
+            "addresses"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Customers are furious that the code stopped working before the promotion officially ended.",
+        "frame": "The code ___ ___ ___ ___ ___ ___ by a website glitch, so I'll approve one extra day.",
+        "tiles": [
+          "that",
+          "customers",
+          "tried to use",
+          "was",
+          "actually",
+          "blocked",
+          "were"
+        ],
+        "answers": [
+          [
+            "that",
+            "customers",
+            "tried to use",
+            "was",
+            "actually",
+            "blocked"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Didn't you say the cabin's lock got changed last month?",
+        "frame": "The ___ ___ ___ ___ ___ ___ still with me, but I'll get a copy made.",
+        "tiles": [
+          "spare key",
+          "that",
+          "was cut",
+          "before",
+          "the change",
+          "is",
+          "were cut"
+        ],
+        "answers": [
+          [
+            "spare key",
+            "that",
+            "was cut",
+            "before",
+            "the change",
+            "is"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "Last week my photo backup app sent a storage-limit warning that I didn't notice until today. Because the storage stayed full, the app automatically deleted several months of photos from my phone to make room, and I'm told the cloud recovery window for those files closes in 48 hours.",
+    "to": "support@cloudsafephotos.com",
+    "subject": "Urgent: Recovery Window Closing for Auto-Deleted Photos",
+    "bullets": [
+      "Explain that you missed the storage warning notification and your local photos were automatically deleted as a result.",
+      "Request an extension of the recovery window before the files are permanently deleted.",
+      "Ask whether opening a support ticket would help expedite the recovery process."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Media Ethics and Technology Policy",
+    "professorName": "Professor Whitfield",
+    "professorPost": "Content moderation on major platforms remains largely opaque: users rarely learn exactly why a post was removed or which rule it violated. Some argue that publishing the specific criteria behind moderation algorithms would make platforms more accountable and help users trust removal decisions, while others worry that revealing those details would let bad actors reverse-engineer the system and manipulate it. Should platforms be required to publish the specific criteria their moderation algorithms use? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Priya",
+        "post": "I think platforms should publish their criteria. Right now users have no way to know if a removal was fair or arbitrary, and that secrecy breeds distrust. Clear published standards would let people appeal decisions with actual evidence instead of guessing, and it would pressure platforms to apply their own rules consistently."
+      },
+      {
+        "name": "Marcus",
+        "post": "I get Priya's point about trust, but publishing exact criteria hands bad actors a manual for gaming the system. Spammers and harassers would just tweak their posts to slip under whatever threshold is public. Platforms could instead publish general principles without exposing the technical details that make manipulation possible."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "science-environment",
+          "situation": "A field researcher asks a wetland laboratory's grant officer for a one-month extension after equipment recalibration delayed the season's data collection.",
+          "participantRoles": [
+            "field researcher",
+            "wetland laboratory's grant officer"
+          ],
+          "noveltyKey": "grant-report-extension-equipment-recalibration",
+          "requiredConcepts": [
+            "one-month grant report extension",
+            "equipment recalibration delay",
+            "season's data collection window"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A product manager and an accessibility tester debate whether to delay a software update's public launch to fix a screen-reader bug found during testing.",
+          "participantRoles": [
+            "product manager",
+            "accessibility tester"
+          ],
+          "noveltyKey": "launch-delay-accessibility-bug-decision",
+          "requiredConcepts": [
+            "screen-reader bug found during testing",
+            "public launch date at risk",
+            "decision to delay or ship as planned"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-b5e4cabe",
+              "reason": "the catalog entry is a support agent acknowledging an already-reported subtitle bug, not a pre-launch go/no-go debate between two internal roles"
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A visiting critic questions why a muralist's finished color palette departs so far from the muted tones in the original gallery-approved sketch.",
+          "participantRoles": [
+            "visiting art critic",
+            "muralist"
+          ],
+          "noveltyKey": "mural-color-choice-critic-sketch-comparison",
+          "requiredConcepts": [
+            "mural's finished color palette",
+            "muted tones of the original sketch",
+            "muralist's reason for the shift"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-f8adc240",
+              "reason": "the catalog entry is a structural-support debate between a curator and sculptor, not a color-choice dispute over a finished mural versus its sketch"
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A returning client asks a nutrition counselor to skip the weigh-in step during today's wellness check, and the counselor proposes recording the weight privately instead.",
+          "participantRoles": [
+            "nutrition counselor",
+            "returning client"
+          ],
+          "noveltyKey": "wellness-checkin-weighin-skip-request",
+          "requiredConcepts": [
+            "client's request to skip the weigh-in",
+            "counselor's reason the weigh-in matters",
+            "compromise of recording weight privately"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A tour operator explains to a disappointed tourist why a scenic overlook stop was cut from the bus route after a sudden road closure, offering an alternate stop instead.",
+          "participantRoles": [
+            "tour operator",
+            "disappointed tourist"
+          ],
+          "noveltyKey": "overlook-stop-cut-road-closure-itinerary",
+          "requiredConcepts": [
+            "scenic overlook stop removed",
+            "sudden road closure",
+            "alternate stop offered instead"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A descendant disputes a heritage plaque's founding date for a family homestead, citing an oral family account that conflicts with the archivist's historical land record.",
+          "participantRoles": [
+            "archivist",
+            "homestead descendant"
+          ],
+          "noveltyKey": "homestead-plaque-date-dispute-descendant",
+          "requiredConcepts": [
+            "plaque's listed founding date",
+            "archivist's cited land record",
+            "descendant's oral family account"
+          ],
+          "distinguishesFrom": []
+        },
+        {
+          "domain": "campus-academics",
+          "situation": "A graduate student asks a department coordinator for a later thesis defense slot after a committee member's flight got rebooked.",
+          "participantRoles": [
+            "graduate student",
+            "department coordinator"
+          ],
+          "noveltyKey": "thesis-defense-slot-reschedule-flight",
+          "requiredConcepts": [
+            "committee member's rebooked flight",
+            "requested later defense slot",
+            "coordinator confirming room availability"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-cd14eb34",
+              "reason": "the catalog entry declines an unrelated conference invitation, not reschedules one's own defense around a committee member's travel"
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A neighborhood resident proposes a compromise site for a new dog park to a city planner after neighbors objected to the original plot.",
+          "participantRoles": [
+            "city planner",
+            "neighborhood resident"
+          ],
+          "noveltyKey": "dog-park-compromise-site-neighbor-objection",
+          "requiredConcepts": [
+            "neighbors' objection to the original plot",
+            "resident's proposed compromise site",
+            "planner weighing the noise concern"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-f8adc240",
+              "reason": "the catalog entry compares two pre-set bike lane options on cost versus safety, not a resident proposing a new compromise site after an objection"
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A sales associate persuades a store manager to extend a discount code by one day after a website glitch cut the promotion short.",
+          "participantRoles": [
+            "sales associate",
+            "store manager"
+          ],
+          "noveltyKey": "discount-code-extension-website-glitch",
+          "requiredConcepts": [
+            "discount code cut short early",
+            "website glitch causing the error",
+            "manager approving one extra day"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-6d6c11da",
+              "reason": "the catalog entry is a supervisor informing an employee of a schedule change, not an employee persuading a manager to grant an exception"
+            }
+          ]
+        },
+        {
+          "domain": "everyday-life",
+          "situation": "Two siblings negotiate who keeps the family cabin's spare key after the lock was recently changed.",
+          "participantRoles": [
+            "older sibling",
+            "younger sibling"
+          ],
+          "noveltyKey": "cabin-spare-key-lock-change-siblings",
+          "requiredConcepts": [
+            "cabin's lock recently changed",
+            "spare key currently held by one sibling",
+            "agreement to duplicate the key"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-bdbdd45c",
+              "reason": "the catalog entry is a tenant reporting recurring package misdelivery to a building superintendent, not a private negotiation between family members"
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "technology-media",
+      "noveltyKey": "photo-backup-autodelete-recovery-window",
+      "requiredConcepts": [
+        "storage warning notification missed",
+        "auto-deleted local photo files",
+        "closing recovery window before permanent loss"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-7a20b90b",
+          "reason": "the catalog entry reports ads still playing after a paid upgrade, not files auto-deleted after a missed storage warning"
+        },
+        {
+          "setId": "wri-703ea6d7",
+          "reason": "the catalog entry is uncertainty about whether a submission form worked, not a closing recovery window for already-deleted files"
+        }
+      ],
+      "situation": "A photo backup app auto-deleted the writer's local files after a storage warning went unnoticed, and the recovery window is closing.",
+      "recipientRole": "cloud backup service's customer support team",
+      "communicativeActs": [
+        "explain the missed storage warning and resulting auto-deletion",
+        "request an extension of the recovery window before permanent deletion",
+        "ask whether opening a support ticket can expedite the recovery"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "technology-media",
+      "noveltyKey": "moderation-criteria-transparency-mandate",
+      "requiredConcepts": [
+        "published moderation removal criteria",
+        "risk of algorithm manipulation by bad actors",
+        "user trust in content removal decisions"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-2936d16f",
+          "reason": "the catalog entry debates podcast release cadence, not moderation-criteria transparency versus algorithm security"
+        }
+      ],
+      "proposition": "Social media platforms should be required to publish the specific criteria their moderation algorithms use to remove posts.",
+      "competingValues": [
+        "platform accountability and user trust in transparent moderation criteria",
+        "platforms' proprietary interest in shielding algorithms from manipulation"
+      ]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+node_modules/
+.env
+data/db.sqlite*
+data/audio/responses/
+dist/
+*.log
+.DS_Store
+data/question-sets/.staging/
+client/node_modules/
+data/backups/
+server/.test-data/
+.superpowers/
+.probe/
+.worktrees/
+tmp/
+
+# The official ETS scoring guides and scored samples, installed by a user on their own machine.
+# ETS licenses that text and does not allow redistribution; see docs/official-rubrics.md.
+.claude/skills/*/references/official/
+
+# ETS's own sample material: its sample Speaking and Writing Sets with their audio and scene image,
+# and its officially scored samples as calibration fixtures. ETS licenses them and does not allow
+# redistribution, so they live only on the machine of whoever holds them; see
+# docs/official-rubrics.md.
+/data/question-sets/speaking/spk-8d9ee619.json
+/data/question-sets/writing/wri-703ea6d7.json
+/data/audio/stimuli/spk-8d9ee619/
+/data/images/scenarios/spk-8d9ee619.webp
+/server/test/fixtures/ets-samples/

@@ -1,0 +1,180 @@
+{
+  "id": "spk-87780d29",
+  "source": "generated",
+  "createdAt": "2026-08-23T07:24:13.980Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Opening the Heritage Exhibit Hall",
+    "scenarioDescription": "You are a new front desk trainee at the school's heritage exhibit hall, meeting with the collections coordinator in the display preparation room before your first opening shift. Listen to the coordinator's instructions and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-87780d29/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-87780d29.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Opening the Heritage Exhibit Hall. You are a new front desk trainee at the school's heritage exhibit hall, meeting with the collections coordinator in the display preparation room before your first opening shift. Listen to the coordinator's instructions and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- We check every display case latch first.\n- The sign-in sheet and pens sit beside the front desk.\n- We check the latches and dim the lights near the textile case.\n- You read the humidity log before opening, and you check the donation box.\n- Because the textile case is fragile, we keep the lighting dim nearby.\n- After you check the latch, sign the sheet, and note the humidity reading.\n- The donation box positioned near the entrance should be checked before we open.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "We check every display case latch first.",
+        "audio": "stimuli/spk-87780d29/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The sign-in sheet and pens sit beside the front desk.",
+        "audio": "stimuli/spk-87780d29/lr-2.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-3",
+        "sentence": "We check the latches and dim the lights near the textile case.",
+        "audio": "stimuli/spk-87780d29/lr-3.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-4",
+        "sentence": "You read the humidity log before opening, and you check the donation box.",
+        "audio": "stimuli/spk-87780d29/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "Because the textile case is fragile, we keep the lighting dim nearby.",
+        "audio": "stimuli/spk-87780d29/lr-5.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-6",
+        "sentence": "After you check the latch, sign the sheet, and note the humidity reading.",
+        "audio": "stimuli/spk-87780d29/lr-6.mp3",
+        "responseWindowSec": 12
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The donation box positioned near the entrance should be checked before we open.",
+        "audio": "stimuli/spk-87780d29/lr-7.mp3",
+        "responseWindowSec": 12
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "A Workplace-Culture Researcher Calls About Customer Service",
+    "intro": "Thank you for taking a moment to speak with me today. I'm a researcher studying how part-time and seasonal jobs handle everyday customer interactions, and I have four quick questions about your own experience.",
+    "introAudio": "stimuli/spk-87780d29/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "To start, what part-time or seasonal job do you currently have, and what does a typical shift usually involve for you?",
+        "audio": "stimuli/spk-87780d29/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think of one specific customer request you handled recently. What did the customer ask for, and how did you respond?",
+        "audio": "stimuli/spk-87780d29/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK, next I'd like to ask your opinion. Some businesses train employees to follow a strict, scripted set of steps with every customer, while others let employees use their own judgment in the moment. Which approach do you think works better, and why?",
+        "audio": "stimuli/spk-87780d29/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. More broadly, do you think businesses should invest more time training new employees before they start interacting with customers? What would you recommend?",
+        "audio": "stimuli/spk-87780d29/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "first",
+      "measuredWpm": 165.1,
+      "targetWpm": 200,
+      "minWpm": 175,
+      "maxWpm": 225
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "history-social-change",
+      "noveltyKey": "heritage-hall-exhibit-opening-walkthrough",
+      "requiredConcepts": [
+        "display case latch checked before opening",
+        "sign-in sheet placed beside the front desk",
+        "dim lighting near the fragile textile case",
+        "donation drop box checked each morning",
+        "humidity log read before the doors open"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-7546a04e",
+          "reason": "spk-7546a04e centers on archival document intake for newly donated letters (arrival logging, cotton gloves, acid-free handling); this set covers a front-desk trainee's exhibit-hall opening walkthrough, with no document-intake content."
+        }
+      ],
+      "setting": "the school's heritage exhibit hall, in the display preparation room before a newly arrived front-desk trainee's first opening shift",
+      "speakerRole": "the heritage hall's collections coordinator, training the newly arrived trainee",
+      "communicativePurpose": "walk the trainee through each display station once, in order, so the historical exhibits open safely and consistently"
+    },
+    "interview": {
+      "domain": "workplace-business",
+      "noveltyKey": "customer-request-training-tradeoff",
+      "requiredConcepts": [
+        "the shift or job where the respondent currently works",
+        "one specific customer request handled recently",
+        "scripted service steps versus flexible on-the-spot judgment",
+        "how much training time a business should invest in new hires"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-c42dd828",
+          "reason": "spk-c42dd828 covers the respondent's everyday part-time shift routine and schedule; this set centers on a single remembered customer request and the training-philosophy tradeoff behind handling it, not daily routine."
+        }
+      ],
+      "topic": "handling customer requests during a part-time or seasonal job",
+      "premise": "A workplace-culture researcher makes a brief, unannounced phone call asking about a specific customer interaction at the respondent's job",
+      "questionArc": [
+        "asks which part-time or seasonal job the respondent currently holds and how they usually spend a shift there",
+        "asks the respondent to recount one specific customer request they handled recently and how they responded",
+        "presents a contrast between businesses training employees to follow a strict customer-service script and letting employees use their own judgment, then asks which the respondent favors",
+        "broadens to whether businesses should invest more training time in new employees before they interact with customers, inviting a recommendation"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v4",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "australian",
+      "voice": "Alnilam",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        200,
+        208,
+        215,
+        180,
+        178,
+        176,
+        175
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "north-american",
+      "voice": "Umbriel",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

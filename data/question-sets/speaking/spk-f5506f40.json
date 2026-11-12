@@ -1,0 +1,227 @@
+{
+  "id": "spk-f5506f40",
+  "source": "generated",
+  "createdAt": "2026-08-17T15:43:22.506Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Restoration Workshop Orientation",
+    "scenarioDescription": "Listen to the museum conservator orient a new restoration intern around the workshop, and repeat what she says. Repeat only once.",
+    "introAudio": "stimuli/spk-f5506f40/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-f5506f40.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Restoration Workshop Orientation. Listen to the museum conservator orient a new restoration intern around the workshop, and repeat what she says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- This is our first cleaning station.\n- The workbench by the door holds rags and brushes.\n- The solvent cabinet sits beside the workbench and stays locked at all times.\n- Glued joints go on the drying rack, but loose parts stay on the bench.\n- When you need a tool, check the wall labeled by furniture part near the sink.\n- Because the solvent cabinet stays locked, you'll need to ask me for the key before opening any bottles inside.\n- The drying rack along the back wall, which holds every glued joint overnight, should never be touched before the glue fully sets.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "This is our first cleaning station.",
+        "audio": "stimuli/spk-f5506f40/lr-1.mp3",
+        "responseWindowSec": 8
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The workbench by the door holds rags and brushes.",
+        "audio": "stimuli/spk-f5506f40/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.147,
+          "y": 0.235,
+          "w": 0.153,
+          "h": 0.205
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "The solvent cabinet sits beside the workbench and stays locked at all times.",
+        "audio": "stimuli/spk-f5506f40/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.26,
+          "y": 0.186,
+          "w": 0.125,
+          "h": 0.194
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Glued joints go on the drying rack, but loose parts stay on the bench.",
+        "audio": "stimuli/spk-f5506f40/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.485,
+          "y": 0.55,
+          "w": 0.125,
+          "h": 0.09
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "When you need a tool, check the wall labeled by furniture part near the sink.",
+        "audio": "stimuli/spk-f5506f40/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.69,
+          "y": 0.56,
+          "w": 0.19,
+          "h": 0.225
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Because the solvent cabinet stays locked, you'll need to ask me for the key before opening any bottles inside.",
+        "audio": "stimuli/spk-f5506f40/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.328,
+          "y": 0.36,
+          "w": 0.148,
+          "h": 0.145
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The drying rack along the back wall, which holds every glued joint overnight, should never be touched before the glue fully sets.",
+        "audio": "stimuli/spk-f5506f40/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.575,
+          "y": 0.088,
+          "w": 0.28,
+          "h": 0.257
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Evening Wind-Down Routines",
+    "intro": "Thank you for speaking with me today. I'm a wellness researcher, and I'm interested in how people wind down before bed. I'd love to hear about your own evening routine.",
+    "introAudio": "stimuli/spk-f5506f40/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "What do you usually do in the hour before you go to sleep on an ordinary night — things like making tea, reading a few pages of a novel, or something else?",
+        "audio": "stimuli/spk-f5506f40/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. How long does that whole routine usually take from start to finish, and does it change at all on weekends — for example, is your phone still charging in the kitchen rather than the bedroom, or does that habit slip when you don't have work the next day?",
+        "audio": "stimuli/spk-f5506f40/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK, I'd like to ask about a specific case now. Some people say a single interrupted routine barely matters, while others feel thrown off right away — tell me about one specific night when yours was interrupted, maybe by a late phone call, and say which side you'd land on.",
+        "audio": "stimuli/spk-f5506f40/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. For a last question, on a night like that, how did skipping or changing your routine affect how well you slept — and more generally, would you recommend that people protect this kind of wind-down time even when something like a late call gets in the way?",
+        "audio": "stimuli/spk-f5506f40/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "catalog-novelty",
+      "detail": "novelty-key",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-briefing",
+      "take": "retake",
+      "measuredWpm": 132.6,
+      "targetWpm": 165,
+      "minWpm": 145,
+      "maxWpm": 195
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "history-social-change",
+      "noveltyKey": "restoration-workshop-station-walkthrough",
+      "requiredConcepts": [
+        "workbench by the door for first cleaning",
+        "solvent cabinet locked beside the workbench",
+        "drying rack along back wall for glued joints",
+        "tool wall labeled by furniture part near sink"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-70c8a41a",
+          "reason": "that walkthrough orients a trainee to a campus radio station's recording gear, not a historical restoration workshop"
+        },
+        {
+          "setId": "spk-43ab8b09",
+          "reason": "that walkthrough orients a volunteer to a campus greenhouse's plant-care supplies, a different setting and purpose"
+        },
+        {
+          "setId": "spk-e5b2b735",
+          "reason": "that walkthrough orients a new hire to a recreation center front desk, not a museum conservation workshop"
+        }
+      ],
+      "setting": "workshop room behind a small historical museum where a conservator restores donated wooden furniture",
+      "speakerRole": "museum conservator orienting a newly arrived restoration intern before the intern works on furniture alone",
+      "communicativePurpose": "walk the intern through each workshop station once, naming where tools and materials are kept"
+    },
+    "interview": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "evening-wind-down-sleep-routine",
+      "requiredConcepts": [
+        "tea and a few pages of a novel before bed",
+        "phone charging in the kitchen, not the bedroom",
+        "a night the routine broke because of a late phone call",
+        "trouble falling asleep after skipping the routine"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-57f76698",
+          "reason": "that interview covers a family tradition passed across generations, not a personal nightly sleep routine"
+        },
+        {
+          "setId": "spk-43ab8b09",
+          "reason": "that interview covers weekday eating patterns, a different daily-routine topic from winding down for sleep"
+        },
+        {
+          "setId": "spk-8d9ee619",
+          "reason": "that interview covers a past visit to an unfamiliar city, not an evening health routine"
+        }
+      ],
+      "topic": "A wellness researcher's brief phone interview about how people wind down before falling asleep",
+      "premise": "An interviewer asks a participant to describe their usual evening wind-down routine in the hour before bed, then recall one specific night it didn't go as planned.",
+      "questionArc": [
+        "What do you usually do in the hour before you go to sleep on an ordinary night?",
+        "How long does that routine usually take, and does it change on weekends?",
+        "Tell me about one specific night when your usual wind-down routine got interrupted.",
+        "How did skipping or changing your routine that night affect how well you slept?"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v2",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Rasalgethi",
+      "briefingTargetWpm": 165,
+      "itemTargetWpm": 180
+    },
+    "interview": {
+      "accent": "new-zealand",
+      "voice": "Umbriel",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

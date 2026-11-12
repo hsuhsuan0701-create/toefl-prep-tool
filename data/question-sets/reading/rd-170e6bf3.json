@@ -1,0 +1,1641 @@
+{
+  "id": "rd-170e6bf3",
+  "source": "generated",
+  "createdAt": "2026-09-01T10:26:11.972Z",
+  "kind": "reading",
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "domain-drift",
+      "taskType": "academic_passage",
+      "itemPosition": 0
+    },
+    {
+      "check": "content-gate",
+      "detail": "module-difficulty-band"
+    },
+    {
+      "check": "content-gate",
+      "detail": "passage-difficulty-band",
+      "taskType": "academic_passage",
+      "itemPosition": 0
+    },
+    {
+      "check": "content-gate",
+      "detail": "passage-difficulty-band",
+      "taskType": "academic_passage",
+      "itemPosition": 2
+    }
+  ],
+  "router": {
+    "timeLimitSec": 1200,
+    "ctwPassages": [
+      {
+        "id": "ctw-r1",
+        "taskType": "complete_words",
+        "topic": "office call-center queue overflow rerouting between company teams",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Many companies operate phone lines where customers wait to speak with a representative. When "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g1"
+          },
+          {
+            "type": "text",
+            "text": " queue "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g2"
+          },
+          {
+            "type": "text",
+            "text": " past a fixed "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g3"
+          },
+          {
+            "type": "text",
+            "text": ", the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g4"
+          },
+          {
+            "type": "text",
+            "text": " automatically "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g5"
+          },
+          {
+            "type": "text",
+            "text": " extra "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g6"
+          },
+          {
+            "type": "text",
+            "text": " to a secondary "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g7"
+          },
+          {
+            "type": "text",
+            "text": " in "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g8"
+          },
+          {
+            "type": "text",
+            "text": " location. "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g9"
+          },
+          {
+            "type": "text",
+            "text": " keeps "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r1-g10"
+          },
+          {
+            "type": "text",
+            "text": " times short during peak hours. A manager gets notified whenever the line exceeds that threshold, allowing quick adjustments. The system also logs how long each crew takes to answer inquiries on average. Leaders examine this data weekly to detect trends and plan staffing before delays grow worse."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-r1-g1",
+            "prefix": "t",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "此處指前一句已提到的「客服電話排隊」，是特定、已知的隊伍，故需用定冠詞 the，而非不定冠詞 a。"
+          },
+          {
+            "id": "ctw-r1-g2",
+            "prefix": "gr",
+            "completion": "ows",
+            "blankLength": 3,
+            "explanationZh": "主詞 the queue 為單數，且句子描述一般性、反覆發生的情況（現在簡單式），動詞需加 -s，故為 grows，與下文 past a fixed limit（超過固定上限）語意相符。"
+          },
+          {
+            "id": "ctw-r1-g3",
+            "prefix": "li",
+            "completion": "mit",
+            "blankLength": 3,
+            "explanationZh": "片語 a fixed limit 指「一個固定的上限／門檻」，呼應後文 A manager gets notified whenever the line exceeds that threshold 中的 threshold，指同一個排隊人數上限概念。"
+          },
+          {
+            "id": "ctw-r1-g4",
+            "prefix": "plat",
+            "completion": "form",
+            "blankLength": 4,
+            "explanationZh": "此句主詞需為能「自動轉接」的系統本身，platform（平台系統）呼應前句描述的電話系統，是唯一合理的主詞名詞。"
+          },
+          {
+            "id": "ctw-r1-g5",
+            "prefix": "shi",
+            "completion": "fts",
+            "blankLength": 3,
+            "explanationZh": "主詞 the platform 為單數，句子為現在簡單式描述系統的固定運作方式，動詞需加 -s，故為 shifts，與 automatically（自動地）語意搭配。"
+          },
+          {
+            "id": "ctw-r1-g6",
+            "prefix": "tra",
+            "completion": "ffic",
+            "blankLength": 4,
+            "explanationZh": "shifts extra traffic 中 traffic 指「（電話）話務量／來電流量」，是被轉接的對象，呼應前句 customers wait to speak with a representative 所暗示的大量來電。"
+          },
+          {
+            "id": "ctw-r1-g7",
+            "prefix": "te",
+            "completion": "am",
+            "blankLength": 2,
+            "explanationZh": "traffic 被轉接到的對象應是另一組負責接聽的人員，team（團隊）呼應後文 each crew（每組人員）所指的同一群體。"
+          },
+          {
+            "id": "ctw-r1-g8",
+            "prefix": "ano",
+            "completion": "ther",
+            "blankLength": 4,
+            "explanationZh": "in another location 指「在另一個（不同的）地點」，another 表示與原本地點不同的第二個地點，符合「二次轉接到另一據點」的語意。"
+          },
+          {
+            "id": "ctw-r1-g9",
+            "prefix": "Th",
+            "completion": "is",
+            "blankLength": 2,
+            "explanationZh": "This 指代前一句整個「將話務自動轉接到另一地點團隊」的做法，作為下一句 keeps hold times short 的主詞，指涉前述整個動作/機制。"
+          },
+          {
+            "id": "ctw-r1-g10",
+            "prefix": "ho",
+            "completion": "ld",
+            "blankLength": 2,
+            "explanationZh": "hold times 是固定搭配，指「客戶等待接聽的時間」，呼應第一句 customers wait to speak with a representative 所描述的等待情境。"
+          }
+        ],
+        "sourceParagraph": "Many companies operate phone lines where customers wait to speak with a representative. When the queue grows past a fixed limit, the platform automatically shifts extra traffic to a secondary team in another location. This keeps hold times short during peak hours. A manager gets notified whenever the line exceeds that threshold, allowing quick adjustments. The system also logs how long each crew takes to answer inquiries on average. Leaders examine this data weekly to detect trends and plan staffing before delays grow worse."
+      },
+      {
+        "id": "ctw-r2",
+        "taskType": "complete_words",
+        "topic": "gallery bronze sculpture patina restoration process",
+        "segments": [
+          {
+            "type": "text",
+            "text": "A conservator carefully studies a bronze sculpture before deciding how to bring back its original surface. Technicians "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g1"
+          },
+          {
+            "type": "text",
+            "text": " strip "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g2"
+          },
+          {
+            "type": "text",
+            "text": " the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g3"
+          },
+          {
+            "type": "text",
+            "text": " oxidized "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g4"
+          },
+          {
+            "type": "text",
+            "text": " using a mild "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g5"
+          },
+          {
+            "type": "text",
+            "text": " wash. "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g6"
+          },
+          {
+            "type": "text",
+            "text": " patina "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g7"
+          },
+          {
+            "type": "text",
+            "text": " on "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g8"
+          },
+          {
+            "type": "text",
+            "text": ", applied "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g9"
+          },
+          {
+            "type": "text",
+            "text": " several "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-r2-g10"
+          },
+          {
+            "type": "text",
+            "text": ", even coats for a consistent look. It needs time to fully dry before a clear protective wax is rubbed across the whole piece. It then seals everything in, helping the object last for many more years on display."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-r2-g1",
+            "prefix": "fi",
+            "completion": "rst",
+            "blankLength": 3,
+            "explanationZh": "此處描述修復流程的第一個步驟,句意為「技術人員首先剝除…」,搭配下文一連串按順序進行的動作(先去除舊層、再上新銅綠、最後上蠟封層),故須填入表示「首先」的 first,呼應整段的步驟順序。"
+          },
+          {
+            "id": "ctw-r2-g2",
+            "prefix": "aw",
+            "completion": "ay",
+            "blankLength": 2,
+            "explanationZh": "動詞片語 strip away 意為「剝除、去除」,是描述去除外層氧化物的固定搭配,away 表示將舊表層完全移除,與後文「using a mild chemical wash」呼應,說明是用化學方式清除掉表層。"
+          },
+          {
+            "id": "ctw-r2-g3",
+            "prefix": "ou",
+            "completion": "ter",
+            "blankLength": 3,
+            "explanationZh": "outer 修飾 layer,指「最外層」被氧化的部分,與內部尚未氧化的金屬相對,符合修復流程中先處理表面氧化層的邏輯,故填入 outer。"
+          },
+          {
+            "id": "ctw-r2-g4",
+            "prefix": "la",
+            "completion": "yer",
+            "blankLength": 3,
+            "explanationZh": "layer 與 oxidized 搭配,構成 oxidized layer(氧化層),指青銅表面因氧化而形成的一層物質,是 strip away 的受詞,故此處應填入名詞 layer。"
+          },
+          {
+            "id": "ctw-r2-g5",
+            "prefix": "chem",
+            "completion": "ical",
+            "blankLength": 4,
+            "explanationZh": "chemical 修飾 wash,構成 chemical wash(化學清洗劑),說明技術人員使用溫和的化學藥劑去除氧化層,呼應前句用溫和方式清除表層的描述。"
+          },
+          {
+            "id": "ctw-r2-g6",
+            "prefix": "Fr",
+            "completion": "esh",
+            "blankLength": 3,
+            "explanationZh": "Fresh 修飾 patina,意為「新的、新塗上的銅綠」,與前一句剛清除掉舊氧化層形成對比,說明接下來要塗上全新的一層銅綠,故填入 Fresh。"
+          },
+          {
+            "id": "ctw-r2-g7",
+            "prefix": "go",
+            "completion": "es",
+            "blankLength": 2,
+            "explanationZh": "goes on 是描述塗料被「塗上、施加」的常用片語,主詞是 Fresh patina,故需搭配動詞 goes,構成「新銅綠接著被塗上」的語意。"
+          },
+          {
+            "id": "ctw-r2-g8",
+            "prefix": "ne",
+            "completion": "xt",
+            "blankLength": 2,
+            "explanationZh": "next 表示「接下來」,銜接上一句「剝除舊層」與此句「塗上新銅綠」兩個修復步驟,顯示動作發生的先後順序,故填入 next。"
+          },
+          {
+            "id": "ctw-r2-g9",
+            "prefix": "i",
+            "completion": "n",
+            "blankLength": 1,
+            "explanationZh": "in 與 applied 搭配構成 applied in several thin, even coats,意為「以數層薄且均勻的塗層方式塗抹」,描述銅綠塗佈的方式,故填入介系詞 in。"
+          },
+          {
+            "id": "ctw-r2-g10",
+            "prefix": "th",
+            "completion": "in",
+            "blankLength": 2,
+            "explanationZh": "thin 修飾 coats,指塗層「薄」,與 even(均勻)並列,說明為了呈現一致的外觀,塗料須分成多層薄薄地塗上,故填入 thin。"
+          }
+        ],
+        "sourceParagraph": "A conservator carefully studies a bronze sculpture before deciding how to bring back its original surface. Technicians first strip away the outer oxidized layer using a mild chemical wash. Fresh patina goes on next, applied in several thin, even coats for a consistent look. It needs time to fully dry before a clear protective wax is rubbed across the whole piece. It then seals everything in, helping the object last for many more years on display."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-r1",
+        "taskType": "daily_life",
+        "genre": "receipt",
+        "text": "CAMPUS COPY & BIND\nOrder #4471\n\nThesis Binding - Hardcover .......... $18.00\nRush Service Fee ...................... $9.00\nCover Material: Navy Linen ............ $4.50\nSubtotal .............................. $31.50\nTax ..................................... $1.89\nTOTAL ................................. $33.39\n\nPayment: Card ending 4021\nPickup Time: 4:30 PM, same day\n\nThank you for choosing Campus Copy & Bind!",
+        "questions": [
+          {
+            "id": "dl-r1-q1",
+            "stem": "According to the receipt, when will this order be ready for pickup?",
+            "options": [
+              {
+                "id": "a",
+                "text": "6:00 PM the same day"
+              },
+              {
+                "id": "b",
+                "text": "4:30 PM the next day"
+              },
+              {
+                "id": "c",
+                "text": "4:30 PM the same day"
+              },
+              {
+                "id": "d",
+                "text": "9:00 AM the next morning"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "detail",
+            "explanationZh": "收據的「Pickup Time」欄位清楚寫著當日下午4:30取件，其餘選項的時間或日期皆與收據不符。"
+          },
+          {
+            "id": "dl-r1-q2",
+            "stem": "What does the $9.00 charge on the receipt represent?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A fee added for the navy linen cover material"
+              },
+              {
+                "id": "b",
+                "text": "A fee added for upgrading to hardcover binding"
+              },
+              {
+                "id": "c",
+                "text": "A fee added to complete the order more quickly"
+              },
+              {
+                "id": "d",
+                "text": "A fee added as sales tax on the subtotal"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "vocabulary",
+            "explanationZh": "收據上標示為「Rush Service Fee」的$9.00，是為了加速完成訂單而額外收取的費用。封面材質費、稅金與精裝升級費用在收據上各有獨立項目，金額皆不同，均與此加急費無關。"
+          }
+        ]
+      },
+      {
+        "id": "dl-r2",
+        "taskType": "daily_life",
+        "genre": "text message chain",
+        "text": "Mia: Hey, can you cover the trade show booth from 1 to 3 today? I have a client call.\nJordan: Sure, I can do that. Want me to grab the badge scanner from you before your call?\nMia: Yes, please swing by the booth at 12:45 so I can hand it off.\nJordan: Got it. I'll also cover your lunch break spot at 11:30 since I'm free then.\nMia: You're a lifesaver, thanks!",
+        "questions": [
+          {
+            "id": "dl-r2-q1",
+            "stem": "At what time will Jordan take the badge scanner from Mia?",
+            "options": [
+              {
+                "id": "a",
+                "text": "1:00"
+              },
+              {
+                "id": "b",
+                "text": "11:30"
+              },
+              {
+                "id": "c",
+                "text": "3:00"
+              },
+              {
+                "id": "d",
+                "text": "12:45"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "對話中Mia提到「swing by the booth at 12:45」，表示Jordan會在12:45取走識別證掃描器，而非其他時間。"
+          },
+          {
+            "id": "dl-r2-q2",
+            "stem": "Why does Mia need someone to cover the booth?",
+            "options": [
+              {
+                "id": "a",
+                "text": "She needs to fix the badge scanner"
+              },
+              {
+                "id": "b",
+                "text": "She is attending a different trade show"
+              },
+              {
+                "id": "c",
+                "text": "She is taking her lunch break"
+              },
+              {
+                "id": "d",
+                "text": "She has a client call"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "inference",
+            "explanationZh": "Mia一開始就說「I have a client call」，說明她需要人代班的原因是要接客戶電話，並非其他選項所述情況。"
+          },
+          {
+            "id": "dl-r2-q3",
+            "stem": "What is the main purpose of this text conversation?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To complain about a broken badge scanner"
+              },
+              {
+                "id": "b",
+                "text": "To coordinate shift coverage and equipment handoff"
+              },
+              {
+                "id": "c",
+                "text": "To schedule a new client appointment"
+              },
+              {
+                "id": "d",
+                "text": "To cancel the trade show booth setup"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "purpose",
+            "explanationZh": "對話中兩人協調攤位代班時間、識別證掃描器的交接地點與午休代班安排，主旨在於協調彼此的值班與物品交接，其餘選項均非對話重點。"
+          }
+        ]
+      },
+      {
+        "id": "dl-r3",
+        "taskType": "daily_life",
+        "genre": "poster/sign/notice",
+        "text": "COMMUNITY GARDEN - NEW PLOT WAITLIST\nInterested in growing your own vegetables this season?\nSign-up sheet now posted on the shed door.\nReturning members get first priority for open plots.\nNew applicants placed on a waitlist after that.\nWaitlist reviewed on the first Saturday of next month.\nQuestions? Ask any garden committee member on-site.",
+        "questions": [
+          {
+            "id": "dl-r3-q1",
+            "stem": "Who receives first priority for open garden plots?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Returning members"
+              },
+              {
+                "id": "b",
+                "text": "Anyone who asks in person"
+              },
+              {
+                "id": "c",
+                "text": "Committee members"
+              },
+              {
+                "id": "d",
+                "text": "New applicants who sign up first"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "公告明確指出「Returning members get first priority」，代表舊會員優先取得空出的園圃，而非新申請者或委員會成員。"
+          },
+          {
+            "id": "dl-r3-q2",
+            "stem": "When will the waitlist be reviewed?",
+            "options": [
+              {
+                "id": "a",
+                "text": "First Saturday of next month"
+              },
+              {
+                "id": "b",
+                "text": "Every Saturday until filled"
+              },
+              {
+                "id": "c",
+                "text": "Last Saturday of this month"
+              },
+              {
+                "id": "d",
+                "text": "The day new plots open"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "公告寫明「Waitlist reviewed on the first Saturday of next month」，即下個月的第一個星期六審核，而非本月、每週或開放當天。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-r1",
+        "taskType": "academic_passage",
+        "title": "How Urban Tree Canopy Gaps Affect Local Wind Corridors",
+        "discipline": "environmental science",
+        "text": "City streets lined with trees usually feel calmer on windy days than open streets without any greenery. Tree canopies act like a loose ceiling above the sidewalk, slowing down air as it moves through a neighborhood. However, when several trees are removed from one section of a street, whether from disease, storm damage, or construction, a gap opens in this canopy. Wind that would normally be slowed and spread out by leaves and branches instead funnels through the open space, picking up speed as it passes. Researchers who study city planning have measured this effect directly. In several test streets, wind speed at the level of a walking pedestrian increased noticeably right where the canopy gap appeared, compared with sections of the same street where the tree cover stayed continuous. The narrower the gap, the stronger this funneling effect tended to be, since the wind had fewer paths to escape sideways. City planners are now looking at ways to reduce this problem. One proposed solution is to plant new, fast-growing trees in these gaps as soon as possible, restoring a more even canopy before the corridor effect becomes a regular nuisance for people walking or biking through the area.",
+        "questions": [
+          {
+            "id": "ap-r1-q1",
+            "stem": "According to the passage, what happens when several trees are removed from one section of a street?",
+            "options": [
+              {
+                "id": "a",
+                "text": "A gap forms that lets wind speed up as it passes through"
+              },
+              {
+                "id": "b",
+                "text": "The nearby buildings begin absorbing more heat from direct sunlight"
+              },
+              {
+                "id": "c",
+                "text": "The remaining branches interlock more tightly to block the wind"
+              },
+              {
+                "id": "d",
+                "text": "Local officials measure sidewalk temperature before approving new construction"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "文中說明，當一段街道的多棵樹被移除後，原本被樹冠減緩、分散的風會改從缺口處通過並加速，而非其餘選項所述的建築物、樹枝或官員行為。"
+          },
+          {
+            "id": "ap-r1-q2",
+            "stem": "In the passage, the word \"funnels\" is closest in meaning to which of the following?",
+            "options": [
+              {
+                "id": "a",
+                "text": "weakens gradually before reaching pedestrians"
+              },
+              {
+                "id": "b",
+                "text": "reverses direction after hitting an obstacle"
+              },
+              {
+                "id": "c",
+                "text": "channels narrowly through a confined space"
+              },
+              {
+                "id": "d",
+                "text": "spreads evenly across a wide open area"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "vocabulary",
+            "explanationZh": "文中的「funnels」用來形容風被引導、集中通過一個狹窄空間的動作，意思接近「narrowly channels」，而非「均勻擴散」、「逐漸減弱」或「轉向」。"
+          },
+          {
+            "id": "ap-r1-q3",
+            "stem": "What can be inferred about streets with continuous tree cover, based on the passage?",
+            "options": [
+              {
+                "id": "a",
+                "text": "They likely experience less pedestrian-level wind speed than streets with gaps"
+              },
+              {
+                "id": "b",
+                "text": "They typically cost more money for city maintenance crews"
+              },
+              {
+                "id": "c",
+                "text": "They generally attract more foot traffic than streets with gaps"
+              },
+              {
+                "id": "d",
+                "text": "They probably require frequent trimming to maintain their dense canopy"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "文章描述樹冠完整的路段能有效減緩風速，因此可推論行人層級的風速在樹冠連續的街道上應較低，而非其餘選項所述的修剪頻率、人潮或維護成本。"
+          },
+          {
+            "id": "ap-r1-q4",
+            "stem": "How does the passage primarily develop its explanation of the wind-corridor effect?",
+            "options": [
+              {
+                "id": "a",
+                "text": "By presenting a personal narrative about visiting a city"
+              },
+              {
+                "id": "b",
+                "text": "By listing historical examples in chronological order"
+              },
+              {
+                "id": "c",
+                "text": "By comparing two competing scientific theories and rejecting one"
+              },
+              {
+                "id": "d",
+                "text": "By describing a normal condition, then explaining what changes when it is disrupted, and finally proposing a solution"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "rhetorical_structure",
+            "explanationZh": "文章先描述樹冠完整時的正常狀態，再說明缺口造成的改變，最後提出以補植樹木解決此問題的做法，呈現先常態、再變化、後對策的鋪陳方式。"
+          },
+          {
+            "id": "ap-r1-q5",
+            "stem": "What is the purpose of the sentence describing narrower gaps producing a stronger funneling effect?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To introduce a completely new topic unrelated to wind"
+              },
+              {
+                "id": "b",
+                "text": "To criticize city planners for allowing construction"
+              },
+              {
+                "id": "c",
+                "text": "To argue that all street gaps should be exactly the same width"
+              },
+              {
+                "id": "d",
+                "text": "To explain a factor that changes how severe the wind-corridor effect becomes"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "purpose",
+            "explanationZh": "提到缺口越窄、風洞效應越強的句子，是為了說明影響此現象嚴重程度的一項因素，而非主張所有缺口都該一樣寬或批評都市規劃者。"
+          }
+        ]
+      }
+    ]
+  },
+  "lowerModule": {
+    "timeLimitSec": 540,
+    "ctwPassages": [
+      {
+        "id": "ctw-lo1",
+        "taskType": "complete_words",
+        "topic": "health clinic call-light response time tracking",
+        "segments": [
+          {
+            "type": "text",
+            "text": "A hospital call light lets a patient ask for help from the nursing staff. Each "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g1"
+          },
+          {
+            "type": "text",
+            "text": " a "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g2"
+          },
+          {
+            "type": "text",
+            "text": " is "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g3"
+          },
+          {
+            "type": "text",
+            "text": ", the "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g4"
+          },
+          {
+            "type": "text",
+            "text": " logs "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g5"
+          },
+          {
+            "type": "text",
+            "text": " right "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g6"
+          },
+          {
+            "type": "text",
+            "text": ". A "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g7"
+          },
+          {
+            "type": "text",
+            "text": " then "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g8"
+          },
+          {
+            "type": "text",
+            "text": " how "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g9"
+          },
+          {
+            "type": "text",
+            "text": " minutes "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-lo1-g10"
+          },
+          {
+            "type": "text",
+            "text": " before someone answers it. Workers on each floor are checked to see if they respond fast enough. A slow response gets flagged so a manager can look into it later. This allows the clinic to find problems early and keep everyone safe and happy."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-lo1-g1",
+            "prefix": "ti",
+            "completion": "me",
+            "blankLength": 2,
+            "explanationZh": "此處為「Each time a button is pressed」，意指「每次按鈕被按下時」，與後句描述系統會記錄動作相呼應，故填入 time 構成「Each time」（每當）這個時間副詞片語，符合上下文因果邏輯。"
+          },
+          {
+            "id": "ctw-lo1-g2",
+            "prefix": "but",
+            "completion": "ton",
+            "blankLength": 3,
+            "explanationZh": "句子描述呼叫燈系統的運作方式，患者透過按下某個裝置來求助，前句已提及 call light（呼叫燈），此處應填入 button（按鈕），指患者實際按下的物件，與「is pressed」搭配合理。"
+          },
+          {
+            "id": "ctw-lo1-g3",
+            "prefix": "pre",
+            "completion": "ssed",
+            "blankLength": 4,
+            "explanationZh": "「a button is pressed」為被動語態，描述按鈕被按下這個動作，pressed 是 press 的過去分詞，與 be 動詞 is 搭配構成被動式，符合文法與語意，說明觸發系統記錄的事件。"
+          },
+          {
+            "id": "ctw-lo1-g4",
+            "prefix": "sys",
+            "completion": "tem",
+            "blankLength": 3,
+            "explanationZh": "此句主詞需為能執行「logs it」（記錄它）這個動作的主體，對應段落主題「call-light response time tracking」，指的是醫院的呼叫系統，故填入 system，與後文的 clock、tracks 等追蹤機制相呼應。"
+          },
+          {
+            "id": "ctw-lo1-g5",
+            "prefix": "i",
+            "completion": "t",
+            "blankLength": 1,
+            "explanationZh": "此處 it 為代名詞，指代前面提到「按鈕被按下」這個事件，system logs it 即「系統記錄下這個動作」，避免重複用詞，符合英文代名詞指代邏輯。"
+          },
+          {
+            "id": "ctw-lo1-g6",
+            "prefix": "aw",
+            "completion": "ay",
+            "blankLength": 2,
+            "explanationZh": "「logs it right away」表示系統「立刻」記錄下按鈕被按下的動作，away 與 right 搭配構成慣用片語 right away（立即），呼應段落強調即時追蹤反應時間的主題。"
+          },
+          {
+            "id": "ctw-lo1-g7",
+            "prefix": "cl",
+            "completion": "ock",
+            "blankLength": 3,
+            "explanationZh": "下一句主詞需能執行「tracks how many minutes pass」的動作，指計時裝置，故填入 clock（時鐘），與前句系統記錄按鈕按下的時間點銜接，說明如何測量回應時間。"
+          },
+          {
+            "id": "ctw-lo1-g8",
+            "prefix": "tra",
+            "completion": "cks",
+            "blankLength": 3,
+            "explanationZh": "主詞 clock 之後需接動詞，說明時鐘「追蹤」經過的分鐘數，故填入 tracks（第三人稱單數動詞形式），符合主謂一致，並呼應全段「response time tracking」的主旨。"
+          },
+          {
+            "id": "ctw-lo1-g9",
+            "prefix": "ma",
+            "completion": "ny",
+            "blankLength": 2,
+            "explanationZh": "此處為「how many minutes pass」的疑問詞結構，many 與 how 搭配構成 how many（多少），用來修飾可數名詞 minutes，符合文法規則且表達計算經過分鐘數的概念。"
+          },
+          {
+            "id": "ctw-lo1-g10",
+            "prefix": "pa",
+            "completion": "ss",
+            "blankLength": 2,
+            "explanationZh": "「how many minutes pass」中 pass 為動詞，表示分鐘「經過、流逝」，與主詞 minutes（複數）搭配需用原形動詞 pass，說明時間流逝直到有人回應為止，符合語意與文法一致性。"
+          }
+        ],
+        "sourceParagraph": "A hospital call light lets a patient ask for help from the nursing staff. Each time a button is pressed, the system logs it right away. A clock then tracks how many minutes pass before someone answers it. Workers on each floor are checked to see if they respond fast enough. A slow response gets flagged so a manager can look into it later. This allows the clinic to find problems early and keep everyone safe and happy."
+      }
+    ],
+    "dailyLife": [
+      {
+        "id": "dl-lo1",
+        "taskType": "daily_life",
+        "genre": "invoice",
+        "text": "COASTAL WHEELS CAR RENTAL - INVOICE\nRental: Compact Car, 3 days ........... $135.00\nInsurance Add-On ........................ $27.00\nLate Return Fee (2 hours) ............... $20.00\nSubtotal ................................ $182.00\nTax ....................................... $10.92\nTOTAL DUE BY June 14 .................... $192.92\n\nPlease pay online or at the counter before the due date.",
+        "questions": [
+          {
+            "id": "dl-lo1-q1",
+            "stem": "Why was a late return fee charged on this invoice?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The rental agreement was extended for an additional day of use"
+              },
+              {
+                "id": "b",
+                "text": "The renter declined the insurance add-on shown on the invoice"
+              },
+              {
+                "id": "c",
+                "text": "The compact car was swapped for a larger vehicle at pickup"
+              },
+              {
+                "id": "d",
+                "text": "The rental car was returned two hours past its scheduled drop-off time"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "帳單上列出「Late Return Fee (2 hours)」，說明是因車輛歸還時間比預定時間晚了兩小時才產生此費用，並非延長租期、退保險或換車所致。"
+          },
+          {
+            "id": "dl-lo1-q2",
+            "stem": "By what date is the total payment due?",
+            "options": [
+              {
+                "id": "a",
+                "text": "June 14"
+              },
+              {
+                "id": "b",
+                "text": "June 12"
+              },
+              {
+                "id": "c",
+                "text": "The day the car was picked up"
+              },
+              {
+                "id": "d",
+                "text": "June 17"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "帳單標示「TOTAL DUE BY June 14」，即付款截止日為6月14日，而非其他日期。"
+          }
+        ]
+      },
+      {
+        "id": "dl-lo2",
+        "taskType": "daily_life",
+        "genre": "web page",
+        "text": "URGENT CARE LOCATOR\nFind a clinic near you and check current wait times before you go.\n\nDowntown Clinic - Wait: 25 minutes - Walk-ins: 8 AM-8 PM\nRiverside Clinic - Wait: 10 minutes - Walk-ins: 9 AM-7 PM\nMaple Street Clinic - Wait: 40 minutes - Walk-ins: 8 AM-9 PM\n\nInsurance Accepted: Most major plans. Call ahead to confirm your specific plan.\nWalk-ins welcome at all locations during posted hours.",
+        "questions": [
+          {
+            "id": "dl-lo2-q1",
+            "stem": "Which clinic currently has the shortest wait time?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Riverside Clinic"
+              },
+              {
+                "id": "b",
+                "text": "All clinics have the same wait time"
+              },
+              {
+                "id": "c",
+                "text": "Maple Street Clinic"
+              },
+              {
+                "id": "d",
+                "text": "Downtown Clinic"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "三間診所中Riverside Clinic的等待時間標示為10分鐘，是三者之中最短的，其餘診所等待時間皆較長。"
+          },
+          {
+            "id": "dl-lo2-q2",
+            "stem": "What should a patient do to confirm their insurance is accepted?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Check a different website"
+              },
+              {
+                "id": "b",
+                "text": "Bring cash instead of insurance"
+              },
+              {
+                "id": "c",
+                "text": "Call the clinic ahead of time"
+              },
+              {
+                "id": "d",
+                "text": "Wait until they arrive to ask"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "inference",
+            "explanationZh": "頁面提醒「Call ahead to confirm your specific plan」，代表病患應事先致電診所確認保險是否適用，而非其餘選項所述做法。"
+          }
+        ]
+      }
+    ],
+    "academic": [
+      {
+        "id": "ap-lo1",
+        "taskType": "academic_passage",
+        "title": "Why Small Manufacturing Companies Adopt Shared Equipment Leasing",
+        "discipline": "business economics",
+        "text": "Some small factories cannot afford to buy every machine they need. A single large machine can cost more than a small company can spend in one year. To solve this problem, several small manufacturing companies sometimes agree to lease one machine together. Each company pays a share of the lease cost instead of paying the full price alone. This lets each business use expensive equipment without a huge upfront cost. Of course, sharing one machine among several companies takes careful planning. The companies must agree on a schedule so that no two businesses need the machine at the same time. A shared calendar is often used to book time slots in advance. If one company needs extra time during a busy month, it usually has to ask the others first. The companies also agree, usually in a signed contract, on who pays for repairs and regular upkeep. Splitting this responsibility keeps costs fair for everyone involved. Over time, many small manufacturers find that this kind of leasing arrangement helps them stay competitive. They gain access to modern equipment they could never have purchased alone, while still keeping their overall costs low enough to survive in a tough market.",
+        "questions": [
+          {
+            "id": "ap-lo1-q1",
+            "stem": "According to the passage, why might one company need to ask the others before using the shared machine?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It wants to permanently take over the machine from the other companies"
+              },
+              {
+                "id": "b",
+                "text": "It wants to cancel the lease agreement early"
+              },
+              {
+                "id": "c",
+                "text": "It needs to repair the machine after breaking it"
+              },
+              {
+                "id": "d",
+                "text": "It needs more machine time in a busy month"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "detail",
+            "explanationZh": "文中提到，若某公司在忙碌月份需要額外使用機台的時間，通常必須先徵得其他公司同意，而非其餘選項所述情況。"
+          },
+          {
+            "id": "ap-lo1-q2",
+            "stem": "In the passage, the word \"upkeep\" is closest in meaning to which of the following?",
+            "options": [
+              {
+                "id": "a",
+                "text": "regular care that keeps equipment running well"
+              },
+              {
+                "id": "b",
+                "text": "a fixed timetable for reserving machine use"
+              },
+              {
+                "id": "c",
+                "text": "a legal contract signed between two or more businesses"
+              },
+              {
+                "id": "d",
+                "text": "the total amount charged for leasing a machine over several years, including extra fees"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "vocabulary",
+            "explanationZh": "文中的「upkeep」指持續維持機器正常運作所需的照顧與保養工作，意思接近「日常維護保養」，而非價格、合約或排班表。"
+          },
+          {
+            "id": "ap-lo1-q3",
+            "stem": "What can be inferred about a small company that cannot afford to buy a machine alone?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It could still gain access to the machine by sharing a lease with others"
+              },
+              {
+                "id": "b",
+                "text": "It will never be able to compete against any larger manufacturing company again"
+              },
+              {
+                "id": "c",
+                "text": "It will eventually be forced to close down within twelve months of failing to purchase equipment"
+              },
+              {
+                "id": "d",
+                "text": "It must borrow money from a bank before it can begin operating at all"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "文章說明小公司可透過共同租賃機制使用單獨負擔不起的設備，因此可推論該公司仍有機會使用該機器，而非必然倒閉或完全無法競爭。"
+          },
+          {
+            "id": "ap-lo1-q4",
+            "stem": "How does the passage explain the connection between shared equipment leasing and cost fairness?",
+            "options": [
+              {
+                "id": "a",
+                "text": "It describes how the companies split maintenance responsibility so that upkeep costs are shared evenly"
+              },
+              {
+                "id": "b",
+                "text": "It shows how one company pays for all repairs to save time"
+              },
+              {
+                "id": "c",
+                "text": "It states that only the largest company in the group pays for repairs"
+              },
+              {
+                "id": "d",
+                "text": "It explains that maintenance costs are covered entirely by the equipment manufacturer"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "organization",
+            "explanationZh": "文章透過說明各公司如何共同分攤維修與保養責任，來解釋成本公平性如何被維持，而非描述由單一公司或製造商負擔全部費用。"
+          },
+          {
+            "id": "ap-lo1-q5",
+            "stem": "What is the purpose of mentioning that many small manufacturers stay competitive through shared leasing?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To warn readers that leasing is usually a bad business decision"
+              },
+              {
+                "id": "b",
+                "text": "To show a practical benefit that results from this leasing arrangement"
+              },
+              {
+                "id": "c",
+                "text": "To argue that all companies should stop buying their own equipment"
+              },
+              {
+                "id": "d",
+                "text": "To compare leasing costs with buying costs in exact numbers"
+              }
+            ],
+            "correctOptionId": "b",
+            "skill": "purpose",
+            "explanationZh": "提到許多小型製造商藉由共享租賃維持競爭力，是為了呈現這種租賃安排帶來的實際效益，而非警告租賃不佳或主張都該停止自行購買設備。"
+          }
+        ]
+      }
+    ]
+  },
+  "upperModule": {
+    "timeLimitSec": 540,
+    "ctwPassages": [
+      {
+        "id": "ctw-up1",
+        "taskType": "complete_words",
+        "topic": "historical shipwreck cargo manifest digitization project",
+        "segments": [
+          {
+            "type": "text",
+            "text": "Cargo manifests recovered from a nineteenth-century shipwreck rarely survive their time underwater in readable condition. Archivists "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g1"
+          },
+          {
+            "type": "text",
+            "text": " each "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g2"
+          },
+          {
+            "type": "text",
+            "text": " page "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g3"
+          },
+          {
+            "type": "text",
+            "text": " by "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g4"
+          },
+          {
+            "type": "text",
+            "text": " damage "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g5"
+          },
+          {
+            "type": "text",
+            "text": " any "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g6"
+          },
+          {
+            "type": "text",
+            "text": " occurs. "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g7"
+          },
+          {
+            "type": "text",
+            "text": " faded "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g8"
+          },
+          {
+            "type": "text",
+            "text": " is "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g9"
+          },
+          {
+            "type": "text",
+            "text": " compared "
+          },
+          {
+            "type": "gap",
+            "gapId": "ctw-up1-g10"
+          },
+          {
+            "type": "text",
+            "text": " logs kept by other officers from the same voyage. Names, dates, and shipped quantities are checked one by one for consistency across both sources. Once verified, the resulting record is linked to an existing catalog entry maintained by the museum."
+          }
+        ],
+        "gaps": [
+          {
+            "id": "ctw-up1-g1",
+            "prefix": "photo",
+            "completion": "graph",
+            "blankLength": 5,
+            "explanationZh": "此處主詞是 Archivists（檔案研究員),其動作對象是 each fragile page,唯一合理的及物動詞是「拍照記錄」,故填 photograph,呼應下一句「先拍照存證再進行任何處理」的邏輯順序。"
+          },
+          {
+            "id": "ctw-up1-g2",
+            "prefix": "fra",
+            "completion": "gile",
+            "blankLength": 4,
+            "explanationZh": "此形容詞修飾 page,說明船難沉船文件年代久遠、經海水浸泡後狀態,故用 fragile（脆弱易碎的）,與後文「因水損而變色」及「處理前須先拍照」的謹慎程序相呼應。"
+          },
+          {
+            "id": "ctw-up1-g3",
+            "prefix": "dark",
+            "completion": "ened",
+            "blankLength": 4,
+            "explanationZh": "此處描述 page 被 water damage 造成的外觀變化,darkened（變暗、變色）符合「泡水受損文件顏色變深」的自然現象,故為正確答案。"
+          },
+          {
+            "id": "ctw-up1-g4",
+            "prefix": "wa",
+            "completion": "ter",
+            "blankLength": 3,
+            "explanationZh": "此處與 damage 組成複合名詞 water damage（水損）,呼應句首「沉船在水下」的情境,說明頁面變暗的成因是海水浸泡造成的損害。"
+          },
+          {
+            "id": "ctw-up1-g5",
+            "prefix": "bef",
+            "completion": "ore",
+            "blankLength": 3,
+            "explanationZh": "此處表示拍照動作發生在「任何處理程序（handling）」之前,before 建立正確的時間順序,強調保存文件時必須遵守的先後步驟。"
+          },
+          {
+            "id": "ctw-up1-g6",
+            "prefix": "hand",
+            "completion": "ling",
+            "blankLength": 4,
+            "explanationZh": "此處指對脆弱文件進行實際「操作、觸碰」的動作,handling（處理）與前面 before any 搭配,說明在正式處理文件前必須先完成拍照存證。"
+          },
+          {
+            "id": "ctw-up1-g7",
+            "prefix": "T",
+            "completion": "he",
+            "blankLength": 2,
+            "explanationZh": "此句主詞為 handwriting,前面須加上定冠詞 The 以特指前一句剛提到、已拍照記錄的「褪色字跡」,符合英文語法上定冠詞用於已知事物的用法。"
+          },
+          {
+            "id": "ctw-up1-g8",
+            "prefix": "handw",
+            "completion": "riting",
+            "blankLength": 6,
+            "explanationZh": "此處主詞需與形容詞 faded（褪色的）搭配,指船難文件上「手寫字跡」,handwriting 符合「字跡需與其他軍官的紀錄比對」的後續動作。"
+          },
+          {
+            "id": "ctw-up1-g9",
+            "prefix": "th",
+            "completion": "en",
+            "blankLength": 2,
+            "explanationZh": "此處表示動作的時間順序,承接前面「先拍照」的步驟,then（接著）說明字跡接下來被拿去與其他紀錄比對,符合邏輯連貫性。"
+          },
+          {
+            "id": "ctw-up1-g10",
+            "prefix": "aga",
+            "completion": "inst",
+            "blankLength": 4,
+            "explanationZh": "此處動詞 compared 需搭配介系詞 against,構成慣用搭配 compared against（與……相比對),指字跡與同航次其他軍官保存的紀錄進行核對。"
+          }
+        ],
+        "sourceParagraph": "Cargo manifests recovered from a nineteenth-century shipwreck rarely survive their time underwater in readable condition. Archivists photograph each fragile page darkened by water damage before any handling occurs. The faded handwriting is then compared against logs kept by other officers from the same voyage. Names, dates, and shipped quantities are checked one by one for consistency across both sources. Once verified, the resulting record is linked to an existing catalog entry maintained by the museum."
+      }
+    ],
+    "dailyLife": [],
+    "academic": [
+      {
+        "id": "ap-up1",
+        "taskType": "academic_passage",
+        "title": "How Apprenticeship Guild Records Reveal Craft Migration Patterns",
+        "discipline": "history",
+        "text": "Long before modern census records existed, medieval and early modern guilds kept meticulous registers of every apprentice bound to a master craftsman, and these documents, though compiled for entirely administrative purposes, now serve historians as an unexpected window onto patterns of human movement. Each entry typically recorded an apprentice's name, hometown, the trade being learned, and the date of registration, details that individually seem mundane but that, when aggregated across dozens of surviving registers, begin to trace the routes along which skilled labor circulated between towns. A historian tracing the migration of, say, silversmiths might cross-reference apprenticeship dates in one city against completion or journeyman registrations recorded years later in another, inferring that a craftworker likely relocated once trained. Because guild registration was often a prerequisite for legally practicing a trade within a town's walls, the date stamped on an entry functions as a reasonably precise marker of when an individual arrived and began working there. Patterns that emerge from this method are rarely dramatic on their own, yet cumulatively they reveal broader currents: a surge of registrations from a particular region following an economic downturn there, for instance, or a steady trickle of craftworkers gravitating toward cities where a given trade was especially lucrative. Such reconstructions remain necessarily incomplete, since not every register survived intact, but where the documentary record holds, it offers a granularity that few other historical sources can match.",
+        "questions": [
+          {
+            "id": "ap-up1-q1",
+            "stem": "According to the passage, what information did guild apprenticeship registers typically record about each apprentice?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Name, hometown, trade, and date of registration"
+              },
+              {
+                "id": "b",
+                "text": "The apprentice's family income and social class"
+              },
+              {
+                "id": "c",
+                "text": "The names of all previous masters the apprentice had served"
+              },
+              {
+                "id": "d",
+                "text": "Wages earned and hours worked each week"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "detail",
+            "explanationZh": "文中指出學徒登記通常記錄姓名、家鄉、學習的技藝與登記日期，而非薪資、家庭收入或先前雇主等資訊。"
+          },
+          {
+            "id": "ap-up1-q2",
+            "stem": "In the passage, the word \"meticulous\" is closest in meaning to which of the following?",
+            "options": [
+              {
+                "id": "a",
+                "text": "intentionally vague and lacking detail"
+              },
+              {
+                "id": "b",
+                "text": "reserved for use by legal officials only"
+              },
+              {
+                "id": "c",
+                "text": "updated only once every few years"
+              },
+              {
+                "id": "d",
+                "text": "extremely careful and thorough in detail"
+              }
+            ],
+            "correctOptionId": "d",
+            "skill": "vocabulary",
+            "explanationZh": "文中的「meticulous」意指極為仔細、詳盡。提到「刻意模糊、缺乏細節」的選項恰為反義；提到「僅限法律人員使用」及「僅偶爾更新」的選項則描述的是完全不同的性質，均與原意不符。"
+          },
+          {
+            "id": "ap-up1-q3",
+            "stem": "What can be inferred about a craftworker whose apprenticeship registration appears in one city and whose journeyman registration appears years later in another city?",
+            "options": [
+              {
+                "id": "a",
+                "text": "The craftworker probably moved to the second city after training"
+              },
+              {
+                "id": "b",
+                "text": "The guild in the second city made an error transcribing the record"
+              },
+              {
+                "id": "c",
+                "text": "The two registrations most likely refer to different people entirely"
+              },
+              {
+                "id": "d",
+                "text": "The craftworker abandoned the trade after leaving the first city"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "inference",
+            "explanationZh": "文章說明歷史學家會比對兩地登記記錄以推論工匠遷居受訓後前往第二座城市。提到「兩筆記錄其實指不同人」、「登記有謄寫錯誤」或「工匠已放棄該行業」的選項皆缺乏根據，且後者與出師登記的存在相矛盾。"
+          },
+          {
+            "id": "ap-up1-q4",
+            "stem": "How does the passage develop its explanation of craft migration patterns?",
+            "options": [
+              {
+                "id": "a",
+                "text": "By listing every guild that existed in medieval Europe"
+              },
+              {
+                "id": "b",
+                "text": "By presenting two contradictory theories about guild registers and letting the reader choose"
+              },
+              {
+                "id": "c",
+                "text": "By explaining the method historians use to link registers, then illustrating it with broader patterns that emerge from that method"
+              },
+              {
+                "id": "d",
+                "text": "By narrating a single craftworker's complete life story in chronological order"
+              }
+            ],
+            "correctOptionId": "c",
+            "skill": "organization",
+            "explanationZh": "文章先解釋歷史學家如何連結不同登記紀錄的研究方法，再舉出由此方法得出的更廣泛遷徙型態作為說明，呈現先講方法、再舉例延伸的鋪陳方式。"
+          },
+          {
+            "id": "ap-up1-q5",
+            "stem": "What is the purpose of the sentence noting that such reconstructions remain necessarily incomplete?",
+            "options": [
+              {
+                "id": "a",
+                "text": "To acknowledge a limitation of this historical method"
+              },
+              {
+                "id": "b",
+                "text": "To introduce a new, unrelated historical method"
+              },
+              {
+                "id": "c",
+                "text": "To claim that no historian has ever used guild registers successfully"
+              },
+              {
+                "id": "d",
+                "text": "To argue that guild records should not be trusted at all"
+              }
+            ],
+            "correctOptionId": "a",
+            "skill": "purpose",
+            "explanationZh": "提到這類重建工作必然不完整，是為了坦承此研究方法本身的限制，而非否定公會紀錄的價值或宣稱從未有學者成功運用過。"
+          }
+        ]
+      }
+    ]
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "reading",
+    "ctwPassages": [
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "call-center-overflow-reroute",
+        "requiredConcepts": [
+          "overflow calls rerouted to backup team",
+          "average wait time tracked per shift",
+          "supervisor alerted at queue threshold"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-35c68bb3",
+            "reason": "that entry covers retail cross-training rotation, not call-center queue rerouting"
+          }
+        ],
+        "topic": "office call-center queue overflow rerouting between company teams",
+        "angle": "explains how an office call center automatically reroutes overflow calls to a backup team once queue wait times cross a set threshold"
+      },
+      {
+        "domain": "arts-culture",
+        "noveltyKey": "bronze-patina-restoration",
+        "requiredConcepts": [
+          "oxidized surface layer chemically stripped",
+          "new patina applied in even layers",
+          "protective wax coat sealed afterward"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-47ae9ca3",
+            "reason": "that entry covers UV fading of outdoor mural pigment, not bronze patina chemistry"
+          }
+        ],
+        "topic": "gallery bronze sculpture patina restoration process",
+        "angle": "explains the chemical steps a conservator follows to restore a weathered bronze sculpture's patina before it returns to a gallery"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "call-light-response-tracking",
+        "requiredConcepts": [
+          "patient call light logged automatically",
+          "staff response time measured per floor",
+          "slow response flagged for review"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-47ae9ca3",
+            "reason": "that entry covers exercise hydration timing, not clinic call-light tracking"
+          }
+        ],
+        "topic": "health clinic call-light response time tracking",
+        "angle": "explains how a clinic uses automated call-light logging to measure and improve staff response times to patients"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "shipwreck-manifest-digitization",
+        "requiredConcepts": [
+          "water-damaged manifest pages photographed",
+          "handwriting cross-checked against ship logs",
+          "digitized record linked to museum catalog"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-1d6486b7",
+            "reason": "that entry covers town hall restoration funding, not shipwreck manifest digitization"
+          }
+        ],
+        "topic": "historical shipwreck cargo manifest digitization project",
+        "angle": "explains how maritime historians digitize and verify water-damaged cargo manifests recovered from a historical shipwreck"
+      }
+    ],
+    "dailyLifeTexts": [
+      {
+        "domain": "campus-academics",
+        "noveltyKey": "campus-print-shop-binding-receipt",
+        "requiredConcepts": [
+          "rush binding fee itemized separately",
+          "cover material charge listed",
+          "pickup time printed at bottom"
+        ],
+        "distinguishesFrom": [],
+        "genre": "printed receipt",
+        "scenario": "a printed receipt from a campus print shop for a rush thesis-binding order, itemizing binding style and rush fee"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "tradeshow-booth-staffing-swap-text",
+        "requiredConcepts": [
+          "booth staffing hour proposed for swap",
+          "badge scanner handoff time confirmed",
+          "lunch break coverage agreed"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-47ae9ca3",
+            "reason": "that entry is a conference-room swap text between coworkers, not a trade-show booth staffing swap"
+          }
+        ],
+        "genre": "text message chain",
+        "scenario": "two coworkers at a company office texting about swapping who staffs the trade-show booth this afternoon"
+      },
+      {
+        "domain": "community-civic",
+        "noveltyKey": "community-garden-plot-waitlist-notice",
+        "requiredConcepts": [
+          "plot waitlist sign-up sheet posted",
+          "priority given to returning members",
+          "waitlist review date announced"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-04b2ae46",
+            "reason": "that entry is a seed-lending program log, not a plot waitlist sign-up notice"
+          }
+        ],
+        "genre": "posted notice",
+        "scenario": "a notice on a community garden's bulletin board announcing sign-up for a new plot-holder waitlist"
+      },
+      {
+        "domain": "services-travel",
+        "noveltyKey": "car-rental-late-return-invoice",
+        "requiredConcepts": [
+          "insurance add-on charge itemized",
+          "late-return fee listed separately",
+          "total due before final payment date"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-35c68bb3",
+            "reason": "that entry is a bus charter invoice, not a car rental invoice"
+          }
+        ],
+        "genre": "invoice",
+        "scenario": "an invoice from a car rental company for a weekend road trip along a coastal route, itemizing an insurance add-on and a late-return fee"
+      },
+      {
+        "domain": "health-wellbeing",
+        "noveltyKey": "urgent-care-wait-time-webpage",
+        "requiredConcepts": [
+          "current wait time listed per location",
+          "insurance plans accepted noted",
+          "walk-in hours posted separately"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-35c68bb3",
+            "reason": "that entry is a walk-in flu shot schedule, not a wait-time listing web page"
+          }
+        ],
+        "genre": "web page",
+        "scenario": "a walk-in urgent care clinic's web page listing current wait times by location and insurance accepted"
+      }
+    ],
+    "academicPassages": [
+      {
+        "domain": "science-environment",
+        "noveltyKey": "urban-canopy-wind-corridor",
+        "requiredConcepts": [
+          "canopy gap creates funneling wind corridor",
+          "pedestrian-level wind speed increase measured",
+          "gap-filling planting proposed as mitigation"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-47ae9ca3",
+            "reason": "that entry covers sound-absorbing material for road noise, not tree-canopy wind corridors"
+          }
+        ],
+        "title": "How Urban Tree Canopy Gaps Affect Local Wind Corridors",
+        "discipline": "environmental science",
+        "angle": "explains how gaps in a city's tree canopy affect the environment by creating wind corridors that increase pedestrian-level wind speed along streets"
+      },
+      {
+        "domain": "workplace-business",
+        "noveltyKey": "shared-equipment-leasing-manufacturers",
+        "requiredConcepts": [
+          "equipment lease cost split among companies",
+          "usage schedule coordinated to avoid conflict",
+          "maintenance responsibility shared contractually"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-35c68bb3",
+            "reason": "that entry covers a housing cooperative pooling maintenance costs, not manufacturing companies leasing equipment"
+          }
+        ],
+        "title": "Why Small Manufacturing Companies Adopt Shared Equipment Leasing",
+        "discipline": "business economics",
+        "angle": "explains the cost logic that leads small manufacturing companies to lease specialized equipment jointly rather than purchase it individually"
+      },
+      {
+        "domain": "history-social-change",
+        "noveltyKey": "guild-record-craft-migration",
+        "requiredConcepts": [
+          "apprenticeship record cross-referenced across towns",
+          "craftworker migration pattern traced",
+          "guild registration date used as marker"
+        ],
+        "distinguishesFrom": [
+          {
+            "setId": "rd-47ae9ca3",
+            "reason": "that entry covers standardizing measurement units in factories, not guild apprenticeship migration records"
+          }
+        ],
+        "title": "How Apprenticeship Guild Records Reveal Craft Migration Patterns",
+        "discipline": "history",
+        "angle": "explains how historians trace the historical migration of skilled craftworkers between towns by cross-referencing surviving guild apprenticeship records"
+      }
+    ]
+  }
+}

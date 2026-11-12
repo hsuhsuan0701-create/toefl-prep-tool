@@ -1,0 +1,30 @@
+{
+  "taskType": "build_sentence",
+  "sourceNote": "Hand-authored, not ETS material. The Item with the published sample's shape is build-a-sentence-reference-item.json. These three Items are the frame shapes the gate has to accept: a frame that begins with a blank, a frame that is nothing but blanks and the sentence-final punctuation (a full reorder), and the conventional fixed-opening frame. Every tile is lowercase, including the one that starts the sentence, so the starting tile is not given away (docs/adr/0009). Read by buildASentenceConformance.test.ts, sentenceScorer.test.ts and sentenceFrame.test.ts; the client mirrors the same three shapes inline in client/test/BuildSentenceTask.test.tsx (the client suite reads no files).",
+  "items": [
+    {
+      "id": "bas-start-blanked",
+      "prompt": "What did you ask the department for?",
+      "frame": "___ ___ ___ ___ ___ ___ the deadline.",
+      "tiles": ["extend", "we", "the", "asking", "asked", "department", "to"],
+      "answers": [["we", "asked", "the", "department", "to", "extend"]],
+      "note": "The sentence's first word is a TILE, and it is lowercase: 'we'. Six blanks, seven tiles, 'asking' the distractor (it forces the past tense against the fixed tail). Under the old rules this Item was illegal twice over — the frame did not fix the opening word, and the opening word would have had to carry a capital."
+    },
+    {
+      "id": "bas-full-reorder",
+      "prompt": "How much longer do you have?",
+      "frame": "___ ___ ___ ___ ___ ___ ___ ___ ___.",
+      "tiles": ["weeks", "our", "extending", "professor", "the", "by", "extended", "deadline", "another", "two"],
+      "answers": [["our", "professor", "extended", "the", "deadline", "by", "another", "two", "weeks"]],
+      "note": "The ramp's end state: only the final period is fixed. Nine blanks, ten tiles — the new ceiling — with 'extending' the distractor."
+    },
+    {
+      "id": "bas-fixed-opening",
+      "prompt": "Why were you late?",
+      "frame": "The ___ ___ ___ ___ this morning.",
+      "tiles": ["bus", "broke down", "on my", "way here", "arrived"],
+      "answers": [["bus", "broke down", "on my", "way here"]],
+      "note": "The conventional shape, unchanged: the frame fixes the opening word and the sentence-final punctuation. Four blanks, five tiles, 'arrived' the distractor. It is here as the control — widening the gate must not stop accepting what it already accepted."
+    }
+  ]
+}

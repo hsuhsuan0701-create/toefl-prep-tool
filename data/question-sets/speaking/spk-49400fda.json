@@ -1,0 +1,226 @@
+{
+  "id": "spk-49400fda",
+  "source": "generated",
+  "createdAt": "2026-08-23T06:41:07.745Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Getting the Kitchen Ready for the Potluck",
+    "scenarioDescription": "Listen to an older sibling walk a younger sibling through kitchen setup before a shared potluck meal, and repeat what the sibling says. Repeat only once.",
+    "introAudio": "stimuli/spk-49400fda/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-49400fda.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Getting the Kitchen Ready for the Potluck. Listen to an older sibling walk a younger sibling through kitchen setup before a shared potluck meal, and repeat what the sibling says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Let's wipe the counters clean first.\n- Grab the sponge and the spray cleaner under the sink.\n- Then clear a shelf in the fridge for the shared dishes.\n- You can rinse the bowls, but leave the lids in the drawer.\n- After you finish the counters, preheat the oven for the last dish.\n- Carry the folding table and set it up near the door before guests arrive.\n- The table you carried over is where the guests will set down their dishes.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Let's wipe the counters clean first.",
+        "audio": "stimuli/spk-49400fda/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.463,
+          "y": 0.352,
+          "w": 0.076,
+          "h": 0.053
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Grab the sponge and the spray cleaner under the sink.",
+        "audio": "stimuli/spk-49400fda/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.329,
+          "y": 0.198,
+          "w": 0.103,
+          "h": 0.093
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Then clear a shelf in the fridge for the shared dishes.",
+        "audio": "stimuli/spk-49400fda/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.574,
+          "y": 0.134,
+          "w": 0.124,
+          "h": 0.183
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "You can rinse the bowls, but leave the lids in the drawer.",
+        "audio": "stimuli/spk-49400fda/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.806,
+          "y": 0.384,
+          "w": 0.124,
+          "h": 0.155
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "After you finish the counters, preheat the oven for the last dish.",
+        "audio": "stimuli/spk-49400fda/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.709,
+          "y": 0.315,
+          "w": 0.089,
+          "h": 0.14
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "Carry the folding table and set it up near the door before guests arrive.",
+        "audio": "stimuli/spk-49400fda/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.686,
+          "y": 0.612,
+          "w": 0.145,
+          "h": 0.165
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The table you carried over is where the guests will set down their dishes.",
+        "audio": "stimuli/spk-49400fda/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.301,
+          "y": 0.559,
+          "w": 0.344,
+          "h": 0.231
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "A Call From the Local History Archive",
+    "intro": "You will now take a phone call from a local history archivist who collects brief, unscheduled interviews about family traditions. Answer each question as naturally as you can. You will have 45 seconds to respond to each question.",
+    "introAudio": "stimuli/spk-49400fda/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thank you for taking the time to speak with me today. I'm collecting stories about family traditions for the local archive. Could you tell me about one tradition your family has kept, and roughly how long it's been part of your family?",
+        "audio": "stimuli/spk-49400fda/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thank you. Now think back to the most recent time you took part in that tradition. What happened, and who was there with you?",
+        "audio": "stimuli/spk-49400fda/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "That's a great memory. Some people believe family traditions should stay exactly the way they've always been. Others think it's fine for traditions to change and adapt over time. Which view is closer to yours, and why?",
+        "audio": "stimuli/spk-49400fda/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Many family traditions fade as older generations pass them down less often. Do you think families should make more effort to record these traditions before they disappear, and what might happen if they don't?",
+        "audio": "stimuli/spk-49400fda/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "everyday-life",
+      "noveltyKey": "kitchen-prep-walkthrough-before-shared-meal",
+      "requiredConcepts": [
+        "counters wiped clear before guests arrive",
+        "fridge shelf cleared for shared dishes",
+        "oven preheated for the last dish",
+        "folding table set up near the door"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-e5b2b735",
+          "reason": "that walkthrough trains a new front-desk worker at a recreation center; this one is a sibling directing a sibling through home kitchen prep, an unpaid family setting rather than staff training."
+        },
+        {
+          "setId": "spk-8d9ee619",
+          "reason": "that walkthrough orients zoo visitors to public rules; this one is private, home-based prep for guests arriving at a shared meal."
+        },
+        {
+          "setId": "spk-43ab8b09",
+          "reason": "that walkthrough trains a new volunteer at a campus greenhouse; this one has no institutional or volunteer role at all, just family members preparing a home kitchen."
+        }
+      ],
+      "setting": "a home kitchen on the morning of a shared potluck meal, moving from the counters to the fridge to the oven to a folding table set up near the door",
+      "speakerRole": "an older sibling briefly directing a younger sibling through last-minute kitchen setup",
+      "communicativePurpose": "walk the younger sibling through each kitchen station once, in order, so everything is ready before guests start arriving"
+    },
+    "interview": {
+      "domain": "history-social-change",
+      "noveltyKey": "family-tradition-kept-at-home",
+      "requiredConcepts": [
+        "family tradition kept across generations",
+        "most recent time practicing the tradition together",
+        "whether traditions should stay unchanged or adapt",
+        "recording fading traditions before they disappear"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-f5506f40",
+          "reason": "that interview covers an evening wind-down routine before sleep; this one covers a kept family tradition and whether it should change over time, a different topic entirely."
+        },
+        {
+          "setId": "spk-8d9ee619",
+          "reason": "that interview is a general research call about visiting cities; this one is a local-history call specifically about one practiced family tradition and its future."
+        },
+        {
+          "setId": "spk-fbe10c5d",
+          "reason": "that interview tracks music choices through an ordinary day; this one tracks a single recurring family tradition and opinions on preserving it."
+        }
+      ],
+      "topic": "a family tradition kept and passed down at home",
+      "premise": "a local history archivist makes brief unprepared phone calls asking residents about one tradition their family has kept over time",
+      "questionArc": [
+        "Ask which specific family tradition the person keeps and roughly how long it has been part of their family, a concrete retrievable fact.",
+        "Ask the person to recall the most recent time they took part in that tradition and who was there with them.",
+        "Present two contrasting views on whether traditions should stay exactly as they've always been or should adapt over time, and ask the person to take a side.",
+        "Broaden to whether families should make more effort to record fading traditions before they disappear, inviting a prediction or recommendation."
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v4",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Charon",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        200,
+        208,
+        215,
+        180,
+        178,
+        176,
+        175
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Despina",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}

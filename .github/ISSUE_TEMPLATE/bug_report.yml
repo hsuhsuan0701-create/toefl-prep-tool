@@ -1,0 +1,50 @@
+name: Bug report
+description: Something in the app does not work as it should.
+labels: ["bug", "needs-triage"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what happened instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open a Listening Simulation
+        2. ...
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where
+      options:
+        - Speaking
+        - Writing
+        - Reading
+        - Listening
+        - Full-Test Run
+        - Dashboard, Progress or Sets
+        - Attempt review
+        - Set generation
+        - Setup or install
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser and version, operating system, Node version, and which of the Claude CLI, Codex CLI, Gemini key and OpenAI key you have set up.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Server output or screenshots
+      description: Paste the relevant lines from the terminal running `npm start`. Remove any API keys, and your own Responses if you would rather not share them.
+      render: text

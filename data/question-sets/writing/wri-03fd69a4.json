@@ -1,0 +1,575 @@
+{
+  "id": "wri-03fd69a4",
+  "source": "generated",
+  "createdAt": "2026-09-01T10:13:01.881Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "I signed up to use the telescope during the meteor shower night — is that still available?",
+        "frame": "Your ___ ___ ___ ___ a graduate research team's session.",
+        "tiles": [
+          "reserved",
+          "telescope",
+          "slot",
+          "overlaps with",
+          "overlap with"
+        ],
+        "answers": [
+          [
+            "reserved",
+            "telescope",
+            "slot",
+            "overlaps with"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Why are the packed orders piling up at the shipping station?",
+        "frame": "The ___ ___ ___ ___ before the nightly mail cutoff.",
+        "tiles": [
+          "shipping",
+          "label",
+          "printer",
+          "has jammed",
+          "have jammed"
+        ],
+        "answers": [
+          [
+            "shipping",
+            "label",
+            "printer",
+            "has jammed"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Am I cleared to work this weekend?",
+        "frame": "Your ___ ___ ___ ___ ___ for the pool's opening weekend.",
+        "tiles": [
+          "certification",
+          "renewal",
+          "hasn't",
+          "cleared",
+          "in time",
+          "haven't"
+        ],
+        "answers": [
+          [
+            "certification",
+            "renewal",
+            "hasn't",
+            "cleared",
+            "in time"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Is today's shuttle still running for the seniors?",
+        "frame": "The ___ ___ ___ ___ ___ right before the weekly grocery shuttle run.",
+        "tiles": [
+          "van",
+          "driver",
+          "has",
+          "called",
+          "in sick",
+          "have"
+        ],
+        "answers": [
+          [
+            "van",
+            "driver",
+            "has",
+            "called",
+            "in sick"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Can we push the tide pool survey to next week instead?",
+        "frame": "___ ___ ___ ___ ___ ___ the next survey window?",
+        "tiles": [
+          "will",
+          "the",
+          "sampling permit",
+          "have",
+          "expired",
+          "before",
+          "has"
+        ],
+        "answers": [
+          [
+            "will",
+            "the",
+            "sampling permit",
+            "have",
+            "expired",
+            "before"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "How is the Q&A session going?",
+        "frame": "___ ___ ___ ___ ___ ___ could be recovered.",
+        "tiles": [
+          "the",
+          "software",
+          "crashed",
+          "before",
+          "every",
+          "submitted question",
+          "crashing"
+        ],
+        "answers": [
+          [
+            "the",
+            "software",
+            "crashed",
+            "before",
+            "every",
+            "submitted question"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Can I still use the shared press this weekend?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ open studio hours.",
+        "tiles": [
+          "the",
+          "ink roller",
+          "we share",
+          "has",
+          "cracked",
+          "right before",
+          "the weekend's",
+          "have"
+        ],
+        "answers": [
+          [
+            "the",
+            "ink roller",
+            "we share",
+            "has",
+            "cracked",
+            "right before",
+            "the weekend's"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Did the patient confirm their appointment?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ appointment slot.",
+        "tiles": [
+          "the",
+          "reminder system",
+          "dialed",
+          "the wrong number",
+          "for",
+          "tomorrow's",
+          "early",
+          "dial"
+        ],
+        "answers": [
+          [
+            "the",
+            "reminder system",
+            "dialed",
+            "the wrong number",
+            "for",
+            "tomorrow's",
+            "early"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Why is the pickup line backing up?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "it",
+          "was",
+          "a dead key fob battery",
+          "that",
+          "delayed",
+          "the",
+          "morning",
+          "pickup queue",
+          "delaying"
+        ],
+        "answers": [
+          [
+            "it",
+            "was",
+            "a dead key fob battery",
+            "that",
+            "delayed",
+            "the",
+            "morning",
+            "pickup queue"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Will the headstone repairs be finished on schedule?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "the",
+          "restoration grant",
+          "that",
+          "was approved",
+          "fell short of",
+          "the cost",
+          "the stonemason",
+          "had",
+          "quoted",
+          "were approved"
+        ],
+        "answers": [
+          [
+            "the",
+            "restoration grant",
+            "that",
+            "was approved",
+            "fell short of",
+            "the cost",
+            "the stonemason",
+            "had",
+            "quoted"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "After reserving a seminar room through the university's room-booking system to rehearse her thesis defense, a graduate student arrives to find another group already using the room. Her defense is less than a week away, and she has nowhere else booked to rehearse.",
+    "to": "roombooking@central-state.edu",
+    "subject": "Seminar Room Booking Conflict Before Thesis Defense",
+    "bullets": [
+      "Describe the double-booking problem you found when you arrived at your reserved seminar room.",
+      "Request an alternative room you can use before your defense date.",
+      "Propose a priority-booking policy for thesis defense rehearsals."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Sociology of Everyday Life",
+    "professorName": "Professor Alden",
+    "professorPost": "This week we're looking at the informal norms behind everyday favors. Suppose you lend a friend a power drill or a stand mixer and agree on a return date. Some people think a borrower should return the item exactly on that date, no matter what. Others think returning it whenever is convenient, within a reasonable window, is perfectly fine. What do you think? Should borrowed items be returned exactly when promised, or is a flexible window acceptable? Why?",
+    "studentPosts": [
+      {
+        "name": "Priya",
+        "post": "I think borrowers should stick to the exact date. When my neighbor borrowed my drill last month, she promised to return it Friday, but three weeks passed before she did, and I couldn't finish my own project. A promised date is a kind of contract, and honoring it keeps trust intact between friends."
+      },
+      {
+        "name": "Marcus",
+        "post": "I disagree, demanding an exact date turns a favor into an obligation. My friends and I borrow tools constantly, and nobody keeps a calendar for it. As long as the item comes back clean and within a week or two, nobody minds. Rigid deadlines add stress to something that's supposed to be casual and generous."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "campus-academics",
+          "situation": "A university observatory coordinator tells an incoming astronomy club member that her reserved telescope slot for the meteor shower overlaps with a graduate research team's session.",
+          "participantRoles": [
+            "university observatory coordinator",
+            "incoming astronomy club member"
+          ],
+          "noveltyKey": "overlapping-observatory-telescope-booking",
+          "requiredConcepts": [
+            "overlapping telescope booking",
+            "meteor shower viewing night",
+            "graduate research team's session"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "that item is a printing equipment failure before a conference deadline; this is a facility double-booking conflict with no equipment malfunction"
+            },
+            {
+              "setId": "wri-77a01da4",
+              "reason": "that item is an equipment orientation room relocation; this is a scheduling overlap between two user groups, not a room change"
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A warehouse shift lead tells a newly hired employee that the shipping label printer has jammed only an hour before the nightly mail cutoff, and orders are backing up.",
+          "participantRoles": [
+            "warehouse shift lead",
+            "newly hired employee"
+          ],
+          "noveltyKey": "shipping-label-printer-jam-mail-cutoff",
+          "requiredConcepts": [
+            "jammed shipping label printer",
+            "nightly mail cutoff",
+            "backlog of packed orders"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "that item is a discrepancy discovered after an inventory count; this is a live equipment jam disrupting an active shipping deadline"
+            },
+            {
+              "setId": "wri-77a01da4",
+              "reason": "that item is a policy change to a room booking system; this involves no policy, only an equipment failure"
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A city recreation supervisor tells a newly certified lifeguard that her certification renewal paperwork hasn't cleared before the public pool's opening weekend.",
+          "participantRoles": [
+            "city recreation supervisor",
+            "newly certified lifeguard"
+          ],
+          "noveltyKey": "pool-lifeguard-certification-renewal-delay",
+          "requiredConcepts": [
+            "lifeguard certification renewal delay",
+            "pool's opening weekend"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-77a01da4",
+              "reason": "that item is a park path reseeding schedule before a market opening; this is a staffing-credential problem before a pool opening"
+            },
+            {
+              "setId": "wri-be127d2e",
+              "reason": "that item is a civic fund approval for a voter registration booth; this involves no funding, only a certification delay"
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A senior center program coordinator tells a volunteer shuttle coordinator that today's scheduled van driver called in sick before the weekly grocery shuttle run for neighborhood residents.",
+          "participantRoles": [
+            "senior center program coordinator",
+            "volunteer shuttle coordinator"
+          ],
+          "noveltyKey": "senior-center-shuttle-driver-shortage",
+          "requiredConcepts": [
+            "van driver called in sick",
+            "weekly grocery shuttle run"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "that item is a noise ordinance dispute at a public meeting; this is a transportation staffing shortfall for a recurring service"
+            },
+            {
+              "setId": "wri-be127d2e",
+              "reason": "that item is a civic fund approval for a voter registration booth; this is a driver absence before a shuttle run, not a funding approval"
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A marine biology field supervisor tells a graduate research assistant that the tide pool sampling permit expires before their next scheduled survey window.",
+          "participantRoles": [
+            "marine biology field supervisor",
+            "graduate research assistant"
+          ],
+          "noveltyKey": "tide-pool-sampling-permit-expiration",
+          "requiredConcepts": [
+            "expired tide pool sampling permit",
+            "next scheduled survey window"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "that item is a sensor calibration drift; this is a permit expiration blocking fieldwork, not an equipment reading issue"
+            },
+            {
+              "setId": "wri-77a01da4",
+              "reason": "that item is a camera signal loss for a habitat monitor; this is an administrative permit lapse for a sampling survey"
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A tech meetup organizer tells the assistant Q&A moderator that the event's Q&A software crashed midway through the session, losing every audience-submitted question.",
+          "participantRoles": [
+            "tech meetup organizer",
+            "assistant Q&A moderator"
+          ],
+          "noveltyKey": "event-qa-software-crash-lost-questions",
+          "requiredConcepts": [
+            "Q&A software crash mid-session",
+            "lost submitted questions"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "that item is a paywall blocking a paying subscriber; this is event software crashing and losing audience-submitted content"
+            },
+            {
+              "setId": "wri-77a01da4",
+              "reason": "that item is a render queue silently dropping an audio track; this is a live crash losing Q&A input, not a rendering defect"
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "An art print studio supervisor tells a visiting printmaker that the shared press's ink roller cracked just before the weekend's open studio hours.",
+          "participantRoles": [
+            "art print studio supervisor",
+            "visiting printmaker"
+          ],
+          "noveltyKey": "print-studio-ink-roller-shortage",
+          "requiredConcepts": [
+            "cracked shared press ink roller",
+            "weekend open studio hours"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "that item is a shared rehearsal venue getting double-booked; this is on-site equipment failure before an open studio session"
+            },
+            {
+              "setId": "wri-be127d2e",
+              "reason": "that item is a piano tuning issue before a headliner's set; this is a press ink roller shortage in a printmaking studio, unrelated to music equipment"
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A dental clinic receptionist tells a newly hired front desk assistant that the clinic's automated reminder system dialed the wrong number for tomorrow's early appointment slot.",
+          "participantRoles": [
+            "dental clinic receptionist",
+            "newly hired front desk assistant"
+          ],
+          "noveltyKey": "dental-clinic-reminder-wrong-number",
+          "requiredConcepts": [
+            "wrong number dialed by reminder system",
+            "tomorrow's early appointment slot"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-77a01da4",
+              "reason": "that item is a therapy slot moved earlier due to a staffing gap; this is an automated system error dialing the wrong number"
+            },
+            {
+              "setId": "wri-be127d2e",
+              "reason": "that item is a physiotherapy diagnosis requiring a training plan change; this is a clerical reminder-system malfunction, not a clinical assessment"
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A car rental station supervisor tells a newly trained rental agent that a fleet vehicle's key fob battery died right before the morning pickup queue forms.",
+          "participantRoles": [
+            "car rental station supervisor",
+            "newly trained rental agent"
+          ],
+          "noveltyKey": "rental-car-key-fob-dead-battery",
+          "requiredConcepts": [
+            "dead key fob battery",
+            "morning pickup queue"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "that item is an airport shuttle overbooked on seats; this is a dead key fob battery delaying a vehicle pickup, not a capacity problem"
+            },
+            {
+              "setId": "wri-77a01da4",
+              "reason": "that item is a fog-related ferry delay affecting a tour connection; this is a mechanical fob failure at a rental counter, not a weather delay"
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A heritage preservation society treasurer tells its contracted stonemason that the historical cemetery's headstone restoration grant fell short of the quoted repair cost.",
+          "participantRoles": [
+            "heritage preservation society treasurer",
+            "contracted stonemason"
+          ],
+          "noveltyKey": "cemetery-headstone-restoration-grant-shortfall",
+          "requiredConcepts": [
+            "headstone restoration grant shortfall",
+            "quoted repair cost"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "that item is a loan dispute over a visiting historian's artifact request; this is a restoration grant shortfall for headstone repair"
+            },
+            {
+              "setId": "wri-be127d2e",
+              "reason": "that item is a technical explanation of mortar composition for bridge restoration; this is a funding shortfall problem, not a materials explanation"
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "campus-academics",
+      "noveltyKey": "seminar-room-double-booking-before-thesis-defense",
+      "requiredConcepts": [
+        "double-booked seminar room",
+        "thesis defense rehearsal timeline",
+        "priority booking for defense rehearsals"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-cd14eb34",
+          "reason": "that item is declining a speaking invitation due to a travel conflict; this is reporting a room-booking problem and requesting a fix"
+        },
+        {
+          "setId": "wri-77af733e",
+          "reason": "that item is feedback on a bike-share program's station reliability; this is a room-scheduling conflict for a thesis defense rehearsal, unrelated to bike-share"
+        }
+      ],
+      "situation": "After reserving a seminar room through the university's room-booking system to rehearse a thesis defense, a graduate student arrives to find another group already using the room, with the defense less than a week away.",
+      "recipientRole": "the campus room-booking coordinator",
+      "communicativeActs": [
+        "report the double-booking problem with the seminar room",
+        "request an alternative room before the defense date",
+        "propose a priority-booking policy for defense rehearsals"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "everyday-life",
+      "noveltyKey": "borrowed-item-return-promptness-vs-flexibility",
+      "requiredConcepts": [
+        "borrowed tools and kitchen equipment",
+        "promised return date vs convenient window"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-91d6d3b8",
+          "reason": "that item is about splitting household chores by rotation vs informal division; this is about returning borrowed items promptly vs flexibly"
+        },
+        {
+          "setId": "wri-7a20b90b",
+          "reason": "that item is about scheduling shared outdoor space use; this is about the norm for returning borrowed personal items"
+        }
+      ],
+      "proposition": "Whether people who borrow items from friends (tools, kitchen equipment) should return them exactly when promised or whenever convenient within a reasonable window.",
+      "competingValues": [
+        "predictability and trust that a promised return date will be honored",
+        "flexibility to return borrowed items whenever convenient without extra hassle"
+      ]
+    }
+  }
+}

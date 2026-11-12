@@ -1,0 +1,130 @@
+{
+  "id": "spk-e5b2b735",
+  "source": "generated",
+  "createdAt": "2026-07-27T17:16:34.327Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Recreation Center Front Desk Training",
+    "scenarioDescription": "You are training to work at the front desk of the campus recreation center. Listen to your supervisor and repeat what they say. Repeat only once.",
+    "image": {
+      "file": "images/scenarios/spk-e5b2b735.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Recreation Center Front Desk Training. You are training to work at the front desk of the campus recreation center. Listen to your supervisor and repeat what they say. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- We open the front desk at six.\n- Towels and locker keys are behind the counter.\n- Members scan their cards here and head down to the courts.\n- The pool's on your left, and the weight room is upstairs.\n- If someone forgets their card, just ask them for a photo ID at the desk.\n- When the courts get busy, please remind people that the sign-up sheet is by the door.\n- Anyone who wants a locker for the whole semester should talk to the manager in the back office.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "We open the front desk at six.",
+        "audio": "stimuli/spk-e5b2b735/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.34,
+          "y": 0.28,
+          "w": 0.07,
+          "h": 0.08
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "Towels and locker keys are behind the counter.",
+        "audio": "stimuli/spk-e5b2b735/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.38,
+          "y": 0.32,
+          "w": 0.15,
+          "h": 0.14
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Members scan their cards here and head down to the courts.",
+        "audio": "stimuli/spk-e5b2b735/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.52,
+          "y": 0.45,
+          "w": 0.07,
+          "h": 0.08
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "The pool's on your left, and the weight room is upstairs.",
+        "audio": "stimuli/spk-e5b2b735/lr-4.mp3",
+        "responseWindowSec": 10
+      },
+      {
+        "id": "lr-5",
+        "sentence": "If someone forgets their card, just ask them for a photo ID at the desk.",
+        "audio": "stimuli/spk-e5b2b735/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.57,
+          "y": 0.58,
+          "w": 0.17,
+          "h": 0.2
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "When the courts get busy, please remind people that the sign-up sheet is by the door.",
+        "audio": "stimuli/spk-e5b2b735/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.17,
+          "y": 0.67,
+          "w": 0.1,
+          "h": 0.14
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "Anyone who wants a locker for the whole semester should talk to the manager in the back office.",
+        "audio": "stimuli/spk-e5b2b735/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.63,
+          "y": 0.24,
+          "w": 0.1,
+          "h": 0.17
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "Learning Skills Outside the Classroom",
+    "intro": "A researcher is studying how people learn new skills on their own. You have agreed to a short online interview. The researcher will ask you four questions, and you will answer each one without preparation.",
+    "introAudio": "stimuli/spk-e5b2b735/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thank you for speaking with me today. To start, I'd like to hear about something you've learned outside of school — a skill or a hobby of any kind. What is it, and how did you first start learning it?",
+        "audio": "stimuli/spk-e5b2b735/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great. Now think back to a time when learning that skill got difficult for you. What happened, and why do you think you reacted the way you did?",
+        "audio": "stimuli/spk-e5b2b735/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "OK. Next, I'd like to ask your opinion. Some people believe the best way to learn a new skill is to take a class, because a teacher can correct your mistakes right away. Others prefer to teach themselves with free videos and online guides, at their own pace. Which approach do you think works better, and why?",
+        "audio": "stimuli/spk-e5b2b735/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good points. Let me ask you one final question. Some schools are considering giving students an hour of class time each week to work on a skill of their own choosing, instead of adding another required subject. Do you think schools should do this? Why or why not?",
+        "audio": "stimuli/spk-e5b2b735/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  }
+}

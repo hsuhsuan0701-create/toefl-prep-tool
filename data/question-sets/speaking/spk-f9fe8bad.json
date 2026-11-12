@@ -1,0 +1,239 @@
+{
+  "id": "spk-f9fe8bad",
+  "source": "generated",
+  "createdAt": "2026-08-23T07:12:04.811Z",
+  "kind": "speaking",
+  "listenAndRepeat": {
+    "scenarioTitle": "Lost and Found Counter Training",
+    "scenarioDescription": "Listen to a lost-and-found counter clerk train a new part-time colleague at a train station before the ticket window reopens for the night, and repeat what the clerk says. Repeat only once.",
+    "introAudio": "stimuli/spk-f9fe8bad/briefing.mp3",
+    "image": {
+      "file": "images/scenarios/spk-f9fe8bad.webp",
+      "prompt": "FLAT VECTOR INFOGRAPHIC ILLUSTRATION, one square image.\n\nVIEW: elevated three-quarter \"illustrated map\" view of the whole location at once, quasi-isometric — the ground/floor is drawn as flattened foreshortened shapes seen from above at an angle, while furniture, equipment and people are drawn in near-side elevation. The entire setting is visible in one frame, like a hand-drawn guide map of the place.\n\nCOLOR — this is the most important rule. The environment is STRICTLY GRAYSCALE / ACHROMATIC: near-white background (#FAFAFA), pale gray surfaces (#E6E6E6), mid grays (#D2D2D2, #C8C8C8), darker gray for the nearest foreground (#A0A0A0), and dark gray to near-black line work (#505050). NO color anywhere in the environment — no blue, no green, no brown floors, no colored walls. This applies without exception to things that are normally colored: WATER AND SWIMMING POOLS ARE GRAY, NOT BLUE OR CYAN; glass is gray; plants, trees and grass are gray, not green; sky is near-white.\n\nSPOT COLOR: exactly one accent hue, a soft muted teal (#00A082), used ONLY as a rounded organic highlight blob sitting behind and hugging the silhouette of each KEY OBJECT listed below, making those objects pop out of the gray scene. The key objects themselves may be muted golden-tan (#FABE50) or rust brown (#965A32). Nothing else in the picture carries any hue.\n\nLINE: crisp, clean, uniform thin line weight throughout, like a printed vector diagram rather than a pencil sketch. Every surface is a COMPLETELY FLAT FILL of one single solid tone — NO gradients, NO soft shading, NO drop shadows, NO ambient occlusion, NO texture, NO hatching, NO photorealism, NO 3D rendering. Depth is conveyed only by stacking flat bands of different gray tones.\n\nPEOPLE: a few small, simple, FACELESS grayscale figures in candid poses — plain oval heads with no facial features at all, no skin tone, no clothing color.\n\nFRAMING: the illustration sits inside a thin black rectangular border with a generous clean margin. Uncluttered and airy, not crowded.\n\nABSOLUTELY NO TEXT: no letters, no words, no numbers, no labels, no captions, no signage text, no logos, no watermarks, no arrows. Any sign must be blank or a wordless pictogram only.\n\nSCENE TO ILLUSTRATE: Lost and Found Counter Training. Listen to a lost-and-found counter clerk train a new part-time colleague at a train station before the ticket window reopens for the night, and repeat what the clerk says. Repeat only once.\n\nDraw the location as a single connected scene. These are the KEY OBJECTS and areas that must be clearly visible and individually recognizable, each marked with the teal highlight blob:\n- Always open the intake log first.\n- The date and the item type go here.\n- Write the page number first, and circle it clearly.\n- Loop the found item's tag through the zipper pull, and pull it snug.\n- After you tag it, slide the item onto its matching shelf.\n- When a passenger arrives, match the shelf letter to the claim slip they present.\n- The ticket window, reopening at seven sharp, needs the counter cleared before then.\n\nDepict the physical places and things named above (the counter, the doors, the rooms, the equipment) as recognizable drawn objects in their spatial relationship to each other. Do not write any of these words in the image — show them as pictures only.",
+      "model": "gpt-image-2"
+    },
+    "items": [
+      {
+        "id": "lr-1",
+        "sentence": "Always open the intake log first.",
+        "audio": "stimuli/spk-f9fe8bad/lr-1.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.333,
+          "y": 0.333,
+          "w": 0.108,
+          "h": 0.065
+        }
+      },
+      {
+        "id": "lr-2",
+        "sentence": "The date and the item type go here.",
+        "audio": "stimuli/spk-f9fe8bad/lr-2.mp3",
+        "responseWindowSec": 8,
+        "focusRegion": {
+          "x": 0.448,
+          "y": 0.354,
+          "w": 0.123,
+          "h": 0.126
+        }
+      },
+      {
+        "id": "lr-3",
+        "sentence": "Write the page number first, and circle it clearly.",
+        "audio": "stimuli/spk-f9fe8bad/lr-3.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.57,
+          "y": 0.38,
+          "w": 0.126,
+          "h": 0.125
+        }
+      },
+      {
+        "id": "lr-4",
+        "sentence": "Loop the found item's tag through the zipper pull, and pull it snug.",
+        "audio": "stimuli/spk-f9fe8bad/lr-4.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.697,
+          "y": 0.254,
+          "w": 0.099,
+          "h": 0.105
+        }
+      },
+      {
+        "id": "lr-5",
+        "sentence": "After you tag it, slide the item onto its matching shelf.",
+        "audio": "stimuli/spk-f9fe8bad/lr-5.mp3",
+        "responseWindowSec": 10,
+        "focusRegion": {
+          "x": 0.771,
+          "y": 0.407,
+          "w": 0.085,
+          "h": 0.069
+        }
+      },
+      {
+        "id": "lr-6",
+        "sentence": "When a passenger arrives, match the shelf letter to the claim slip they present.",
+        "audio": "stimuli/spk-f9fe8bad/lr-6.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.288,
+          "y": 0.527,
+          "w": 0.061,
+          "h": 0.086
+        }
+      },
+      {
+        "id": "lr-7",
+        "sentence": "The ticket window, reopening at seven sharp, needs the counter cleared before then.",
+        "audio": "stimuli/spk-f9fe8bad/lr-7.mp3",
+        "responseWindowSec": 12,
+        "focusRegion": {
+          "x": 0.694,
+          "y": 0.724,
+          "w": 0.2,
+          "h": 0.094
+        }
+      }
+    ]
+  },
+  "interview": {
+    "scenarioTitle": "A Health Survey Call About Your Cold Routine",
+    "intro": "You are about to receive a short phone call from a wellbeing research team. They are calling residents unannounced to ask about the routines people follow when they catch a common cold. Answer naturally, since there is no time to prepare before each question.",
+    "introAudio": "stimuli/spk-f9fe8bad/int-intro.mp3",
+    "questions": [
+      {
+        "id": "int-1",
+        "type": "factual",
+        "question": "Thank you for taking a moment to speak with me today. Think back to the last time you had a common cold — where were you when you first noticed the scratchy throat or stuffy nose?",
+        "audio": "stimuli/spk-f9fe8bad/int-1.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-2",
+        "type": "experience",
+        "question": "Great, thank you. Walk me through what you did next — what home remedy did you usually turn to first, like warm ginger tea with honey, and why did that become your go-to?",
+        "audio": "stimuli/spk-f9fe8bad/int-2.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-3",
+        "type": "opinion",
+        "question": "That's helpful. Some people push straight through a cold and keep their normal pace, while others rest and let the worst of it pass, which for you was around three days before you felt normal again — which approach do you think actually works better, and why?",
+        "audio": "stimuli/spk-f9fe8bad/int-3.mp3",
+        "responseWindowSec": 45
+      },
+      {
+        "id": "int-4",
+        "type": "opinion",
+        "question": "Good point. One last question — when people get a cold, some say it's best to keep exercising lightly, like sticking to a morning jog, while others say to stop all exercise until they're fully better. What would you recommend to someone deciding whether to skip a routine like a morning jog until they feel well again, and why?",
+        "audio": "stimuli/spk-f9fe8bad/int-4.mp3",
+        "responseWindowSec": 45
+      }
+    ]
+  },
+  "advisoryNotes": [
+    {
+      "check": "plan-conformance",
+      "detail": "plan-drift",
+      "taskType": "interview"
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "retake",
+      "measuredWpm": 156.3,
+      "targetWpm": 200,
+      "minWpm": 175,
+      "maxWpm": 225
+    },
+    {
+      "check": "speech-rate",
+      "detail": "lr-item",
+      "take": "first",
+      "measuredWpm": 177.2,
+      "targetWpm": 215,
+      "minWpm": 190,
+      "maxWpm": 240
+    }
+  ],
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "speaking",
+    "listenAndRepeat": {
+      "domain": "services-travel",
+      "noveltyKey": "train-station-lost-property-intake",
+      "requiredConcepts": [
+        "intake log page number written first",
+        "found item tag looped through zipper pull",
+        "shelf letter matching passenger's claim slip",
+        "ticket window reopening at seven sharp"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-70c8a41a",
+          "reason": "that listen_repeat set is a campus radio station equipment tour; this one is a train station lost-and-found counter walkthrough, a different setting and content"
+        }
+      ],
+      "setting": "a train station's lost-and-found counter where recovered passenger items are logged before the ticket window closes for the night",
+      "speakerRole": "the lost-and-found counter clerk who trains a newly hired part-time counter clerk before the trainee's first solo shift covering the train station's counter",
+      "communicativePurpose": "orient the new counter clerk through every lost-and-found station step — intake log, item tagging shelf, and passenger pickup counter — saying each step only once before the ticket window reopens"
+    },
+    "interview": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "home-remedy-routine-common-cold",
+      "requiredConcepts": [
+        "scratchy throat noticed first thing in morning",
+        "warm ginger tea with honey",
+        "three days before feeling normal again",
+        "skipped morning jog until better"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "spk-a87a3b41",
+          "reason": "that interview covers everyday-life household chore rotation; this one is health-wellbeing, focused on a personal cold-recovery routine, not shared chores"
+        },
+        {
+          "setId": "spk-c42dd828",
+          "reason": "that interview covers a workplace-business part-time job schedule; this one asks about a private health routine, not employment"
+        }
+      ],
+      "topic": "a health survey researcher's unannounced phone call about a resident's usual home routine when a common cold hits",
+      "premise": "a wellbeing research team places a brief, unprepared phone call asking a resident to describe their usual home routine the last time a common cold slowed them down, with no preparation time before each concrete, retrievable fact",
+      "questionArc": [
+        "Think about the last time you had a common cold — where were you when you first noticed the scratchy throat or stuffy nose?",
+        "What is one home remedy you usually reach for first, such as a specific tea, medicine, or drink?",
+        "About how many days did the worst symptoms usually last before you started feeling normal again?",
+        "Did having that cold change your daily routine, like skipping exercise or altering your sleep schedule, and if so, how?"
+      ]
+    }
+  },
+  "audioProfile": {
+    "version": "ets-2026-v4",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-tts-preview",
+    "listenAndRepeat": {
+      "accent": "north-american",
+      "voice": "Kore",
+      "briefingTargetWpm": 165,
+      "itemTargetWpms": [
+        200,
+        208,
+        215,
+        180,
+        178,
+        176,
+        175
+      ],
+      "itemMaxClipSec": 5
+    },
+    "interview": {
+      "accent": "british",
+      "voice": "Umbriel",
+      "introTargetWpm": 165,
+      "questionTargetWpm": 155
+    }
+  }
+}
