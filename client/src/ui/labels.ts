@@ -140,6 +140,25 @@ export const SET_PRACTICE_STATE: Record<SetPracticeState, StatusPresentation> = 
   },
 };
 
+/**
+ * A Set in the Drill Lab's bank, by how many of its Listen and Repeat sentences are answered (a
+ * recorded take that was scored, the one rule the lab reveals a sentence by). Narrower than
+ * SET_PRACTICE_STATE on purpose: a sentence counts here only once it can no longer be spoiled.
+ * Null when every sentence is answered, since then nothing in the Set is hidden.
+ */
+export function drillLabSetState(answered: number, total: number): StatusPresentation | null {
+  if (answered >= total) return null;
+  if (answered === 0) {
+    return { label: "Not attempted", tone: "caution", glyph: "caution", hint: "Every sentence stays hidden until you open it." };
+  }
+  return {
+    label: `${answered} of ${total} sentences answered`,
+    tone: "neutral",
+    glyph: "progress",
+    hint: "The sentences you haven't answered stay hidden until you open them.",
+  };
+}
+
 export const SET_SOURCE: Record<"ets-sample" | "generated" | "imported", string> = {
   "ets-sample": "ETS sample",
   generated: "Generated",
