@@ -60,6 +60,44 @@ describe("TrendChartView scales the axis to the Task Type, not to a hardcoded 0-
   });
 });
 
+// jsdom measures no text, so this reads the room the axis reserves: recharts anchors each tick label
+// at its end (x), so x is all the width the label can take before it runs off the SVG's left edge.
+// "100%" at the 12px axis size is 32 to 35px wide in the fonts the app can fall back to (issue #27
+// measured Inter, Arial metrics and DejaVu Sans); a 0-5 label is one digit.
+function yTickRoom(container: HTMLElement, label: string): number {
+  const text = [...container.querySelectorAll(".recharts-yAxis-tick-labels text")].find((t) => t.textContent === label);
+  if (!text) throw new Error(`no Y tick "${label}"`);
+  return Number(text.getAttribute("x"));
+}
+
+describe("TrendChartView gives the Y axis room for its widest label", () => {
+  it("leaves room left of the axis for 100%", () => {
+    const { container } = render(
+      <TrendChartView
+        taskType="complete_words"
+        points={[
+          point({ date: "2026-08-16T01:00:00.000Z", mode: "drill", avgScore: 0.5 }),
+          point({ date: "2026-08-17T01:00:00.000Z", mode: "drill", avgScore: 1 }),
+        ]}
+      />,
+    );
+    expect(yTickRoom(container, "100%")).toBeGreaterThanOrEqual(38);
+  });
+
+  it("keeps the 0-5 axis where it was", () => {
+    const { container } = render(
+      <TrendChartView
+        taskType="email"
+        points={[
+          point({ date: "2026-08-16T01:00:00.000Z", mode: "drill", avgScore: 3, taskType: "email" }),
+          point({ date: "2026-08-17T01:00:00.000Z", mode: "drill", avgScore: 4, taskType: "email" }),
+        ]}
+      />,
+    );
+    expect(yTickRoom(container, "5")).toBe(28);
+  });
+});
+
 describe("TrendChartView spaces Attempts by order, not calendar time", () => {
   // Practice is bursty: on a time axis, same-day Attempts smear into a near-vertical cluster and a
   // multi-week gap takes most of the width. So every step is equal (an hour apart and 25 days apart

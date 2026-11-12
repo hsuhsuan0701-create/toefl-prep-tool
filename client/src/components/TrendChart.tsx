@@ -1,6 +1,6 @@
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import type { TrendPointVM } from "@toefl-prep/shared";
-import { axisTicks, formatAxisTick, formatScore } from "../lib/taskTypeScale";
+import { axisTicks, formatAxisTick, formatScore, scaleFor } from "../lib/taskTypeScale";
 import { dayTickIndices, formatTrendDate } from "../lib/trendAxis";
 import { formatWhen } from "../ui/format";
 
@@ -141,10 +141,15 @@ export function TrendChartView({ taskType, points, height = 220 }: { taskType: s
   const drillCount = rows.filter((r) => r.drillScore !== undefined).length;
   const simCount = rows.filter((r) => r.simScore !== undefined).length;
   const ticks = axisTicks(taskType);
+  // The Y axis is as wide as its widest label needs: recharts ends each label 8px left of the axis
+  // line and never measures it, so "100%" (up to 35px at this size, by font) needs 48px where a
+  // single rubric digit needs 36. The chart's left margin stays 0 so the axis box starts at the
+  // SVG's edge, never past it.
+  const yAxisWidth = scaleFor(taskType).kind === "accuracy" ? 48 : 36;
 
   return (
     <ResponsiveContainer width="100%" height={height}>
-      <LineChart data={rows} margin={{ top: 8, right: 12, left: -4, bottom: 4 }}>
+      <LineChart data={rows} margin={{ top: 8, right: 12, left: 0, bottom: 4 }}>
         <CartesianGrid stroke={RULE} vertical={false} />
         {/* tickFormatter has no rows[idx] guard on purpose: dayTickIndices only ever emits indices of
             this same rows array, and recharts passes a supplied `ticks` prop through verbatim, so a
@@ -166,7 +171,7 @@ export function TrendChartView({ taskType, points, height = 220 }: { taskType: s
           tickFormatter={(v: number) => formatAxisTick(taskType, v)}
           tick={{ fontSize: 12, fill: GRAPHITE }}
           stroke={RULE_STRONG}
-          width={40}
+          width={yAxisWidth}
         />
         <Tooltip content={<ChartTooltip taskType={taskType} />} cursor={{ stroke: RULE_STRONG }} />
         {/* Both series need connectNulls: every row carries exactly one of drillScore and simScore,
