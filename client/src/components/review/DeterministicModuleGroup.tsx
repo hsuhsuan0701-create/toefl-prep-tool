@@ -123,7 +123,7 @@ function DeterministicRow({ item, position, question, review }: { item: ItemVM; 
   const line = (
     <>
       <span className="figures w-14 shrink-0 text-meta text-graphite">Item {position}</span>
-      <span className="min-w-0 flex-1 space-y-0.5">
+      <span className="order-last col-span-full min-w-0 flex-1 space-y-0.5 sm:order-none">
         {shown?.stem && <span className="block max-w-measure text-body text-ink text-pretty">{shown.stem}</span>}
         {responseText !== null && (
           <span className="block text-ui text-ink">
@@ -142,11 +142,19 @@ function DeterministicRow({ item, position, question, review }: { item: ItemVM; 
     </>
   );
 
+  // From `sm` up the line is one row: number, text, verdict. Below it the text would get a third of
+  // a phone's width, so the number and the verdict share a first line and the text spans the card
+  // under them (the text's `order-last col-span-full`).
+  //
   // With an Explanation, the row is its own disclosure: one line until opened, and already open
   // for an Item the User got wrong. Without one (an unfinished Attempt) it is just the line.
   if (!review?.explanationZh) {
     return (
-      <li id={`item-${item.itemId}`} data-testid={`item-${item.itemId}`} className="flex items-start gap-3 py-2.5 pr-4 pl-[2.625rem]">
+      <li
+        id={`item-${item.itemId}`}
+        data-testid={`item-${item.itemId}`}
+        className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-3 gap-y-1 py-2.5 pr-4 pl-4 sm:flex sm:gap-3 sm:pl-[2.625rem]"
+      >
         {line}
       </li>
     );
@@ -154,7 +162,7 @@ function DeterministicRow({ item, position, question, review }: { item: ItemVM; 
   return (
     <li id={`item-${item.itemId}`} data-testid={`item-${item.itemId}`}>
       <details open={!score?.correct} className="group">
-        <summary className="flex cursor-pointer list-none items-start gap-3 px-4 py-2.5 select-none hover:bg-paper [&::-webkit-details-marker]:hidden">
+        <summary className="grid cursor-pointer list-none grid-cols-[auto_minmax(0,1fr)_auto] items-start gap-x-3 gap-y-1 px-4 py-2.5 select-none hover:bg-paper sm:flex sm:gap-3 [&::-webkit-details-marker]:hidden">
           <span className="mt-0.5 text-graphite transition-transform duration-(--duration-quick) group-open:rotate-90" aria-hidden="true">
             <IconChevronRight size={14} />
           </span>
