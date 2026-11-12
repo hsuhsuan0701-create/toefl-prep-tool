@@ -17,14 +17,20 @@ import { Notice } from "../ui/Notice";
 //
 // Returning matters. A Run lives at /full-test/:runId, its page shows no nav bar while the Run is
 // being sat, and no other page lists Runs, so once a User goes home this panel is the only way back
-// to a half-sat Run and to a finished Run's report (its page is the report).
+// to a half-sat Run and to every finished Run's report (its page is the report).
 //
 // Failures stay inside this panel: a failed listing must never blank the practice lists around it.
 
-const HOME_FULL_TESTS = 3;
+// How many finished Runs show before "Show earlier finished Runs".
+const HOME_FINISHED_RUNS = 3;
 
 export default function FullTestPanel() {
-  const [runs, setRuns] = useState<FullTestRunVM[]>([]);
+  const [inProgress, setInProgress] = useState<FullTestRunVM[]>([]);
+  // The most recent finished Runs, one more than are shown so the panel knows whether there are
+  // earlier ones; every finished Run once the User asks for them.
+  const [finished, setFinished] = useState<FullTestRunVM[]>([]);
+  const [showAllFinished, setShowAllFinished] = useState(false);
+  const [loadingEarlier, setLoadingEarlier] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const mountedRef = useRef(true);
   const startRun = useStartFullTest();
@@ -36,16 +42,18 @@ export default function FullTestPanel() {
     };
   }, []);
 
-  // Every in-progress Run, however old — this panel is the only route back to one — plus the few
-  // most recent Runs for their reports. A Run in both answers is listed once.
+  // Runs in progress and finished Runs are fetched apart, so neither can push the other off the
+  // panel: every Run in progress, however old or many (Start creates one at once, so a few
+  // mis-clicks make several), and then the most recent finished Runs for their reports.
   const reload = useCallback(async () => {
     try {
-      const [unfinished, recent] = await Promise.all([
+      const [unfinished, recentFinished] = await Promise.all([
         listFullTests({ status: "in-progress" }),
-        listFullTests({ limit: HOME_FULL_TESTS }),
+        listFullTests({ status: "completed", limit: HOME_FINISHED_RUNS + 1 }),
       ]);
-      const byId = new Map([...unfinished, ...recent].map((run) => [run.id, run]));
-      if (mountedRef.current) setRuns([...byId.values()]);
+      if (!mountedRef.current) return;
+      setInProgress(unfinished);
+      setFinished(recentFinished);
     } catch (e) {
       if (mountedRef.current) setError(requestErrorMessage(e));
     }
@@ -55,7 +63,23 @@ export default function FullTestPanel() {
     void reload();
   }, [reload]);
 
-  const shown = runs.filter((r) => r.status === "in-progress" || r.status === "completed");
+  // Filtered by status and given no limit, the listing returns every finished Run.
+  const showEarlierFinished = async () => {
+    setLoadingEarlier(true);
+    try {
+      const all = await listFullTests({ status: "completed" });
+      if (!mountedRef.current) return;
+      setFinished(all);
+      setShowAllFinished(true);
+    } catch (e) {
+      if (mountedRef.current) setError(requestErrorMessage(e));
+    } finally {
+      if (mountedRef.current) setLoadingEarlier(false);
+    }
+  };
+
+  const shownFinished = showAllFinished ? finished : finished.slice(0, HOME_FINISHED_RUNS);
+  const hasEarlierFinished = !showAllFinished && finished.length > HOME_FINISHED_RUNS;
   const failure = startRun.error ?? error;
 
   return (
@@ -75,10 +99,24 @@ export default function FullTestPanel() {
           {startRun.error ? `Couldn't start a Full-Test Run. ${startRun.error}` : `Couldn't load your Full-Test Runs. ${error}`}
         </Notice>
       )}
-      {shown.length > 0 && (
-        <List label="Full-Test Runs">
-          {shown.map((run) => (run.status === "in-progress" ? <InProgressRun key={run.id} run={run} /> : <FinishedRun key={run.id} run={run} />))}
+      {inProgress.length > 0 && (
+        <List label="Full-Test Runs in progress">
+          {inProgress.map((run) => (
+            <InProgressRun key={run.id} run={run} />
+          ))}
         </List>
+      )}
+      {shownFinished.length > 0 && (
+        <List label="Finished Full-Test Runs">
+          {shownFinished.map((run) => (
+            <FinishedRun key={run.id} run={run} />
+          ))}
+        </List>
+      )}
+      {hasEarlierFinished && (
+        <Button size="sm" variant="quiet" loading={loadingEarlier} onClick={() => void showEarlierFinished()}>
+          Show earlier finished Runs
+        </Button>
       )}
     </section>
   );
