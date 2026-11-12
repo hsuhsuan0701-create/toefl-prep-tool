@@ -248,6 +248,23 @@ describe("Reading Simulation", () => {
     scrollTo.mockRestore();
   });
 
+  // A new text inside a Module opens at its top with its question focused in place (issue #23).
+  it("opens a new text at the top of the window, with focus on its question head", async () => {
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+    renderSimulation();
+    await beginSimulation(user);
+
+    const scrollTo = vi.spyOn(window, "scrollTo");
+    const focus = vi.spyOn(HTMLElement.prototype, "focus");
+    await user.click(questionStop(2));
+    expect(screen.getByText("The library closes at six.")).toBeInTheDocument();
+    expect(scrollTo).toHaveBeenCalledWith(expect.objectContaining({ top: 0 }));
+    expect(focus).toHaveBeenLastCalledWith({ preventScroll: true });
+    expect(document.activeElement?.textContent).toContain("When does the library close?");
+    scrollTo.mockRestore();
+    focus.mockRestore();
+  });
+
   it("runs the whole routed Attempt: Router Module → route → path reveal → Lower Module → report", async () => {
     const api = await import("../src/lib/api");
     const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });

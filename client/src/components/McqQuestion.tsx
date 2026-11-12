@@ -21,6 +21,12 @@ export type McqQuestionProps = {
    * question that just came into view (the next one in a Simulation, the first one after the audio).
    */
   autoFocus?: boolean;
+  /**
+   * Take that focus without moving the page. For the first question of a text the User has not read
+   * yet: focusing would scroll the question, which a phone stacks below the whole text, into view,
+   * so the caller starts the text at its top instead (StimulusQuestions).
+   */
+  focusInPlace?: boolean;
 };
 
 // One multiple-choice Item (Read in Daily Life, Read an Academic Passage, and every Listening Task
@@ -28,13 +34,13 @@ export type McqQuestionProps = {
 // `correctOptionId`, so before `result` this is only the stem over ChoiceList's exam-style options.
 // Once `result` lands (a Drill's scoreDeterministicTask response) the options lock, ChoiceList marks
 // the key and the User's own pick, and a verdict and the Explanation follow underneath.
-export default function McqQuestion({ stem, options, selected, result, onSelect, kicker, autoFocus }: McqQuestionProps) {
+export default function McqQuestion({ stem, options, selected, result, onSelect, kicker, autoFocus, focusInPlace }: McqQuestionProps) {
   const stemId = useId();
   const headRef = useRef<HTMLDivElement>(null);
 
   // On mount only: a question re-rendering (a pick, the result arriving) must not pull focus back.
   useEffect(() => {
-    if (autoFocus) headRef.current?.focus();
+    if (autoFocus) headRef.current?.focus(focusInPlace ? { preventScroll: true } : undefined);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

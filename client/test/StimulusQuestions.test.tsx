@@ -297,3 +297,47 @@ describe("feedback is hidden until the Item is scored", () => {
     expect((screen.getByLabelText('Gap starting with "ca"') as HTMLInputElement).disabled).toBe(true);
   });
 });
+
+// A Reading text the User has not read yet opens at its top. At phone width ExamSplit stacks the
+// question under the whole text, so the question head, which takes focus when the screen opens, must
+// take it without scrolling itself into view (issue #23). A further question on the same text is
+// focused, and brought into view, as before.
+describe("a new Reading text opens at its top", () => {
+  const passage: ServedReadingStimulus = {
+    id: "ap-1",
+    taskType: "academic_passage",
+    title: "The Passage",
+    discipline: "life science",
+    text: "First paragraph of the passage.\n\nSecond paragraph of the passage.",
+    questions: questionsOf("ap", 2),
+  };
+
+  afterEach(() => vi.restoreAllMocks());
+
+  function renderScreen(reveal: QuestionReveal) {
+    const scrollTo = vi.spyOn(window, "scrollTo");
+    const focus = vi.spyOn(HTMLElement.prototype, "focus");
+    render(<StimulusQuestions stimulus={passage} reveal={reveal} answers={new Map()} onAnswer={noop} autoFocus />);
+    return { scrollTo, focus };
+  }
+
+  const opening: { mode: string; reveal: QuestionReveal }[] = [
+    { mode: "a Drill's screen", reveal: { policy: "all-at-once" } },
+    { mode: "a Simulation's first question", reveal: { policy: "one-at-a-time", questionIdx: 0 } },
+  ];
+  for (const { mode, reveal } of opening) {
+    it(`${mode}: the page starts at the top and the question head takes focus in place`, () => {
+      const { scrollTo, focus } = renderScreen(reveal);
+      expect(scrollTo).toHaveBeenCalledWith(expect.objectContaining({ top: 0 }));
+      expect(focus).toHaveBeenCalledWith({ preventScroll: true });
+      expect(document.activeElement?.textContent).toContain("ap stem 1?");
+    });
+  }
+
+  it("a further question on the same text is focused as before, and the page is left alone", () => {
+    const { scrollTo, focus } = renderScreen({ policy: "one-at-a-time", questionIdx: 1 });
+    expect(scrollTo).not.toHaveBeenCalled();
+    expect(focus).toHaveBeenCalledWith(undefined);
+    expect(document.activeElement?.textContent).toContain("ap stem 2?");
+  });
+});

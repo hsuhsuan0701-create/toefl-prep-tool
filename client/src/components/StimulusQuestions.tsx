@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, type ReactNode } from "react";
 import type { ServedListeningStimulus, ServedReadingStimulus, ServedSpeaker } from "@toefl-prep/shared";
 import { Button } from "../ui/Button";
 import { Notice } from "../ui/Notice";
@@ -123,6 +123,20 @@ export default function StimulusQuestions({
   submitting,
   autoFocus,
 }: StimulusQuestionsProps) {
+  // A Reading text opening on its first question is a text the User has not read yet. At phone
+  // width the question sits below the whole text, so the screen starts at the top, where the text
+  // does, and the question takes focus without scrolling to itself. A further question on the same
+  // text is focused, and scrolled into view, as before. On mount only: the call site keys this
+  // component per Stimulus and per question.
+  const opensText =
+    Boolean(autoFocus) &&
+    (stimulus.taskType === "daily_life" || stimulus.taskType === "academic_passage") &&
+    (reveal.policy === "all-at-once" || reveal.questionIdx === 0);
+  useLayoutEffect(() => {
+    if (opensText) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   if (stimulus.taskType === "complete_words") {
     const gapResults = results
       ? new Map(results.map((r) => [r.itemId, { correct: r.correct, key: r.key }]))
@@ -169,6 +183,7 @@ export default function StimulusQuestions({
         result={r ? { correct: r.correct, key: r.key, explanationZh: r.explanationZh } : undefined}
         onSelect={(optionId) => onAnswer(q.itemId, optionId)}
         autoFocus={autoFocus && position === 0}
+        focusInPlace={opensText}
       />
     );
   };
