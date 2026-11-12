@@ -17,6 +17,7 @@ import { BUILD_A_SENTENCE_BUDGET_CLOCK, BuildSentenceTask, type BuildSentenceRes
 import TimedEditor from "../components/TimedEditor";
 import { ScoringSetupNotice } from "../components/setup/ScoringSetupNotice";
 import { CompletedStageView, type CompletedStage, type EssayKind, type SubmittedAnswer } from "./WritingDrillResults";
+import { essayTaskInSet } from "./attemptSetSnapshot";
 import { Button } from "../ui/Button";
 import { ExamSetLine, type ExamIntroFact } from "../ui/ExamIntro";
 import { ExamExit, ExamShell } from "../ui/ExamShell";
@@ -182,7 +183,10 @@ export default function WritingDrill() {
       const kind = taskQueue[queueIndex];
       if (!set || (kind !== "email" && kind !== "discussion")) return;
       const materials = kind === "email" ? set.email : set.academicDiscussion;
-      setCompleted((c) => [...c, { kind, userText: text, itemId: materials.id, secondsUsed }]);
+      setCompleted((c) => [
+        ...c,
+        { kind, userText: text, itemId: materials.id, secondsUsed, task: essayTaskInSet(set, materials.id) },
+      ]);
       advanceQueue();
     },
     [taskQueue, queueIndex, set, advanceQueue],

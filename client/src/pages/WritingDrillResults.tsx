@@ -10,6 +10,8 @@ import type { BuildSentenceItem } from "../components/buildSentence";
 import ScoreCard, { type EssayScoreResult } from "../components/ScoreCard";
 import ScoringProgress from "../components/ScoringProgress";
 import { ResultMark } from "../components/review/ReviewParts";
+import { EssayResponse, EssayTask } from "../components/review/EssayItemReview";
+import type { EssayTaskSnapshot } from "./attemptSetSnapshot";
 import { SectionHeader } from "../ui/Heading";
 
 // The Writing Drill's results, Task by Task: Build a Sentence's deterministic results, and each
@@ -36,7 +38,14 @@ export type CompletedBuildSentence = {
  * EssayResultSlot needs to fire — and, on Retry, re-fire — the scoring job itself while the Drill
  * moves on to the next Task.
  */
-export type EssaySlot = { kind: EssayKind; userText: string; itemId: string; secondsUsed: number };
+export type EssaySlot = {
+  kind: EssayKind;
+  userText: string;
+  itemId: string;
+  secondsUsed: number;
+  /** The task as Attempt review shows it, read from the Set the Drill holds; undefined if it has none. */
+  task?: EssayTaskSnapshot;
+};
 
 export type CompletedStage = CompletedBuildSentence | EssaySlot;
 
@@ -65,6 +74,7 @@ export function CompletedStageView({
       itemId={stage.itemId}
       userText={stage.userText}
       secondsUsed={stage.secondsUsed}
+      task={stage.task}
       compact={compact}
       onStatusChange={onEssayStatusChange}
     />
@@ -154,6 +164,7 @@ function EssayResultSlot({
   itemId,
   userText,
   secondsUsed,
+  task,
   compact,
   onStatusChange,
 }: {
@@ -162,6 +173,7 @@ function EssayResultSlot({
   itemId: string;
   userText: string;
   secondsUsed: number;
+  task: EssayTaskSnapshot | undefined;
   compact: boolean;
   onStatusChange: (kind: EssayKind, inFlight: boolean, unscored: boolean) => void;
 }) {
@@ -213,6 +225,8 @@ function EssayResultSlot({
   return (
     <section aria-label={title} className="space-y-4">
       <SectionHeader title={title} />
+      {/* The same task, in the same words, as Attempt review shows beside this essay. */}
+      {task && <EssayTask task={task} />}
       {job.status === "done" && job.result ? (
         <ScoreCard result={job.result as EssayScoreResult} userText={userText} />
       ) : (
@@ -220,9 +234,12 @@ function EssayResultSlot({
           <ScoringProgress job={job} onRetry={handleRetry} section="writing" />
           {unscored && stored && (
             <p className="text-ui text-ink-soft">
-              Your Response is saved with this Attempt. Finish and open the report to read it, and Re-score it there.
+              Your Response is saved with this Attempt. Finish and open the report to Re-score it there.
             </p>
           )}
+          {/* With no Score Report to carry it, the Response is shown on its own: this is the text the
+              Drill holds, whether or not the server has it. */}
+          {unscored && <EssayResponse userText={userText} />}
         </>
       )}
     </section>

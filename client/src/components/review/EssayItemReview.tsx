@@ -1,7 +1,7 @@
 import type { ItemVM, JudgeReportVM } from "@toefl-prep/shared";
 import type { ScoringJobState } from "../../hooks/useScoringJob";
 import { taskTypeLabel } from "../../lib/taskTypes";
-import type { AttemptSetSnapshot } from "../../pages/attemptSetSnapshot";
+import type { AttemptSetSnapshot, EssayTaskSnapshot } from "../../pages/attemptSetSnapshot";
 import { essayTaskFor } from "../../pages/attemptSetSnapshot";
 import { ScoreFigure } from "../../ui/BandFigure";
 import { Card } from "../../ui/Card";
@@ -65,17 +65,7 @@ export default function EssayItemReview({
       }
       figure={showReport ? <ScoreFigure score={report.finalScore} max={report.maxScore} /> : undefined}
     >
-      {task && (
-        <Disclosure summary="The task">
-          <div className="max-w-measure space-y-1">
-            {task.lines.map((line, i) => (
-              <p key={i} className="text-pretty">
-                {line}
-              </p>
-            ))}
-          </div>
-        </Disclosure>
-      )}
+      {task && <EssayTask task={task} />}
 
       <ScoringOutcome
         item={item}
@@ -107,17 +97,42 @@ export default function EssayItemReview({
           <ScoreReport item={report} judges={judges} responseText={userText} />
         </>
       ) : (
-        <section className="space-y-2">
-          <h3 className="text-body font-semibold text-ink">Your Response</h3>
-          <Card tone="well">
-            {userText.trim() === "" ? (
-              <p className="text-body text-graphite">No Response was submitted.</p>
-            ) : (
-              <Prose preserveLines>{userText}</Prose>
-            )}
-          </Card>
-        </section>
+        <EssayResponse userText={userText} />
       )}
     </ItemCard>
+  );
+}
+
+/**
+ * The task an essay answered, closed by default: the Score Report comes first. Also drawn on the
+ * Writing Drill's results, so the two places show the same task in the same words.
+ */
+export function EssayTask({ task }: { task: EssayTaskSnapshot }) {
+  return (
+    <Disclosure summary="The task">
+      <div className="max-w-measure space-y-1">
+        {task.lines.map((line, i) => (
+          <p key={i} className="text-pretty">
+            {line}
+          </p>
+        ))}
+      </div>
+    </Disclosure>
+  );
+}
+
+/** An essay with no Score Report to carry it: the Response on its own. */
+export function EssayResponse({ userText }: { userText: string }) {
+  return (
+    <section className="space-y-2">
+      <h3 className="text-body font-semibold text-ink">Your Response</h3>
+      <Card tone="well">
+        {userText.trim() === "" ? (
+          <p className="text-body text-graphite">No Response was submitted.</p>
+        ) : (
+          <Prose preserveLines>{userText}</Prose>
+        )}
+      </Card>
+    </section>
   );
 }

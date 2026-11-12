@@ -142,6 +142,14 @@ export function essayTaskFor(snapshot: AttemptSetSnapshot | null, itemId: string
 }
 
 /**
+ * The task an Email or Academic Discussion Item of a served Set sets, read the way review reads it,
+ * for a page that holds the Set itself (the Writing Drill's results) rather than a snapshot.
+ */
+export function essayTaskInSet(value: unknown, itemId: string): EssayTaskSnapshot | undefined {
+  return ownEntry(snapshotEssayTasks(asUntrustedServedSet(value)), itemId);
+}
+
+/**
  * A spoken Item's position in its Task in the Set ("Sentence 2"), or undefined without a snapshot or
  * for an id the Set does not carry. An Attempt can lack an Item (a prompt that would not play and was
  * skipped, a lost upload), so its rows alone cannot number the Items after the gap.

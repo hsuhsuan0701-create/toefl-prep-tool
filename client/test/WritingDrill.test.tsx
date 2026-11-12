@@ -38,6 +38,10 @@ vi.mock("../src/lib/api", () => ({
 // the real hook cannot re-fire on a prop change, so a second POST can only mean a remounted slot got
 // past the one-job registry, and this mock reproduces that property without pulling in the poll
 // loop.
+//
+// `essayJob` is where the job lands: running unless a test says otherwise (the results tests below
+// settle it as scored, or as failed).
+const essayJob = vi.hoisted(() => ({ current: {} as Record<string, unknown> }));
 vi.mock("../src/hooks/useScoringJob", async () => {
   const { useEffect, useRef } = await import("react");
   return {
@@ -66,7 +70,9 @@ vi.mock("../src/hooks/useScoringJob", async () => {
         cancellationRequestedAt: null,
         terminalAt: null,
         cancellationReason: null,
+        itemIds: null,
         retry: () => {},
+        ...essayJob.current,
       };
     },
   };
@@ -482,5 +488,92 @@ describe("WritingDrill Build a Sentence: a failed commit, then a Retry that succ
     const bsCalls = (api.scoreTask as any).mock.calls.filter(([, body]: [string, any]) => body.taskType === "build_sentence");
     expect(bsCalls).toHaveLength(2);
     expect(bsCalls[1][1]).toEqual(bsCalls[0][1]);
+  });
+});
+
+// The results show each essay with the task it answered, as Attempt review does ("The task", the
+// same Disclosure fed the same lines), and an essay whose scoring failed with the Response the User
+// wrote, which is otherwise nowhere on the screen.
+describe("WritingDrill results: each essay with its task", () => {
+  beforeEach(async () => {
+    const api = await import("../src/lib/api");
+    (api.getSet as any).mockResolvedValue(set);
+    (api.createAttempt as any).mockResolvedValue({ attemptId: `att-results-${++attemptSeq}`, isRepeat: false });
+    (api.scoreTask as any).mockImplementation(async () => ({ jobId: "job-1" }));
+  });
+  afterEach(() => {
+    essayJob.current = {};
+  });
+
+  async function sitOneEssay(option: RegExp, text: string) {
+    const user = userEvent.setup();
+    renderRoutes([{ path: "/writing/:setId", element: <WritingDrill /> }], "/writing/wri-test");
+    await user.click(await screen.findByRole("button", { name: option }));
+    await user.click(screen.getByRole("button", { name: "Start Writing Drill" }));
+    await user.type(await screen.findByRole("textbox"), text);
+    await user.click(screen.getByRole("button", { name: /^Submit/ }));
+    await screen.findByRole("heading", { name: "Results" });
+    return user;
+  }
+
+  /** The essay's section on the results screen, with its task's Disclosure opened. */
+  async function openTask(user: ReturnType<typeof userEvent.setup>, sectionName: string) {
+    const section = screen.getByRole("region", { name: sectionName });
+    await user.click(within(section).getByText("The task"));
+    return section;
+  }
+
+  function scored(taskType: "email" | "discussion", itemId: string) {
+    return {
+      status: "done",
+      itemIds: [itemId],
+      result: {
+        taskType,
+        report: {
+          taskType,
+          items: [{ itemId, ownScore: 3, finalScore: 3, maxScore: 5, dimensions: [], deductions: [], reconciliationNote: "", feedbackZh: "" }],
+        },
+        judges: [],
+        judgesFailed: [],
+      },
+    };
+  }
+
+  it("shows a scored Email's task beside its Score Report", async () => {
+    essayJob.current = scored("email", "em-1");
+    const user = await sitOneEssay(/^Write an Email/, "Dear Professor, please grant me an extension.");
+    const section = await openTask(user, "Write an Email");
+    for (const line of ["Ask for an extension.", "To: prof@uni.edu", "Subject: Extension", "• say why"]) {
+      expect(within(section).getByText(line)).toBeVisible();
+    }
+  });
+
+  it("shows a scored Academic Discussion's task: the course, the professor and each student", async () => {
+    essayJob.current = scored("discussion", "ad-1");
+    const user = await sitOneEssay(/^Academic Discussion/, "I agree with Ana because incentives matter.");
+    const section = await openTask(user, "Academic Discussion");
+    for (const line of ["Econ 101", "Dr. Lin: Discuss the incentive effects.", "Ana: I think subsidies distort prices."]) {
+      expect(within(section).getByText(line)).toBeVisible();
+    }
+  });
+
+  it("shows a failed Email's task and the Response the User wrote", async () => {
+    essayJob.current = { status: "failed", itemIds: ["em-1"], error: "both judges failed" };
+    const user = await sitOneEssay(/^Write an Email/, "Dear Professor, please grant me an extension.");
+    const section = await openTask(user, "Write an Email");
+    expect(within(section).getByText("Ask for an extension.")).toBeVisible();
+    expect(within(section).getByRole("heading", { name: "Your Response" })).toBeInTheDocument();
+    expect(within(section).getByText("Dear Professor, please grant me an extension.")).toBeInTheDocument();
+    // The server has the essay (its job reported), so the results may say it is saved.
+    expect(section).toHaveTextContent("Your Response is saved with this Attempt.");
+  });
+
+  it("shows the Response of an essay whose job never started, without saying it is saved", async () => {
+    // A POST /score that never produced a job proves nothing about the essay reaching the server.
+    essayJob.current = { status: "failed", itemIds: null, error: "The score request did not go through." };
+    const user = await sitOneEssay(/^Write an Email/, "Dear Professor, please grant me an extension.");
+    const section = await openTask(user, "Write an Email");
+    expect(within(section).getByText("Dear Professor, please grant me an extension.")).toBeInTheDocument();
+    expect(section).not.toHaveTextContent(/saved/);
   });
 });
