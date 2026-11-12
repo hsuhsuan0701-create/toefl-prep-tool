@@ -1,6 +1,6 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import { useFakeTimersInTest } from "./fakeTimers";
-import { screen, act } from "@testing-library/react";
+import { screen, act, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderRoutes } from "./dataRouter";
 import WritingDrill from "../src/pages/WritingDrill";
@@ -364,6 +364,20 @@ describe("WritingDrill results: a Build a Sentence Response reads back as its wh
     // The gap the User left stays a gap; the sentence does not close up over it.
     expect(screen.getByTestId("bas-answer-bas-2")).toHaveTextContent("Your Response: The museum was ___ ___ crowded.");
     expect(screen.getByTestId("bas-key-bas-2")).toHaveTextContent("Key: The museum was not very crowded.");
+
+    // Every tile the Item offered, A to Z, with the one the key leaves out marked: a Drill's
+    // answer carries its key, so there is nothing to withhold.
+    const tiles = (itemId: string) => within(screen.getByTestId(`bas-tiles-${itemId}`)).getAllByRole("listitem");
+    expect(tiles("bas-2").map((li) => li.textContent)).toEqual(["not", "very", "was", "were · not in the sentence"]);
+    expect(tiles("bas-1").filter((li) => li.hasAttribute("data-extra")).map((li) => li.textContent)).toEqual([
+      "was · not in the sentence",
+    ]);
+    // The placed tiles are set apart from the frame's printed words; an empty blank is neither.
+    const placed = (testId: string) =>
+      Array.from(screen.getByTestId(testId).querySelectorAll("[data-placed]")).map((el) => el.textContent);
+    expect(placed("bas-answer-bas-1")).toEqual(REFERENCE_ANSWER);
+    expect(placed("bas-answer-bas-2")).toEqual(["was"]);
+    expect(placed("bas-key-bas-2")).toEqual(["was", "not", "very"]);
   });
 });
 

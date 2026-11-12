@@ -183,6 +183,23 @@ export function sentenceFrameFor(snapshot: AttemptSetSnapshot | null, itemId: st
 }
 
 /**
+ * The tiles a Build a Sentence Item offers in the Set as served today, or undefined when the review
+ * cannot claim they are the tiles the User was given: no snapshot, an Item id the Set does not
+ * carry, or a Response or key arrangement not drawn from them (the Item has changed since). The
+ * served order is a fresh shuffle per request, so the caller must not present it as the order the
+ * User saw. Nothing here says which tile is the extra one: that is the key's to tell.
+ */
+export function sentenceTilesFor(
+  snapshot: AttemptSetSnapshot | null,
+  itemId: string,
+  arrangements: readonly (readonly string[])[],
+): readonly string[] | undefined {
+  const current = sentenceItemFor(snapshot, itemId);
+  if (!current || current.tiles.length === 0) return undefined;
+  return arrangements.every((tiles) => isSubMultiset(tiles, current.tiles)) ? current.tiles : undefined;
+}
+
+/**
  * How a review should write out a Build a Sentence Response and its key.
  *
  * `frame` is what to compose the tile texts with (undefined: join them in order, as a frameless

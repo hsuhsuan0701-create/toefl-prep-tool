@@ -5,7 +5,7 @@ import { TASK_TYPES } from "../lib/taskTypes";
 import { scoringInterrupted } from "../lib/progressUtils";
 import { forgetScoringJob, scoringJobKey, startScoringJobOnce } from "../lib/scoringJobOnce";
 import { useScoringJob } from "../hooks/useScoringJob";
-import { sentenceAnswerText } from "../components/sentenceAnswerText";
+import { ComposedSentence, OfferedTiles, PLACED_WORDS_NOTE } from "../components/review/BuildSentenceParts";
 import type { BuildSentenceItem } from "../components/buildSentence";
 import ScoreCard, { type EssayScoreResult } from "../components/ScoreCard";
 import ScoringProgress from "../components/ScoringProgress";
@@ -90,6 +90,7 @@ function BuildSentenceResults({ stage }: { stage: CompletedBuildSentence }) {
         title={TASK_TYPES.build_sentence.label}
         description={`${correct} of ${stage.items.length} correct`}
       />
+      <p className="text-meta text-graphite">{PLACED_WORDS_NOTE}</p>
       <ol className="divide-y divide-rule rounded-sheet border border-rule bg-sheet">
         {stage.items.map((item, i) => {
           const result = stage.results.find((r) => r.itemId === item.id);
@@ -98,9 +99,11 @@ function BuildSentenceResults({ stage }: { stage: CompletedBuildSentence }) {
           // every blank still empty there is no Response to read, and the frame alone could be
           // misread as one.
           const userResponse =
-            submitted && submitted.tileOrder.length > 0
-              ? sentenceAnswerText(item.frame, submitted.tileOrder)
-              : "(no Response submitted)";
+            submitted && submitted.tileOrder.length > 0 ? (
+              <ComposedSentence frame={item.frame} tiles={submitted.tileOrder} />
+            ) : (
+              "(no Response submitted)"
+            );
           const isCorrect = Boolean(result?.correct);
           return (
             <li key={item.id} className="space-y-2 px-4 py-3">
@@ -122,8 +125,15 @@ function BuildSentenceResults({ stage }: { stage: CompletedBuildSentence }) {
                 <span className="text-graphite">{(result?.correctAnswers.length ?? 0) > 1 ? "Key (any of these): " : "Key: "}</span>
                 {/* Through the same composition: a frame Item's key is the blank fills alone, so
                     printed bare it reads as a fragment. */}
-                {result?.correctAnswers.map((a) => sentenceAnswerText(item.frame, a)).join(" / ")}
+                {result?.correctAnswers.map((a, k) => (
+                  <span key={k}>
+                    {k > 0 && " / "}
+                    <ComposedSentence frame={item.frame} tiles={a} />
+                  </span>
+                ))}
               </p>
+              {/* A Drill's answer carries the key, so the extra tile is marked at once. */}
+              <OfferedTiles testId={`bas-tiles-${item.id}`} tiles={item.tiles} keyArrangements={result?.correctAnswers ?? null} />
             </li>
           );
         })}
