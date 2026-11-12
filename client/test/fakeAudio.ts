@@ -10,14 +10,24 @@ import { expect } from "vitest";
  */
 export class FakeAudioElement {
   static instances: FakeAudioElement[] = [];
-  /** What `play()` does on the next element constructed: resolve, or reject as a blocked autoplay does. */
-  static nextPlayResult: "resolve" | "reject" = "resolve";
+  /**
+   * What `play()` does on the next element constructed: resolve (playback began), reject as a
+   * blocked autoplay does, or stay pending, as it does while the clip's request is neither answered
+   * nor failed.
+   */
+  static nextPlayResult: "resolve" | "reject" | "pending" = "resolve";
 
   src: string;
   paused = false;
   playCalls = 0;
   pauseCalls = 0;
-  private readonly playResult: "resolve" | "reject";
+  /**
+   * Whether the element was told to drop its source (`removeAttribute("src")`, then `load()`), as a
+   * player does to give up a load. `src` keeps its value, so a test still finds the element by it.
+   */
+  sourceDropped = false;
+  loadCalls = 0;
+  private readonly playResult: "resolve" | "reject" | "pending";
   private listeners: Record<string, Array<() => void>> = {};
 
   constructor(src: string) {
@@ -35,12 +45,21 @@ export class FakeAudioElement {
 
   play(): Promise<void> {
     this.playCalls += 1;
+    if (this.playResult === "pending") return new Promise(() => {});
     return this.playResult === "resolve" ? Promise.resolve() : Promise.reject(new Error("play() failed"));
   }
 
   pause() {
     this.paused = true;
     this.pauseCalls += 1;
+  }
+
+  removeAttribute(name: string) {
+    if (name === "src") this.sourceDropped = true;
+  }
+
+  load() {
+    this.loadCalls += 1;
   }
 
   dispatch(type: string) {

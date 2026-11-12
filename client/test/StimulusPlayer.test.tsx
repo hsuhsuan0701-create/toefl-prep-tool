@@ -3,7 +3,7 @@ import { FakeAudioElement } from "./fakeAudio";
 import { useFakeTimersInTest } from "./fakeTimers";
 import { StrictMode } from "react";
 import { act, render, screen } from "@testing-library/react";
-import StimulusPlayer from "../src/components/StimulusPlayer";
+import StimulusPlayer, { START_TIMEOUT_MS } from "../src/components/StimulusPlayer";
 
 // StimulusPlayer's play-once contract, which every Listening Stimulus and Speaking prompt relies on:
 // it plays `src` exactly once on mount, never replays for a `src`-only change on the same instance
@@ -125,6 +125,67 @@ describe("StimulusPlayer play-once contract", () => {
   });
 });
 
+// A request that is neither answered nor failed fires no `error` and never settles `play()`. The
+// start bound turns that into a failed load; once playback has begun it no longer counts.
+describe("StimulusPlayer's start bound", () => {
+  it("calls onError once a clip has not started within START_TIMEOUT_MS, and gives its load up", async () => {
+    const clock = useFakeTimersInTest();
+    FakeAudioElement.nextPlayResult = "pending";
+    const onEnded = vi.fn();
+    const onError = vi.fn();
+    render(<StimulusPlayer src="/api/audio/a.mp3" onEnded={onEnded} onError={onError} />);
+    const audio = FakeAudioElement.instances[0];
+
+    await act(() => clock.advanceBy(START_TIMEOUT_MS - 1));
+    expect(onError).not.toHaveBeenCalled();
+    expect(screen.getByText("Listen…")).toBeInTheDocument();
+
+    await act(() => clock.advanceBy(1));
+    expect(onError).toHaveBeenCalledTimes(1);
+    expect(onEnded).not.toHaveBeenCalled();
+    expect(audio.sourceDropped).toBe(true);
+    expect(audio.paused).toBe(true);
+    expect(screen.getByText(/couldn't play the audio/i)).toBeInTheDocument();
+
+    // A late event from the abandoned load changes nothing.
+    act(() => audio.dispatch("ended"));
+    expect(onEnded).not.toHaveBeenCalled();
+  });
+
+  it("plays a clip that starts late but within the bound through to its end", async () => {
+    const clock = useFakeTimersInTest();
+    FakeAudioElement.nextPlayResult = "pending";
+    const onEnded = vi.fn();
+    const onError = vi.fn();
+    render(<StimulusPlayer src="/api/audio/a.mp3" onEnded={onEnded} onError={onError} />);
+    const audio = FakeAudioElement.instances[0];
+
+    await act(() => clock.advanceBy(START_TIMEOUT_MS - 1_000));
+    act(() => audio.dispatch("playing"));
+    await act(() => clock.advanceBy(10 * START_TIMEOUT_MS));
+    act(() => audio.dispatch("ended"));
+
+    expect(onError).not.toHaveBeenCalled();
+    expect(onEnded).toHaveBeenCalledTimes(1);
+    expect(audio.sourceDropped).toBe(false);
+    expect(audio.pauseCalls).toBe(0);
+  });
+
+  it("never cuts short a clip that is playing, however long it runs", async () => {
+    const clock = useFakeTimersInTest();
+    const onEnded = vi.fn();
+    const onError = vi.fn();
+    render(<StimulusPlayer src="/api/audio/a.mp3" onEnded={onEnded} onError={onError} />);
+    const audio = FakeAudioElement.instances[0];
+
+    // play() resolved: playback has begun, with no `playing` event needed.
+    await act(() => clock.advanceBy(10 * START_TIMEOUT_MS));
+    expect(onError).not.toHaveBeenCalled();
+    expect(audio.pauseCalls).toBe(0);
+    expect(screen.getByText("Listen…")).toBeInTheDocument();
+  });
+});
+
 describe("StimulusPlayer when its page goes away", () => {
   // Leaving a Listening Stimulus or a Speaking prompt mid-clip (the browser's Back, a confirmed leave)
   // must not leave the clip playing over whatever page comes next.
@@ -148,6 +209,9 @@ describe("StimulusPlayer when its page goes away", () => {
       </StrictMode>,
     );
     await act(async () => {
+      // Lets play() resolve first, as it does long before the start bound in a browser: running every
+      // timer at once would otherwise fire that bound on a clip that has not been allowed to start.
+      await Promise.resolve();
       vi.runAllTimers();
     });
     expect(FakeAudioElement.instances).toHaveLength(1);

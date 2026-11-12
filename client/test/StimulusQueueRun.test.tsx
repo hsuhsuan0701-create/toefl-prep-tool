@@ -1,7 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { FakeAudioElement, dispatchAudio, endAudio } from "./fakeAudio";
 import { afterFeedbackHold } from "./feedbackHold";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { useFakeTimersInTest } from "./fakeTimers";
+import { START_TIMEOUT_MS } from "../src/components/StimulusPlayer";
 import userEvent from "@testing-library/user-event";
 import type { ServedListeningStimulus, ServedReadingStimulus } from "@toefl-prep/shared";
 import StimulusQueueRun from "../src/pages/drill/StimulusQueueRun";
@@ -112,6 +114,7 @@ function scoredEcho(correct = true) {
 
 beforeEach(() => {
   FakeAudioElement.instances = [];
+  FakeAudioElement.nextPlayResult = "resolve";
   vi.stubGlobal("Audio", FakeAudioElement);
 });
 
@@ -367,6 +370,28 @@ describe("the Listening queue: the same queue, through the leak gate", () => {
     await user.click(screen.getByRole("button", { name: "Skip this Stimulus" }));
     expect(api.scoreDeterministicTask).not.toHaveBeenCalled();
     expect(onComplete).toHaveBeenCalledWith([]);
+  });
+
+  it("stops on the same gate when the audio never starts, once the start bound has passed for each load", async () => {
+    const clock = useFakeTimersInTest({ shouldAdvanceTime: true });
+    FakeAudioElement.nextPlayResult = "pending";
+    const { container } = render(<StimulusQueueRun stimuli={[listenChooseStimulus]} attemptId="att-1" onComplete={vi.fn()} />);
+
+    for (let load = 1; load <= 3; load += 1) {
+      await waitFor(() => expect(FakeAudioElement.instances.filter((a) => a.src.endsWith("lc-1.mp3"))).toHaveLength(load));
+      await clock.advanceBy(START_TIMEOUT_MS - 100);
+      expect(screen.queryByRole("button", { name: "Retry" })).toBeNull();
+      await clock.advanceBy(100);
+    }
+
+    expect(await screen.findByRole("button", { name: "Retry" })).toBeInTheDocument();
+    expect(container.querySelectorAll("input[type='radio']")).toHaveLength(0);
+
+    // Reachable again: Retry plays it, and its Question appears once it ends.
+    FakeAudioElement.nextPlayResult = "resolve";
+    fireEvent.click(screen.getByRole("button", { name: "Retry" }));
+    await dispatchAudio("lc-1.mp3", "ended", 4);
+    expect(await screen.findByRole("radio", { name: "Sorry, I am late." })).toBeInTheDocument();
   });
 });
 
