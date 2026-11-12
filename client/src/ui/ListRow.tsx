@@ -6,6 +6,7 @@ import { Chip, StatusChip } from "./Chip";
 import { cx } from "./cx";
 import { IconCaution, IconChevronRight, IconFlag, IconRepeat } from "./icons";
 import {
+  ATTEMPT_FLAG,
   ATTEMPT_MODE_LABEL,
   ATTEMPT_STATUS,
   MODULE_PATH_LABEL,
@@ -139,7 +140,7 @@ type AttemptRowProps = {
   band?: number | null;
   modulePath?: ModulePath | null;
   repeat?: boolean;
-  /** The tab was left during a Simulation. */
+  /** The Simulation was interrupted: the tab was left, or a prompt would not play. */
   flagged?: boolean;
   /** A result for an Attempt with no band: "8 of 9 correct", "Email 4 / 5". */
   summary?: ReactNode;
@@ -167,9 +168,9 @@ export function AttemptRow({ section, mode, setTitle, when, to, status, band, mo
             </Chip>
           )}
           {flagged && (
-            <Chip tone="caution" className="relative z-10" title="You left the tab during this Simulation.">
+            <Chip tone="caution" className="relative z-10" title={ATTEMPT_FLAG.hint}>
               <IconFlag size={12} />
-              Left the tab
+              {ATTEMPT_FLAG.label}
             </Chip>
           )}
         </p>

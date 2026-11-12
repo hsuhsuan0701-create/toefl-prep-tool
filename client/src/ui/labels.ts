@@ -502,6 +502,23 @@ export const RESCORE_FAILED: StatusPresentation & { hint: string } = {
   hint: "The score below still stands: nothing from the Re-score was saved.",
 };
 
+/**
+ * An Attempt's `flagged` boolean. It is one flag raised more than one way: the tab went hidden (or a
+ * Writing Simulation was reopened), or a Speaking or Listening prompt would not play and the run
+ * stopped on its gate. The flag does not say which, so the words never claim the User left: they say
+ * the Simulation was interrupted, and why that matters.
+ */
+export const ATTEMPT_FLAG = {
+  /** The chip in the review's header and the title of its notice. */
+  heading: "Flagged",
+  /** The chip on the Attempt's row, and its tooltip. */
+  label: "Interrupted",
+  hint: "This Simulation was interrupted: the tab was left, or a prompt would not play.",
+  /** The review's notice, for a Simulation and for anything else. */
+  simulationNote: "This Simulation was interrupted (the tab was left, or a prompt would not play), so its timing may not match the test.",
+  otherNote: "This Attempt is flagged for review.",
+} as const;
+
 /** A Judge by its family (CONTEXT.md, Judge). */
 export const JUDGE_LABEL: Record<"gemini" | "openai", string> = { gemini: "Gemini", openai: "OpenAI" };
 

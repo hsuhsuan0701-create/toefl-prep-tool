@@ -88,7 +88,7 @@ states each appear at least once:
 | Transcription that failed every retry, with Retry offered | Speaking Drill, 11 days before: Question 2 |
 | Repeat | Speaking Drill, 3 days before, and Reading Drill, 7 days before |
 | Attempt left unfinished | Writing Drill, 13 days before, and the in-progress Run's Listening section |
-| Flagged for leaving the tab | Listening Simulation, 10 days before |
+| Flagged as interrupted (the tab was left) | Listening Simulation, 10 days before |
 
 The essays, emails and spoken answers were written for this demo in the voice of an
 upper-intermediate learner. None of it comes from ETS or from anyone's practice. Listen and Repeat

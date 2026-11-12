@@ -179,6 +179,19 @@ describe("spoken Item numbers in Attempt review", () => {
   });
 });
 
+// A Speaking Simulation is flagged when a prompt would not play as well as when the tab is left, and
+// the flag does not say which: the notice says the Simulation was interrupted, never that the User left.
+describe("a flagged Simulation in Attempt review", () => {
+  it("says the Simulation was interrupted and why its timing may differ", async () => {
+    const body = speaking([failed("lr-2", "listen_repeat")]);
+    await renderReview({ ...body, attempt: { ...body.attempt, flagged: true } });
+    expect(
+      screen.getByText("This Simulation was interrupted (the tab was left, or a prompt would not play), so its timing may not match the test."),
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/You left/)).toBeNull();
+  });
+});
+
 describe("the Listen and Repeat scene in Attempt review", () => {
   it("is shown once for the group, not on every sentence", async () => {
     await renderReview(speaking([failed("lr-1", "listen_repeat"), failed("lr-2", "listen_repeat"), failed("lr-3", "listen_repeat")]));

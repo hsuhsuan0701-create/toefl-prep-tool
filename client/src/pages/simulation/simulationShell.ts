@@ -107,7 +107,8 @@ export async function predictRepeat(listing: SetMeta | null, replacedAttemptId?:
 }
 
 // Fires POST /:id/flag whenever the tab goes hidden while `active`; AttemptReview renders the
-// resulting `flagged` boolean as a "left the tab" note. Errors are swallowed: this is a best-effort
+// resulting `flagged` boolean as an "interrupted" note (a prompt that would not play raises the same
+// flag, so the note never says the User left). Errors are swallowed: this is a best-effort
 // signal, not something worth interrupting a timed section over.
 export function useFlagOnHidden(attemptId: string | null, active: boolean) {
   useEffect(() => {

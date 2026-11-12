@@ -77,10 +77,14 @@ describe("an Attempt row", () => {
     expect(screen.queryByText(/in_progress|aborted/)).toBeNull();
   });
 
-  it("marks a Repeat and a Simulation where the tab was left", () => {
+  // The flag is raised by a tab switch and by a prompt that would not play alike, so the chip says
+  // the Simulation was interrupted and never that the User left.
+  it("marks a Repeat and a flagged Simulation as interrupted", () => {
     renderLog({ items: [attempt({ isRepeat: true, flagged: true })], total: 1 });
     expect(screen.getByText("Repeat")).toBeInTheDocument();
-    expect(screen.getByText("Left the tab")).toBeInTheDocument();
+    const chip = screen.getByText("Interrupted");
+    expect(chip).toHaveAttribute("title", "This Simulation was interrupted: the tab was left, or a prompt would not play.");
+    expect(screen.queryByText(/left the tab/i)).toBeNull();
   });
 
   it("names the Module a routed Reading Simulation took beside its band", () => {

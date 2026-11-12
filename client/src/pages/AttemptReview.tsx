@@ -11,7 +11,7 @@ import { PageShell } from "../ui/PageShell";
 import { Skeleton } from "../ui/Skeleton";
 import { TextLink } from "../ui/Button";
 import { formatWhenRange } from "../ui/format";
-import { ATTEMPT_MODE_LABEL, ATTEMPT_STATUS, SECTION_LABEL } from "../ui/labels";
+import { ATTEMPT_FLAG, ATTEMPT_MODE_LABEL, ATTEMPT_STATUS, SECTION_LABEL } from "../ui/labels";
 import BandSummary from "../components/review/BandSummary";
 import BuildSentenceGroup from "../components/review/BuildSentenceGroup";
 import DeterministicModuleGroup from "../components/review/DeterministicModuleGroup";
@@ -109,7 +109,7 @@ export default function AttemptReview() {
             )}
             {attempt.flagged && (
               <Chip tone="caution" glyph="caution">
-                Flagged
+                {ATTEMPT_FLAG.heading}
               </Chip>
             )}
             <span className="font-mono text-caption text-faint">{attempt.setId}</span>
@@ -138,10 +138,8 @@ export default function AttemptReview() {
       <div className="space-y-12">
         <div className="space-y-4">
           {attempt.flagged && (
-            <Notice tone="caution" title="Flagged">
-              {attempt.mode === "simulation"
-                ? "You left this tab during the Simulation, so its timing may not match the test."
-                : "This Attempt is flagged for review."}
+            <Notice tone="caution" title={ATTEMPT_FLAG.heading}>
+              {attempt.mode === "simulation" ? ATTEMPT_FLAG.simulationNote : ATTEMPT_FLAG.otherNote}
             </Notice>
           )}
           {reasons.captureFinalizing && (
