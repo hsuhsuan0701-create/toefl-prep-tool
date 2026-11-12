@@ -29,6 +29,16 @@ import {
  */
 export const LISTENING_AUDIO_AUTO_RETRIES = 2;
 
+/**
+ * Where a Stimulus whose audio just failed goes next, given how many times it has been reloaded: a
+ * fresh load on its own, or the audio-failed gate once the automatic reloads are spent. The one rule
+ * for both Attempt modes: the Simulation's reducer and the Drill's queue (StimulusQueueRun.tsx) both
+ * call it, so neither can quietly give up sooner or reveal the Question(s) instead.
+ */
+export function afterAudioError(audioTry = 0): { phase: "playing" | "audio-failed"; audioTry: number } {
+  return audioTry < LISTENING_AUDIO_AUTO_RETRIES ? { phase: "playing", audioTry: audioTry + 1 } : { phase: "audio-failed", audioTry };
+}
+
 export type ListeningSimState =
   | { stage: "intro" }
   | {
@@ -91,12 +101,9 @@ export function reduceListeningSim(state: ListeningSimState, ev: ListeningSimEve
       if (state.stage !== "stimulus" || state.phase !== "playing") return state;
       return { ...state, phase: "questions", questionIdx: 0 };
 
-    case "audio-error": {
+    case "audio-error":
       if (state.stage !== "stimulus" || state.phase !== "playing") return state;
-      const tried = state.audioTry ?? 0;
-      if (tried < LISTENING_AUDIO_AUTO_RETRIES) return { ...state, audioTry: tried + 1 };
-      return { ...state, phase: "audio-failed" };
-    }
+      return { ...state, ...afterAudioError(state.audioTry) };
 
     case "retry-audio":
       if (state.stage !== "stimulus" || state.phase !== "audio-failed") return state;

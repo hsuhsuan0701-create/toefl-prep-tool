@@ -350,15 +350,23 @@ describe("the Listening queue: the same queue, through the leak gate", () => {
     expect(await screen.findByRole("radio", { name: "A refund" })).toBeInTheDocument();
   });
 
-  it("reveals the Question(s) with a note when the audio fails rather than pretending it played", async () => {
-    render(<StimulusQueueRun stimuli={[listenChooseStimulus]} attemptId="att-1" onComplete={vi.fn()} />);
+  it("never reveals the Question(s) of a Stimulus whose audio failed, and skipping it scores nothing", async () => {
+    const api = await import("../src/lib/api");
+    const onComplete = vi.fn();
+    const user = userEvent.setup();
+    const { container } = render(<StimulusQueueRun stimuli={[listenChooseStimulus]} attemptId="att-1" onComplete={onComplete} />);
 
-    await dispatchAudio("lc-1.mp3", "error");
+    // The first load and the two automatic reloads, each on its own fresh element.
+    for (let nth = 1; nth <= 3; nth++) await dispatchAudio("lc-1.mp3", "error", nth);
 
-    // A Drill has no lockstep flow to skip a Stimulus with — the User is already committed to this
-    // one — so the Question(s) appear anyway, with the failure said out loud.
     expect(await screen.findByText(/Couldn't play the audio for this Stimulus/)).toBeInTheDocument();
-    expect(screen.getByRole("radio", { name: "Sorry, I am late." })).toBeInTheDocument();
+    expect(container.textContent).not.toContain("Sorry, I am late.");
+    expect(container.querySelectorAll("input[type='radio']")).toHaveLength(0);
+    expect(screen.queryByRole("button", { name: /^Check Response/ })).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "Skip this Stimulus" }));
+    expect(api.scoreDeterministicTask).not.toHaveBeenCalled();
+    expect(onComplete).toHaveBeenCalledWith([]);
   });
 });
 

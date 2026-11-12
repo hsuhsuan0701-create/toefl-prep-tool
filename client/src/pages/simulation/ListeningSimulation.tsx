@@ -359,6 +359,12 @@ export default function ListeningSimulation({ fullTest }: { fullTest?: FullTestS
             audioTry={simState.audioTry}
             onAudioRetry={() => dispatch({ type: "retry-audio" })}
             onAudioSkip={() => dispatch({ type: "skip-stimulus" })}
+            audioFailedNote={
+              <>
+                <p>Its questions stay hidden until it plays. Nothing is timed while this is up, and the Attempt is marked as interrupted.</p>
+                <p className="mt-1">Skipping scores this Stimulus's questions as unanswered.</p>
+              </>
+            }
             onAnswer={(itemId, optionId) => dispatch({ type: "answer", itemId, optionId })}
             autoFocus
             // No `results`: a Simulation's feedback (the key and the Explanation) is deferred to the

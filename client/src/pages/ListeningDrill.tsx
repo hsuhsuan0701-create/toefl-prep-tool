@@ -142,6 +142,10 @@ export default function ListeningDrill() {
             term: "Listening",
             detail: "Each Stimulus plays once. Its questions appear, all together, when the audio ends.",
           },
+          {
+            term: "If audio fails",
+            detail: "A Stimulus that won't play waits for you to retry it, or to skip it unscored.",
+          },
           { term: "Time", detail: "Untimed, apart from the audio itself." },
           {
             term: "Feedback",

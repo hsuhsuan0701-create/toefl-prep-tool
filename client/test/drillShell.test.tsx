@@ -1,5 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { FakeAudioElement, endAudio } from "./fakeAudio";
+import { FakeAudioElement, dispatchAudio, endAudio } from "./fakeAudio";
+import { LISTENING_AUDIO_AUTO_RETRIES } from "../src/pages/listeningSimulation";
 import type { ReactElement } from "react";
 import { act, fireEvent, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -630,5 +631,82 @@ describe("the Drill shell: starting the Attempt", () => {
       unmount();
       vi.clearAllMocks();
     }
+  });
+});
+
+// CLAUDE.md, "Client run flows": a Stimulus whose audio fails is retried, then waits on a gate; it is
+// never scored as the User's miss. The Listening Drill goes through the Simulation's own rule
+// (listeningSimulation.ts's afterAudioError) and the same gate in ListeningStimulusQuestions.
+describe("the Listening Drill: a Stimulus whose audio fails", () => {
+  const failLoads = async (file: string, loads: number) => {
+    for (let nth = 1; nth <= loads; nth++) await dispatchAudio(file, "error", nth);
+  };
+  const scoreAllCorrect = async () => {
+    const api = await import("../src/lib/api");
+    (api.getSet as any).mockResolvedValue(listeningSet);
+    (api.createAttempt as any).mockResolvedValue({ attemptId: "att-1", isRepeat: false });
+    (api.scoreDeterministicTask as any).mockImplementation(async (_attemptId: string, req: any) => ({
+      taskType: req.taskType,
+      items: req.items.map((i: any) => ({ itemId: i.itemId, correct: true, key: "o1", explanationZh: "因為 A 是對的。" })),
+    }));
+    return api;
+  };
+
+  it("reloads it, then stops on a gate with Retry and nothing answerable; Retry plays it and it is scored", async () => {
+    const api = await scoreAllCorrect();
+    const user = userEvent.setup();
+    const { container } = renderCase(CASES[1]);
+    await user.click(await screen.findByText("Listen and Choose a Response"));
+    await user.click(screen.getByRole("button", { name: "Start Listening Drill" }));
+
+    // The first load and both automatic reloads fail.
+    await failLoads("lc-1.mp3", 1 + LISTENING_AUDIO_AUTO_RETRIES);
+    const retry = await screen.findByRole("button", { name: "Retry" });
+    expect(FakeAudioElement.instances.filter((a) => a.src.endsWith("lc-1.mp3"))).toHaveLength(1 + LISTENING_AUDIO_AUTO_RETRIES);
+    expect(container.querySelectorAll('input[type="radio"]')).toHaveLength(0);
+    expect(container.textContent).not.toContain("lc-1 option one");
+    expect(screen.queryByRole("button", { name: /^Check Response/ })).toBeNull();
+
+    // Retry is a fresh load, which plays to its end this time.
+    await user.click(retry);
+    await dispatchAudio("lc-1.mp3", "ended", 2 + LISTENING_AUDIO_AUTO_RETRIES);
+    await user.click(await screen.findByRole("radio", { name: "lc-1 option one" }));
+    await user.click(screen.getByRole("button", { name: "Check Response" }));
+
+    expect(await screen.findByText("因為 A 是對的。")).toBeInTheDocument();
+    expect((api.scoreDeterministicTask as any).mock.calls).toEqual([
+      ["att-1", { taskType: "listen_choose", items: [{ itemId: "lc-1", selectedOptionId: "o1" }] }],
+    ]);
+  });
+
+  it("left from the gate, scores nothing for it and counts it as not attempted rather than missed", async () => {
+    const api = await scoreAllCorrect();
+    const user = userEvent.setup();
+    renderCase(CASES[1]);
+    await user.click(await screen.findByText("All four Task Types"));
+    await user.click(screen.getByRole("button", { name: "Start Listening Drill" }));
+
+    await failLoads("lc-1.mp3", 1 + LISTENING_AUDIO_AUTO_RETRIES);
+    await user.click(await screen.findByRole("button", { name: "Skip this Stimulus" }));
+
+    // The rest of the queue runs as usual.
+    for (const [file, option] of [
+      ["cv-1.mp3", "cv-1-q1 option one"],
+      ["an-1.mp3", "an-1-q1 option one"],
+      ["at-1.mp3", "at-1-q1 option one"],
+    ]) {
+      await endAudio(file);
+      await user.click(await screen.findByRole("radio", { name: option }));
+      await user.click(screen.getByRole("button", { name: "Check Response" }));
+      const next = await screen.findByRole("button", { name: /^(Next Stimulus|See results)$/ });
+      await afterFeedbackHold();
+      await user.click(next);
+    }
+
+    await screen.findByRole("heading", { name: "Results" });
+    const scored = (api.scoreDeterministicTask as any).mock.calls.flatMap(([, req]: any) => req.items.map((i: any) => i.itemId));
+    expect(scored).toEqual(["cv-1-q1", "an-1-q1", "at-1-q1"]);
+    expect(screen.getByText(/Items correct · 100%/)).toBeInTheDocument();
+    expect(screen.getByText("1 Stimulus not attempted, so its Items are not counted.")).toBeInTheDocument();
   });
 });

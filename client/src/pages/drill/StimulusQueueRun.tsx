@@ -16,7 +16,8 @@ import { IconArrowRight } from "../../ui/icons";
 import { Notice } from "../../ui/Notice";
 import { DrillCompletionFailed } from "./DrillScreens";
 import type { DrillCompletion } from "./drillShell";
-import { FEEDBACK_HOLD_MS, deterministicScoreRequest, isListeningStimulus } from "./stimulusQueue";
+import { afterAudioError } from "../listeningSimulation";
+import { FEEDBACK_HOLD_MS, deterministicScoreRequest, isListeningStimulus, stimulusCountLabel } from "./stimulusQueue";
 
 // ---------------------------------------------------------------------------
 // The deterministic Stimulus-queue run body, for both the Reading and the Listening Drill. Hand it
@@ -29,7 +30,7 @@ import { FEEDBACK_HOLD_MS, deterministicScoreRequest, isListeningStimulus } from
 // The leak gate is not reimplemented here. This module goes through StimulusQuestions.tsx's
 // `ListeningStimulusQuestions`, including the check/next footer, passed as its `children` so it is
 // mounted inside the gate: nothing the User could act on may exist before the audio ends either.
-// This queue's own state (`audioDone`) only chooses which `phase` to hand the gate.
+// This queue's own state (`audioPhase`) only chooses which `phase` to hand the gate.
 // ---------------------------------------------------------------------------
 
 export type StimulusQueueRunProps = {
@@ -62,12 +63,13 @@ export default function StimulusQueueRun({ stimuli, attemptId, onComplete, exitT
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [allResults, setAllResults] = useState<StimulusItemResult[]>([]);
   // Which side of the leak gate the current Stimulus is on — this component's whole share of it. The
-  // gate itself (nothing answerable exists in the DOM until this is true) is structural and lives in
-  // ListeningStimulusQuestions.
-  const [audioDone, setAudioDone] = useState(false);
-  // Distinct from audioDone: in a Drill a failed load still reveals the Question(s) — feedback is
-  // instant and nothing is at stake for a Band Estimate — but with a note saying the audio failed.
-  const [audioFailed, setAudioFailed] = useState(false);
+  // gate itself (nothing answerable exists in the DOM until "questions") is structural and lives in
+  // ListeningStimulusQuestions. Audio that will not play is reloaded on its own, then stops on the
+  // gate's "audio-failed" phase (afterAudioError, the Simulation's rule): it is the app's failure,
+  // never the User's miss, so the Question(s) of a Stimulus nobody heard never appear.
+  const [audioPhase, setAudioPhase] = useState<"playing" | "audio-failed" | "questions">("playing");
+  // How many times the current Stimulus's audio has been reloaded; keys its player.
+  const [audioTry, setAudioTry] = useState(0);
 
   const current: QuestionedStimulus | undefined = stimuli[index];
   // When the current Stimulus's feedback arrived (performance.now()), so the press that checked it
@@ -102,21 +104,25 @@ export default function StimulusQueueRun({ stimuli, attemptId, onComplete, exitT
     }
   }, [attemptId, current, answers, showFeedback]);
 
+  const advance = useCallback(() => {
+    feedbackAtRef.current = null;
+    setResults(null);
+    setAnswers(new Map());
+    setAudioPhase("playing");
+    setAudioTry(0);
+    const nextIndex = index + 1;
+    if (nextIndex < stimuli.length) setIndex(nextIndex);
+    else onComplete(allResults);
+  }, [index, stimuli.length, allResults, onComplete]);
+
   const handleNext = useCallback(() => {
     // The tail of the activation that checked this Stimulus (a double click, a second Enter or
     // Space) lands here once the label has swapped. Ignore it, so the feedback stays on screen until
     // a separate press. The button stays as it is, focus and name included.
     const feedbackAt = feedbackAtRef.current;
     if (feedbackAt !== null && performance.now() - feedbackAt < FEEDBACK_HOLD_MS) return;
-    feedbackAtRef.current = null;
-    setResults(null);
-    setAnswers(new Map());
-    setAudioDone(false);
-    setAudioFailed(false);
-    const nextIndex = index + 1;
-    if (nextIndex < stimuli.length) setIndex(nextIndex);
-    else onComplete(allResults);
-  }, [index, stimuli.length, allResults, onComplete]);
+    advance();
+  }, [advance]);
 
   const onAnswer = useCallback((itemId: string, value: string) => {
     setAnswers((prev) => new Map(prev).set(itemId, value));
@@ -174,19 +180,33 @@ export default function StimulusQueueRun({ stimuli, attemptId, onComplete, exitT
             key={current.id}
             stimulus={current}
             // A Drill has no avatar beat of its own — it enters the gate straight at "playing" and
-            // leaves it at "questions" once the audio ends (or fails, `audioFailed` below).
-            phase={audioDone ? "questions" : "playing"}
+            // leaves it at "questions" only once the audio ends.
+            phase={audioPhase}
             // A Drill shows every Question the current Stimulus owns and submits them together,
             // unlike the lockstep Listening Simulation.
             reveal={{ policy: "all-at-once" }}
             answers={answers}
             results={results}
-            audioFailed={audioFailed}
-            onAudioEnded={() => setAudioDone(true)}
+            onAudioEnded={() => setAudioPhase("questions")}
             onAudioError={() => {
-              setAudioDone(true);
-              setAudioFailed(true);
+              const next = afterAudioError(audioTry);
+              setAudioPhase(next.phase);
+              setAudioTry(next.audioTry);
             }}
+            audioTry={audioTry}
+            onAudioRetry={() => {
+              setAudioPhase("playing");
+              setAudioTry(audioTry + 1);
+            }}
+            // Skipping sends nothing to the scorer: no Item of a Stimulus the User never heard is
+            // scored, so none of them reads as a miss in the results, the review or the trends.
+            onAudioSkip={advance}
+            audioFailedNote={
+              <>
+                <p>Its questions stay hidden until it plays.</p>
+                <p className="mt-1">Skipping leaves this Stimulus out of the Drill: its questions are not scored.</p>
+              </>
+            }
             onAnswer={onAnswer}
             autoFocus
           >
@@ -266,6 +286,9 @@ export function StimulusQueueResults({
   const correctCount = results.filter((r) => r.correct).length;
   const section = stimuli?.[0] && isListeningStimulus(stimuli[0]) ? "Listening" : "Reading";
   const byTaskType = stimuli ? tallyByTaskType(stimuli, results) : [];
+  // A Stimulus with no scored Item was left unheard from the audio-failed gate: it is not attempted,
+  // so it is said apart rather than counted as missed.
+  const notAttempted = stimuli ? stimuli.filter((s) => resultsOf(s, results).length === 0).length : 0;
   return (
     <ExamShell
       section={section}
@@ -288,6 +311,11 @@ export function StimulusQueueResults({
             Items correct{results.length > 0 && <> · {formatPercent(correctCount / results.length)}</>}
           </span>
         </p>
+        {notAttempted > 0 && (
+          <p className="mt-2 text-body text-ink-soft">
+            {stimulusCountLabel(notAttempted)} not attempted, so {notAttempted === 1 ? "its" : "their"} Items are not counted.
+          </p>
+        )}
         {byTaskType.length > 1 && (
           <ul className="mt-5 divide-y divide-rule border-y border-rule">
             {byTaskType.map((row) => (
@@ -337,12 +365,17 @@ export function StimulusQueueResults({
   );
 }
 
+/** The scored Items among `results` that belong to `stimulus`. */
+function resultsOf(stimulus: QuestionedStimulus, results: readonly StimulusItemResult[]) {
+  const ids = new Set(deterministicScoreRequest(stimulus, new Map()).items.map((i) => i.itemId));
+  return results.filter((r) => ids.has(r.itemId));
+}
+
 /** Correct out of scored, per Task Type, in queue order. */
 function tallyByTaskType(stimuli: readonly QuestionedStimulus[], results: readonly StimulusItemResult[]) {
   const rows: { label: string; correct: number; total: number }[] = [];
   for (const stimulus of stimuli) {
-    const ids = new Set(deterministicScoreRequest(stimulus, new Map()).items.map((i) => i.itemId));
-    const mine = results.filter((r) => ids.has(r.itemId));
+    const mine = resultsOf(stimulus, results);
     if (mine.length === 0) continue;
     const label = TASK_TYPES[stimulus.taskType].label;
     const row = rows.find((r) => r.label === label) ?? rows[rows.push({ label, correct: 0, total: 0 }) - 1];

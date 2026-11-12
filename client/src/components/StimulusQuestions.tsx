@@ -18,10 +18,8 @@ import StimulusPlayer from "./StimulusPlayer";
 //   * `results`: feedback exists once the Item is scored, and never before (CONTEXT.md's
 //     Explanation: "hidden until the Item is scored"). A Drill hands over the score response it
 //     just got back; a Simulation hands over nothing, because its feedback waits for the report.
-//   * `audioFailed`: a Drill whose audio failed reveals the Questions with a note.
 //   * `phase`: how far the Stimulus's own audio has got: the Simulation's avatar beat, playing, the
-//     Simulation's audio-failed gate, then the Questions. A Drill only ever visits "playing" and
-//     "questions".
+//     audio-failed gate, then the Questions. A Drill has no avatar beat and starts at "playing".
 //
 // The exam layout lives here and the spacing around it does not: a Reading text and its questions
 // sit side by side (ui/PassagePane's ExamSplit), a Complete the Words passage reads at the measure,
@@ -276,16 +274,14 @@ function sentenceCase(text: string): string {
 
 /**
  * How far a Listening Stimulus's own play-once audio has got. The gate reads exactly this.
- * "audio-failed" is the Simulation's stop when the audio would not play: who is speaking and a way
- * to play it again, and nothing answerable.
+ * "audio-failed" is the stop, in both Attempt modes, when the audio would not play: who is speaking
+ * and a way to play it again, and nothing answerable.
  */
 export type ListeningStimulusPhase = "avatar" | "playing" | "audio-failed" | "questions";
 
 export type ListeningStimulusQuestionsProps = Omit<StimulusQuestionsProps, "stimulus" | "submitting"> & {
   stimulus: ServedListeningStimulus;
   phase: ListeningStimulusPhase;
-  /** Playback failed rather than finished. A Drill reveals the Questions anyway, with a note. */
-  audioFailed?: boolean;
   /** Fired once the avatar beat has been seen. Only ever called from the "avatar" phase. */
   onAvatarSettled?: () => void;
   onAudioEnded: () => void;
@@ -297,8 +293,13 @@ export type ListeningStimulusQuestionsProps = Omit<StimulusQuestionsProps, "stim
   audioTry?: number;
   /** From the "audio-failed" gate: play the Stimulus again. */
   onAudioRetry?: () => void;
-  /** From the "audio-failed" gate: move on with the Stimulus's Questions unanswered. */
+  /** From the "audio-failed" gate: move on without hearing the Stimulus. What that does is the call site's. */
   onAudioSkip?: () => void;
+  /**
+   * The "audio-failed" gate's words under its title, which differ by Attempt mode: what waiting
+   * costs, and what skipping does to the Stimulus's Questions. Omitted, only that they stay hidden.
+   */
+  audioFailedNote?: ReactNode;
   /**
    * The call site's own footer: a Drill's error line and Submit/Next buttons, the Simulation's Next
    * button. Rendered inside the gate on purpose: the leak rule covers answer controls as well as
@@ -335,13 +336,13 @@ function settingOf(stimulus: ServedListeningStimulus): string | undefined {
 export function ListeningStimulusQuestions({
   stimulus,
   phase,
-  audioFailed,
   onAvatarSettled,
   onAudioEnded,
   onAudioError,
   audioTry,
   onAudioRetry,
   onAudioSkip,
+  audioFailedNote,
   children,
   ...questionProps
 }: ListeningStimulusQuestionsProps) {
@@ -394,15 +395,11 @@ export function ListeningStimulusQuestions({
             </>
           }
         >
-          <p>Its questions stay hidden until it plays. Nothing is timed while this is up, and the Attempt is marked as interrupted.</p>
-          {onAudioSkip && <p className="mt-1">Skipping scores this Stimulus's questions as unanswered.</p>}
+          {audioFailedNote ?? <p>Its questions stay hidden until it plays.</p>}
         </Notice>
       )}
       {phase === "questions" && (
         <>
-          {audioFailed && (
-            <Notice tone="caution">Couldn't play the audio for this Stimulus. You can still respond, or move on.</Notice>
-          )}
           <StimulusQuestions stimulus={stimulus} {...questionProps} />
           {children}
         </>

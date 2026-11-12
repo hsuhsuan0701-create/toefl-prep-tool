@@ -211,23 +211,6 @@ describe("the Stimulus-questions leak gate: all four Listening Task Types, both 
       expect(screen.getByRole("button", { name: "Skip this Stimulus" })).toBeInTheDocument();
     });
   }
-
-  it("reveals the Question(s) with a note when the audio failed rather than finished (Drill only)", () => {
-    const { container } = render(
-      <ListeningStimulusQuestions
-        stimulus={LISTENING_STIMULI[0]}
-        phase="questions"
-        audioFailed
-        reveal={{ policy: "all-at-once" }}
-        answers={new Map()}
-        onAnswer={noop}
-        onAudioEnded={noop}
-        onAudioError={noop}
-      />,
-    );
-    expect(container.textContent).toContain("Couldn't play the audio for this Stimulus");
-    expect(container.querySelectorAll('input[type="radio"]')).toHaveLength(4);
-  });
 });
 
 // The Explanation (錯題解析) rule the module also owns: pre-authored 繁體中文, hidden until the Item is
