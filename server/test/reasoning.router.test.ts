@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import { afterEach, describe, expect, expectTypeOf, it, vi } from "vitest";
 import { deferred } from "./helpers/deferred.js";
 import { useFakeTimersInTest } from "./helpers/fakeTimers.js";
+import { processIsAlive } from "./helpers/processLiveness.js";
 import {
   JudgeReportSchema,
   ScoreReportSchema,
@@ -175,18 +176,6 @@ function heartbeatPid(heartbeatPath: string): number | undefined {
       : undefined;
   } catch {
     return undefined;
-  }
-}
-
-function processIsAlive(pid: number): boolean {
-  try {
-    process.kill(pid, 0);
-    return true;
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === "ESRCH") {
-      return false;
-    }
-    throw error;
   }
 }
 

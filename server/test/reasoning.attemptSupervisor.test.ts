@@ -8,6 +8,7 @@ import {
   attemptSupervisorMetrics,
   superviseAttempt,
 } from "../src/services/reasoning/attemptSupervisor.js";
+import { processIsAlive } from "./helpers/processLiveness.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const markerPaths: string[] = [];
@@ -45,16 +46,6 @@ const sleepLock = new Int32Array(new SharedArrayBuffer(4));
  */
 function stallEventLoop(ms: number): void {
   Atomics.wait(sleepLock, 0, 0, ms);
-}
-
-function processIsAlive(pid: number): boolean {
-  try {
-    process.kill(pid, 0);
-    return true;
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === "ESRCH") return false;
-    throw error;
-  }
 }
 
 async function expectProcessStopped(marker: string, timeoutMs = 2_000): Promise<void> {
