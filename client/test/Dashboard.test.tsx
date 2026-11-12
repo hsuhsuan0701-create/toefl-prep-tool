@@ -60,6 +60,7 @@ function summary(sections: StatsSectionVM[], overallBand: number | null): StatsS
     weaknesses: [],
     judgeAgreement: { avgDelta: null, sampleSize: 0 },
     skillItems: [],
+    skillItemsLimit: 300,
   };
 }
 

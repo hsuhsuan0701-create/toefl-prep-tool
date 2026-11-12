@@ -430,6 +430,8 @@ export interface StatsSummaryVM {
   // section and skill (the two sections share some skill names), filters and sorts them
   // (computeSkillAccuracy in client/src/pages/weaknessCategories.ts).
   skillItems: { section: "reading" | "listening"; skill: string; correct: boolean }[];
+  // The most `skillItems` the server sends: the window is the latest this many, and the pane names it.
+  skillItemsLimit: number;
 }
 
 // GET /api/stats/settings, and the response to PUT /api/stats/settings (whose request is a partial

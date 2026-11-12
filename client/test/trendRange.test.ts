@@ -43,6 +43,18 @@ describe("filterTrendPoints", () => {
     expect(filterTrendPoints([early, inside, late], "custom", NOW, { from: day, to: day })).toEqual([inside]);
   });
 
+  it("a custom range picked the wrong way round is the range between the two days", () => {
+    const early = pointAt(NOW - 30 * DAY_MS);
+    const inside = pointAt(NOW - 10 * DAY_MS);
+    const late = pointAt(NOW - 1 * DAY_MS);
+    const first = dateInputValue(NOW - 12 * DAY_MS);
+    const last = dateInputValue(NOW - 8 * DAY_MS);
+    const forward = filterTrendPoints([early, inside, late], "custom", NOW, { from: first, to: last });
+    expect(forward).toEqual([inside]);
+    expect(filterTrendPoints([early, inside, late], "custom", NOW, { from: last, to: first })).toEqual(forward);
+    expect(trendRangeBounds("custom", NOW, { from: last, to: first })).toEqual(trendRangeBounds("custom", NOW, { from: first, to: last }));
+  });
+
   it("an empty or malformed custom side is unbounded on that side", () => {
     const early = pointAt(NOW - 30 * DAY_MS);
     const late = pointAt(NOW - 1 * DAY_MS);

@@ -172,7 +172,7 @@ describe("the Attempt log", () => {
         const offset = Number(params.get("offset") ?? 0);
         return json({ items: all.slice(offset, offset + limit), total: all.length });
       }],
-      ["/api/stats/summary", () => json({ sections: [], overall: { band: 5, missingSections: [] }, weaknesses: [], judgeAgreement: { avgDelta: null, sampleSize: 0 }, skillItems: [] })],
+      ["/api/stats/summary", () => json({ sections: [], overall: { band: 5, missingSections: [] }, weaknesses: [], judgeAgreement: { avgDelta: null, sampleSize: 0 }, skillItems: [], skillItemsLimit: 300 })],
       ["/api/stats/trends", () => json([])],
     ]);
     render(<MemoryRouter><Progress /></MemoryRouter>);

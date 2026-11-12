@@ -388,6 +388,18 @@ describe("GET /summary", () => {
       expect(body.skillItems).toHaveLength(4);
     });
 
+    // The pane's caption names its window, so the summary says how many Items the window holds, and
+    // the Items it sends are never more than that.
+    it("sends the latest skillItemsLimit Items and the limit with them", async () => {
+      ctx.repo.createAttempt({ id: "att-many", kind: "listening", mode: "drill", setId: "ls-1", isRepeat: false });
+      for (let i = 0; i < 301; i++) {
+        scoreItem(ctx, "att-many", `lc-${i}`, "listen_choose", 1, { correct: true, skill: "detail", module: "router", answer: "a" });
+      }
+      const body = (await (await ctx.app.request("/summary")).json()) as StatsSummaryVM;
+      expect(body.skillItemsLimit).toBe(300);
+      expect(body.skillItems).toHaveLength(body.skillItemsLimit);
+    });
+
     // Nothing in the route enumerates ReadingSkillCategory, so a new category reaches the weakness
     // breakdown with no route change. A route that grew a hardcoded category list would drop these
     // three rows silently, and the Progress page would never show those skills.

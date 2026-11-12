@@ -101,6 +101,7 @@ describe("/progress renders no Sets, so it must not pull the Set banks", () => {
           weaknesses: [],
           judgeAgreement: { avgDelta: null, sampleSize: 0 },
           skillItems: [],
+          skillItemsLimit: 300,
         }),
       "/api/stats/trends": () => jsonResponse([]),
     });

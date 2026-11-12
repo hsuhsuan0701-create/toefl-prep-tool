@@ -204,7 +204,8 @@ function computeSkillItems(
 }
 
 // Far wider than the 20-Item weakness window: the client drops any skill category with fewer than
-// five samples, so the pane needs a sample spanning several Attempts.
+// five samples, so the pane needs a sample spanning several Attempts. Sent with the Items
+// (skillItemsLimit), so the pane's caption names the window from this one number.
 const SKILL_ITEMS_LIMIT = 300;
 
 /**
@@ -273,6 +274,7 @@ export function buildStatsRoutes(deps: StatsDeps) {
         weaknesses: computeWeaknesses(deps.repo.recentScoredItemResults(20)),
         judgeAgreement: computeJudgeAgreement(deps.repo.listAllJudgeReports()),
         skillItems: computeSkillItems(deps.repo.recentScoredReadingListeningItemResults(SKILL_ITEMS_LIMIT)),
+        skillItemsLimit: SKILL_ITEMS_LIMIT,
       };
       return c.json(summary);
     })

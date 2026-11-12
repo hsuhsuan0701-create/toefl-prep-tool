@@ -18,6 +18,7 @@ vi.mock("../src/lib/api", async (importOriginal) => {
       weaknesses: [],
       judgeAgreement: { avgDelta: null, sampleSize: 0 },
       skillItems: [],
+      skillItemsLimit: 300,
     })),
     getStatsSettings: vi.fn(async () => ({ targets: { reading: 5.5, listening: 5.5, writing: 5.5, speaking: 5.5 } })),
     getSetupStatus: vi.fn(async () => null),
