@@ -71,6 +71,7 @@ export const CLI_PERMISSIONS_SETTINGS = JSON.stringify({
       "Read(package.json)",
       "Read(package-lock.json)",
       "Read(README.md)",
+      "Read(README.zh-TW.md)",
       "Read(AGENTS.md)",
       "Read(LICENSE)",
       "Read(CLAUDE.md)",

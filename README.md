@@ -1,5 +1,7 @@
 # TOEFL Prep Tool
 
+**English** | [繁體中文](README.zh-TW.md)
+
 A practice app for the TOEFL iBT® test in the format ETS introduced in January 2026. It runs on your
 own computer and covers all four sections: timed Drills, exam-condition Simulations and full-length
 Full-Test Runs, with Speaking and Writing scored by AI and Reading and Listening scored from the
