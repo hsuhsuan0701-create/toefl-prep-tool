@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
@@ -82,10 +82,10 @@ const SERVED_SPEAKING = {
   interview: { scenarioTitle: "Study habits", intro: "Hello.", questions: [] },
 };
 
-async function renderReview(body: AttemptDetailVM) {
+async function renderReview(body: AttemptDetailVM, entry = "/attempts/att-1") {
   vi.mocked(getAttempt).mockResolvedValue(body);
   render(
-    <MemoryRouter initialEntries={["/attempts/att-1"]}>
+    <MemoryRouter initialEntries={[entry]}>
       <Routes>
         <Route path="/attempts/:id" element={<AttemptReview />} />
       </Routes>
@@ -189,6 +189,40 @@ describe("a flagged Simulation in Attempt review", () => {
       screen.getByText("This Simulation was interrupted (the tab was left, or a prompt would not play), so its timing may not match the test."),
     ).toBeInTheDocument();
     expect(screen.queryByText(/You left/)).toBeNull();
+  });
+});
+
+// A link to a place in the review names an element that exists only once the Attempt has loaded, so
+// the page scrolls to it then; the browser looked for it before anything rendered.
+describe("a link to a place in Attempt review", () => {
+  const scrolledTo: string[] = [];
+  beforeEach(() => {
+    scrolledTo.length = 0;
+    // jsdom has no layout, so no scrollIntoView of its own; record which element was asked.
+    Element.prototype.scrollIntoView = function (this: Element) {
+      scrolledTo.push(this.id);
+    };
+  });
+  afterEach(() => {
+    delete (Element.prototype as { scrollIntoView?: unknown }).scrollIntoView;
+  });
+  const attempt = () => speaking([failed("lr-1", "listen_repeat"), failed("lr-2", "listen_repeat"), failed("int-1", "interview")]);
+
+  it("scrolls to the group the fragment names once the Items have rendered", async () => {
+    await renderReview(attempt(), "/attempts/att-1#group-type-interview");
+    await waitFor(() => expect(scrolledTo).toContain("group-type-interview"));
+    expect(new Set(scrolledTo)).toEqual(new Set(["group-type-interview"]));
+  });
+
+  it("scrolls to an Item the fragment names", async () => {
+    await renderReview(attempt(), "/attempts/att-1#item-lr-2");
+    await waitFor(() => expect(scrolledTo).toContain("item-lr-2"));
+  });
+
+  it("scrolls nowhere for a fragment that names nothing", async () => {
+    await renderReview(attempt(), "/attempts/att-1#nothing-here");
+    expect(screen.getByTestId("item-lr-2")).toBeInTheDocument();
+    expect(scrolledTo).toEqual([]);
   });
 });
 

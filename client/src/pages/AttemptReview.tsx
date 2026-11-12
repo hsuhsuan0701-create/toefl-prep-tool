@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import type { ItemVM } from "@toefl-prep/shared";
 import { pollReasons, useAttemptReview } from "../hooks/useAttemptReview";
 import { taskTypeEntry, taskTypeLabel } from "../lib/taskTypes";
@@ -45,10 +46,34 @@ function isSpoken(taskType: string): boolean {
   return taskTypeEntry(taskType)?.review === "speaking";
 }
 
+/**
+ * A link to a place in the review (`#group-…`, `#item-…`) names an element that renders only once
+ * the Attempt has loaded, after the browser has already looked for it and found nothing. So scroll
+ * to it then, and once more when the Set's text lands, since that text changes the height of what
+ * sits above it. Only on those two moments: the fragment an in-page link sets is the browser's to
+ * follow, and a fragment that names nothing leaves the page at the top.
+ */
+function useScrollToFragmentOnLoad(attemptId: string | undefined, setLanded: boolean) {
+  const { hash } = useLocation();
+  const hashRef = useRef(hash);
+  hashRef.current = hash;
+  useEffect(() => {
+    if (!attemptId || hashRef.current.length < 2) return;
+    let targetId: string;
+    try {
+      targetId = decodeURIComponent(hashRef.current.slice(1));
+    } catch {
+      return;
+    }
+    document.getElementById(targetId)?.scrollIntoView();
+  }, [attemptId, setLanded]);
+}
+
 export default function AttemptReview() {
   const { id } = useParams<{ id: string }>();
   const review = useAttemptReview(id);
   const { detail, error, finalizingStalled, setSnapshot } = review;
+  useScrollToFragmentOnLoad(detail?.attempt.id, setSnapshot !== null);
 
   if (error) {
     return (
