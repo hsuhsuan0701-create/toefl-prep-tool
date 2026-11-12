@@ -98,13 +98,17 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
 /**
  * One Reading or Listening Item: the User's Response, the key when it differs, and the Explanation
  * (錯題解析). Question text and option text are shown only beside a review — i.e. once the Attempt
- * is complete — so an unfinished Listening Attempt never puts options into the page early. A Listen
+ * is complete — so an unfinished Listening Attempt never puts options into the page early. A
+ * Complete the Words prefix is the exception: the User saw it in the passage, and it is no key. A Listen
  * and Choose a Response utterance is never shown as text at all; the server does not send it.
  */
 function DeterministicRow({ item, position, question, review }: { item: ItemVM; position: number; question?: QuestionSnapshot; review?: DeterministicReviewItemVM }) {
   const score = item.scoringStatus === "scored" && isDeterministicScoreJson(item.scoreJson) ? item.scoreJson : null;
   const isGap = item.taskType === "complete_words";
   const shown = review ? question : undefined;
+  // A gap's prefix was printed in the paragraph the User read, so it is no key: the Response reads
+  // as the whole word they produced whether or not the Attempt is complete.
+  const prefix = question?.prefix ?? "";
   const unanswered = score !== null && (score.answer === MCQ_UNANSWERED_SENTINEL || score.answer.trim() === "");
 
   const responseText = !score
@@ -112,9 +116,9 @@ function DeterministicRow({ item, position, question, review }: { item: ItemVM; 
     : unanswered
       ? "No Response"
       : isGap
-        ? `${shown?.prefix ?? ""}${score.answer}`
+        ? `${prefix}${score.answer}`
         : optionText(shown, score.answer);
-  const keyText = review?.key === undefined ? null : isGap ? `${shown?.prefix ?? ""}${review.key}` : optionText(shown, review.key);
+  const keyText = review?.key === undefined ? null : isGap ? `${prefix}${review.key}` : optionText(shown, review.key);
 
   const line = (
     <>

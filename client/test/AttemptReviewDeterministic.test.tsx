@@ -155,6 +155,23 @@ describe("a Reading Attempt still in progress", () => {
     expect(screen.queryByText(/To sell a bicycle/)).toBeNull();
     expect(screen.getByText(/appear once this Attempt is complete/)).toBeInTheDocument();
   });
+
+  // The prefix was printed in the paragraph the User read, so it is no key: a gap's Response reads
+  // as the word they produced either way. The correct completion still waits for completion.
+  it("writes out a gap's Response with its visible prefix, and no correct completion", async () => {
+    const base = readingDetail();
+    await renderReview({
+      ...base,
+      attempt: { ...base.attempt, status: "in_progress", completedAt: null },
+      bandStatus: { status: "unfinished" },
+      deterministicReview: undefined,
+    });
+    expect(screen.getByTestId("item-g1")).toHaveTextContent("Your Response: month");
+    const wrong = screen.getByTestId("item-g2");
+    expect(wrong).toHaveTextContent("Your Response: grass");
+    expect(wrong).not.toHaveTextContent("Correct completion");
+    expect(screen.queryByText(/gravel/)).toBeNull();
+  });
 });
 
 describe("a discarded Reading Attempt", () => {
