@@ -5,6 +5,7 @@ import type { StimulusItemResult } from "../components/StimulusQuestions";
 import DrillBandEstimateNotice from "../components/DrillBandEstimateNotice";
 import { TASK_TYPES } from "../lib/taskTypes";
 import { ExamSetLine } from "../ui/ExamIntro";
+import { useStageEntry } from "../hooks/useStageEntry";
 import { useDrillShell, useListedSet } from "./drill/drillShell";
 import { fallbackSetTitle } from "./simulation/simulationShell";
 import { DrillErrorScreen, DrillIntroScreen, DrillLoadingScreen, DrillPickerScreen } from "./drill/DrillScreens";
@@ -61,6 +62,7 @@ export default function ReadingDrill() {
   const [queue, setQueue] = useState<Stimulus[]>([]);
   const [picked, setPicked] = useState<string>("");
   const [results, setResults] = useState<readonly StimulusItemResult[]>([]);
+  useStageEntry(drill.phase === "ready" ? stage : drill.phase);
 
   const handlePick = useCallback(
     (label: string, kinds: ReadingTaskType[]) => {

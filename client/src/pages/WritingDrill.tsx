@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import type { BuildSentenceDrillScoreItemVM, ServedWritingSet } from "@toefl-prep/shared";
 import { scoreTask, type BuildSentenceScoreResponse } from "../lib/api";
 import { TASK_TYPES } from "../lib/taskTypes";
+import { useStageEntry } from "../hooks/useStageEntry";
 import { useDrillShell, useListedSet } from "./drill/drillShell";
 import { fallbackSetTitle } from "./simulation/simulationShell";
 import {
@@ -87,6 +88,9 @@ export default function WritingDrill() {
   // so the error screen's Retry can send it again.
   const pendingBsRef = useRef<SubmittedAnswer[] | null>(null);
   const mountedRef = useRef(true);
+  // The Email and the Discussion share `essay-running`, so the Task's place in the queue is part of
+  // the stage's name.
+  useStageEntry(drill.phase === "ready" ? `${stage}:${queueIndex}` : drill.phase);
 
   useEffect(() => {
     mountedRef.current = true;

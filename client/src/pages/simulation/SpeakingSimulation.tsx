@@ -7,6 +7,7 @@ import { TASK_TYPES } from "../../lib/taskTypes";
 import { lostUploadItemIds, uploadUntilSectionEnds, type SimUploadOutcome } from "../simulationUpload";
 import { useRecorder } from "../../hooks/useRecorder";
 import { useLeaveGuard } from "../../hooks/useLeaveGuard";
+import { useStageEntry } from "../../hooks/useStageEntry";
 import MicCheck from "../../components/MicCheck";
 import SpeakingScenarioBriefing from "../../components/SpeakingScenarioBriefing";
 import InterviewIntro from "../../components/InterviewIntro";
@@ -110,6 +111,9 @@ export default function SpeakingSimulation({ fullTest }: { fullTest?: FullTestSe
   const [taskIndex, setTaskIndex] = useState<0 | 1>(0); // 0 = listen_repeat, 1 = interview
   const [itemIndex, setItemIndex] = useState(0);
   const [introAudioDone, setIntroAudioDone] = useState(true);
+  // Both Tasks run in `item-running`, and the Interview opens on its introduction before its first
+  // Item, so the Task and the introduction are part of the stage's name; its Items are not.
+  useStageEntry(`${stage}:${taskIndex}:${introAudioDone}`);
   const [isStarting, setIsStarting] = useState(false);
   // The Set as the bank lists it, for its title and whether it has been attempted (a Repeat).
   const [listing, setListing] = useState<SetMeta | null>(null);

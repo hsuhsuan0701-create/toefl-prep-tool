@@ -218,6 +218,36 @@ describe("Reading Simulation", () => {
     vi.clearAllMocks();
   });
 
+  // The intro, the Modules, their scoring and the path reveal replace one another inside one route,
+  // so each scrolls itself to the top; moving between a Module's screens does not (issue #22).
+  it("opens every stage at the top of the window, and leaves the page put between a Module's screens", async () => {
+    const scrollTo = vi.spyOn(window, "scrollTo");
+    const toTop = expect.objectContaining({ top: 0 });
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+    renderSimulation();
+    await screen.findByRole("button", { name: "Start Reading Simulation" });
+
+    scrollTo.mockClear();
+    await beginSimulation(user);
+    expect(scrollTo).toHaveBeenCalledWith(toTop);
+
+    await user.click(questionStop(2));
+    scrollTo.mockClear();
+    await user.click(questionStop(1));
+    expect(screen.getByLabelText('Gap starting with "ca"')).toBeInTheDocument();
+    expect(scrollTo).not.toHaveBeenCalled();
+
+    await submitModule(user);
+    await screen.findByRole("heading", { name: "Module Path: Lower Module" });
+    expect(scrollTo).toHaveBeenCalledWith(toTop);
+
+    scrollTo.mockClear();
+    await user.click(screen.getByRole("button", { name: "Start the Lower Module" }));
+    await screen.findByText("Lower Module");
+    expect(scrollTo).toHaveBeenCalledWith(toTop);
+    scrollTo.mockRestore();
+  });
+
   it("runs the whole routed Attempt: Router Module → route → path reveal → Lower Module → report", async () => {
     const api = await import("../src/lib/api");
     const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });

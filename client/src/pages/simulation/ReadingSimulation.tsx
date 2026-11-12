@@ -12,6 +12,7 @@ import {
   reduceReadingSim,
 } from "../readingSimulation";
 import { useLeaveGuard } from "../../hooks/useLeaveGuard";
+import { useStageEntry } from "../../hooks/useStageEntry";
 import StimulusQuestions from "../../components/StimulusQuestions";
 import ModulePathDisclosure from "../../components/ModulePathDisclosure";
 import { Button } from "../../ui/Button";
@@ -78,6 +79,9 @@ export default function ReadingSimulation({ fullTest }: { fullTest?: FullTestSec
   // Whether the clock, not the User, ended the Module now being scored — said on the scoring screen.
   const [endedByClock, setEndedByClock] = useState(false);
   const [simState, dispatch] = useReducer(reduceReadingSim, { stage: "intro" as const });
+  // Both Modules run in `module`, so which one is part of the stage's name. Moving between its
+  // screens is not a stage change.
+  useStageEntry(pageStage === "ready" ? `${simState.stage}:${"module" in simState ? simState.module : ""}` : pageStage);
 
   const mountedRef = useRef(true);
   const retryRef = useRef<(() => void) | null>(null);

@@ -4,6 +4,11 @@ import { afterAll, afterEach, expect } from "vitest";
 
 afterEach(() => cleanup());
 
+// jsdom lays nothing out, so it cannot scroll, and it reports "Not implemented" on every call. A
+// Drill or Simulation scrolls each new stage to the top (hooks/useStageEntry.ts); a test that cares
+// spies on this.
+window.scrollTo = () => {};
+
 // No client test talks to a server. Every page reaches the API through src/lib/api.ts, which calls
 // the global fetch, and a test that has not stubbed it (vi.stubGlobal("fetch", ...) or a vi.mock of
 // the api module) lands here. The call is refused, and because the code under test usually catches

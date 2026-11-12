@@ -14,6 +14,7 @@ import {
 } from "../listeningSimulation";
 import { ListeningStimulusQuestions } from "../../components/StimulusQuestions";
 import { useLeaveGuard } from "../../hooks/useLeaveGuard";
+import { useStageEntry } from "../../hooks/useStageEntry";
 import ModulePathDisclosure from "../../components/ModulePathDisclosure";
 import { Button } from "../../ui/Button";
 import { Disclosure } from "../../ui/Disclosure";
@@ -68,6 +69,15 @@ export default function ListeningSimulation({ fullTest }: { fullTest?: FullTestS
   const [isStarting, setIsStarting] = useState(false);
   const [isRepeat, setIsRepeat] = useState(false);
   const [simState, setSimState] = useState<ListeningSimState>({ stage: "intro" });
+  // Both Modules run in `stimulus`, and each Stimulus replaces the one before, so the Module and the
+  // Stimulus are part of the stage's name; its questions, answered in lockstep, are not.
+  useStageEntry(
+    pageStage !== "ready"
+      ? pageStage
+      : simState.stage === "stimulus"
+        ? `stimulus:${simState.module}:${simState.idx}`
+        : `${simState.stage}:${"module" in simState ? simState.module : ""}`,
+  );
 
   const mountedRef = useRef(true);
   const retryRef = useRef<(() => void) | null>(null);

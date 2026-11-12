@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { uploadItemAudio } from "../lib/api";
 import { useRecorder } from "../hooks/useRecorder";
+import { useStageEntry } from "../hooks/useStageEntry";
 import { requestErrorMessage } from "../lib/requestError";
 import { TASK_TYPES } from "../lib/taskTypes";
 import { useDrillShell, useListedSet } from "./drill/drillShell";
@@ -88,6 +89,9 @@ export default function SpeakingDrill() {
   // The current Task's scoring slot is appended at most once per Task; reset when a Task begins.
   const firedRef = useRef(false);
   const startingRef = useRef(false);
+  // Both Tasks run in `item-running`, and an Interview opens on its introduction before its first
+  // Item, so the Task's place in the queue and the introduction are part of the stage's name.
+  useStageEntry(drill.phase === "ready" ? `${stage}:${queueIndex}:${introAudioDone}` : drill.phase);
 
   // Every way out releases the microphone: stop() ends a running take, and release() ends the
   // run-long held stream, which stop() deliberately leaves live between Items.

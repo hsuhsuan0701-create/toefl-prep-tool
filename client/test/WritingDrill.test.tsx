@@ -184,6 +184,45 @@ describe("WritingDrill full drill: every task gets a fresh editor and a fresh cl
     expect(await screen.findByRole("heading", { name: "Results" })).toBeInTheDocument();
   });
 
+  // The stages replace one another inside one route, so without a scroll of its own each would open
+  // at the offset the stage before was left at, its start under the sticky header (issue #22).
+  it("opens every stage at the top of the window, and leaves the page put between Items", async () => {
+    const scrollTo = vi.spyOn(window, "scrollTo").mockImplementation(() => {});
+    const toTop = expect.objectContaining({ top: 0 });
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+    renderRoutes([{ path: "/writing/:setId", element: <WritingDrill /> }], "/writing/wri-test");
+
+    await user.click(await screen.findByText("All three Task Types"));
+    await screen.findByRole("button", { name: "Start Writing Drill" });
+    expect(scrollTo).toHaveBeenLastCalledWith(toTop);
+
+    scrollTo.mockClear();
+    await user.click(screen.getByRole("button", { name: "Start Writing Drill" }));
+    await screen.findByText("Arrange the first sentence.");
+    expect(scrollTo).toHaveBeenCalledWith(toTop);
+
+    // Next is a move between the Items of one stage, not a new stage.
+    scrollTo.mockClear();
+    await user.click(screen.getByRole("button", { name: "Next" }));
+    await screen.findByText("Arrange the second sentence.");
+    expect(scrollTo).not.toHaveBeenCalled();
+
+    await finishBuildSentence(user);
+    await screen.findByRole("heading", { name: "Write an Email" });
+    expect(scrollTo).toHaveBeenLastCalledWith(toTop);
+
+    scrollTo.mockClear();
+    await user.type(screen.getByRole("textbox"), "Dear Professor, please grant me an extension.");
+    await user.click(screen.getByRole("button", { name: /^Submit/ }));
+    await screen.findByRole("heading", { name: "Academic Discussion" });
+    expect(scrollTo).toHaveBeenCalledWith(toTop);
+
+    scrollTo.mockClear();
+    await user.click(screen.getByRole("button", { name: /^Submit/ }));
+    await screen.findByRole("heading", { name: "Results" });
+    expect(scrollTo).toHaveBeenCalledWith(toTop);
+  });
+
   // Each essay's scoring job is fired when its slot mounts, and re-fired only by an explicit Retry.
   // The Email's slot is drawn as one line above the Discussion and again on the results screen, a
   // different place in the tree, so it mounts twice. lib/scoringJobOnce.ts keeps the second mount

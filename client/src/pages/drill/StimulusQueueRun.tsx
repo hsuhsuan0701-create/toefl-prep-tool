@@ -5,6 +5,7 @@ import StimulusQuestions, {
   type StimulusItemResult,
 } from "../../components/StimulusQuestions";
 import DrillBandEstimateNotice from "../../components/DrillBandEstimateNotice";
+import { useStageEntry } from "../../hooks/useStageEntry";
 import { DeterministicAlreadyScoredError, getAttempt, scoreDeterministicTask } from "../../lib/api";
 import { requestErrorMessage } from "../../lib/requestError";
 import { TASK_TYPES } from "../../lib/taskTypes";
@@ -72,6 +73,9 @@ export default function StimulusQueueRun({ stimuli, attemptId, onComplete, exitT
   const [audioTry, setAudioTry] = useState(0);
 
   const current: QuestionedStimulus | undefined = stimuli[index];
+  // Each Stimulus replaces the one before on its own screen, so a new one opens at its top. Its
+  // Questions are one screen with it: checking them and reading the feedback keep the page put.
+  useStageEntry(current?.id ?? "");
   // When the current Stimulus's feedback arrived (performance.now()), so the press that checked it
   // cannot also leave it: see FEEDBACK_HOLD_MS.
   const feedbackAtRef = useRef<number | null>(null);
