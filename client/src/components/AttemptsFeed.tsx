@@ -2,7 +2,7 @@ import { useState, type ReactNode } from "react";
 import type { AttemptListItemVM, AttemptListVM } from "@toefl-prep/shared";
 import { abortAttempt, completeAttempt } from "../lib/api";
 import { requestErrorMessage } from "../lib/requestError";
-import { Button, TextLink } from "../ui/Button";
+import { Button, ButtonLink, TextLink } from "../ui/Button";
 import { ConfirmDialog } from "../ui/ConfirmDialog";
 import { EmptyState } from "../ui/EmptyState";
 import { formatWhen } from "../ui/format";
@@ -27,8 +27,18 @@ function finishConsequence(a: AttemptListItemVM): string {
 const DISCARD_CONSEQUENCE =
   "It stays in your history, but nothing more is scored and it never gets a Band Estimate. This cannot be undone.";
 
+/**
+ * The Run this unfinished Attempt is the live section of, if any. Finishing or discarding it from
+ * here would end that section for good (a Run never re-sits one), so its row leads back into the Run
+ * instead. A Run no longer in progress, or a section a restart replaced, leaves both actions.
+ */
+function liveFullTestRunId(a: AttemptListItemVM): string | null {
+  return a.status === "in_progress" && a.fullTestRun?.status === "in-progress" ? a.fullTestRun.id : null;
+}
+
 /** A finished Reading or Listening Drill has no band by design, which the row says rather than leaving a gap. */
 function rowSummary(a: AttemptListItemVM): string | undefined {
+  if (liveFullTestRunId(a)) return "A section of a Full-Test Run in progress";
   if (a.status === "completed" && a.estimate === null && a.mode === "drill" && (a.kind === "reading" || a.kind === "listening")) {
     return "Drills give no band";
   }
@@ -143,7 +153,11 @@ export default function AttemptsFeed({
               flagged={a.flagged}
               summary={rowSummary(a)}
               actions={
-                a.status === "in_progress" ? (
+                liveFullTestRunId(a) ? (
+                  <ButtonLink size="sm" to={`/full-test/${liveFullTestRunId(a)}`}>
+                    Resume the Full-Test Run
+                  </ButtonLink>
+                ) : a.status === "in_progress" ? (
                   <>
                     <Button size="sm" disabled={busy && pending?.attempt.id === a.id} onClick={() => setPending({ attempt: a, action: "finish" })}>
                       Finish and score…

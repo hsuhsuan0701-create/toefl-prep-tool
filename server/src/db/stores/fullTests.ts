@@ -48,6 +48,15 @@ export function createSqliteFullTestStore(db: Database.Database) {
     getFullTestRun(id: string): FullTestRunRow | undefined {
       return db.prepare("SELECT * FROM full_test_runs WHERE id=?").get(id) as FullTestRunRow | undefined;
     },
+    // An Attempt is linked to at most one Run (it is created with its link), and a restarted section
+    // repoints its column at the new Attempt, so the one it replaced is found by no Run.
+    getFullTestRunForAttempt(attemptId: string): FullTestRunRow | undefined {
+      return db.prepare(
+        `SELECT * FROM full_test_runs
+          WHERE ? IN (reading_attempt_id, listening_attempt_id, writing_attempt_id, speaking_attempt_id)
+          ORDER BY created_at DESC, rowid DESC LIMIT 1`
+      ).get(attemptId) as FullTestRunRow | undefined;
+    },
     // Filtered by status, the listing is unbounded unless the caller pages it: the in-progress Runs
     // are the practice page's only route back to a half-sat sitting, and there are few of them.
     listFullTestRuns(q: { limit?: number; status?: FullTestRunStatus } = {}): FullTestRunRow[] {

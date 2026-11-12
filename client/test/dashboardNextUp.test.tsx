@@ -59,6 +59,7 @@ const ONE_ATTEMPT: AttemptListVM = {
       captureFinishedAt: null,
       flagged: false,
       estimate: null,
+      fullTestRun: null,
     },
   ],
   total: 1,

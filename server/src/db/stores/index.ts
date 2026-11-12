@@ -110,7 +110,7 @@ export function createSqliteStores(
 
 /**
  * The Attempts route's store. Only the Attempt aggregate implements `getAttempt`, so the port's `Omit`s
- * need no counterpart here. The Full-Test half is the two members this route uses.
+ * need no counterpart here. The Full-Test half is the three members this route uses.
  */
 export function attemptsRouteStore(s: SqliteStores): AttemptsRouteStore {
   return {
@@ -123,6 +123,9 @@ export function attemptsRouteStore(s: SqliteStores): AttemptsRouteStore {
     // Read on this route's behalf by `checkFullTestLink`, which refuses a link the Run's own rules
     // do not allow BEFORE the Attempt row exists.
     getFullTestRun: s.fullTests.getFullTestRun,
+    // The Attempt log names the Run a section belongs to, and abort refuses the section a Run in
+    // progress is sitting.
+    getFullTestRunForAttempt: s.fullTests.getFullTestRunForAttempt,
     ...s.recording,
     getTranscriptionJob: s.transcription.getTranscriptionJob,
   };

@@ -96,11 +96,13 @@ describe("the compositions production hands out", () => {
     void repo.createGenerationJob;
     expect(absent(repo, "createGenerationJob")).toBeUndefined();
 
-    // One Full-Test member, plus the read `checkFullTestLink` makes on this route's behalf. A Run's
-    // lifecycle (create it, complete it, move its section cursor, list every Run and every Run's
-    // Sets) belongs to routes/fullTests.ts and is absent here.
+    // One Full-Test member, plus the read `checkFullTestLink` makes on this route's behalf and the
+    // read that finds the Run an Attempt is a section of. A Run's lifecycle (create it, complete it,
+    // move its section cursor, list every Run and every Run's Sets) belongs to routes/fullTests.ts
+    // and is absent here.
     expect(typeof repo.linkFullTestAttempt).toBe("function");
     expect(typeof repo.getFullTestRun).toBe("function");
+    expect(typeof repo.getFullTestRunForAttempt).toBe("function");
     for (const member of [
       "createFullTestRun", "completeFullTestRun", "setFullTestCurrentSection",
       "listFullTestRuns", "listFullTestSetIds", "lastAttemptStartedAtBySetId",

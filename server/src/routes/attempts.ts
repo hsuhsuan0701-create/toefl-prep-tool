@@ -134,8 +134,10 @@ function findSpeakingItem(set: SpeakingSet, itemId: string): SpeakingItemLookup 
  *   write-once capture    CaptureStore's combined seam is the only writer of the capture marker and
  *                         the missing-Item placeholders; the SetUnavailable branches below use it
  *                         with an empty placeholder list.
- *   Full-Test Runs        Only `linkFullTestAttempt` and the reads `checkFullTestLink` needs; the
- *                         rest of a Run's lifecycle belongs to routes/fullTests.ts.
+ *   Full-Test Runs        Only `linkFullTestAttempt`, the reads `checkFullTestLink` needs, and
+ *                         `getFullTestRunForAttempt` (the log names a section's Run, and abort
+ *                         refuses the section a Run in progress is sitting); the rest of a Run's
+ *                         lifecycle belongs to routes/fullTests.ts.
  *   Set supersession      `supersedeSet` is not in scope: retiring a Set belongs to the generation
  *                         runner that published its replacement.
  *
@@ -153,7 +155,7 @@ export type AttemptsRouteStore =
   & Omit<ScoreStore, "getAttempt" | "getScoringJob">
   & Omit<ScoringStore, "getAttempt">
   & Omit<EstimateStore, "getAttempt">
-  & Pick<FullTestRunStore, "linkFullTestAttempt">
+  & Pick<FullTestRunStore, "linkFullTestAttempt" | "getFullTestRunForAttempt">
   & FullTestLinkCheckStore
   & RecordingStore
   & DeterministicScoreStore
@@ -770,10 +772,21 @@ export function buildAttemptsRoutes(deps: AttemptsRouteDeps) {
     //
     // The answer comes from the guarded write, not from the read before it: when a completion lands
     // in between, the write changes nothing and the 409 names the state the Attempt is really in.
+    //
+    // The unfinished section a Full-Test Run in progress is sitting is refused: a Run never re-sits
+    // an abandoned section, so discarding it would cost the Run its Overall for good. It is finished
+    // inside the Run. /complete is not refused the same way, because the section's own flow calls it.
     .post("/:id/abort", (c) => {
       const attemptId = c.req.param("id");
       const attempt = deps.repo.getAttempt(attemptId);
       if (!attempt) return c.json({ error: "unknown attempt" }, 404);
+      const run = attempt.status === "in_progress" ? deps.repo.getFullTestRunForAttempt(attemptId) : undefined;
+      if (run?.status === "in-progress") {
+        return c.json({
+          error: "This Attempt is a section of a Full-Test Run in progress, and a discarded section can never be sat again. Resume the Run to finish it.",
+          fullTestRunId: run.id,
+        }, 409);
+      }
       if (attempt.status === "in_progress" && deps.repo.abortAttempt(attemptId)) {
         return c.json({ status: "aborted" });
       }

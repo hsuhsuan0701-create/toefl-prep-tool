@@ -62,6 +62,8 @@ export type FullTestRunStore = {
     createdAt?: SqliteTimestamp;
   }): void;
   getFullTestRun(id: string): FullTestRunRow | undefined;
+  /** The Run one of whose sections points at this Attempt, if any. */
+  getFullTestRunForAttempt(attemptId: string): FullTestRunRow | undefined;
   listFullTestRuns(q?: { limit?: number; status?: FullTestRunStatus }): FullTestRunRow[];
   listFullTestSetIds(): string[];
   linkFullTestAttempt(runId: string, section: FullTestSection, attemptId: string): boolean;

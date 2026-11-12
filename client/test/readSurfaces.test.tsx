@@ -57,6 +57,7 @@ function attempt(over: Partial<AttemptListItemVM> & Pick<AttemptListItemVM, "id"
     captureFinishedAt: null,
     flagged: false,
     estimate: null,
+    fullTestRun: null,
     ...over,
   };
 }

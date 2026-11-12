@@ -5,10 +5,11 @@ import type {
   AttemptMode,
   AttemptStatus,
   AttemptVM,
+  FullTestRunStatus,
   ScoringJobStatus,
   ScoringJobVM,
 } from "@toefl-prep/shared";
-import type { AttemptRow, ScoringJobRow } from "../db/rows.js";
+import type { AttemptRow, FullTestRunRow, ScoringJobRow } from "../db/rows.js";
 import { sqliteTimestampToIso } from "../db/timestamps.js";
 import { readPersistedEstimate, type EstimateReadStore } from "../services/sectionEstimates.js";
 import { setStore, type SetStore } from "../services/setStore.js";
@@ -38,14 +39,21 @@ export function toAttemptVM(row: AttemptRow, setTitle: string | null): AttemptVM
 /**
  * One row of the Attempt log. The band goes through readPersistedEstimate, the reader the Attempt
  * review and the Full-Test Run use, so a stored row that is not a band (short coverage, unreadable
- * detail) is null here exactly as it is there. One indexed lookup per row; a page is at most
- * ATTEMPT_PAGE_MAX (100) rows.
+ * detail) is null here exactly as it is there. One indexed lookup per row, and one over the few
+ * Full-Test Runs for the Run the Attempt is a section of; a page is at most ATTEMPT_PAGE_MAX (100)
+ * rows.
  */
-export function toAttemptListItemVM(row: AttemptRow, setTitle: string | null, estimates: EstimateReadStore): AttemptListItemVM {
-  const estimate = readPersistedEstimate(estimates, row.id);
+export function toAttemptListItemVM(
+  row: AttemptRow,
+  setTitle: string | null,
+  repo: EstimateReadStore & { getFullTestRunForAttempt(attemptId: string): FullTestRunRow | undefined },
+): AttemptListItemVM {
+  const estimate = readPersistedEstimate(repo, row.id);
+  const run = repo.getFullTestRunForAttempt(row.id);
   return {
     ...toAttemptVM(row, setTitle),
     estimate: estimate ? { band: estimate.band, method: estimate.method } : null,
+    fullTestRun: run ? { id: run.id, status: run.status as FullTestRunStatus } : null,
   };
 }
 

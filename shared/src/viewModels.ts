@@ -47,6 +47,14 @@ export interface AttemptVM {
  */
 export interface AttemptListItemVM extends AttemptVM {
   estimate: { band: number; method: string } | null;
+  /**
+   * The Full-Test Run that has this Attempt as one of its sections, or null. A section restarted
+   * after a reload leaves its old Attempt pointed at by no Run, so that one is null too. While the
+   * Run is in progress and this Attempt is unfinished, it is the section the Run is sitting: the
+   * log offers the way back into the Run instead of finishing or discarding it, and
+   * POST /api/attempts/:id/abort refuses it.
+   */
+  fullTestRun: { id: string; status: FullTestRunStatus } | null;
 }
 
 /**

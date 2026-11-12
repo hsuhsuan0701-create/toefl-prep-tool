@@ -27,6 +27,7 @@ function attempt(over: Partial<AttemptListItemVM> = {}): AttemptListItemVM {
     modulePath: null,
     routerRaw: null,
     estimate: null,
+    fullTestRun: null,
     ...over,
   };
 }
@@ -107,6 +108,33 @@ describe("the log's own states", () => {
   it("says what will fill an empty log", () => {
     renderLog({ items: [], total: 0 });
     expect(screen.getByText("No Attempts yet")).toBeInTheDocument();
+  });
+});
+
+// The log on the Dashboard and on Progress. A Run never re-sits a section that was finished or
+// discarded, so the row of the section a Run in progress is sitting leads back into the Run instead.
+describe("an unfinished Attempt that is a Full-Test Run's section", () => {
+  it("names the Run and offers to resume it, in place of finishing or discarding", () => {
+    renderLog({
+      items: [attempt({ kind: "listening", status: "in_progress", completedAt: null, fullTestRun: { id: "run-open", status: "in-progress" } })],
+      total: 1,
+    });
+    const row = screen.getByRole("link", { name: "Listening Simulation" }).closest("li")!;
+    expect(within(row).getByText("A section of a Full-Test Run in progress")).toBeInTheDocument();
+    expect(within(row).getByRole("link", { name: "Resume the Full-Test Run" })).toHaveAttribute("href", "/full-test/run-open");
+    expect(within(row).queryByRole("button", { name: "Finish and score…" })).toBeNull();
+    expect(within(row).queryByRole("button", { name: "Discard…" })).toBeNull();
+  });
+
+  it.each([
+    ["belongs to no Run (or a restart replaced it)", null],
+    ["belongs to a Run no longer in progress", { id: "run-done", status: "completed" as const }],
+  ])("keeps both actions when it %s", (_label, fullTestRun) => {
+    renderLog({ items: [attempt({ status: "in_progress", completedAt: null, fullTestRun })], total: 1 });
+    expect(screen.getByRole("button", { name: "Finish and score…" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Discard…" })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Resume the Full-Test Run" })).toBeNull();
+    expect(screen.queryByText("A section of a Full-Test Run in progress")).toBeNull();
   });
 });
 

@@ -116,6 +116,21 @@ describe("the client API against the composed app", () => {
     expect(review.deterministicReview!.every((item) => item.correct)).toBe(true);
   });
 
+  it("lists a Full-Test Run's current section with its Run, and refuses to discard it", async () => {
+    const run = await api.createFullTest();
+    const reading = run.sections.find((s) => s.section === "reading")!;
+    const { attemptId } = await api.createAttempt({ kind: "reading", mode: "simulation", setId: reading.setId!, fullTestRunId: run.id });
+    createdAttempts.push(attemptId);
+
+    const { items } = await api.listAttempts({ setId: reading.setId! });
+    expect(items.find((a) => a.id === attemptId)?.fullTestRun).toEqual({ id: run.id, status: "in-progress" });
+
+    const error = await api.abortAttempt(attemptId).catch((e: unknown) => e);
+    expect(error).toBeInstanceOf(api.HttpError);
+    expect((error as api.HttpError).status).toBe(409);
+    expect((await api.getAttempt(attemptId)).attempt.status).toBe("in_progress");
+  });
+
   it("answers the client's own error shapes: an unknown Attempt is an HttpError carrying its status", async () => {
     const error = await api.getAttempt("no-such-attempt").catch((e: unknown) => e);
     expect(error).toBeInstanceOf(api.HttpError);

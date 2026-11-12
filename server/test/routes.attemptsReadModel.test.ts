@@ -69,6 +69,7 @@ describe("GET / — the Attempt log", () => {
       modulePath: null,
       routerRaw: null,
       estimate: null,
+      fullTestRun: null,
     });
     expect(page.items[0].isRepeat).toBe(true);
   });

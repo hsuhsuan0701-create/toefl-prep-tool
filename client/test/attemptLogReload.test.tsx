@@ -37,6 +37,7 @@ function attempt(n: number, over: Partial<AttemptListItemVM> = {}): AttemptListI
     modulePath: null,
     routerRaw: null,
     estimate: null,
+    fullTestRun: null,
     ...over,
   };
 }
