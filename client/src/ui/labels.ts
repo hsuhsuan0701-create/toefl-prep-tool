@@ -500,6 +500,17 @@ export const SCORING_NOT_SET_UP = {
   setupLink: "See what's missing",
 } as const;
 
+/**
+ * This machine refuses every Speaking recording (the setup status's `speaking-uploads` is off), so a
+ * Speaking run keeps nothing to score, now or after Setup. Critical where SCORING_NOT_SET_UP is a
+ * caution: that one loses only time, this one loses the run.
+ */
+export const RECORDINGS_NOT_SAVED = {
+  label: "Recordings can't be saved on this machine",
+  tone: "critical",
+  glyph: "cross",
+} as const;
+
 // Attempt review: Deductions, Judges, and the cautions a Score Report can carry.
 
 /** A Deduction's `category` (DeductionCategory, shared/src/schemas/scoring.ts), as its chip reads. */

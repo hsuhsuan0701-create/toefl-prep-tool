@@ -226,6 +226,34 @@ describe("before a Speaking or Writing run starts", () => {
     expect(speakingNotice).toHaveTextContent("Your recordings will be saved");
   });
 
+  it("says a Speaking run's recordings won't be saved when this machine refuses every upload, and still lets it start", async () => {
+    const api = await import("../src/lib/api");
+    // ffmpeg missing: intake transcodes each upload before storing it, so it stores none.
+    (api.getSetupStatus as any).mockResolvedValue({
+      ...NOTHING_CONFIGURED,
+      ffmpeg: false,
+      capabilities: { ...NOTHING_CONFIGURED.capabilities, "speaking-uploads": false },
+      missing: [
+        ...NOTHING_CONFIGURED.missing,
+        { piece: "ffmpeg", disables: ["speaking-listening-generation", "speaking-scoring", "speaking-uploads"] },
+      ],
+    } as SetupStatusVM);
+    const drill = mount("/speaking/spk-1", [{ path: "/speaking/:setId", element: <SpeakingDrill /> }]);
+    const drillNotice = (await screen.findByText("Recordings can't be saved on this machine")).closest("div.flex") as HTMLElement;
+    expect(drillNotice).toHaveTextContent("Your recordings won't be saved until Setup is complete, so nothing you record in this run can be scored, now or later.");
+    expect(drillNotice).not.toHaveTextContent("will be saved");
+    expect(drillNotice).not.toHaveTextContent("score them from this Attempt's report");
+    expect(within(drillNotice).getByRole("link", { name: "See what's missing" })).toHaveAttribute("href", "/#setup");
+    expect(drillNotice.textContent).not.toMatch(/Claude|Codex|Gemini|OpenAI|ffmpeg/);
+    drill.unmount();
+
+    mount("/simulate/speaking", [{ path: "/simulate/:kind", element: <SimulationRun /> }]);
+    const start = await screen.findByRole("button", { name: "Check your microphone" });
+    const simNotice = (await screen.findByText("Recordings can't be saved on this machine")).closest("div.flex") as HTMLElement;
+    expect(simNotice).not.toHaveTextContent("will be saved");
+    expect(start).toBeEnabled();
+  });
+
   it("says nothing new on a machine that can score", async () => {
     const api = await import("../src/lib/api");
     (api.getSetupStatus as any).mockResolvedValue(ALL_SET_UP);

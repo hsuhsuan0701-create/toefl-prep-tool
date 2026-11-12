@@ -1,7 +1,7 @@
 import { TextLink } from "../../ui/Button";
-import { SCORING_NOT_SET_UP } from "../../ui/labels";
+import { RECORDINGS_NOT_SAVED, SCORING_NOT_SET_UP } from "../../ui/labels";
 import { Notice } from "../../ui/Notice";
-import { useSectionScorability } from "./sectionScorability";
+import { useSectionScorability, useSpeakingUploadsOff } from "./sectionScorability";
 
 // What a Speaking or Writing screen says when the setup status reports that this machine cannot
 // score the section: before the run starts (ScoringSetupNotice), when a scoring job fails now
@@ -26,12 +26,25 @@ export function SetupLink() {
  * Attempt's report scores it (Retry transcription for a recording, Re-score for anything else).
  * Renders nothing while scoring is ready, still being checked, or unknown.
  *
+ * The one exception to "stored": with Speaking uploads off, intake refuses every recording at
+ * transcode and keeps nothing, so the notice says the run's recordings will not be saved and that
+ * nothing from it can be scored, now or later. It still does not block starting.
+ *
  * `buildSentence`: the run includes Build a Sentence, which is scored on this machine against the
  * Set's key and needs no setup, so the notice says it is unaffected.
  */
 export function ScoringSetupNotice({ section, buildSentence = false }: { section: "speaking" | "writing"; buildSentence?: boolean }) {
   const scorability = useSectionScorability(section);
+  const uploadsOff = useSpeakingUploadsOff();
   if (scorability.state !== "blocked") return null;
+  if (section === "speaking" && uploadsOff) {
+    return (
+      <Notice tone={RECORDINGS_NOT_SAVED.tone} title={RECORDINGS_NOT_SAVED.label} action={<SetupLink />}>
+        Your recordings won't be saved until Setup is complete, so nothing you record in this run can be scored, now or
+        later. Complete Setup before you sit it.
+      </Notice>
+    );
+  }
   const responses = section === "speaking" ? "recordings" : "essays";
   return (
     <Notice tone={SCORING_NOT_SET_UP.tone} title={SCORING_NOT_SET_UP.label} action={<SetupLink />}>

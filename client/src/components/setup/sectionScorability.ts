@@ -36,3 +36,14 @@ export function useSectionScorability(section: Section | null): Scorability {
 export function useScoringNotSetUp(section: Section | null): boolean {
   return useSectionScorability(section).state === "blocked";
 }
+
+/**
+ * True when the setup status the provider already holds says this machine refuses every Speaking
+ * upload (`speaking-uploads` is off: ffmpeg is missing, and intake transcodes each recording before
+ * it stores anything). Asks for nothing itself: read it beside useSectionScorability("speaking"),
+ * which does. With no answer yet it is false, so no caller claims more than it knows.
+ */
+export function useSpeakingUploadsOff(): boolean {
+  const source = useContext(SetupStatusContext);
+  return source?.status?.capabilities["speaking-uploads"] === false;
+}
