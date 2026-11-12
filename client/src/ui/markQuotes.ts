@@ -7,10 +7,14 @@
 // an ellipsis eliding the middle. Matching normalises all of those, then maps the hit back onto the
 // original text, so what renders is always the User's own characters. A quote that still cannot be
 // found is returned in `unmatched` — the Deduction list must still show it, just without a mark.
+// A quote that is in the Response but whose every occurrence overlaps a mark already placed (two
+// Deductions quoting adjacent, shared words) is not missing: it is returned in `overlapping`, with
+// the Deduction whose mark it shares words with, so the list never calls it absent.
 
 export type QuoteMark = { id: number; quote: string };
 export type MarkedSegment = { text: string; markId?: number };
-export type MarkResult = { segments: MarkedSegment[]; unmatched: number[] };
+export type QuoteOverlap = { id: number; overlaps: number };
+export type MarkResult = { segments: MarkedSegment[]; unmatched: number[]; overlapping: QuoteOverlap[] };
 
 const FOLD: Record<string, string> = {
   "‘": "'", "’": "'", "‚": "'", "′": "'",
@@ -53,13 +57,17 @@ function normalise(text: string): { norm: string; from: number[]; to: number[] }
   return { norm, from, to };
 }
 
-/** The searchable fragments of a quote: trimmed of wrapping quote marks, split on any ellipsis. */
-function fragments(quote: string): string[] {
-  const stripped = quote
+/** A quote trimmed of wrapping quote marks. */
+function unwrapped(quote: string): string {
+  return quote
     .trim()
     .replace(/^["'‘’“”]+|["'‘’“”]+$/g, "")
     .trim();
-  return stripped
+}
+
+/** The searchable fragments of a quote: trimmed of wrapping quote marks, split on any ellipsis. */
+function fragments(quote: string): string[] {
+  return unwrapped(quote)
     .split(/\s*(?:\.\.\.|…)\s*/)
     .map((f) => normalise(f).norm.trim())
     .filter((f) => f.length > 0);
@@ -69,16 +77,22 @@ export function markQuotes(text: string, quotes: readonly QuoteMark[]): MarkResu
   const { norm, from: sourceStart, to: sourceEnd } = normalise(text);
   const taken: Array<{ start: number; end: number; id: number }> = [];
   const unmatched: number[] = [];
+  const overlapping: QuoteOverlap[] = [];
 
-  const overlaps = (start: number, end: number) => taken.some((t) => start < t.end && end > t.start);
+  const overlapped = (start: number, end: number) => taken.find((t) => start < t.end && end > t.start);
 
   for (const { id, quote } of quotes) {
-    // Whole quote first; failing that, each elided fragment of 8 or more characters, longest first.
+    // The quote as written first: a transcript can hold an ellipsis itself ("count the... and"), and
+    // then the quote's is the User's trailing off, not an elision. Then the whole quote with any
+    // ellipsis closed up; failing that, each elided fragment of 8 or more characters, longest first.
     // A shorter one is too ambiguous (a 3-letter fragment would mark the first "the" in the essay).
     const frags = fragments(quote);
     const longFragments = frags.length > 1 ? [...frags].sort((a, b) => b.length - a.length).filter((f) => f.length >= 8) : [];
-    const candidates = [frags.join(" "), ...longFragments].filter((c) => c.length > 0);
+    const asWritten = normalise(unwrapped(quote)).norm.trim();
+    const candidates = [...new Set([asWritten, frags.join(" "), ...longFragments])].filter((c) => c.length > 0);
     let placed = false;
+    // The mark the first occurrence ran into, kept in case no occurrence is free.
+    let sharedWith: number | undefined;
     for (const needle of candidates) {
       let from = 0;
       while (!placed) {
@@ -86,16 +100,21 @@ export function markQuotes(text: string, quotes: readonly QuoteMark[]): MarkResu
         if (at < 0) break;
         const start = sourceStart[at];
         const end = sourceEnd[at + needle.length - 1];
-        if (!overlaps(start, end)) {
+        const clash = overlapped(start, end);
+        if (!clash) {
           taken.push({ start, end, id });
           placed = true;
         } else {
+          sharedWith ??= clash.id;
           from = at + 1;
         }
       }
       if (placed) break;
     }
-    if (!placed) unmatched.push(id);
+    if (!placed) {
+      if (sharedWith === undefined) unmatched.push(id);
+      else overlapping.push({ id, overlaps: sharedWith });
+    }
   }
 
   taken.sort((a, b) => a.start - b.start);
@@ -107,5 +126,5 @@ export function markQuotes(text: string, quotes: readonly QuoteMark[]): MarkResu
     cursor = t.end;
   }
   if (cursor < text.length) segments.push({ text: text.slice(cursor) });
-  return { segments, unmatched };
+  return { segments, unmatched, overlapping };
 }

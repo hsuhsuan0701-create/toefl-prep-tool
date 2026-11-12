@@ -81,4 +81,24 @@ describe("markQuotes", () => {
     expect(r.marks).toEqual([]);
     expect(r.unmatched).toEqual([1, 2]);
   });
+
+  // A transcript can trail off with an ellipsis of its own; a quote of those words is not elided.
+  it("marks a quote whose ellipsis is in the Response itself", () => {
+    const r = marked("Once the surface is clean, count the... and lock the register.", ["the... and"]);
+    expect(r.marks).toEqual([[1, "the... and"]]);
+    expect(r.unmatched).toEqual([]);
+  });
+
+  // Listen and Repeat Deductions often quote adjacent words that share one: "point to" and
+  // "to shelf." both hold the one "to". The second is in the Response, so it is not unmatched.
+  it("reports a quote whose only occurrence overlaps an earlier mark as overlapping that mark, not as missing", () => {
+    const result = markQuotes("Then you point to shelf.", [
+      { id: 3, quote: "point to" },
+      { id: 4, quote: "to shelf." },
+      { id: 5, quote: "a phrase that is not there" },
+    ]);
+    expect(result.segments.filter((s) => s.markId !== undefined).map((s) => [s.markId, s.text])).toEqual([[3, "point to"]]);
+    expect(result.overlapping).toEqual([{ id: 4, overlaps: 3 }]);
+    expect(result.unmatched).toEqual([5]);
+  });
 });
