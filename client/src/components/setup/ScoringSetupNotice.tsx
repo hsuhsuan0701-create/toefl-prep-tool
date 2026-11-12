@@ -4,9 +4,10 @@ import { Notice } from "../../ui/Notice";
 import { useSectionScorability } from "./sectionScorability";
 
 // What a Speaking or Writing screen says when the setup status reports that this machine cannot
-// score the section: before the run starts (ScoringSetupNotice), and in place of a bare scoring
-// failure (ScoringNotSetUpFailure). Both name a capability, not a provider, and point to the
-// Dashboard's Setup checklist, which says what is missing.
+// score the section: before the run starts (ScoringSetupNotice), when a scoring job fails now
+// (ScoringNotSetUpFailure), and beside a stored failure that a Re-score could clear
+// (RescoreNeedsSetup). Each names a capability, not a provider, and points to the Dashboard's Setup
+// checklist, which says what is missing.
 
 /** The Dashboard's Setup section (SetupSection's `id`). */
 export const SETUP_HREF = "/#setup";
@@ -41,8 +42,12 @@ export function ScoringSetupNotice({ section, buildSentence = false }: { section
 }
 
 /**
- * What a scoring failure says, in place of the server's bare error, when useScoringNotSetUp reports
- * that this machine cannot score the section. Shown with SetupLink.
+ * What a scoring job that has just failed says, in place of the server's bare error, when
+ * useScoringNotSetUp reports that this machine cannot score the section. Shown with SetupLink and
+ * Retry. Only for a job that reached the server and has just failed there (ScoringProgress): one
+ * exists only once its Response is stored (an essay before its job, a recording before its
+ * transcript), and its failure is today's, so both claims hold. A failure stored earlier keeps its
+ * own reason (RescoreNeedsSetup).
  */
 export function ScoringNotSetUpFailure() {
   return (
@@ -50,4 +55,13 @@ export function ScoringNotSetUpFailure() {
       {SCORING_NOT_SET_UP.label}, so this Response couldn't be scored. It is saved, and can be scored once Setup is complete.
     </p>
   );
+}
+
+/**
+ * Beside a stored scoring failure that a Re-score from this page would retry, when
+ * useScoringNotSetUp reports this machine cannot score the section. It speaks of now, not of why the
+ * Item failed then: that stays the recorded reason. Shown with SetupLink.
+ */
+export function RescoreNeedsSetup() {
+  return <p>{SCORING_NOT_SET_UP.label}, so a Re-score here can't succeed until Setup is complete.</p>;
 }

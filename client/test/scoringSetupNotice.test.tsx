@@ -274,9 +274,38 @@ describe("after scoring fails on a machine that is not set up", () => {
     expect(within(alert).queryByRole("link", { name: "See what's missing" })).toBeNull();
   });
 
-  it("Attempt review says why a failed essay has no score and links to Setup", async () => {
+  function mountReview(kind: "writing" | "speaking", failed: ItemVM) {
+    return import("../src/lib/api").then((api) => {
+      const detail = {
+        attempt: {
+          id: "att-1",
+          kind,
+          mode: kind === "writing" ? "drill" : "simulation",
+          setId: kind === "writing" ? "wri-1" : "spk-1",
+          setTitle: "Wrong date on a tour confirmation",
+          isRepeat: false,
+          status: "completed",
+          startedAt: "2026-08-01T10:00:00.000Z",
+          completedAt: "2026-08-01T10:30:00.000Z",
+          captureFinishedAt: kind === "speaking" ? "2026-08-01T10:30:00.000Z" : null,
+          flagged: false,
+        },
+        items: [failed],
+        judgeReports: [],
+        estimate: null,
+        bandStatus: { status: "incomplete", unscored: [], absent: [] },
+        activeJobs: [],
+      } as unknown as AttemptDetailVM;
+      (api.getAttempt as any).mockResolvedValue(detail);
+      (api.getSet as any).mockRejectedValue(new Error("404: not found"));
+      vi.spyOn(console, "warn").mockImplementation(() => {});
+      mount("/attempts/att-1", [{ path: "/attempts/:id", element: <AttemptReview /> }]);
+    });
+  }
+
+  it("Attempt review keeps a failed essay's recorded reason, and says a Re-score here needs Setup first", async () => {
     const api = await import("../src/lib/api");
-    const failed: ItemVM = {
+    await mountReview("writing", {
       attemptId: "att-1",
       itemId: "email-1",
       taskType: "email",
@@ -288,38 +317,74 @@ describe("after scoring fails on a machine that is not set up", () => {
       scoringStatus: "failed",
       deliveryReport: null,
       createdAt: "2026-08-01T10:00:00.000Z",
-    } as ItemVM;
-    const detail = {
-      attempt: {
-        id: "att-1",
-        kind: "writing",
-        mode: "drill",
-        setId: "wri-1",
-        setTitle: "Wrong date on a tour confirmation",
-        isRepeat: false,
-        status: "completed",
-        startedAt: "2026-08-01T10:00:00.000Z",
-        completedAt: "2026-08-01T10:30:00.000Z",
-        captureFinishedAt: null,
-        flagged: false,
-      },
-      items: [failed],
-      judgeReports: [],
-      estimate: null,
-      bandStatus: { status: "incomplete", unscored: [], absent: [] },
-      activeJobs: [],
-    } as unknown as AttemptDetailVM;
-    (api.getAttempt as any).mockResolvedValue(detail);
-    (api.getSet as any).mockRejectedValue(new Error("404: not found"));
-    vi.spyOn(console, "warn").mockImplementation(() => {});
-    mount("/attempts/att-1", [{ path: "/attempts/:id", element: <AttemptReview /> }]);
+    } as ItemVM);
 
     const card = await screen.findByTestId("item-email-1");
-    await within(card).findByText(/Scoring isn't set up on this machine, so this Response couldn't be scored/);
-    // In place of the bare summary; the server's own words stay behind "What the server reported".
-    expect(card).not.toHaveTextContent("Scoring did not finish.");
+    await within(card).findByText("Scoring isn't set up on this machine, so a Re-score here can't succeed until Setup is complete.");
+    await waitFor(() => expect(api.getSetupStatus).toHaveBeenCalled());
+    // Why it failed then is the recorded reason, not today's setup.
+    expect(within(card).getByText("Scoring did not finish. It is not in the band.")).toBeInTheDocument();
+    expect(within(card).getByText("What the server reported")).toBeInTheDocument();
+    expect(card).not.toHaveTextContent("so this Response couldn't be scored");
     expect(within(card).getByRole("link", { name: "See what's missing" })).toHaveAttribute("href", "/#setup");
-    // The way to score it once set up is still there.
     expect(within(card).getByRole("button", { name: "Re-score" })).toBeInTheDocument();
+    expect(card.textContent).not.toMatch(/Claude|Codex|Gemini|OpenAI/);
+  });
+
+  it("Attempt review keeps a never-captured recording's reason, and promises nothing Setup cannot give", async () => {
+    await mountReview("speaking", {
+      attemptId: "att-1",
+      itemId: "lr-1",
+      taskType: "listen_repeat",
+      responseText: null,
+      responseAudioPath: null,
+      transcript: null,
+      score: null,
+      scoreJson: { error: "recording upload did not arrive" },
+      scoringStatus: "failed",
+      deliveryReport: null,
+      createdAt: "2026-08-01T10:00:00.000Z",
+    } as ItemVM);
+
+    const card = await screen.findByTestId("item-lr-1");
+    // Give a setup status the page asked for time to land, so its absence below means something.
+    await new Promise((r) => setTimeout(r, 50));
+    expect(within(card).getByText("The recording never reached the server. It is not in the band.")).toBeInTheDocument();
+    expect(within(card).getByText(/Only a new Attempt can score it/)).toBeInTheDocument();
+    expect(card).not.toHaveTextContent(/saved/);
+    expect(card).not.toHaveTextContent(NOT_SET_UP);
+    expect(within(card).queryByRole("link", { name: "See what's missing" })).toBeNull();
+  });
+
+  it("a POST /score that never made a job keeps its own error, since nothing proves the essay is stored", async () => {
+    const { default: ScoringProgress } = await import("../src/components/ScoringProgress");
+    mount("/", [
+      {
+        path: "/",
+        element: (
+          <ScoringProgress
+            section="writing"
+            onRetry={() => {}}
+            job={{
+              status: "failed",
+              itemIds: null,
+              stage: null,
+              judgesDone: [],
+              judgesFailed: [],
+              openaiJudgeProvider: null,
+              arbiterProvider: null,
+              fallbackFrom: null,
+              queuePosition: null,
+              elapsedMs: 0,
+              error: "Failed to fetch",
+            }}
+          />
+        ),
+      },
+    ]);
+    const alert = await screen.findByRole("alert");
+    await new Promise((r) => setTimeout(r, 0));
+    expect(alert).toHaveTextContent("Failed to fetch.");
+    expect(alert).not.toHaveTextContent(/saved/);
   });
 });

@@ -30,6 +30,8 @@ export type ScoringProgressJob = {
   cancellationRequestedAt?: string | null;
   terminalAt?: string | null;
   cancellationReason?: CancellationReason | null;
+  /** The Items the server's job scores; null or absent until a job has reported (useScoringJob). */
+  itemIds?: string[] | null;
 };
 
 export type ScoringProgressProps = {
@@ -75,7 +77,11 @@ function arbiterDetail(job: ScoringProgressJob): string | null {
  */
 export default function ScoringProgress({ job, onRetry, section }: ScoringProgressProps) {
   const { status, stage, judgesDone, judgesFailed, openaiJudgeProvider, elapsedMs, error, cancellationRequestedAt, terminalAt, cancellationReason } = job;
-  const notSetUp = useScoringNotSetUp(status === "failed" ? (section ?? null) : null);
+  // Put down to this machine's setup only when a job reached the server and failed there: its
+  // Response was stored before the job existed, so "it is saved" holds. A POST /score that never made
+  // a job proves neither that the Response is stored nor why it failed, and keeps its own error.
+  const jobReported = job.itemIds != null;
+  const notSetUp = useScoringNotSetUp(status === "failed" && jobReported ? (section ?? null) : null);
 
   if (status === "failed") {
     return (

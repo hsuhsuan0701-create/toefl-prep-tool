@@ -7,7 +7,7 @@ import { asSentence } from "../../ui/format";
 import { RESCORE_FAILED } from "../../ui/labels";
 import { Notice } from "../../ui/Notice";
 import ScoringProgress from "../ScoringProgress";
-import { ScoringNotSetUpFailure, SetupLink } from "../setup/ScoringSetupNotice";
+import { RescoreNeedsSetup, SetupLink } from "../setup/ScoringSetupNotice";
 import { useScoringNotSetUp } from "../setup/sectionScorability";
 import { RescoreAction } from "./ReviewParts";
 import { isPersistedScoreItem, isSpeakingTaskType } from "./reviewItems";
@@ -36,11 +36,13 @@ export type ScoringOutcomeProps = {
  * with an ordinary Score Report and no job over it.
  */
 export function ScoringOutcome({ item, jobView, taskBusy, canRescore, rescoreCount, onRescore, settled, discarded }: ScoringOutcomeProps) {
-  // Only a judged section's failure can be down to this machine's setup; asked only once one shows.
+  // Only a judged section's scoring can need this machine's setup. For a stored failure the setup
+  // status matters only when this page offers a Re-score, which cannot succeed until Setup is
+  // complete; so it is asked only then.
   const itemSection = taskTypeEntry(item.taskType)?.section;
   const judgedSection = itemSection === "speaking" || itemSection === "writing" ? itemSection : null;
-  const persistedFailure = !jobView && item.scoringStatus === "failed";
-  const notSetUp = useScoringNotSetUp(persistedFailure ? judgedSection : null);
+  const rescorableFailure = !jobView && item.scoringStatus === "failed" && canRescore && !discarded;
+  const rescoreNeedsSetup = useScoringNotSetUp(rescorableFailure ? judgedSection : null);
 
   // A failed re-score of a scored Item committed nothing, and the Score Report beneath still shows
   // the committed score, so the notice says the Re-score failed rather than that scoring did.
@@ -83,10 +85,8 @@ export function ScoringOutcome({ item, jobView, taskBusy, canRescore, rescoreCou
           canRescore ? (
             <>
               {rescore}
-              {notSetUp && <SetupLink />}
+              {rescoreNeedsSetup && <SetupLink />}
             </>
-          ) : notSetUp ? (
-            <SetupLink />
           ) : isSpeakingTaskType(item.taskType) ? (
             <p className="text-ui text-ink-soft">
               {item.transcriptionJob
@@ -96,9 +96,10 @@ export function ScoringOutcome({ item, jobView, taskBusy, canRescore, rescoreCou
           ) : undefined
         }
       >
-        {/* On a machine that cannot score this section, that is the reason worth reading; the
-            server's words, when they say more than a known summary, stay under the Disclosure. */}
-        {notSetUp ? <ScoringNotSetUpFailure /> : <p>{failure.summary} It is not in the band.</p>}
+        {/* The recorded reason always stands: this machine's setup today says nothing about why the
+            Item failed then, only whether a Re-score here can succeed. */}
+        <p>{failure.summary} It is not in the band.</p>
+        {rescoreNeedsSetup && <RescoreNeedsSetup />}
         {failure.detail && (
           <Disclosure summary="What the server reported" className="mt-1">
             <p className="break-words">{failure.detail}</p>
