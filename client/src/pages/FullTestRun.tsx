@@ -56,19 +56,26 @@ function msUntilElapsedTextChanges(ms: number): number {
  * completion. While the Run is open it re-renders exactly when the shown text would change: every
  * second for its first minute, then once a minute. Wall clock, not time on task: a Run left
  * overnight reads as a very long sitting, which is the truth about it.
+ *
+ * Each tick bumps a counter and the clock is read where it is used, so every tick schedules the
+ * next one even when the clock answers with the time it gave last (a browser that coarsens
+ * Date.now to resist fingerprinting does); a tick stored as the clock's value would then change
+ * nothing, and the count would stop. A time that does not parse counts nothing and never ticks.
  */
 function useRunElapsed(createdAt: string, completedAt: string | null): string {
   const startMs = new Date(createdAt).getTime();
   const endMs = completedAt ? new Date(completedAt).getTime() : null;
-  const [nowMs, setNowMs] = useState(() => Date.now());
+  const counting = endMs === null && Number.isFinite(startMs);
+  const [tick, setTick] = useState(0);
   useEffect(() => {
-    if (endMs !== null) return;
-    const t = setTimeout(() => setNowMs(Date.now()), msUntilElapsedTextChanges(Math.max(0, nowMs - startMs)));
+    if (!counting) return;
+    const t = setTimeout(() => setTick((n) => n + 1), msUntilElapsedTextChanges(Math.max(0, Date.now() - startMs)));
     return () => clearTimeout(t);
-  }, [endMs, nowMs, startMs]);
+  }, [counting, startMs, tick]);
+  const elapsedMs = (endMs ?? Date.now()) - startMs;
   // formatDuration, as the Dashboard's Full-Test Run panel uses, so a sitting reads the same length
   // in both places.
-  return formatDuration(Math.max(0, (endMs ?? nowMs) - startMs) / 1000);
+  return formatDuration(Number.isFinite(elapsedMs) ? Math.max(0, elapsedMs) / 1000 : 0);
 }
 
 /** What a section still waiting on scoring is waiting for, in plain words. */

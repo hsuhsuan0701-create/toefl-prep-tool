@@ -231,6 +231,43 @@ describe("the full-test run page", () => {
     }
   });
 
+  // A browser that coarsens its clock (resist-fingerprinting modes round Date.now to 16.67 ms or
+  // 100 ms) can answer a tick with the same time as the last one. The count must keep going and move
+  // once the clock does, not wait for a remount.
+  it("keeps counting when the clock reads the same time across a tick", async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    const createdMs = Date.parse("2026-08-23T02:00:00.000Z");
+    let clockMs = createdMs + 4_000;
+    vi.spyOn(Date, "now").mockImplementation(() => clockMs);
+    try {
+      renderRun(run({ createdAt: new Date(createdMs).toISOString() }));
+      await screen.findByText(/Elapsed 4 s/);
+      await act(async () => {});
+      // The tick at the half second comes and goes with the clock where it was.
+      await act(async () => vi.advanceTimersByTime(1_000));
+      expect(screen.getByText(/Elapsed 4 s/)).toBeInTheDocument();
+      clockMs += 1_000;
+      await act(async () => vi.advanceTimersByTime(1_000));
+      expect(screen.getByText(/Elapsed 5 s/)).toBeInTheDocument();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  // A start time that does not parse has no elapsed time to count, and must not re-render the page
+  // on a zero delay forever.
+  it("shows no elapsed time and schedules no tick for a start time that does not parse", async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    try {
+      renderRun(run({ createdAt: "not a time" }));
+      expect(await screen.findByText(/Elapsed 0 s/)).toBeInTheDocument();
+      await act(async () => {});
+      expect(vi.getTimerCount()).toBe(0);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
   it("shows Reading complete with its Band Estimate and a link to its report after the section is sat", async () => {
     // Exactly what a reload after finishing Reading fetches: the Run, with Reading's state and band
     // derived server-side from the Attempt it recorded.
