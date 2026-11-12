@@ -8,6 +8,8 @@ import AvatarCard from "./AvatarCard";
 import CtwGapInput from "./CtwGapInput";
 import McqQuestion, { ResultVerdict, type McqOption } from "./McqQuestion";
 import StimulusPlayer from "./StimulusPlayer";
+import StimulusReplay from "./StimulusReplay";
+import { taskTypeLabel } from "../lib/taskTypes";
 
 // The one place a Reading or Listening Stimulus's own Items are turned into DOM, for both Attempt
 // modes, with the Listening leak gate inside it.
@@ -38,6 +40,11 @@ export type StimulusItemResult = {
   correct: boolean;
   key?: string;
   explanationZh?: string;
+  /**
+   * What the Stimulus said, for a Listening Conversation, Announcement or Academic Talk scored in a
+   * Drill. Never sent for a Listen and Choose a Response, and never rendered for one.
+   */
+  transcript?: string;
 };
 
 /**
@@ -355,7 +362,10 @@ function settingOf(stimulus: ServedListeningStimulus): string | undefined {
  *
  * StimulusPlayer is keyed on the Stimulus and its `audioTry`, so a new Stimulus or a retry mounts a
  * fresh player and plays once; it unmounts again once the Questions appear, so there is nothing to
- * click to replay it.
+ * click to replay it while they are being answered. Only once `results` holds a scored Item (a
+ * Drill's checked Stimulus) can it be heard again, and a Conversation, Announcement or Academic
+ * Talk read, from StimulusReplay under the Questions. A Simulation passes no `results`, so its
+ * Stimuli never gain it here.
  */
 export function ListeningStimulusQuestions({
   stimulus,
@@ -370,6 +380,10 @@ export function ListeningStimulusQuestions({
   children,
   ...questionProps
 }: ListeningStimulusQuestionsProps) {
+  const scored = phase === "questions" && (questionProps.results?.length ?? 0) > 0;
+  // A Listen and Choose a Response utterance is audio only, whatever a result carries.
+  const transcript =
+    stimulus.taskType === "listen_choose" ? undefined : questionProps.results?.find((r) => r.transcript !== undefined)?.transcript;
   // The audio-failed stop takes focus on its Retry, so a keyboard or screen-reader User is not left
   // on a heading above a gate they cannot see. The player that would have said "Couldn't play" is
   // already gone by then; the gate's Notice announces itself instead.
@@ -425,6 +439,9 @@ export function ListeningStimulusQuestions({
       {phase === "questions" && (
         <>
           <StimulusQuestions stimulus={stimulus} {...questionProps} />
+          {/* Under the feedback rather than over the Questions, so checking them moves nothing the
+              User is looking at. */}
+          {scored && <StimulusReplay audio={stimulus.audio} label={`${taskTypeLabel(stimulus.taskType)}: play again`} transcript={transcript} />}
           {children}
         </>
       )}

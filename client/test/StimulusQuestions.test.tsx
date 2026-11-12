@@ -147,6 +147,8 @@ describe("the Stimulus-questions leak gate: all four Listening Task Types, both 
           // ...and nothing the User could read an option off, or act on, is in the DOM at all.
           expect(container.querySelectorAll('input[type="radio"]')).toHaveLength(0);
           expect(container.querySelectorAll("button")).toHaveLength(0);
+          // ...nor any way to hear it again: it plays once while it is being answered.
+          expect(container.querySelectorAll("audio")).toHaveLength(0);
           for (const item of items) {
             expect(container.textContent).not.toContain(item.stem);
             for (const option of item.options) expect(container.textContent).not.toContain(option.text);
@@ -174,6 +176,10 @@ describe("the Stimulus-questions leak gate: all four Listening Task Types, both 
           for (const option of item.options) expect(container.textContent).not.toContain(option.text);
         }
         expect(screen.getByRole("button", { name: "Next" })).toBeInTheDocument();
+        // Answerable but not yet scored: still no replay, and nothing headed as a transcript.
+        expect(container.querySelectorAll("audio")).toHaveLength(0);
+        expect(container.textContent).not.toContain("Transcript");
+        expect(container.textContent).not.toContain("Listen again");
       });
     }
   }
@@ -211,6 +217,70 @@ describe("the Stimulus-questions leak gate: all four Listening Task Types, both 
       expect(screen.getByRole("button", { name: "Skip this Stimulus" })).toBeInTheDocument();
     });
   }
+});
+
+// Once a Drill has scored a Listening Stimulus's Items, the Explanations quote what was said, so the
+// Stimulus can be heard again, and a Conversation, Announcement or Academic Talk read. A Listen and
+// Choose a Response utterance stays audio only, even if a result were to carry text for it.
+describe("a scored Listening Stimulus can be heard again", () => {
+  beforeEach(() => {
+    vi.stubGlobal("Audio", FakeAudioElement);
+  });
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  const TRANSCRIPT = "student: Is the express counter open?\nclerk: Until noon.";
+
+  function renderScored(stimulus: ServedListeningStimulus, results: { itemId: string; correct: boolean; key?: string; explanationZh?: string; transcript?: string }[] | undefined) {
+    return render(
+      <ListeningStimulusQuestions
+        stimulus={stimulus}
+        phase="questions"
+        reveal={{ policy: "all-at-once" }}
+        answers={new Map()}
+        results={results}
+        onAnswer={noop}
+        onAudioEnded={noop}
+        onAudioError={noop}
+      >
+        <button type="button">Next Stimulus</button>
+      </ListeningStimulusQuestions>,
+    );
+  }
+
+  const itemIdsOf = (stimulus: ServedListeningStimulus) =>
+    stimulus.taskType === "listen_choose" ? [stimulus.id] : stimulus.questions.map((q) => q.id);
+
+  for (const stimulus of LISTENING_STIMULI) {
+    it(`${stimulus.taskType}: a replay control once scored${stimulus.taskType === "listen_choose" ? ", and no text of the utterance" : ", and its transcript"}`, () => {
+      const results = itemIdsOf(stimulus).map((itemId) => ({ itemId, correct: false, key: "o1", explanationZh: "解析", transcript: TRANSCRIPT }));
+      const { container } = renderScored(stimulus, results);
+
+      const audio = container.querySelectorAll("audio");
+      expect(audio).toHaveLength(1);
+      expect(audio[0].getAttribute("src")).toBe(`/api/audio/${stimulus.audio}`);
+      expect(audio[0].controls).toBe(true);
+      expect(audio[0].getAttribute("aria-label")).toMatch(/play again$/);
+
+      if (stimulus.taskType === "listen_choose") {
+        expect(container.textContent).not.toContain("Transcript");
+        expect(container.textContent).not.toContain("express counter");
+      } else {
+        expect(container.querySelector("details summary")?.textContent).toContain("Transcript");
+        expect(container.querySelector("details")?.textContent).toContain("clerk: Until noon.");
+      }
+    });
+  }
+
+  it("a Simulation, which hands over no results, never gains a replay or a transcript", () => {
+    for (const stimulus of LISTENING_STIMULI) {
+      const { container, unmount } = renderScored(stimulus, undefined);
+      expect(container.querySelectorAll("audio")).toHaveLength(0);
+      expect(container.textContent).not.toContain("Transcript");
+      unmount();
+    }
+  });
 });
 
 // The Explanation (錯題解析) rule the module also owns: pre-authored 繁體中文, hidden until the Item is

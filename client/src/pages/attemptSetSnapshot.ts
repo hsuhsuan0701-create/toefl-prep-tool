@@ -45,6 +45,11 @@ export type StimulusSnapshot = Readonly<{
   itemIds: readonly string[];
   /** What the User read, for a Reading Stimulus; null for Listening, or when the Set lacks it. */
   content: StimulusContentSnapshot | null;
+  /**
+   * A Listening Stimulus's audio path under `/api/audio/`, as served; null for Reading, or when the
+   * Set lacks it. Played again only in a completed Attempt's review.
+   */
+  audio: string | null;
 }>;
 
 /** One run of a Complete the Words passage: words as printed, or the gap an Item fills. */
@@ -134,6 +139,11 @@ export function questionFor(snapshot: AttemptSetSnapshot | null, itemId: string)
 /** What a Stimulus showed the User, or undefined without a snapshot, for an unknown id, or with no text. */
 export function stimulusContentFor(snapshot: AttemptSetSnapshot | null, stimulusId: string): StimulusContentSnapshot | undefined {
   return snapshot?.stimuli.find((s) => s.id === stimulusId)?.content ?? undefined;
+}
+
+/** A Listening Stimulus's audio path, or undefined without a snapshot, for an unknown id, or with no audio. */
+export function stimulusAudioFor(snapshot: AttemptSetSnapshot | null, stimulusId: string): string | undefined {
+  return snapshot?.stimuli.find((s) => s.id === stimulusId)?.audio ?? undefined;
 }
 
 /** The task an Email or Academic Discussion Item set, or undefined. */
@@ -345,9 +355,10 @@ function snapshotStimuli(set: UntrustedServedSet): {
     items: QuestionSnapshot[],
     itemIds: string[],
     content: StimulusContentSnapshot | null = null,
+    audio: unknown = null,
   ) => {
     if (typeof id !== "string" || itemIds.length === 0) return;
-    stimuli.push(Object.freeze({ id, module, taskType, name, itemIds: Object.freeze(itemIds), content }));
+    stimuli.push(Object.freeze({ id, module, taskType, name, itemIds: Object.freeze(itemIds), content, audio: text(audio) }));
     itemIds.forEach((itemId, i) => (questions[itemId] = Object.freeze(items[i])));
   };
   const mcqs = (stimulusId: unknown, list: unknown) => {
@@ -396,21 +407,21 @@ function snapshotStimuli(set: UntrustedServedSet): {
       const m = set[key as "router"];
       if (!m) continue;
       // A Listen and Choose a Response Item is its own Stimulus: no stem, four options.
-      each<{ id?: unknown; options?: unknown }>(m.listenChoose, (item) => {
+      each<{ id?: unknown; options?: unknown; audio?: unknown }>(m.listenChoose, (item) => {
         if (typeof item.id !== "string") return;
-        add(module, "listen_choose", item.id, null, [{ stimulusId: item.id, stem: null, options: Object.freeze(readOptions(item.options)), prefix: null }], [item.id]);
+        add(module, "listen_choose", item.id, null, [{ stimulusId: item.id, stem: null, options: Object.freeze(readOptions(item.options)), prefix: null }], [item.id], null, item.audio);
       });
-      each<{ id?: unknown; setting?: unknown; questions?: unknown }>(m.conversations, (c) => {
+      each<{ id?: unknown; setting?: unknown; questions?: unknown; audio?: unknown }>(m.conversations, (c) => {
         const { ids, items } = mcqs(c.id, c.questions);
-        add(module, "conversation", c.id, text(c.setting), items, ids);
+        add(module, "conversation", c.id, text(c.setting), items, ids, null, c.audio);
       });
-      each<{ id?: unknown; setting?: unknown; questions?: unknown }>(m.announcements, (a) => {
+      each<{ id?: unknown; setting?: unknown; questions?: unknown; audio?: unknown }>(m.announcements, (a) => {
         const { ids, items } = mcqs(a.id, a.questions);
-        add(module, "announcement", a.id, text(a.setting), items, ids);
+        add(module, "announcement", a.id, text(a.setting), items, ids, null, a.audio);
       });
-      each<{ id?: unknown; discipline?: unknown; questions?: unknown }>(m.academicTalks, (t) => {
+      each<{ id?: unknown; discipline?: unknown; questions?: unknown; audio?: unknown }>(m.academicTalks, (t) => {
         const { ids, items } = mcqs(t.id, t.questions);
-        add(module, "academic_talk", t.id, text(t.discipline), items, ids);
+        add(module, "academic_talk", t.id, text(t.discipline), items, ids, null, t.audio);
       });
     }
   }

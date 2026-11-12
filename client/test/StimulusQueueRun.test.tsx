@@ -322,6 +322,53 @@ describe("the Listening queue: the same queue, through the leak gate", () => {
     ]);
   });
 
+  it("once checked, a Stimulus can be heard again and a Conversation read, from what the score response carries", async () => {
+    const api = await import("../src/lib/api");
+    const transcript = "student: I'd like a refund.\nclerk: Do you have the receipt?";
+    (api.scoreDeterministicTask as any).mockImplementation(async (_attemptId: string, req: any) => ({
+      taskType: req.taskType,
+      // The server sends a transcript only for a Conversation, an Announcement or an Academic
+      // Talk; one is sent for the Listen and Choose a Response here too, to show it is never drawn.
+      items: req.items.map((i: any) => ({ itemId: i.itemId, correct: false, key: "o2", explanationZh: "解析", transcript })),
+    }));
+    const user = userEvent.setup();
+    const { container } = render(
+      <StimulusQueueRun stimuli={[listenChooseStimulus, conversationStimulus]} attemptId="att-1" onComplete={vi.fn()} />,
+    );
+
+    await endAudio("lc-1.mp3");
+    await screen.findByRole("radio", { name: "Sorry, I am late." });
+    // Answerable, not yet scored: nothing to replay.
+    expect(container.querySelectorAll("audio")).toHaveLength(0);
+    await user.click(screen.getByRole("button", { name: "Check Response" }));
+    await screen.findByRole("button", { name: "Next Stimulus" });
+    const lcAudio = container.querySelectorAll("audio");
+    expect(lcAudio).toHaveLength(1);
+    expect(lcAudio[0].getAttribute("src")).toBe("/api/audio/stimuli/lsn-1/lc-1.mp3");
+    expect(container.textContent).not.toContain("I'd like a refund.");
+    expect(container.textContent).not.toContain("Transcript");
+
+    await afterFeedbackHold();
+    await user.click(screen.getByRole("button", { name: "Next Stimulus" }));
+    await screen.findByText("Stimulus 2 of 2");
+    // The next Stimulus is behind its own gate again, with no replay of either clip.
+    expect(container.querySelectorAll("audio")).toHaveLength(0);
+    await endAudio("cv-1.mp3");
+    await screen.findByRole("radio", { name: "A refund" });
+    expect(container.querySelectorAll("audio")).toHaveLength(0);
+    expect(container.textContent).not.toContain("I'd like a refund.");
+    await user.click(screen.getByRole("button", { name: "Check Response" }));
+
+    await screen.findByRole("button", { name: "See results" });
+    const cvAudio = container.querySelectorAll("audio");
+    expect(cvAudio).toHaveLength(1);
+    expect(cvAudio[0].getAttribute("src")).toBe("/api/audio/stimuli/lsn-1/cv-1.mp3");
+    expect(screen.getByText("Transcript")).toBeInTheDocument();
+    expect(container.textContent).toContain("clerk: Do you have the receipt?");
+    // Each Stimulus was played by its one-shot player exactly once; the replay is the User's own.
+    expect(FakeAudioElement.instances).toHaveLength(2);
+  });
+
   it("replays nothing at the next Stimulus but re-arms the gate for it", async () => {
     const api = await import("../src/lib/api");
     (api.scoreDeterministicTask as any).mockImplementation(scoredEcho());

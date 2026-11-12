@@ -243,6 +243,9 @@ second one.
 - `components/StimulusQuestions.tsx`: where a Reading or Listening Stimulus's Items become DOM, in
   both modes. `ListeningStimulusQuestions` is the leak gate: nothing answerable exists before the
   audio ends.
+- `components/StimulusReplay.tsx`: a Listening Stimulus played again, a labelled `<audio controls>`
+  with its transcript in a `Disclosure` where it has one. Only once nothing is left to answer: a
+  Drill's checked Stimulus, a completed Attempt's review.
 - `components/ItemRecorder.tsx`: one Speaking Item, prompt to beep to recording to countdown, with
   the retry gate when a prompt will not play. `MicCheck.tsx` is the check before a Speaking run.
 - `components/TimedEditor.tsx` and `components/buildSentence/`: the essay Tasks and Build a
@@ -308,8 +311,10 @@ Recipes, as the pages are built.
     a Reading Stimulus's own text sits under its heading (`review/ReviewStimulus`): a Complete the
     Words passage in full, in mono, each gap numbered by its Item and filled with what was typed,
     marked, with the correct word beside a wrong or empty one; a Read in Daily Life text or an
-    Academic passage in a `Disclosure` ("The text", "The passage"), set as `PassagePane`. An opened
-    Reading question lists its options (`ChoiceList`, locked) with the Response and the key marked.
+    Academic passage in a `Disclosure` ("The text", "The passage"), set as `PassagePane`. A
+    Listening Stimulus can be played again from under its heading (`StimulusReplay`), a Listen and
+    Choose a Response from its own opened row, never as text. An opened question lists its options
+    (`ChoiceList`, locked) with the Response and the key marked.
 - **Full-Test Run** (`/full-test/:runId`): `PageShell` without navigation while sitting;
   `PageHeader` "Full-Test Run" with its time and status; once finished, the Overall `BandFigure
   size="lg"` (method in a `Disclosure`) or which sections are still pending, never an average of

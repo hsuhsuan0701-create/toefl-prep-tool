@@ -1,6 +1,7 @@
 import { MCQ_UNANSWERED_SENTINEL, type DeterministicReviewItemVM, type ItemVM } from "@toefl-prep/shared";
 import { taskTypeLabel } from "../../lib/taskTypes";
-import { questionFor, stimulusContentFor, type AttemptSetSnapshot, type QuestionSnapshot } from "../../pages/attemptSetSnapshot";
+import { questionFor, stimulusAudioFor, stimulusContentFor, type AttemptSetSnapshot, type QuestionSnapshot } from "../../pages/attemptSetSnapshot";
+import StimulusReplay from "../StimulusReplay";
 import { Card } from "../../ui/Card";
 import { ChoiceList } from "../../ui/ChoiceList";
 import { StatusChip } from "../../ui/Chip";
@@ -56,8 +57,8 @@ function optionText(question: QuestionSnapshot | undefined, optionId: string): s
   return `${String.fromCharCode(65 + index)}. ${question.options[index].text}`;
 }
 
-/** Reading's multiple-choice Task Types, whose opened row lists every option of the question. */
-const READING_QUESTION_TYPES = new Set(["daily_life", "academic_passage"]);
+/** The multiple-choice Task Types, Reading's and Listening's, whose opened row lists every option of the question. */
+const QUESTION_TYPES = new Set(["daily_life", "academic_passage", "listen_choose", "conversation", "announcement", "academic_talk"]);
 
 /** A Response whose option the Set can no longer name. */
 const OPTION_NOT_SHOWN = "An option that can no longer be shown";
@@ -68,9 +69,9 @@ export type DeterministicModuleGroupProps = {
   /** The key and Explanation per Item, present only once the Attempt is complete. */
   reviewByItemId: ReadonlyMap<string, DeterministicReviewItemVM>;
   /**
-   * Show each Stimulus's own text under its heading: only for a completed Attempt, the one whose
-   * keys and Explanations have reached the client. An unfinished or discarded Attempt's review
-   * shows the Items alone.
+   * Show each Stimulus under its heading, its text (Reading) or a control to play it again
+   * (Listening): only for a completed Attempt, the one whose keys and Explanations have reached the
+   * client. An unfinished or discarded Attempt's review shows the Items alone.
    */
   showStimulus: boolean;
 };
@@ -98,9 +99,14 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
   return (
     <div className="space-y-4">
       {stimulusRuns(items, setSnapshot).map((run) => {
-        const transcript = run.items.map(({ item }) => reviewByItemId.get(item.itemId)?.transcript).find((t) => t !== undefined);
+        // A Listen and Choose a Response utterance is audio only, whatever a review entry carries.
+        const transcript =
+          run.taskType === "listen_choose" ? undefined : run.items.map(({ item }) => reviewByItemId.get(item.itemId)?.transcript).find((t) => t !== undefined);
         const headingId = `${run.key}-${run.items[0].item.itemId}`;
         const content = showStimulus && run.stimulusId !== null ? stimulusContentFor(setSnapshot, run.stimulusId) : undefined;
+        // A Listen and Choose a Response run has no one Stimulus (each Item is its own), so its
+        // replay is on each Item's row instead.
+        const audio = showStimulus && run.stimulusId !== null ? stimulusAudioFor(setSnapshot, run.stimulusId) : undefined;
         return (
           <Card key={headingId} as="section" padding="none" aria-labelledby={headingId} className="min-w-0">
             <header className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-rule px-4 py-3">
@@ -120,6 +126,11 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
               </div>
               <p className="text-meta text-graphite">{correctSummary(run.items)}</p>
             </header>
+            {audio && (
+              <div className="min-w-0 border-b border-rule px-4 py-3">
+                <StimulusReplay audio={audio} label={`${run.name ? capitalise(run.name) : taskTypeLabel(run.taskType)}: play again`} />
+              </div>
+            )}
             {content && (
               <div className="min-w-0 border-b border-rule px-4 py-3">
                 <ReviewStimulus
@@ -131,7 +142,14 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
             )}
             <ol className="divide-y divide-rule">
               {run.items.map(({ item, position }) => (
-                <DeterministicRow key={item.itemId} item={item} position={position} question={questionFor(setSnapshot, item.itemId)} review={reviewByItemId.get(item.itemId)} />
+                <DeterministicRow
+                  key={item.itemId}
+                  item={item}
+                  position={position}
+                  question={questionFor(setSnapshot, item.itemId)}
+                  review={reviewByItemId.get(item.itemId)}
+                  replayAudio={showStimulus && item.taskType === "listen_choose" ? stimulusAudioFor(setSnapshot, item.itemId) : undefined}
+                />
               ))}
             </ol>
             {transcript && (
@@ -157,9 +175,22 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
  * or not the Attempt is complete: the User picked that option, so it is no key, and nothing else of
  * the question comes with it. A Complete the Words prefix is the same: the User saw it in the
  * passage. A Listen and Choose a Response utterance is never shown as text at all; the server does
- * not send it.
+ * not send it. In a completed Attempt's review it can be heard again from the opened row
+ * (`replayAudio`), the Item being its own Stimulus.
  */
-function DeterministicRow({ item, position, question, review }: { item: ItemVM; position: number; question?: QuestionSnapshot; review?: DeterministicReviewItemVM }) {
+function DeterministicRow({
+  item,
+  position,
+  question,
+  review,
+  replayAudio,
+}: {
+  item: ItemVM;
+  position: number;
+  question?: QuestionSnapshot;
+  review?: DeterministicReviewItemVM;
+  replayAudio?: string;
+}) {
   const score = item.scoringStatus === "scored" && isDeterministicScoreJson(item.scoreJson) ? item.scoreJson : null;
   const isGap = item.taskType === "complete_words";
   const shown = review ? question : undefined;
@@ -176,9 +207,7 @@ function DeterministicRow({ item, position, question, review }: { item: ItemVM; 
         ? `${prefix}${score.answer}`
         : (optionText(question, score.answer) ?? OPTION_NOT_SHOWN);
   const keyText = review?.key === undefined ? null : isGap ? `${prefix}${review.key}` : optionText(shown, review.key);
-  // Reading's questions only, for now: what a Listening question's review shows is still open
-  // (the Listening half of issue #42).
-  const showsOptions = READING_QUESTION_TYPES.has(item.taskType) && (shown?.options.length ?? 0) > 0;
+  const showsOptions = QUESTION_TYPES.has(item.taskType) && (shown?.options.length ?? 0) > 0;
 
   const line = (
     <>
@@ -229,9 +258,14 @@ function DeterministicRow({ item, position, question, review }: { item: ItemVM; 
           {line}
         </summary>
         <div className="space-y-1 pr-4 pb-3 pl-4 sm:pl-[6.875rem]">
+          {replayAudio && (
+            <div className="pb-2">
+              <StimulusReplay audio={replayAudio} label={`${taskTypeLabel(item.taskType)}, Item ${position}: play again`} />
+            </div>
+          )}
           {showsOptions && shown && (
             // Every option the question offered, as the run listed them, with the User's pick and
-            // the key marked: a Reading question is checked against all four, not only the two.
+            // the key marked: a question is checked against all four, not only the two.
             <div className="max-w-measure pb-2">
               <ChoiceList
                 label="Options"

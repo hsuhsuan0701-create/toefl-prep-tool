@@ -453,3 +453,119 @@ describe("a completed Reading Attempt's Stimuli", () => {
     expect(screen.getByTestId("item-g2")).toHaveTextContent("Correct completion: gravel");
   });
 });
+
+// Issue #51: a completed Listening Attempt's review can play each Stimulus again (a Listen and
+// Choose a Response from its own row, each being its own Stimulus) and lists every option of an
+// opened Item. A Listen and Choose a Response utterance is never text; an unfinished or discarded
+// Attempt gains none of this.
+const LISTENING_OPTIONS = (prefix: string) => OPTIONS.map((o, i) => ({ ...o, id: `${prefix}${i + 1}` }));
+const SERVED_LISTENING_AUDIO = {
+  id: "lsn-1",
+  kind: "listening",
+  router: {
+    timeLimitSec: 600,
+    listenChoose: [
+      { id: "lc-1", taskType: "listen_choose", audio: "stimuli/lsn-1/lc-1.mp3", options: LISTENING_OPTIONS("l") },
+      { id: "lc-2", taskType: "listen_choose", audio: "stimuli/lsn-1/lc-2.mp3", options: LISTENING_OPTIONS("m") },
+    ],
+    conversations: [
+      {
+        id: "conv-1",
+        taskType: "conversation",
+        audio: "stimuli/lsn-1/conv-1.mp3",
+        setting: "a campus mailroom",
+        questions: [{ id: "cq1", stem: "What does the student want?", options: LISTENING_OPTIONS("o") }],
+      },
+    ],
+    announcements: [
+      { id: "ann-1", taskType: "announcement", audio: "stimuli/lsn-1/ann-1.mp3", setting: "a dormitory", questions: [{ id: "aq1", stem: "What is closing?", options: LISTENING_OPTIONS("a") }] },
+    ],
+    academicTalks: [],
+  },
+  lowerModule: { timeLimitSec: 400, listenChoose: [], conversations: [], announcements: [], academicTalks: [] },
+  upperModule: { timeLimitSec: 400, listenChoose: [], conversations: [], announcements: [], academicTalks: [] },
+};
+
+function listeningDetail(over: Partial<AttemptDetailVM> = {}): AttemptDetailVM {
+  const base = readingDetail();
+  return {
+    ...base,
+    attempt: { ...base.attempt, kind: "listening", setId: "lsn-1" },
+    items: [
+      scored("lc-1", "listen_choose", false, "l2"),
+      scored("lc-2", "listen_choose", true, "m3"),
+      scored("cq1", "conversation", false, "o1"),
+      scored("aq1", "announcement", true, "a4"),
+    ],
+    deterministicReview: [
+      // The server never sends a transcript for a Listen and Choose a Response; one is here to show
+      // it would not be drawn if it did.
+      { itemId: "lc-1", taskType: "listen_choose", correct: false, key: "l1", explanationZh: "室友詢問咖啡。", transcript: "Did we run out of coffee?" },
+      { itemId: "lc-2", taskType: "listen_choose", correct: true, key: "m3", explanationZh: "回應邀請。" },
+      { itemId: "cq1", taskType: "conversation", correct: false, key: "o2", explanationZh: "學生想搭便車。", transcript: "student: Could I get a ride?\nclerk: Sure." },
+      { itemId: "aq1", taskType: "announcement", correct: true, key: "a4", explanationZh: "電梯關閉。", transcript: "The east elevator is closed." },
+    ],
+    ...over,
+  };
+}
+
+async function renderListeningReview(body: AttemptDetailVM) {
+  vi.mocked(getSet).mockResolvedValue(SERVED_LISTENING_AUDIO as never);
+  vi.mocked(getAttempt).mockResolvedValue(body);
+  const view = render(
+    <MemoryRouter initialEntries={["/attempts/att-1"]}>
+      <Routes>
+        <Route path="/attempts/:id" element={<AttemptReview />} />
+      </Routes>
+    </MemoryRouter>,
+  );
+  await waitFor(() => expect(vi.mocked(getSet)).toHaveBeenCalledWith("lsn-1"));
+  await act(async () => {});
+  return view;
+}
+
+const srcOf = (scope: HTMLElement) => [...scope.querySelectorAll("audio")].map((a) => a.getAttribute("src"));
+
+describe("a completed Listening Attempt's Stimuli", () => {
+  it("plays each Stimulus again from its heading, and each Listen and Choose a Response from its own row", async () => {
+    const { container } = await renderListeningReview(listeningDetail());
+    const conversation = screen.getByRole("region", { name: "A campus mailroom" });
+    expect(srcOf(conversation)).toEqual(["/api/audio/stimuli/lsn-1/conv-1.mp3"]);
+    expect(conversation.querySelector("audio")!.controls).toBe(true);
+    expect(srcOf(screen.getByRole("region", { name: "A dormitory" }))).toEqual(["/api/audio/stimuli/lsn-1/ann-1.mp3"]);
+    expect(srcOf(screen.getByTestId("item-lc-1"))).toEqual(["/api/audio/stimuli/lsn-1/lc-1.mp3"]);
+    expect(srcOf(screen.getByTestId("item-lc-2"))).toEqual(["/api/audio/stimuli/lsn-1/lc-2.mp3"]);
+    expect(container.querySelectorAll("audio")).toHaveLength(4);
+  });
+
+  it("lists every option of an opened Item with the Response and the key marked", async () => {
+    await renderListeningReview(listeningDetail());
+    for (const itemId of ["lc-1", "cq1"]) {
+      const group = within(screen.getByTestId(`item-${itemId}`)).getByRole("radiogroup", { name: "Options" });
+      expect(within(group).getAllByRole("radio")).toHaveLength(4);
+      expect(group).toHaveTextContent(/To sell a bicycle.*To ask for a ride.*To cancel a meeting.*To book a room/);
+      expect(group).toHaveTextContent(/Your Response/);
+      expect(group).toHaveTextContent(/Key/);
+    }
+  });
+
+  it("never shows a Listen and Choose a Response utterance as text, and keeps the others' transcripts", async () => {
+    const { container } = await renderListeningReview(listeningDetail());
+    expect(container.textContent).not.toContain("Did we run out of coffee?");
+    expect(within(screen.getByRole("region", { name: "A campus mailroom" })).getByText("Transcript")).toBeInTheDocument();
+  });
+
+  const unfinished: [string, Partial<AttemptDetailVM>][] = [
+    ["an unfinished Simulation", { attempt: { ...listeningDetail().attempt, mode: "simulation", status: "in_progress", completedAt: null }, bandStatus: { status: "unfinished" } }],
+    ["a discarded Attempt", { attempt: { ...listeningDetail().attempt, status: "aborted", completedAt: null }, bandStatus: { status: "discarded" } }],
+  ];
+  for (const [label, over] of unfinished) {
+    it(`gains nothing for ${label}`, async () => {
+      const { container } = await renderListeningReview(listeningDetail({ ...over, deterministicReview: undefined }));
+      expect(container.querySelectorAll("audio")).toHaveLength(0);
+      expect(screen.queryByRole("radiogroup")).toBeNull();
+      expect(screen.queryByText("Listen again")).toBeNull();
+      expect(screen.getByTestId("item-cq1")).toHaveTextContent("Your Response: A. To sell a bicycle");
+    });
+  }
+});
