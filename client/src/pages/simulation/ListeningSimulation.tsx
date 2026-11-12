@@ -73,7 +73,7 @@ export default function ListeningSimulation({ fullTest }: { fullTest?: FullTestS
   // Stimulus are part of the stage's name; its questions, answered in lockstep, are not.
   useStageEntry(
     pageStage !== "ready"
-      ? pageStage
+      ? null
       : simState.stage === "stimulus"
         ? `stimulus:${simState.module}:${simState.idx}`
         : `${simState.stage}:${"module" in simState ? simState.module : ""}`,

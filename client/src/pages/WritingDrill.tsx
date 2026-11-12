@@ -90,7 +90,7 @@ export default function WritingDrill() {
   const mountedRef = useRef(true);
   // The Email and the Discussion share `essay-running`, so the Task's place in the queue is part of
   // the stage's name.
-  useStageEntry(drill.phase === "ready" ? `${stage}:${queueIndex}` : drill.phase);
+  useStageEntry(drill.phase === "ready" ? `${stage}:${queueIndex}` : null);
 
   useEffect(() => {
     mountedRef.current = true;

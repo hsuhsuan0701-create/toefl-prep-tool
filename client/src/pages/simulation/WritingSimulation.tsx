@@ -142,7 +142,7 @@ export default function WritingSimulation({ fullTest }: { fullTest?: FullTestSec
   // Why the completion could not be made, for the "completion-failed" screen.
   const [completionError, setCompletionError] = useState<unknown>(null);
   // The Email and the Discussion share `essay-running`, so which essay is part of the stage's name.
-  useStageEntry(`${stage}:${essayTask}`);
+  useStageEntry(stage === "loading" ? null : `${stage}:${essayTask}`);
 
   const mountedRef = useRef(true);
   const retryRef = useRef<(() => void) | null>(null);

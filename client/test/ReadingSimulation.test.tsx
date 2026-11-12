@@ -226,6 +226,10 @@ describe("Reading Simulation", () => {
     const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
     renderSimulation();
     await screen.findByRole("button", { name: "Start Reading Simulation" });
+    // The first screen is where the route change already put the User: it is neither scrolled nor
+    // given focus, so a reload does not draw a focus ring round its heading.
+    expect(scrollTo).not.toHaveBeenCalled();
+    expect(document.activeElement).toBe(document.body);
 
     scrollTo.mockClear();
     await beginSimulation(user);

@@ -22,10 +22,13 @@ export type StageEntryOptions = {
  * `stage` names the stage on screen; whenever it changes, the window goes back to the top before the
  * new stage is painted, and then focus moves into it without scrolling, unless the new stage already
  * took focus itself (a question head, a status heading). The first stage a page shows is left
- * alone: a route change already opens at the top. Name stages, not Items: moving between the Items
- * of one stage (Next, Back, the question navigator) keeps the page where the User put it.
+ * alone: a route change already opens at the top, and a heading that took focus on a page nobody
+ * has touched yet would draw the focus ring on every reload. So pass `null` while no stage is on
+ * screen (the Set is loading, or failed to load); the stage that follows is that first one. Name
+ * stages, not Items: moving between the Items of one stage (Next, Back, the question navigator)
+ * keeps the page where the User put it.
  */
-export function useStageEntry(stage: string, { scroll = true, focusTarget }: StageEntryOptions = {}): void {
+export function useStageEntry(stage: string | null, { scroll = true, focusTarget }: StageEntryOptions = {}): void {
   const shownRef = useRef(stage);
   const enteredRef = useRef(false);
   // A layout effect, so the new stage is never painted at the old offset first. Children's layout
@@ -33,7 +36,9 @@ export function useStageEntry(stage: string, { scroll = true, focusTarget }: Sta
   // heading or question does so from the top.
   useLayoutEffect(() => {
     if (shownRef.current === stage) return;
+    const first = shownRef.current === null;
     shownRef.current = stage;
+    if (first || stage === null) return;
     enteredRef.current = true;
     if (scroll) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, [stage, scroll]);

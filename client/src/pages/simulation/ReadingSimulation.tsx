@@ -81,7 +81,7 @@ export default function ReadingSimulation({ fullTest }: { fullTest?: FullTestSec
   const [simState, dispatch] = useReducer(reduceReadingSim, { stage: "intro" as const });
   // Both Modules run in `module`, so which one is part of the stage's name. Moving between its
   // screens is not a stage change.
-  useStageEntry(pageStage === "ready" ? `${simState.stage}:${"module" in simState ? simState.module : ""}` : pageStage);
+  useStageEntry(pageStage === "ready" ? `${simState.stage}:${"module" in simState ? simState.module : ""}` : null);
 
   const mountedRef = useRef(true);
   const retryRef = useRef<(() => void) | null>(null);

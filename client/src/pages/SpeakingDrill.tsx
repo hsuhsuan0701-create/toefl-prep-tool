@@ -91,7 +91,7 @@ export default function SpeakingDrill() {
   const startingRef = useRef(false);
   // Both Tasks run in `item-running`, and an Interview opens on its introduction before its first
   // Item, so the Task's place in the queue and the introduction are part of the stage's name.
-  useStageEntry(drill.phase === "ready" ? `${stage}:${queueIndex}:${introAudioDone}` : drill.phase);
+  useStageEntry(drill.phase === "ready" ? `${stage}:${queueIndex}:${introAudioDone}` : null);
 
   // Every way out releases the microphone: stop() ends a running take, and release() ends the
   // run-long held stream, which stop() deliberately leaves live between Items.

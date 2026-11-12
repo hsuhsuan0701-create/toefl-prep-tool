@@ -66,7 +66,7 @@ export default function ListeningDrill() {
   const [queue, setQueue] = useState<Stimulus[]>([]);
   const [picked, setPicked] = useState<string>("");
   const [results, setResults] = useState<readonly StimulusItemResult[]>([]);
-  useStageEntry(drill.phase === "ready" ? stage : drill.phase);
+  useStageEntry(drill.phase === "ready" ? stage : null);
 
   const handlePick = useCallback(
     (label: string, kinds: ListeningTaskType[]) => {

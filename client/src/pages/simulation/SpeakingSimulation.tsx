@@ -113,7 +113,7 @@ export default function SpeakingSimulation({ fullTest }: { fullTest?: FullTestSe
   const [introAudioDone, setIntroAudioDone] = useState(true);
   // Both Tasks run in `item-running`, and the Interview opens on its introduction before its first
   // Item, so the Task and the introduction are part of the stage's name; its Items are not.
-  useStageEntry(`${stage}:${taskIndex}:${introAudioDone}`);
+  useStageEntry(stage === "loading" ? null : `${stage}:${taskIndex}:${introAudioDone}`);
   const [isStarting, setIsStarting] = useState(false);
   // The Set as the bank lists it, for its title and whether it has been attempted (a Repeat).
   const [listing, setListing] = useState<SetMeta | null>(null);
