@@ -147,12 +147,13 @@ export function statsRouteStore(s: SqliteStores): StatsStore {
   };
 }
 
-/** A Full-Test Run's own aggregate plus the three READS that make a section's state and band status derivable. */
+/** A Full-Test Run's own aggregate plus the four READS that make a section's state and band status derivable. */
 export function fullTestsRouteStore(s: SqliteStores): FullTestStore {
   return {
     ...s.fullTests,
     getAttempt: s.attempts.getAttempt,
     listActiveJobs: s.scoring.listActiveJobs,
+    getCurrentTranscriptionJobs: s.transcription.getCurrentTranscriptionJobs,
     getSectionEstimate: s.estimates.getSectionEstimate,
   };
 }

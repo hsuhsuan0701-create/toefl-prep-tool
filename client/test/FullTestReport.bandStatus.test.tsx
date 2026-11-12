@@ -96,8 +96,8 @@ describe("a Writing section whose essays are still being scored", () => {
   });
 });
 
-describe("a Writing section whose essay scoring failed for good", () => {
-  it("says scoring failed instead of showing a Build-a-Sentence-only band", async () => {
+describe("a Writing section whose essay scoring failed", () => {
+  it("says scoring failed and that a Re-score can still give it a band, instead of showing a Build-a-Sentence-only band", async () => {
     renderRun(completedRun(sectionVM("writing", {
       status: "no-band",
       unscored: [
@@ -108,21 +108,65 @@ describe("a Writing section whose essay scoring failed for good", () => {
     })));
 
     const writing = (await sectionRows())[2];
-    expect(within(writing).getByTestId("section-no-band-writing")).toHaveTextContent(
-      "1 Write an Email Item and 1 Academic Discussion Item failed scoring. A band needs every Item of the section scored.",
+    const noBand = within(writing).getByTestId("section-no-band-writing");
+    expect(noBand).toHaveTextContent(
+      "1 Write an Email Item and 1 Academic Discussion Item failed scoring. Re-score them from this section's report to get a band.",
     );
+    expect(noBand).toHaveTextContent(/No band yet/);
     expect(within(writing).queryByTestId("section-band-writing")).toBeNull();
 
-    // The Overall will never come, so the report must not ask the User to wait for it.
+    // A Re-score can still give Writing a band, so the Overall is not called lost; nor is the User
+    // told to wait for scoring nothing is doing.
     const pending = screen.getByTestId("overall-pending");
-    expect(pending).toHaveTextContent(/No Overall for this sitting: Writing has no band and will not get one/);
+    expect(pending).toHaveTextContent(/No Overall yet: Writing has no band until its unscored Items are scored/);
+    expect(pending).toHaveTextContent(/No band yet/);
+    expect(pending).not.toHaveTextContent(/will not get one/);
     expect(pending).not.toHaveTextContent(/still scoring/);
   });
 
-  it("names a Task Type with no Item at all as never recorded rather than failed", async () => {
+  it("names a Task Type with no Item at all as never recorded rather than failed, and says no band will come", async () => {
     renderRun(completedRun(sectionVM("writing", { status: "no-band", unscored: [], absent: ["email"] })));
     const writing = (await sectionRows())[2];
-    expect(within(writing).getByTestId("section-no-band-writing")).toHaveTextContent(/No Write an Email Response was recorded/);
+    const noBand = within(writing).getByTestId("section-no-band-writing");
+    expect(noBand).toHaveTextContent(/No Write an Email Response was recorded/);
+    expect(noBand).toHaveTextContent(/No band(?! yet)/);
+    expect(noBand).not.toHaveTextContent(/No band yet/);
+    const pending = screen.getByTestId("overall-pending");
+    expect(pending).toHaveTextContent(/No Overall for this sitting: Writing has no band and will not get one/);
+    expect(pending).not.toHaveTextContent(/No band yet/);
+  });
+});
+
+describe("a Speaking section whose recordings were never transcribed", () => {
+  it("says the Responses were never scored and to retry the transcription, as the Attempt review does", async () => {
+    renderRun(completedRun(
+      sectionVM("writing", { status: "estimated" }, 5),
+      sectionVM("speaking", {
+        status: "no-band",
+        unscored: [
+          { taskType: "listen_repeat", failed: 0, pending: 7, notCaptured: 0 },
+          { taskType: "interview", failed: 0, pending: 4, notCaptured: 0 },
+        ],
+        absent: [],
+      }),
+    ));
+    const speaking = (await sectionRows())[3];
+    const noBand = within(speaking).getByTestId("section-no-band-speaking");
+    expect(noBand).toHaveTextContent(
+      "7 Listen and Repeat Responses and 4 Interview Responses were never scored. Retry the transcription from this section's report; the band follows once it is scored.",
+    );
+    expect(noBand).toHaveTextContent(/No band yet/);
+    expect(within(speaking).queryByTestId("section-scoring-speaking")).toBeNull();
+    expect(screen.getByTestId("overall-pending")).toHaveTextContent(/No Overall yet: Speaking has no band until its unscored Items are scored/);
+  });
+});
+
+describe("a section completed with no Items", () => {
+  it("reads No band, not No band yet: it can never be sat again", async () => {
+    renderRun(completedRun(sectionVM("writing", { status: "no-band", unscored: [], absent: ["build_sentence", "email", "discussion"] })));
+    const noBand = within((await sectionRows())[2]).getByTestId("section-no-band-writing");
+    expect(noBand).not.toHaveTextContent(/No band yet/);
+    expect(noBand).toHaveTextContent(/No band/);
   });
 });
 
@@ -148,7 +192,7 @@ describe("a Reading section routed and finished before its second Module", () =>
 describe("a sitting with one section never getting a band and another still scoring", () => {
   it("says there will be no whole-test band, naming only the section that will never have one", async () => {
     renderRun(completedRun(
-      sectionVM("writing", { status: "no-band", unscored: [{ taskType: "email", failed: 1, pending: 0, notCaptured: 0 }], absent: [] }),
+      sectionVM("writing", { status: "no-band", unscored: [], absent: ["email"] }),
       sectionVM("speaking", { status: "scoring", outstanding: [] }),
     ));
     const pending = await screen.findByTestId("overall-pending");

@@ -70,14 +70,57 @@ function outstandingSentence(outstanding: { taskType: string; itemCount: number 
   return `Still scoring ${joinAnd(parts)}. The band appears when scoring finishes.`;
 }
 
+const SPOKEN_TASK_TYPES: ReadonlySet<string> = new Set(["listen_repeat", "interview"]);
+
+/**
+ * Whether a settled section short of a band can still get one from this sitting. Only its own
+ * unscored Items can close the gap, from its Attempt review: a failed Item by a Re-score, a recording
+ * waiting on a transcription by its Retry. A recording that never arrived, a Task Type or Module with
+ * no Item, or a section with every Item scored and still no band leaves nothing to score, and a
+ * finished section is never sat again.
+ */
+function bandCanStillCome(shortfall: BandShortfallVM): boolean {
+  if (shortfall.absent.length > 0 || (shortfall.moduleShortfalls?.length ?? 0) > 0) return false;
+  if (shortfall.unscored.some((u) => u.notCaptured > 0)) return false;
+  return shortfall.unscored.some((u) => u.failed > 0 || u.pending > 0);
+}
+
+/**
+ * Whether a section of a finished Run will never have a band: abandoned, or settled short of one
+ * with nothing left that could be scored. A section still scoring, or one whose unscored Items can
+ * still be re-scored or retried, may yet get one.
+ */
+function sectionBandFinal(section: FullTestSectionVM): boolean {
+  const { bandStatus } = section;
+  if (bandStatus.status === "scoring" || bandStatus.status === "estimated") return false;
+  if (bandStatus.status === "not-finished") return true;
+  return !bandCanStillCome(bandStatus);
+}
+
+/**
+ * What the User can do about a section's unscored Items, in the words Attempt review uses for the
+ * same Items, pointed at that review (where the Re-score and the Retry are) rather than "below".
+ */
+function noBandAction(shortfall: BandShortfallVM): string | null {
+  const failed = shortfall.unscored.some((u) => u.failed > 0);
+  // A Response waiting on its transcription is a recording; Retry restarts it. An essay left
+  // unscored with nothing working on it has no button on the review either.
+  const untranscribed = shortfall.unscored.some((u) => u.pending > 0 && SPOKEN_TASK_TYPES.has(u.taskType));
+  if (failed && untranscribed) return "Re-score the failed Items and retry the transcription from this section's report to get a band.";
+  if (failed) return "Re-score them from this section's report to get a band.";
+  if (untranscribed) return "Retry the transcription from this section's report; the band follows once it is scored.";
+  return null;
+}
+
 /** Why a section whose scoring has settled has no band, in the words Attempt review uses. */
 function noBandSentence(shortfall: BandShortfallVM): string {
   const reasons = shortfallReasons(shortfall);
   if (reasons.length === 0) return "No Band Estimate was recorded for this section.";
+  const action = bandCanStillCome(shortfall) ? noBandAction(shortfall) : null;
   const rule = (shortfall.moduleShortfalls?.length ?? 0) > 0
     ? "A band needs both Modules the section was routed through."
     : "A band needs every Item of the section scored.";
-  return `${reasons.join(" ")} ${rule}`;
+  return `${reasons.join(" ")} ${action ?? rule}`;
 }
 
 /**
@@ -103,7 +146,12 @@ function SectionBand({ section }: { section: FullTestSectionVM }) {
   if (bandStatus.status === "no-band" || !section.estimate) {
     return (
       <div data-testid={`section-no-band-${section.section}`}>
-        <BandFigure band={null} size="sm" missing={noBandSentence(bandStatus.status === "no-band" ? bandStatus : { unscored: [], absent: [] })} />
+        <BandFigure
+          band={null}
+          size="sm"
+          emptyLabel={sectionBandFinal(section) ? "No band" : "No band yet"}
+          missing={noBandSentence(bandStatus.status === "no-band" ? bandStatus : { unscored: [], absent: [] })}
+        />
       </div>
     );
   }
@@ -209,10 +257,19 @@ function SectionRow({ runId, section }: { runId: string; section: FullTestSectio
 function RunReport({ run }: { run: FullTestRunVM }) {
   const { overall } = run;
   // "Still scoring" is only honest when every section without a band is one the server says is still
-  // being scored; an abandoned section, or one that settled short of a Task Type, has none coming.
-  const bandStatusOf = (section: FullTestSection) => run.sections.find((s) => s.section === section)?.bandStatus.status;
-  const stillScoring = overall.pendingSections.every((section) => bandStatusOf(section) === "scoring");
-  const neverBanded = overall.pendingSections.filter((section) => bandStatusOf(section) !== "scoring");
+  // being scored. "Will not get one" is only honest for a section with nothing left that could be
+  // scored (sectionBandFinal): an abandoned section, or one that settled short of a Task Type. A
+  // section whose unscored Items can still be re-scored or retried is waiting on the User instead.
+  const sectionOf = (section: FullTestSection) => run.sections.find((s) => s.section === section);
+  const stillScoring = overall.pendingSections.every((section) => sectionOf(section)?.bandStatus.status === "scoring");
+  const neverBanded = overall.pendingSections.filter((section) => {
+    const s = sectionOf(section);
+    return !s || sectionBandFinal(s);
+  });
+  const awaitingRescore = overall.pendingSections.filter((section) => {
+    const s = sectionOf(section);
+    return s !== undefined && s.bandStatus.status === "no-band" && !sectionBandFinal(s);
+  });
   const names = (sections: readonly FullTestSection[]) => joinAnd(sections.map((s) => SECTION_LABEL[s]));
   const method = estimateMethod(overall.method);
 
@@ -231,12 +288,19 @@ function RunReport({ run }: { run: FullTestRunVM }) {
           <BandFigure
             band={null}
             size="lg"
+            emptyLabel={neverBanded.length > 0 ? "No band" : "No band yet"}
             missing={
               stillScoring ? (
                 <>
                   {names(overall.pendingSections)} {overall.pendingSections.length === 1 ? "is" : "are"} still scoring. The Overall needs all four
                   section bands; a mean of the {overall.scoredSections} already scored would be a different number, not an early look at this one.
                   Refresh once the Judges finish.
+                </>
+              ) : neverBanded.length === 0 ? (
+                <>
+                  No Overall yet: {names(awaitingRescore)} {awaitingRescore.length === 1 ? "has" : "have"} no band until its unscored Items are
+                  scored, which {awaitingRescore.length === 1 ? "that section's report" : "each section's report"} can still do. The Overall needs
+                  all four section bands.
                 </>
               ) : (
                 <>
@@ -327,7 +391,7 @@ function HandoffRecovery({ run, onAdvanced }: { run: FullTestRunVM; onAdvanced: 
   return (
     <Notice
       tone="info"
-      title={`The ${SECTION_LABEL[currentSection]} section is finished, but this Full-Test Run never recorded the handoff.`}
+      title={`The ${SECTION_LABEL[currentSection]} section ${current?.state === "aborted" ? "was abandoned" : "is finished"}, but this Full-Test Run never recorded the handoff.`}
       action={
         <Button variant="primary" onClick={() => void advance()} loading={busy}>
           {next ? `Continue to ${SECTION_LABEL[next.section]}` : "Finish the Full-Test Run"}

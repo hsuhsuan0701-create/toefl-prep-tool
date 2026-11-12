@@ -574,13 +574,15 @@ export type FullTestSectionState = "pending" | "in-progress" | "completed" | "ab
  * Where a Full-Test section's Band Estimate stands, DERIVED on every read like `state`:
  *
  *   not-finished  the section's Attempt is not complete (not started, in progress or abandoned).
- *   scoring       the section is finished but its Attempt still has scoring outstanding — an active
- *                 scoring job, a judged Item not yet scored, or a Speaking capture its finalizer has
- *                 not completed. No band is shown, even one persisted earlier, because the outcome
- *                 of that work replaces it. `outstanding` counts the unscored judged Items per Task
- *                 Type; it can be empty while the finalizer settles.
+ *   scoring       the section is finished and work that can still change its band is live — an
+ *                 active scoring job, a transcription job with work left, or a Speaking capture its
+ *                 finalizer has not completed (the rule AttemptBandStatusVM's `scoring` uses). No
+ *                 band is shown, even one persisted earlier, because the outcome of that work
+ *                 replaces it. `outstanding` counts, per Task Type, the judged Items not scored yet
+ *                 or being re-scored; it can be empty while the finalizer settles.
  *   estimated     scoring has settled and `estimate` holds the band.
- *   no-band       scoring has settled and there is no band: the BandShortfallVM fields say which
+ *   no-band       scoring has settled and there is no band (a judged Item left unscored with nothing
+ *                 working on it counts as settled): the BandShortfallVM fields say which
  *                 Items and Task Types stand in the way, and are both empty only when the section
  *                 has every Item scored and still no band on record.
  */

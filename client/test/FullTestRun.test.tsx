@@ -325,7 +325,27 @@ describe("the full-test run page", () => {
     );
 
     expect(await screen.findByText(/never recorded the handoff/i)).toBeInTheDocument();
+    expect(screen.getByText(/The Reading section is finished, but/)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Continue to Listening" })).toBeInTheDocument();
+  });
+
+  // A discarded section ends the Run's wait on it too, but it was abandoned, not finished: the
+  // notice must not contradict the "Abandoned" chip on the card below it.
+  it("calls a section whose Attempt was discarded abandoned, not finished", async () => {
+    renderRun(
+      run({
+        currentSection: "listening",
+        sections: [
+          section({ section: "reading", order: 1, state: "completed", attemptId: "att-r", launchable: false }),
+          section({ section: "listening", order: 2, state: "aborted", attemptId: "att-l", launchable: false }),
+          section({ section: "writing", order: 3, launchable: true }),
+          section({ section: "speaking", order: 4 }),
+        ],
+      }),
+    );
+
+    expect(await screen.findByText(/The Listening section was abandoned, but this Full-Test Run never recorded the handoff/)).toBeInTheDocument();
+    expect(screen.queryByText(/The Listening section is finished/)).toBeNull();
   });
 
   // More than one handoff can be the lost one, and the sitting moves on regardless (the launchable

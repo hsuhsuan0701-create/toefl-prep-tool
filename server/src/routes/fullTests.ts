@@ -8,6 +8,7 @@ import {
   type FullTestSection,
   type FullTestSectionState,
   type FullTestSectionVM,
+  type TranscriptionJobStatus,
 } from "@toefl-prep/shared";
 import { config } from "../lib/config.js";
 import { sqliteTimestamp, sqliteTimestampToIso, type SqliteTimestamp } from "../db/timestamps.js";
@@ -26,8 +27,9 @@ import {
   type SelectableSet,
 } from "../services/fullTestRun.js";
 import { computeSectionEstimate, readPersistedEstimate, type EstimateReadStore } from "../services/sectionEstimates.js";
-import { pageParam } from "./attemptViewModels.js";
+import { pageParam, toScoringJobVM } from "./attemptViewModels.js";
 import type { ScoringJobStore } from "../services/scoringJobs.js";
+import type { TranscriptionJobStore } from "../services/transcriptionRecovery.js";
 
 // Full-Test Runs: four linked Simulation Attempts in ETS order under one report.
 //
@@ -69,13 +71,14 @@ export type FullTestRunStore = {
 };
 
 /**
- * What this route needs in full: its own aggregate, plus the three reads a section's state and band
- * status are derived from (the Attempt sitting it, that Attempt's active scoring jobs, its persisted
- * Band Estimate), each borrowed from the port of the module that owns it. The estimate half is
- * `EstimateReadStore`, so this route cannot write an estimate.
+ * What this route needs in full: its own aggregate, plus the four reads a section's state and band
+ * status are derived from (the Attempt sitting it, that Attempt's active scoring jobs and current
+ * transcription jobs, its persisted Band Estimate), each borrowed from the port of the module that
+ * owns it. The estimate half is `EstimateReadStore`, so this route cannot write an estimate.
  */
 export type FullTestStore =
-  FullTestRunStore & Pick<AttemptReadStore, "getAttempt"> & Pick<ScoringJobStore, "listActiveJobs"> & EstimateReadStore;
+  FullTestRunStore & Pick<AttemptReadStore, "getAttempt"> & Pick<ScoringJobStore, "listActiveJobs">
+  & Pick<TranscriptionJobStore, "getCurrentTranscriptionJobs"> & EstimateReadStore;
 
 /**
  * What `checkFullTestLink` alone reads. Separate from `FullTestStore` because POST /api/attempts
@@ -165,6 +168,16 @@ function sectionStates(
 }
 
 /**
+ * The status of each Item's current transcription job: the newest one not superseded (the rows come
+ * oldest first), as the Attempt review's transcription snapshot reads it.
+ */
+function currentTranscriptionStatuses(repo: Pick<Repo, "getCurrentTranscriptionJobs">, attemptId: string): TranscriptionJobStatus[] {
+  const newest = new Map<string, TranscriptionJobStatus>();
+  for (const job of repo.getCurrentTranscriptionJobs(attemptId)) newest.set(job.item_id, job.status as TranscriptionJobStatus);
+  return [...newest.values()];
+}
+
+/**
  * The one place a Run row becomes a response. Every section's state is derived here from its linked
  * Attempt, and both timestamps leave through `sqliteTimestampToIso`.
  */
@@ -187,7 +200,8 @@ export function toFullTestRunVM(repo: Repo, row: FullTestRunRow): FullTestRunVM 
     const { bandStatus, estimate } = fullTestSectionBand({
       state,
       attempt,
-      activeScoringJobs: attempt ? repo.listActiveJobs(attempt.id).length : 0,
+      activeJobs: attempt ? repo.listActiveJobs(attempt.id).map(toScoringJobVM) : [],
+      transcriptionStatuses: attempt ? currentTranscriptionStatuses(repo, attempt.id) : [],
       persisted: state === "completed" && attemptId ? readPersistedEstimate(repo, attemptId) : null,
       computed: attempt ? computeSectionEstimate(attempt) : { status: "not-applicable" },
     });

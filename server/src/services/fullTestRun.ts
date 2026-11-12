@@ -1,6 +1,5 @@
 import {
   FULL_TEST_SECTION_ORDER,
-  isDeterministicTaskType,
   type FullTestOverallVM,
   type FullTestSection,
   type FullTestSectionBandVM,
@@ -9,6 +8,7 @@ import {
 } from "@toefl-prep/shared";
 import { meanBand } from "./bandEstimator.js";
 import type { EstimateItemRow, SectionBandResult } from "./sectionEstimates.js";
+import { liveScoringOutstanding, type LiveScoringFacts } from "./liveScoring.js";
 
 // Pure rules of a Full-Test Run. Nothing here touches the database, the filesystem or the request:
 // routes/fullTests.ts supplies the facts and applies the answers, so every rule below is
@@ -57,46 +57,38 @@ export function fullTestSectionState(attempt: SectionAttemptFacts | null | undef
 export type SectionBandFacts = {
   state: FullTestSectionState;
   /** The Attempt sitting the section; undefined before it is created. */
-  attempt: { status: string; items: readonly EstimateItemRow[] } | undefined;
+  attempt: LiveScoringFacts["attempt"] & { items: readonly EstimateItemRow[] } | undefined;
   /** The Attempt's queued or running scoring jobs. */
-  activeScoringJobs: number;
+  activeJobs: LiveScoringFacts["activeJobs"];
+  /** The current transcription job's status per Item, where there is one. */
+  transcriptionStatuses: LiveScoringFacts["transcriptionStatuses"];
   /** The Attempt's persisted Band Estimate, already refused when it fails the band rule. */
   persisted: SectionEstimateVM | null;
   /** The estimate decision over the Attempt's current Items (sectionEstimates.ts). */
   computed: SectionBandResult;
 };
 
-// An Item a Judge (or Ears, ahead of the Judges) still owes a score.
-const OUTSTANDING_STATUSES: ReadonlySet<string> = new Set(["pending", "transcription_pending"]);
-
-/** Counts per Task Type, in first-seen order. */
-function countByTaskType(items: readonly EstimateItemRow[]): { taskType: string; itemCount: number }[] {
-  const counts = new Map<string, number>();
-  for (const item of items) counts.set(item.task_type, (counts.get(item.task_type) ?? 0) + 1);
-  return [...counts].map(([taskType, itemCount]) => ({ taskType, itemCount }));
-}
-
 /**
  * Where a section's Band Estimate stands (FullTestSectionBandVM), and the estimate to show with it.
  *
- * A finished section reads "scoring" (CONTEXT.md calls it pending) while its Attempt still has
- * scoring outstanding: an active scoring job, a judged Item not yet scored, or a Speaking capture
- * its finalizer has not completed yet. A persisted band, such as the one a re-score is about to
- * replace, is withheld until the work settles, because its outcome decides the band.
+ * A finished section reads "scoring" (CONTEXT.md calls it pending) while work that can still score
+ * its Attempt is live: a Speaking capture its finalizer has not completed yet, an active scoring
+ * job, or a transcription job with work left (liveScoringOutstanding, the rule the Attempt review
+ * applies too). A persisted band, such as the one a re-score is about to replace, is withheld until
+ * the work settles, because its outcome decides the band.
  *
  * Once settled, the section has its persisted band or it has none. With none, the shortfall comes
  * from the Attempt's current Items — per Task Type, how many failed, are unscored or were never
- * captured, and which Task Types are absent — so the report can say "essay scoring failed" rather
- * than showing a band from part of the section.
+ * captured, and which Task Types are absent — so the report can say "essay scoring failed", or that
+ * recordings were never scored, rather than showing a band from part of the section or promising
+ * one nothing is working on.
  */
 export function fullTestSectionBand(facts: SectionBandFacts): { bandStatus: FullTestSectionBandVM; estimate: SectionEstimateVM | null } {
   const { attempt } = facts;
   if (facts.state !== "completed" || !attempt) return { bandStatus: { status: "not-finished" }, estimate: null };
 
-  const unscoredJudged = attempt.items.filter((item) => !isDeterministicTaskType(item.task_type) && OUTSTANDING_STATUSES.has(item.scoring_status));
-  if (attempt.status === "in_progress" || facts.activeScoringJobs > 0 || unscoredJudged.length > 0) {
-    return { bandStatus: { status: "scoring", outstanding: countByTaskType(unscoredJudged) }, estimate: null };
-  }
+  const outstanding = liveScoringOutstanding({ attempt, activeJobs: facts.activeJobs, transcriptionStatuses: facts.transcriptionStatuses });
+  if (outstanding) return { bandStatus: { status: "scoring", outstanding }, estimate: null };
 
   if (facts.persisted) return { bandStatus: { status: "estimated" }, estimate: facts.persisted };
 

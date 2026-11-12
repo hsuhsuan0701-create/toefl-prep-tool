@@ -129,11 +129,12 @@ describe("the compositions production hands out", () => {
     ]);
   });
 
-  it("builds a Full-Test Run's store from its own aggregate plus three READS", () => {
+  it("builds a Full-Test Run's store from its own aggregate plus four READS", () => {
     const repo = fullTestsRouteStore(stores());
     expect(repo.listFullTestRuns()).toEqual([]);
     expect(repo.getAttempt("nope")).toBeUndefined();
     expect(repo.listActiveJobs("nope")).toEqual([]);
+    expect(repo.getCurrentTranscriptionJobs("nope")).toEqual([]);
     expect(repo.getSectionEstimate("nope")).toBeUndefined();
 
     // @ts-expect-error — routes/fullTests.ts's own header says the route "never scores anything and
