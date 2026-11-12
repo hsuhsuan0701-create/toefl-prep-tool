@@ -171,6 +171,12 @@
     outline-offset: 2px;
   }
 
+  /* A page's main region takes focus only as the landing place of a new Drill or Simulation stage
+     with no heading of its own (hooks/useStageEntry.ts). It is not a control, so it draws no ring. */
+  main[tabindex="-1"]:focus-visible {
+    outline: none;
+  }
+
   /* Traditional Chinese prose (feedback, Explanations, summaries). Prose.tsx sets lang="zh-Hant";
      these rules depend on it. Never italic, never tracked, never uppercased. */
   :lang(zh-Hant) {

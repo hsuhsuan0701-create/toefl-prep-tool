@@ -1,3 +1,4 @@
+import type { Ref } from "react";
 import type { TrendPointVM } from "@toefl-prep/shared";
 import { formatScore, scaleFor } from "../lib/taskTypeScale";
 import { Sparkline, StatTile } from "../ui/StatTile";
@@ -21,6 +22,7 @@ export default function TrendCard({
   expanded,
   onToggle,
   emptyNote,
+  ref,
 }: {
   taskType: string;
   label: string;
@@ -33,6 +35,8 @@ export default function TrendCard({
    * never reported as a missing one.
    */
   emptyNote?: string;
+  /** The tile's toggle button, which a closing chart hands focus back to. */
+  ref?: Ref<HTMLButtonElement>;
 }) {
   const latest = points.length > 0 ? points[points.length - 1] : null;
   const previous = points.length > 1 ? points[points.length - 2] : null;
@@ -83,6 +87,7 @@ export default function TrendCard({
       }
       onToggle={onToggle}
       expanded={expanded}
+      ref={ref}
     />
   );
 }

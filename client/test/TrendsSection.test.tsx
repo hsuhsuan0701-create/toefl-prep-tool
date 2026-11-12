@@ -107,4 +107,19 @@ describe("TrendsSection range picker", () => {
     fireEvent.change(screen.getByLabelText(/To/u), { target: { value: emptyDay } });
     expect(screen.queryByText("Repeat Attempt")).not.toBeInTheDocument();
   });
+
+  // "Close chart" goes with the chart, so focus goes back to the tile that opened it rather than to
+  // the page body (issue #24).
+  it("returns focus to the tile when its chart is closed", async () => {
+    stubTrends([point("email", 2 * DAY_MS, 4)]);
+    render(<TrendsSection />);
+    await screen.findByText("4.00 / 5");
+
+    const tile = screen.getByRole("button", { name: /Write an Email/u });
+    await userEvent.click(tile);
+    await userEvent.click(screen.getByRole("button", { name: "Close chart" }));
+    expect(screen.queryByRole("button", { name: "Close chart" })).not.toBeInTheDocument();
+    expect(document.activeElement).toBe(tile);
+    expect(tile).toHaveAttribute("aria-expanded", "false");
+  });
 });

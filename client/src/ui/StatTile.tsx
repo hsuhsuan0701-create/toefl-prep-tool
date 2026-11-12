@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, Ref } from "react";
 import { cx } from "./cx";
 
 type Delta = {
@@ -23,6 +23,8 @@ type StatTileProps = {
    */
   onToggle?: () => void;
   expanded?: boolean;
+  /** The toggle button, for a container that hands focus back to it when the detail closes. */
+  ref?: Ref<HTMLButtonElement>;
   className?: string;
 };
 
@@ -33,7 +35,7 @@ const ARROW: Record<Delta["direction"], string> = { up: "▲", down: "▼", flat
  * bands — a band is a BandFigure. Up/down are drawn as arrows with words, in ink, not green/red: a
  * falling Listen and Repeat score is information, not an alarm.
  */
-export function StatTile({ label, value, delta, sparkline, footnote, onToggle, expanded = false, className }: StatTileProps) {
+export function StatTile({ label, value, delta, sparkline, footnote, onToggle, expanded = false, ref, className }: StatTileProps) {
   const body = (
     <>
       <div className="min-w-0 flex-1">
@@ -63,6 +65,7 @@ export function StatTile({ label, value, delta, sparkline, footnote, onToggle, e
   if (onToggle) {
     return (
       <button
+        ref={ref}
         type="button"
         aria-expanded={expanded}
         onClick={onToggle}

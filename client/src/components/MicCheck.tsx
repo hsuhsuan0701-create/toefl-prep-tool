@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useRecorder } from "../hooks/useRecorder";
+import { useStageEntry } from "../hooks/useStageEntry";
 import { Button } from "../ui/Button";
 import { IconCheck, IconMic, IconRepeat, IconSpinner } from "../ui/icons";
 import { Notice } from "../ui/Notice";
@@ -41,6 +42,10 @@ export default function MicCheck({ onPass }: MicCheckProps) {
   // playing back silence is not a test of anything.
   const [peak, setPeak] = useState(0);
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
+  // Each step replaces the button that started it, so focus goes back to the check's heading
+  // rather than the page body; the step is already in view, so the page does not move.
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  useStageEntry(stage, { scroll: false, focusTarget: headingRef });
 
   const rafRef = useRef<number | null>(null);
   const stopTimerRef = useRef<number | null>(null);
@@ -126,7 +131,7 @@ export default function MicCheck({ onPass }: MicCheckProps) {
   return (
     <section aria-labelledby="mic-check-title" className="mx-auto max-w-lg space-y-5 rounded-sheet border border-rule bg-sheet p-5 sm:p-6">
       <div className="space-y-1.5">
-        <h1 id="mic-check-title" className="flex items-center gap-2 text-heading font-semibold text-ink">
+        <h1 ref={headingRef} id="mic-check-title" tabIndex={-1} className="flex items-center gap-2 rounded-chip text-heading font-semibold text-ink">
           <IconMic size={18} className="shrink-0 text-graphite" />
           Microphone check
         </h1>

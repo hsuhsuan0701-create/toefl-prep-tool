@@ -164,6 +164,8 @@ export default function TimedEditor({
             aria-label={isEmail ? "Your email" : "Your post"}
             placeholder={isEmail ? "Write your email here." : "Write your post here."}
             className="lg:min-h-[26rem]"
+            // The essay stage opens with the caret here, its clock already running (useStageEntry).
+            data-stage-focus=""
           />
         </section>
       </div>

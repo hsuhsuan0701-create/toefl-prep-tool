@@ -58,6 +58,23 @@ describe("MicCheck recovery", () => {
   });
 });
 
+describe("MicCheck keeps the User's place", () => {
+  // Each step replaces the button that started it. Focus returns to the check's heading rather than
+  // the page body, and the page, already showing the check, does not move (issue #24).
+  it("hands focus to its heading when a step replaces the button, without scrolling", async () => {
+    const user = userEvent.setup();
+    denyMicrophone("NotAllowedError", "Permission denied");
+    const scrollTo = vi.spyOn(window, "scrollTo");
+    render(<MicCheck onPass={vi.fn()} />);
+
+    await user.click(screen.getByRole("button", { name: /start mic check/i }));
+    await screen.findByRole("button", { name: /try again/i });
+    expect(document.activeElement).toBe(screen.getByRole("heading", { name: "Microphone check" }));
+    expect(scrollTo).not.toHaveBeenCalled();
+    scrollTo.mockRestore();
+  });
+});
+
 describe("MicCheck when it goes away mid-check", () => {
   // Leaving the mic check during its 2 s test recording (Back, a link) must not leave the microphone
   // on: the recording indicator stays lit with nothing on screen to turn it off.

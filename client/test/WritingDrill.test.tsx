@@ -223,6 +223,37 @@ describe("WritingDrill full drill: every task gets a fresh editor and a fresh cl
     expect(scrollTo).toHaveBeenCalledWith(toTop);
   });
 
+  // The control that moved the Drill on goes with the stage it was on; focus goes into the new stage
+  // rather than falling back to the page body, and an essay opens with the caret in its editor
+  // (issue #24).
+  it("moves keyboard focus into every new stage, and into the editor on an essay stage", async () => {
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+    renderRoutes([{ path: "/writing/:setId", element: <WritingDrill /> }], "/writing/wri-test");
+    const focusInStage = () => {
+      expect(document.activeElement).not.toBe(document.body);
+      expect(screen.getByRole("main").contains(document.activeElement)).toBe(true);
+    };
+
+    await user.click(await screen.findByText("All three Task Types"));
+    expect(document.activeElement).toBe(screen.getByRole("heading", { level: 1, name: "All three Task Types" }));
+
+    await user.click(screen.getByRole("button", { name: "Start Writing Drill" }));
+    await screen.findByText("Arrange the first sentence.");
+    focusInStage();
+
+    await finishBuildSentence(user);
+    await screen.findByRole("heading", { name: "Write an Email" });
+    expect(document.activeElement).toBe(screen.getByRole("textbox", { name: "Your email" }));
+
+    await user.type(screen.getByRole("textbox"), "Dear Professor, please grant me an extension.");
+    await user.click(screen.getByRole("button", { name: /^Submit/ }));
+    await screen.findByRole("heading", { name: "Academic Discussion" });
+    expect(document.activeElement).toBe(screen.getByRole("textbox", { name: "Your post" }));
+
+    await user.click(screen.getByRole("button", { name: /^Submit/ }));
+    expect(await screen.findByRole("heading", { name: "Results" })).toBe(document.activeElement);
+  });
+
   // Each essay's scoring job is fired when its slot mounts, and re-fired only by an explicit Retry.
   // The Email's slot is drawn as one line above the Discussion and again on the results screen, a
   // different place in the tree, so it mounts twice. lib/scoringJobOnce.ts keeps the second mount
