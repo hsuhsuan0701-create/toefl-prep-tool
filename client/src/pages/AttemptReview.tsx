@@ -108,6 +108,10 @@ export default function AttemptReview() {
   // the same rule, as it does for the prompt audio, so a sentence still being answered is never shown.
   const spokenPromptByItemId = new Map(attempt.status === "completed" ? (spokenPrompts ?? []).map((p) => [p.itemId, p.text]) : []);
   const deterministic = attempt.kind === "reading" || attempt.kind === "listening";
+  // The server builds the key review for every Item of a completed Attempt, and for each scored Item
+  // of a Drill whatever its status. When the review is owed and still absent, the Set could not be
+  // read or two of its Items share an id; otherwise it is withheld by rule and the notice says why.
+  const reviewOwed = attempt.status === "completed" || (attempt.mode === "drill" && items.some((item) => item.scoringStatus === "scored"));
 
   const judgedProps = (item: ItemVM) => ({
     judgeReports,
@@ -194,10 +198,11 @@ export default function AttemptReview() {
         {deterministic &&
           items.length > 0 &&
           !deterministicReview &&
-          (attempt.status === "completed" ? (
+          (reviewOwed ? (
             <Notice tone="info">The key and Explanations aren't available for this Attempt: its Set could not be read.</Notice>
           ) : attempt.status === "aborted" ? (
-            // The server builds the key review only for a completed Attempt, and a discard is final.
+            // Here the key review waits for completion (a Simulation, or a Drill with no scored
+            // Item), and a discard is final.
             <Notice tone="info">This Attempt was discarded, so its key and Explanations are not shown.</Notice>
           ) : (
             <Notice tone="info">The key and Explanations appear once this Attempt is complete.</Notice>

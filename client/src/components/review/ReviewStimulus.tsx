@@ -4,9 +4,10 @@ import { IconCheck, IconCross, IconDash } from "../../ui/icons";
 import { PassagePane } from "../../ui/PassagePane";
 import { Prose } from "../../ui/Prose";
 
-// What a completed Attempt's Stimulus showed the User, under its heading in review: the text the
-// Items were answered against. Only a completed Attempt's review mounts this (keys and Explanations
-// reach the client only then, CLAUDE.md "Sets and answers"), and only when the Set could be read.
+// What a Stimulus showed the User, under its heading in review: the text the Items were answered
+// against. It is mounted only beside a key review (CLAUDE.md "Sets and answers"): for every Stimulus
+// of a completed Attempt, and for a Stimulus with a scored Item in an unfinished or discarded Drill,
+// whose check already showed its key and Explanation. And only when the Set could be read.
 //
 // Two shapes, by how much there is to read. A passage with gaps is short and is the Items
 // themselves, so it is shown filled in. A text the questions were asked about is long, so it opens

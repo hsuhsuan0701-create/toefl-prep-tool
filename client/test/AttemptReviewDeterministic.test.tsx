@@ -158,6 +158,7 @@ describe("a Reading Simulation still in progress", () => {
     expect(screen.queryByText(/To ask for a ride|To cancel a meeting|To book a room/)).toBeNull();
     expect(screen.queryByText("她想搭便車。")).toBeNull();
     expect(screen.getByText(/appear once this Attempt is complete/)).toBeInTheDocument();
+    expect(screen.queryByText(/its Set could not be read/)).toBeNull();
   });
 
   // Option ids are internal ("o3", "lcr-r1-a"); the letter comes from the option's place in the
@@ -273,7 +274,7 @@ describe("a discarded Reading Simulation", () => {
       deterministicReview: undefined,
     });
     expect(screen.getByText("This Attempt was discarded, so its key and Explanations are not shown.")).toBeInTheDocument();
-    expect(screen.queryByText(/appear once this Attempt is complete/)).toBeNull();
+    expect(screen.queryByText(/appear once this Attempt is complete|its Set could not be read/)).toBeNull();
     // The option the User picked is theirs to see; the key (B) is not.
     expect(screen.getByTestId("item-q1")).toHaveTextContent("Your Response: A. To sell a bicycle");
     expect(screen.queryByText(/To ask for a ride/)).toBeNull();
@@ -625,6 +626,31 @@ describe("an unfinished or discarded Drill's scored Items", () => {
       expect(screen.queryByText(/appear once this Attempt is complete|so its key and Explanations are not shown/)).toBeNull();
     });
   }
+
+  // A Drill's scored Items are owed their review whatever its status, so when it is absent the Set
+  // could not be read (or two of its Items share an id): neither completion nor the discard is why.
+  for (const [label, status, band] of states) {
+    it(`says the Set could not be read when the review is absent (${label} Drill)`, async () => {
+      const base = readingDetail();
+      await renderReview({ ...base, attempt: { ...base.attempt, mode: "drill", status, completedAt: null }, bandStatus: { status: band }, deterministicReview: undefined });
+      expect(screen.getByText("The key and Explanations aren't available for this Attempt: its Set could not be read.")).toBeInTheDocument();
+      expect(screen.queryByText(/appear once this Attempt is complete|so its key and Explanations are not shown/)).toBeNull();
+    });
+  }
+
+  // With no scored Item there is no review owed yet: completion is still what brings it.
+  it("an unfinished Drill with no scored Item still says the review comes with completion", async () => {
+    const base = readingDetail();
+    await renderReview({
+      ...base,
+      attempt: { ...base.attempt, mode: "drill", status: "in_progress", completedAt: null },
+      bandStatus: { status: "unfinished" },
+      items: [unscored("q1", "daily_life")],
+      deterministicReview: undefined,
+    });
+    expect(screen.getByText("The key and Explanations appear once this Attempt is complete.")).toBeInTheDocument();
+    expect(screen.queryByText(/its Set could not be read/)).toBeNull();
+  });
 
   it("an unfinished Listening Drill can replay a scored Stimulus, and nothing it did not score", async () => {
     const { container } = await renderListeningReview(

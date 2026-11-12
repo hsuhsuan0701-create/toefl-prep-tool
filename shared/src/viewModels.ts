@@ -351,8 +351,10 @@ export interface AttemptDetailVM {
   // Queued or running scoring jobs (ScoringJobVM). Deterministic Task Types, Build a Sentence included,
   // are scored inline and never appear here.
   activeJobs: ScoringJobVM[];
-  // Present only for a completed Reading or Listening Attempt, Drill or Simulation; absent, not empty,
-  // otherwise.
+  // A Reading or Listening Attempt's key review: every Item of a completed Attempt, Drill or
+  // Simulation, and only the scored Items of an unfinished or discarded Drill. Absent, not empty, for
+  // an unfinished or discarded Simulation, a Drill with no scored Item, and a Set that cannot be read
+  // or two of whose Items share an id.
   deterministicReview?: DeterministicReviewItemVM[];
   // Present only for a completed Speaking Attempt, Drill or Simulation (a Full-Test Run's Speaking
   // section included), whose Set can still be read: one entry per spoken Item of the Attempt that
