@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { describe, expect, it, vi } from "vitest";
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import SentenceTiles, { type BuildSentenceItem } from "../src/components/buildSentence/SentenceTiles";
 import { emptySlotsForFrame, tileIdOf, type SlotFill } from "../src/components/buildSentence/sentenceSlotFill";
@@ -251,6 +251,36 @@ describe("SentenceTiles", () => {
     expect(supplied).toEqual([VOLUNTEERS, null, null, null, null, null]);
     expect(screen.getByTestId("bas-blank-1")).toHaveTextContent("");
     expect(within(screen.getByTestId("bas-tray")).getByTestId(`bas-tile-${WHO}`)).toBeInTheDocument();
+  });
+
+  // The keyboard path: Space picks the focused tile up, each arrow press carries it 25 px over the
+  // synthetic layout, Space drops it. Whatever the move, the next key press must act on the tile the
+  // User just moved, so focus has to land on it wherever it went.
+  it("keeps focus on the tile moved by keyboard: into an empty blank, onto a filled one, and back", async () => {
+    const user = userEvent.setup();
+    render(<ControlledTiles item={REFERENCE_ITEM} />);
+    await dragTile(user, "who", { blank: 0 });
+    await dragTile(user, "volunteers", { blank: 1 });
+    const tileWith = (id: string) => screen.getByTestId(`bas-tile-${id}`);
+
+    // Blank 2 onto the filled blank 1: the two tiles swap, and focus goes with "volunteers".
+    tileWith(VOLUNTEERS).focus();
+    await user.keyboard(`[Space]${"[ArrowUp]".repeat(9)}[Space]`);
+    expect(screen.getByTestId("bas-blank-0")).toHaveTextContent("volunteers");
+    expect(screen.getByTestId("bas-blank-1")).toHaveTextContent("who");
+    await waitFor(() => expect(document.activeElement).toBe(tileWith(VOLUNTEERS)));
+
+    // From the tray into the empty blank 3.
+    tileWith(LED).focus();
+    await user.keyboard(`[Space]${"[ArrowUp]".repeat(9)}${"[ArrowRight]".repeat(8)}[Space]`);
+    expect(screen.getByTestId("bas-blank-2")).toHaveTextContent("led us through");
+    await waitFor(() => expect(document.activeElement).toBe(tileWith(LED)));
+
+    // And from blank 1 back to the tray.
+    tileWith(VOLUNTEERS).focus();
+    await user.keyboard(`[Space]${"[ArrowRight]".repeat(12)}[Space]`);
+    expect(within(screen.getByTestId("bas-tray")).getByTestId(`bas-tile-${VOLUNTEERS}`)).toBeInTheDocument();
+    await waitFor(() => expect(document.activeElement).toBe(tileWith(VOLUNTEERS)));
   });
 
   it("keeps duplicate tile texts distinguishable", async () => {

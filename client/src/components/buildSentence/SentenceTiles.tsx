@@ -224,7 +224,9 @@ function Blank({ index, tileId }: { index: number; tileId: string | null }) {
         isOver && !tileId && "border-accent bg-accent-wash",
       )}
     >
-      {tileId ? <Tile id={tileId} placed /> : <span aria-hidden="true">{" "}</span>}
+      {/* Keyed by the tile, so a swap mounts the arriving tile's own button rather than relabelling
+          the one that has focus; dnd-kit then restores keyboard focus to the tile that was moved. */}
+      {tileId ? <Tile key={tileId} id={tileId} placed /> : <span aria-hidden="true">{" "}</span>}
     </span>
   );
 }
