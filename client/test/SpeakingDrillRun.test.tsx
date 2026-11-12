@@ -235,6 +235,77 @@ describe("the Speaking Drill run body: recordings out, one scoring job back", ()
     expect(await screen.findByText("attempt report")).toBeInTheDocument();
   });
 
+  it("says a recording whose transcription has failed needs a Retry, not that it keeps retrying", async () => {
+    const api = await import("../src/lib/api");
+    // What a machine with no transcription key answers: the recording is stored, and its job ended
+    // `failed` / `configuration` on its first run. Nothing retries it until the User does.
+    (api.uploadItemAudio as any).mockImplementation(async () => ({
+      ok: false,
+      kind: "recovery-pending",
+      message: "failed",
+      job: { jobId: "tj", status: "failed", automaticAttempts: 1, nextRetryAt: null, failureKind: "configuration", error: null, scoreJobId: null },
+    }));
+    const user = userEvent.setup();
+    await startInterview(user);
+    await user.click(await screen.findByRole("button", { name: "finish iv-1" }));
+    await user.click(await screen.findByRole("button", { name: "finish iv-2" }));
+    await screen.findByRole("heading", { name: "Results" });
+
+    expect(screen.queryByText(/keeps retrying/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/went to background transcription/)).not.toBeInTheDocument();
+    expect(screen.getByText(/2 recordings were saved, but their transcription failed/)).toHaveTextContent(
+      /Nothing retries them by itself\. Finish to open your Attempt report, and use Retry transcription there\./,
+    );
+    expect(screen.getByText(/Every recording was saved, but none could be transcribed/)).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "Finish and open the report" }));
+    expect(await screen.findByText("attempt report")).toBeInTheDocument();
+  });
+
+  it("counts still-retrying, failed and untranscribable recordings apart", async () => {
+    const api = await import("../src/lib/api");
+    const job = (status: string, failureKind: string | null) => ({
+      jobId: `tj-${status}`,
+      status,
+      automaticAttempts: 1,
+      nextRetryAt: null,
+      failureKind,
+      error: null,
+      scoreJobId: null,
+    });
+    const byItem: Record<string, unknown> = {
+      "iv-1": { ok: false, kind: "recovery-pending", message: "", job: job("retry_wait", "transient") },
+      "iv-2": { ok: false, kind: "recovery-pending", message: "", job: job("failed", "configuration") },
+    };
+    const lrByItem: Record<string, unknown> = {
+      "lr-1": { ok: false, kind: "recovery-pending", message: "", job: job("failed", "missing-recording") },
+    };
+    (api.uploadItemAudio as any).mockImplementation(async (_a: string, itemId: string) => byItem[itemId] ?? lrByItem[itemId]);
+    const user = userEvent.setup();
+    renderRoutes(
+      [
+        { path: "/", element: <p>dashboard</p> },
+        { path: "/attempts/:id", element: <p>attempt report</p> },
+        { path: "/speaking/:setId", element: <SpeakingDrill /> },
+      ],
+      "/speaking/spk-1",
+    );
+    await user.click(await screen.findByText("Both Task Types"));
+    await user.click(await screen.findByRole("button", { name: "mic ok" }));
+    await user.click(await screen.findByRole("button", { name: "Start Speaking Drill" }));
+    await endAudio("spk-1/intro.mp3");
+    await user.click(await screen.findByRole("button", { name: "finish lr-1" }));
+    await endAudio("int-intro.mp3");
+    await user.click(await screen.findByRole("button", { name: "finish iv-1" }));
+    await user.click(await screen.findByRole("button", { name: "finish iv-2" }));
+    await screen.findByRole("heading", { name: "Results" });
+
+    // Each recording is described by what is true of it, across both Tasks.
+    expect(screen.getByText(/1 recording was saved but not transcribed in time/)).toHaveTextContent(/keeps retrying in the background/);
+    expect(screen.getByText(/1 recording was saved, but its transcription failed/)).toHaveTextContent(/Nothing retries it by itself/);
+    expect(screen.getByText(/1 recording can't be transcribed/)).toHaveTextContent(/in a new Attempt is the only way/);
+    expect(screen.getByText("Every recording went to background transcription. Your Attempt report shows them.")).toBeInTheDocument();
+  });
+
   it("holds the queue on a failed upload and offers a retry for that Item alone", async () => {
     const api = await import("../src/lib/api");
     (api.uploadItemAudio as any).mockImplementation(async (_attemptId: string, itemId: string) =>

@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
+import type { TranscriptionJobVM } from "@toefl-prep/shared";
 import { uploadItemAudio } from "../lib/api";
+import { isTerminalTranscriptionFailure } from "../lib/transcriptionFailure";
 import { useRecorder } from "../hooks/useRecorder";
 import { useStageEntry } from "../hooks/useStageEntry";
 import { requestErrorMessage } from "../lib/requestError";
@@ -37,6 +39,7 @@ import { ExamExit, ExamShell } from "../ui/ExamShell";
 import { Kicker } from "../ui/Heading";
 import { IconArrowLeft } from "../ui/icons";
 import { Notice } from "../ui/Notice";
+import { TRANSCRIPTION_JOB_STATUS } from "../ui/labels";
 
 // The Speaking Drill's run body: the mic check, the intro that starts the run, then each Item's
 // prompt -> beep -> recording -> countdown, uploaded as soon as it is recorded. A Task is handed to
@@ -56,6 +59,19 @@ const TASK_OPTIONS: { label: string; kinds: SpeakingTaskKind[] }[] = [
   { label: "Both Task Types", kinds: ["listen_repeat", "interview"] },
 ];
 
+/**
+ * Where a recording taken for background recovery stands, from the job the upload's 202 carried:
+ * still being transcribed (`queued`, `running`, `retry_wait`, or no readable job), failed and
+ * waiting for the User's Retry transcription (a `configuration` failure, among others, is never
+ * retried automatically), or failed in a way no retry clears (lib/transcriptionFailure.ts).
+ */
+type RecoveryState = "retrying" | "retryable" | "unrecoverable";
+
+function recoveryState(job: TranscriptionJobVM | undefined): RecoveryState {
+  if (job?.status !== "failed") return "retrying";
+  return isTerminalTranscriptionFailure(job) ? "unrecoverable" : "retryable";
+}
+
 export default function SpeakingDrill() {
   const { setId } = useParams<{ setId: string }>();
   const recorder = useRecorder();
@@ -72,9 +88,11 @@ export default function SpeakingDrill() {
   // The current Task's recordings. Reset per Task, so it only ever describes the Task on screen.
   const [uploads, setUploads] = useState<Record<string, UploadEntry>>({});
   // Items anywhere in this Drill whose recording went to background recovery (an Item that later
-  // uploads cleanly leaves again). It spans every Task, unlike `uploads`, so the results screen can
-  // say how many Items are not scored there and point at the one report that shows them.
-  const [recoveryPendingItemIds, setRecoveryPendingItemIds] = useState<Set<string>>(new Set());
+  // uploads cleanly leaves again), each with where its transcription job stood when the server took
+  // it. It spans every Task, unlike `uploads`, so the results screen can say how many Items are not
+  // scored there, which of them nothing will retry by itself, and point at the one report that shows
+  // them.
+  const [recoveryPendingItemIds, setRecoveryPendingItemIds] = useState<Map<string, RecoveryState>>(new Map());
   const [rerecordItemId, setRerecordItemId] = useState<string | null>(null);
   // Task Types whose scoring job has not landed yet. Finish waits for these, so the Attempt — and
   // the Band Estimate completing it computes — only completes once nothing is still being scored.
@@ -132,7 +150,7 @@ export default function SpeakingDrill() {
           setUploads((prev) => ({ ...prev, [itemId]: { status: "done", blob } }));
           setRecoveryPendingItemIds((prev) => {
             if (!prev.has(itemId)) return prev;
-            const next = new Set(prev);
+            const next = new Map(prev);
             next.delete(itemId);
             return next;
           });
@@ -140,10 +158,11 @@ export default function SpeakingDrill() {
           // Durably accepted: no resend or re-record is offered, since a resend would resolve to
           // the same job. The job stays visible here, and on the Attempt report afterwards.
           setUploads((prev) => ({ ...prev, [itemId]: { status: "recovery-pending", blob, job: outcome.job } }));
+          const state = recoveryState(outcome.job);
           setRecoveryPendingItemIds((prev) => {
-            if (prev.has(itemId)) return prev;
-            const next = new Set(prev);
-            next.add(itemId);
+            if (prev.get(itemId) === state) return prev;
+            const next = new Map(prev);
+            next.set(itemId, state);
             return next;
           });
         } else {
@@ -183,7 +202,7 @@ export default function SpeakingDrill() {
       setInFlightTasks(new Set());
       setQueueIndex(0);
       // Reset only here: this list spans every Task of the Drill.
-      setRecoveryPendingItemIds(new Set());
+      setRecoveryPendingItemIds(new Map());
       transcriptsRef.current = {};
       if (taskQueue[0] === "listen_repeat") {
         setIndex(0);
@@ -465,6 +484,10 @@ export default function SpeakingDrill() {
   // stage === "drill-done"
   const stillScoring = inFlightTasks.size > 0;
   const recoveringCount = recoveryPendingItemIds.size;
+  const recoveryStates = [...recoveryPendingItemIds.values()];
+  const retryingCount = recoveryStates.filter((r) => r === "retrying").length;
+  const retryableCount = recoveryStates.filter((r) => r === "retryable").length;
+  const unrecoverableCount = recoveryStates.filter((r) => r === "unrecoverable").length;
   return (
     <ExamShell
       section="Speaking"
@@ -499,12 +522,32 @@ export default function SpeakingDrill() {
           {isRepeat && (
             <Notice tone="caution">This Attempt is a Repeat: you have practised this Set before. Repeats are left out of your Band Estimate.</Notice>
           )}
-          {/* An Item taken for recovery is not in any result below; say how many, and where they are. */}
-          {recoveringCount > 0 && attemptId && (
+          {/* An Item taken for recovery is not in any result below; say how many, and where they are.
+              A recording whose transcription has failed is never retried by itself, so it is told
+              apart from one still being transcribed: waiting on it would never bring a score. */}
+          {retryableCount > 0 && attemptId && (
+            <Notice tone="caution" title={TRANSCRIPTION_JOB_STATUS.failed.label}>
+              {retryableCount === 1
+                ? "1 recording was saved, but its transcription failed, so it isn't scored below."
+                : `${retryableCount} recordings were saved, but their transcription failed, so they aren't scored below.`}{" "}
+              Nothing retries {retryableCount === 1 ? "it" : "them"} by itself. Finish to open your Attempt report, and use
+              Retry transcription there.
+            </Notice>
+          )}
+          {unrecoverableCount > 0 && attemptId && (
+            <Notice tone="critical" title={TRANSCRIPTION_JOB_STATUS.failed.label}>
+              {unrecoverableCount === 1
+                ? "1 recording can't be transcribed, so it has no score."
+                : `${unrecoverableCount} recordings can't be transcribed, so they have no score.`}{" "}
+              Retrying would send the same recording again. Recording {unrecoverableCount === 1 ? "that Item" : "those Items"} again
+              in a new Attempt is the only way to score {unrecoverableCount === 1 ? "it" : "them"}; your Attempt report says why.
+            </Notice>
+          )}
+          {retryingCount > 0 && attemptId && (
             <Notice tone="info">
-              {recoveringCount === 1
+              {retryingCount === 1
                 ? "1 recording was saved but not transcribed in time, so it isn't scored below."
-                : `${recoveringCount} recordings were saved but not transcribed in time, so they aren't scored below.`}{" "}
+                : `${retryingCount} recordings were saved but not transcribed in time, so they aren't scored below.`}{" "}
               Transcription keeps retrying in the background, and those Items are scored once it succeeds. Finish to open
               your Attempt report, which follows them.
             </Notice>
@@ -512,7 +555,11 @@ export default function SpeakingDrill() {
         </header>
         {completed.length === 0 && (
           <EmptyState title="Nothing was scored in this Drill">
-            {recoveringCount > 0 ? "Every recording went to background transcription. Your Attempt report shows them." : "No Item was scored."}
+            {recoveringCount === 0
+              ? "No Item was scored."
+              : retryingCount === 0
+                ? "Every recording was saved, but none could be transcribed. Your Attempt report shows them."
+                : "Every recording went to background transcription. Your Attempt report shows them."}
           </EmptyState>
         )}
         {slots(false)}
