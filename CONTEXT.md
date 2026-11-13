@@ -63,7 +63,7 @@ An Attempt mode with relaxed constraints (pauses, instant feedback, re-recording
 _Avoid_: practice mode
 
 **Simulation**:
-An Attempt mode under exam constraints: continuous, play-once audio, deferred feedback. Preferred source for Band Estimates; for Reading/Listening, the only source — Drills never produce them.
+An Attempt mode under exam constraints: continuous, play-once audio, deferred feedback. Deferred covers the marks as well as the key and the Explanations: whether a Response was correct is shown only once the Attempt is complete. Preferred source for Band Estimates; for Reading/Listening, the only source — Drills never produce them.
 _Avoid_: mock test, full test
 
 **Module Path**:

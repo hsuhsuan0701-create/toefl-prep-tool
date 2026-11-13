@@ -90,6 +90,11 @@ when it records a decision.
   Build a Sentence Item once: an all-scored request is answered from the stored rows and writes
   nothing, a mixed one is refused. `routes.attempts.reading.test.ts`,
   `routes.attempts.listening.test.ts`, `routes.attempts.buildSentence.test.ts`.
+- Until a Simulation is completed, its review shows each Response without a Correct or Incorrect
+  mark or a correct-count tally (Reading, Listening and Build a Sentence alike), and the per-skill
+  accuracy pane leaves out its Items. A Drill shows its marks as soon as an Item is scored, and a
+  discarded Simulation shows its marks without the key. `AttemptReviewDeterministic.test.tsx`,
+  `AttemptReview.test.tsx`, `routes.stats.test.ts`.
 - A Simulation scores its Modules in order: Router Module Items only until it is routed, then only
   the Module it was routed to (409 otherwise). `routes.attempts.reading.test.ts`.
 - A published Set is never edited: past Attempts are reviewed against the file. Publish a replacement
