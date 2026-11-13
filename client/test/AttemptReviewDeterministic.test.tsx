@@ -686,7 +686,7 @@ describe("a Reading Attempt whose Set can no longer be read", () => {
       readingDetail({
         items: [
           withWords("g2", "complete_words", false, "klt", { prefix: "wee" }),
-          withWords("q1", "daily_life", false, "o3", { answerText: "To cancel a meeting", answerIndex: 2 }),
+          withWords("q1", "daily_life", false, "o3", { selectedOptionText: "To cancel a meeting", selectedOptionIndex: 2 }),
         ],
         deterministicReview: undefined,
       }),

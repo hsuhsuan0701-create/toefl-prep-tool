@@ -65,12 +65,12 @@ function optionText(question: QuestionSnapshot | undefined, optionId: string): s
 }
 
 /**
- * The option the User chose, in the words scoring stored with the Response (issue #56): what the
+ * The option the User selected, in the words scoring stored with the Response (issue #56): what the
  * review says when the Set can no longer be read. Null for a row scored before they were stored.
  */
 function storedOptionText(score: DeterministicScoreJson): string | null {
-  if (score.answerText === undefined) return null;
-  return score.answerIndex === undefined ? score.answerText : `${String.fromCharCode(65 + score.answerIndex)}. ${score.answerText}`;
+  if (score.selectedOptionText === undefined) return null;
+  return score.selectedOptionIndex === undefined ? score.selectedOptionText : `${String.fromCharCode(65 + score.selectedOptionIndex)}. ${score.selectedOptionText}`;
 }
 
 /** The multiple-choice Task Types, Reading's and Listening's, whose opened row lists every option of the question. */

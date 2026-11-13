@@ -425,9 +425,9 @@ describe("reading deterministic scoring route", () => {
     const items = testRepo.getAttempt(attemptId)!.items;
     const byId = new Map(items.map((i) => [i.item_id, JSON.parse(i.score_json!) as Record<string, unknown>]));
 
-    expect(byId.get("dl-1-q1")).toEqual({ correct: true, skill: "detail", module: "router", answer: "a", answerText: "Option A", answerIndex: 0 });
-    expect(byId.get("dl-lo-1-q1")).toEqual({ correct: true, skill: "detail", module: "lower", answer: "c", answerText: "Option C", answerIndex: 2 });
-    expect(byId.get("dl-up-1-q1")).toEqual({ correct: true, skill: "detail", module: "upper", answer: "b", answerText: "Option B", answerIndex: 1 });
+    expect(byId.get("dl-1-q1")).toEqual({ correct: true, skill: "detail", module: "router", answer: "a", selectedOptionText: "Option A", selectedOptionIndex: 0 });
+    expect(byId.get("dl-lo-1-q1")).toEqual({ correct: true, skill: "detail", module: "lower", answer: "c", selectedOptionText: "Option C", selectedOptionIndex: 2 });
+    expect(byId.get("dl-up-1-q1")).toEqual({ correct: true, skill: "detail", module: "upper", answer: "b", selectedOptionText: "Option B", selectedOptionIndex: 1 });
     expect(byId.get("ctw-1-g1")).toEqual({ correct: true, module: "router", answer: "ght", prefix: "mi" });
     expect(byId.get("ctw-1-g1")).not.toHaveProperty("skill");
   });
@@ -449,7 +449,7 @@ describe("reading deterministic scoring route", () => {
     await postScore(app, attemptId, { taskType: "complete_words", items: [{ itemId: "ctw-1-g2", typed: "vivl" }] });
 
     const rows = new Map(testRepo.getAttempt(attemptId)!.items.map((i) => [i.item_id, i.score_json!]));
-    expect(JSON.parse(rows.get("dl-1-q1")!)).toEqual({ correct: false, skill: "detail", module: "router", answer: "b", answerText: "Option B", answerIndex: 1 });
+    expect(JSON.parse(rows.get("dl-1-q1")!)).toEqual({ correct: false, skill: "detail", module: "router", answer: "b", selectedOptionText: "Option B", selectedOptionIndex: 1 });
     // Nothing was chosen, so there is no text to keep.
     expect(JSON.parse(rows.get("dl-1-q2")!)).toEqual({ correct: false, skill: "detail", module: "router", answer: MCQ_UNANSWERED_SENTINEL });
     expect(JSON.parse(rows.get("ctw-1-g2")!)).toEqual({ correct: false, module: "router", answer: "vivl", prefix: "sur" });
@@ -461,7 +461,7 @@ describe("reading deterministic scoring route", () => {
 
     // The Attempt the client reads carries the same, and still no key before completion.
     const detail = (await (await app.request(`/${attemptId}`)).json()) as AttemptDetailVM;
-    expect(detail.items.find((i) => i.itemId === "dl-1-q1")!.scoreJson).toMatchObject({ answerText: "Option B", answerIndex: 1 });
+    expect(detail.items.find((i) => i.itemId === "dl-1-q1")!.scoreJson).toMatchObject({ selectedOptionText: "Option B", selectedOptionIndex: 1 });
     expect(detail.items.find((i) => i.itemId === "ctw-1-g2")!.scoreJson).toMatchObject({ prefix: "sur" });
     expect(detail.deterministicReview).toBeUndefined();
   });

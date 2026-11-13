@@ -299,8 +299,8 @@ export function scoreDeterministicItems(args: {
     let skill: string | undefined;
     let answer: string;
     let transcript: string | undefined;
-    // What was answered, in words (DeterministicItemScoreJson): only what the run showed the User.
-    let answered: Pick<DeterministicItemScoreJson, "answerText" | "answerIndex" | "prefix">;
+    // The Response in words (DeterministicItemScoreJson): only what the run showed the User.
+    let answered: Pick<DeterministicItemScoreJson, "selectedOptionText" | "selectedOptionIndex" | "prefix">;
 
     if (ref.taskType === "complete_words") {
       const typed = "typed" in raw ? raw.typed : "";
@@ -319,10 +319,10 @@ export function scoreDeterministicItems(args: {
       skill = ref.question.skill;
       answer = selectedOptionId;
       transcript = ref.transcript;
-      // The chosen option only: never the key or the other options. An unanswered question, or an
+      // The selected option only: never the key or the other options. An unanswered question, or an
       // id that names no option, has no text to keep.
-      const answerIndex = ref.question.options.findIndex((option) => option.id === selectedOptionId);
-      answered = answerIndex < 0 ? {} : { answerText: ref.question.options[answerIndex].text, answerIndex };
+      const selectedOptionIndex = ref.question.options.findIndex((option) => option.id === selectedOptionId);
+      answered = selectedOptionIndex < 0 ? {} : { selectedOptionText: ref.question.options[selectedOptionIndex].text, selectedOptionIndex };
     }
 
     return { itemId, module: ref.module, correct, key, explanationZh, skill, answer, answered, transcript };

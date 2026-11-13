@@ -11,7 +11,8 @@ import type { JudgeSummary, ScoreReportItem } from "../ScoreCard";
 /**
  * What deterministic scoring persists for every Reading/Listening Item in either mode: shared's
  * DeterministicItemScoreJson, whose fields are documented there. The words of the Response
- * (`answerText`, `answerIndex`, `prefix`) are absent from rows scored before they were stored.
+ * (`selectedOptionText`, `selectedOptionIndex`, `prefix`) are absent from rows scored before they
+ * were stored.
  */
 export type DeterministicScoreJson = DeterministicItemScoreJson;
 
