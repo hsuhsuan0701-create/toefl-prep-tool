@@ -329,3 +329,44 @@ describe("the Attempt review's back link", () => {
     expect(backLink("Progress")).toHaveAttribute("href", "/progress");
   });
 });
+
+// Which row an entry brings back is the row the User last left that entry by. Each list page is
+// walked through the same trails: its own list and its back link's name.
+const LIST_PAGES = [
+  { page: "Progress", path: "/progress", heading: "Progress", rows: 25, back: "Progress", a: "att-5", b: "att-15" },
+  { page: "the Dashboard", path: "/", heading: "Practice", rows: 5, back: "Practice", a: "att-2", b: "att-4" },
+] as const;
+
+describe.each(LIST_PAGES)("the row $page brings back", ({ path, heading, rows, back, a, b }) => {
+  async function listPage() {
+    const router = mount(path);
+    await waitFor(() => expect(rowLinks()).toHaveLength(rows));
+    return router;
+  }
+
+  /** Arrives back on the list page by `go`, its rows loaded, with no scroll asked for before it. */
+  async function backOnList(go: () => Promise<unknown>) {
+    scrollTo.mockClear();
+    await act(go);
+    await screen.findByRole("heading", { level: 1, name: heading });
+    await waitFor(() => expect(rowLinks()).toHaveLength(rows));
+  }
+
+  // The back link pushes a new entry that names the one the row was opened from; a row opened from
+  // the new entry is the one a Back to it brings back, not the row the back link was named after.
+  it("is the row last opened from the entry a Back lands on, even one the back link pushed", async () => {
+    const router = await listPage();
+    rowTop[`/attempts/${a}`] = 300;
+    await openReview(a);
+    rowTop[`/attempts/${a}`] = 900;
+    await backOnList(() => userEvent.click(backLink(back)));
+    await waitFor(() => restoredTo(600));
+
+    rowTop[`/attempts/${b}`] = 200;
+    await openReview(b);
+    rowTop[`/attempts/${b}`] = 1500;
+    await backOnList(() => router.navigate(-1));
+    await waitFor(() => restoredTo(1300));
+    expect(scrollTo).not.toHaveBeenCalledWith({ top: 600, behavior: "instant" });
+  });
+});

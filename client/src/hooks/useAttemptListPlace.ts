@@ -83,9 +83,12 @@ export function useReturnPlace(): RowPlace | null {
   const navigationType = useNavigationType();
   const [place] = useState(() => {
     if (onDocumentEntry && location.key === documentEntryKey && !cameBackToDocument()) return null;
+    // An entry's own row comes first: the entry the back link pushed keeps its `returnTo` on every
+    // Back to it, and a row opened from it since is the one to bring back.
+    const own = navigationType === "POP" ? placeFor(location.key) : null;
+    if (own) return own;
     const returnTo = (location.state as { returnTo?: unknown } | null)?.returnTo;
-    if (typeof returnTo === "string") return placeFor(returnTo);
-    return navigationType === "POP" ? placeFor(location.key) : null;
+    return typeof returnTo === "string" ? placeFor(returnTo) : null;
   });
   return place;
 }
