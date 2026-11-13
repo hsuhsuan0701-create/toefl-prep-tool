@@ -1,0 +1,546 @@
+{
+  "id": "wri-ab10b0b1",
+  "source": "generated",
+  "createdAt": "2026-11-13T07:44:30.205Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Professor, may we prepare the dialect interview transcripts in pairs?",
+        "frame": "No, you ___ ___ ___ ___ alone.",
+        "tiles": [
+          "each",
+          "prepares",
+          "must",
+          "transcript",
+          "prepare"
+        ],
+        "answers": [
+          [
+            "must",
+            "prepare",
+            "each",
+            "transcript"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Why is the wedding order still in the cooler? I thought it was going out this morning, not tomorrow morning.",
+        "frame": "The customer ___ ___ ___ ___ a day.",
+        "tiles": [
+          "the ceremony",
+          "postpone",
+          "by",
+          "has",
+          "postponed"
+        ],
+        "answers": [
+          [
+            "has",
+            "postponed",
+            "the ceremony",
+            "by"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Why is the deep end roped off this morning?",
+        "frame": "A tile ___ ___ ___ the pool floor, but ___ ___ still open.",
+        "tiles": [
+          "from",
+          "is",
+          "the shallow lanes",
+          "has",
+          "are",
+          "come loose"
+        ],
+        "answers": [
+          [
+            "has",
+            "come loose",
+            "from",
+            "the shallow lanes",
+            "are"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Why do we saw the ice cores only inside the walk-in freezer?",
+        "frame": "Warmer air outside the freezer ___ ___ ___ ___ ___.",
+        "tiles": [
+          "gas bubbles",
+          "to escape",
+          "let",
+          "the trapped",
+          "escape",
+          "would"
+        ],
+        "answers": [
+          [
+            "would",
+            "let",
+            "the trapped",
+            "gas bubbles",
+            "escape"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Why can't I search the older pictures by date?",
+        "frame": "___ ___ ___ ___ ___ ___ date stamps, so try the photographer's name instead.",
+        "tiles": [
+          "saved",
+          "was",
+          "the",
+          "without",
+          "scans",
+          "were",
+          "early"
+        ],
+        "answers": [
+          [
+            "the",
+            "early",
+            "scans",
+            "were",
+            "saved",
+            "without"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Where may I set up my floor loom? All the stalls seem to be on the open square.",
+        "frame": "___ ___ ___ ___ ___ ___ under the covered arcade.",
+        "tiles": [
+          "sets up",
+          "who",
+          "are giving",
+          "a",
+          "anyone",
+          "working demonstration",
+          "is giving"
+        ],
+        "answers": [
+          [
+            "anyone",
+            "who",
+            "is giving",
+            "a",
+            "working demonstration",
+            "sets up"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "How soon may I bathe her after the vaccination?",
+        "frame": "___ ___ ___ the same evening ___ ___ ___ ___ where the needle went in.",
+        "tiles": [
+          "as long as",
+          "rub",
+          "she",
+          "don't",
+          "have a bath",
+          "rubbing",
+          "you",
+          "can"
+        ],
+        "answers": [
+          [
+            "she",
+            "can",
+            "have a bath",
+            "as long as",
+            "you",
+            "don't",
+            "rub"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Bicycles travel free outside the summer months, so you don't need a separate ticket for yours.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ room for one more?",
+        "tiles": [
+          "whether",
+          "has",
+          "you",
+          "the rack on the lower deck",
+          "have",
+          "know",
+          "do",
+          "happen to"
+        ],
+        "answers": [
+          [
+            "do",
+            "you",
+            "happen to",
+            "know",
+            "whether",
+            "the rack on the lower deck",
+            "has"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "May my pupils take turns working the bellows at your forge?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "a turn",
+          "may",
+          "wears",
+          "the bellows",
+          "any pupil",
+          "at",
+          "wearing",
+          "take",
+          "a leather apron"
+        ],
+        "answers": [
+          [
+            "any pupil",
+            "wearing",
+            "a leather apron",
+            "may",
+            "take",
+            "a turn",
+            "at",
+            "the bellows"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Which route is open after the rockfall on the ridge path?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "so",
+          "of walking",
+          "valley route",
+          "allows",
+          "is the only one",
+          "you should",
+          "the longer",
+          "open",
+          "two extra hours",
+          "allow"
+        ],
+        "answers": [
+          [
+            "the longer",
+            "valley route",
+            "is the only one",
+            "open",
+            "so",
+            "you should",
+            "allow",
+            "two extra hours",
+            "of walking"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You hold a season subscription at a small local theater and have enjoyed this season's plays from the same seat. The theater recently renovated its auditorium, and at the last performance you discovered that your seat now sits directly behind a new support pillar that blocks half of the stage. The next play is two weeks away. Write an email to the theater's subscriptions coordinator, whom you have never met.",
+    "to": "subscriptions@harborlanetheater.example",
+    "subject": "Season subscription seat with a blocked view",
+    "bullets": [
+      "Express your appreciation for the plays the theater has staged this season.",
+      "Describe how the new pillar blocks the view of the stage from your assigned seat.",
+      "Request an exchange to a different seat, such as an aisle seat, for the remaining performances."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Adolescent Health and Development",
+    "professorName": "Dr. Okafor",
+    "professorPost": "This week we are looking at how daily schedules affect teenagers' rest. Some school districts have proposed that secondary schools begin the day an hour later so that students can sleep longer. Because lessons would then also finish an hour later, sports practice, clubs, and part-time jobs would be pushed further into the evening, and families would have to adjust their morning routines. What do you think? Should secondary schools start an hour later? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Mirela",
+        "post": "I support the later start. Most teenagers I know cannot fall asleep early even when they try, so they sit through first period half awake and remember very little of it. An extra hour of sleep would make morning lessons actually useful, and that matters more than finishing the day a bit earlier."
+      },
+      {
+        "name": "Tobias",
+        "post": "I disagree. If school ends an hour later, team practice and club meetings run into the evening, and students with part-time jobs lose a shift. Many parents also leave for work early and could no longer drop their children off. I suspect teenagers would simply go to bed later and gain nothing."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "campus-academics",
+          "situation": "A student asks a linguistics professor whether the dialect interview transcripts may be prepared in pairs, and learns each transcript must be done alone.",
+          "participantRoles": [
+            "student enrolled in a linguistics seminar",
+            "linguistics professor who assigned the transcripts"
+          ],
+          "noveltyKey": "dialect-transcripts-done-alone-not-in-pairs",
+          "requiredConcepts": [
+            "dialect interview transcripts",
+            "working in pairs",
+            "each transcript done alone"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-f4e1c52b",
+              "reason": "That exchange was about handwritten field notebooks; this one is about whether transcripts may be shared between partners."
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A florist's delivery driver asks the shop manager why the wedding order is still in the cooler, and learns the customer postponed the ceremony by a day.",
+          "participantRoles": [
+            "delivery driver loading the morning van",
+            "flower shop manager who took the customer's call"
+          ],
+          "noveltyKey": "florist-wedding-order-held-ceremony-postponed",
+          "requiredConcepts": [
+            "wedding order still in the cooler",
+            "ceremony postponed by a day",
+            "delivery tomorrow morning instead"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-4661c123",
+              "reason": "That exchange was about a desk sent to the wrong floor; here an order is deliberately held back because the date moved."
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A swimmer asks a municipal pool lifeguard why the deep end is roped off, and learns a tile came loose from the pool floor.",
+          "participantRoles": [
+            "swimmer arriving for morning laps",
+            "municipal pool lifeguard on duty"
+          ],
+          "noveltyKey": "municipal-pool-deep-end-roped-off-loose-tile",
+          "requiredConcepts": [
+            "deep end roped off",
+            "loose tile on the pool floor",
+            "shallow lanes still open"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-f4e1c52b",
+              "reason": "Those exchanges covered a street closure permit and shelter dog walking; this one is a partial pool closure for a repair."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A new assistant asks a laboratory glaciologist why ice cores are sawn only inside the walk-in freezer, and learns warmer air would let the trapped gas bubbles escape.",
+          "participantRoles": [
+            "new assistant helping with ice cores",
+            "laboratory glaciologist who cuts the cores"
+          ],
+          "noveltyKey": "ice-cores-sawn-inside-freezer-trapped-gas",
+          "requiredConcepts": [
+            "ice cores sawn in the walk-in freezer",
+            "trapped gas bubbles",
+            "warmer air outside the freezer"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-4661c123",
+              "reason": "That exchange was a freezer alarm forcing seed samples to move; this one explains a standing rule for cutting ice."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A photographer asks a newspaper's digital archivist why older pictures cannot be searched by date, and learns the early scans were saved without date stamps.",
+          "participantRoles": [
+            "staff photographer looking for an old picture",
+            "digital archivist who maintains the picture collection"
+          ],
+          "noveltyKey": "digital-picture-archive-early-scans-no-date-stamps",
+          "requiredConcepts": [
+            "older pictures not searchable by date",
+            "early scans without date stamps",
+            "search by photographer's name instead"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-f4e1c52b",
+              "reason": "That exchange was about a headline corrected after posting; this one is about a gap in how old pictures were catalogued."
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A weaver asks a craft festival organizer where the loom may be set up, and learns working demonstrations are placed under the covered arcade.",
+          "participantRoles": [
+            "weaver arriving with a floor loom",
+            "craft festival organizer assigning spaces"
+          ],
+          "noveltyKey": "craft-festival-loom-demonstration-covered-arcade",
+          "requiredConcepts": [
+            "floor loom",
+            "working demonstrations under the covered arcade",
+            "stalls on the open square"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-39a90e7d",
+              "reason": "That exchange was about a faulty piano pedal before a recital; this one is about where a demonstration is placed."
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A new parent asks a clinic nurse how soon the baby may be bathed after a vaccination, and learns a bath the same evening is fine.",
+          "participantRoles": [
+            "new parent holding a baby after the appointment",
+            "clinic nurse who gave the vaccination"
+          ],
+          "noveltyKey": "baby-bath-same-evening-after-vaccination",
+          "requiredConcepts": [
+            "bath after the vaccination",
+            "same evening is fine",
+            "no rubbing where the needle went in"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-f4e1c52b",
+              "reason": "That exchange was about returning to running after an ankle sprain; this one is aftercare advice for an infant."
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A cyclist asks a ferry ticket seller whether a bicycle needs its own ticket, and learns bicycles ride free outside the summer months.",
+          "participantRoles": [
+            "cyclist waiting to board with a bicycle",
+            "ferry ticket seller at the dock window"
+          ],
+          "noveltyKey": "ferry-bicycle-ticket-free-outside-summer",
+          "requiredConcepts": [
+            "separate ticket for a bicycle",
+            "bicycles free outside the summer months",
+            "bicycle rack on the lower deck"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-39a90e7d",
+              "reason": "That exchange was about a misspelled surname on an airline booking; this one is about a seasonal fare rule for bicycles."
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A schoolteacher asks a heritage village blacksmith whether the pupils may work the bellows, and learns only those wearing leather aprons may stand at the forge.",
+          "participantRoles": [
+            "schoolteacher leading a class visit",
+            "blacksmith demonstrating at the heritage village forge"
+          ],
+          "noveltyKey": "heritage-forge-bellows-leather-aprons-only",
+          "requiredConcepts": [
+            "working the bellows",
+            "leather aprons at the forge",
+            "pupils taking turns"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-f4e1c52b",
+              "reason": "That exchange explained why a mill's waterwheel no longer turns; this one sets a condition for visitors joining in at a forge."
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A hiker asks a mountain hut warden which route is open after the rockfall, and learns only the longer valley path is safe.",
+          "participantRoles": [
+            "hiker planning the next morning's walk",
+            "mountain hut warden who checked the paths"
+          ],
+          "noveltyKey": "mountain-hut-route-open-after-rockfall",
+          "requiredConcepts": [
+            "rockfall on the ridge path",
+            "longer valley route still open",
+            "two extra hours of walking"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-4661c123",
+              "reason": "Those exchanges were about a locked room safe and a dining car closing early; this one is about choosing a safe walking path."
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "arts-culture",
+      "noveltyKey": "theater-season-seat-behind-new-pillar",
+      "requiredConcepts": [
+        "season subscription",
+        "seat now behind a new pillar",
+        "blocked view of the stage",
+        "exchange for an aisle seat"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-8f7e61bf",
+          "reason": "That email was about a ceramic mug listed under the wrong name; this one is about a subscriber's seat with a blocked view."
+        },
+        {
+          "setId": "wri-7024b060",
+          "reason": "That email reported a sculpture garden map that did not match the signs; this one asks for a seat exchange."
+        }
+      ],
+      "situation": "After a small theater renovated its auditorium, a season subscriber found that the usual seat now sits behind a new support pillar that blocks half the stage, with the next play two weeks away.",
+      "recipientRole": "the theater's subscriptions coordinator, whom the writer has never met",
+      "communicativeActs": [
+        "express appreciation for this season's plays",
+        "describe the blocked view from the assigned seat",
+        "request an exchange to a different seat for the remaining performances"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "health-wellbeing",
+      "noveltyKey": "later-school-start-for-teenage-sleep",
+      "requiredConcepts": [
+        "school day starting an hour later",
+        "teenagers' sleep",
+        "after-school activities pushed into the evening",
+        "family morning routines"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-f8adc240",
+          "reason": "That discussion weighed nap rooms for adult workers; this one weighs moving the school day for teenagers."
+        },
+        {
+          "setId": "wri-736f2103",
+          "reason": "That discussion was about reserving gym machines at peak hours; this one is about daily schedules and rest for teenagers."
+        }
+      ],
+      "proposition": "Secondary schools should begin the day an hour later so that teenagers get more sleep, even though the whole day then ends an hour later.",
+      "competingValues": [
+        "teenagers' sleep and alertness in morning lessons",
+        "family routines and time for after-school activities and part-time jobs"
+      ]
+    }
+  }
+}
