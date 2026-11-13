@@ -3,7 +3,7 @@ import { buildSentenceComposition, sentencePromptFor, sentenceTilesFor, type Att
 import { Card } from "../../ui/Card";
 import { StatusChip } from "../../ui/Chip";
 import { IconChevronRight } from "../../ui/icons";
-import { itemScoringStatus } from "../../ui/labels";
+import { ITEM_MARK_DEFERRED, itemScoringStatus } from "../../ui/labels";
 import { ComposedSentence, OfferedTiles, PLACED_WORDS_NOTE, SentenceResponse } from "./BuildSentenceParts";
 import { ResultMark } from "./ReviewParts";
 import { isBuildSentenceScoreJson } from "./reviewItems";
@@ -14,7 +14,9 @@ import { failureText, itemsWord, type IndexedItem } from "./reviewText";
  * do not push the essays below the fold. Native <details>: closed, every row is still in the
  * document, so search and the jump list reach it.
  */
-export default function BuildSentenceGroup({ items, setSnapshot }: { items: IndexedItem[]; setSnapshot: AttemptSetSnapshot | null }) {
+// `showMarks` is false for a Writing Simulation still in progress: its Items show no Correct or
+// Incorrect mark until it completes (issue #48).
+export default function BuildSentenceGroup({ items, setSnapshot, showMarks = true }: { items: IndexedItem[]; setSnapshot: AttemptSetSnapshot | null; showMarks?: boolean }) {
   return (
     <Card padding="none">
       <details className="group">
@@ -30,7 +32,7 @@ export default function BuildSentenceGroup({ items, setSnapshot }: { items: Inde
         <p className="border-t border-rule px-4 py-2 text-meta text-graphite">{PLACED_WORDS_NOTE}</p>
         <ol className="divide-y divide-rule border-t border-rule">
           {items.map(({ item, position }) => (
-            <BuildSentenceRow key={item.itemId} item={item} position={position} setSnapshot={setSnapshot} />
+            <BuildSentenceRow key={item.itemId} item={item} position={position} setSnapshot={setSnapshot} showMark={showMarks} />
           ))}
         </ol>
       </details>
@@ -44,7 +46,7 @@ export default function BuildSentenceGroup({ items, setSnapshot }: { items: Inde
 // the frame buildSentenceComposition picks: the one persisted with the Response, else the Set file's
 // current one when the Response still fits that Item, else none (tiles in order) with a note that
 // the Set changed.
-function BuildSentenceRow({ item, position, setSnapshot }: { item: ItemVM; position: number; setSnapshot: AttemptSetSnapshot | null }) {
+function BuildSentenceRow({ item, position, setSnapshot, showMark }: { item: ItemVM; position: number; setSnapshot: AttemptSetSnapshot | null; showMark: boolean }) {
   let tileOrder: string[] = [];
   try {
     if (item.responseText) tileOrder = JSON.parse(item.responseText) as string[];
@@ -68,7 +70,7 @@ function BuildSentenceRow({ item, position, setSnapshot }: { item: ItemVM; posit
           <span className="figures">Item {position}</span>
           {prompt && <span className="text-ink-soft"> · {prompt}</span>}
         </p>
-        {scored ? <ResultMark correct={scored.correct} /> : <StatusChip status={itemScoringStatus(item.scoringStatus)} />}
+        {scored && showMark ? <ResultMark correct={scored.correct} /> : <StatusChip status={scored ? ITEM_MARK_DEFERRED : itemScoringStatus(item.scoringStatus)} />}
       </div>
       <p data-testid={`bas-answer-${item.itemId}`} className="text-body text-ink">
         <span className="text-graphite">Your Response: </span>

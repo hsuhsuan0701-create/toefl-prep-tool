@@ -670,3 +670,103 @@ describe("an unfinished or discarded Drill's scored Items", () => {
     expect(container.textContent).not.toContain("Did we run out of coffee?");
   });
 });
+
+// Issue #48: a Simulation defers its feedback. While it can still be answered or finished, its review
+// shows each Response with no Correct or Incorrect mark and no "n of m correct" tally, until the
+// Attempt completes. A Drill shows its marks as soon as an Item is scored.
+describe("the marks of a Simulation still in progress", () => {
+  const MARKS = /\bCorrect\b|\bIncorrect\b|\d+ of \d+ correct/;
+
+  function inProgressSimulation(kind: "reading" | "listening", over: Partial<AttemptDetailVM> = {}): AttemptDetailVM {
+    const base = readingDetail();
+    return {
+      ...base,
+      attempt: { ...base.attempt, kind, mode: "simulation", setId: kind === "reading" ? "rd-1" : "lsn-1", status: "in_progress", completedAt: null },
+      bandStatus: { status: "unfinished" },
+      deterministicReview: undefined,
+      ...over,
+    };
+  }
+
+  async function renderFor(body: AttemptDetailVM) {
+    vi.mocked(getAttempt).mockResolvedValue(body);
+    render(
+      <MemoryRouter initialEntries={["/attempts/att-1"]}>
+        <Routes>
+          <Route path="/attempts/:id" element={<AttemptReview />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+    await waitFor(() => expect(vi.mocked(getSet)).toHaveBeenCalledWith(body.attempt.setId));
+    await act(async () => {});
+  }
+
+  it("a Reading Simulation shows its Router Module Responses with no mark and no tally", async () => {
+    await renderFor(inProgressSimulation("reading"));
+    expect(screen.getByTestId("item-q1")).toHaveTextContent("Your Response: A. To sell a bicycle");
+    expect(screen.getByTestId("item-g2")).toHaveTextContent("Your Response: grass");
+    expect(document.body.textContent).not.toMatch(MARKS);
+    expect(screen.getAllByText("Submitted")).toHaveLength(3);
+    expect(screen.getByText("Whether each Response is correct, the key and the Explanations appear once this Attempt is complete.")).toBeInTheDocument();
+  });
+
+  it("a Listening Simulation shows its Router Module Responses with no mark and no tally", async () => {
+    vi.mocked(getSet).mockResolvedValue(SERVED_LISTENING as never);
+    const pending: ItemVM = { ...scored("cq2", "conversation", true, "o2"), scoringStatus: "pending", scoreJson: null, score: null };
+    await renderFor(inProgressSimulation("listening", { items: [scored("cq1", "conversation", false, "o1"), pending] }));
+    expect(screen.getByTestId("item-cq1")).toHaveTextContent("Your Response: A. To sell a bicycle");
+    expect(document.body.textContent).not.toMatch(MARKS);
+    // How many Items are not scored yet is no verdict, so it stays.
+    expect(screen.getAllByText(/2 Items · 1 not scored/).length).toBeGreaterThan(0);
+  });
+
+  it("the same Attempt, once completed, shows its marks and tallies", async () => {
+    vi.mocked(getSet).mockResolvedValue(SERVED_LISTENING as never);
+    await renderFor(
+      inProgressSimulation("listening", {
+        attempt: { ...readingDetail().attempt, kind: "listening", mode: "simulation", setId: "lsn-1", status: "completed" },
+        items: [scored("cq1", "conversation", false, "o1")],
+        bandStatus: { status: "incomplete", unscored: [], absent: [] },
+        deterministicReview: [{ itemId: "cq1", taskType: "conversation", correct: false, key: "o2", explanationZh: "他要拿包裹。" }],
+      }),
+    );
+    expect(within(screen.getByTestId("item-cq1")).getByText("Incorrect")).toBeInTheDocument();
+    expect(screen.getAllByText(/0 of 1 correct/).length).toBeGreaterThan(0);
+    expect(screen.queryByText("Submitted")).toBeNull();
+  });
+
+  it("an unfinished Drill still shows its marks and tallies", async () => {
+    const base = readingDetail();
+    await renderFor({ ...base, attempt: { ...base.attempt, status: "in_progress", completedAt: null }, bandStatus: { status: "unfinished" } });
+    expect(within(screen.getByTestId("item-q1")).getByText("Incorrect")).toBeInTheDocument();
+    expect(within(screen.getByTestId("item-g1")).getByText("Correct")).toBeInTheDocument();
+    expect(screen.getAllByText(/\d of \d correct/).length).toBeGreaterThan(0);
+    expect(screen.queryByText("Submitted")).toBeNull();
+  });
+
+  it("a Writing Simulation's Build a Sentence Items show no mark and no tally until it completes", async () => {
+    vi.mocked(getSet).mockResolvedValue({
+      id: "wri-1",
+      kind: "writing",
+      source: "generated",
+      createdAt: "2026-01-01T00:00:00Z",
+      buildASentence: { items: [{ id: "bas-1", prompt: "Where is it?", tiles: ["it", "is", "here"] }, { id: "bas-2", prompt: "Who came?", tiles: ["she", "came"] }] },
+    } as never);
+    const bas = (itemId: string, correct: boolean): ItemVM => ({
+      ...scored(itemId, "build_sentence", correct, ""),
+      responseText: JSON.stringify(["it", "is", "here"]),
+      scoreJson: { correct },
+    });
+    const essay: ItemVM = { ...scored("email-1", "email", false, ""), scoringStatus: "pending", scoreJson: null, score: null };
+    const base = readingDetail();
+    await renderFor({
+      ...base,
+      attempt: { ...base.attempt, kind: "writing", mode: "simulation", setId: "wri-1", status: "in_progress", completedAt: null },
+      items: [bas("bas-1", true), bas("bas-2", false), essay],
+      bandStatus: { status: "unfinished" },
+      deterministicReview: undefined,
+    });
+    expect(document.body.textContent).not.toMatch(MARKS);
+    expect(within(screen.getByTestId("item-bas-1")).getByText("Submitted")).toBeInTheDocument();
+  });
+});

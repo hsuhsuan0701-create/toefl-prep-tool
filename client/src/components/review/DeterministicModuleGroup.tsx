@@ -9,11 +9,11 @@ import { Disclosure } from "../../ui/Disclosure";
 import { Kicker } from "../../ui/Heading";
 import { IconChevronRight } from "../../ui/icons";
 import { Prose } from "../../ui/Prose";
-import { itemScoringStatus } from "../../ui/labels";
+import { ITEM_MARK_DEFERRED, itemScoringStatus } from "../../ui/labels";
 import { ResultMark } from "./ReviewParts";
 import ReviewStimulus, { type ReviewedGap } from "./ReviewStimulus";
 import { isDeterministicScoreJson } from "./reviewItems";
-import { capitalise, correctSummary, type IndexedItem } from "./reviewText";
+import { capitalise, correctSummary, unmarkedSummary, type IndexedItem } from "./reviewText";
 
 type StimulusRun = {
   key: string;
@@ -86,10 +86,21 @@ export type DeterministicModuleGroupProps = {
    * whose review the server sends); the rest show the Items alone.
    */
   showStimulus: boolean;
+  /**
+   * Show each scored Item's Correct or Incorrect mark and each Stimulus's tally. False for a
+   * Simulation still in progress, whose feedback waits for completion like its key: its review
+   * shows the Responses alone (issue #48).
+   */
+  showMarks: boolean;
 };
 
 /** Each Complete the Words gap of a run, filled in from its Item: what was typed, right or wrong, and the word. */
-function reviewedGaps(run: StimulusRun, setSnapshot: AttemptSetSnapshot | null, reviewByItemId: ReadonlyMap<string, DeterministicReviewItemVM>): Map<string, ReviewedGap> {
+function reviewedGaps(
+  run: StimulusRun,
+  setSnapshot: AttemptSetSnapshot | null,
+  reviewByItemId: ReadonlyMap<string, DeterministicReviewItemVM>,
+  showMarks: boolean,
+): Map<string, ReviewedGap> {
   const gaps = new Map<string, ReviewedGap>();
   for (const { item, position } of run.items) {
     const score = item.scoringStatus === "scored" && isDeterministicScoreJson(item.scoreJson) ? item.scoreJson : null;
@@ -98,7 +109,7 @@ function reviewedGaps(run: StimulusRun, setSnapshot: AttemptSetSnapshot | null, 
     gaps.set(item.itemId, {
       number: position,
       typed,
-      correct: score ? score.correct : null,
+      correct: score && showMarks ? score.correct : null,
       ...(key === undefined ? {} : { completion: `${questionFor(setSnapshot, item.itemId)?.prefix ?? ""}${key}` }),
     });
   }
@@ -107,7 +118,7 @@ function reviewedGaps(run: StimulusRun, setSnapshot: AttemptSetSnapshot | null, 
 
 const STIMULUS_SUMMARY: Record<string, string> = { daily_life: "The text", academic_passage: "The passage" };
 
-export default function DeterministicModuleGroup({ items, setSnapshot, reviewByItemId, showStimulus }: DeterministicModuleGroupProps) {
+export default function DeterministicModuleGroup({ items, setSnapshot, reviewByItemId, showStimulus, showMarks }: DeterministicModuleGroupProps) {
   return (
     <div className="space-y-4">
       {stimulusRuns(items, setSnapshot).map((run) => {
@@ -137,7 +148,7 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
                   </h3>
                 )}
               </div>
-              <p className="text-meta text-graphite">{correctSummary(run.items)}</p>
+              <p className="text-meta text-graphite">{showMarks ? correctSummary(run.items) : unmarkedSummary(run.items)}</p>
             </header>
             {audio && (
               <div className="min-w-0 border-b border-rule px-4 py-3">
@@ -148,7 +159,7 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
               <div className="min-w-0 border-b border-rule px-4 py-3">
                 <ReviewStimulus
                   content={content}
-                  gaps={content.kind === "gapped" ? reviewedGaps(run, setSnapshot, reviewByItemId) : undefined}
+                  gaps={content.kind === "gapped" ? reviewedGaps(run, setSnapshot, reviewByItemId, showMarks) : undefined}
                   summary={STIMULUS_SUMMARY[run.taskType]}
                 />
               </div>
@@ -163,6 +174,7 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
                     position={position}
                     question={question}
                     review={reviewByItemId.get(item.itemId)}
+                    showMark={showMarks}
                     replayAudio={
                       question && (showStimulus || reviewByItemId.has(item.itemId)) && item.taskType === "listen_choose"
                         ? stimulusAudioFor(setSnapshot, question.module, question.stimulusId)
@@ -203,12 +215,14 @@ function DeterministicRow({
   position,
   question,
   review,
+  showMark,
   replayAudio,
 }: {
   item: ItemVM;
   position: number;
   question?: QuestionSnapshot;
   review?: DeterministicReviewItemVM;
+  showMark: boolean;
   replayAudio?: string;
 }) {
   const score = item.scoringStatus === "scored" && isDeterministicScoreJson(item.scoreJson) ? item.scoreJson : null;
@@ -247,7 +261,11 @@ function DeterministicRow({
           </span>
         )}
       </span>
-      {score ? <ResultMark correct={score.correct} unanswered={unanswered} /> : <StatusChip status={itemScoringStatus(item.scoringStatus)} />}
+      {score && showMark ? (
+        <ResultMark correct={score.correct} unanswered={unanswered} />
+      ) : (
+        <StatusChip status={score ? ITEM_MARK_DEFERRED : itemScoringStatus(item.scoringStatus)} />
+      )}
     </>
   );
 

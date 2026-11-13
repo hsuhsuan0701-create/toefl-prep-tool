@@ -88,6 +88,17 @@ export const ITEM_SCORING_STATUS: Record<ItemScoringStatus, StatusPresentation> 
   },
 };
 
+/**
+ * A scored Item of a Simulation still in progress: its mark waits for the Attempt to complete, as the
+ * key and the Explanation do, so the chip says only that the Response is in (issue #48).
+ */
+export const ITEM_MARK_DEFERRED: StatusPresentation = {
+  label: "Submitted",
+  tone: "neutral",
+  glyph: "dash",
+  hint: "Marked correct or incorrect once this Attempt is complete.",
+};
+
 export function itemScoringStatus(raw: string): StatusPresentation {
   return (ITEM_SCORING_STATUS as Record<string, StatusPresentation | undefined>)[raw] ?? unknownStatus(raw);
 }

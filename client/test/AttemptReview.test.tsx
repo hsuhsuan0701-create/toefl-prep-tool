@@ -292,10 +292,11 @@ describe("Attempt review — a Build a Sentence Response with no frame to be had
 });
 
 // A Simulation's keys reach the client only once the Attempt is completed, so until then the server
-// sends each Build a Sentence Item's correctness without its `correctAnswers`. The review still
-// marks and counts those Items, and shows no key line.
+// sends each Build a Sentence Item's correctness without its `correctAnswers`. The review shows each
+// Response with no key line, and, since a Simulation defers its feedback (issue #48), with no
+// Correct or Incorrect mark and no count of correct Items either.
 describe("Attempt review — a Simulation's Build a Sentence Items before the key is shown", () => {
-  it("marks each Item and counts it in the summary, with no key", async () => {
+  it("shows each Response with no mark, no count and no key", async () => {
     const keyless = (itemId: string, tileOrder: string[], correct: boolean): ItemVM => ({
       ...basItem(itemId, tileOrder, []),
       score: correct ? 1 : 0,
@@ -311,8 +312,9 @@ describe("Attempt review — a Simulation's Build a Sentence Items before the ke
 
     await renderSettledReview();
     expect(screen.getByTestId("bas-answer-bas-framed")).toHaveTextContent(`Your Response: ${REFERENCE_SENTENCE}`);
-    expect(screen.getByTestId("item-bas-framed")).toHaveTextContent("Correct");
-    expect(screen.getByTestId("item-bas-partial")).toHaveTextContent("Incorrect");
+    expect(screen.getByTestId("item-bas-framed")).toHaveTextContent("Submitted");
+    expect(screen.getByTestId("item-bas-partial")).toHaveTextContent("Submitted");
+    expect(document.body.textContent).not.toMatch(/\bCorrect\b|\bIncorrect\b|\d+ of \d+ correct/);
     // Without the key the frame still counts the blanks, so the partial Item is listed, not composed.
     const partial = screen.getByTestId("bas-answer-bas-partial");
     expect(partial).toHaveTextContent("Your Response: 3 of 6 blanks left empty.");
@@ -321,7 +323,6 @@ describe("Attempt review — a Simulation's Build a Sentence Items before the ke
     expect(screen.queryByText(/^Key/)).not.toBeInTheDocument();
     expect(screen.queryByTestId("bas-key-bas-framed")).not.toBeInTheDocument();
     expect(screen.queryByTestId("bas-key-bas-partial")).not.toBeInTheDocument();
-    expect(screen.getAllByText("1 of 2 correct").length).toBeGreaterThan(0);
   });
 
   it("lists the tiles the Item offered without marking which one is extra", async () => {

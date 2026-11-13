@@ -314,13 +314,17 @@ export function createSqliteAttemptStore(db: Database.Database) {
     // left out: a gap has no skill. `taskType` is returned because the two sections' skill enums share
     // names ("detail", "inference"), so the caller needs it to assign the section. The caller passes a
     // wider window than the weakness breakdown's, since a per-skill pane needs several Attempts' worth.
+    // A Simulation still in progress is left out: its marks wait for completion (issue #48), and a
+    // per-skill count over its Items would tell right from wrong before then.
     recentScoredReadingListeningItemResults(limit: number): { scoreJson: string; taskType: string }[] {
       const placeholders = MCQ_TASK_TYPES.map(() => "?").join(",");
       return db.prepare(
-        `SELECT score_json AS scoreJson, task_type AS taskType FROM item_results
-         WHERE scoring_status = 'scored' AND score_json IS NOT NULL AND scored_at IS NOT NULL
-           AND task_type IN (${placeholders})
-         ORDER BY scored_at DESC, rowid DESC LIMIT ?`
+        `SELECT ir.score_json AS scoreJson, ir.task_type AS taskType FROM item_results ir
+         JOIN attempts a ON a.id = ir.attempt_id
+         WHERE ir.scoring_status = 'scored' AND ir.score_json IS NOT NULL AND ir.scored_at IS NOT NULL
+           AND ir.task_type IN (${placeholders})
+           AND NOT (a.mode = 'simulation' AND a.status = 'in_progress')
+         ORDER BY ir.scored_at DESC, ir.rowid DESC LIMIT ?`
       ).all(...MCQ_TASK_TYPES, limit) as { scoreJson: string; taskType: string }[];
     },
     // One point per completed Attempt whose Items of this Task Type are all scored, the band rule's

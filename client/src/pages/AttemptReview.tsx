@@ -22,7 +22,7 @@ import SpokenItemReview from "../components/review/SpokenItemReview";
 import SceneImage from "../components/SceneImage";
 import TaskJobController from "../components/review/TaskJobController";
 import { rescoreCandidates } from "../components/review/reviewItems";
-import { correctSummary, judgedSummary, moduleName, reviewGroups, type ReviewGroup } from "../components/review/reviewText";
+import { correctSummary, judgedSummary, moduleName, reviewGroups, unmarkedSummary, type ReviewGroup } from "../components/review/reviewText";
 import { spokenNumberFor, spokenPromptAudioFor } from "./attemptSetSnapshot";
 
 // Attempt review (/attempts/:id): what the User did, how it scored and what to do next, Item by Item
@@ -38,8 +38,9 @@ function groupTitle(group: ReviewGroup): string {
   return group.kind === "module" ? moduleName(group.module) : taskTypeLabel(group.taskType);
 }
 
-function groupSummary(group: ReviewGroup): string {
-  return group.kind === "judged" ? judgedSummary(group.items) : correctSummary(group.items);
+function groupSummary(group: ReviewGroup, showMarks: boolean): string {
+  if (group.kind === "judged") return judgedSummary(group.items);
+  return showMarks ? correctSummary(group.items) : unmarkedSummary(group.items);
 }
 
 function isSpoken(taskType: string): boolean {
@@ -112,6 +113,10 @@ export default function AttemptReview() {
   // of a Drill whatever its status. When the review is owed and still absent, the Set could not be
   // read or two of its Items share an id; otherwise it is withheld by rule and the notice says why.
   const reviewOwed = attempt.status === "completed" || (attempt.mode === "drill" && items.some((item) => item.scoringStatus === "scored"));
+  // A Simulation defers its feedback: while it can still be answered or finished, its review shows
+  // each Response with no Correct or Incorrect mark and no "n of m correct" tally, as it shows no key
+  // (issue #48). The server still sends bare correctness; a Drill and a discarded Attempt keep theirs.
+  const showMarks = !(attempt.mode === "simulation" && attempt.status === "in_progress");
 
   const judgedProps = (item: ItemVM) => ({
     judgeReports,
@@ -189,7 +194,7 @@ export default function AttemptReview() {
             <span className="text-graphite">Items, in test order:</span>
             {groups.map((group) => (
               <HashLink key={group.key} href={`#group-${group.key}`}>
-                {groupTitle(group)} · {groupSummary(group)}
+                {groupTitle(group)} · {groupSummary(group, showMarks)}
               </HashLink>
             ))}
           </nav>
@@ -204,8 +209,10 @@ export default function AttemptReview() {
             // Here the key review waits for completion (a Simulation, or a Drill with no scored
             // Item), and a discard is final.
             <Notice tone="info">This Attempt was discarded, so its key and Explanations are not shown.</Notice>
-          ) : (
+          ) : showMarks ? (
             <Notice tone="info">The key and Explanations appear once this Attempt is complete.</Notice>
+          ) : (
+            <Notice tone="info">Whether each Response is correct, the key and the Explanations appear once this Attempt is complete.</Notice>
           ))}
 
         {items.length === 0 && <EmptyState title="No Items were recorded for this Attempt.">Nothing in it reached the server.</EmptyState>}
@@ -226,7 +233,7 @@ export default function AttemptReview() {
               <SectionHeader
                 id={headingId}
                 title={groupTitle(group)}
-                description={groupSummary(group)}
+                description={groupSummary(group, showMarks)}
                 action={
                   group.kind === "judged" && (
                     <GroupRescoreAction
@@ -244,8 +251,8 @@ export default function AttemptReview() {
                   <SceneImage file={scene.file} />
                 </div>
               )}
-              {group.kind === "build_sentence" && <BuildSentenceGroup items={group.items} setSnapshot={setSnapshot} />}
-              {group.kind === "module" && <DeterministicModuleGroup items={group.items} setSnapshot={setSnapshot} reviewByItemId={reviewByItemId} showStimulus={attempt.status === "completed"} />}
+              {group.kind === "build_sentence" && <BuildSentenceGroup items={group.items} setSnapshot={setSnapshot} showMarks={showMarks} />}
+              {group.kind === "module" && <DeterministicModuleGroup items={group.items} setSnapshot={setSnapshot} reviewByItemId={reviewByItemId} showStimulus={attempt.status === "completed"} showMarks={showMarks} />}
               {group.kind === "judged" && (
                 <div className="space-y-6">
                   {group.items.map(({ item, position }, i) =>
