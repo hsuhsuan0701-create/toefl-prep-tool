@@ -1,4 +1,4 @@
-import type { BuildupDiffOp, ItemVM, JudgeReportVM, ScoreRequest } from "@toefl-prep/shared";
+import type { BuildupDiffOp, DeterministicItemScoreJson, ItemVM, JudgeReportVM, ScoreRequest } from "@toefl-prep/shared";
 import type { ScoringJobState } from "../../hooks/useScoringJob";
 import type { DeliveryReport } from "../../lib/api";
 import { scoringInterrupted } from "../../lib/progressUtils";
@@ -9,12 +9,11 @@ import type { JudgeSummary, ScoreReportItem } from "../ScoreCard";
 // page, its Item renderers and the job controller all ask the same question the same way.
 
 /**
- * What deterministic scoring persists for every Reading/Listening Item in either mode. `answer` is
- * the User's own raw Response (typed letters, or the selected option id, including shared's
- * MCQ_UNANSWERED_SENTINEL for a question left unanswered); `skill` exists for multiple-choice Items
- * only.
+ * What deterministic scoring persists for every Reading/Listening Item in either mode: shared's
+ * DeterministicItemScoreJson, whose fields are documented there. The words of the Response
+ * (`answerText`, `answerIndex`, `prefix`) are absent from rows scored before they were stored.
  */
-export type DeterministicScoreJson = { correct: boolean; module: string; answer: string; skill?: string };
+export type DeterministicScoreJson = DeterministicItemScoreJson;
 
 export function isDeterministicScoreJson(v: unknown): v is DeterministicScoreJson {
   const j = v as { correct?: unknown; module?: unknown; answer?: unknown };

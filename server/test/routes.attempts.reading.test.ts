@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { beforeAll, describe, expect, it } from "vitest";
-import type { AttemptDetailVM, AttemptListVM, ReadingSet, StatsSummaryVM, WritingSet } from "@toefl-prep/shared";
+import { MCQ_UNANSWERED_SENTINEL, type AttemptDetailVM, type AttemptListVM, type ReadingSet, type StatsSummaryVM, type WritingSet } from "@toefl-prep/shared";
 import { buildAttemptsRoutes } from "../src/routes/attempts.js";
 import { buildStatsRoutes } from "../src/routes/stats.js";
 import { openDb } from "../src/db/db.js";
@@ -425,11 +425,61 @@ describe("reading deterministic scoring route", () => {
     const items = testRepo.getAttempt(attemptId)!.items;
     const byId = new Map(items.map((i) => [i.item_id, JSON.parse(i.score_json!) as Record<string, unknown>]));
 
-    expect(byId.get("dl-1-q1")).toEqual({ correct: true, skill: "detail", module: "router", answer: "a" });
-    expect(byId.get("dl-lo-1-q1")).toEqual({ correct: true, skill: "detail", module: "lower", answer: "c" });
-    expect(byId.get("dl-up-1-q1")).toEqual({ correct: true, skill: "detail", module: "upper", answer: "b" });
-    expect(byId.get("ctw-1-g1")).toEqual({ correct: true, module: "router", answer: "ght" });
+    expect(byId.get("dl-1-q1")).toEqual({ correct: true, skill: "detail", module: "router", answer: "a", answerText: "Option A", answerIndex: 0 });
+    expect(byId.get("dl-lo-1-q1")).toEqual({ correct: true, skill: "detail", module: "lower", answer: "c", answerText: "Option C", answerIndex: 2 });
+    expect(byId.get("dl-up-1-q1")).toEqual({ correct: true, skill: "detail", module: "upper", answer: "b", answerText: "Option B", answerIndex: 1 });
+    expect(byId.get("ctw-1-g1")).toEqual({ correct: true, module: "router", answer: "ght", prefix: "mi" });
     expect(byId.get("ctw-1-g1")).not.toHaveProperty("skill");
+  });
+
+  // Issue #56: what was answered is stored in words, so a review can say it once the Set can no
+  // longer be read. Only what the run showed the User: the chosen option and a gap's printed prefix,
+  // never the key, the other options or the Explanation, and in a Simulation as in a Drill.
+  it("stores the chosen option's text and a gap's prefix, and no key, in a Simulation's score_json", async () => {
+    const { app, repo: testRepo } = buildTestApp();
+    const { attemptId } = await createAttempt(app, { kind: "reading", mode: "simulation", setId: SET_ID });
+    // dl-1-q1's key is "a": choose "b", a wrong option, so the key's text is nowhere in the row.
+    await postScore(app, attemptId, {
+      taskType: "daily_life",
+      items: [
+        { itemId: "dl-1-q1", selectedOptionId: "b" },
+        { itemId: "dl-1-q2", selectedOptionId: MCQ_UNANSWERED_SENTINEL },
+      ],
+    });
+    await postScore(app, attemptId, { taskType: "complete_words", items: [{ itemId: "ctw-1-g2", typed: "vivl" }] });
+
+    const rows = new Map(testRepo.getAttempt(attemptId)!.items.map((i) => [i.item_id, i.score_json!]));
+    expect(JSON.parse(rows.get("dl-1-q1")!)).toEqual({ correct: false, skill: "detail", module: "router", answer: "b", answerText: "Option B", answerIndex: 1 });
+    // Nothing was chosen, so there is no text to keep.
+    expect(JSON.parse(rows.get("dl-1-q2")!)).toEqual({ correct: false, skill: "detail", module: "router", answer: MCQ_UNANSWERED_SENTINEL });
+    expect(JSON.parse(rows.get("ctw-1-g2")!)).toEqual({ correct: false, module: "router", answer: "vivl", prefix: "sur" });
+    for (const raw of rows.values()) {
+      expect(raw).not.toMatch(/Option A|Option C|correctOptionId|explanation|題目|語意/);
+    }
+    // Nor is the gap's completion ("vival").
+    expect(rows.get("ctw-1-g2")).not.toContain("vival");
+
+    // The Attempt the client reads carries the same, and still no key before completion.
+    const detail = (await (await app.request(`/${attemptId}`)).json()) as AttemptDetailVM;
+    expect(detail.items.find((i) => i.itemId === "dl-1-q1")!.scoreJson).toMatchObject({ answerText: "Option B", answerIndex: 1 });
+    expect(detail.items.find((i) => i.itemId === "ctw-1-g2")!.scoreJson).toMatchObject({ prefix: "sur" });
+    expect(detail.deterministicReview).toBeUndefined();
+  });
+
+  // Rows scored before the words were stored have none of them, and still read as they did.
+  it("still reads a row scored before the answered text was stored", async () => {
+    const { app, repo: testRepo } = buildTestApp();
+    const { attemptId } = await createAttempt(app, { kind: "reading", mode: "drill", setId: SET_ID });
+    testRepo.scoreDeterministicItemsBatch([
+      { attemptId, itemId: "dl-1-q1", taskType: "daily_life", score: 0, scoreJson: JSON.stringify({ correct: false, skill: "detail", module: "router", answer: "b" }) },
+      { attemptId, itemId: "ctw-1-g1", taskType: "complete_words", score: 1, scoreJson: JSON.stringify({ correct: true, module: "router", answer: "ght" }) },
+    ]);
+    const res = await app.request(`/${attemptId}`);
+    expect(res.status).toBe(200);
+    const detail = (await res.json()) as AttemptDetailVM;
+    expect(detail.items.find((i) => i.itemId === "dl-1-q1")!.scoreJson).toEqual({ correct: false, skill: "detail", module: "router", answer: "b" });
+    expect(detail.items.find((i) => i.itemId === "ctw-1-g1")!.scoreJson).toEqual({ correct: true, module: "router", answer: "ght" });
+    expect(detail.deterministicReview?.map((r) => r.itemId).sort()).toEqual(["ctw-1-g1", "dl-1-q1"]);
   });
 });
 

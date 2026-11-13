@@ -59,6 +59,36 @@ export type ScoreReport = z.infer<typeof ScoreReportSchema>;
  */
 export const MCQ_UNANSWERED_SENTINEL = "__none__";
 
+/**
+ * What deterministic scoring persists in `item_results.score_json` for a Reading or Listening Item,
+ * in either mode (server/src/services/deterministicScoring.ts writes it).
+ *
+ * - `correct`: the Item's correctness; `score` is 1 or 0 to match.
+ * - `module`: the Module the Item belongs to ("router", "lower", "upper"). The Module-order guard and
+ *   the band rule read it (docs/adr/0010).
+ * - `answer`: the User's raw Response: the letters typed into a gap, or the selected option id
+ *   (MCQ_UNANSWERED_SENTINEL for a question left unanswered).
+ * - `skill`: a multiple-choice Item's skill category; a gap has none.
+ *
+ * What the User answered, in words, so a review can say it when the Set can no longer be read
+ * (issue #56). Each is something the run put in front of the User, never a key: neither the key,
+ * the other options nor the Explanation is stored. Rows scored before these existed lack them.
+ * - `answerText`, `answerIndex`: the chosen option's text and its place among the question's
+ *   options (0 for the first, so the review can print its letter as the run did). Absent when no
+ *   option was chosen, or the id names none.
+ * - `prefix`: a gap's prefix, the letters printed before it in the passage. The User's whole word is
+ *   `prefix` + `answer`.
+ */
+export type DeterministicItemScoreJson = {
+  correct: boolean;
+  module: string;
+  answer: string;
+  skill?: string;
+  answerText?: string;
+  answerIndex?: number;
+  prefix?: string;
+};
+
 export const ScoreRequestSchema = z.discriminatedUnion("taskType", [
   z.object({
     taskType: z.literal("build_sentence"),

@@ -12,7 +12,7 @@ import { Prose } from "../../ui/Prose";
 import { ITEM_MARK_DEFERRED, itemScoringStatus } from "../../ui/labels";
 import { ResultMark } from "./ReviewParts";
 import ReviewStimulus, { type ReviewedGap } from "./ReviewStimulus";
-import { isDeterministicScoreJson } from "./reviewItems";
+import { isDeterministicScoreJson, type DeterministicScoreJson } from "./reviewItems";
 import { capitalise, correctSummary, unmarkedSummary, type IndexedItem } from "./reviewText";
 
 type StimulusRun = {
@@ -64,10 +64,19 @@ function optionText(question: QuestionSnapshot | undefined, optionId: string): s
   return `${String.fromCharCode(65 + index)}. ${question.options[index].text}`;
 }
 
+/**
+ * The option the User chose, in the words scoring stored with the Response (issue #56): what the
+ * review says when the Set can no longer be read. Null for a row scored before they were stored.
+ */
+function storedOptionText(score: DeterministicScoreJson): string | null {
+  if (score.answerText === undefined) return null;
+  return score.answerIndex === undefined ? score.answerText : `${String.fromCharCode(65 + score.answerIndex)}. ${score.answerText}`;
+}
+
 /** The multiple-choice Task Types, Reading's and Listening's, whose opened row lists every option of the question. */
 const QUESTION_TYPES = new Set(["daily_life", "academic_passage", "listen_choose", "conversation", "announcement", "academic_talk"]);
 
-/** A Response whose option the Set can no longer name. */
+/** A Response whose option neither the Set nor its stored score can name. */
 const OPTION_NOT_SHOWN = "An option that can no longer be shown";
 
 export type DeterministicModuleGroupProps = {
@@ -229,8 +238,9 @@ function DeterministicRow({
   const isGap = item.taskType === "complete_words";
   const shown = review ? question : undefined;
   // A gap's prefix was printed in the paragraph the User read, so it is no key: the Response reads
-  // as the whole word they produced whether or not the Attempt is complete.
-  const prefix = question?.prefix ?? "";
+  // as the whole word they produced whether or not the Attempt is complete. Without the Set, the
+  // prefix scoring stored with the Response stands in (absent from rows scored before it was).
+  const prefix = question?.prefix ?? score?.prefix ?? "";
   const unanswered = score !== null && (score.answer === MCQ_UNANSWERED_SENTINEL || score.answer.trim() === "");
 
   const responseText = !score
@@ -239,7 +249,7 @@ function DeterministicRow({
       ? "No Response"
       : isGap
         ? `${prefix}${score.answer}`
-        : (optionText(question, score.answer) ?? OPTION_NOT_SHOWN);
+        : (optionText(question, score.answer) ?? storedOptionText(score) ?? OPTION_NOT_SHOWN);
   const keyText = review?.key === undefined ? null : isGap ? `${prefix}${review.key}` : optionText(shown, review.key);
   const showsOptions = QUESTION_TYPES.has(item.taskType) && (shown?.options.length ?? 0) > 0;
 

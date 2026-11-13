@@ -248,9 +248,21 @@ describe("listening deterministic scoring route", () => {
     const items = testRepo.getAttempt(attemptId)!.items;
     const byId = new Map(items.map((i) => [i.item_id, JSON.parse(i.score_json!) as Record<string, unknown>]));
 
-    expect(byId.get("lcr-1")).toEqual({ correct: true, skill: "function", module: "router", answer: "a" });
-    expect(byId.get("lcr-lo-1")).toEqual({ correct: false, skill: "function", module: "lower", answer: "c" });
-    expect(byId.get("talk-up-1-q2")).toEqual({ correct: true, skill: "detail", module: "upper", answer: "b" });
+    expect(byId.get("lcr-1")).toEqual({ correct: true, skill: "function", module: "router", answer: "a", answerText: "Sure, no problem.", answerIndex: 0 });
+    expect(byId.get("lcr-lo-1")).toEqual({ correct: false, skill: "function", module: "lower", answer: "c", answerText: "Two floors up.", answerIndex: 2 });
+    expect(byId.get("talk-up-1-q2")).toEqual({ correct: true, skill: "detail", module: "upper", answer: "b", answerText: "Option B", answerIndex: 1 });
+  });
+
+  // Issue #56: the chosen option's text is stored with the Response, and nothing else of the
+  // question: not the key, not the other options, and never a Listen and Choose a Response utterance.
+  it("stores only the chosen option's text in a Simulation's score_json", async () => {
+    const { app, repo: testRepo } = buildTestApp();
+    const { attemptId } = await createAttempt(app, { kind: "listening", mode: "simulation", setId: SET_ID });
+    // lcr-1's key is "a": choose "d".
+    await postScore(app, attemptId, { taskType: "listen_choose", items: [{ itemId: "lcr-1", selectedOptionId: "d" }] });
+    const raw = testRepo.getAttempt(attemptId)!.items.find((i) => i.item_id === "lcr-1")!.score_json!;
+    expect(JSON.parse(raw)).toEqual({ correct: false, skill: "function", module: "router", answer: "d", answerText: "That sounds delicious.", answerIndex: 3 });
+    expect(raw).not.toMatch(/Sure, no problem|It closes at six|I already had one|grabbing the door|correctOptionId|explanation/);
   });
 });
 

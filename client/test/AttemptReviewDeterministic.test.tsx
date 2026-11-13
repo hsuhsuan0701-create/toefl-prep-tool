@@ -671,6 +671,41 @@ describe("an unfinished or discarded Drill's scored Items", () => {
   });
 });
 
+// Issue #56: scoring stores what was answered in words (the chosen option's text and place, a gap's
+// prefix), so with the Set unreadable the review still says what the User answered. Rows scored
+// before that have none of it and keep the fallback.
+describe("a Reading Attempt whose Set can no longer be read", () => {
+  const withWords = (itemId: string, taskType: string, correct: boolean, answer: string, words: Record<string, unknown>): ItemVM => {
+    const item = scored(itemId, taskType, correct, answer);
+    return { ...item, scoreJson: { ...(item.scoreJson as object), ...words } };
+  };
+
+  it("names a stored Response by its letter and text, and a gap by the whole word", async () => {
+    vi.mocked(getSet).mockRejectedValue(new Error("gone"));
+    await renderReview(
+      readingDetail({
+        items: [
+          withWords("g2", "complete_words", false, "klt", { prefix: "wee" }),
+          withWords("q1", "daily_life", false, "o3", { answerText: "To cancel a meeting", answerIndex: 2 }),
+        ],
+        deterministicReview: undefined,
+      }),
+    );
+    expect(screen.getByTestId("item-q1")).toHaveTextContent("Your Response: C. To cancel a meeting");
+    expect(screen.getByTestId("item-g2")).toHaveTextContent("Your Response: weeklt");
+    expect(screen.queryByText(/An option that can no longer be shown/)).toBeNull();
+    expect(screen.getByText(/its Set could not be read/)).toBeInTheDocument();
+  });
+
+  it("keeps the fallback for rows scored before the words were stored", async () => {
+    vi.mocked(getSet).mockRejectedValue(new Error("gone"));
+    await renderReview(readingDetail({ items: [scored("g2", "complete_words", false, "klt"), scored("q1", "daily_life", false, "o3")], deterministicReview: undefined }));
+    expect(screen.getByTestId("item-q1")).toHaveTextContent("Your Response: An option that can no longer be shown");
+    expect(screen.getByTestId("item-g2")).toHaveTextContent("Your Response: klt");
+    expect(screen.getByTestId("item-g2")).not.toHaveTextContent("weeklt");
+  });
+});
+
 // Issue #48: a Simulation defers its feedback. While it can still be answered or finished, its review
 // shows each Response with no Correct or Incorrect mark and no "n of m correct" tally, until the
 // Attempt completes. A Drill shows its marks as soon as an Item is scored.

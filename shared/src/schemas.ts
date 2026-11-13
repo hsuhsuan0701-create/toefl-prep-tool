@@ -125,6 +125,7 @@ export {
 } from "./schemas/scoring.js";
 export type {
   DeliveryReport,
+  DeterministicItemScoreJson,
   DeterministicScoreRequest,
   EarsResult,
   JudgeReport,
