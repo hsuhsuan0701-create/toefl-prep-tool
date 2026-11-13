@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { FullTestRunVM } from "@toefl-prep/shared";
+import { nextSectionToSit } from "../hooks/useFullTestRun";
 import { abandonFullTest } from "../lib/api";
 import { requestErrorMessage } from "../lib/requestError";
 import { Button } from "../ui/Button";
@@ -28,6 +29,9 @@ function abandonConsequence(run: FullTestRunVM): string[] {
  * "Abandon Run…" for a Full-Test Run in progress, behind a confirmation that says what it does. Shared by
  * the Run's own page and the Dashboard's Full-Test panel. Starting a Run asks nothing, because this
  * is how a Run started by mistake goes away.
+ *
+ * Nothing renders for a Run with no section left to sit: its hand-off was lost, it is finished
+ * rather than given up on, and the route refuses to abandon it. Its Run page completes it.
  */
 export default function AbandonFullTestRun({
   run,
@@ -55,6 +59,8 @@ export default function AbandonFullTestRun({
       setBusy(false);
     }
   };
+
+  if (!nextSectionToSit(run)) return null;
 
   return (
     <>

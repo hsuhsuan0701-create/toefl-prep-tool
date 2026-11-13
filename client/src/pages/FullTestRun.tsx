@@ -4,7 +4,7 @@ import type { AttemptDetailVM, BandShortfallVM, FullTestRunVM, FullTestSection, 
 import { advanceFullTest, getAttempt } from "../lib/api";
 import { requestErrorMessage } from "../lib/requestError";
 import { useReviewLinkState } from "../hooks/useAttemptListPlace";
-import { NOT_RUNNABLE, isTerminalSection, useFullTestRun } from "../hooks/useFullTestRun";
+import { NOT_RUNNABLE, isTerminalSection, nextSectionToSit, useFullTestRun } from "../hooks/useFullTestRun";
 import { totalSkipped } from "../lib/coverage";
 import { taskTypeLabel } from "../lib/taskTypes";
 import AbandonFullTestRun from "../components/AbandonFullTestRun";
@@ -492,8 +492,8 @@ function HandoffRecovery({ run, onAdvanced }: { run: FullTestRunVM; onAdvanced: 
   const currentSection = run.currentSection;
   const current = run.sections.find((s) => s.section === currentSection);
   const stale = run.status === "in-progress" && currentSection !== null && current !== undefined && isTerminalSection(current.state);
-  // The client-side twin of the server's launchableFullTestSection: where an advance actually lands.
-  const next = run.sections.find((s) => !isTerminalSection(s.state));
+  // Where an advance actually lands.
+  const next = nextSectionToSit(run);
   const finishes = next === undefined;
 
   const advance = useCallback(async () => {

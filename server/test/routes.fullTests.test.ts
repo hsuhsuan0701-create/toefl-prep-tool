@@ -789,8 +789,14 @@ describe("a section left behind: restarted, or its Run abandoned", () => {
     const run = await newRun(h);
     for (const section of FULL_TEST_SECTION_ORDER) await sitSection(h, run.id, section);
     // Every hand-off lost: the Run is still in progress with nothing left to sit. It is finished,
-    // not given up on, so it is refused, and its next advance completes it with its Overall.
-    expect((await abandon(h, run.id)).status).toBe(409);
+    // not given up on, so it is refused, and its next advance completes it with its Overall. The
+    // refusal reaches a User only from a stale tab, so it names the step the UI offers (opening the
+    // Run), not the advance route.
+    const finished = await abandon(h, run.id);
+    expect(finished.status).toBe(409);
+    const { error } = (await finished.json()) as { error: string };
+    expect(error).toMatch(/Open the Run/);
+    expect(error).not.toMatch(/advance/);
     expect(h.r.getFullTestRun(run.id)!.status).toBe("in-progress");
 
     await h.app.request(`/full-tests/${run.id}/advance`, { method: "POST" });

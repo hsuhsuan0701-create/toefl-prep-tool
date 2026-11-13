@@ -443,9 +443,13 @@ export function buildFullTestRoutes(deps: FullTestsDeps) {
       if (row.status === "in-progress") {
         const attempts = sectionAttempts(deps.repo, row);
         // Every section finished means the Run's hand-off was lost, not that it was given up on: it
-        // completes at its next advance, which the Run page makes on load, and gets its Overall.
+        // completes at its next advance, which the Run page makes on load, and gets its Overall. The
+        // client offers no Abandon on such a Run (nextSectionToSit), so this answers a stale tab, in the
+        // UI's words: the Run page is the step that finishes it.
         if (!launchableFullTestSection(statesOf(attempts))) {
-          return c.json({ error: "every section of this full test run is finished; advance it to complete it" }, 409);
+          return c.json({
+            error: "all four sections of this Full-Test Run are finished, so there is nothing left to abandon. Open the Run to record its end and see its report.",
+          }, 409);
         }
         const live = FULL_TEST_SECTION_ORDER
           .map((section) => attempts[section])

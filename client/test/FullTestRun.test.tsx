@@ -864,4 +864,13 @@ describe("abandoning the Run from its page", () => {
     expect(screen.queryByRole("button", { name: "Abandon Run…" })).toBeNull();
     expect(screen.queryByText(/Elapsed/)).toBeNull();
   });
+
+  // Four sections finished with the hand-off lost: the Run is finished, not given up on, and the
+  // abandon route refuses it. The page offers only the way forward, finishing it.
+  it("offers no Abandon on a Run in progress whose four sections are all finished", async () => {
+    renderRun(run({ currentSection: "speaking", sections: completedSections({ reading: 4.5, listening: 5, writing: 4, speaking: 4.5 }) }));
+    await sectionRows();
+    expect(await screen.findByText(/All four sections are finished|never recorded the handoff/)).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Abandon Run…" })).toBeNull();
+  });
 });

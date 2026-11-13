@@ -239,6 +239,17 @@ describe("abandoning a Run in progress from the panel", () => {
   });
 });
 
+// A Run in progress whose four sections are finished lost its hand-off: it is finished, not given up
+// on, and the abandon route refuses it. Its row offers only Resume, whose Run page completes it.
+describe("a Run in progress with no section left to sit", () => {
+  it("offers Resume and no Abandon", async () => {
+    const sections = (["reading", "listening", "writing", "speaking"] as const).map((s, i) => sectionVM(s, i + 1, "completed"));
+    renderPanel([run({ id: "run-handoff-lost", status: "in-progress", currentSection: "speaking", sections })]);
+    expect(await screen.findByRole("link", { name: "Resume" })).toHaveAttribute("href", "/full-test/run-handoff-lost");
+    expect(screen.queryByRole("button", { name: "Abandon Run…" })).toBeNull();
+  });
+});
+
 // GET /api/full-tests as stubListing answers it, over a list the stub's POST .../abandon changes, so
 // a test can abandon a Run and read the listings that follow.
 function stubAbandonableListing(runs: FullTestRunVM[]): { posts: string[] } {
@@ -273,7 +284,8 @@ describe("abandoning a Run with the earlier finished Runs shown", () => {
     const finished = [1, 2, 3, 4].map((i) =>
       run({ id: `run-done-${i}`, status: "completed", createdAt: `2026-08-1${5 - i}T02:00:00.000Z` }),
     );
-    const open = run({ id: "run-open", status: "in-progress", createdAt: "2026-08-20T02:00:00.000Z" });
+    const sections = (["reading", "listening", "writing", "speaking"] as const).map((s, i) => sectionVM(s, i + 1, "pending"));
+    const open = run({ id: "run-open", status: "in-progress", createdAt: "2026-08-20T02:00:00.000Z", sections });
     const { posts } = stubAbandonableListing([open, ...finished]);
     render(
       <MemoryRouter>
