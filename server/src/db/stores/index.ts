@@ -110,7 +110,7 @@ export function createSqliteStores(
 
 /**
  * The Attempts route's store. Only the Attempt aggregate implements `getAttempt`, so the port's `Omit`s
- * need no counterpart here. The Full-Test half is the two members this route uses.
+ * need no counterpart here. The Full-Test half is the three members this route uses.
  */
 export function attemptsRouteStore(s: SqliteStores): AttemptsRouteStore {
   return {
@@ -123,8 +123,15 @@ export function attemptsRouteStore(s: SqliteStores): AttemptsRouteStore {
     // Read on this route's behalf by `checkFullTestLink`, which refuses a link the Run's own rules
     // do not allow BEFORE the Attempt row exists.
     getFullTestRun: s.fullTests.getFullTestRun,
+    // Abort refuses the section a Run in progress is sitting, and the Attempt log names the Run each
+    // section on its page belongs to, in one read for the page.
+    getFullTestRunForAttempt: s.fullTests.getFullTestRunForAttempt,
+    listFullTestRunsForAttempts: s.fullTests.listFullTestRunsForAttempts,
     ...s.recording,
     getTranscriptionJob: s.transcription.getTranscriptionJob,
+    // The Attempt log asks whether a completed Attempt with no band is still scoring, by the rule the
+    // Attempt review and a Full-Test Run's section use (liveScoringOutstanding).
+    getCurrentTranscriptionJobs: s.transcription.getCurrentTranscriptionJobs,
   };
 }
 
@@ -147,12 +154,13 @@ export function statsRouteStore(s: SqliteStores): StatsStore {
   };
 }
 
-/** A Full-Test Run's own aggregate plus the three READS that make a section's state and band status derivable. */
+/** A Full-Test Run's own aggregate plus the four READS that make a section's state and band status derivable. */
 export function fullTestsRouteStore(s: SqliteStores): FullTestStore {
   return {
     ...s.fullTests,
     getAttempt: s.attempts.getAttempt,
     listActiveJobs: s.scoring.listActiveJobs,
+    getCurrentTranscriptionJobs: s.transcription.getCurrentTranscriptionJobs,
     getSectionEstimate: s.estimates.getSectionEstimate,
   };
 }

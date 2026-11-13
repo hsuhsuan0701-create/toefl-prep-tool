@@ -14,6 +14,7 @@ import {
 } from "../listeningSimulation";
 import { ListeningStimulusQuestions } from "../../components/StimulusQuestions";
 import { useLeaveGuard } from "../../hooks/useLeaveGuard";
+import { useStageEntry } from "../../hooks/useStageEntry";
 import ModulePathDisclosure from "../../components/ModulePathDisclosure";
 import { Button } from "../../ui/Button";
 import { Disclosure } from "../../ui/Disclosure";
@@ -30,6 +31,7 @@ import {
   leaveBeforeCompletedMessage,
   leaveRestartsSectionMessage,
   pickSimulationSet,
+  predictRepeat,
   repeatNoticeText,
   sleep,
   useAttemptCompletion,
@@ -56,6 +58,7 @@ export default function ListeningSimulation({ fullTest }: { fullTest?: FullTestS
   // Read out once so the hooks below depend on primitives, not an object the caller re-creates.
   const fullTestRunId = fullTest?.runId;
   const fullTestSetId = fullTest?.setId;
+  const fullTestAttemptId = fullTest?.attemptId;
   const exitTo = fullTestRunId ? `/full-test/${fullTestRunId}` : "/";
 
   const [pageStage, setPageStage] = useState<"loading" | "error" | "ready">("loading");
@@ -66,6 +69,15 @@ export default function ListeningSimulation({ fullTest }: { fullTest?: FullTestS
   const [isStarting, setIsStarting] = useState(false);
   const [isRepeat, setIsRepeat] = useState(false);
   const [simState, setSimState] = useState<ListeningSimState>({ stage: "intro" });
+  // Both Modules run in `stimulus`, and each Stimulus replaces the one before, so the Module and the
+  // Stimulus are part of the stage's name; its questions, answered in lockstep, are not.
+  useStageEntry(
+    pageStage !== "ready"
+      ? null
+      : simState.stage === "stimulus"
+        ? `stimulus:${simState.module}:${simState.idx}`
+        : `${simState.stage}:${"module" in simState ? simState.module : ""}`,
+  );
 
   const mountedRef = useRef(true);
   const retryRef = useRef<(() => void) | null>(null);
@@ -103,14 +115,14 @@ export default function ListeningSimulation({ fullTest }: { fullTest?: FullTestS
     try {
       // Inside a Full-Test Run the Set is the one the Run drew (the server refuses any other),
       // looked up in the bank only for its title and `attempted` flag; standalone, the automatic
-      // pick. Either way the listing's `attempted` lets the intro disclose a Repeat before the User
-      // starts.
+      // pick. predictRepeat lets the intro disclose a Repeat before the User starts.
       const entry = fullTestSetId ? await findListedSet(fullTestSetId) : await pickSimulationSet("listening");
       const s = await getSet(fullTestSetId ?? entry!.id);
+      const repeat = await predictRepeat(entry, fullTestAttemptId);
       if (!mountedRef.current) return;
       setSet(expectServedSet("listening", s));
       setListing(entry);
-      setIsRepeat(entry?.attempted ?? false);
+      setIsRepeat(repeat);
       setPageStage("ready");
     } catch (e) {
       if (!mountedRef.current) return;
@@ -118,7 +130,7 @@ export default function ListeningSimulation({ fullTest }: { fullTest?: FullTestS
       retryRef.current = () => void loadSet();
       setPageStage("error");
     }
-  }, [fullTestSetId]);
+  }, [fullTestSetId, fullTestAttemptId]);
 
   useEffect(() => {
     void loadSet();
@@ -357,6 +369,12 @@ export default function ListeningSimulation({ fullTest }: { fullTest?: FullTestS
             audioTry={simState.audioTry}
             onAudioRetry={() => dispatch({ type: "retry-audio" })}
             onAudioSkip={() => dispatch({ type: "skip-stimulus" })}
+            audioFailedNote={
+              <>
+                <p>Its questions stay hidden until it plays. Nothing is timed while this is up, and the Attempt is marked as interrupted.</p>
+                <p className="mt-1">Skipping scores this Stimulus's questions as unanswered.</p>
+              </>
+            }
             onAnswer={(itemId, optionId) => dispatch({ type: "answer", itemId, optionId })}
             autoFocus
             // No `results`: a Simulation's feedback (the key and the Explanation) is deferred to the

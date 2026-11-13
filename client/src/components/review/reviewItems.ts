@@ -95,13 +95,17 @@ export function hasScorableResponse(item: ItemVM): boolean {
 
 /**
  * The job view to draw instead of an Item's own persisted state (its status chip and Score Report),
- * or undefined. A running job stands in for the Item, and so does a failed one, whose Items the
- * server marks failed. A job interrupted by anything but supersession commits nothing: the refreshed
- * Item says where it stands (failed, or still scored when a re-score of it was interrupted), and only
- * the job's notice and its Retry sit above that.
+ * or undefined. A running job stands in for the Item, and so does a failed one over an Item with no
+ * score, which the server marks failed. A failed re-score of a scored Item commits nothing (the
+ * server keeps the committed score), so that Item keeps its Score Report and the failure sits above
+ * it. A job interrupted by anything but supersession commits nothing either: the refreshed Item says
+ * where it stands (failed, or still scored when a re-score of it was interrupted), and only the job's
+ * notice and its Retry sit above that.
  */
-export function jobViewInPlaceOfItem(jobView: ScoringJobState | undefined): ScoringJobState | undefined {
-  return jobView && !scoringInterrupted(jobView.status, jobView.cancellationReason) ? jobView : undefined;
+export function jobViewInPlaceOfItem(jobView: ScoringJobState | undefined, item: ItemVM): ScoringJobState | undefined {
+  if (!jobView || scoringInterrupted(jobView.status, jobView.cancellationReason)) return undefined;
+  if (jobView.status === "failed" && item.scoringStatus === "scored") return undefined;
+  return jobView;
 }
 
 /** Failed Items, and Items scored under Self-Arbitration, can be sent for a fresh Judge + Arbiter run. */

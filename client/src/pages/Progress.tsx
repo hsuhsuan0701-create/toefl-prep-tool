@@ -67,6 +67,7 @@ export default function Progress() {
               weaknesses={summary.weaknesses}
               judgeAgreement={summary.judgeAgreement}
               skillAccuracy={computeSkillAccuracy(summary.skillItems)}
+              skillItemsLimit={summary.skillItemsLimit}
             />
           ) : error ? (
             <Notice

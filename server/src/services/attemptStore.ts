@@ -62,6 +62,8 @@ export type CaptureStore = {
 /** Reads of the Attempt aggregate. `getAttempt` is the widest one; narrower ports re-declare it. */
 export type AttemptReadStore = {
   getAttempt(id: string): AttemptWithItems | undefined;
+  /** An Attempt's Items with only their id, Task Type and scoring status, in stored order. */
+  listItemScoringStates(attemptId: string): { item_id: string; task_type: string; scoring_status: string }[];
   listAttempts(q?: { kind?: string; setId?: string; limit?: number; offset?: number }): AttemptRow[];
   /** How many Attempts `listAttempts` would return for the same filters with no page bound. */
   countAttempts(q?: { kind?: string; setId?: string }): number;

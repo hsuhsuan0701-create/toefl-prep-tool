@@ -5,11 +5,13 @@ import { TASK_TYPES } from "../lib/taskTypes";
 import { scoringInterrupted } from "../lib/progressUtils";
 import { forgetScoringJob, scoringJobKey, startScoringJobOnce } from "../lib/scoringJobOnce";
 import { useScoringJob } from "../hooks/useScoringJob";
-import { sentenceAnswerText } from "../components/sentenceAnswerText";
+import { ComposedSentence, OfferedTiles, PLACED_WORDS_NOTE } from "../components/review/BuildSentenceParts";
 import type { BuildSentenceItem } from "../components/buildSentence";
 import ScoreCard, { type EssayScoreResult } from "../components/ScoreCard";
 import ScoringProgress from "../components/ScoringProgress";
 import { ResultMark } from "../components/review/ReviewParts";
+import { EssayResponse, EssayTask } from "../components/review/EssayItemReview";
+import type { EssayTaskSnapshot } from "./attemptSetSnapshot";
 import { SectionHeader } from "../ui/Heading";
 
 // The Writing Drill's results, Task by Task: Build a Sentence's deterministic results, and each
@@ -36,7 +38,14 @@ export type CompletedBuildSentence = {
  * EssayResultSlot needs to fire — and, on Retry, re-fire — the scoring job itself while the Drill
  * moves on to the next Task.
  */
-export type EssaySlot = { kind: EssayKind; userText: string; itemId: string; secondsUsed: number };
+export type EssaySlot = {
+  kind: EssayKind;
+  userText: string;
+  itemId: string;
+  secondsUsed: number;
+  /** The task as Attempt review shows it, read from the Set the Drill holds; undefined if it has none. */
+  task?: EssayTaskSnapshot;
+};
 
 export type CompletedStage = CompletedBuildSentence | EssaySlot;
 
@@ -50,7 +59,7 @@ export function CompletedStageView({
   attemptId: string | null;
   /** One line while the Drill is still running; the full results on the results screen. */
   compact: boolean;
-  onEssayStatusChange: (kind: EssayKind, inFlight: boolean) => void;
+  onEssayStatusChange: (kind: EssayKind, inFlight: boolean, unscored: boolean) => void;
 }) {
   if (stage.kind === "build_sentence") {
     return compact ? <BuildSentenceStatusLine stage={stage} /> : <BuildSentenceResults stage={stage} />;
@@ -65,6 +74,7 @@ export function CompletedStageView({
       itemId={stage.itemId}
       userText={stage.userText}
       secondsUsed={stage.secondsUsed}
+      task={stage.task}
       compact={compact}
       onStatusChange={onEssayStatusChange}
     />
@@ -90,6 +100,7 @@ function BuildSentenceResults({ stage }: { stage: CompletedBuildSentence }) {
         title={TASK_TYPES.build_sentence.label}
         description={`${correct} of ${stage.items.length} correct`}
       />
+      <p className="text-meta text-graphite">{PLACED_WORDS_NOTE}</p>
       <ol className="divide-y divide-rule rounded-sheet border border-rule bg-sheet">
         {stage.items.map((item, i) => {
           const result = stage.results.find((r) => r.itemId === item.id);
@@ -98,9 +109,11 @@ function BuildSentenceResults({ stage }: { stage: CompletedBuildSentence }) {
           // every blank still empty there is no Response to read, and the frame alone could be
           // misread as one.
           const userResponse =
-            submitted && submitted.tileOrder.length > 0
-              ? sentenceAnswerText(item.frame, submitted.tileOrder)
-              : "(no Response submitted)";
+            submitted && submitted.tileOrder.length > 0 ? (
+              <ComposedSentence frame={item.frame} tiles={submitted.tileOrder} />
+            ) : (
+              "(no Response submitted)"
+            );
           const isCorrect = Boolean(result?.correct);
           return (
             <li key={item.id} className="space-y-2 px-4 py-3">
@@ -122,8 +135,15 @@ function BuildSentenceResults({ stage }: { stage: CompletedBuildSentence }) {
                 <span className="text-graphite">{(result?.correctAnswers.length ?? 0) > 1 ? "Key (any of these): " : "Key: "}</span>
                 {/* Through the same composition: a frame Item's key is the blank fills alone, so
                     printed bare it reads as a fragment. */}
-                {result?.correctAnswers.map((a) => sentenceAnswerText(item.frame, a)).join(" / ")}
+                {result?.correctAnswers.map((a, k) => (
+                  <span key={k}>
+                    {k > 0 && " / "}
+                    <ComposedSentence frame={item.frame} tiles={a} />
+                  </span>
+                ))}
               </p>
+              {/* A Drill's answer carries the key, so the extra tile is marked at once. */}
+              <OfferedTiles testId={`bas-tiles-${item.id}`} tiles={item.tiles} keyArrangements={result?.correctAnswers ?? null} />
             </li>
           );
         })}
@@ -144,6 +164,7 @@ function EssayResultSlot({
   itemId,
   userText,
   secondsUsed,
+  task,
   compact,
   onStatusChange,
 }: {
@@ -152,8 +173,9 @@ function EssayResultSlot({
   itemId: string;
   userText: string;
   secondsUsed: number;
+  task: EssayTaskSnapshot | undefined;
   compact: boolean;
-  onStatusChange: (kind: EssayKind, inFlight: boolean) => void;
+  onStatusChange: (kind: EssayKind, inFlight: boolean, unscored: boolean) => void;
 }) {
   const key = scoringJobKey(attemptId, kind);
   const start = useCallback(
@@ -175,9 +197,13 @@ function EssayResultSlot({
   }, [key, retry]);
 
   const settled = job.status === "done" || job.status === "failed" || job.status === "cancelled";
+  const unscored = job.status === "failed" || scoringInterrupted(job.status, job.cancellationReason);
   useEffect(() => {
-    onStatusChange(kind, !settled);
-  }, [settled, kind, onStatusChange]);
+    onStatusChange(kind, !settled, unscored);
+  }, [settled, unscored, kind, onStatusChange]);
+  // A job the server reported on exists, and the essay is written before its job is: so it is
+  // stored. A POST /score that never produced a job proves nothing either way, and says nothing.
+  const stored = job.itemIds !== null;
 
   const title = TASK_TYPES[kind].label;
 
@@ -199,10 +225,22 @@ function EssayResultSlot({
   return (
     <section aria-label={title} className="space-y-4">
       <SectionHeader title={title} />
+      {/* The same task, in the same words, as Attempt review shows beside this essay. */}
+      {task && <EssayTask task={task} />}
       {job.status === "done" && job.result ? (
         <ScoreCard result={job.result as EssayScoreResult} userText={userText} />
       ) : (
-        <ScoringProgress job={job} onRetry={handleRetry} />
+        <>
+          <ScoringProgress job={job} onRetry={handleRetry} section="writing" />
+          {unscored && stored && (
+            <p className="text-ui text-ink-soft">
+              Your Response is saved with this Attempt. Finish and open the report to Re-score it there.
+            </p>
+          )}
+          {/* With no Score Report to carry it, the Response is shown on its own: this is the text the
+              Drill holds, whether or not the server has it. */}
+          {unscored && <EssayResponse userText={userText} />}
+        </>
       )}
     </section>
   );

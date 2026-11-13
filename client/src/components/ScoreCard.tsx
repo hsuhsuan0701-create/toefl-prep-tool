@@ -108,11 +108,15 @@ export type ScoreReportProps = {
 /**
  * The body of one Score Report, in the order the User reads it. Each Deduction's quote is marked
  * in the Response and numbered to the list; a quote that cannot be found is listed with its number
- * and a note, and never dropped.
+ * and a note, and never dropped. A quote that is in the Response but shares words with another
+ * Deduction's mark is not called missing: its note names the mark it overlaps.
  */
 export function ScoreReport({ item, judges, responseText, responseLabel = "Your Response", responseExtra, headingLevel = "h3" }: ScoreReportProps) {
   const marks = item.deductions.map((d, i) => ({ id: i + 1, quote: d.quote }));
-  const unmatched = new Set(markQuotes(responseText, marks).unmatched);
+  const placement = markQuotes(responseText, marks);
+  const unmatched = new Set(placement.unmatched);
+  const overlapsMark = new Map(placement.overlapping.map((o) => [o.id, o.overlaps]));
+  const markedCount = marks.length - unmatched.size - overlapsMark.size;
   const words = countWords(responseText);
 
   return (
@@ -129,7 +133,7 @@ export function ScoreReport({ item, judges, responseText, responseLabel = "Your 
           title={responseLabel}
           aside={
             words > 0
-              ? `${words} ${words === 1 ? "word" : "words"}${marks.length > unmatched.size ? " · numbers mark Deductions" : ""}`
+              ? `${words} ${words === 1 ? "word" : "words"}${markedCount > 0 ? " · numbers mark Deductions" : ""}`
               : undefined
           }
         >
@@ -168,6 +172,9 @@ export function ScoreReport({ item, judges, responseText, responseLabel = "Your 
                   <div className="flex flex-wrap items-center gap-2">
                     <Chip>{deductionCategoryLabel(d.category)}</Chip>
                     {unmatched.has(i + 1) && <span className="text-meta text-graphite">Not marked: these words are not in your Response</span>}
+                    {overlapsMark.has(i + 1) && (
+                      <span className="text-meta text-graphite">Not marked separately: these words overlap the mark of Deduction {overlapsMark.get(i + 1)}</span>
+                    )}
                   </div>
                   <p className="text-body text-ink">
                     <span className="underline decoration-correction decoration-[1.5px] underline-offset-[0.22em]">{d.quote}</span>

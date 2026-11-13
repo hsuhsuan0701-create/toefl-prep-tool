@@ -70,4 +70,28 @@ describe("CtwGapInput", () => {
     expect(screen.getByTestId("ctw-gap-result-g2")).toHaveTextContent("Incorrect. The word is mat");
     expect(screen.getByTestId("ctw-gap-result-g2").querySelector("svg")).not.toBeNull();
   });
+
+  // A gap shows its length before anything is typed, so every letter has to take the same width:
+  // in a proportional face "ows" is wider than three average slots and its last letter is clipped.
+  // jsdom lays nothing out; the measured check (scrollWidth <= clientWidth over every banked gap)
+  // is a browser run. This pins what makes it hold: one monospace face over the whole passage, and
+  // each box sized in ch to exactly its letter count, with no letter-spacing to pay for.
+  it("sets the passage in one monospace face and sizes each box in ch to its letter count", () => {
+    render(<CtwGapInput segments={segments} gaps={gaps} onChange={vi.fn()} />);
+
+    const g2Input = screen.getByLabelText(/starting with "m"/i) as HTMLInputElement;
+    const paragraph = g2Input.closest("p");
+    expect(paragraph).toHaveClass("font-mono");
+    expect(g2Input.style.width).toMatch(/^calc\(3ch \+/);
+    expect(g2Input.style.backgroundSize).toMatch(/^3ch /);
+    expect(g2Input.className).not.toMatch(/tracking-/);
+  });
+
+  it("keeps the punctuation after a gap on the gap's line", () => {
+    render(<CtwGapInput segments={segments} gaps={gaps} onChange={vi.fn()} />);
+
+    const g2Input = screen.getByLabelText(/starting with "m"/i) as HTMLInputElement;
+    expect(g2Input.parentElement).toHaveClass("whitespace-nowrap");
+    expect(g2Input.parentElement).toHaveTextContent(/^m.*\.$/);
+  });
 });

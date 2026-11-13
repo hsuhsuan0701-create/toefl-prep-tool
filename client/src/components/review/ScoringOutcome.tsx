@@ -1,9 +1,14 @@
 import { isSkippedItemScoreJson, type ItemVM } from "@toefl-prep/shared";
 import type { ScoringJobState } from "../../hooks/useScoringJob";
-import { taskTypeLabel } from "../../lib/taskTypes";
+import { taskTypeEntry, taskTypeLabel } from "../../lib/taskTypes";
+import { Button } from "../../ui/Button";
 import { Disclosure } from "../../ui/Disclosure";
+import { asSentence } from "../../ui/format";
+import { RESCORE_FAILED } from "../../ui/labels";
 import { Notice } from "../../ui/Notice";
 import ScoringProgress from "../ScoringProgress";
+import { RescoreNeedsSetup, SetupLink } from "../setup/ScoringSetupNotice";
+import { useScoringNotSetUp } from "../setup/sectionScorability";
 import { RescoreAction } from "./ReviewParts";
 import { isPersistedScoreItem, isSpeakingTaskType } from "./reviewItems";
 import { failureText } from "./reviewText";
@@ -31,7 +36,34 @@ export type ScoringOutcomeProps = {
  * with an ordinary Score Report and no job over it.
  */
 export function ScoringOutcome({ item, jobView, taskBusy, canRescore, rescoreCount, onRescore, settled, discarded }: ScoringOutcomeProps) {
-  if (jobView) return <ScoringProgress job={jobView} onRetry={jobView.retry} />;
+  // Only a judged section's scoring can need this machine's setup. For a stored failure the setup
+  // status matters only when this page offers a Re-score, which cannot succeed until Setup is
+  // complete; so it is asked only then.
+  const itemSection = taskTypeEntry(item.taskType)?.section;
+  const judgedSection = itemSection === "speaking" || itemSection === "writing" ? itemSection : null;
+  const rescorableFailure = !jobView && item.scoringStatus === "failed" && canRescore && !discarded;
+  const rescoreNeedsSetup = useScoringNotSetUp(rescorableFailure ? judgedSection : null);
+
+  // A failed re-score of a scored Item committed nothing, and the Score Report beneath still shows
+  // the committed score, so the notice says the Re-score failed rather than that scoring did.
+  if (jobView?.status === "failed" && item.scoringStatus === "scored") {
+    return (
+      <Notice
+        tone="critical"
+        live="assertive"
+        title={RESCORE_FAILED.label}
+        action={
+          <Button size="sm" onClick={jobView.retry}>
+            Retry scoring
+          </Button>
+        }
+      >
+        {jobView.error && <p>{asSentence(jobView.error)}</p>}
+        <p>{RESCORE_FAILED.hint}</p>
+      </Notice>
+    );
+  }
+  if (jobView) return <ScoringProgress job={jobView} onRetry={jobView.retry} section={judgedSection ?? undefined} />;
 
   const rescore = (
     <RescoreAction
@@ -51,7 +83,10 @@ export function ScoringOutcome({ item, jobView, taskBusy, canRescore, rescoreCou
         title="Scoring failed"
         action={
           canRescore ? (
-            rescore
+            <>
+              {rescore}
+              {rescoreNeedsSetup && <SetupLink />}
+            </>
           ) : isSpeakingTaskType(item.taskType) ? (
             <p className="text-ui text-ink-soft">
               {item.transcriptionJob
@@ -61,7 +96,10 @@ export function ScoringOutcome({ item, jobView, taskBusy, canRescore, rescoreCou
           ) : undefined
         }
       >
+        {/* The recorded reason always stands: this machine's setup today says nothing about why the
+            Item failed then, only whether a Re-score here can succeed. */}
         <p>{failure.summary} It is not in the band.</p>
+        {rescoreNeedsSetup && <RescoreNeedsSetup />}
         {failure.detail && (
           <Disclosure summary="What the server reported" className="mt-1">
             <p className="break-words">{failure.detail}</p>

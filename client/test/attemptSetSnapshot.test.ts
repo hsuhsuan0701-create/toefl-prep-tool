@@ -1,5 +1,14 @@
 import { describe, expect, it } from "vitest";
-import { buildSentenceComposition, sentenceFrameFor, snapshotAttemptSet } from "../src/pages/attemptSetSnapshot";
+import {
+  buildSentenceComposition,
+  questionFor,
+  sentenceFrameFor,
+  snapshotAttemptSet,
+  spokenPromptAudioFor,
+  stimulusAudioFor,
+  stimulusContentFor,
+  stimulusFor,
+} from "../src/pages/attemptSetSnapshot";
 
 // What GET /api/sets/:id serves for a Writing Set: stripAnswers drops `answers` (and
 // `generationPlan`) and keeps everything else, `frame` included, so the frame reaches the client on
@@ -118,6 +127,84 @@ describe("snapshotAttemptSet — the Listen and Repeat scene it already carried"
     expect(snapshotAttemptSet("wri-ref", writingSet).scene).toBeNull();
     expect(snapshotAttemptSet("spk-2", { kind: "speaking", listenAndRepeat: { items: [] } }).scene).toBeNull();
     expect(snapshotAttemptSet("spk-3", null).scene).toBeNull();
+  });
+});
+
+// What GET /api/sets/:id serves for a Speaking Set: each sentence's and question's audio, with the
+// `sentence` and `question` text stripped. Review plays the audio again; it never has the text.
+describe("spokenPromptAudioFor — a spoken Item's prompt to play again", () => {
+  const served = {
+    id: "spk-1",
+    kind: "speaking",
+    listenAndRepeat: {
+      introAudio: "stimuli/spk-1/intro.mp3",
+      items: [
+        { id: "lr-1", audio: "stimuli/spk-1/lr-1.mp3", responseWindowSec: 8 },
+        { id: "lr-2", audio: "stimuli/spk-1/lr-2.mp3", responseWindowSec: 8 },
+      ],
+    },
+    interview: {
+      introAudio: "stimuli/spk-1/interview-intro.mp3",
+      questions: [
+        { id: "int-1", audio: "stimuli/spk-1/int-1.mp3", responseWindowSec: 45 },
+        { id: "int-2", audio: "stimuli/spk-1/int-2.mp3", responseWindowSec: 45 },
+      ],
+    },
+  };
+
+  it("maps each sentence and each question to its own clip, never the introduction", () => {
+    const snapshot = snapshotAttemptSet("spk-1", served);
+    expect(spokenPromptAudioFor(snapshot, "lr-2")).toBe("stimuli/spk-1/lr-2.mp3");
+    expect(spokenPromptAudioFor(snapshot, "int-1")).toBe("stimuli/spk-1/int-1.mp3");
+    expect(Object.values(snapshot.spokenPromptAudioByItemId)).not.toContain("stimuli/spk-1/interview-intro.mp3");
+  });
+
+  it("has nothing without a readable Set, for an unknown or inherited id, or for a malformed Item", () => {
+    expect(spokenPromptAudioFor(null, "lr-1")).toBeUndefined();
+    const snapshot = snapshotAttemptSet("spk-1", served);
+    expect(spokenPromptAudioFor(snapshot, "lr-9")).toBeUndefined();
+    expect(spokenPromptAudioFor(snapshot, "constructor")).toBeUndefined();
+    const malformed = snapshotAttemptSet("spk-2", { kind: "speaking", listenAndRepeat: { items: [{ id: "lr-1" }, null, { id: "lr-3", audio: 7 }] }, interview: { questions: "nope" } });
+    expect(malformed.spokenPromptAudioByItemId).toEqual({});
+    expect(snapshotAttemptSet("wri-ref", writingSet).spokenPromptAudioByItemId).toEqual({});
+  });
+});
+
+// No schema makes a Stimulus id unique across a Set's three Modules, so one can repeat. Each Item
+// resolves to the Stimulus of its own Module, never to the first one in the Set with that id.
+describe("stimulusContentFor and stimulusAudioFor — a Stimulus id repeated in two Modules", () => {
+  const options = [{ id: "a", text: "Yes" }, { id: "b", text: "No" }];
+  const emptyReading = { timeLimitSec: 540, ctwPassages: [], dailyLife: [], academic: [] };
+  const reading = {
+    id: "rd-dup",
+    kind: "reading",
+    router: { ...emptyReading, dailyLife: [{ id: "dl-1", taskType: "daily_life", genre: "notice", text: "The Router Module's notice.", questions: [{ id: "q-r", stem: "?", options }] }] },
+    lowerModule: { ...emptyReading, dailyLife: [{ id: "dl-1", taskType: "daily_life", genre: "email", text: "The Lower Module's email.", questions: [{ id: "q-l", stem: "?", options }] }] },
+    upperModule: emptyReading,
+  };
+  const emptyListening = { timeLimitSec: 400, listenChoose: [], conversations: [], announcements: [], academicTalks: [] };
+  const listening = {
+    id: "lsn-dup",
+    kind: "listening",
+    router: { ...emptyListening, conversations: [{ id: "conv-1", taskType: "conversation", audio: "stimuli/lsn-dup/router-conv.mp3", setting: "a library", questions: [{ id: "c-r", stem: "?", options }] }] },
+    lowerModule: emptyListening,
+    upperModule: { ...emptyListening, conversations: [{ id: "conv-1", taskType: "conversation", audio: "stimuli/lsn-dup/upper-conv.mp3", setting: "a lab", questions: [{ id: "c-u", stem: "?", options }] }] },
+  };
+
+  it("finds an Item's Stimulus in its own Module", () => {
+    const rd = snapshotAttemptSet("rd-dup", reading);
+    const lower = questionFor(rd, "q-l")!;
+    expect(lower.module).toBe("lower");
+    expect(stimulusContentFor(rd, lower.module, lower.stimulusId)).toMatchObject({ text: "The Lower Module's email." });
+    const router = questionFor(rd, "q-r")!;
+    expect(stimulusContentFor(rd, router.module, router.stimulusId)).toMatchObject({ text: "The Router Module's notice." });
+    expect(stimulusFor(rd, "lower", "dl-1")?.name).toBe("email");
+
+    const lsn = snapshotAttemptSet("lsn-dup", listening);
+    const upper = questionFor(lsn, "c-u")!;
+    expect(stimulusAudioFor(lsn, upper.module, upper.stimulusId)).toBe("stimuli/lsn-dup/upper-conv.mp3");
+    expect(stimulusAudioFor(lsn, "router", "conv-1")).toBe("stimuli/lsn-dup/router-conv.mp3");
+    expect(stimulusAudioFor(lsn, "lower", "conv-1")).toBeUndefined();
   });
 });
 

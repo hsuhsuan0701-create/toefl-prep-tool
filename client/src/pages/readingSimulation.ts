@@ -24,6 +24,11 @@ export type ReadingSimState =
       visitedStimulusIdx: number;
       /** Which of the visited Stimulus's questions is on screen. Absent = 0 (a Complete the Words passage is one screen). */
       visitedQuestionIdx?: number;
+      /**
+       * The Stimulus on screen before the User navigated here; absent when the Module opened on this
+       * screen. Tells a text the User was just reading from one newly on screen.
+       */
+      previousStimulusIdx?: number;
     }
   | { stage: "submitting"; module: RoutedModule }
   // Reached only once some request's retry budget is exhausted (submitModule.ts), so a transient
@@ -76,7 +81,12 @@ export function reduceReadingSim(state: ReadingSimState, ev: ReadingSimEvent): R
 
     case "navigate":
       if (state.stage !== "module") return state;
-      return { ...state, visitedStimulusIdx: ev.stimulusIdx, visitedQuestionIdx: ev.questionIdx ?? 0 };
+      return {
+        ...state,
+        visitedStimulusIdx: ev.stimulusIdx,
+        visitedQuestionIdx: ev.questionIdx ?? 0,
+        previousStimulusIdx: state.visitedStimulusIdx,
+      };
 
     // A manual "Submit Module" click and the Module clock's expiry are the same transition — the
     // Module's response window is over either way, and buildScoreRequests below fills whatever was

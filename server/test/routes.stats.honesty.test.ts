@@ -105,6 +105,62 @@ describe("GET /summary — weaknesses come from judge-scored Task Types only", (
   });
 });
 
+describe("a Speaking Simulation left early and finished unscored", () => {
+  // The Attempt the issue's steps leave behind: three Listen and Repeat recordings still waiting on
+  // a transcription, and a skip placeholder (a scored 0) for every Item never reached, written by
+  // capture-finished, then completed. Before it, one whole Speaking Simulation with its Deductions.
+  function abandonedAfterAWholeSitting() {
+    const h = harness();
+    h.repo.createAttempt({ id: "whole", kind: "speaking", mode: "simulation", setId: "spk-1", isRepeat: false });
+    for (let i = 1; i <= 7; i++) {
+      h.scored("whole", `lr-${i}`, "listen_repeat", 3, { deductions: [{ category: "pronunciation-proxy", quote: "x", issue: "y", fix: "z" }] });
+    }
+    for (let i = 1; i <= 4; i++) {
+      h.scored("whole", `int-${i}`, "interview", 4, { deductions: [{ category: "grammar", quote: "x", issue: "y", fix: "z" }] });
+    }
+    h.repo.completeAttempt("whole");
+
+    h.repo.createAttempt({ id: "left", kind: "speaking", mode: "simulation", setId: "spk-2", isRepeat: false });
+    for (const itemId of ["lr-1", "lr-2", "lr-3"]) {
+      h.repo.insertItemResult({ attemptId: "left", itemId, taskType: "listen_repeat", responseAudioPath: `audio/responses/left/${itemId}.webm`, scoringStatus: "transcription_pending" });
+    }
+    const skip = JSON.stringify({ skipped: true, reason: "No recording was made for this item." });
+    h.repo.markCaptureFinishedWithMissingItemPlaceholders({
+      attemptId: "left",
+      placeholders: [
+        ...["lr-4", "lr-5", "lr-6", "lr-7"].map((itemId) => ({ itemId, taskType: "listen_repeat" as const })),
+        ...["int-1", "int-2", "int-3", "int-4"].map((itemId) => ({ itemId, taskType: "interview" as const })),
+      ].map((item) => ({ ...item, scoreJson: skip, score: 0, scoringStatus: "scored" as const })),
+    });
+    h.repo.completeAttempt("left");
+    return h;
+  }
+
+  it("gives no trend point for either Speaking Task Type, so the tiles keep the last real result", async () => {
+    const h = abandonedAfterAWholeSitting();
+    const points = (await (await h.app.request("/trends?taskType=listen_repeat,interview")).json()) as TrendPointVM[];
+    expect(points.map((p) => [p.taskType, p.attemptId, p.avgScore])).toEqual([
+      ["listen_repeat", "whole", 3],
+      ["interview", "whole", 4],
+    ]);
+  });
+
+  it("leaves its skip placeholders out of the Deductions window, which still holds the last 20 Responses", async () => {
+    const h = harness();
+    h.repo.createAttempt({ id: "wri", kind: "writing", mode: "drill", setId: "w", isRepeat: false });
+    for (let i = 0; i < 20; i++) h.scored("wri", `email-${i}`, "email", 3, { deductions: [{ category: "grammar", quote: "x", issue: "y", fix: "z" }] });
+    h.repo.createAttempt({ id: "left", kind: "speaking", mode: "simulation", setId: "s", isRepeat: false });
+    h.repo.markCaptureFinishedWithMissingItemPlaceholders({
+      attemptId: "left",
+      placeholders: Array.from({ length: 9 }, (_, i) => ({
+        itemId: `int-${i}`, taskType: "interview" as const,
+        scoreJson: JSON.stringify({ skipped: true, reason: "r" }), score: 0, scoringStatus: "scored" as const,
+      })),
+    });
+    expect((await h.summary()).weaknesses).toEqual([{ category: "grammar", count: 20 }]);
+  });
+});
+
 describe("GET /trends — only completed Attempts are plotted", () => {
   it("leaves out an Attempt still in progress and one that was abandoned", async () => {
     const h = harness();

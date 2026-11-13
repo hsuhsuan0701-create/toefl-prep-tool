@@ -219,6 +219,49 @@ describe("picker", () => {
     await user.click(within(dialog).getByRole("button", { name: "Reveal and practise", hidden: true }));
     expect(getBuildupItem).toHaveBeenCalledWith("spk-2", "lr-1");
   });
+
+  it("in a partly answered Set, opens a sentence already shown at once and asks only before revealing a hidden one", async () => {
+    // The Set-level `attempted` needs every sentence answered, so a sat Set with one skipped
+    // sentence still carries false. What the page can spoil is decided sentence by sentence.
+    getBuildupBank.mockResolvedValue([
+      {
+        setId: "spk-3",
+        scenarioTitle: "Writing Center Tutor",
+        attempted: false,
+        items: [
+          { itemId: "lr-1", wordCount: 13, preview: SENTENCE },
+          { itemId: "lr-2", wordCount: null, preview: null },
+          { itemId: "lr-3", wordCount: 9, preview: "Bring your draft and the assignment sheet." },
+        ],
+      },
+      { setId: "spk-2", scenarioTitle: "Unsat Scenario", attempted: false, items: [{ itemId: "lr-1", wordCount: null, preview: null }] },
+    ]);
+    const user = userEvent.setup();
+    renderLab();
+    const header = await screen.findByRole("button", { name: /Writing Center Tutor/ });
+    expect(header).toHaveTextContent("2 of 3 sentences answered");
+    expect(header).not.toHaveTextContent("Not attempted");
+    // A Set with nothing answered still says so.
+    expect(screen.getByRole("button", { name: /Unsat Scenario/ })).toHaveTextContent("Not attempted");
+
+    await user.click(header);
+    const rows = within(header.closest("li")!).getAllByRole("listitem");
+    expect(within(rows[0]).getByRole("button", { name: "Practise" })).toBeTruthy();
+    expect(within(rows[1]).getByRole("button", { name: "Practise…" })).toBeTruthy();
+
+    // The hidden sentence asks first, and does not claim the Set was never attempted.
+    await user.click(within(rows[1]).getByRole("button", { name: "Practise…" }));
+    const dialog = screen.getAllByRole("dialog", { hidden: true }).find((d) => d.hasAttribute("open"))!;
+    expect(dialog).toHaveTextContent("Sentence 2 of Writing Center Tutor has no scored recording yet");
+    expect(dialog).not.toHaveTextContent(/haven't attempted/);
+    await user.click(within(dialog).getByRole("button", { name: "Keep it hidden", hidden: true }));
+    expect(getBuildupItem).not.toHaveBeenCalled();
+
+    // A sentence already on screen opens straight into its run, with no question.
+    await user.click(within(rows[0]).getByRole("button", { name: "Practise" }));
+    expect(getBuildupItem).toHaveBeenCalledWith("spk-3", "lr-1");
+    expect(screen.queryAllByRole("dialog", { hidden: true }).some((d) => d.hasAttribute("open"))).toBe(false);
+  });
 });
 
 describe("the run", () => {

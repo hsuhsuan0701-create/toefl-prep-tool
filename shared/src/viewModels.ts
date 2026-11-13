@@ -47,6 +47,29 @@ export interface AttemptVM {
  */
 export interface AttemptListItemVM extends AttemptVM {
   estimate: { band: number; method: string } | null;
+  /**
+   * Why a completed Attempt that is meant to give a Band Estimate has none. Meant to give one: every
+   * Simulation, and a Speaking or Writing Drill holding an Item of every Task Type its section needs
+   * (never a Reading or Listening Drill, nor a Drill of fewer Task Types).
+   *
+   * - `"scoring"`: scoring is still on its way (a queued or running scoring job, or a transcription
+   *   with work left), so the band may yet come. The Attempt review's band status reads "scoring"
+   *   then too, by the same rule (`liveScoringOutstanding`).
+   * - `"incomplete"`: scoring has settled and there is still no band: an Item failed, was never
+   *   transcribed or captured, or is missing. The review says which.
+   * - `null` in every other case: the Attempt has its band, is not completed, is a Repeat (never a
+   *   headline band), or is not meant to give one. It is worked out only for a completed, non-Repeat
+   *   Attempt with no Band Estimate, when the page is read.
+   */
+  missingBand: "scoring" | "incomplete" | null;
+  /**
+   * The Full-Test Run that has this Attempt as one of its sections, or null. A section restarted
+   * after a reload leaves its old Attempt pointed at by no Run, so that one is null too. While the
+   * Run is in progress and this Attempt is unfinished, it is the section the Run is sitting: the
+   * log offers the way back into the Run instead of finishing or discarding it, and
+   * POST /api/attempts/:id/abort refuses it.
+   */
+  fullTestRun: { id: string; status: FullTestRunStatus } | null;
 }
 
 /**
@@ -223,9 +246,10 @@ export type BuildSentenceScoreVM =
   | { taskType: "build_sentence"; items: BuildSentenceDrillScoreItemVM[] }
   | { taskType: "build_sentence"; items: BuildSentenceSimulationScoreItemVM[] };
 
-// One reviewable Reading/Listening Item of a completed Attempt: its key and Explanation (錯題解析),
-// re-derived from the Set. They are never stored, and before the Attempt completes only a Drill's own
-// inline score response shows them. `correct` is read from item_results.score, not from what the client
+// One reviewable Reading/Listening Item: its key and Explanation (錯題解析), re-derived from the Set.
+// They are never stored. Sent for every Item of a completed Attempt, and for the scored Items of an
+// unfinished or discarded Drill (whose own score response already showed them); never for an
+// unfinished Simulation. `correct` is read from item_results.score, not from what the client
 // submitted.
 export interface DeterministicReviewItemVM {
   itemId: string;
@@ -237,6 +261,19 @@ export interface DeterministicReviewItemVM {
   // "<role>: <text>" line per turn for a Conversation). Never set for Listen and Choose a Response,
   // whose utterance is never shown as text, even after answering.
   transcript?: string;
+}
+
+/**
+ * What a spoken Item asked, as text: the sentence to repeat for Listen and Repeat, the Item's own
+ * question for Take an Interview (never the Interview's introduction). Re-derived from the Set on
+ * each read and never stored. The served Set withholds both while an Attempt can still be answered;
+ * a completed Attempt's detail carries them for every Item, scored or not, so an Item with no Score
+ * Report still says what was asked (docs/adr/0017).
+ */
+export interface SpokenPromptVM {
+  itemId: string;
+  taskType: "listen_repeat" | "interview";
+  text: string;
 }
 
 /**
@@ -314,9 +351,17 @@ export interface AttemptDetailVM {
   // Queued or running scoring jobs (ScoringJobVM). Deterministic Task Types, Build a Sentence included,
   // are scored inline and never appear here.
   activeJobs: ScoringJobVM[];
-  // Present only for a completed Reading or Listening Attempt, Drill or Simulation; absent, not empty,
-  // otherwise.
+  // A Reading or Listening Attempt's key review: every Item of a completed Attempt, Drill or
+  // Simulation, and only the scored Items of an unfinished or discarded Drill. Absent, not empty, for
+  // an unfinished or discarded Simulation, a Drill with no scored Item, and a Set that cannot be read
+  // or two of whose Items share an id.
   deterministicReview?: DeterministicReviewItemVM[];
+  // Present only for a completed Speaking Attempt, Drill or Simulation (a Full-Test Run's Speaking
+  // section included), whose Set can still be read: one entry per spoken Item of the Attempt that
+  // the Set carries. Absent, not empty, for an in-progress or discarded Attempt, so an Item with no
+  // Score Report gets its prompt as text only once the Attempt is completed. A scored Item's own
+  // Score Report carries it in `meta` whatever the status (docs/adr/0017).
+  spokenPrompts?: SpokenPromptVM[];
 }
 
 /**
@@ -382,7 +427,10 @@ export interface StatsSectionVM {
   method: string;
   attemptId: string;
   mode: AttemptMode;
-  /** When the backing Attempt finished (or began, if it never completed), as ISO-8601. */
+  /**
+   * When the backing Attempt started, as ISO-8601: the same moment its row in the Attempt log shows
+   * (`AttemptListItemVM.startedAt`), so the two read alike.
+   */
   attemptedAt: string;
   /** The User's Target for this section, the same number GET /api/stats/settings reports. */
   target: number;
@@ -422,6 +470,8 @@ export interface StatsSummaryVM {
   // section and skill (the two sections share some skill names), filters and sorts them
   // (computeSkillAccuracy in client/src/pages/weaknessCategories.ts).
   skillItems: { section: "reading" | "listening"; skill: string; correct: boolean }[];
+  // The most `skillItems` the server sends: the window is the latest this many, and the pane names it.
+  skillItemsLimit: number;
 }
 
 // GET /api/stats/settings, and the response to PUT /api/stats/settings (whose request is a partial
@@ -574,13 +624,15 @@ export type FullTestSectionState = "pending" | "in-progress" | "completed" | "ab
  * Where a Full-Test section's Band Estimate stands, DERIVED on every read like `state`:
  *
  *   not-finished  the section's Attempt is not complete (not started, in progress or abandoned).
- *   scoring       the section is finished but its Attempt still has scoring outstanding — an active
- *                 scoring job, a judged Item not yet scored, or a Speaking capture its finalizer has
- *                 not completed. No band is shown, even one persisted earlier, because the outcome
- *                 of that work replaces it. `outstanding` counts the unscored judged Items per Task
- *                 Type; it can be empty while the finalizer settles.
+ *   scoring       the section is finished and work that can still change its band is live — an
+ *                 active scoring job, a transcription job with work left, or a Speaking capture its
+ *                 finalizer has not completed (the rule AttemptBandStatusVM's `scoring` uses). No
+ *                 band is shown, even one persisted earlier, because the outcome of that work
+ *                 replaces it. `outstanding` counts, per Task Type, the judged Items not scored yet
+ *                 or being re-scored; it can be empty while the finalizer settles.
  *   estimated     scoring has settled and `estimate` holds the band.
- *   no-band       scoring has settled and there is no band: the BandShortfallVM fields say which
+ *   no-band       scoring has settled and there is no band (a judged Item left unscored with nothing
+ *                 working on it counts as settled): the BandShortfallVM fields say which
  *                 Items and Task Types stand in the way, and are both empty only when the section
  *                 has every Item scored and still no band on record.
  */

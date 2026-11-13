@@ -6,10 +6,13 @@ import { Chip, StatusChip } from "./Chip";
 import { cx } from "./cx";
 import { IconCaution, IconChevronRight, IconFlag, IconRepeat } from "./icons";
 import {
+  ATTEMPT_FLAG,
   ATTEMPT_MODE_LABEL,
   ATTEMPT_STATUS,
   MODULE_PATH_LABEL,
+  NO_BAND,
   SECTION_LABEL,
+  STILL_SCORING,
   SET_PRACTICE_STATE,
   setSourceLabel,
   type SetPracticeState,
@@ -139,8 +142,14 @@ type AttemptRowProps = {
   band?: number | null;
   modulePath?: ModulePath | null;
   repeat?: boolean;
-  /** The tab was left during a Simulation. */
+  /** The Simulation was interrupted: the tab was left, or a prompt would not play. */
   flagged?: boolean;
+  /**
+   * A completed Attempt that should have a band and has none, marked beside its status so it does
+   * not read like one that went fine: "scoring" while its scoring is still on its way, "incomplete"
+   * once it has settled with no band (a failed or missing Item).
+   */
+  missingBand?: "scoring" | "incomplete" | null;
   /** A result for an Attempt with no band: "8 of 9 correct", "Email 4 / 5". */
   summary?: ReactNode;
   /** Row actions for an unfinished Attempt ("Finish and score", "Discard…"). */
@@ -151,7 +160,7 @@ type AttemptRowProps = {
  * One Attempt in a list. Its name is what it was — "Writing Simulation" — then which Set and when;
  * the outcome on the right is its band if it has one, otherwise its status. Never the UUID.
  */
-export function AttemptRow({ section, mode, setTitle, when, to, status, band, modulePath, repeat, flagged, summary, actions }: AttemptRowProps) {
+export function AttemptRow({ section, mode, setTitle, when, to, status, band, modulePath, repeat, flagged, missingBand, summary, actions }: AttemptRowProps) {
   const showBand = status === "completed" && band !== undefined && band !== null;
   return (
     <li className={cx(ROW, "grid gap-y-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center")}>
@@ -167,9 +176,9 @@ export function AttemptRow({ section, mode, setTitle, when, to, status, band, mo
             </Chip>
           )}
           {flagged && (
-            <Chip tone="caution" className="relative z-10" title="You left the tab during this Simulation.">
+            <Chip tone="caution" className="relative z-10" title={ATTEMPT_FLAG.hint}>
               <IconFlag size={12} />
-              Left the tab
+              {ATTEMPT_FLAG.label}
             </Chip>
           )}
         </p>
@@ -182,7 +191,10 @@ export function AttemptRow({ section, mode, setTitle, when, to, status, band, mo
           {showBand ? (
             <BandFigure band={band} size="sm" />
           ) : (
-            <StatusChip status={ATTEMPT_STATUS[status]} />
+            <span className="inline-flex flex-wrap items-center gap-1.5 sm:justify-end">
+              <StatusChip status={ATTEMPT_STATUS[status]} />
+              {missingBand && <StatusChip status={missingBand === "scoring" ? STILL_SCORING : NO_BAND} />}
+            </span>
           )}
           {(summary || (showBand && modulePath)) && (
             <p className="mt-0.5 text-meta text-graphite">{summary ?? (modulePath ? MODULE_PATH_LABEL[modulePath] : null)}</p>

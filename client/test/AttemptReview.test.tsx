@@ -1,5 +1,5 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
-import { act, render, screen, waitFor } from "@testing-library/react";
+import { act, render, screen, waitFor, within } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import type { AttemptDetailVM, ItemVM, ServedWritingSet } from "@toefl-prep/shared";
 import AttemptReview from "../src/pages/AttemptReview";
@@ -171,6 +171,33 @@ describe("Attempt review — a Build a Sentence Response against a framed Set", 
     );
   });
 
+  it("lists every tile the Item offered, A to Z, and marks the one no key arrangement uses", async () => {
+    await renderSettledReview();
+    const tiles = within(screen.getByTestId("bas-tiles-bas-framed")).getAllByRole("listitem");
+    // Sorted, never the served order: the tray is re-drawn per request.
+    expect(tiles.map((li) => li.textContent)).toEqual([
+      "led us through",
+      "new wing",
+      "the",
+      "volunteers",
+      "was · not in the sentence",
+      "were",
+      "who",
+    ]);
+    expect(tiles.filter((li) => li.hasAttribute("data-extra")).map((li) => li.textContent)).toEqual(["was · not in the sentence"]);
+  });
+
+  it("sets the tiles the User placed apart from the words the frame prints, in the Response and the key", async () => {
+    await renderSettledReview();
+    const placed = (testId: string) =>
+      Array.from(screen.getByTestId(testId).querySelectorAll("[data-placed]")).map((el) => el.textContent);
+    expect(placed("bas-answer-bas-framed")).toEqual(REFERENCE_ANSWER);
+    expect(placed("bas-key-bas-framed")).toEqual(REFERENCE_ANSWER);
+    // An empty blank is not a placed tile, and the frame's own words never are.
+    expect(placed("bas-answer-bas-partial")).toEqual(REFERENCE_ANSWER.slice(0, 3));
+    expect(screen.getByText(/Boxed words are tiles placed in the blanks/)).toBeInTheDocument();
+  });
+
   it("matches each frame to its own Item, never to the Item beside it", async () => {
     // The frame arrives keyed by Item id; the third Item of the same Set has none, and must not
     // inherit the frame the first two carry.
@@ -216,6 +243,8 @@ describe("Attempt review — a Build a Sentence Response with no frame to be had
     expect(screen.getByTestId("bas-answer-bas-gone")).toHaveTextContent(
       `Your Response: ${REFERENCE_ANSWER.join(" ")}`,
     );
+    // Nor any tiles: the Set cannot say what this Item offered.
+    expect(screen.queryByTestId("bas-tiles-bas-gone")).not.toBeInTheDocument();
   });
 });
 
@@ -244,6 +273,24 @@ describe("Attempt review — a Simulation's Build a Sentence Items before the ke
     expect(screen.queryByTestId("bas-key-bas-framed")).not.toBeInTheDocument();
     expect(screen.queryByTestId("bas-key-bas-partial")).not.toBeInTheDocument();
     expect(screen.getAllByText("1 of 2 correct").length).toBeGreaterThan(0);
+  });
+
+  it("lists the tiles the Item offered without marking which one is extra", async () => {
+    // The tiles are what the run showed; which of them belongs in no accepted sentence is the key.
+    const keyless = { ...basItem("bas-framed", REFERENCE_ANSWER, []), scoreJson: { correct: true, frame: REFERENCE_FRAME } };
+    const base = detailWith([keyless]);
+    vi.mocked(getAttempt).mockResolvedValue({
+      ...base,
+      attempt: { ...base.attempt, mode: "simulation", status: "in_progress", completedAt: null },
+      bandStatus: { status: "unfinished" },
+    });
+    vi.mocked(getSet).mockResolvedValue(servedSet);
+
+    await renderSettledReview();
+    const tiles = within(screen.getByTestId("bas-tiles-bas-framed")).getAllByRole("listitem");
+    expect(tiles.map((li) => li.textContent)).toEqual(["led us through", "new wing", "the", "volunteers", "was", "were", "who"]);
+    expect(tiles.some((li) => li.hasAttribute("data-extra"))).toBe(false);
+    expect(screen.queryByText(/not in the sentence/)).not.toBeInTheDocument();
   });
 });
 

@@ -4,6 +4,7 @@ import {
   completeAttempt,
   finishSpeakingCapture,
   flagAttempt,
+  getAttempt,
   listSets,
   type SetMeta,
 } from "../../lib/api";
@@ -83,8 +84,31 @@ export async function findListedSet(setId: string): Promise<SetMeta | null> {
   }
 }
 
+/**
+ * Whether the Attempt this Simulation's intro is about to start will be a Repeat, by the rule POST
+ * /api/attempts applies, so the intro's caution and the server's tag agree.
+ *
+ * A section a Full-Test Run already records an Attempt for (`replacedAttemptId`, the
+ * FullTestSectionContext's `attemptId`) is restarted, and a restarted section keeps the tag of the
+ * Attempt it replaces. The listing's `attempted` flag cannot stand in for that: the replaced Attempt
+ * is often exactly what marks the Set attempted. Anything else is a Repeat when the Set is attempted.
+ * If the replaced Attempt cannot be read, the listing's flag is the best guess left; the answer to
+ * the start request replaces it either way.
+ */
+export async function predictRepeat(listing: SetMeta | null, replacedAttemptId?: string | null): Promise<boolean> {
+  if (replacedAttemptId) {
+    try {
+      return (await getAttempt(replacedAttemptId)).attempt.isRepeat;
+    } catch (e) {
+      console.error("simulation: the replaced Attempt could not be read", e);
+    }
+  }
+  return listing?.attempted ?? false;
+}
+
 // Fires POST /:id/flag whenever the tab goes hidden while `active`; AttemptReview renders the
-// resulting `flagged` boolean as a "left the tab" note. Errors are swallowed: this is a best-effort
+// resulting `flagged` boolean as an "interrupted" note (a prompt that would not play raises the same
+// flag, so the note never says the User left). Errors are swallowed: this is a best-effort
 // signal, not something worth interrupting a timed section over.
 export function useFlagOnHidden(attemptId: string | null, active: boolean) {
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
@@ -82,10 +82,10 @@ const SERVED_SPEAKING = {
   interview: { scenarioTitle: "Study habits", intro: "Hello.", questions: [] },
 };
 
-async function renderReview(body: AttemptDetailVM) {
+async function renderReview(body: AttemptDetailVM, entry = "/attempts/att-1") {
   vi.mocked(getAttempt).mockResolvedValue(body);
   render(
-    <MemoryRouter initialEntries={["/attempts/att-1"]}>
+    <MemoryRouter initialEntries={[entry]}>
       <Routes>
         <Route path="/attempts/:id" element={<AttemptReview />} />
       </Routes>
@@ -133,6 +133,247 @@ describe("a Task Type's failed Items in Attempt review", () => {
     await renderReview(speaking([failed("int-1", "interview"), item({ itemId: "int-2", taskType: "interview", scoringStatus: "pending" })]));
     expect(within(screen.getByTestId("item-int-1")).getByRole("button", { name: "Re-score" })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: /Re-score \d+ Items/ })).toBeNull();
+  });
+});
+
+// A spoken Item is numbered by its place in the Set, not among the rows the Attempt has: a prompt
+// that would not play and was skipped leaves no row, and the recordings after it must keep their own
+// numbers, or "Sentence 1" plays the second sentence's recording.
+describe("spoken Item numbers in Attempt review", () => {
+  const recorded = (itemId: string, taskType: "listen_repeat" | "interview") =>
+    item({ itemId, taskType, transcript: "we open at six", responseAudioPath: `responses/att-1/${itemId}.webm`, scoringStatus: "pending" });
+  const titles = (group: HTMLElement) => within(group).getAllByRole("heading", { level: 3 }).map((h) => h.textContent);
+  const players = (group: HTMLElement) =>
+    Array.from(group.querySelectorAll("audio")).map((a) => [a.getAttribute("aria-label"), a.getAttribute("src")]);
+  const withInterview = {
+    ...SERVED_SPEAKING,
+    interview: { ...SERVED_SPEAKING.interview, questions: [1, 2, 3, 4].map((n) => ({ id: `int-${n}`, audio: `int-${n}.mp3`, responseWindowSec: 45 })) },
+  };
+
+  it("keeps each recording's number in the Set when an earlier Item has no row", async () => {
+    vi.mocked(getSet).mockResolvedValue(withInterview as never);
+    await renderReview(speaking([recorded("lr-2", "listen_repeat"), recorded("lr-3", "listen_repeat"), recorded("int-1", "interview"), recorded("int-3", "interview")]));
+
+    const sentences = screen.getByRole("region", { name: "Listen and Repeat" });
+    await waitFor(() => expect(titles(sentences)).toEqual(["Sentence 2", "Sentence 3"]));
+    expect(players(sentences)).toEqual([
+      ["The sentence you heard, Sentence 2", "/api/audio/lr-2.mp3"],
+      ["Your recording, Listen and Repeat 2", "/api/audio/responses/att-1/lr-2.webm"],
+      ["The sentence you heard, Sentence 3", "/api/audio/lr-3.mp3"],
+      ["Your recording, Listen and Repeat 3", "/api/audio/responses/att-1/lr-3.webm"],
+    ]);
+    expect(titles(screen.getByRole("region", { name: "Interview" }))).toEqual(["Question 1", "Question 3"]);
+  });
+
+  it("numbers an Attempt with every Item present as it always has", async () => {
+    vi.mocked(getSet).mockResolvedValue(withInterview as never);
+    await renderReview(speaking([1, 2, 3].map((n) => recorded(`lr-${n}`, "listen_repeat")).concat([1, 2, 3, 4].map((n) => recorded(`int-${n}`, "interview")))));
+    expect(titles(screen.getByRole("region", { name: "Listen and Repeat" }))).toEqual(["Sentence 1", "Sentence 2", "Sentence 3"]);
+    expect(titles(screen.getByRole("region", { name: "Interview" }))).toEqual(["Question 1", "Question 2", "Question 3", "Question 4"]);
+  });
+
+  it("falls back to the order of the rows when the Set cannot be read", async () => {
+    vi.mocked(getSet).mockRejectedValue(new Error("404: not found"));
+    await renderReview(speaking([recorded("lr-2", "listen_repeat"), recorded("lr-3", "listen_repeat")]));
+    const sentences = screen.getByRole("region", { name: "Listen and Repeat" });
+    expect(titles(sentences)).toEqual(["Sentence 1", "Sentence 2"]);
+    expect(players(sentences).map(([name]) => name)).toEqual(["Your recording, Listen and Repeat 1", "Your recording, Listen and Repeat 2"]);
+  });
+});
+
+// A spoken Item's prompt, played again beside the recording once the Attempt is over, whether or not
+// the Item was scored. The audio comes from the served Set, which carries neither the sentence nor
+// the question as text; the text is the Attempt detail's (see the next group).
+describe("a spoken Item's prompt audio in Attempt review", () => {
+  const players = (card: HTMLElement) =>
+    Array.from(card.querySelectorAll("audio")).map((a) => [a.getAttribute("aria-label"), a.getAttribute("src")]);
+  const withInterview = {
+    ...SERVED_SPEAKING,
+    interview: {
+      ...SERVED_SPEAKING.interview,
+      introAudio: "int-intro.mp3",
+      questions: [1, 2, 3, 4].map((n) => ({ id: `int-${n}`, audio: `int-${n}.mp3`, responseWindowSec: 45 })),
+    },
+  };
+  const scored = (itemId: string, taskType: "listen_repeat" | "interview", meta: Record<string, unknown>) =>
+    item({
+      itemId,
+      taskType,
+      transcript: "we open at six",
+      responseAudioPath: `responses/att-1/${itemId}.webm`,
+      scoringStatus: "scored",
+      score: 4,
+      scoreJson: { itemId, taskType, finalScore: 4, maxScore: 5, dimensions: [], deductions: [], feedbackZh: "好", meta },
+    });
+  const untranscribed = item({
+    itemId: "int-2",
+    taskType: "interview",
+    responseAudioPath: "responses/att-1/int-2.webm",
+    scoringStatus: "failed",
+    scoreJson: { error: "transcription failed" },
+    transcriptionJob: { jobId: "tj-1", status: "failed", automaticAttempts: 1, nextRetryAt: null, failureKind: "configuration", error: null, scoreJobId: null },
+  });
+
+  it("offers a scored sentence's and a scored question's prompt beside the recording, labelled apart", async () => {
+    vi.mocked(getSet).mockResolvedValue(withInterview as never);
+    await renderReview(speaking([scored("lr-1", "listen_repeat", { target: "We open at six." }), scored("int-1", "interview", { question: "What do you study?" })]));
+    await waitFor(() => expect(players(screen.getByTestId("item-lr-1"))[0]).toEqual(["The sentence you heard, Sentence 1", "/api/audio/lr-1.mp3"]));
+    expect(players(screen.getByTestId("item-lr-1"))).toEqual([
+      ["The sentence you heard, Sentence 1", "/api/audio/lr-1.mp3"],
+      ["Your recording, Listen and Repeat 1", "/api/audio/responses/att-1/lr-1.webm"],
+    ]);
+    expect(players(screen.getByTestId("item-int-1"))).toEqual([
+      ["The question you heard, Question 1", "/api/audio/int-1.mp3"],
+      ["Your recording, Interview 1", "/api/audio/responses/att-1/int-1.webm"],
+    ]);
+    expect(within(screen.getByTestId("item-int-1")).getByText("The question you heard")).toBeInTheDocument();
+  });
+
+  it("offers the question of an Item whose transcription failed, and adds no text the detail did not send", async () => {
+    vi.mocked(getSet).mockResolvedValue(withInterview as never);
+    await renderReview(speaking([untranscribed]));
+    const card = screen.getByTestId("item-int-2");
+    await waitFor(() => expect(players(card)).toEqual([
+      ["The question you heard, Question 2", "/api/audio/int-2.mp3"],
+      ["Your recording, Interview 2", "/api/audio/responses/att-1/int-2.webm"],
+    ]));
+    // This detail carries no `spokenPrompts`, and the served Set no question text, so the card shows
+    // no heading for one.
+    expect(within(card).queryByText("The question")).not.toBeInTheDocument();
+  });
+
+  it("offers no prompt before the Attempt completes", async () => {
+    vi.mocked(getSet).mockResolvedValue(withInterview as never);
+    const body = speaking([scored("lr-1", "listen_repeat", { target: "We open at six." }), untranscribed]);
+    await renderReview({ ...body, attempt: { ...body.attempt, status: "in_progress", completedAt: null } });
+    await waitFor(() => expect(screen.getByRole("heading", { name: "Question 2" })).toBeInTheDocument());
+    expect(players(screen.getByTestId("item-lr-1")).map(([name]) => name)).toEqual(["Your recording, Listen and Repeat 1"]);
+    expect(players(screen.getByTestId("item-int-2")).map(([name]) => name)).toEqual(["Your recording, Interview 2"]);
+  });
+
+  it("renders as before when the Set cannot be read", async () => {
+    vi.mocked(getSet).mockRejectedValue(new Error("404: not found"));
+    await renderReview(speaking([untranscribed]));
+    expect(players(screen.getByTestId("item-int-2"))).toEqual([["Your recording, Interview 1", "/api/audio/responses/att-1/int-2.webm"]]);
+  });
+});
+
+// A spoken Item's prompt as text, from the Attempt detail's `spokenPrompts`, which the server sends
+// only with a completed Attempt (docs/adr/0017): an Item with no Score Report says what was asked, in
+// the place and under the heading a scored Item uses, above the prompt's audio and the recording.
+describe("a spoken Item's prompt text in Attempt review", () => {
+  const withInterview = {
+    ...SERVED_SPEAKING,
+    interview: { ...SERVED_SPEAKING.interview, questions: [1, 2, 3, 4].map((n) => ({ id: `int-${n}`, audio: `int-${n}.mp3`, responseWindowSec: 45 })) },
+  };
+  const untranscribed = (itemId: string, taskType: "listen_repeat" | "interview") =>
+    item({
+      itemId,
+      taskType,
+      responseAudioPath: `responses/att-1/${itemId}.webm`,
+      scoringStatus: "failed",
+      scoreJson: { error: "transcription failed" },
+      transcriptionJob: { jobId: `tj-${itemId}`, status: "failed", automaticAttempts: 1, nextRetryAt: null, failureKind: "configuration", error: null, scoreJobId: null },
+    });
+  const prompts: NonNullable<AttemptDetailVM["spokenPrompts"]> = [
+    { itemId: "lr-2", taskType: "listen_repeat", text: "The reading room closes at nine tonight." },
+    { itemId: "int-2", taskType: "interview", text: "How do you usually prepare for an exam?" },
+  ];
+  const precedes = (a: Node, b: Node) => (a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING) !== 0;
+
+  it("shows the question of an Interview Item whose transcription failed, above its audio", async () => {
+    vi.mocked(getSet).mockResolvedValue(withInterview as never);
+    await renderReview({ ...speaking([untranscribed("int-2", "interview")]), spokenPrompts: prompts });
+    const card = screen.getByTestId("item-int-2");
+    await waitFor(() => expect(card.querySelectorAll("audio")).toHaveLength(2));
+    expect(within(card).getByText("The question")).toBeInTheDocument();
+    const question = within(card).getByText("How do you usually prepare for an exam?");
+    expect(precedes(question, card.querySelector("audio")!)).toBe(true);
+  });
+
+  it("shows the sentence of a Listen and Repeat Item whose transcription failed", async () => {
+    await renderReview({ ...speaking([untranscribed("lr-2", "listen_repeat")]), spokenPrompts: prompts });
+    const card = screen.getByTestId("item-lr-2");
+    expect(within(card).getByText("The sentence to repeat")).toBeInTheDocument();
+    expect(within(card).getByText("The reading room closes at nine tonight.")).toBeInTheDocument();
+  });
+
+  it("shows a scored Item's sentence once, from its Score Report", async () => {
+    const sentence = "The reading room closes at nine tonight.";
+    const scored = item({
+      itemId: "lr-2",
+      taskType: "listen_repeat",
+      transcript: "the reading room closes at nine",
+      responseAudioPath: "responses/att-1/lr-2.webm",
+      scoringStatus: "scored",
+      score: 4,
+      scoreJson: { itemId: "lr-2", taskType: "listen_repeat", finalScore: 4, maxScore: 5, dimensions: [], deductions: [], feedbackZh: "好", meta: { target: sentence } },
+    });
+    await renderReview({ ...speaking([scored]), spokenPrompts: prompts });
+    const card = screen.getByTestId("item-lr-2");
+    expect(within(card).getAllByText(sentence)).toHaveLength(1);
+    expect(within(card).getAllByText("The sentence to repeat")).toHaveLength(1);
+  });
+
+  it("shows no text while the Attempt is in progress", async () => {
+    vi.mocked(getSet).mockResolvedValue(withInterview as never);
+    const body = speaking([untranscribed("lr-2", "listen_repeat"), untranscribed("int-2", "interview")]);
+    // Even a detail that carried the text would not have it shown before the Attempt completes.
+    await renderReview({ ...body, attempt: { ...body.attempt, status: "in_progress", completedAt: null }, spokenPrompts: prompts });
+    await waitFor(() => expect(screen.getByRole("heading", { name: "Question 2" })).toBeInTheDocument());
+    for (const id of ["lr-2", "int-2"]) {
+      const card = screen.getByTestId(`item-${id}`);
+      expect(within(card).queryByText(/^The (question|sentence to repeat)$/)).toBeNull();
+    }
+    expect(screen.queryByText("How do you usually prepare for an exam?")).toBeNull();
+    expect(screen.queryByText("The reading room closes at nine tonight.")).toBeNull();
+  });
+});
+
+// A Speaking Simulation is flagged when a prompt would not play as well as when the tab is left, and
+// the flag does not say which: the notice says the Simulation was interrupted, never that the User left.
+describe("a flagged Simulation in Attempt review", () => {
+  it("says the Simulation was interrupted and why its timing may differ", async () => {
+    const body = speaking([failed("lr-2", "listen_repeat")]);
+    await renderReview({ ...body, attempt: { ...body.attempt, flagged: true } });
+    expect(
+      screen.getByText("This Simulation was interrupted (the tab was left, or a prompt would not play), so its timing may not match the test."),
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/You left/)).toBeNull();
+  });
+});
+
+// A link to a place in the review names an element that exists only once the Attempt has loaded, so
+// the page scrolls to it then; the browser looked for it before anything rendered.
+describe("a link to a place in Attempt review", () => {
+  const scrolledTo: string[] = [];
+  beforeEach(() => {
+    scrolledTo.length = 0;
+    // jsdom has no layout, so no scrollIntoView of its own; record which element was asked.
+    Element.prototype.scrollIntoView = function (this: Element) {
+      scrolledTo.push(this.id);
+    };
+  });
+  afterEach(() => {
+    delete (Element.prototype as { scrollIntoView?: unknown }).scrollIntoView;
+  });
+  const attempt = () => speaking([failed("lr-1", "listen_repeat"), failed("lr-2", "listen_repeat"), failed("int-1", "interview")]);
+
+  it("scrolls to the group the fragment names once the Items have rendered", async () => {
+    await renderReview(attempt(), "/attempts/att-1#group-type-interview");
+    await waitFor(() => expect(scrolledTo).toContain("group-type-interview"));
+    expect(new Set(scrolledTo)).toEqual(new Set(["group-type-interview"]));
+  });
+
+  it("scrolls to an Item the fragment names", async () => {
+    await renderReview(attempt(), "/attempts/att-1#item-lr-2");
+    await waitFor(() => expect(scrolledTo).toContain("item-lr-2"));
+  });
+
+  it("scrolls nowhere for a fragment that names nothing", async () => {
+    await renderReview(attempt(), "/attempts/att-1#nothing-here");
+    expect(screen.getByTestId("item-lr-2")).toBeInTheDocument();
+    expect(scrolledTo).toEqual([]);
   });
 });
 

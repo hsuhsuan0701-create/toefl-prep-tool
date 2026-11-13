@@ -4,12 +4,13 @@ import BuildupRun from "../components/buildup/BuildupRun";
 import { getBuildupBank, getBuildupItem, getBuildupQueue } from "../lib/api";
 import { ScoreFigure } from "../ui/BandFigure";
 import { Button } from "../ui/Button";
-import { Chip } from "../ui/Chip";
+import { StatusChip } from "../ui/Chip";
 import { ConfirmDialog } from "../ui/ConfirmDialog";
 import { cx } from "../ui/cx";
 import { EmptyState } from "../ui/EmptyState";
 import { PageHeader, SectionHeader } from "../ui/Heading";
 import { IconArrowRight, IconChevronDown } from "../ui/icons";
+import { drillLabSetState } from "../ui/labels";
 import { Notice } from "../ui/Notice";
 import { PageShell } from "../ui/PageShell";
 import { Skeleton } from "../ui/Skeleton";
@@ -101,8 +102,8 @@ function Intro() {
         lede="Build a long Listen and Repeat sentence from its tail forward, so the end that falls apart becomes the part you know best. Each sentence runs three steps: a blind baseline, the buildup with the text in view, then a blind re-test. What it measures is not a score but where you first slip, and whether that point moves later."
       />
       <Notice tone="caution" title="This page shows sentences in full">
-        Opening a sentence shows its Listen and Repeat text, so you can no longer sit that Set blind. The bank below
-        marks the Sets you haven't attempted yet, and asks before opening one.
+        Opening a sentence shows its Listen and Repeat text, so you can no longer hear and repeat it blind. The bank
+        below keeps every sentence you haven't answered yet hidden, and asks before opening one.
       </Notice>
     </div>
   );
@@ -206,16 +207,17 @@ function BankSection({
   onOpen: (setId: string, itemId: string) => void;
 }) {
   const [expanded, setExpanded] = useState<string | null>(null);
-  // An unattempted Set's sentence waits for a confirmation: opening it costs the chance to sit that
-  // Set blind, so the first click asks rather than reveals.
-  const [revealing, setRevealing] = useState<{ setId: string; itemId: string; title: string } | null>(null);
+  // A hidden sentence (one with no scored recording) waits for a confirmation: opening it costs the
+  // chance to hear it blind, so the first click asks rather than reveals. A sentence already shown
+  // in full has nothing left to spoil and opens straight away, whatever the rest of its Set is.
+  const [revealing, setRevealing] = useState<{ setId: string; itemId: string; title: string; number: number } | null>(null);
 
   return (
     <section aria-labelledby="bank-title" className="space-y-4">
       <SectionHeader
         id="bank-title"
         title="Every sentence"
-        description="All Listen and Repeat sentences in your Sets. A Set you have attempted opens straight away; one you haven't asks first."
+        description="All Listen and Repeat sentences in your Sets. A sentence you have answered opens straight away; one still hidden asks first."
       />
       {error && <Notice tone="critical">{error}</Notice>}
       {!bank && !error && (
@@ -228,6 +230,7 @@ function BankSection({
         <ul className="divide-y divide-rule rounded-sheet border border-rule bg-sheet">
           {bank.map((set) => {
             const isOpen = expanded === set.setId;
+            const state = drillLabSetState(set.items.filter((entry) => entry.preview !== null).length, set.items.length);
             return (
               <li key={set.setId}>
                 <button
@@ -237,11 +240,7 @@ function BankSection({
                   className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors duration-(--duration-quick) ease-quiet hover:bg-paper pointer-coarse:min-h-11"
                 >
                   <span className="min-w-0 flex-1 truncate text-body text-ink">{set.scenarioTitle}</span>
-                  {!set.attempted && (
-                    <Chip tone="caution" glyph="caution">
-                      Not attempted
-                    </Chip>
-                  )}
+                  {state && <StatusChip status={state} />}
                   <span aria-hidden="true" className={cx("shrink-0 text-graphite transition-transform duration-(--duration-quick)", isOpen && "rotate-180")}>
                     <IconChevronDown size={16} />
                   </span>
@@ -260,13 +259,13 @@ function BankSection({
                         <button
                           type="button"
                           onClick={() =>
-                            set.attempted
+                            entry.preview !== null
                               ? onOpen(set.setId, entry.itemId)
-                              : setRevealing({ setId: set.setId, itemId: entry.itemId, title: set.scenarioTitle })
+                              : setRevealing({ setId: set.setId, itemId: entry.itemId, title: set.scenarioTitle, number: i + 1 })
                           }
                           className="inline-flex min-h-8 shrink-0 items-center gap-1 rounded-control px-2 text-ui font-medium text-accent transition-colors duration-(--duration-quick) hover:bg-accent-wash pointer-coarse:min-h-11"
                         >
-                          {set.attempted ? "Practise" : "Practise…"}
+                          {entry.preview !== null ? "Practise" : "Practise…"}
                           <IconArrowRight size={14} />
                         </button>
                       </li>
@@ -290,8 +289,8 @@ function BankSection({
         onCancel={() => setRevealing(null)}
       >
         <p>
-          You haven't attempted {revealing?.title ?? "this Set"} yet. Opening the sentence shows it in full, so you can no
-          longer sit this Set's Listen and Repeat blind.
+          {revealing ? `Sentence ${revealing.number} of ${revealing.title}` : "This sentence"} has no scored recording yet,
+          so it is still hidden. Opening it shows it in full, so you can no longer hear and repeat it blind.
         </p>
       </ConfirmDialog>
     </section>

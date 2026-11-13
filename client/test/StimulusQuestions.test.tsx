@@ -147,6 +147,8 @@ describe("the Stimulus-questions leak gate: all four Listening Task Types, both 
           // ...and nothing the User could read an option off, or act on, is in the DOM at all.
           expect(container.querySelectorAll('input[type="radio"]')).toHaveLength(0);
           expect(container.querySelectorAll("button")).toHaveLength(0);
+          // ...nor any way to hear it again: it plays once while it is being answered.
+          expect(container.querySelectorAll("audio")).toHaveLength(0);
           for (const item of items) {
             expect(container.textContent).not.toContain(item.stem);
             for (const option of item.options) expect(container.textContent).not.toContain(option.text);
@@ -174,6 +176,10 @@ describe("the Stimulus-questions leak gate: all four Listening Task Types, both 
           for (const option of item.options) expect(container.textContent).not.toContain(option.text);
         }
         expect(screen.getByRole("button", { name: "Next" })).toBeInTheDocument();
+        // Answerable but not yet scored: still no replay, and nothing headed as a transcript.
+        expect(container.querySelectorAll("audio")).toHaveLength(0);
+        expect(container.textContent).not.toContain("Transcript");
+        expect(container.textContent).not.toContain("Listen again");
       });
     }
   }
@@ -211,22 +217,69 @@ describe("the Stimulus-questions leak gate: all four Listening Task Types, both 
       expect(screen.getByRole("button", { name: "Skip this Stimulus" })).toBeInTheDocument();
     });
   }
+});
 
-  it("reveals the Question(s) with a note when the audio failed rather than finished (Drill only)", () => {
-    const { container } = render(
+// Once a Drill has scored a Listening Stimulus's Items, the Explanations quote what was said, so the
+// Stimulus can be heard again, and a Conversation, Announcement or Academic Talk read. A Listen and
+// Choose a Response utterance stays audio only, even if a result were to carry text for it.
+describe("a scored Listening Stimulus can be heard again", () => {
+  beforeEach(() => {
+    vi.stubGlobal("Audio", FakeAudioElement);
+  });
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  const TRANSCRIPT = "student: Is the express counter open?\nclerk: Until noon.";
+
+  function renderScored(stimulus: ServedListeningStimulus, results: { itemId: string; correct: boolean; key?: string; explanationZh?: string; transcript?: string }[] | undefined) {
+    return render(
       <ListeningStimulusQuestions
-        stimulus={LISTENING_STIMULI[0]}
+        stimulus={stimulus}
         phase="questions"
-        audioFailed
         reveal={{ policy: "all-at-once" }}
         answers={new Map()}
+        results={results}
         onAnswer={noop}
         onAudioEnded={noop}
         onAudioError={noop}
-      />,
+      >
+        <button type="button">Next Stimulus</button>
+      </ListeningStimulusQuestions>,
     );
-    expect(container.textContent).toContain("Couldn't play the audio for this Stimulus");
-    expect(container.querySelectorAll('input[type="radio"]')).toHaveLength(4);
+  }
+
+  const itemIdsOf = (stimulus: ServedListeningStimulus) =>
+    stimulus.taskType === "listen_choose" ? [stimulus.id] : stimulus.questions.map((q) => q.id);
+
+  for (const stimulus of LISTENING_STIMULI) {
+    it(`${stimulus.taskType}: a replay control once scored${stimulus.taskType === "listen_choose" ? ", and no text of the utterance" : ", and its transcript"}`, () => {
+      const results = itemIdsOf(stimulus).map((itemId) => ({ itemId, correct: false, key: "o1", explanationZh: "解析", transcript: TRANSCRIPT }));
+      const { container } = renderScored(stimulus, results);
+
+      const audio = container.querySelectorAll("audio");
+      expect(audio).toHaveLength(1);
+      expect(audio[0].getAttribute("src")).toBe(`/api/audio/${stimulus.audio}`);
+      expect(audio[0].controls).toBe(true);
+      expect(audio[0].getAttribute("aria-label")).toMatch(/play again$/);
+
+      if (stimulus.taskType === "listen_choose") {
+        expect(container.textContent).not.toContain("Transcript");
+        expect(container.textContent).not.toContain("express counter");
+      } else {
+        expect(container.querySelector("details summary")?.textContent).toContain("Transcript");
+        expect(container.querySelector("details")?.textContent).toContain("clerk: Until noon.");
+      }
+    });
+  }
+
+  it("a Simulation, which hands over no results, never gains a replay or a transcript", () => {
+    for (const stimulus of LISTENING_STIMULI) {
+      const { container, unmount } = renderScored(stimulus, undefined);
+      expect(container.querySelectorAll("audio")).toHaveLength(0);
+      expect(container.textContent).not.toContain("Transcript");
+      unmount();
+    }
   });
 });
 
@@ -312,5 +365,60 @@ describe("feedback is hidden until the Item is scored", () => {
     expect(container.textContent).toContain("這裡缺的是 cat。");
     expect(screen.getByTestId("ctw-gap-result-ctw-1-g1").textContent).toBe("No Response. The word is cat");
     expect((screen.getByLabelText('Gap starting with "ca"') as HTMLInputElement).disabled).toBe(true);
+  });
+});
+
+// A Reading text the User has not read yet opens at its top. At phone width ExamSplit stacks the
+// question under the whole text, so the question head, which takes focus when the screen opens, must
+// take it without scrolling itself into view (issue #23). A further question on the same text is
+// focused, and brought into view, as before.
+describe("a new Reading text opens at its top", () => {
+  const passage: ServedReadingStimulus = {
+    id: "ap-1",
+    taskType: "academic_passage",
+    title: "The Passage",
+    discipline: "life science",
+    text: "First paragraph of the passage.\n\nSecond paragraph of the passage.",
+    questions: questionsOf("ap", 2),
+  };
+
+  afterEach(() => vi.restoreAllMocks());
+
+  function renderScreen(reveal: QuestionReveal, newlyShown = true) {
+    const scrollTo = vi.spyOn(window, "scrollTo");
+    const focus = vi.spyOn(HTMLElement.prototype, "focus");
+    render(
+      <StimulusQuestions stimulus={passage} reveal={reveal} answers={new Map()} onAnswer={noop} autoFocus newlyShown={newlyShown} />,
+    );
+    return { scrollTo, focus };
+  }
+
+  const opening: { mode: string; reveal: QuestionReveal }[] = [
+    { mode: "a Drill's screen", reveal: { policy: "all-at-once" } },
+    { mode: "a Simulation's first question", reveal: { policy: "one-at-a-time", questionIdx: 0 } },
+  ];
+  for (const { mode, reveal } of opening) {
+    it(`${mode}: the page starts at the top and the question head takes focus in place`, () => {
+      const { scrollTo, focus } = renderScreen(reveal);
+      expect(scrollTo).toHaveBeenCalledWith(expect.objectContaining({ top: 0 }));
+      expect(focus).toHaveBeenCalledWith({ preventScroll: true });
+      expect(document.activeElement?.textContent).toContain("ap stem 1?");
+    });
+  }
+
+  it("a further question on the same text is focused as before, and the page is left alone", () => {
+    const { scrollTo, focus } = renderScreen({ policy: "one-at-a-time", questionIdx: 1 });
+    expect(scrollTo).not.toHaveBeenCalled();
+    expect(focus).toHaveBeenCalledWith(undefined);
+    expect(document.activeElement?.textContent).toContain("ap stem 2?");
+  });
+
+  // Back, or the question navigator, to the first question of the text already on screen: the User
+  // has been reading it, so the question is brought into view and the page is not sent to the top.
+  it("a return to the first question of a text already on screen is focused as before, and the page is left alone", () => {
+    const { scrollTo, focus } = renderScreen({ policy: "one-at-a-time", questionIdx: 0 }, false);
+    expect(scrollTo).not.toHaveBeenCalled();
+    expect(focus).toHaveBeenCalledWith(undefined);
+    expect(document.activeElement?.textContent).toContain("ap stem 1?");
   });
 });

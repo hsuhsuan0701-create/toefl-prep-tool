@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, type ReactNode } from "react";
 import type { ServedListeningStimulus, ServedReadingStimulus, ServedSpeaker } from "@toefl-prep/shared";
 import { Button } from "../ui/Button";
 import { Notice } from "../ui/Notice";
@@ -8,6 +8,8 @@ import AvatarCard from "./AvatarCard";
 import CtwGapInput from "./CtwGapInput";
 import McqQuestion, { ResultVerdict, type McqOption } from "./McqQuestion";
 import StimulusPlayer from "./StimulusPlayer";
+import StimulusReplay from "./StimulusReplay";
+import { taskTypeLabel } from "../lib/taskTypes";
 
 // The one place a Reading or Listening Stimulus's own Items are turned into DOM, for both Attempt
 // modes, with the Listening leak gate inside it.
@@ -18,10 +20,8 @@ import StimulusPlayer from "./StimulusPlayer";
 //   * `results`: feedback exists once the Item is scored, and never before (CONTEXT.md's
 //     Explanation: "hidden until the Item is scored"). A Drill hands over the score response it
 //     just got back; a Simulation hands over nothing, because its feedback waits for the report.
-//   * `audioFailed`: a Drill whose audio failed reveals the Questions with a note.
 //   * `phase`: how far the Stimulus's own audio has got: the Simulation's avatar beat, playing, the
-//     Simulation's audio-failed gate, then the Questions. A Drill only ever visits "playing" and
-//     "questions".
+//     audio-failed gate, then the Questions. A Drill has no avatar beat and starts at "playing".
 //
 // The exam layout lives here and the spacing around it does not: a Reading text and its questions
 // sit side by side (ui/PassagePane's ExamSplit), a Complete the Words passage reads at the measure,
@@ -40,6 +40,11 @@ export type StimulusItemResult = {
   correct: boolean;
   key?: string;
   explanationZh?: string;
+  /**
+   * What the Stimulus said, for a Listening Conversation, Announcement or Academic Talk scored in a
+   * Drill. Never sent for a Listen and Choose a Response, and never rendered for one.
+   */
+  transcript?: string;
 };
 
 /**
@@ -78,6 +83,12 @@ export type StimulusQuestionsProps = {
    * lands on whatever just came into view.
    */
   autoFocus?: boolean;
+  /**
+   * The Stimulus was not on screen just before this mount: a Drill's next Stimulus, or a Simulation
+   * that arrived from another Stimulus or opened its Module here. Only the caller knows what was on
+   * screen before, so absent means the text was already there (the User came back to it).
+   */
+  newlyShown?: boolean;
 };
 
 /** What McqQuestion needs for one Item, however the owning Stimulus happens to name it. */
@@ -124,7 +135,24 @@ export default function StimulusQuestions({
   results,
   submitting,
   autoFocus,
+  newlyShown,
 }: StimulusQuestionsProps) {
+  // A Reading text newly on screen, opening on its first question, is a text the User has not read
+  // yet. At phone width the question sits below the whole text, so the screen starts at the top,
+  // where the text does, and the question takes focus without scrolling to itself. A further
+  // question on the same text, or a return to its first one (Back, the question navigator), is
+  // focused, and scrolled into view, as before. On mount only: the call site keys this component
+  // per Stimulus and per question.
+  const opensText =
+    Boolean(autoFocus) &&
+    Boolean(newlyShown) &&
+    (stimulus.taskType === "daily_life" || stimulus.taskType === "academic_passage") &&
+    (reveal.policy === "all-at-once" || reveal.questionIdx === 0);
+  useLayoutEffect(() => {
+    if (opensText) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   if (stimulus.taskType === "complete_words") {
     const gapResults = results
       ? new Map(results.map((r) => [r.itemId, { correct: r.correct, key: r.key }]))
@@ -171,6 +199,7 @@ export default function StimulusQuestions({
         result={r ? { correct: r.correct, key: r.key, explanationZh: r.explanationZh } : undefined}
         onSelect={(optionId) => onAnswer(q.itemId, optionId)}
         autoFocus={autoFocus && position === 0}
+        focusInPlace={opensText}
       />
     );
   };
@@ -276,16 +305,14 @@ function sentenceCase(text: string): string {
 
 /**
  * How far a Listening Stimulus's own play-once audio has got. The gate reads exactly this.
- * "audio-failed" is the Simulation's stop when the audio would not play: who is speaking and a way
- * to play it again, and nothing answerable.
+ * "audio-failed" is the stop, in both Attempt modes, when the audio would not play: who is speaking
+ * and a way to play it again, and nothing answerable.
  */
 export type ListeningStimulusPhase = "avatar" | "playing" | "audio-failed" | "questions";
 
 export type ListeningStimulusQuestionsProps = Omit<StimulusQuestionsProps, "stimulus" | "submitting"> & {
   stimulus: ServedListeningStimulus;
   phase: ListeningStimulusPhase;
-  /** Playback failed rather than finished. A Drill reveals the Questions anyway, with a note. */
-  audioFailed?: boolean;
   /** Fired once the avatar beat has been seen. Only ever called from the "avatar" phase. */
   onAvatarSettled?: () => void;
   onAudioEnded: () => void;
@@ -297,8 +324,13 @@ export type ListeningStimulusQuestionsProps = Omit<StimulusQuestionsProps, "stim
   audioTry?: number;
   /** From the "audio-failed" gate: play the Stimulus again. */
   onAudioRetry?: () => void;
-  /** From the "audio-failed" gate: move on with the Stimulus's Questions unanswered. */
+  /** From the "audio-failed" gate: move on without hearing the Stimulus. What that does is the call site's. */
   onAudioSkip?: () => void;
+  /**
+   * The "audio-failed" gate's words under its title, which differ by Attempt mode: what waiting
+   * costs, and what skipping does to the Stimulus's Questions. Omitted, only that they stay hidden.
+   */
+  audioFailedNote?: ReactNode;
   /**
    * The call site's own footer: a Drill's error line and Submit/Next buttons, the Simulation's Next
    * button. Rendered inside the gate on purpose: the leak rule covers answer controls as well as
@@ -330,21 +362,28 @@ function settingOf(stimulus: ServedListeningStimulus): string | undefined {
  *
  * StimulusPlayer is keyed on the Stimulus and its `audioTry`, so a new Stimulus or a retry mounts a
  * fresh player and plays once; it unmounts again once the Questions appear, so there is nothing to
- * click to replay it.
+ * click to replay it while they are being answered. Only once `results` holds a scored Item (a
+ * Drill's checked Stimulus) can it be heard again, and a Conversation, Announcement or Academic
+ * Talk read, from StimulusReplay under the Questions. A Simulation passes no `results`, so its
+ * Stimuli never gain it here.
  */
 export function ListeningStimulusQuestions({
   stimulus,
   phase,
-  audioFailed,
   onAvatarSettled,
   onAudioEnded,
   onAudioError,
   audioTry,
   onAudioRetry,
   onAudioSkip,
+  audioFailedNote,
   children,
   ...questionProps
 }: ListeningStimulusQuestionsProps) {
+  const scored = phase === "questions" && (questionProps.results?.length ?? 0) > 0;
+  // A Listen and Choose a Response utterance is audio only, whatever a result carries.
+  const transcript =
+    stimulus.taskType === "listen_choose" ? undefined : questionProps.results?.find((r) => r.transcript !== undefined)?.transcript;
   // The audio-failed stop takes focus on its Retry, so a keyboard or screen-reader User is not left
   // on a heading above a gate they cannot see. The player that would have said "Couldn't play" is
   // already gone by then; the gate's Notice announces itself instead.
@@ -394,16 +433,15 @@ export function ListeningStimulusQuestions({
             </>
           }
         >
-          <p>Its questions stay hidden until it plays. Nothing is timed while this is up, and the Attempt is marked as interrupted.</p>
-          {onAudioSkip && <p className="mt-1">Skipping scores this Stimulus's questions as unanswered.</p>}
+          {audioFailedNote ?? <p>Its questions stay hidden until it plays.</p>}
         </Notice>
       )}
       {phase === "questions" && (
         <>
-          {audioFailed && (
-            <Notice tone="caution">Couldn't play the audio for this Stimulus. You can still respond, or move on.</Notice>
-          )}
           <StimulusQuestions stimulus={stimulus} {...questionProps} />
+          {/* Under the feedback rather than over the Questions, so checking them moves nothing the
+              User is looking at. */}
+          {scored && <StimulusReplay audio={stimulus.audio} label={`${taskTypeLabel(stimulus.taskType)}: play again`} transcript={transcript} />}
           {children}
         </>
       )}

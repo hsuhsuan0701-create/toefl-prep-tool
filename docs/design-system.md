@@ -79,7 +79,11 @@ Families. Every font is a system font. The app is offline and loads nothing.
   nav, band and score figures, and the step numbers of the first-run "Start here" list. Every face
   listed draws lining figures.
 - `font-mono`: identifiers only (Set ids, `linear-v2`, env var names, inside `InternalName`).
-  Never use it for numbers a User compares.
+  Never use it for numbers a User compares. One exception: a Complete the Words passage is set in
+  mono throughout (the words, each gap's visible prefix and the letters typed into it). A gap shows
+  its length before anything is typed, so every letter must take the same width: the box is
+  `length` ch wide and holds exactly that many letters, each over its own slot mark. The whole
+  passage shares the face so no word is set in two. Its Explanations, under the passage, are not.
 
 Scale. Each step is named by its job. Line-heights are built into each step.
 
@@ -218,7 +222,7 @@ Import from `client/src/ui/<File>`. Each file opens with a comment saying when t
 | `QuestionNavigator` | `QuestionNavigator.tsx` | Moving between a Reading Module's questions: one stop per screen, answered / partly / not yet in a glyph and words. | Speaking or Listening, which run in order. |
 | `ExamSplit`, `PassagePane` | `PassagePane.tsx` | A reading exam screen's two panes: the text on the left, the question on the right from `lg`; stacked on a phone. | |
 | `ChoiceList` | `ChoiceList.tsx` | Multiple-choice options, exam style: full-width rows with A–D over real radios. `reveal` is for feedback and review only. | Inside the Listening leak gate before the audio ends. The gate decides when this renders; this component does not. |
-| `GapInput` | `GapInput.tsx` | One Complete the Words gap, inline in the Stimulus's own type size, one slot mark per missing letter. `components/CtwGapInput` moves between gaps. | |
+| `GapInput` | `GapInput.tsx` | One Complete the Words gap, inline in the Stimulus's own type size, in mono, one 1ch slot mark per missing letter. `components/CtwGapInput` moves between gaps and sets the passage in mono. | |
 | `AudioStage`, `SpeakerFigure`, `AudioStatus` | `AudioStage.tsx` | A Listening Stimulus: who is speaking and where, carrying no Item content. `AudioStatus` is where any play-once clip has got ("Listen…", "Playback finished.", "Couldn't play the audio."); `components/StimulusPlayer` draws it for every clip in the app. | Anything answerable. |
 | `RecordingIndicator`, `LevelMeter`, `ResponseClock` | `Recording.tsx` | Recording in the accent with the word "Recording" and a pulsing ring (never a red dot); the microphone level in words; the response window draining with its seconds. | |
 
@@ -239,6 +243,9 @@ second one.
 - `components/StimulusQuestions.tsx`: where a Reading or Listening Stimulus's Items become DOM, in
   both modes. `ListeningStimulusQuestions` is the leak gate: nothing answerable exists before the
   audio ends.
+- `components/StimulusReplay.tsx`: a Listening Stimulus played again, a labelled `<audio controls>`
+  with its transcript in a `Disclosure` where it has one. Only once nothing is left to answer: a
+  Drill's checked Stimulus, a completed Attempt's review.
 - `components/ItemRecorder.tsx`: one Speaking Item, prompt to beep to recording to countdown, with
   the retry gate when a prompt will not play. `MicCheck.tsx` is the check before a Speaking run.
 - `components/TimedEditor.tsx` and `components/buildSentence/`: the essay Tasks and Build a
@@ -300,7 +307,15 @@ Recipes, as the pages are built.
     the `ScoreReport`: Summary (`Prose lang="zh-Hant"`), Your Response in red pen beside the Model
     Rewrite, numbered Deductions, By dimension, and Disclosures for the Arbiter and the Judges.
   - Reading and Listening Items group by Stimulus, each row with its `ResultMark` (Correct /
-    Incorrect / No Response) and the key and Explanation behind it.
+    Incorrect / No Response) and the key and Explanation behind it. Once the Attempt is complete,
+    a Reading Stimulus's own text sits under its heading (`review/ReviewStimulus`): a Complete the
+    Words passage in full, in mono, each gap numbered by its Item and filled with what was typed,
+    marked, with the correct word beside a wrong or empty one; a Read in Daily Life text or an
+    Academic passage in a `Disclosure` ("The text", "The passage") that starts open, set as
+    `PassagePane`. A
+    Listening Stimulus can be played again from under its heading (`StimulusReplay`), a Listen and
+    Choose a Response from its own opened row, never as text. An opened question lists its options
+    (`ChoiceList`, locked) with the Response and the key marked.
 - **Full-Test Run** (`/full-test/:runId`): `PageShell` without navigation while sitting;
   `PageHeader` "Full-Test Run" with its time and status; once finished, the Overall `BandFigure
   size="lg"` (method in a `Disclosure`) or which sections are still pending, never an average of
@@ -389,7 +404,8 @@ Disclosure.
 - Do not use colour as the only signal. Pair it with words, a glyph or a shape.
 - Do not use shadows on cards, gradients, tinted section backgrounds, or a second accent colour.
 - Do not nest a `sheet` card inside a `sheet` card.
-- Do not set anything in serif except titles and figures, and nothing in mono except identifiers.
+- Do not set anything in serif except titles and figures, and nothing in mono except identifiers
+  and a Complete the Words passage.
 - Do not put Chinese in italic, small caps, uppercase or tracked type. Do not leave Chinese without
   `lang="zh-Hant"`.
 - Do not show a band without `BandFigure`, a CEFR level outside it, or an unpencilled estimate.

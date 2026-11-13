@@ -11,6 +11,7 @@ import {
   type BuildSentenceResponse,
 } from "../../components/buildSentence";
 import TimedEditor from "../../components/TimedEditor";
+import { ScoringSetupNotice } from "../../components/setup/ScoringSetupNotice";
 import { Button } from "../../ui/Button";
 import { ExamIntro, ExamSetLine } from "../../ui/ExamIntro";
 import { ExamExit, ExamShell } from "../../ui/ExamShell";
@@ -19,6 +20,7 @@ import { Notice } from "../../ui/Notice";
 import { formatDuration, joinAnd } from "../../ui/format";
 import type { LeaveMessage } from "../../hooks/leaveGuardContext";
 import { useLeaveGuard } from "../../hooks/useLeaveGuard";
+import { useStageEntry } from "../../hooks/useStageEntry";
 import { CompletionFailed, LoadingMain, ErrorMain, SimulationStatus } from "./SimulationScreens";
 import {
   FINISH_SEQUENCE_GUARD_MS,
@@ -28,6 +30,7 @@ import {
   fallbackSetTitle,
   findListedSet,
   pickSimulationSet,
+  predictRepeat,
   repeatNoticeText,
   sleep,
   useFlagOnHidden,
@@ -139,6 +142,8 @@ export default function WritingSimulation({ fullTest }: { fullTest?: FullTestSec
   const [sendStatus, setSendStatus] = useState<Partial<Record<WritingTask, SendStatus>>>({});
   // Why the completion could not be made, for the "completion-failed" screen.
   const [completionError, setCompletionError] = useState<unknown>(null);
+  // The Email and the Discussion share `essay-running`, so which essay is part of the stage's name.
+  useStageEntry(stage === "loading" ? null : `${stage}:${essayTask}`);
 
   const mountedRef = useRef(true);
   const retryRef = useRef<(() => void) | null>(null);
@@ -349,14 +354,16 @@ export default function WritingSimulation({ fullTest }: { fullTest?: FullTestSec
       }
       // Inside a Run the Set is the one the Run drew for this section; standalone, a stored section
       // keeps its own Set, and otherwise one is picked automatically. A Set named either way is
-      // looked up in the bank only for its title and `attempted` flag.
+      // looked up in the bank only for its title and `attempted` flag. A resumed Attempt carries its
+      // own tag, and a restarted Run section the tag of the Attempt it replaces (predictRepeat).
       const named = stored?.setId ?? fullTestSetId;
       const entry = named ? await findListedSet(named) : await pickSimulationSet("writing");
       const served = expectServedSet("writing", await getSet(named ?? entry!.id));
+      const repeat = await predictRepeat(entry, stored?.attemptId ?? fullTestAttemptId);
       if (!current()) return;
       setSet(served);
       setListing(entry);
-      setIsRepeat(entry?.attempted ?? false);
+      setIsRepeat(repeat);
       if (stored) resume(served, stored);
       else setStage("intro");
     } catch (e) {
@@ -498,7 +505,12 @@ export default function WritingSimulation({ fullTest }: { fullTest?: FullTestSec
               <ExamSetLine source={set.source} createdAt={set.createdAt} setId={set.id} />
             </>
           }
-          notice={isRepeat ? <Notice tone="caution">{repeatNoticeText("Writing")}</Notice> : null}
+          notice={
+            <>
+              {isRepeat && <Notice tone="caution">{repeatNoticeText("Writing")}</Notice>}
+              <ScoringSetupNotice section="writing" buildSentence />
+            </>
+          }
           facts={[
             {
               term: "Time",

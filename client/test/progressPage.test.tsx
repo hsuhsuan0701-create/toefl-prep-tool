@@ -50,6 +50,7 @@ const SUMMARY: StatsSummaryVM = {
   weaknesses: [],
   judgeAgreement: { avgDelta: null, sampleSize: 0 },
   skillItems: [],
+  skillItemsLimit: 300,
 };
 
 afterEach(() => vi.unstubAllGlobals());
@@ -99,6 +100,7 @@ describe("the weakness breakdown", () => {
   it("names a weak skill in words and states each figure in full", () => {
     render(
       <WeaknessPanel
+        skillItemsLimit={300}
         weaknesses={[{ category: "grammar", count: 7 }, { category: "pronunciation-proxy", count: 1 }]}
         judgeAgreement={{ avgDelta: null, sampleSize: 0 }}
         skillAccuracy={[
@@ -116,12 +118,12 @@ describe("the weakness breakdown", () => {
   });
 
   it("states judge agreement as a sentence", () => {
-    const { rerender } = render(<WeaknessPanel weaknesses={[]} skillAccuracy={[]} judgeAgreement={{ avgDelta: 0.4166, sampleSize: 120 }} />);
+    const { rerender } = render(<WeaknessPanel skillItemsLimit={300} weaknesses={[]} skillAccuracy={[]} judgeAgreement={{ avgDelta: 0.4166, sampleSize: 120 }} />);
     expect(
       screen.getByText("On the same Response, your two Judges' scores are 0.4 points apart on average, out of 5, over 120 Responses. They mostly agree."),
     ).toBeInTheDocument();
 
-    rerender(<WeaknessPanel weaknesses={[]} skillAccuracy={[]} judgeAgreement={{ avgDelta: null, sampleSize: 0 }} />);
+    rerender(<WeaknessPanel skillItemsLimit={300} weaknesses={[]} skillAccuracy={[]} judgeAgreement={{ avgDelta: null, sampleSize: 0 }} />);
     expect(screen.getByText(/Not enough Responses have been scored by both Judges/u)).toBeInTheDocument();
   });
 });
@@ -140,6 +142,24 @@ describe("/progress", () => {
     );
     expect(await screen.findByText("Couldn't load your Attempts")).toBeInTheDocument();
     expect(screen.queryByText("No Attempts yet")).toBeNull();
+  });
+
+  it("names the skill pane's window with the number the summary sends", async () => {
+    stub({
+      "/api/attempts": () => json({ items: [], total: 0 }),
+      "/api/stats/summary": () => json({ ...SUMMARY, skillItemsLimit: 120 }),
+      "/api/stats/trends": () => json([]),
+    });
+    render(
+      <MemoryRouter>
+        <Progress />
+      </MemoryRouter>,
+    );
+    expect(
+      await screen.findByText(
+        "Percent correct on each skill in your 120 most recently scored multiple-choice Reading and Listening Items, weakest first. A Complete the Words gap has no skill, so it is not counted. Drills and Simulations both count.",
+      ),
+    ).toBeInTheDocument();
   });
 
   it("offers a way to start when there are no Attempts", async () => {

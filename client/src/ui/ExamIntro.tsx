@@ -44,7 +44,9 @@ export function ExamIntro({ kicker, title, meta, notice, facts, children, action
       {kicker && <Kicker as="p">{kicker}</Kicker>}
       <h1 className={cx("font-serif text-title font-semibold text-ink text-balance", kicker ? "mt-1" : null)}>{title}</h1>
       {meta && <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-meta text-graphite">{meta}</div>}
-      {notice && <div className="mt-5 space-y-3">{notice}</div>}
+      {/* A notice slot whose notices all render nothing (one that shows only when the setup status
+          says so) leaves no gap. */}
+      {notice && <div className="mt-5 space-y-3 empty:hidden">{notice}</div>}
       {facts.length > 0 && (
         <dl className="mt-6 divide-y divide-rule border-y border-rule">
           {facts.map((fact) => (

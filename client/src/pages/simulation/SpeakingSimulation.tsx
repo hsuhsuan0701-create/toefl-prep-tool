@@ -7,7 +7,9 @@ import { TASK_TYPES } from "../../lib/taskTypes";
 import { lostUploadItemIds, uploadUntilSectionEnds, type SimUploadOutcome } from "../simulationUpload";
 import { useRecorder } from "../../hooks/useRecorder";
 import { useLeaveGuard } from "../../hooks/useLeaveGuard";
+import { useStageEntry } from "../../hooks/useStageEntry";
 import MicCheck from "../../components/MicCheck";
+import { ScoringSetupNotice } from "../../components/setup/ScoringSetupNotice";
 import SpeakingScenarioBriefing from "../../components/SpeakingScenarioBriefing";
 import InterviewIntro from "../../components/InterviewIntro";
 import SceneImage from "../../components/SceneImage";
@@ -30,6 +32,7 @@ import {
   leaveRestartsSectionMessage,
   markSpeakingCaptureFinished,
   pickSimulationSet,
+  predictRepeat,
   repeatNoticeText,
   sleep,
   useFlagOnHidden,
@@ -100,6 +103,7 @@ export default function SpeakingSimulation({ fullTest }: { fullTest?: FullTestSe
   // Read out once so the hooks below depend on primitives, not an object the caller re-creates.
   const fullTestRunId = fullTest?.runId;
   const fullTestSetId = fullTest?.setId;
+  const fullTestAttemptId = fullTest?.attemptId;
 
   const [stage, setStage] = useState<SpeakingSimStage>("loading");
   const [set, setSet] = useState<ServedSpeakingSet | null>(null);
@@ -108,6 +112,9 @@ export default function SpeakingSimulation({ fullTest }: { fullTest?: FullTestSe
   const [taskIndex, setTaskIndex] = useState<0 | 1>(0); // 0 = listen_repeat, 1 = interview
   const [itemIndex, setItemIndex] = useState(0);
   const [introAudioDone, setIntroAudioDone] = useState(true);
+  // Both Tasks run in `item-running`, and the Interview opens on its introduction before its first
+  // Item, so the Task and the introduction are part of the stage's name; its Items are not.
+  useStageEntry(stage === "loading" ? null : `${stage}:${taskIndex}:${introAudioDone}`);
   const [isStarting, setIsStarting] = useState(false);
   // The Set as the bank lists it, for its title and whether it has been attempted (a Repeat).
   const [listing, setListing] = useState<SetMeta | null>(null);
@@ -164,13 +171,15 @@ export default function SpeakingSimulation({ fullTest }: { fullTest?: FullTestSe
     setErrorMsg(null);
     try {
       // Inside a Full-Test Run the Set is the one the Run drew (the server refuses any other), looked
-      // up in the bank only for its title and Repeat flag; standalone, the automatic pick.
+      // up in the bank only for its title and `attempted` flag; standalone, the automatic pick.
+      // predictRepeat lets the intro disclose a Repeat before the User starts.
       const entry = fullTestSetId ? await findListedSet(fullTestSetId) : await pickSimulationSet("speaking");
       const s = await getSet(fullTestSetId ?? entry!.id);
+      const repeat = await predictRepeat(entry, fullTestAttemptId);
       if (!mountedRef.current) return;
       setSet(expectServedSet("speaking", s));
       setListing(entry);
-      setIsRepeat(entry?.attempted ?? false);
+      setIsRepeat(repeat);
       setStage("intro");
     } catch (e) {
       if (!mountedRef.current) return;
@@ -178,7 +187,7 @@ export default function SpeakingSimulation({ fullTest }: { fullTest?: FullTestSe
       retryRef.current = () => void loadSet();
       setStage("error");
     }
-  }, [fullTestSetId]);
+  }, [fullTestSetId, fullTestAttemptId]);
 
   useEffect(() => {
     void loadSet();
@@ -403,6 +412,8 @@ export default function SpeakingSimulation({ fullTest }: { fullTest?: FullTestSe
   };
   const introPart = fullTestRunId ? "Full-Test Run" : "Simulation";
   const repeatNotice = isRepeat ? <Notice tone="caution">{repeatNoticeText("Speaking")}</Notice> : null;
+  // Said on the first screen and again on the last one before recording starts: never blocking.
+  const scoringNotice = <ScoringSetupNotice section="speaking" />;
   const lrCount = set.listenAndRepeat.items.length;
   const questionCount = set.interview.questions.length;
 
@@ -411,7 +422,12 @@ export default function SpeakingSimulation({ fullTest }: { fullTest?: FullTestSe
       <ExamShell section="Speaking" part={introPart} exit={plainExit}>
         <ExamIntro
           {...introHeading}
-          notice={repeatNotice}
+          notice={
+            <>
+              {repeatNotice}
+              {scoringNotice}
+            </>
+          }
           facts={[
             { term: "Time", detail: "About 6 to 9 min, without a break." },
             {
@@ -467,6 +483,7 @@ export default function SpeakingSimulation({ fullTest }: { fullTest?: FullTestSe
             <>
               <Notice tone="positive" title="Your microphone works" />
               {repeatNotice}
+              {scoringNotice}
               {errorMsg && (
                 <Notice tone="critical" live="assertive" title="The Simulation didn't start">
                   {errorMsg}

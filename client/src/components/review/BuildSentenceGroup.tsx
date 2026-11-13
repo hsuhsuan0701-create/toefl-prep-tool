@@ -1,10 +1,10 @@
 import type { ItemVM } from "@toefl-prep/shared";
-import { buildSentenceComposition, sentencePromptFor, type AttemptSetSnapshot } from "../../pages/attemptSetSnapshot";
+import { buildSentenceComposition, sentencePromptFor, sentenceTilesFor, type AttemptSetSnapshot } from "../../pages/attemptSetSnapshot";
 import { Card } from "../../ui/Card";
 import { StatusChip } from "../../ui/Chip";
 import { IconChevronRight } from "../../ui/icons";
 import { itemScoringStatus } from "../../ui/labels";
-import { sentenceAnswerText } from "../sentenceAnswerText";
+import { ComposedSentence, OfferedTiles, PLACED_WORDS_NOTE } from "./BuildSentenceParts";
 import { ResultMark } from "./ReviewParts";
 import { isBuildSentenceScoreJson } from "./reviewItems";
 import { failureText, itemsWord, type IndexedItem } from "./reviewText";
@@ -27,6 +27,7 @@ export default function BuildSentenceGroup({ items, setSnapshot }: { items: Inde
             <span className="hidden group-open:inline">Hide</span> the {itemsWord(items.length)}
           </span>
         </summary>
+        <p className="border-t border-rule px-4 py-2 text-meta text-graphite">{PLACED_WORDS_NOTE}</p>
         <ol className="divide-y divide-rule border-t border-rule">
           {items.map(({ item, position }) => (
             <BuildSentenceRow key={item.itemId} item={item} position={position} setSnapshot={setSnapshot} />
@@ -39,7 +40,7 @@ export default function BuildSentenceGroup({ items, setSnapshot }: { items: Inde
 
 // `responseText` is the placed tile texts in blank order and `correctAnswers` has the same shape, so
 // both are only ever an arrangement. A frame Item keeps its fixed words out of the tiles, so each is
-// written out through sentenceAnswerText — the same composer the Writing Drill's results use — with
+// written out through ComposedSentence — the same composer the Writing Drill's results use — with
 // the frame buildSentenceComposition picks: the one persisted with the Response, else the Set file's
 // current one when the Response still fits that Item, else none (tiles in order) with a note that
 // the Set changed.
@@ -53,9 +54,11 @@ function BuildSentenceRow({ item, position, setSnapshot }: { item: ItemVM; posit
   const scored = item.scoringStatus === "scored" && isBuildSentenceScoreJson(item.scoreJson) ? item.scoreJson : null;
   // A Simulation not yet completed has no key here: the server withholds it until completion.
   const keyArrangements = (isBuildSentenceScoreJson(item.scoreJson) ? item.scoreJson.correctAnswers : undefined) ?? [];
-  const { frame, revised } = buildSentenceComposition(setSnapshot, item.itemId, item.scoreJson, [tileOrder, ...keyArrangements]);
-  // An Item nobody touched says so outright rather than echoing the bare frame back.
-  const userResponse = tileOrder.length > 0 ? sentenceAnswerText(frame, tileOrder) : "(no Response submitted)";
+  const arrangements = [tileOrder, ...keyArrangements];
+  const { frame, revised } = buildSentenceComposition(setSnapshot, item.itemId, item.scoreJson, arrangements);
+  // The tiles come from the Set as served today, so they are listed only when the Response and the
+  // key are drawn from them; the extra one is marked only beside a key the server has shown.
+  const tiles = revised ? undefined : sentenceTilesFor(setSnapshot, item.itemId, arrangements);
   const prompt = sentencePromptFor(setSnapshot, item.itemId);
 
   return (
@@ -69,14 +72,23 @@ function BuildSentenceRow({ item, position, setSnapshot }: { item: ItemVM; posit
       </div>
       <p data-testid={`bas-answer-${item.itemId}`} className="text-body text-ink">
         <span className="text-graphite">Your Response: </span>
-        {userResponse}
+        {/* An Item nobody touched says so outright rather than echoing the bare frame back. */}
+        {tileOrder.length > 0 ? <ComposedSentence frame={frame} tiles={tileOrder} /> : "(no Response submitted)"}
       </p>
       {scored?.correctAnswers && (
         // Labelled apart from the Response: the two sit one above the other and must not be confused.
         <p data-testid={`bas-key-${item.itemId}`} className="text-ui text-ink-soft">
           <span className="text-graphite">{scored.correctAnswers.length > 1 ? "Key (any of these): " : "Key: "}</span>
-          {scored.correctAnswers.map((a) => sentenceAnswerText(frame, a)).join(" / ")}
+          {scored.correctAnswers.map((a, i) => (
+            <span key={i}>
+              {i > 0 && " / "}
+              <ComposedSentence frame={frame} tiles={a} />
+            </span>
+          ))}
         </p>
+      )}
+      {tiles && (
+        <OfferedTiles testId={`bas-tiles-${item.itemId}`} tiles={tiles} keyArrangements={scored?.correctAnswers ?? null} />
       )}
       {item.scoringStatus === "failed" && <p className="text-ui text-critical">{failureText(item.scoreJson).summary}</p>}
       {revised && (

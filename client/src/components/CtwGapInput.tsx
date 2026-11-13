@@ -8,6 +8,10 @@ import { Prose } from "../ui/Prose";
 // response, so it is never present before the gap is scored.
 export type CtwGapResult = { correct: boolean; key?: string };
 
+// The characters a text run starts with before its first space: what follows a gap with no space
+// between it, such as the comma or full stop that ends the gap's word.
+const LEADING_WORD_RUN = /^\S+/;
+
 export type CtwGapInputProps = {
   segments: PublicCtwSegment[];
   gaps: ServedCtwGap[];
@@ -27,7 +31,8 @@ export type CtwGapInputProps = {
 /**
  * A Complete the Words passage as a flow of text runs and gaps (ui/GapInput: the visible prefix,
  * then a box with one slot per missing letter, `maxLength` set to `blankLength`; the letters
- * themselves never reach the client). Every change emits this passage's whole typed map, not just
+ * themselves never reach the client). Set in the monospace face throughout, so each gap's box is
+ * exactly as wide as the letters it holds. Every change emits this passage's whole typed map, not just
  * the gap that changed, so a parent can hand it straight to the scorer.
  *
  * Built to be typed straight through: a gap that fills hands focus to the next one, Backspace in an
@@ -94,14 +99,25 @@ export default function CtwGapInput({ segments, gaps, disabled, results, values,
   };
 
   return (
-    <Prose as="p" size="stimulus" preserveLines className="leading-[2.15]">
+    // The whole passage is mono, not just the boxes: a gap's letters are 1ch each (ui/GapInput), and
+    // the prefix and the words around it share that face so no word is set in two.
+    <Prose as="p" size="stimulus" preserveLines className="font-mono leading-[2.15]">
       {segments.map((segment, i) => {
-        if (segment.type === "text") return <span key={`text-${i}`}>{segment.text}</span>;
+        if (segment.type === "text") {
+          const prev = segments[i - 1];
+          const text = prev?.type === "gap" && gapsById.has(prev.gapId) ? segment.text.replace(LEADING_WORD_RUN, "") : segment.text;
+          return <span key={`text-${i}`}>{text}</span>;
+        }
 
         const gap = gapsById.get(segment.gapId);
         if (!gap) return null; // defensive — a dangling reference should never reach the client
         const result = results?.get(gap.id);
         const value = typed.get(gap.id) ?? "";
+        // The punctuation right after a gap ("li[mit], the") stays on the gap's line: the box is an
+        // inline block, and a line may otherwise break between it and the comma.
+        const next = segments[i + 1];
+        const trailing = next?.type === "text" ? (LEADING_WORD_RUN.exec(next.text)?.[0] ?? "") : "";
+        const mark = result && <GapMark gapId={gap.id} prefix={gap.prefix} result={result} answered={value.trim() !== ""} />;
 
         return (
           <GapInput
@@ -124,7 +140,14 @@ export default function CtwGapInput({ segments, gaps, disabled, results, values,
             onCompositionEnd={() => {
               composing.current = false;
             }}
-            after={result && <GapMark gapId={gap.id} prefix={gap.prefix} result={result} answered={value.trim() !== ""} />}
+            after={
+              (mark || trailing) && (
+                <>
+                  {mark}
+                  {trailing}
+                </>
+              )
+            }
           />
         );
       })}

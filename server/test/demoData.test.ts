@@ -13,6 +13,7 @@ import {
   type FullTestRunVM,
   type ItemVM,
   type JudgeReportVM,
+  type SetListEntryVM,
   type StatsSummaryVM,
 } from "@toefl-prep/shared";
 import { openDb } from "../src/db/db.js";
@@ -28,8 +29,10 @@ import { parseSqliteTimestamp } from "../src/db/timestamps.js";
 import { config } from "../src/lib/config.js";
 import { buildAttemptsRoutes } from "../src/routes/attempts.js";
 import { buildFullTestRoutes } from "../src/routes/fullTests.js";
+import { buildSetsRoutes } from "../src/routes/sets.js";
 import { buildStatsRoutes } from "../src/routes/stats.js";
 import { wireBootRecoveryPasses } from "../src/services/bootRecoveryRegistry.js";
+import { readSupersessionManifest, supersessionManifestPath } from "../src/services/supersessionManifest.js";
 import { createSpeakingCoordinators } from "../src/services/speakingFinalization.js";
 import { seedDemoData, type SeedSummary } from "../../scripts/demo/seed.js";
 import { parseToday } from "../../scripts/demo/seedDirectory.js";
@@ -113,6 +116,9 @@ describe("the demo practice history", () => {
     expect(dashboard.overall.missingSections).toEqual([]);
     expect(dashboard.overall.band).toEqual(expect.any(Number));
     const band = Object.fromEntries(dashboard.sections.map((s) => [s.section, s.band]));
+    // The bands docs/demo-data.md and the README screenshots show.
+    expect(band).toEqual({ reading: 5, listening: 5.5, writing: 4, speaking: 4 });
+    expect(dashboard.overall.band).toBe(4.5);
     // The learner the demo describes: stronger at Reading and Listening than at Writing and Speaking.
     expect(Math.min(band.reading, band.listening)).toBeGreaterThan(Math.max(band.writing, band.speaking));
     for (const section of dashboard.sections) {
@@ -136,7 +142,9 @@ describe("the demo practice history", () => {
         expect(count, `${section} ${mode}`).toBeGreaterThan(0);
       }
     }
-    expect(list.items.filter((a) => a.isRepeat)).toHaveLength(1);
+    // Two Repeats, both Drills: no seeded Simulation loses its band to the Repeat rule.
+    const repeats = list.items.filter((a) => a.isRepeat);
+    expect(repeats.map((a) => `${a.kind} ${a.mode}`).sort()).toEqual(["reading drill", "speaking drill"]);
     expect(list.items.filter((a) => a.flagged)).toHaveLength(1);
     expect(list.items.some((a) => a.status === "in_progress" && a.mode === "drill")).toBe(true);
     const paths = new Set(list.items.flatMap((a) => (a.modulePath ? [`${a.kind}:${a.modulePath}`] : [])));
@@ -247,6 +255,41 @@ describe("the demo practice history", () => {
     }
     // An Attempt left unfinished says so.
     expect(details.some((d) => d.bandStatus.status === "unfinished" && d.attempt.mode === "drill")).toBe(true);
+  });
+
+  it("leaves a live Reading Set unattempted, so a Reading Simulation in the demo is a first sitting", async () => {
+    const retired = new Set(readSupersessionManifest(supersessionManifestPath(config.dataDir)).map((s) => s.setId));
+    const stores = createSqliteStores(db, { dataDir: config.dataDir });
+    const setsApp = buildSetsRoutes({
+      attemptedSetIds: () => new Set(stores.attempts.listSetIdsCountedAsAttempted()),
+      supersededSetIds: () => retired,
+      dataDir: config.dataDir,
+    });
+    const reading = await getJson<SetListEntryVM[]>(setsApp, "/?kind=reading");
+    const fresh = reading.filter((set) => !set.attempted);
+    expect(fresh.length).toBeGreaterThan(0);
+
+    // Started on a copy of the seeded database, so the rows the other tests compare stay as seeded.
+    const copyDir = fs.mkdtempSync(path.join(os.tmpdir(), "demo-first-sitting-"));
+    const copyFile = path.join(copyDir, "db.sqlite");
+    db.prepare("VACUUM INTO ?").run(copyFile);
+    const copy = openDb(copyFile);
+    try {
+      const copyStores = createSqliteStores(copy, { dataDir: config.dataDir });
+      const app = buildAttemptsRoutes({
+        repo: attemptsRouteStore(copyStores),
+        ...createSpeakingCoordinators({ repo: speakingCoordinatorStore(copyStores) }),
+      });
+      const res = await app.request("/", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ kind: "reading", mode: "simulation", setId: fresh[0].id }),
+      });
+      expect(res.status).toBe(201);
+      expect(await res.json()).toMatchObject({ isRepeat: false });
+    } finally {
+      copy.close();
+    }
   });
 
   it("dates every row before `today`", () => {

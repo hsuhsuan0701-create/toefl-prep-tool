@@ -1,10 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { FakeAudioElement, endAudio } from "./fakeAudio";
+import { FakeAudioElement, dispatchAudio, endAudio } from "./fakeAudio";
+import { LISTENING_AUDIO_AUTO_RETRIES } from "../src/pages/listeningSimulation";
 import type { ReactElement } from "react";
 import { act, fireEvent, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderRoutes, unload } from "./dataRouter";
 import { useFakeTimersInTest } from "./fakeTimers";
+import { afterFeedbackHold } from "./feedbackHold";
 import ReadingDrill from "../src/pages/ReadingDrill";
 import ListeningDrill from "../src/pages/ListeningDrill";
 import WritingDrill from "../src/pages/WritingDrill";
@@ -222,7 +224,9 @@ const CASES: DrillCase[] = [
       await user.click(await screen.findByText("Read in Daily Life"));
       await user.click(screen.getByRole("button", { name: "Start Reading Drill" }));
       await user.click(await screen.findByRole("button", { name: "Check Response" }));
-      await user.click(await screen.findByRole("button", { name: "See results" }));
+      const seeResults = await screen.findByRole("button", { name: "See results" });
+      await afterFeedbackHold();
+      await user.click(seeResults);
     },
   },
   {
@@ -243,7 +247,9 @@ const CASES: DrillCase[] = [
       // Nothing answerable exists until the Stimulus audio ends, so the run waits for it.
       await endAudio("lc-1.mp3");
       await user.click(await screen.findByRole("button", { name: "Check Response" }));
-      await user.click(await screen.findByRole("button", { name: "See results" }));
+      const seeResults = await screen.findByRole("button", { name: "See results" });
+      await afterFeedbackHold();
+      await user.click(seeResults);
     },
   },
   {
@@ -511,6 +517,81 @@ describe("the Drill shell: a completion that fails", () => {
   });
 });
 
+describe("the Reading and Listening Drill: a double activation of Check Responses", () => {
+  // Checking a Stimulus and moving on are one button in one place, and scoring answers at once, so
+  // the second press of a double click (or a second Enter or Space) lands on "See results" (or
+  // "Next Stimulus"). It must not leave the Stimulus: the feedback stays until a separate press.
+  const DRILLS: Array<[DrillCase, (user: User) => Promise<void>]> = [
+    [
+      CASES[0],
+      async (user) => {
+        await user.click(await screen.findByText("Read in Daily Life"));
+        await user.click(screen.getByRole("button", { name: "Start Reading Drill" }));
+      },
+    ],
+    [
+      CASES[1],
+      async (user) => {
+        await user.click(await screen.findByText("Listen and Choose a Response"));
+        await user.click(screen.getByRole("button", { name: "Start Listening Drill" }));
+        await endAudio("lc-1.mp3");
+      },
+    ],
+  ];
+  const ACTIVATIONS: Array<[string, (user: User, button: HTMLElement) => Promise<void>]> = [
+    ["a click", (user, button) => user.click(button)],
+    [
+      "Enter",
+      async (user, button) => {
+        button.focus();
+        await user.keyboard("{Enter}");
+      },
+    ],
+    [
+      "Space",
+      async (user, button) => {
+        button.focus();
+        await user.keyboard(" ");
+      },
+    ],
+  ];
+  const cases = DRILLS.flatMap(([c, toCheck]) =>
+    ACTIVATIONS.map(([activation, press]) => ({ name: c.name, c, toCheck, activation, press })),
+  );
+
+  it.each(cases)("$activation twice scores once and keeps the feedback on screen — $name", async ({ c, toCheck, press }) => {
+    const api = await import("../src/lib/api");
+    (api.getSet as any).mockResolvedValue(c.fixture);
+    (api.createAttempt as any).mockResolvedValue({ attemptId: "att-1", isRepeat: false });
+    (api.scoreDeterministicTask as any).mockImplementation(async (_attemptId: string, req: any) => ({
+      taskType: req.taskType,
+      items: req.items.map((i: any) => ({ itemId: i.itemId, correct: true, key: "o1", explanationZh: "因為 A 是對的。" })),
+    }));
+    const user = userEvent.setup();
+    renderCase(c);
+    await toCheck(user);
+
+    const check = await screen.findByRole("button", { name: "Check Response" });
+    await press(user, check);
+    // The second press lands once the feedback is in and the button has become "See results".
+    const seeResults = await screen.findByRole("button", { name: "See results" });
+    await press(user, seeResults);
+
+    expect((api.scoreDeterministicTask as any).mock.calls).toHaveLength(1);
+    expect(screen.getByText("因為 A 是對的。")).toBeInTheDocument();
+    expect(screen.getByText("Stimulus 1 of 1")).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Results" })).toBeNull();
+    // Nothing about the button changed: it keeps its name and the focus.
+    expect(seeResults).toBeInTheDocument();
+    expect(seeResults).toHaveFocus();
+
+    // A separate press after the hold moves on, as it always did.
+    await afterFeedbackHold();
+    await press(user, seeResults);
+    expect(await screen.findByRole("heading", { name: "Results" })).toBeInTheDocument();
+  });
+});
+
 describe("the Drill shell: starting the Attempt", () => {
   // Reading, Listening and Writing start from the shared intro screen straight after the picker
   // (Speaking reaches it after its mic check). A second click while POST /api/attempts is in flight
@@ -550,5 +631,82 @@ describe("the Drill shell: starting the Attempt", () => {
       unmount();
       vi.clearAllMocks();
     }
+  });
+});
+
+// CLAUDE.md, "Client run flows": a Stimulus whose audio fails is retried, then waits on a gate; it is
+// never scored as the User's miss. The Listening Drill goes through the Simulation's own rule
+// (listeningSimulation.ts's afterAudioError) and the same gate in ListeningStimulusQuestions.
+describe("the Listening Drill: a Stimulus whose audio fails", () => {
+  const failLoads = async (file: string, loads: number) => {
+    for (let nth = 1; nth <= loads; nth++) await dispatchAudio(file, "error", nth);
+  };
+  const scoreAllCorrect = async () => {
+    const api = await import("../src/lib/api");
+    (api.getSet as any).mockResolvedValue(listeningSet);
+    (api.createAttempt as any).mockResolvedValue({ attemptId: "att-1", isRepeat: false });
+    (api.scoreDeterministicTask as any).mockImplementation(async (_attemptId: string, req: any) => ({
+      taskType: req.taskType,
+      items: req.items.map((i: any) => ({ itemId: i.itemId, correct: true, key: "o1", explanationZh: "因為 A 是對的。" })),
+    }));
+    return api;
+  };
+
+  it("reloads it, then stops on a gate with Retry and nothing answerable; Retry plays it and it is scored", async () => {
+    const api = await scoreAllCorrect();
+    const user = userEvent.setup();
+    const { container } = renderCase(CASES[1]);
+    await user.click(await screen.findByText("Listen and Choose a Response"));
+    await user.click(screen.getByRole("button", { name: "Start Listening Drill" }));
+
+    // The first load and both automatic reloads fail.
+    await failLoads("lc-1.mp3", 1 + LISTENING_AUDIO_AUTO_RETRIES);
+    const retry = await screen.findByRole("button", { name: "Retry" });
+    expect(FakeAudioElement.instances.filter((a) => a.src.endsWith("lc-1.mp3"))).toHaveLength(1 + LISTENING_AUDIO_AUTO_RETRIES);
+    expect(container.querySelectorAll('input[type="radio"]')).toHaveLength(0);
+    expect(container.textContent).not.toContain("lc-1 option one");
+    expect(screen.queryByRole("button", { name: /^Check Response/ })).toBeNull();
+
+    // Retry is a fresh load, which plays to its end this time.
+    await user.click(retry);
+    await dispatchAudio("lc-1.mp3", "ended", 2 + LISTENING_AUDIO_AUTO_RETRIES);
+    await user.click(await screen.findByRole("radio", { name: "lc-1 option one" }));
+    await user.click(screen.getByRole("button", { name: "Check Response" }));
+
+    expect(await screen.findByText("因為 A 是對的。")).toBeInTheDocument();
+    expect((api.scoreDeterministicTask as any).mock.calls).toEqual([
+      ["att-1", { taskType: "listen_choose", items: [{ itemId: "lc-1", selectedOptionId: "o1" }] }],
+    ]);
+  });
+
+  it("left from the gate, scores nothing for it and counts it as not attempted rather than missed", async () => {
+    const api = await scoreAllCorrect();
+    const user = userEvent.setup();
+    renderCase(CASES[1]);
+    await user.click(await screen.findByText("All four Task Types"));
+    await user.click(screen.getByRole("button", { name: "Start Listening Drill" }));
+
+    await failLoads("lc-1.mp3", 1 + LISTENING_AUDIO_AUTO_RETRIES);
+    await user.click(await screen.findByRole("button", { name: "Skip this Stimulus" }));
+
+    // The rest of the queue runs as usual.
+    for (const [file, option] of [
+      ["cv-1.mp3", "cv-1-q1 option one"],
+      ["an-1.mp3", "an-1-q1 option one"],
+      ["at-1.mp3", "at-1-q1 option one"],
+    ]) {
+      await endAudio(file);
+      await user.click(await screen.findByRole("radio", { name: option }));
+      await user.click(screen.getByRole("button", { name: "Check Response" }));
+      const next = await screen.findByRole("button", { name: /^(Next Stimulus|See results)$/ });
+      await afterFeedbackHold();
+      await user.click(next);
+    }
+
+    await screen.findByRole("heading", { name: "Results" });
+    const scored = (api.scoreDeterministicTask as any).mock.calls.flatMap(([, req]: any) => req.items.map((i: any) => i.itemId));
+    expect(scored).toEqual(["cv-1-q1", "an-1-q1", "at-1-q1"]);
+    expect(screen.getByText(/Items correct · 100%/)).toBeInTheDocument();
+    expect(screen.getByText("1 Stimulus not attempted, so its Items are not counted.")).toBeInTheDocument();
   });
 });

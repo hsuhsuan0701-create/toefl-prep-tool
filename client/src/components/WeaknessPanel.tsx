@@ -57,9 +57,11 @@ type WeaknessPanelProps = {
   judgeAgreement: StatsSummaryVM["judgeAgreement"];
   /** Pre-computed by weaknessCategories.ts's computeSkillAccuracy; this component only renders. */
   skillAccuracy: SkillAccuracy[];
+  /** How many of the latest Reading and Listening Items the skill pane covers, as the server sent it. */
+  skillItemsLimit: StatsSummaryVM["skillItemsLimit"];
 };
 
-export default function WeaknessPanel({ weaknesses, judgeAgreement, skillAccuracy }: WeaknessPanelProps) {
+export default function WeaknessPanel({ weaknesses, judgeAgreement, skillAccuracy, skillItemsLimit }: WeaknessPanelProps) {
   const ids = useId();
   const max = weaknesses.length > 0 ? Math.max(...weaknesses.map((w) => w.count)) : 0;
 
@@ -95,7 +97,7 @@ export default function WeaknessPanel({ weaknesses, judgeAgreement, skillAccurac
           as="h3"
           id={`${ids}-skills`}
           title="Reading and Listening skills"
-          description="Percent correct on each skill, weakest first. Drills and Simulations both count."
+          description={`Percent correct on each skill in your ${skillItemsLimit} most recently scored multiple-choice Reading and Listening Items, weakest first. A Complete the Words gap has no skill, so it is not counted. Drills and Simulations both count.`}
         />
         {skillAccuracy.length === 0 ? (
           <EmptyState title="Not enough scored Items yet">

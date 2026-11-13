@@ -60,6 +60,7 @@ function summary(sections: StatsSectionVM[], overallBand: number | null): StatsS
     weaknesses: [],
     judgeAgreement: { avgDelta: null, sampleSize: 0 },
     skillItems: [],
+    skillItemsLimit: 300,
   };
 }
 
@@ -120,6 +121,8 @@ const SOME_ATTEMPTS: AttemptListVM = {
       captureFinishedAt: null,
       flagged: false,
       estimate: { band: 6, method: "table3-v1" },
+      missingBand: null,
+      fullTestRun: null,
     },
   ],
   total: 1,
@@ -132,13 +135,13 @@ function setUp(opts: { summary: StatsSummaryVM; setup?: SetupStatus; attempts?: 
   mocked.listAttempts.mockResolvedValue(opts.attempts ?? SOME_ATTEMPTS);
 }
 
-function renderDashboard() {
+function renderDashboard(at = "/") {
   return renderRoutes(
     [
       { path: "/", element: <Dashboard /> },
       { path: "/full-test/:runId", element: <p>Full-Test Run page</p> },
     ],
-    "/",
+    at,
   );
 }
 
@@ -157,6 +160,8 @@ describe("Dashboard — first run", () => {
     renderDashboard();
     const start = await screen.findByRole("region", { name: "Start here" });
     expect(within(start).getByRole("link", { name: "Start Reading Simulation" })).toHaveAttribute("href", "/simulate/reading");
+    // The Listening warm-up opens the Set list on its Listening tab, not on Reading.
+    expect(within(start).getByRole("link", { name: "Choose a Listening Set" })).toHaveAttribute("href", "/sets?section=listening");
     // No Overall on a first run, and no second primary from the suggestion block.
     expect(screen.queryByText("Overall")).toBeNull();
     expect(screen.queryByText("Suggested next")).toBeNull();
@@ -237,6 +242,88 @@ describe("Dashboard — after the first Attempt", () => {
     expect(screen.queryByRole("list", { name: "Setup checks" })).not.toBeVisible();
     await userEvent.click(button);
     expect(screen.getByRole("list", { name: "Setup checks" })).toBeVisible();
+  });
+
+  it("scrolls to Setup only once its checklist has opened, so the page is tall enough to bring the heading to the top", async () => {
+    setUp({ summary: summary([band("reading", 6), band("listening", 5.5)], null), setup: { ...FRESH } });
+    // jsdom has no layout, so record what the page looked like at the moment the scroll was asked for.
+    const openWhenScrolled: boolean[] = [];
+    const scrollIntoView = vi.fn(function (this: Element) {
+      openWhenScrolled.push(this.querySelector("details")?.open ?? false);
+    });
+    Element.prototype.scrollIntoView = scrollIntoView;
+    try {
+      renderDashboard();
+      await userEvent.click(await screen.findByRole("button", { name: "See what's missing" }));
+      await waitFor(() => expect(scrollIntoView).toHaveBeenCalledTimes(1));
+      expect(scrollIntoView.mock.contexts[0]).toHaveAttribute("id", "setup");
+      expect(openWhenScrolled).toEqual([true]);
+      expect(document.activeElement).toHaveAttribute("id", "setup");
+    } finally {
+      delete (Element.prototype as Partial<Element>).scrollIntoView;
+    }
+  });
+
+  // The notice before a run this machine can't score links to /#setup from another page.
+  it("opens Setup and scrolls to it when the page is reached at /#setup", async () => {
+    setUp({ summary: summary([band("reading", 6), band("listening", 5.5)], null), setup: { ...FRESH } });
+    const openWhenScrolled: boolean[] = [];
+    const scrollIntoView = vi.fn(function (this: Element) {
+      openWhenScrolled.push(this.querySelector("details")?.open ?? false);
+    });
+    Element.prototype.scrollIntoView = scrollIntoView;
+    try {
+      renderDashboard("/#setup");
+      await waitFor(() => expect(scrollIntoView).toHaveBeenCalledTimes(1));
+      expect(scrollIntoView.mock.contexts[0]).toHaveAttribute("id", "setup");
+      expect(openWhenScrolled).toEqual([true]);
+      expect(screen.getByRole("list", { name: "Setup checks" })).toBeVisible();
+      expect(document.activeElement).toHaveAttribute("id", "setup");
+    } finally {
+      delete (Element.prototype as Partial<Element>).scrollIntoView;
+    }
+  });
+
+  // The rest of the page is still loading above Setup when the link arrives; jsdom has no layout, so
+  // a stand-in ResizeObserver reports the page growing.
+  it("puts Setup back at the top when the page grows after an arrival at /#setup, until the User scrolls", async () => {
+    setUp({ summary: summary([band("reading", 6), band("listening", 5.5)], null), setup: { ...FRESH } });
+    const observers: { grow: () => void; disconnected: boolean }[] = [];
+    class GrowingPage {
+      disconnected = false;
+      readonly onResize: () => void;
+      constructor(onResize: () => void) {
+        this.onResize = onResize;
+        observers.push(this);
+      }
+      grow() {
+        if (!this.disconnected) this.onResize();
+      }
+      observe() {}
+      unobserve() {}
+      disconnect() {
+        this.disconnected = true;
+      }
+    }
+    vi.stubGlobal("ResizeObserver", GrowingPage);
+    const scrollIntoView = vi.fn();
+    Element.prototype.scrollIntoView = scrollIntoView;
+    try {
+      renderDashboard("/#setup");
+      await waitFor(() => expect(observers).toHaveLength(1));
+      const arrived = scrollIntoView.mock.calls.length;
+      observers[0].grow();
+      expect(scrollIntoView).toHaveBeenCalledTimes(arrived + 1);
+      expect(scrollIntoView.mock.contexts.at(-1)).toHaveAttribute("id", "setup");
+
+      window.dispatchEvent(new Event("wheel"));
+      observers[0].grow();
+      expect(observers[0].disconnected).toBe(true);
+      expect(scrollIntoView).toHaveBeenCalledTimes(arrived + 1);
+    } finally {
+      delete (Element.prototype as Partial<Element>).scrollIntoView;
+      vi.unstubAllGlobals();
+    }
   });
 
   it("keeps Setup reachable but collapsed, behind what this machine can't do yet", async () => {

@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import { afterAll, beforeAll, describe, expect, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
+import type Database from "better-sqlite3";
 import { framelessWritingSet } from "./helpers/setFixtures.js";
 import type { AttemptDetailVM, AttemptListVM, ScoringJobDetailVM } from "@toefl-prep/shared";
 import { openDb } from "../src/db/db.js";
@@ -36,6 +37,31 @@ function harness() {
   return { r, db, app };
 }
 
+/** Counts the statements run on `db` from now until `stop`, at the seam every store goes through. */
+function countStatements(db: Database.Database) {
+  const prepare = db.prepare.bind(db);
+  let count = 0;
+  let counting = true;
+  db.prepare = ((sql: string) => {
+    const statement = prepare(sql);
+    for (const method of ["get", "all", "run", "iterate"] as const) {
+      const original = statement[method].bind(statement) as (...args: unknown[]) => unknown;
+      (statement as unknown as Record<string, unknown>)[method] = (...args: unknown[]) => {
+        if (counting) count++;
+        return original(...args);
+      };
+    }
+    return statement;
+  }) as typeof db.prepare;
+  return {
+    count: () => count,
+    stop: () => {
+      counting = false;
+      db.prepare = prepare;
+    },
+  };
+}
+
 async function getJson<T>(app: ReturnType<typeof harness>["app"], url: string): Promise<T> {
   const res = await app.request(url);
   expect(res.status).toBe(200);
@@ -69,8 +95,128 @@ describe("GET / — the Attempt log", () => {
       modulePath: null,
       routerRaw: null,
       estimate: null,
+      missingBand: null,
+      fullTestRun: null,
     });
     expect(page.items[0].isRepeat).toBe(true);
+  });
+
+  // The log marks a completed Attempt that should have a band and has none. A Simulation always
+  // should; a Drill only when it is Speaking or Writing and took every Task Type its section needs,
+  // since a Drill of the email alone gives no band by the User's own choice. A Repeat never becomes a
+  // headline band, and an unfinished Attempt or one with its band is not marked.
+  it("says which completed Attempts are missing a band they were meant to give", async () => {
+    const { r, app } = harness();
+    const writingItems = (attemptId: string) => {
+      for (const taskType of ["build_sentence", "email", "discussion"]) {
+        r.insertItemResult({ attemptId, itemId: `${taskType}-1`, taskType, scoringStatus: "failed" });
+      }
+    };
+    r.createAttempt({ id: "sim", kind: "writing", mode: "simulation", setId: SET_ID, isRepeat: false });
+    writingItems("sim");
+    r.createAttempt({ id: "email-only", kind: "writing", mode: "drill", setId: SET_ID, isRepeat: false });
+    r.insertItemResult({ attemptId: "email-only", itemId: "email-1", taskType: "email", scoringStatus: "failed" });
+    r.createAttempt({ id: "whole", kind: "writing", mode: "drill", setId: SET_ID, isRepeat: false });
+    writingItems("whole");
+    r.createAttempt({ id: "rd-drill", kind: "reading", mode: "drill", setId: "rd-elsewhere", isRepeat: false });
+    r.createAttempt({ id: "repeat", kind: "writing", mode: "simulation", setId: SET_ID, isRepeat: true });
+    writingItems("repeat");
+    r.createAttempt({ id: "open", kind: "writing", mode: "simulation", setId: SET_ID, isRepeat: false });
+    writingItems("open");
+    for (const id of ["sim", "email-only", "whole", "rd-drill", "repeat"]) r.completeAttempt(id);
+    // A band on record: every Item scored, settled as /complete settles it.
+    r.createAttempt({ id: "banded", kind: "writing", mode: "simulation", setId: SET_ID, isRepeat: false });
+    for (const [itemId, taskType, score] of [["bs-1", "build_sentence", 1], ["email-1", "email", 4], ["discussion-1", "discussion", 4]] as const) {
+      r.insertItemResult({ attemptId: "banded", itemId, taskType, responseText: "[]" });
+      r.updateItemScore({ attemptId: "banded", itemId, score, scoreJson: "{}", scoringStatus: "scored" });
+    }
+    const banded = r.settleAttempt({ attemptId: "banded" })?.estimate;
+    expect(banded).toBeTruthy();
+
+    const page = await getJson<AttemptListVM>(app, "/");
+    expect(Object.fromEntries(page.items.map((a) => [a.id, a.missingBand]))).toEqual({
+      sim: "incomplete",
+      "email-only": null,
+      whole: "incomplete",
+      "rd-drill": null,
+      repeat: null,
+      open: null,
+      banded: null,
+    });
+    expect(page.items.find((a) => a.id === "banded")?.estimate).not.toBeNull();
+  });
+
+  // A Writing Simulation's /complete lands while both essay jobs are still queued. Until they end the
+  // row is still scoring, by the rule the Attempt review uses, and never "missing a band"; once the
+  // job has ended failed, the band is missing.
+  it("reads a completed Simulation with a queued scoring job as still scoring, then as missing once the job fails", async () => {
+    const { r, app } = harness();
+    r.createAttempt({ id: "sim", kind: "writing", mode: "simulation", setId: SET_ID, isRepeat: false });
+    r.insertItemResult({ attemptId: "sim", itemId: "bs-1", taskType: "build_sentence", responseText: "[]" });
+    r.updateItemScore({ attemptId: "sim", itemId: "bs-1", score: 1, scoreJson: "{}", scoringStatus: "scored" });
+    r.insertItemResult({ attemptId: "sim", itemId: "email-1", taskType: "email", responseText: "Dear team," });
+    r.insertItemResult({ attemptId: "sim", itemId: "discussion-1", taskType: "discussion", responseText: "I think" });
+    r.createScoringJob({ id: "job-email", attemptId: "sim", taskType: "email", itemIds: ["email-1"] });
+    r.createScoringJob({ id: "job-discussion", attemptId: "sim", taskType: "discussion", itemIds: ["discussion-1"] });
+    r.completeAttempt("sim");
+
+    const scoring = await getJson<AttemptListVM>(app, "/");
+    const review = await getJson<AttemptDetailVM>(app, "/sim");
+    expect(scoring.items[0].missingBand).toBe("scoring");
+    expect(review.bandStatus.status).toBe("scoring");
+
+    for (const [jobId, itemId] of [["job-email", "email-1"], ["job-discussion", "discussion-1"]]) {
+      r.seedScoringJobState({ id: jobId, status: "failed", error: "no Judge available" });
+      r.updateItemScore({ attemptId: "sim", itemId, score: null, scoreJson: "{}", scoringStatus: "failed" });
+    }
+    const settled = await getJson<AttemptListVM>(app, "/");
+    expect(settled.items[0].missingBand).toBe("incomplete");
+    expect((await getJson<AttemptDetailVM>(app, "/sim")).bandStatus.status).toBe("incomplete");
+  });
+
+  // A page is measured by the statements it runs, on a bank shaped like a real one: Simulations and
+  // whole-section Drills whose scoring failed, Drills of one Task Type, Reading Drills, unfinished
+  // Attempts and a Full-Test Run's section. Each Item carries a long Response the log never shows.
+  it("reads a page of a hundred Attempts without the whole-Attempt read", async () => {
+    const { r, db, app } = harness();
+    for (let i = 0; i < 100; i++) {
+      const id = `att-${String(i).padStart(3, "0")}`;
+      const shape = i % 5;
+      const kind = shape === 2 ? "speaking" : shape === 3 ? "reading" : "writing";
+      const mode = shape === 0 ? "simulation" : "drill";
+      r.createAttempt({ id, kind, mode, setId: kind === "writing" ? SET_ID : `${kind}-elsewhere`, isRepeat: false });
+      const taskTypes = shape === 2 ? ["interview"] : shape === 3 ? ["complete_words"] : ["build_sentence", "email", "discussion"];
+      for (const taskType of taskTypes) {
+        r.insertItemResult({ attemptId: id, itemId: `${taskType}-1`, taskType, responseText: "x".repeat(2000), scoringStatus: "failed" });
+      }
+      if (shape !== 4) r.completeAttempt(id);
+    }
+    r.createFullTestRun({ id: "run-1", currentSection: "writing", setIds: { writing: SET_ID } });
+    r.linkFullTestAttempt("run-1", "writing", "att-000");
+
+    const getAttempt = vi.spyOn(r, "getAttempt");
+    const runForAttempt = vi.spyOn(r, "getFullTestRunForAttempt");
+    const itemStates = vi.spyOn(r, "listItemScoringStates");
+    const statements = countStatements(db);
+    const page = await getJson<AttemptListVM>(app, "/?limit=100");
+    statements.stop();
+
+    expect(page.items).toHaveLength(100);
+    expect(page.items.find((a) => a.id === "att-000")?.fullTestRun).toEqual({ id: "run-1", status: "in-progress" });
+    expect(page.items.filter((a) => a.fullTestRun !== null)).toHaveLength(1);
+    expect(page.items.filter((a) => a.missingBand === "incomplete")).toHaveLength(40);
+    // No Item's Response, transcript or Score Report is read, and the Runs are read once for the page.
+    expect(getAttempt).not.toHaveBeenCalled();
+    expect(runForAttempt).not.toHaveBeenCalled();
+    // The band state is worked out only for a completed row with no band: never for a Reading Drill or
+    // an unfinished Attempt.
+    expect(new Set(itemStates.mock.calls.map(([id]) => Number(id.slice(4)) % 5))).toEqual(new Set([0, 1, 2]));
+    expect(itemStates).toHaveBeenCalledTimes(60);
+    // The page, its total and the Runs (3), one estimate lookup per row (100), the Task Types of the
+    // twenty one-Task-Type Speaking Drills (20), and the Task Types, active scoring jobs and
+    // transcriptions of the forty rows meant to give a band (120). Before: 322, with sixty whole-Attempt
+    // reads.
+    expect(statements.count()).toBeLessThanOrEqual(243);
   });
 
   it("pages with limit and offset while total keeps counting the whole log", async () => {

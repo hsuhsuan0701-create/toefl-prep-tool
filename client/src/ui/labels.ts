@@ -140,6 +140,25 @@ export const SET_PRACTICE_STATE: Record<SetPracticeState, StatusPresentation> = 
   },
 };
 
+/**
+ * A Set in the Drill Lab's bank, by how many of its Listen and Repeat sentences are answered (a
+ * recorded take that was scored, the one rule the lab reveals a sentence by). Narrower than
+ * SET_PRACTICE_STATE on purpose: a sentence counts here only once it can no longer be spoiled.
+ * Null when every sentence is answered, since then nothing in the Set is hidden.
+ */
+export function drillLabSetState(answered: number, total: number): StatusPresentation | null {
+  if (answered >= total) return null;
+  if (answered === 0) {
+    return { label: "Not attempted", tone: "caution", glyph: "caution", hint: "Every sentence stays hidden until you open it." };
+  }
+  return {
+    label: `${answered} of ${total} sentences answered`,
+    tone: "neutral",
+    glyph: "progress",
+    hint: "The sentences you haven't answered stay hidden until you open them.",
+  };
+}
+
 export const SET_SOURCE: Record<"ets-sample" | "generated" | "imported", string> = {
   "ets-sample": "ETS sample",
   generated: "Generated",
@@ -468,6 +487,30 @@ export const SETUP_CHECK_STATE: Record<SetupCheckState, StatusPresentation> = {
   checking: { label: "Checking", tone: "neutral", glyph: "pending", hint: "The server has not finished checking this yet." },
 };
 
+/**
+ * A section whose scoring this machine cannot do, as the setup status reports it (`sectionScorability`
+ * in pages/dashboard/suggestNext.ts says `blocked`). It names a capability, never a provider: which
+ * piece is missing is the Setup checklist's to say.
+ */
+export const SCORING_NOT_SET_UP = {
+  label: "Scoring isn't set up on this machine",
+  tone: "caution",
+  glyph: "caution",
+  /** The way to the Setup checklist, wherever the notice links to it. */
+  setupLink: "See what's missing",
+} as const;
+
+/**
+ * This machine refuses every Speaking recording (the setup status's `speaking-uploads` is off), so a
+ * Speaking run keeps nothing to score, now or after Setup. Critical where SCORING_NOT_SET_UP is a
+ * caution: that one loses only time, this one loses the run.
+ */
+export const RECORDINGS_NOT_SAVED = {
+  label: "Recordings can't be saved on this machine",
+  tone: "critical",
+  glyph: "cross",
+} as const;
+
 // Attempt review: Deductions, Judges, and the cautions a Score Report can carry.
 
 /** A Deduction's `category` (DeductionCategory, shared/src/schemas/scoring.ts), as its chip reads. */
@@ -493,6 +536,55 @@ export const NOT_TRANSCRIBED: StatusPresentation = {
   glyph: "caution",
   hint: "The recording was saved, but nothing is transcribing it, so it has no score.",
 };
+
+/**
+ * A completed Attempt that was expected to give a band and has none while its scoring is still on its
+ * way (a Judge has yet to finish, or a recording is still being transcribed). Beside its "Completed"
+ * status on an Attempt row, in the words the Attempt review and the Full-Test Run report use.
+ */
+export const STILL_SCORING: StatusPresentation & { hint: string } = {
+  label: "Still scoring",
+  tone: "accent",
+  glyph: "progress",
+  hint: "Completed, and still being scored. The band appears when scoring finishes.",
+};
+
+/**
+ * A completed Attempt that was expected to give a band and has none, with its scoring settled: an
+ * Item failed, was never transcribed, or is missing. Beside its "Completed" status on an Attempt row,
+ * so the row stops implying all went well; the review says which Item and why.
+ */
+export const NO_BAND: StatusPresentation & { hint: string } = {
+  label: "No band",
+  tone: "caution",
+  glyph: "caution",
+  hint: "Completed without a Band Estimate: an Item is unscored or missing. Open it to see which.",
+};
+
+/** A Re-score of an Item that already had a score failed: the committed score stands (the server keeps it). */
+export const RESCORE_FAILED: StatusPresentation & { hint: string } = {
+  label: "Re-score failed",
+  tone: "critical",
+  glyph: "cross",
+  hint: "The score below still stands: nothing from the Re-score was saved.",
+};
+
+/**
+ * An Attempt's `flagged` boolean. It is one flag raised more than one way: the tab went hidden (or a
+ * Writing Simulation was reopened), or a Speaking or Listening prompt would not play and the run
+ * stopped on its gate. The flag does not say which, so the words never claim the User left: they say
+ * the Simulation was interrupted, and why that matters.
+ */
+export const ATTEMPT_FLAG = {
+  /** The chip in the review's header and the title of its notice. */
+  heading: "Flagged",
+  /** The chip on the Attempt's row, and its tooltip. */
+  label: "Interrupted",
+  hint: "This Simulation was interrupted: the tab was left, or a prompt would not play.",
+  /** The review's notice, for a Simulation and for anything else. */
+  simulationNote: "This Simulation was interrupted (the tab was left, or a prompt would not play), so its timing may not match the test.",
+  otherNote: "This Attempt is flagged for review.",
+} as const;
 
 /** A Judge by its family (CONTEXT.md, Judge). */
 export const JUDGE_LABEL: Record<"gemini" | "openai", string> = { gemini: "Gemini", openai: "OpenAI" };

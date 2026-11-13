@@ -135,11 +135,13 @@ function jsonResponse(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
 }
 
-function renderSection(run: FullTestRunVM, sectionPath = "reading") {
+function renderSection(run: FullTestRunVM, sectionPath = "reading", respond?: (url: string) => Response | undefined) {
   const calls: { url: string; init?: RequestInit }[] = [];
   const fetchMock = vi.fn((input: RequestInfo | URL, init?: RequestInit) => {
     const url = typeof input === "string" ? input : input.toString();
     calls.push({ url, init });
+    const answer = respond?.(url);
+    if (answer) return Promise.resolve(answer);
     if (url.includes(`/api/full-tests/${RUN_ID}`)) return Promise.resolve(jsonResponse(run));
     const served = Object.values(PUBLIC_SETS).find((s) => url.includes(`/api/sets/${String(s.id)}`));
     if (served) return Promise.resolve(jsonResponse(served));
@@ -267,6 +269,73 @@ describe("the full-test section route", () => {
         setId: SET_IDS.speaking,
         fullTestRunId: RUN_ID,
       });
+    });
+  });
+
+  // A section left part-way and started again replaces the Attempt the Run records, and POST
+  // /api/attempts gives the new one that Attempt's tag. The listing marks the Set attempted as soon
+  // as the replaced Attempt holds a scored Item, so the intro's caution must follow the replaced
+  // Attempt, as the server does, or a first sitting is announced as a Repeat.
+  describe("a restarted section's Repeat notice follows the Attempt it replaces", () => {
+    const START: Record<FullTestSection, RegExp> = {
+      reading: /Reading section/,
+      listening: /Listening section/,
+      writing: /Writing section/,
+      speaking: /Speaking section/,
+    };
+
+    function restartAt(at: FullTestSection): FullTestRunVM {
+      const run = runAt(at);
+      return {
+        ...run,
+        sections: run.sections.map((s) => (s.section === at ? { ...s, state: "in-progress", attemptId: `att-old-${at}` } : s)),
+      };
+    }
+
+    /** The Set listing (which marks the Run's Set attempted) and the replaced Attempt, tagged `isRepeat`. */
+    function responder(at: FullTestSection, isRepeat: boolean) {
+      return (url: string): Response | undefined => {
+        if (url === "/api/sets") {
+          return jsonResponse([
+            { id: SET_IDS[at], kind: at, source: "generated", createdAt: "2026-08-20T00:00:00.000Z", title: "The Run's Set", summary: null, attempted: true },
+          ]);
+        }
+        if (url.endsWith(`/api/attempts/att-old-${at}`)) {
+          return jsonResponse({
+            attempt: {
+              id: `att-old-${at}`, kind: at, mode: "simulation", setId: SET_IDS[at], setTitle: "The Run's Set", isRepeat,
+              status: "in_progress", startedAt: "2026-08-23T02:00:00.000Z", completedAt: null, captureFinishedAt: null, flagged: false,
+            },
+            items: [], judgeReports: [], estimate: null, bandStatus: { status: "unfinished" }, activeJobs: [],
+          });
+        }
+        return undefined;
+      };
+    }
+
+    it.each(["reading", "listening", "writing", "speaking"] as const)(
+      "%s: no Repeat caution when the replaced Attempt was a first sitting",
+      async (name) => {
+        renderSection(restartAt(name), name, responder(name, false));
+        expect(await screen.findByRole("heading", { name: START[name] })).toBeInTheDocument();
+        expect(screen.getByText(/The Run's Set/)).toBeInTheDocument();
+        expect(screen.queryByText(/this Attempt is a Repeat/)).toBeNull();
+      },
+    );
+
+    it.each(["reading", "listening", "writing", "speaking"] as const)(
+      "%s: the Repeat caution stays when the replaced Attempt was a Repeat",
+      async (name) => {
+        renderSection(restartAt(name), name, responder(name, true));
+        expect(await screen.findByRole("heading", { name: START[name] })).toBeInTheDocument();
+        expect(screen.getByText(/this Attempt is a Repeat/)).toBeInTheDocument();
+      },
+    );
+
+    it("a section sat for the first time in the Run still reads the listing", async () => {
+      renderSection(runAt("listening"), "listening", responder("listening", false));
+      expect(await screen.findByRole("heading", { name: START.listening })).toBeInTheDocument();
+      expect(screen.getByText(/this Attempt is a Repeat/)).toBeInTheDocument();
     });
   });
 

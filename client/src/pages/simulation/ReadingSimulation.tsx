@@ -12,6 +12,7 @@ import {
   reduceReadingSim,
 } from "../readingSimulation";
 import { useLeaveGuard } from "../../hooks/useLeaveGuard";
+import { useStageEntry } from "../../hooks/useStageEntry";
 import StimulusQuestions from "../../components/StimulusQuestions";
 import ModulePathDisclosure from "../../components/ModulePathDisclosure";
 import { Button } from "../../ui/Button";
@@ -31,6 +32,7 @@ import {
   leaveBeforeCompletedMessage,
   leaveRestartsSectionMessage,
   pickSimulationSet,
+  predictRepeat,
   repeatNoticeText,
   sleep,
   useAttemptCompletion,
@@ -56,10 +58,11 @@ const hasResponse = (answers: ReadonlyMap<string, string>, itemId: string) => (a
 
 
 export default function ReadingSimulation({ fullTest }: { fullTest?: FullTestSectionContext }) {
-  // Read out once so the hooks below can depend on the two primitives rather than on an object
-  // identity the caller re-creates on every render.
+  // Read out once so the hooks below can depend on primitives rather than on an object identity
+  // the caller re-creates on every render.
   const fullTestRunId = fullTest?.runId;
   const fullTestSetId = fullTest?.setId;
+  const fullTestAttemptId = fullTest?.attemptId;
   const exitTo = fullTestRunId ? `/full-test/${fullTestRunId}` : "/";
 
   const [pageStage, setPageStage] = useState<"loading" | "error" | "ready">("loading");
@@ -76,6 +79,9 @@ export default function ReadingSimulation({ fullTest }: { fullTest?: FullTestSec
   // Whether the clock, not the User, ended the Module now being scored — said on the scoring screen.
   const [endedByClock, setEndedByClock] = useState(false);
   const [simState, dispatch] = useReducer(reduceReadingSim, { stage: "intro" as const });
+  // Both Modules run in `module`, so which one is part of the stage's name. Moving between its
+  // screens is not a stage change.
+  useStageEntry(pageStage === "ready" ? `${simState.stage}:${"module" in simState ? simState.module : ""}` : null);
 
   const mountedRef = useRef(true);
   const retryRef = useRef<(() => void) | null>(null);
@@ -105,14 +111,15 @@ export default function ReadingSimulation({ fullTest }: { fullTest?: FullTestSec
     try {
       // Inside a Full-Test Run the Set is the one the Run drew (the server refuses any other),
       // looked up in the bank only for its title and `attempted` flag; standalone, the automatic
-      // pick. Either way the listing's `attempted` lets the intro disclose a Repeat before the User
-      // commits about 30 minutes.
+      // pick. predictRepeat lets the intro disclose a Repeat before the User commits about 30
+      // minutes.
       const entry = fullTestSetId ? await findListedSet(fullTestSetId) : await pickSimulationSet("reading");
       const s = await getSet(fullTestSetId ?? entry!.id);
+      const repeat = await predictRepeat(entry, fullTestAttemptId);
       if (!mountedRef.current) return;
       setSet(expectServedSet("reading", s));
       setListing(entry);
-      setIsRepeat(entry?.attempted ?? false);
+      setIsRepeat(repeat);
       setPageStage("ready");
     } catch (e) {
       if (!mountedRef.current) return;
@@ -120,7 +127,7 @@ export default function ReadingSimulation({ fullTest }: { fullTest?: FullTestSec
       retryRef.current = () => void loadSet();
       setPageStage("error");
     }
-  }, [fullTestSetId]);
+  }, [fullTestSetId, fullTestAttemptId]);
 
   useEffect(() => {
     void loadSet();
@@ -393,10 +400,13 @@ export default function ReadingSimulation({ fullTest }: { fullTest?: FullTestSec
         }}
         footer={
           <>
+            {/* Three labelled buttons need about 340px of row, and a phone narrower than 375px has 328
+                or less: there Back is its arrow alone, still named for a screen reader. */}
             <Button icon={<IconArrowLeft size={16} />} onClick={() => go(screenIdx - 1)} disabled={screenIdx === 0}>
-              Back
+              <span className="max-[375px]:sr-only">Back</span>
             </Button>
-            <div className="flex items-center gap-2">
+            {/* ml-auto keeps the pair at the right when the footer has to wrap under Back. */}
+            <div className="ml-auto flex items-center gap-1 sm:gap-2">
               <Button variant={isLast ? "primary" : "quiet"} onClick={() => setConfirmingSubmit(true)}>
                 Submit Module…
               </Button>
@@ -420,6 +430,7 @@ export default function ReadingSimulation({ fullTest }: { fullTest?: FullTestSec
           answers={simState.answers}
           onAnswer={(itemId, value) => dispatch({ type: "answer", itemId, value })}
           autoFocus
+          newlyShown={simState.previousStimulusIdx !== current.stimulusIdx}
         />
         <ConfirmDialog
           open={confirmingSubmit}

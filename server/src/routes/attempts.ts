@@ -16,6 +16,7 @@ import {
   type ScoringJobDetailVM,
   type ScoringProgressDetail,
   type SpeakingSet,
+  type SpokenPromptVM,
   type TranscriptionJobVM,
 } from "@toefl-prep/shared";
 import {
@@ -23,7 +24,7 @@ import {
   readSetForDisplay,
   setTitleOrNull,
   setTitlesById,
-  toAttemptListItemVM,
+  toAttemptListItemVMs,
   toAttemptVM,
   toScoringJobVM,
 } from "./attemptViewModels.js";
@@ -134,8 +135,11 @@ function findSpeakingItem(set: SpeakingSet, itemId: string): SpeakingItemLookup 
  *   write-once capture    CaptureStore's combined seam is the only writer of the capture marker and
  *                         the missing-Item placeholders; the SetUnavailable branches below use it
  *                         with an empty placeholder list.
- *   Full-Test Runs        Only `linkFullTestAttempt` and the reads `checkFullTestLink` needs; the
- *                         rest of a Run's lifecycle belongs to routes/fullTests.ts.
+ *   Full-Test Runs        Only `linkFullTestAttempt`, the reads `checkFullTestLink` needs,
+ *                         `getFullTestRunForAttempt` (abort refuses the section a Run in progress
+ *                         is sitting) and `listFullTestRunsForAttempts` (the log names a section's
+ *                         Run, one read per page); the rest of a Run's
+ *                         lifecycle belongs to routes/fullTests.ts.
  *   Set supersession      `supersedeSet` is not in scope: retiring a Set belongs to the generation
  *                         runner that published its replacement.
  *
@@ -153,12 +157,12 @@ export type AttemptsRouteStore =
   & Omit<ScoreStore, "getAttempt" | "getScoringJob">
   & Omit<ScoringStore, "getAttempt">
   & Omit<EstimateStore, "getAttempt">
-  & Pick<FullTestRunStore, "linkFullTestAttempt">
+  & Pick<FullTestRunStore, "linkFullTestAttempt" | "getFullTestRunForAttempt" | "listFullTestRunsForAttempts">
   & FullTestLinkCheckStore
   & RecordingStore
   & DeterministicScoreStore
   & BuildSentenceScoreStore
-  & Pick<TranscriptionJobStore, "getTranscriptionJob">;
+  & Pick<TranscriptionJobStore, "getTranscriptionJob" | "getCurrentTranscriptionJobs">;
 
 export type AttemptsRouteDeps = Omit<ScoreDeps, "repo"> & {
   repo: AttemptsRouteStore;
@@ -228,11 +232,11 @@ async function readCaptureFinishedHints(c: Context): Promise<CaptureFinishedHint
   return parsed.success ? { uploadFailedItemIds: parsed.data.uploadFailedItemIds } : {};
 }
 
-// Re-derives the key and Explanation (錯題解析) for every scored Reading or Listening Item of a
-// completed Attempt, walking the Set the same way scoreDeterministicItems does
-// (indexDeterministicItems). Neither field is persisted to item_results, so the review has nowhere
-// else to read them from. The caller gates this on the Attempt being completed: a Simulation's keys
-// and Explanations reach the client only after the whole Attempt is done.
+// Re-derives the key and Explanation (錯題解析) for each of `items` (Reading or Listening), walking
+// the Set the same way scoreDeterministicItems does (indexDeterministicItems). Neither field is
+// persisted to item_results, so the review has nowhere else to read them from. The caller chooses
+// the Items: all of a completed Attempt's, or only the scored ones of an unfinished or discarded
+// Drill. A Simulation's keys and Explanations reach the client only after the whole Attempt is done.
 function buildDeterministicReview(set: AnySet, items: ItemVM[]): DeterministicReviewItemVM[] | undefined {
   if (set.kind !== "reading" && set.kind !== "listening") return undefined;
   const index = indexDeterministicItems(set);
@@ -259,6 +263,22 @@ function buildDeterministicReview(set: AnySet, items: ItemVM[]): DeterministicRe
     }
   }
   return out;
+}
+
+// Each spoken Item's prompt as text, read from the Set: the Listen and Repeat sentence, or the
+// Item's own Interview question (never the introduction, which the served Set already carries).
+// Neither is persisted with an unscored Item, and the served Set strips both, so this is the one
+// place an Item with no Score Report can get them. The caller sends it only for a completed Attempt
+// (docs/adr/0017). An Item the Set no longer carries is left out.
+function buildSpokenPrompts(set: AnySet, items: ItemVM[]): SpokenPromptVM[] | undefined {
+  if (set.kind !== "speaking") return undefined;
+  const byId = new Map<string, SpokenPromptVM>();
+  for (const item of set.listenAndRepeat.items) byId.set(item.id, { itemId: item.id, taskType: "listen_repeat", text: item.sentence });
+  for (const question of set.interview.questions) byId.set(question.id, { itemId: question.id, taskType: "interview", text: question.question });
+  return items.flatMap((item) => {
+    const prompt = byId.get(item.itemId);
+    return prompt && prompt.taskType === item.taskType ? [prompt] : [];
+  });
 }
 
 // A Build a Sentence score_json without its key (`correctAnswers`): correctness and the frame stay,
@@ -770,10 +790,21 @@ export function buildAttemptsRoutes(deps: AttemptsRouteDeps) {
     //
     // The answer comes from the guarded write, not from the read before it: when a completion lands
     // in between, the write changes nothing and the 409 names the state the Attempt is really in.
+    //
+    // The unfinished section a Full-Test Run in progress is sitting is refused: a Run never re-sits
+    // an abandoned section, so discarding it would cost the Run its Overall for good. It is finished
+    // inside the Run. /complete is not refused the same way, because the section's own flow calls it.
     .post("/:id/abort", (c) => {
       const attemptId = c.req.param("id");
       const attempt = deps.repo.getAttempt(attemptId);
       if (!attempt) return c.json({ error: "unknown attempt" }, 404);
+      const run = attempt.status === "in_progress" ? deps.repo.getFullTestRunForAttempt(attemptId) : undefined;
+      if (run?.status === "in-progress") {
+        return c.json({
+          error: "This Attempt is a section of a Full-Test Run in progress, and a discarded section can never be sat again. Resume the Run to finish it.",
+          fullTestRunId: run.id,
+        }, 409);
+      }
       if (attempt.status === "in_progress" && deps.repo.abortAttempt(attemptId)) {
         return c.json({ status: "aborted" });
       }
@@ -846,7 +877,7 @@ export function buildAttemptsRoutes(deps: AttemptsRouteDeps) {
       const rows = deps.repo.listAttempts({ kind, setId, limit, offset });
       const titles = setTitlesById(rows.map((row) => row.set_id));
       return c.json({
-        items: rows.map((row) => toAttemptListItemVM(row, titles.get(row.set_id) ?? null, deps.repo)),
+        items: toAttemptListItemVMs(rows, titles, deps.repo),
         total: deps.repo.countAttempts({ kind, setId }),
       } satisfies AttemptListVM);
     })
@@ -946,12 +977,22 @@ export function buildAttemptsRoutes(deps: AttemptsRouteDeps) {
         transcriptionStatuses: [...transcriptionJobs.values()].map((job) => job.status),
       });
 
-      // The key and Explanation review, for a completed Reading or Listening Attempt only, in either
-      // mode. A missing or unreadable Set omits the field rather than failing the readback.
+      // The key and Explanation review of a Reading or Listening Attempt: every Item once it is
+      // completed, in either mode. A Drill that is unfinished or discarded gets it for its scored
+      // Items only, each of which its own score response has already shown with its key and
+      // Explanation; an Item it never scored, and an unfinished Simulation, get nothing (CLAUDE.md,
+      // "Sets and answers"). A missing or unreadable Set omits the field rather than failing the
+      // readback.
+      const reviewItems =
+        attempt.status === "completed" ? items : attempt.mode === "drill" ? items.filter((item) => item.scoringStatus === "scored") : [];
       let deterministicReview: DeterministicReviewItemVM[] | undefined;
-      if (set && attempt.status === "completed" && (attempt.kind === "reading" || attempt.kind === "listening")) {
+      if (
+        set &&
+        (attempt.status === "completed" || reviewItems.length > 0) &&
+        (attempt.kind === "reading" || attempt.kind === "listening")
+      ) {
         try {
-          deterministicReview = buildDeterministicReview(set, items);
+          deterministicReview = buildDeterministicReview(set, reviewItems);
         } catch (err) {
           // Two Items sharing an id: either key could be shown against either Response, so the
           // review is left out rather than risk teaching a wrong answer.
@@ -959,6 +1000,12 @@ export function buildAttemptsRoutes(deps: AttemptsRouteDeps) {
           console.error("[attempts] review omitted:", safeErrorDescriptor(err), err.setId, err.itemId);
         }
       }
+
+      // The text of each spoken Item's prompt, for a completed Speaking Attempt only: while an
+      // Attempt can still be answered its sentences and questions stay withheld, as the served Set
+      // withholds them (docs/adr/0017). A missing or unreadable Set omits the field.
+      const spokenPrompts =
+        set && attempt.status === "completed" && attempt.kind === "speaking" ? buildSpokenPrompts(set, items) : undefined;
 
       return c.json({
         attempt: attemptVM,
@@ -968,6 +1015,7 @@ export function buildAttemptsRoutes(deps: AttemptsRouteDeps) {
         bandStatus,
         activeJobs,
         ...(deterministicReview ? { deterministicReview } : {}),
+        ...(spokenPrompts ? { spokenPrompts } : {}),
       } satisfies AttemptDetailVM);
     });
 }

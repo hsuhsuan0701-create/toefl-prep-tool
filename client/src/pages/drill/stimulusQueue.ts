@@ -73,3 +73,12 @@ export function isListeningStimulus(stimulus: QuestionedStimulus): stimulus is S
     stimulus.taskType === "academic_talk"
   );
 }
+
+/**
+ * How long after a Stimulus's feedback arrives its "Next Stimulus" (or "See results") ignores a
+ * press. Checking and moving on are one button in one place, and local scoring answers in a few
+ * milliseconds, so the second half of a double click, or a second Enter or Space, would otherwise
+ * land on "Next Stimulus" and leave the feedback unseen. Half a second covers a human double
+ * activation; a deliberate press after reading the marks comes later than that.
+ */
+export const FEEDBACK_HOLD_MS = 500;

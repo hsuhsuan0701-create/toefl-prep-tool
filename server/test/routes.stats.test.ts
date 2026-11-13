@@ -155,6 +155,30 @@ describe("GET /trends", () => {
     expect(body[0].avgScore).toBeCloseTo(0.5);
   });
 
+  // The band rule per Task Type (ADR 0010): a point only when every Item of the Task Type is scored,
+  // a deliberate skip being a scored 0.
+  it("counts a skip as 0 in an Attempt whose Items of the Task Type are all scored", async () => {
+    completedAttempt(ctx, { id: "att-1", kind: "speaking", mode: "simulation", setId: "spk-1", isRepeat: false });
+    for (let i = 1; i <= 6; i++) scoreItem(ctx, "att-1", `lr-${i}`, "listen_repeat", 3.5, { deductions: [] });
+    scoreItem(ctx, "att-1", "lr-7", "listen_repeat", 0, { skipped: true, reason: "No recording was made for this item." });
+
+    const body = (await (await ctx.app.request("/trends?taskType=listen_repeat")).json()) as TrendPointVM[];
+    expect(body.map((p) => p.attemptId)).toEqual(["att-1"]);
+    expect(body[0].avgScore).toBeCloseTo(3);
+  });
+
+  it("gives no point for an Attempt with an Item of the Task Type that is not scored, and ignores other Task Types' Items", async () => {
+    completedAttempt(ctx, { id: "att-1", kind: "speaking", mode: "drill", setId: "spk-1", isRepeat: false });
+    scoreItem(ctx, "att-1", "lr-1", "listen_repeat", 4, { deductions: [] });
+    scoreItem(ctx, "att-1", "int-1", "interview", 4, { deductions: [] });
+    ctx.repo.insertItemResult({ attemptId: "att-1", itemId: "int-2", taskType: "interview", scoringStatus: "transcription_pending" });
+    ctx.repo.insertItemResult({ attemptId: "att-1", itemId: "int-3", taskType: "interview" });
+    ctx.repo.updateItemScore({ attemptId: "att-1", itemId: "int-3", score: null, scoreJson: JSON.stringify({ error: "judges failed" }), scoringStatus: "failed" });
+
+    const body = (await (await ctx.app.request("/trends?taskType=listen_repeat,interview")).json()) as TrendPointVM[];
+    expect(body.map((p) => [p.taskType, p.avgScore])).toEqual([["listen_repeat", 4]]);
+  });
+
   it("orders deterministically by attempt insertion order (not attempt id) when two attempts share an identical completed_at", async () => {
     // Ids chosen so alphabetical order is the reverse of creation order: a tiebreak on attempt_id
     // (a random UUID in production) would put "aaa-created-second" first. Only an insertion-order
@@ -193,7 +217,8 @@ describe("GET /summary", () => {
 
   it("surfaces the latest section estimate (band/method/attempt/when) plus its default Target; with three sections missing there is no overall band", async () => {
     ctx.repo.createAttempt({ id: "att-spk", kind: "speaking", mode: "simulation", setId: "spk-1", isRepeat: false });
-    ctx.repo.completeAttempt("att-spk", sqliteTimestamp(new Date(Date.UTC(2026, 7, 20, 3, 4, 5))));
+    ctx.repo.completeAttempt("att-spk", sqliteTimestamp(new Date(Date.UTC(2026, 7, 20, 3, 31, 0))));
+    ctx.db.prepare("UPDATE attempts SET started_at=? WHERE id='att-spk'").run(sqliteTimestamp(new Date(Date.UTC(2026, 7, 20, 3, 4, 5))));
     persistBand(ctx, { attemptId: "att-spk", section: "speaking", rawDetail: fullDetail("speaking"), estimatedBand: 4.5, method: "linear-v2" });
     // Stored by an older version; read as nothing.
     ctx.repo.setSetting("pin.reading", "5");
@@ -205,7 +230,8 @@ describe("GET /summary", () => {
     expect(body.sections).toEqual([
       {
         section: "speaking", band: 4.5, method: "linear-v2", attemptId: "att-spk", mode: "simulation", target: 5.5,
-        // Space-form UTC in the column, an ISO instant on the wire.
+        // When the Attempt started, as its row in the Attempt log says; space-form UTC in the
+        // column, an ISO instant on the wire.
         attemptedAt: "2026-08-20T03:04:05.000Z",
         recentSimulationRange: { min: 4.5, max: 4.5, count: 1 },
       },
@@ -362,6 +388,18 @@ describe("GET /summary", () => {
         ]),
       );
       expect(body.skillItems).toHaveLength(4);
+    });
+
+    // The pane's caption names its window, so the summary says how many Items the window holds, and
+    // the Items it sends are never more than that.
+    it("sends the latest skillItemsLimit Items and the limit with them", async () => {
+      ctx.repo.createAttempt({ id: "att-many", kind: "listening", mode: "drill", setId: "ls-1", isRepeat: false });
+      for (let i = 0; i < 301; i++) {
+        scoreItem(ctx, "att-many", `lc-${i}`, "listen_choose", 1, { correct: true, skill: "detail", module: "router", answer: "a" });
+      }
+      const body = (await (await ctx.app.request("/summary")).json()) as StatsSummaryVM;
+      expect(body.skillItemsLimit).toBe(300);
+      expect(body.skillItems).toHaveLength(body.skillItemsLimit);
     });
 
     // Nothing in the route enumerates ReadingSkillCategory, so a new category reaches the weakness

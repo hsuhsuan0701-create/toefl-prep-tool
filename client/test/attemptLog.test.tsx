@@ -27,6 +27,8 @@ function attempt(over: Partial<AttemptListItemVM> = {}): AttemptListItemVM {
     modulePath: null,
     routerRaw: null,
     estimate: null,
+    missingBand: null,
+    fullTestRun: null,
     ...over,
   };
 }
@@ -76,10 +78,61 @@ describe("an Attempt row", () => {
     expect(screen.queryByText(/in_progress|aborted/)).toBeNull();
   });
 
-  it("marks a Repeat and a Simulation where the tab was left", () => {
+  // A completed Simulation whose scoring failed has no band; "Completed" alone would read as if it
+  // went fine. The server marks only an Attempt meant to give a band (`missingBand`), and leaves a
+  // Reading or Listening Drill, a Drill of one Task Type, a Repeat, an unfinished Attempt and one
+  // with its band unmarked (routes.attemptsReadModel.test.ts).
+  it("marks a completed Attempt that should have a band and has none", () => {
+    renderLog({
+      items: [
+        attempt({ id: "w-sim", missingBand: "incomplete" }),
+        attempt({ id: "s-drill", kind: "speaking", mode: "drill", missingBand: "incomplete" }),
+        attempt({ id: "l-sim", kind: "listening", estimate: { band: 4.5, method: "table3-v1" } }),
+        attempt({ id: "r-drill", kind: "reading", mode: "drill" }),
+        attempt({ id: "w-email", kind: "writing", mode: "drill" }),
+        attempt({ id: "r-repeat", kind: "reading", isRepeat: true }),
+        attempt({ id: "s-open", kind: "speaking", status: "in_progress", completedAt: null }),
+      ],
+      total: 7,
+    });
+    const row = (name: string) => screen.getByRole("link", { name }).closest("li")!;
+    for (const name of ["Writing Simulation", "Speaking Drill"]) {
+      expect(within(row(name)).getByText("Completed")).toBeInTheDocument();
+      expect(within(row(name)).getByText("No band")).toBeInTheDocument();
+    }
+    for (const name of ["Listening Simulation", "Reading Drill", "Writing Drill", "Reading Simulation", "Speaking Simulation"]) {
+      expect(within(row(name)).queryByText("No band")).toBeNull();
+      expect(within(row(name)).queryByText("Still scoring")).toBeNull();
+    }
+  });
+
+  // A Writing Simulation completes while both essay jobs are still queued; for the minutes the
+  // Judges take, nothing is wrong with it. Its row says it is still scoring, in the words the review
+  // uses, and only once scoring has settled with no band does it read "No band".
+  it("says a completed Attempt whose scoring is still on its way is still scoring, not that it has no band", () => {
+    const { rerender } = renderLog({ items: [attempt({ missingBand: "scoring" })], total: 1 });
+    const row = () => screen.getByRole("link", { name: "Writing Simulation" }).closest("li")!;
+    expect(within(row()).getByText("Completed")).toBeInTheDocument();
+    expect(within(row()).getByText("Still scoring")).toBeInTheDocument();
+    expect(within(row()).queryByText("No band")).toBeNull();
+
+    rerender(
+      <MemoryRouter>
+        <AttemptsFeed attempts={{ items: [attempt({ missingBand: "incomplete" })], total: 1 }} onChanged={() => {}} />
+      </MemoryRouter>,
+    );
+    expect(within(row()).getByText("No band")).toBeInTheDocument();
+    expect(within(row()).queryByText("Still scoring")).toBeNull();
+  });
+
+  // The flag is raised by a tab switch and by a prompt that would not play alike, so the chip says
+  // the Simulation was interrupted and never that the User left.
+  it("marks a Repeat and a flagged Simulation as interrupted", () => {
     renderLog({ items: [attempt({ isRepeat: true, flagged: true })], total: 1 });
     expect(screen.getByText("Repeat")).toBeInTheDocument();
-    expect(screen.getByText("Left the tab")).toBeInTheDocument();
+    const chip = screen.getByText("Interrupted");
+    expect(chip).toHaveAttribute("title", "This Simulation was interrupted: the tab was left, or a prompt would not play.");
+    expect(screen.queryByText(/left the tab/i)).toBeNull();
   });
 
   it("names the Module a routed Reading Simulation took beside its band", () => {
@@ -107,6 +160,33 @@ describe("the log's own states", () => {
   it("says what will fill an empty log", () => {
     renderLog({ items: [], total: 0 });
     expect(screen.getByText("No Attempts yet")).toBeInTheDocument();
+  });
+});
+
+// The log on the Dashboard and on Progress. A Run never re-sits a section that was finished or
+// discarded, so the row of the section a Run in progress is sitting leads back into the Run instead.
+describe("an unfinished Attempt that is a Full-Test Run's section", () => {
+  it("names the Run and offers to resume it, in place of finishing or discarding", () => {
+    renderLog({
+      items: [attempt({ kind: "listening", status: "in_progress", completedAt: null, fullTestRun: { id: "run-open", status: "in-progress" } })],
+      total: 1,
+    });
+    const row = screen.getByRole("link", { name: "Listening Simulation" }).closest("li")!;
+    expect(within(row).getByText("A section of a Full-Test Run in progress")).toBeInTheDocument();
+    expect(within(row).getByRole("link", { name: "Resume the Full-Test Run" })).toHaveAttribute("href", "/full-test/run-open");
+    expect(within(row).queryByRole("button", { name: "Finish and score…" })).toBeNull();
+    expect(within(row).queryByRole("button", { name: "Discard…" })).toBeNull();
+  });
+
+  it.each([
+    ["belongs to no Run (or a restart replaced it)", null],
+    ["belongs to a Run no longer in progress", { id: "run-done", status: "completed" as const }],
+  ])("keeps both actions when it %s", (_label, fullTestRun) => {
+    renderLog({ items: [attempt({ status: "in_progress", completedAt: null, fullTestRun })], total: 1 });
+    expect(screen.getByRole("button", { name: "Finish and score…" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Discard…" })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Resume the Full-Test Run" })).toBeNull();
+    expect(screen.queryByText("A section of a Full-Test Run in progress")).toBeNull();
   });
 });
 

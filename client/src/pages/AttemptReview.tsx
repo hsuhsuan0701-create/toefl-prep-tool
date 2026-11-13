@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { useLocation, useParams } from "react-router-dom";
 import type { ItemVM } from "@toefl-prep/shared";
 import { pollReasons, useAttemptReview } from "../hooks/useAttemptReview";
 import { taskTypeEntry, taskTypeLabel } from "../lib/taskTypes";
@@ -11,7 +12,7 @@ import { PageShell } from "../ui/PageShell";
 import { Skeleton } from "../ui/Skeleton";
 import { TextLink } from "../ui/Button";
 import { formatWhenRange } from "../ui/format";
-import { ATTEMPT_MODE_LABEL, ATTEMPT_STATUS, SECTION_LABEL } from "../ui/labels";
+import { ATTEMPT_FLAG, ATTEMPT_MODE_LABEL, ATTEMPT_STATUS, SECTION_LABEL } from "../ui/labels";
 import BandSummary from "../components/review/BandSummary";
 import BuildSentenceGroup from "../components/review/BuildSentenceGroup";
 import DeterministicModuleGroup from "../components/review/DeterministicModuleGroup";
@@ -22,6 +23,7 @@ import SceneImage from "../components/SceneImage";
 import TaskJobController from "../components/review/TaskJobController";
 import { rescoreCandidates } from "../components/review/reviewItems";
 import { correctSummary, judgedSummary, moduleName, reviewGroups, type ReviewGroup } from "../components/review/reviewText";
+import { spokenNumberFor, spokenPromptAudioFor } from "./attemptSetSnapshot";
 
 // Attempt review (/attempts/:id): what the User did, how it scored and what to do next, Item by Item
 // in test order. The page is composition only — state, polling and the scoring-job controllers live
@@ -44,10 +46,34 @@ function isSpoken(taskType: string): boolean {
   return taskTypeEntry(taskType)?.review === "speaking";
 }
 
+/**
+ * A link to a place in the review (`#group-…`, `#item-…`) names an element that renders only once
+ * the Attempt has loaded, after the browser has already looked for it and found nothing. So scroll
+ * to it then, and once more when the Set's text lands, since that text changes the height of what
+ * sits above it. Only on those two moments: the fragment an in-page link sets is the browser's to
+ * follow, and a fragment that names nothing leaves the page at the top.
+ */
+function useScrollToFragmentOnLoad(attemptId: string | undefined, setLanded: boolean) {
+  const { hash } = useLocation();
+  const hashRef = useRef(hash);
+  hashRef.current = hash;
+  useEffect(() => {
+    if (!attemptId || hashRef.current.length < 2) return;
+    let targetId: string;
+    try {
+      targetId = decodeURIComponent(hashRef.current.slice(1));
+    } catch {
+      return;
+    }
+    document.getElementById(targetId)?.scrollIntoView();
+  }, [attemptId, setLanded]);
+}
+
 export default function AttemptReview() {
   const { id } = useParams<{ id: string }>();
   const review = useAttemptReview(id);
   const { detail, error, finalizingStalled, setSnapshot } = review;
+  useScrollToFragmentOnLoad(detail?.attempt.id, setSnapshot !== null);
 
   if (error) {
     return (
@@ -72,13 +98,20 @@ export default function AttemptReview() {
     );
   }
 
-  const { attempt, items, judgeReports, estimate, bandStatus, deterministicReview } = detail;
+  const { attempt, items, judgeReports, estimate, bandStatus, deterministicReview, spokenPrompts } = detail;
   const reasons = pollReasons(detail);
   const settled = !reasons.transcriptionActive && !reasons.scoringActive && !reasons.captureFinalizing;
   const section = SECTION_LABEL[attempt.kind];
   const groups = reviewGroups(items, (taskType) => taskTypeEntry(taskType)?.review);
   const reviewByItemId = new Map((deterministicReview ?? []).map((r) => [r.itemId, r]));
+  // The server sends these only with a completed Speaking Attempt (docs/adr/0017); the page holds to
+  // the same rule, as it does for the prompt audio, so a sentence still being answered is never shown.
+  const spokenPromptByItemId = new Map(attempt.status === "completed" ? (spokenPrompts ?? []).map((p) => [p.itemId, p.text]) : []);
   const deterministic = attempt.kind === "reading" || attempt.kind === "listening";
+  // The server builds the key review for every Item of a completed Attempt, and for each scored Item
+  // of a Drill whatever its status. When the review is owed and still absent, the Set could not be
+  // read or two of its Items share an id; otherwise it is withheld by rule and the notice says why.
+  const reviewOwed = attempt.status === "completed" || (attempt.mode === "drill" && items.some((item) => item.scoringStatus === "scored"));
 
   const judgedProps = (item: ItemVM) => ({
     judgeReports,
@@ -108,7 +141,7 @@ export default function AttemptReview() {
             )}
             {attempt.flagged && (
               <Chip tone="caution" glyph="caution">
-                Flagged
+                {ATTEMPT_FLAG.heading}
               </Chip>
             )}
             <span className="font-mono text-caption text-faint">{attempt.setId}</span>
@@ -137,10 +170,8 @@ export default function AttemptReview() {
       <div className="space-y-12">
         <div className="space-y-4">
           {attempt.flagged && (
-            <Notice tone="caution" title="Flagged">
-              {attempt.mode === "simulation"
-                ? "You left this tab during the Simulation, so its timing may not match the test."
-                : "This Attempt is flagged for review."}
+            <Notice tone="caution" title={ATTEMPT_FLAG.heading}>
+              {attempt.mode === "simulation" ? ATTEMPT_FLAG.simulationNote : ATTEMPT_FLAG.otherNote}
             </Notice>
           )}
           {reasons.captureFinalizing && (
@@ -167,10 +198,11 @@ export default function AttemptReview() {
         {deterministic &&
           items.length > 0 &&
           !deterministicReview &&
-          (attempt.status === "completed" ? (
+          (reviewOwed ? (
             <Notice tone="info">The key and Explanations aren't available for this Attempt: its Set could not be read.</Notice>
           ) : attempt.status === "aborted" ? (
-            // The server builds the key review only for a completed Attempt, and a discard is final.
+            // Here the key review waits for completion (a Simulation, or a Drill with no scored
+            // Item), and a discard is final.
             <Notice tone="info">This Attempt was discarded, so its key and Explanations are not shown.</Notice>
           ) : (
             <Notice tone="info">The key and Explanations appear once this Attempt is complete.</Notice>
@@ -213,7 +245,7 @@ export default function AttemptReview() {
                 </div>
               )}
               {group.kind === "build_sentence" && <BuildSentenceGroup items={group.items} setSnapshot={setSnapshot} />}
-              {group.kind === "module" && <DeterministicModuleGroup items={group.items} setSnapshot={setSnapshot} reviewByItemId={reviewByItemId} />}
+              {group.kind === "module" && <DeterministicModuleGroup items={group.items} setSnapshot={setSnapshot} reviewByItemId={reviewByItemId} showStimulus={attempt.status === "completed"} />}
               {group.kind === "judged" && (
                 <div className="space-y-6">
                   {group.items.map(({ item, position }, i) =>
@@ -223,8 +255,14 @@ export default function AttemptReview() {
                         item={item}
                         position={position}
                         total={items.length}
-                        ordinal={i + 1}
+                        // Its place in the Set, so an Item with no row leaves a gap rather than
+                        // renumbering the rest; the row position only when the Set can't be read.
+                        ordinal={spokenNumberFor(setSnapshot, item.itemId) ?? i + 1}
                         attemptId={attempt.id}
+                        // Played again only once the Attempt is over: before that, a prompt plays
+                        // as its run decides, and a sentence still being answered stays unheard.
+                        promptAudio={attempt.status === "completed" ? spokenPromptAudioFor(setSnapshot, item.itemId) : undefined}
+                        promptText={spokenPromptByItemId.get(item.itemId)}
                         onTranscriptionRetried={review.refresh}
                         {...judgedProps(item)}
                       />

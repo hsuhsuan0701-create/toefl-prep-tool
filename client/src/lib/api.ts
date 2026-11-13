@@ -132,11 +132,11 @@ export const scoreTask = (attemptId: string, body: ScoreRequest): Promise<ScoreT
 
 // Reading and Listening's score request (shared's DeterministicScoreRequest): the same POST
 // /:id/score as scoreTask, typed for the inline 200 that server/src/services/deterministicScoring.ts
-// always returns. A Drill gets each Item's `key` and `explanationZh`; a Simulation gets bare
-// correctness.
+// always returns. A Drill gets each Item's `key` and `explanationZh`, and a Listening Conversation,
+// Announcement or Academic Talk its Stimulus's `transcript`; a Simulation gets bare correctness.
 export type DeterministicScoreResponse = {
   taskType: string;
-  items: Array<{ itemId: string; correct: boolean; key?: string; explanationZh?: string }>;
+  items: Array<{ itemId: string; correct: boolean; key?: string; explanationZh?: string; transcript?: string }>;
 };
 
 // The server has this Task Type's Responses, scored, but the client does not hold the scored answer.

@@ -6,6 +6,7 @@ import userEvent from "@testing-library/user-event";
 import { findLeavePrompt, renderRoutes, unload } from "./dataRouter";
 import type { ServedListeningSet } from "@toefl-prep/shared";
 import ListeningSimulation from "../src/pages/simulation/ListeningSimulation";
+import { START_TIMEOUT_MS } from "../src/components/StimulusPlayer";
 
 // The Listening Simulation, mounted directly behind a mocked api client, as
 // WritingSimulation.test.tsx does.
@@ -192,6 +193,7 @@ describe("Listening Simulation", () => {
     vi.mocked(api.completeAttempt).mockResolvedValue({});
     vi.mocked(api.advanceFullTest).mockResolvedValue({} as Awaited<ReturnType<typeof api.advanceFullTest>>);
     FakeAudioElement.instances = [];
+    FakeAudioElement.nextPlayResult = "resolve";
     vi.stubGlobal("Audio", FakeAudioElement);
     clock = useFakeTimersInTest({ shouldAdvanceTime: true });
   });
@@ -331,6 +333,29 @@ describe("Listening Simulation", () => {
     await dispatchAudio("lc-r1.mp3", "ended", 4);
     expect(FakeAudioElement.instances.filter((a) => a.src.includes("lc-r1"))).toHaveLength(4);
     expect(await screen.findByText("Router LCR option A")).toBeInTheDocument();
+  });
+
+  // A request that is neither answered nor failed fires no error, so the player's start bound is what
+  // turns it into a failed load: the same reloads, then the same gate.
+  it("treats a Stimulus whose audio never starts as failed audio, after the start bound", async () => {
+    FakeAudioElement.nextPlayResult = "pending";
+    renderSimulation();
+    await startSimulation();
+    await act(async () => {
+      vi.advanceTimersByTime(AVATAR_SETTLE_MS);
+    });
+
+    for (let load = 1; load <= 3; load += 1) {
+      await waitFor(() => expect(FakeAudioElement.instances.filter((a) => a.src.includes("lc-r1"))).toHaveLength(load));
+      await clock.advanceBy(START_TIMEOUT_MS - 100);
+      expect(screen.queryByRole("button", { name: "Retry" })).toBeNull();
+      await clock.advanceBy(100);
+    }
+
+    expect(await screen.findByRole("button", { name: "Retry" })).toBeInTheDocument();
+    expect(screen.queryByText("Router LCR option A")).toBeNull();
+    // Each held load was given up, so none of them can start playing over the gate later.
+    expect(FakeAudioElement.instances.every((a) => a.sourceDropped)).toBe(true);
   });
 
   it("still flags the Attempt when the tab is left mid-Stimulus", async () => {

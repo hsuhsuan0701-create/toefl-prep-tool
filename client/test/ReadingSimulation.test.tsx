@@ -218,6 +218,122 @@ describe("Reading Simulation", () => {
     vi.clearAllMocks();
   });
 
+  // The intro, the Modules, their scoring and the path reveal replace one another inside one route,
+  // so each scrolls itself to the top; moving between a Module's screens does not (issue #22).
+  it("opens every stage at the top of the window, and leaves the page put between a Module's screens", async () => {
+    const scrollTo = vi.spyOn(window, "scrollTo");
+    const toTop = expect.objectContaining({ top: 0 });
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+    renderSimulation();
+    await screen.findByRole("button", { name: "Start Reading Simulation" });
+    // The first screen is where the route change already put the User: it is neither scrolled nor
+    // given focus, so a reload does not draw a focus ring round its heading.
+    expect(scrollTo).not.toHaveBeenCalled();
+    expect(document.activeElement).toBe(document.body);
+
+    scrollTo.mockClear();
+    await beginSimulation(user);
+    expect(scrollTo).toHaveBeenCalledWith(toTop);
+
+    await user.click(questionStop(2));
+    scrollTo.mockClear();
+    await user.click(questionStop(1));
+    expect(screen.getByLabelText('Gap starting with "ca"')).toBeInTheDocument();
+    expect(scrollTo).not.toHaveBeenCalled();
+
+    await submitModule(user);
+    await screen.findByRole("heading", { name: "Module Path: Lower Module" });
+    expect(scrollTo).toHaveBeenCalledWith(toTop);
+
+    scrollTo.mockClear();
+    await user.click(screen.getByRole("button", { name: "Start the Lower Module" }));
+    await screen.findByText("Lower Module");
+    expect(scrollTo).toHaveBeenCalledWith(toTop);
+    scrollTo.mockRestore();
+  });
+
+  // A new text inside a Module opens at its top with its question focused in place (issue #23).
+  it("opens a new text at the top of the window, with focus on its question head", async () => {
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+    renderSimulation();
+    await beginSimulation(user);
+
+    const scrollTo = vi.spyOn(window, "scrollTo");
+    const focus = vi.spyOn(HTMLElement.prototype, "focus");
+    await user.click(questionStop(2));
+    expect(screen.getByText("The library closes at six.")).toBeInTheDocument();
+    expect(scrollTo).toHaveBeenCalledWith(expect.objectContaining({ top: 0 }));
+    expect(focus).toHaveBeenLastCalledWith({ preventScroll: true });
+    expect(document.activeElement?.textContent).toContain("When does the library close?");
+    scrollTo.mockRestore();
+    focus.mockRestore();
+  });
+
+  // Coming back to the first question of the text already on screen is not a new text: the User was
+  // reading it, so the question head is focused and brought into view as before, and the window is
+  // not sent to the top, a whole text's length above the question at phone width.
+  describe("on a text with two questions", () => {
+    // The Router Module's Read in Daily Life text, given a second question: Question 2 and 3 of the
+    // Module are its two screens.
+    const twoQuestionSet: ServedReadingSet = structuredClone(set);
+    twoQuestionSet.router.dailyLife[0].questions.push({
+      id: "dl-r1-q2",
+      stem: "Who wrote the notice?",
+      options: [
+        { id: "a", text: "The librarian" },
+        { id: "b", text: "A student" },
+      ],
+    });
+
+    beforeEach(async () => {
+      const api = await import("../src/lib/api");
+      vi.mocked(api.getSet).mockResolvedValue(twoQuestionSet);
+    });
+    // Puts back window.scrollTo and focus; the api mocks are vi.fn()s, which this leaves alone.
+    afterEach(() => vi.restoreAllMocks());
+
+    async function onSecondQuestion(user: ReturnType<typeof userEvent.setup>) {
+      renderSimulation();
+      await beginSimulation(user);
+      await user.click(questionStop(2));
+      await user.click(questionStop(3));
+      expect(document.activeElement?.textContent).toContain("Who wrote the notice?");
+      return { scrollTo: vi.spyOn(window, "scrollTo"), focus: vi.spyOn(HTMLElement.prototype, "focus") };
+    }
+
+    function expectReturnedInPlace(scrollTo: { mock: { calls: unknown[][] } }, focus: { mock: { calls: unknown[][] } }) {
+      expect(document.activeElement?.textContent).toContain("When does the library close?");
+      expect(scrollTo.mock.calls).not.toContainEqual([expect.objectContaining({ top: 0 })]);
+      expect(focus).toHaveBeenLastCalledWith(undefined);
+    }
+
+    it("Back to the text's first question focuses it in view and leaves the window where it is", async () => {
+      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+      const { scrollTo, focus } = await onSecondQuestion(user);
+      await user.click(screen.getByRole("button", { name: "Back" }));
+      expectReturnedInPlace(scrollTo, focus);
+    });
+
+    it("the navigator from the text's second question to its first behaves like Back", async () => {
+      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+      const { scrollTo, focus } = await onSecondQuestion(user);
+      await user.click(questionStop(2));
+      expectReturnedInPlace(scrollTo, focus);
+    });
+
+    it("arriving at that first question from the previous Stimulus still opens the text at its top", async () => {
+      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+      await onSecondQuestion(user);
+      await user.click(questionStop(1));
+      const scrollTo = vi.spyOn(window, "scrollTo");
+      const focus = vi.spyOn(HTMLElement.prototype, "focus");
+      await user.click(screen.getByRole("button", { name: /Next/ }));
+      expect(document.activeElement?.textContent).toContain("When does the library close?");
+      expect(scrollTo).toHaveBeenCalledWith(expect.objectContaining({ top: 0 }));
+      expect(focus).toHaveBeenLastCalledWith({ preventScroll: true });
+    });
+  });
+
   it("runs the whole routed Attempt: Router Module → route → path reveal → Lower Module → report", async () => {
     const api = await import("../src/lib/api");
     const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { FullTestRunVM, FullTestSection } from "@toefl-prep/shared";
 import { openDb } from "../src/db/db.js";
+import { sqliteTimestamp } from "../src/db/timestamps.js";
 import { buildFullTestRoutes } from "../src/routes/fullTests.js";
 import { requiredTaskTypes } from "../src/services/bandEstimator.js";
 import { sqliteStores } from "./helpers/sqliteStores.js";
@@ -77,6 +78,9 @@ describe("a Writing section completed before its essays are scored", () => {
     for (let i = 1; i <= 10; i++) h.item(writing, `bs-${i}`, "build_sentence", "scored");
     h.item(writing, "email-1", "email", "pending");
     h.item(writing, "disc-1", "discussion", "pending");
+    // Each essay is written before its scoring job exists, and the job is what scores it.
+    h.r.createScoringJob({ id: "job-email", attemptId: writing, taskType: "email", itemIds: ["email-1"] });
+    h.r.createScoringJob({ id: "job-disc", attemptId: writing, taskType: "discussion", itemIds: ["disc-1"] });
     h.r.completeAttempt(writing);
     return writing;
   }
@@ -102,6 +106,7 @@ describe("a Writing section completed before its essays are scored", () => {
     const writing = sitWritingEarly(h);
     h.item(writing, "email-1", "email", "failed");
     h.item(writing, "disc-1", "discussion", "failed");
+    for (const id of ["job-email", "job-disc"]) h.r.failScoringJobConditional({ id, error: "judges failed", now: sqliteTimestamp() });
     const run = await h.read();
     expect(h.sectionOf(run, "writing").bandStatus).toEqual({
       status: "no-band",
@@ -138,7 +143,8 @@ describe("pending hides a band persisted before the outstanding work", () => {
 
     h.r.createScoringJob({ id: "job-rescore", attemptId: writing, taskType: "email", itemIds: ["email-1"] });
     const run = await h.read();
-    expect(h.sectionOf(run, "writing").bandStatus).toEqual({ status: "scoring", outstanding: [] });
+    // The Item being re-scored counts as outstanding, as it does on the Attempt review.
+    expect(h.sectionOf(run, "writing").bandStatus).toEqual({ status: "scoring", outstanding: [{ taskType: "email", itemCount: 1 }] });
     expect(h.sectionOf(run, "writing").estimate).toBeNull();
     expect(run.overall.band).toBeNull();
     expect(run.overall.pendingSections).toEqual(["writing"]);
@@ -176,6 +182,62 @@ describe("Speaking at capture-finished", () => {
     expect(h.sectionOf(run, "speaking").estimate).toMatchObject({ band: 4.5, method: "linear-v2" });
     // (6 + 6 + 4 + 4.5) / 4 = 5.125 -> 5
     expect(run.overall.band).toBe(5);
+  });
+});
+
+describe("Speaking whose transcriptions ended without a transcript", () => {
+  /**
+   * A completed Speaking section whose every Response is stored and `transcription_pending`, each
+   * with a current transcription job in `status` (the state a Run sat with no Gemini key ends in).
+   */
+  function sitSpeakingUntranscribed(h: ReturnType<typeof harness>, status: "failed" | "retry_wait") {
+    const speaking = h.section("speaking");
+    const items = [
+      ...Array.from({ length: 7 }, (_, i) => ({ itemId: `lr-${i + 1}`, taskType: "listen_repeat" as const })),
+      ...Array.from({ length: 4 }, (_, i) => ({ itemId: `int-${i + 1}`, taskType: "interview" as const })),
+    ];
+    for (const { itemId, taskType } of items) {
+      h.item(speaking, itemId, taskType, "transcription_pending");
+      const job = h.r.createOrGetTranscriptionJob({
+        id: `tj-${itemId}`, attemptId: speaking, itemId, taskType, audioPath: `${itemId}.webm`, audioSha256: "0".repeat(64), now: sqliteTimestamp(),
+      });
+      h.r.updateTranscriptionJob(
+        status === "failed"
+          ? { id: job.id, status, automaticAttempts: 1, failureKind: "configuration", error: "no key", now: sqliteTimestamp() }
+          : { id: job.id, status, automaticAttempts: 1, failureKind: "network", nextRetryAt: sqliteTimestamp(new Date(Date.now() + 60_000)), now: sqliteTimestamp() },
+      );
+    }
+    h.r.markCaptureFinishedWithMissingItemPlaceholders({ attemptId: speaking, placeholders: [] });
+    h.r.completeAttempt(speaking);
+    return speaking;
+  }
+
+  it("reads as no band, counting the never-scored Responses, once nothing will score them", async () => {
+    const h = harness();
+    sitSpeakingUntranscribed(h, "failed");
+    const section = h.sectionOf(await h.read(), "speaking");
+    expect(section.state).toBe("completed");
+    expect(section.bandStatus).toEqual({
+      status: "no-band",
+      unscored: [
+        { taskType: "listen_repeat", failed: 0, pending: 7, notCaptured: 0 },
+        { taskType: "interview", failed: 0, pending: 4, notCaptured: 0 },
+      ],
+      absent: [],
+    });
+    expect(section.estimate).toBeNull();
+  });
+
+  it("is still scoring while a transcription waits to retry", async () => {
+    const h = harness();
+    sitSpeakingUntranscribed(h, "retry_wait");
+    expect(h.sectionOf(await h.read(), "speaking").bandStatus).toEqual({
+      status: "scoring",
+      outstanding: [
+        { taskType: "listen_repeat", itemCount: 7 },
+        { taskType: "interview", itemCount: 4 },
+      ],
+    });
   });
 });
 

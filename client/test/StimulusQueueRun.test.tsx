@@ -1,6 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { FakeAudioElement, dispatchAudio, endAudio } from "./fakeAudio";
-import { render, screen } from "@testing-library/react";
+import { afterFeedbackHold } from "./feedbackHold";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { useFakeTimersInTest } from "./fakeTimers";
+import { START_TIMEOUT_MS } from "../src/components/StimulusPlayer";
 import userEvent from "@testing-library/user-event";
 import type { ServedListeningStimulus, ServedReadingStimulus } from "@toefl-prep/shared";
 import StimulusQueueRun from "../src/pages/drill/StimulusQueueRun";
@@ -111,6 +114,7 @@ function scoredEcho(correct = true) {
 
 beforeEach(() => {
   FakeAudioElement.instances = [];
+  FakeAudioElement.nextPlayResult = "resolve";
   vi.stubGlobal("Audio", FakeAudioElement);
 });
 
@@ -188,6 +192,7 @@ describe("the Reading queue: one Stimulus at a time, submitted whole", () => {
     // Still on Stimulus 1 with its feedback; the queue only moves when the User says so.
     await screen.findByRole("button", { name: "Next Stimulus" });
     expect(screen.getByText("Stimulus 1 of 2")).toBeInTheDocument();
+    await afterFeedbackHold();
     await user.click(screen.getByRole("button", { name: "Next Stimulus" }));
 
     expect(await screen.findByText("Stimulus 2 of 2")).toBeInTheDocument();
@@ -196,7 +201,9 @@ describe("the Reading queue: one Stimulus at a time, submitted whole", () => {
     await user.click(screen.getByRole("button", { name: "Check Responses" }));
 
     // The last Stimulus says so, rather than offering a Stimulus that is not there.
-    await user.click(await screen.findByRole("button", { name: "See results" }));
+    const seeResults = await screen.findByRole("button", { name: "See results" });
+    await afterFeedbackHold();
+    await user.click(seeResults);
 
     const calls = (api.scoreDeterministicTask as any).mock.calls;
     expect(calls).toHaveLength(2);
@@ -216,6 +223,29 @@ describe("the Reading queue: one Stimulus at a time, submitted whole", () => {
     // computed from exactly this.
     expect(onComplete).toHaveBeenCalledTimes(1);
     expect(onComplete.mock.calls[0][0].map((r: any) => r.itemId)).toEqual(["g1", "dl-1-q1", "dl-1-q2"]);
+  });
+
+  it("keeps a middle Stimulus's feedback through a double click, and moves on at a separate press", async () => {
+    const api = await import("../src/lib/api");
+    (api.scoreDeterministicTask as any).mockImplementation(scoredEcho(false));
+    const onComplete = vi.fn();
+    const user = userEvent.setup();
+
+    render(<StimulusQueueRun stimuli={[dailyLifeStimulus, ctwStimulus]} attemptId="att-1" onComplete={onComplete} />);
+
+    const check = screen.getByRole("button", { name: "Check Responses" });
+    await user.click(check);
+    // The second click of the double click lands on the same button, now "Next Stimulus".
+    await user.click(await screen.findByRole("button", { name: "Next Stimulus" }));
+
+    expect(screen.getByText("Stimulus 1 of 2")).toBeInTheDocument();
+    expect(screen.getByText("dl-1-q1 的解析")).toBeInTheDocument();
+    expect((api.scoreDeterministicTask as any).mock.calls).toHaveLength(1);
+
+    await afterFeedbackHold();
+    await user.click(screen.getByRole("button", { name: "Next Stimulus" }));
+    expect(await screen.findByText("Stimulus 2 of 2")).toBeInTheDocument();
+    expect(onComplete).not.toHaveBeenCalled();
   });
 
   it("keeps the key and the 錯題解析 out of the DOM until the Item is scored", async () => {
@@ -292,6 +322,53 @@ describe("the Listening queue: the same queue, through the leak gate", () => {
     ]);
   });
 
+  it("once checked, a Stimulus can be heard again and a Conversation read, from what the score response carries", async () => {
+    const api = await import("../src/lib/api");
+    const transcript = "student: I'd like a refund.\nclerk: Do you have the receipt?";
+    (api.scoreDeterministicTask as any).mockImplementation(async (_attemptId: string, req: any) => ({
+      taskType: req.taskType,
+      // The server sends a transcript only for a Conversation, an Announcement or an Academic
+      // Talk; one is sent for the Listen and Choose a Response here too, to show it is never drawn.
+      items: req.items.map((i: any) => ({ itemId: i.itemId, correct: false, key: "o2", explanationZh: "解析", transcript })),
+    }));
+    const user = userEvent.setup();
+    const { container } = render(
+      <StimulusQueueRun stimuli={[listenChooseStimulus, conversationStimulus]} attemptId="att-1" onComplete={vi.fn()} />,
+    );
+
+    await endAudio("lc-1.mp3");
+    await screen.findByRole("radio", { name: "Sorry, I am late." });
+    // Answerable, not yet scored: nothing to replay.
+    expect(container.querySelectorAll("audio")).toHaveLength(0);
+    await user.click(screen.getByRole("button", { name: "Check Response" }));
+    await screen.findByRole("button", { name: "Next Stimulus" });
+    const lcAudio = container.querySelectorAll("audio");
+    expect(lcAudio).toHaveLength(1);
+    expect(lcAudio[0].getAttribute("src")).toBe("/api/audio/stimuli/lsn-1/lc-1.mp3");
+    expect(container.textContent).not.toContain("I'd like a refund.");
+    expect(container.textContent).not.toContain("Transcript");
+
+    await afterFeedbackHold();
+    await user.click(screen.getByRole("button", { name: "Next Stimulus" }));
+    await screen.findByText("Stimulus 2 of 2");
+    // The next Stimulus is behind its own gate again, with no replay of either clip.
+    expect(container.querySelectorAll("audio")).toHaveLength(0);
+    await endAudio("cv-1.mp3");
+    await screen.findByRole("radio", { name: "A refund" });
+    expect(container.querySelectorAll("audio")).toHaveLength(0);
+    expect(container.textContent).not.toContain("I'd like a refund.");
+    await user.click(screen.getByRole("button", { name: "Check Response" }));
+
+    await screen.findByRole("button", { name: "See results" });
+    const cvAudio = container.querySelectorAll("audio");
+    expect(cvAudio).toHaveLength(1);
+    expect(cvAudio[0].getAttribute("src")).toBe("/api/audio/stimuli/lsn-1/cv-1.mp3");
+    expect(screen.getByText("Transcript")).toBeInTheDocument();
+    expect(container.textContent).toContain("clerk: Do you have the receipt?");
+    // Each Stimulus was played by its one-shot player exactly once; the replay is the User's own.
+    expect(FakeAudioElement.instances).toHaveLength(2);
+  });
+
   it("replays nothing at the next Stimulus but re-arms the gate for it", async () => {
     const api = await import("../src/lib/api");
     (api.scoreDeterministicTask as any).mockImplementation(scoredEcho());
@@ -307,7 +384,9 @@ describe("the Listening queue: the same queue, through the leak gate", () => {
 
     await endAudio("lc-1.mp3");
     await user.click(await screen.findByRole("button", { name: "Check Response" }));
-    await user.click(await screen.findByRole("button", { name: "Next Stimulus" }));
+    const next = await screen.findByRole("button", { name: "Next Stimulus" });
+    await afterFeedbackHold();
+    await user.click(next);
 
     // The second Stimulus starts behind its own gate — advancing must not inherit the first one's
     // "audio already finished" state.
@@ -321,15 +400,45 @@ describe("the Listening queue: the same queue, through the leak gate", () => {
     expect(await screen.findByRole("radio", { name: "A refund" })).toBeInTheDocument();
   });
 
-  it("reveals the Question(s) with a note when the audio fails rather than pretending it played", async () => {
-    render(<StimulusQueueRun stimuli={[listenChooseStimulus]} attemptId="att-1" onComplete={vi.fn()} />);
+  it("never reveals the Question(s) of a Stimulus whose audio failed, and skipping it scores nothing", async () => {
+    const api = await import("../src/lib/api");
+    const onComplete = vi.fn();
+    const user = userEvent.setup();
+    const { container } = render(<StimulusQueueRun stimuli={[listenChooseStimulus]} attemptId="att-1" onComplete={onComplete} />);
 
-    await dispatchAudio("lc-1.mp3", "error");
+    // The first load and the two automatic reloads, each on its own fresh element.
+    for (let nth = 1; nth <= 3; nth++) await dispatchAudio("lc-1.mp3", "error", nth);
 
-    // A Drill has no lockstep flow to skip a Stimulus with — the User is already committed to this
-    // one — so the Question(s) appear anyway, with the failure said out loud.
     expect(await screen.findByText(/Couldn't play the audio for this Stimulus/)).toBeInTheDocument();
-    expect(screen.getByRole("radio", { name: "Sorry, I am late." })).toBeInTheDocument();
+    expect(container.textContent).not.toContain("Sorry, I am late.");
+    expect(container.querySelectorAll("input[type='radio']")).toHaveLength(0);
+    expect(screen.queryByRole("button", { name: /^Check Response/ })).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "Skip this Stimulus" }));
+    expect(api.scoreDeterministicTask).not.toHaveBeenCalled();
+    expect(onComplete).toHaveBeenCalledWith([]);
+  });
+
+  it("stops on the same gate when the audio never starts, once the start bound has passed for each load", async () => {
+    const clock = useFakeTimersInTest({ shouldAdvanceTime: true });
+    FakeAudioElement.nextPlayResult = "pending";
+    const { container } = render(<StimulusQueueRun stimuli={[listenChooseStimulus]} attemptId="att-1" onComplete={vi.fn()} />);
+
+    for (let load = 1; load <= 3; load += 1) {
+      await waitFor(() => expect(FakeAudioElement.instances.filter((a) => a.src.endsWith("lc-1.mp3"))).toHaveLength(load));
+      await clock.advanceBy(START_TIMEOUT_MS - 100);
+      expect(screen.queryByRole("button", { name: "Retry" })).toBeNull();
+      await clock.advanceBy(100);
+    }
+
+    expect(await screen.findByRole("button", { name: "Retry" })).toBeInTheDocument();
+    expect(container.querySelectorAll("input[type='radio']")).toHaveLength(0);
+
+    // Reachable again: Retry plays it, and its Question appears once it ends.
+    FakeAudioElement.nextPlayResult = "resolve";
+    fireEvent.click(screen.getByRole("button", { name: "Retry" }));
+    await dispatchAudio("lc-1.mp3", "ended", 4);
+    expect(await screen.findByRole("radio", { name: "Sorry, I am late." })).toBeInTheDocument();
   });
 });
 
@@ -356,7 +465,9 @@ describe("a resubmit the server already has", () => {
     await user.click(screen.getByRole("radio", { name: "At six" }));
     await user.click(screen.getByRole("button", { name: "Check Responses" }));
 
-    await user.click(await screen.findByRole("button", { name: "See results" }));
+    const seeResults = await screen.findByRole("button", { name: "See results" });
+    await afterFeedbackHold();
+    await user.click(seeResults);
     expect(screen.queryByText(/already scored/)).toBeNull();
     expect(onComplete.mock.calls[0][0]).toEqual([
       { itemId: "dl-1-q1", correct: true },

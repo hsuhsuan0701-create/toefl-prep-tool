@@ -65,11 +65,17 @@ function parseDateInput(value: string): { y: number; m: number; d: number } | nu
   return Number.isNaN(new Date(parts.y, parts.m - 1, parts.d).getTime()) ? null : parts;
 }
 
+// A parsed day as one number that orders the way the calendar does.
+function dayOrdinal(day: { y: number; m: number; d: number }): number {
+  return day.y * 10000 + day.m * 100 + day.d;
+}
+
 /**
  * The selected window as instants: `startMs` inclusive, `endMs` exclusive, either side null for
  * unbounded. A custom "to" day is included whole by ending at local midnight of the next day
  * (day+1 through the Date constructor's overflow, so a DST-shifted midnight still lands on the real
- * one).
+ * one). Two days picked the wrong way round name the days between them: taken as given they would
+ * be an empty window, and every tile would read "No Attempts in this range".
  */
 export function trendRangeBounds(
   range: TimeTrendRangeKey,
@@ -78,8 +84,9 @@ export function trendRangeBounds(
 ): { startMs: number | null; endMs: number | null } {
   if (range === "all") return { startMs: null, endMs: null };
   if (range === "custom") {
-    const from = parseDateInput(custom.from);
-    const to = parseDateInput(custom.to);
+    let from = parseDateInput(custom.from);
+    let to = parseDateInput(custom.to);
+    if (from && to && dayOrdinal(from) > dayOrdinal(to)) [from, to] = [to, from];
     return {
       startMs: from ? new Date(from.y, from.m - 1, from.d).getTime() : null,
       endMs: to ? new Date(to.y, to.m - 1, to.d + 1).getTime() : null,

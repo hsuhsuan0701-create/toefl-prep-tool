@@ -94,9 +94,16 @@ when it records a decision.
 - A Set file that fails `AnySetSchema` is skipped and reported (`GET /api/sets/unloadable`), and its
   Attempts lose their review. Narrowing a Set schema is a data-loss change; `schemas.test.ts`
   re-parses the banked Writing and Reading Sets.
-- `/drill-lab` is the one route that serves Listen and Repeat sentences in cleartext. Its bank, its
-  practice queue and an Item's past scores count only an Item with a recorded take that was scored
-  (`ANSWERED_LISTEN_REPEAT_ITEM_SQL` in `db/stores/drillLab.ts`). Its reps go to
+- Outside `/drill-lab` (next), a spoken prompt reaches the client as text two ways only: in the
+  Score Report of a scored Item (`scoreJson.meta`), whatever the Attempt's status, and as
+  `spokenPrompts` on `GET /api/attempts/:id` for a completed Speaking Attempt, which covers every
+  Item, scored or not (re-read from the Set, never stored). So an Item with no Score Report shows
+  its sentence or question only once the Attempt is completed, never while it is in progress or
+  after it is discarded (ADR 0017). `routes.attempts.spokenPrompts.test.ts`,
+  `AttemptReviewGroups.test.tsx`.
+- `/drill-lab` is the one other route that serves Listen and Repeat sentences in cleartext. Its
+  bank, its practice queue and an Item's past scores count only an Item with a recorded take that
+  was scored (`ANSWERED_LISTEN_REPEAT_ITEM_SQL` in `db/stores/drillLab.ts`). Its reps go to
   `backward_buildup_reps`, which nothing that scores reads. `routes.drillLab.test.ts`,
   `attemptedRule.test.ts`.
 - A Set counts as attempted only through an Attempt that has a scored Item, or is completed and

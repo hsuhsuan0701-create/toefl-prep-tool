@@ -43,14 +43,39 @@ export type StimulusSnapshot = Readonly<{
   taskType: string;
   name: string | null;
   itemIds: readonly string[];
+  /** What the User read, for a Reading Stimulus; null for Listening, or when the Set lacks it. */
+  content: StimulusContentSnapshot | null;
+  /**
+   * A Listening Stimulus's audio path under `/api/audio/`, as served; null for Reading, or when the
+   * Set lacks it. Played again only beside a key review (a completed Attempt, or a Drill's scored
+   * Stimulus).
+   */
+  audio: string | null;
 }>;
+
+/** One run of a Complete the Words passage: words as printed, or the gap an Item fills. */
+export type GappedSegmentSnapshot = Readonly<{ type: "text"; text: string } | { type: "gap"; gapId: string }>;
+
+/**
+ * The text a Reading Stimulus showed, as served (it carries no key: a gap is only its id, and the
+ * served gap only its visible prefix).
+ *
+ * `gapped`: a Complete the Words passage, its words and gaps in order, and each gap's prefix by id.
+ * `text`: a Read in Daily Life text (its own line breaks kept) or a Read an Academic Passage
+ * passage (paragraphs), with the label the run printed over it.
+ */
+export type StimulusContentSnapshot =
+  | Readonly<{ kind: "gapped"; segments: readonly GappedSegmentSnapshot[]; prefixesByGapId: Readonly<Record<string, string>> }>
+  | Readonly<{ kind: "text"; label: string | null; text: string; preserveLines: boolean }>;
 
 /**
  * What a Reading or Listening Item showed the User: a question's stem and options, or a Complete
  * the Words gap's visible prefix. The served Set carries neither key nor Explanation; those come
- * only from the Attempt detail, and only once the Attempt is complete.
+ * only from the Attempt detail's key review.
  */
 export type QuestionSnapshot = Readonly<{
+  /** The Module the Item sits in: a Stimulus id is unique only within its Module. */
+  module: SnapshotModule;
   stimulusId: string;
   stem: string | null;
   options: readonly Readonly<{ id: string; text: string }>[];
@@ -77,6 +102,17 @@ export type AttemptSetSnapshot = Readonly<{
   questionsByItemId: Readonly<Record<string, QuestionSnapshot>>;
   /** The Email and Academic Discussion task by Item id. Read through {@link essayTaskFor}. */
   essayTasksByItemId: Readonly<Record<string, EssayTaskSnapshot>>;
+  /**
+   * Each Listen and Repeat sentence and Interview question by id: its 1-based position in its Task
+   * in the Set. Read through {@link spokenNumberFor}.
+   */
+  spokenNumbersByItemId: Readonly<Record<string, number>>;
+  /**
+   * Each Listen and Repeat sentence's and Interview question's prompt audio by id: the clip the run
+   * played, so a review can play it again beside the recording. Audio only: the served Set carries
+   * neither the sentence nor the question as text. Read through {@link spokenPromptAudioFor}.
+   */
+  spokenPromptAudioByItemId: Readonly<Record<string, string>>;
 }>;
 
 export function snapshotAttemptSet(setId: string, value: unknown): AttemptSetSnapshot {
@@ -89,6 +125,8 @@ export function snapshotAttemptSet(setId: string, value: unknown): AttemptSetSna
     stimuli,
     questionsByItemId,
     essayTasksByItemId: snapshotEssayTasks(set),
+    spokenNumbersByItemId: snapshotSpokenNumbers(set),
+    spokenPromptAudioByItemId: snapshotSpokenPromptAudio(set),
   });
 }
 
@@ -101,9 +139,55 @@ export function questionFor(snapshot: AttemptSetSnapshot | null, itemId: string)
   return snapshot ? ownEntry(snapshot.questionsByItemId, itemId) : undefined;
 }
 
+/**
+ * One Stimulus of one Module, or undefined without a snapshot or for an id that Module lacks. No
+ * schema makes a Stimulus id unique across the Router, Lower and Upper Modules, so a lookup by id
+ * alone could show one Module's passage or audio against another Module's Items. Pass the Module
+ * of the Item it is for ({@link QuestionSnapshot.module}). Item ids need no such care: a Set that
+ * repeats one is refused at scoring, so none of its Items reaches a review.
+ */
+export function stimulusFor(snapshot: AttemptSetSnapshot | null, module: SnapshotModule, stimulusId: string): StimulusSnapshot | undefined {
+  return snapshot?.stimuli.find((s) => s.module === module && s.id === stimulusId);
+}
+
+/** What a Stimulus showed the User, or undefined without a snapshot, for an unknown id, or with no text. */
+export function stimulusContentFor(snapshot: AttemptSetSnapshot | null, module: SnapshotModule, stimulusId: string): StimulusContentSnapshot | undefined {
+  return stimulusFor(snapshot, module, stimulusId)?.content ?? undefined;
+}
+
+/** A Listening Stimulus's audio path, or undefined without a snapshot, for an unknown id, or with no audio. */
+export function stimulusAudioFor(snapshot: AttemptSetSnapshot | null, module: SnapshotModule, stimulusId: string): string | undefined {
+  return stimulusFor(snapshot, module, stimulusId)?.audio ?? undefined;
+}
+
 /** The task an Email or Academic Discussion Item set, or undefined. */
 export function essayTaskFor(snapshot: AttemptSetSnapshot | null, itemId: string): EssayTaskSnapshot | undefined {
   return snapshot ? ownEntry(snapshot.essayTasksByItemId, itemId) : undefined;
+}
+
+/**
+ * The task an Email or Academic Discussion Item of a served Set sets, read the way review reads it,
+ * for a page that holds the Set itself (the Writing Drill's results) rather than a snapshot.
+ */
+export function essayTaskInSet(value: unknown, itemId: string): EssayTaskSnapshot | undefined {
+  return ownEntry(snapshotEssayTasks(asUntrustedServedSet(value)), itemId);
+}
+
+/**
+ * A spoken Item's position in its Task in the Set ("Sentence 2"), or undefined without a snapshot or
+ * for an id the Set does not carry. An Attempt can lack an Item (a prompt that would not play and was
+ * skipped, a lost upload), so its rows alone cannot number the Items after the gap.
+ */
+export function spokenNumberFor(snapshot: AttemptSetSnapshot | null, itemId: string): number | undefined {
+  return snapshot ? ownEntry(snapshot.spokenNumbersByItemId, itemId) : undefined;
+}
+
+/**
+ * A spoken Item's prompt audio path under /api/audio/ (its own sentence or question, never the
+ * Interview's introduction), or undefined without a snapshot or for an id the Set does not carry.
+ */
+export function spokenPromptAudioFor(snapshot: AttemptSetSnapshot | null, itemId: string): string | undefined {
+  return snapshot ? ownEntry(snapshot.spokenPromptAudioByItemId, itemId) : undefined;
 }
 
 /** A Build a Sentence Item's prompt as served today, or undefined. */
@@ -128,6 +212,23 @@ function sentenceItemFor(snapshot: AttemptSetSnapshot | null, itemId: string): S
  */
 export function sentenceFrameFor(snapshot: AttemptSetSnapshot | null, itemId: string): string | undefined {
   return sentenceItemFor(snapshot, itemId)?.frame;
+}
+
+/**
+ * The tiles a Build a Sentence Item offers in the Set as served today, or undefined when the review
+ * cannot claim they are the tiles the User was given: no snapshot, an Item id the Set does not
+ * carry, or a Response or key arrangement not drawn from them (the Item has changed since). The
+ * served order is a fresh shuffle per request, so the caller must not present it as the order the
+ * User saw. Nothing here says which tile is the extra one: that is the key's to tell.
+ */
+export function sentenceTilesFor(
+  snapshot: AttemptSetSnapshot | null,
+  itemId: string,
+  arrangements: readonly (readonly string[])[],
+): readonly string[] | undefined {
+  const current = sentenceItemFor(snapshot, itemId);
+  if (!current || current.tiles.length === 0) return undefined;
+  return arrangements.every((tiles) => isSubMultiset(tiles, current.tiles)) ? current.tiles : undefined;
 }
 
 /**
@@ -193,6 +294,30 @@ function snapshotScene(set: UntrustedServedSet): AttemptSceneSnapshot | null {
   });
 }
 
+function snapshotSpokenNumbers(set: UntrustedServedSet): Readonly<Record<string, number>> {
+  if (set.kind !== "speaking") return Object.freeze({});
+  const byId: Record<string, number> = {};
+  for (const list of [set.listenAndRepeat?.items, set.interview?.questions]) {
+    if (!Array.isArray(list)) continue;
+    list.forEach((item: { id?: unknown } | null | undefined, i) => {
+      if (typeof item?.id === "string") byId[item.id] = i + 1;
+    });
+  }
+  return Object.freeze(byId);
+}
+
+function snapshotSpokenPromptAudio(set: UntrustedServedSet): Readonly<Record<string, string>> {
+  if (set.kind !== "speaking") return Object.freeze({});
+  const byId: Record<string, string> = {};
+  for (const list of [set.listenAndRepeat?.items, set.interview?.questions]) {
+    if (!Array.isArray(list)) continue;
+    for (const item of list as ({ id?: unknown; audio?: unknown } | null | undefined)[]) {
+      if (typeof item?.id === "string" && typeof item.audio === "string" && item.audio !== "") byId[item.id] = item.audio;
+    }
+  }
+  return Object.freeze(byId);
+}
+
 function snapshotSentenceItems(set: UntrustedServedSet): Readonly<Record<string, SentenceItemSnapshot>> {
   const items = set.kind === "writing" ? set.buildASentence?.items : undefined;
   if (!Array.isArray(items)) return Object.freeze({});
@@ -236,14 +361,23 @@ function snapshotStimuli(set: UntrustedServedSet): {
 } {
   const stimuli: StimulusSnapshot[] = [];
   const questions: Record<string, QuestionSnapshot> = {};
-  const add = (module: SnapshotModule, taskType: string, id: unknown, name: string | null, items: QuestionSnapshot[], itemIds: string[]) => {
+  const add = (
+    module: SnapshotModule,
+    taskType: string,
+    id: unknown,
+    name: string | null,
+    items: Omit<QuestionSnapshot, "module">[],
+    itemIds: string[],
+    content: StimulusContentSnapshot | null = null,
+    audio: unknown = null,
+  ) => {
     if (typeof id !== "string" || itemIds.length === 0) return;
-    stimuli.push(Object.freeze({ id, module, taskType, name, itemIds: Object.freeze(itemIds) }));
-    itemIds.forEach((itemId, i) => (questions[itemId] = Object.freeze(items[i])));
+    stimuli.push(Object.freeze({ id, module, taskType, name, itemIds: Object.freeze(itemIds), content, audio: text(audio) }));
+    itemIds.forEach((itemId, i) => (questions[itemId] = Object.freeze({ ...items[i], module })));
   };
   const mcqs = (stimulusId: unknown, list: unknown) => {
     const ids: string[] = [];
-    const items: QuestionSnapshot[] = [];
+    const items: Omit<QuestionSnapshot, "module">[] = [];
     if (typeof stimulusId !== "string" || !Array.isArray(list)) return { ids, items };
     for (const q of list as LooseQuestion[]) {
       if (typeof q?.id !== "string") continue;
@@ -261,23 +395,25 @@ function snapshotStimuli(set: UntrustedServedSet): {
     for (const [module, key] of modules) {
       const m = set[key as "router"];
       if (!m) continue;
-      each<{ id?: unknown; topic?: unknown; gaps?: unknown }>(m.ctwPassages, (p) => {
+      each<{ id?: unknown; topic?: unknown; gaps?: unknown; segments?: unknown }>(m.ctwPassages, (p) => {
         const ids: string[] = [];
-        const items: QuestionSnapshot[] = [];
+        const items: Omit<QuestionSnapshot, "module">[] = [];
+        const prefixes: Record<string, string> = {};
         each<{ id?: unknown; prefix?: unknown }>(p.gaps, (g) => {
           if (typeof g.id !== "string" || typeof p.id !== "string") return;
           ids.push(g.id);
           items.push({ stimulusId: p.id, stem: null, options: [], prefix: text(g.prefix) });
+          prefixes[g.id] = typeof g.prefix === "string" ? g.prefix : "";
         });
-        add(module, "complete_words", p.id, text(p.topic), items, ids);
+        add(module, "complete_words", p.id, text(p.topic), items, ids, gappedContent(p.segments, prefixes));
       });
-      each<{ id?: unknown; genre?: unknown; questions?: unknown }>(m.dailyLife, (t) => {
+      each<{ id?: unknown; genre?: unknown; text?: unknown; questions?: unknown }>(m.dailyLife, (t) => {
         const { ids, items } = mcqs(t.id, t.questions);
-        add(module, "daily_life", t.id, text(t.genre), items, ids);
+        add(module, "daily_life", t.id, text(t.genre), items, ids, textContent(t.text, null, true));
       });
-      each<{ id?: unknown; title?: unknown; questions?: unknown }>(m.academic, (p) => {
+      each<{ id?: unknown; title?: unknown; discipline?: unknown; text?: unknown; questions?: unknown }>(m.academic, (p) => {
         const { ids, items } = mcqs(p.id, p.questions);
-        add(module, "academic_passage", p.id, text(p.title), items, ids);
+        add(module, "academic_passage", p.id, text(p.title), items, ids, textContent(p.text, text(p.discipline), false));
       });
     }
   } else if (set.kind === "listening") {
@@ -285,25 +421,47 @@ function snapshotStimuli(set: UntrustedServedSet): {
       const m = set[key as "router"];
       if (!m) continue;
       // A Listen and Choose a Response Item is its own Stimulus: no stem, four options.
-      each<{ id?: unknown; options?: unknown }>(m.listenChoose, (item) => {
+      each<{ id?: unknown; options?: unknown; audio?: unknown }>(m.listenChoose, (item) => {
         if (typeof item.id !== "string") return;
-        add(module, "listen_choose", item.id, null, [{ stimulusId: item.id, stem: null, options: Object.freeze(readOptions(item.options)), prefix: null }], [item.id]);
+        add(module, "listen_choose", item.id, null, [{ stimulusId: item.id, stem: null, options: Object.freeze(readOptions(item.options)), prefix: null }], [item.id], null, item.audio);
       });
-      each<{ id?: unknown; setting?: unknown; questions?: unknown }>(m.conversations, (c) => {
+      each<{ id?: unknown; setting?: unknown; questions?: unknown; audio?: unknown }>(m.conversations, (c) => {
         const { ids, items } = mcqs(c.id, c.questions);
-        add(module, "conversation", c.id, text(c.setting), items, ids);
+        add(module, "conversation", c.id, text(c.setting), items, ids, null, c.audio);
       });
-      each<{ id?: unknown; setting?: unknown; questions?: unknown }>(m.announcements, (a) => {
+      each<{ id?: unknown; setting?: unknown; questions?: unknown; audio?: unknown }>(m.announcements, (a) => {
         const { ids, items } = mcqs(a.id, a.questions);
-        add(module, "announcement", a.id, text(a.setting), items, ids);
+        add(module, "announcement", a.id, text(a.setting), items, ids, null, a.audio);
       });
-      each<{ id?: unknown; discipline?: unknown; questions?: unknown }>(m.academicTalks, (t) => {
+      each<{ id?: unknown; discipline?: unknown; questions?: unknown; audio?: unknown }>(m.academicTalks, (t) => {
         const { ids, items } = mcqs(t.id, t.questions);
-        add(module, "academic_talk", t.id, text(t.discipline), items, ids);
+        add(module, "academic_talk", t.id, text(t.discipline), items, ids, null, t.audio);
       });
     }
   }
   return { stimuli: Object.freeze(stimuli), questionsByItemId: Object.freeze(questions) };
+}
+
+function textContent(value: unknown, label: string | null, preserveLines: boolean): StimulusContentSnapshot | null {
+  const body = text(value);
+  return body === null ? null : Object.freeze({ kind: "text", label, text: body, preserveLines });
+}
+
+/**
+ * A Complete the Words passage's runs, kept only when every one of them reads: a passage missing a
+ * run, or naming a gap its own list does not carry, would print the wrong words around a Response,
+ * so it is dropped whole and the review falls back to the list of Items alone.
+ */
+function gappedContent(value: unknown, prefixesByGapId: Record<string, string>): StimulusContentSnapshot | null {
+  if (!Array.isArray(value) || value.length === 0) return null;
+  const segments: GappedSegmentSnapshot[] = [];
+  for (const s of value as { type?: unknown; text?: unknown; gapId?: unknown }[]) {
+    if (s?.type === "text" && typeof s.text === "string") segments.push(Object.freeze({ type: "text", text: s.text }));
+    else if (s?.type === "gap" && typeof s.gapId === "string" && Object.prototype.hasOwnProperty.call(prefixesByGapId, s.gapId)) {
+      segments.push(Object.freeze({ type: "gap", gapId: s.gapId }));
+    } else return null;
+  }
+  return Object.freeze({ kind: "gapped", segments: Object.freeze(segments), prefixesByGapId: Object.freeze(prefixesByGapId) });
 }
 
 /** The Email and the Academic Discussion task, each as the lines that set it. */

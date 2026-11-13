@@ -18,6 +18,7 @@ describe("WeaknessPanel — Reading & Listening skill accuracy", () => {
   it("renders the academic-passage skill categories as readable labels, underscores and all", () => {
     render(
       <WeaknessPanel
+        skillItemsLimit={300}
         weaknesses={[]}
         judgeAgreement={NO_JUDGE_AGREEMENT}
         skillAccuracy={[
@@ -37,6 +38,7 @@ describe("WeaknessPanel — Reading & Listening skill accuracy", () => {
   it("still renders the other skill categories, and the empty state", () => {
     const { rerender } = render(
       <WeaknessPanel
+        skillItemsLimit={300}
         weaknesses={[]}
         judgeAgreement={NO_JUDGE_AGREEMENT}
         skillAccuracy={[accuracy("main_idea", 3, 5)]}
@@ -45,7 +47,7 @@ describe("WeaknessPanel — Reading & Listening skill accuracy", () => {
     expect(screen.getByText("Reading · Main idea")).toBeTruthy();
 
     rerender(
-      <WeaknessPanel weaknesses={[]} judgeAgreement={NO_JUDGE_AGREEMENT} skillAccuracy={[]} />,
+      <WeaknessPanel skillItemsLimit={300} weaknesses={[]} judgeAgreement={NO_JUDGE_AGREEMENT} skillAccuracy={[]} />,
     );
     expect(screen.getByText(/Not enough scored Items yet/u)).toBeTruthy();
   });

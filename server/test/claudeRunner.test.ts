@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { deferred } from "./helpers/deferred.js";
+import { processIsAlive } from "./helpers/processLiveness.js";
 import { z } from "zod";
 import type { ReasoningFailureKind } from "@toefl-prep/shared";
 import { config, projectRoot } from "../src/lib/config.js";
@@ -61,16 +62,6 @@ function heartbeatPid(heartbeatPath: string): number | undefined {
     return Number.isSafeInteger(pid) && pid > 0 ? pid : undefined;
   } catch {
     return undefined;
-  }
-}
-
-function processIsAlive(pid: number): boolean {
-  try {
-    process.kill(pid, 0);
-    return true;
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === "ESRCH") return false;
-    throw error;
   }
 }
 

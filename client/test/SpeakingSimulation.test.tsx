@@ -223,6 +223,35 @@ describe("Speaking Simulation", () => {
     expect(api.createAttempt).toHaveBeenCalledWith({ kind: "speaking", mode: "simulation", setId: "spk-sim-1" });
   });
 
+  // Each step replaces the button that moved the section on; focus goes into the new step rather
+  // than falling back to the page body (issue #24).
+  it("moves keyboard focus into every new stage up to the first Item", async () => {
+    const user = userEvent.setup();
+    renderSimulation();
+    const focusInStage = () => {
+      expect(document.activeElement).not.toBe(document.body);
+      expect(screen.getByRole("main").contains(document.activeElement)).toBe(true);
+    };
+
+    await user.click(await screen.findByRole("button", { name: "Check your microphone" }));
+    await screen.findByRole("button", { name: "pass mic check" });
+    focusInStage();
+
+    await user.click(screen.getByRole("button", { name: "pass mic check" }));
+    await screen.findByRole("button", { name: "Start Speaking Simulation" });
+    expect(document.activeElement?.tagName).toBe("H1");
+    focusInStage();
+
+    await user.click(screen.getByRole("button", { name: "Start Speaking Simulation" }));
+    expect(await screen.findByRole("heading", { name: "Garden tour" })).toBe(document.activeElement);
+
+    await act(async () => {
+      audioBySrc("lr-intro").dispatch("ended");
+    });
+    await screen.findByRole("button", { name: "finish item lr-1" });
+    focusInStage();
+  });
+
   it("runs the section continuously and pipelines the Listen and Repeat scoring job into the interview", async () => {
     const api = await import("../src/lib/api");
     const user = userEvent.setup();

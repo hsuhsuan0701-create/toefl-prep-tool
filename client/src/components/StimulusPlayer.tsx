@@ -14,6 +14,15 @@ type StimulusPlayerProps = {
 type Phase = "playing" | "done" | "error";
 
 /**
+ * How long a clip may take to start before its load counts as failed. A request that is neither
+ * answered nor failed (a hung or suspended server) fires no `error` and never settles `play()`, so
+ * without a bound "Listen…" would stay up for as long as it lasts, with nothing to retry. The clips
+ * are local files served over loopback and start in well under a second, so this is generous on a
+ * slow first load; it stops counting once playback begins, so a playing clip is never cut short.
+ */
+export const START_TIMEOUT_MS = 15_000;
+
+/**
  * Plays `src` exactly once on mount: autoplays, no `<audio controls>` (so there's nothing to click
  * to replay), calls `onEnded` when playback finishes, or `onError` (falling back to `onEnded`) when
  * it fails. A parent advances to a new clip, or retries a failed one, by giving this a new `key`;
@@ -26,8 +35,9 @@ type Phase = "playing" | "done" | "error";
  * not, and only the clip of a page that is gone is stopped.
  *
  * `finish()` is one-shot: browsers commonly reject `play()` and also fire `error` for the same
- * failed load, and three listeners can reach it. It also does nothing once unmounted, so a late
- * `ended` from an orphaned element cannot advance a stage the User already left.
+ * failed load, and four paths can reach it (the start bound, START_TIMEOUT_MS, is the fourth). It
+ * also does nothing once unmounted, so a late `ended` from an orphaned element cannot advance a
+ * stage the User already left.
  */
 export default function StimulusPlayer({ src, onEnded, onError }: StimulusPlayerProps) {
   const playedRef = useRef(false);
@@ -68,9 +78,27 @@ export default function StimulusPlayer({ src, onEnded, onError }: StimulusPlayer
         onEndedRef.current();
       }
     };
+    // Not cleared by the effect's cleanup, for the same StrictMode reason the element is kept: the
+    // second mount is a no-op and arms nothing. A real unmount is covered by `finish` doing nothing
+    // once unmounted, and by the check below.
+    let startTimer: ReturnType<typeof setTimeout> | undefined = setTimeout(() => {
+      startTimer = undefined;
+      if (finishedRef.current || !mountedRef.current) return;
+      // Give the held request up, so this element can never start playing over the retry or the gate.
+      audio.pause();
+      audio.removeAttribute("src");
+      audio.load();
+      finish("error");
+    }, START_TIMEOUT_MS);
+    // Playback has begun: `play()` resolves exactly when it does, and `playing` says so too.
+    const started = () => {
+      if (startTimer !== undefined) clearTimeout(startTimer);
+      startTimer = undefined;
+    };
+    audio.addEventListener("playing", started);
     audio.addEventListener("ended", () => finish("done"));
     audio.addEventListener("error", () => finish("error"));
-    void audio.play().catch(() => finish("error"));
+    void audio.play().then(started, () => finish("error"));
   }, [src]);
 
   return <AudioStatus state={phase === "error" ? "failed" : phase} />;

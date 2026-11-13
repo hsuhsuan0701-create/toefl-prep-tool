@@ -2,6 +2,8 @@ import type { CancellationReason } from "@toefl-prep/shared";
 import type { ScoringJobUiStatus } from "../hooks/useScoringJob";
 import { cancellationStatusLabel, formatElapsed, scoringInterrupted } from "../lib/progressUtils";
 import { Button } from "../ui/Button";
+import { ScoringNotSetUpFailure, SetupLink } from "./setup/ScoringSetupNotice";
+import { useScoringNotSetUp } from "./setup/sectionScorability";
 import { Chip } from "../ui/Chip";
 import { Notice } from "../ui/Notice";
 import { StepProgress, type Step, type StepState } from "../ui/Progress";
@@ -28,12 +30,19 @@ export type ScoringProgressJob = {
   cancellationRequestedAt?: string | null;
   terminalAt?: string | null;
   cancellationReason?: CancellationReason | null;
+  /** The Items the server's job scores; null or absent until a job has reported (useScoringJob). */
+  itemIds?: string[] | null;
 };
 
 export type ScoringProgressProps = {
   job: ScoringProgressJob;
   /** The caller decides what Retry means (a fresh job, a re-score, …). */
   onRetry: () => void;
+  /**
+   * The section being scored. A failure on a machine whose setup status says it cannot score this
+   * section says so and links to Setup, in place of the server's error.
+   */
+  section?: "speaking" | "writing";
 };
 
 // The three real checkpoints scoring reports (Judges, Arbiter, saving), never a creeping percent.
@@ -66,8 +75,13 @@ function arbiterDetail(job: ScoringProgressJob): string | null {
  * state as a chip, the elapsed time, and a failure with its Retry. The current checkpoint is
  * announced once when it changes (StepProgress), and the waiting states have their own announcement.
  */
-export default function ScoringProgress({ job, onRetry }: ScoringProgressProps) {
+export default function ScoringProgress({ job, onRetry, section }: ScoringProgressProps) {
   const { status, stage, judgesDone, judgesFailed, openaiJudgeProvider, elapsedMs, error, cancellationRequestedAt, terminalAt, cancellationReason } = job;
+  // Put down to this machine's setup only when a job reached the server and failed there: its
+  // Response was stored before the job existed, so "it is saved" holds. A POST /score that never made
+  // a job proves neither that the Response is stored nor why it failed, and keeps its own error.
+  const jobReported = job.itemIds != null;
+  const notSetUp = useScoringNotSetUp(status === "failed" && jobReported ? (section ?? null) : null);
 
   if (status === "failed") {
     return (
@@ -76,12 +90,15 @@ export default function ScoringProgress({ job, onRetry }: ScoringProgressProps) 
         live="assertive"
         title="Scoring failed"
         action={
-          <Button size="sm" onClick={onRetry}>
-            Retry scoring
-          </Button>
+          <>
+            <Button size="sm" onClick={onRetry}>
+              Retry scoring
+            </Button>
+            {notSetUp && <SetupLink />}
+          </>
         }
       >
-        {error ? asSentence(error) : "Something went wrong while scoring this Response."}
+        {notSetUp ? <ScoringNotSetUpFailure /> : error ? asSentence(error) : "Something went wrong while scoring this Response."}
       </Notice>
     );
   }

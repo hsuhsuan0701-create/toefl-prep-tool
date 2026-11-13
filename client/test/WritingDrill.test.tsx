@@ -1,6 +1,6 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import { useFakeTimersInTest } from "./fakeTimers";
-import { screen, act } from "@testing-library/react";
+import { screen, act, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderRoutes } from "./dataRouter";
 import WritingDrill from "../src/pages/WritingDrill";
@@ -38,6 +38,10 @@ vi.mock("../src/lib/api", () => ({
 // the real hook cannot re-fire on a prop change, so a second POST can only mean a remounted slot got
 // past the one-job registry, and this mock reproduces that property without pulling in the poll
 // loop.
+//
+// `essayJob` is where the job lands: running unless a test says otherwise (the results tests below
+// settle it as scored, or as failed).
+const essayJob = vi.hoisted(() => ({ current: {} as Record<string, unknown> }));
 vi.mock("../src/hooks/useScoringJob", async () => {
   const { useEffect, useRef } = await import("react");
   return {
@@ -66,7 +70,9 @@ vi.mock("../src/hooks/useScoringJob", async () => {
         cancellationRequestedAt: null,
         terminalAt: null,
         cancellationReason: null,
+        itemIds: null,
         retry: () => {},
+        ...essayJob.current,
       };
     },
   };
@@ -184,6 +190,76 @@ describe("WritingDrill full drill: every task gets a fresh editor and a fresh cl
     expect(await screen.findByRole("heading", { name: "Results" })).toBeInTheDocument();
   });
 
+  // The stages replace one another inside one route, so without a scroll of its own each would open
+  // at the offset the stage before was left at, its start under the sticky header (issue #22).
+  it("opens every stage at the top of the window, and leaves the page put between Items", async () => {
+    const scrollTo = vi.spyOn(window, "scrollTo").mockImplementation(() => {});
+    const toTop = expect.objectContaining({ top: 0 });
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+    renderRoutes([{ path: "/writing/:setId", element: <WritingDrill /> }], "/writing/wri-test");
+
+    await user.click(await screen.findByText("All three Task Types"));
+    await screen.findByRole("button", { name: "Start Writing Drill" });
+    expect(scrollTo).toHaveBeenLastCalledWith(toTop);
+
+    scrollTo.mockClear();
+    await user.click(screen.getByRole("button", { name: "Start Writing Drill" }));
+    await screen.findByText("Arrange the first sentence.");
+    expect(scrollTo).toHaveBeenCalledWith(toTop);
+
+    // Next is a move between the Items of one stage, not a new stage.
+    scrollTo.mockClear();
+    await user.click(screen.getByRole("button", { name: "Next" }));
+    await screen.findByText("Arrange the second sentence.");
+    expect(scrollTo).not.toHaveBeenCalled();
+
+    await finishBuildSentence(user);
+    await screen.findByRole("heading", { name: "Write an Email" });
+    expect(scrollTo).toHaveBeenLastCalledWith(toTop);
+
+    scrollTo.mockClear();
+    await user.type(screen.getByRole("textbox"), "Dear Professor, please grant me an extension.");
+    await user.click(screen.getByRole("button", { name: /^Submit/ }));
+    await screen.findByRole("heading", { name: "Academic Discussion" });
+    expect(scrollTo).toHaveBeenCalledWith(toTop);
+
+    scrollTo.mockClear();
+    await user.click(screen.getByRole("button", { name: /^Submit/ }));
+    await screen.findByRole("heading", { name: "Results" });
+    expect(scrollTo).toHaveBeenCalledWith(toTop);
+  });
+
+  // The control that moved the Drill on goes with the stage it was on; focus goes into the new stage
+  // rather than falling back to the page body, and an essay opens with the caret in its editor
+  // (issue #24).
+  it("moves keyboard focus into every new stage, and into the editor on an essay stage", async () => {
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+    renderRoutes([{ path: "/writing/:setId", element: <WritingDrill /> }], "/writing/wri-test");
+    const focusInStage = () => {
+      expect(document.activeElement).not.toBe(document.body);
+      expect(screen.getByRole("main").contains(document.activeElement)).toBe(true);
+    };
+
+    await user.click(await screen.findByText("All three Task Types"));
+    expect(document.activeElement).toBe(screen.getByRole("heading", { level: 1, name: "All three Task Types" }));
+
+    await user.click(screen.getByRole("button", { name: "Start Writing Drill" }));
+    await screen.findByText("Arrange the first sentence.");
+    focusInStage();
+
+    await finishBuildSentence(user);
+    await screen.findByRole("heading", { name: "Write an Email" });
+    expect(document.activeElement).toBe(screen.getByRole("textbox", { name: "Your email" }));
+
+    await user.type(screen.getByRole("textbox"), "Dear Professor, please grant me an extension.");
+    await user.click(screen.getByRole("button", { name: /^Submit/ }));
+    await screen.findByRole("heading", { name: "Academic Discussion" });
+    expect(document.activeElement).toBe(screen.getByRole("textbox", { name: "Your post" }));
+
+    await user.click(screen.getByRole("button", { name: /^Submit/ }));
+    expect(await screen.findByRole("heading", { name: "Results" })).toBe(document.activeElement);
+  });
+
   // Each essay's scoring job is fired when its slot mounts, and re-fired only by an explicit Retry.
   // The Email's slot is drawn as one line above the Discussion and again on the results screen, a
   // different place in the tree, so it mounts twice. lib/scoringJobOnce.ts keeps the second mount
@@ -294,6 +370,20 @@ describe("WritingDrill results: a Build a Sentence Response reads back as its wh
     // The gap the User left stays a gap; the sentence does not close up over it.
     expect(screen.getByTestId("bas-answer-bas-2")).toHaveTextContent("Your Response: The museum was ___ ___ crowded.");
     expect(screen.getByTestId("bas-key-bas-2")).toHaveTextContent("Key: The museum was not very crowded.");
+
+    // Every tile the Item offered, A to Z, with the one the key leaves out marked: a Drill's
+    // answer carries its key, so there is nothing to withhold.
+    const tiles = (itemId: string) => within(screen.getByTestId(`bas-tiles-${itemId}`)).getAllByRole("listitem");
+    expect(tiles("bas-2").map((li) => li.textContent)).toEqual(["not", "very", "was", "were · not in the sentence"]);
+    expect(tiles("bas-1").filter((li) => li.hasAttribute("data-extra")).map((li) => li.textContent)).toEqual([
+      "was · not in the sentence",
+    ]);
+    // The placed tiles are set apart from the frame's printed words; an empty blank is neither.
+    const placed = (testId: string) =>
+      Array.from(screen.getByTestId(testId).querySelectorAll("[data-placed]")).map((el) => el.textContent);
+    expect(placed("bas-answer-bas-1")).toEqual(REFERENCE_ANSWER);
+    expect(placed("bas-answer-bas-2")).toEqual(["was"]);
+    expect(placed("bas-key-bas-2")).toEqual(["was", "not", "very"]);
   });
 });
 
@@ -398,5 +488,92 @@ describe("WritingDrill Build a Sentence: a failed commit, then a Retry that succ
     const bsCalls = (api.scoreTask as any).mock.calls.filter(([, body]: [string, any]) => body.taskType === "build_sentence");
     expect(bsCalls).toHaveLength(2);
     expect(bsCalls[1][1]).toEqual(bsCalls[0][1]);
+  });
+});
+
+// The results show each essay with the task it answered, as Attempt review does ("The task", the
+// same Disclosure fed the same lines), and an essay whose scoring failed with the Response the User
+// wrote, which is otherwise nowhere on the screen.
+describe("WritingDrill results: each essay with its task", () => {
+  beforeEach(async () => {
+    const api = await import("../src/lib/api");
+    (api.getSet as any).mockResolvedValue(set);
+    (api.createAttempt as any).mockResolvedValue({ attemptId: `att-results-${++attemptSeq}`, isRepeat: false });
+    (api.scoreTask as any).mockImplementation(async () => ({ jobId: "job-1" }));
+  });
+  afterEach(() => {
+    essayJob.current = {};
+  });
+
+  async function sitOneEssay(option: RegExp, text: string) {
+    const user = userEvent.setup();
+    renderRoutes([{ path: "/writing/:setId", element: <WritingDrill /> }], "/writing/wri-test");
+    await user.click(await screen.findByRole("button", { name: option }));
+    await user.click(screen.getByRole("button", { name: "Start Writing Drill" }));
+    await user.type(await screen.findByRole("textbox"), text);
+    await user.click(screen.getByRole("button", { name: /^Submit/ }));
+    await screen.findByRole("heading", { name: "Results" });
+    return user;
+  }
+
+  /** The essay's section on the results screen, with its task's Disclosure opened. */
+  async function openTask(user: ReturnType<typeof userEvent.setup>, sectionName: string) {
+    const section = screen.getByRole("region", { name: sectionName });
+    await user.click(within(section).getByText("The task"));
+    return section;
+  }
+
+  function scored(taskType: "email" | "discussion", itemId: string) {
+    return {
+      status: "done",
+      itemIds: [itemId],
+      result: {
+        taskType,
+        report: {
+          taskType,
+          items: [{ itemId, ownScore: 3, finalScore: 3, maxScore: 5, dimensions: [], deductions: [], reconciliationNote: "", feedbackZh: "" }],
+        },
+        judges: [],
+        judgesFailed: [],
+      },
+    };
+  }
+
+  it("shows a scored Email's task beside its Score Report", async () => {
+    essayJob.current = scored("email", "em-1");
+    const user = await sitOneEssay(/^Write an Email/, "Dear Professor, please grant me an extension.");
+    const section = await openTask(user, "Write an Email");
+    for (const line of ["Ask for an extension.", "To: prof@uni.edu", "Subject: Extension", "• say why"]) {
+      expect(within(section).getByText(line)).toBeVisible();
+    }
+  });
+
+  it("shows a scored Academic Discussion's task: the course, the professor and each student", async () => {
+    essayJob.current = scored("discussion", "ad-1");
+    const user = await sitOneEssay(/^Academic Discussion/, "I agree with Ana because incentives matter.");
+    const section = await openTask(user, "Academic Discussion");
+    for (const line of ["Econ 101", "Dr. Lin: Discuss the incentive effects.", "Ana: I think subsidies distort prices."]) {
+      expect(within(section).getByText(line)).toBeVisible();
+    }
+  });
+
+  it("shows a failed Email's task and the Response the User wrote", async () => {
+    essayJob.current = { status: "failed", itemIds: ["em-1"], error: "both judges failed" };
+    const user = await sitOneEssay(/^Write an Email/, "Dear Professor, please grant me an extension.");
+    const section = await openTask(user, "Write an Email");
+    expect(within(section).getByText("Ask for an extension.")).toBeVisible();
+    expect(within(section).getByRole("heading", { name: "Your Response" })).toBeInTheDocument();
+    expect(within(section).getByText("Dear Professor, please grant me an extension.")).toBeInTheDocument();
+    // The server has the essay (its job reported), so the results may say it is saved.
+    expect(section).toHaveTextContent("Your Response is saved with this Attempt.");
+  });
+
+  it("shows the Response of an essay whose job never started, without saying it is saved", async () => {
+    // A POST /score that never produced a job proves nothing about the essay reaching the server.
+    essayJob.current = { status: "failed", itemIds: null, error: "The score request did not go through." };
+    const user = await sitOneEssay(/^Write an Email/, "Dear Professor, please grant me an extension.");
+    const section = await openTask(user, "Write an Email");
+    expect(within(section).getByText("Dear Professor, please grant me an extension.")).toBeInTheDocument();
+    expect(section).not.toHaveTextContent(/saved/);
   });
 });

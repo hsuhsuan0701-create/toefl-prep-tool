@@ -76,9 +76,12 @@ export function WordCount({ count, guide, className }: { count: number; guide: W
   return (
     <div className={cx("flex min-w-0 items-center gap-2 text-ui text-ink-soft", className)}>
       <span className="shrink-0 text-graphite">{status === "within" ? <IconCheck size={14} /> : <IconDash size={14} />}</span>
-      <p className="figures min-w-0 truncate">
-        <span className="font-semibold text-ink">{count}</span> {count === 1 ? "word" : "words"}
-        <span className="text-graphite"> · {detail}</span>
+      {/* Wraps rather than truncates: beside Submit on a phone the line runs out of room, and the
+          part it would lose is the range. The detail stays whole, so a wrap falls before its "·"
+          and never inside "80–120". */}
+      <p className="figures min-w-0">
+        <span className="font-semibold text-ink">{count}</span> {count === 1 ? "word" : "words"}{" "}
+        <span className="whitespace-nowrap text-graphite">· {detail}</span>
       </p>
       <span aria-live="polite" className="sr-only">
         {announcement}

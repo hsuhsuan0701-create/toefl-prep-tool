@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import type { Section, TrendPointVM } from "@toefl-prep/shared";
 import { getTrends } from "../lib/api";
 import { requestErrorMessage } from "../lib/requestError";
@@ -99,6 +99,9 @@ export default function TrendsSection() {
   const [range, setRange] = useState<TrendRangeKey>(DEFAULT_TREND_RANGE);
   const [custom, setCustom] = useState<CustomTrendRange>({ from: "", to: "" });
   const idBase = useId();
+  // Each tile's toggle, by Task Type: closing a chart hands focus back to the tile that opened it,
+  // since the Close button goes with the chart.
+  const tileRefs = useRef(new Map<string, HTMLButtonElement>());
 
   useEffect(() => {
     let cancelled = false;
@@ -167,6 +170,10 @@ export default function TrendsSection() {
                   emptyNote={(points.get(task.taskType) ?? []).length > 0 ? "No Attempts in this range" : undefined}
                   expanded={expanded === task.taskType}
                   onToggle={() => setExpanded((prev) => (prev === task.taskType ? null : task.taskType))}
+                  ref={(el) => {
+                    if (el) tileRefs.current.set(task.taskType, el);
+                    else tileRefs.current.delete(task.taskType);
+                  }}
                 />
               ))}
             </div>
@@ -174,7 +181,14 @@ export default function TrendsSection() {
               <Card className="space-y-3">
                 <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
                   <h4 className="text-body font-semibold text-ink">{openTask.label}</h4>
-                  <Button size="sm" variant="quiet" onClick={() => setExpanded(null)}>
+                  <Button
+                    size="sm"
+                    variant="quiet"
+                    onClick={() => {
+                      setExpanded(null);
+                      tileRefs.current.get(openTask.taskType)?.focus({ preventScroll: true });
+                    }}
+                  >
                     Close chart
                   </Button>
                 </div>
