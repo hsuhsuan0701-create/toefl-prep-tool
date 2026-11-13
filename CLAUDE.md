@@ -45,7 +45,9 @@ when it records a decision.
   `routes.attempts.reading.test.ts`.
 - A Repeat is an Attempt on a Set that already has an Attempt with a scored Item, or a completed
   Attempt holding at least one Item. It never becomes a headline band. A restarted Full-Test section
-  keeps the tag of the Attempt it replaces. `routes.attempts.repeat.test.ts`.
+  keeps the tag of the Attempt it replaces, and discards that Attempt in the same transaction
+  (`openFullTestSectionAttempt` in `db/stores/fullTests.ts`). `routes.attempts.repeat.test.ts`,
+  `routes.fullTests.test.ts`.
 - A recording with no speech scores a deterministic 0 and never reaches a Judge.
   `noSpeechScoring.test.ts`.
 - An Email or Academic Discussion with no words (empty once whitespace is trimmed,
@@ -149,6 +151,11 @@ when it records a decision.
   `routes.attempts.complete.test.ts`, `routes.attempts.reading.test.ts`.
 - A Full-Test Run section is always a Simulation: `checkFullTestLink` refuses a `fullTestRunId`
   with any other mode. `routes.fullTests.test.ts`.
+- A Full-Test Run in progress ends early only through `POST /api/full-tests/:id/abandon`. The Run
+  and its live section's Attempt end in one transaction (`abandonFullTestRun`), finished sections
+  keep their Attempts and bands, and there is no Overall. The route is idempotent and refuses a
+  completed Run, and the Attempt routes still refuse to discard or finish a Run's live section.
+  `routes.fullTests.test.ts`.
 - A generation run whose publication intent has committed deletes nothing under its Set id until
   the intent is settled by its bytes (`reconcileGenerationPublicationIntent`), live and at boot
   alike. `generationJobs.test.ts`, `generationPublication.test.ts`.
