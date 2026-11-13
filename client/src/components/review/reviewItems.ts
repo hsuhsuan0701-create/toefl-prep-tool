@@ -1,4 +1,4 @@
-import type { BuildupDiffOp, ItemVM, JudgeReportVM, ScoreRequest } from "@toefl-prep/shared";
+import type { BuildupDiffOp, DeterministicItemScoreJson, ItemVM, JudgeReportVM, ScoreRequest } from "@toefl-prep/shared";
 import type { ScoringJobState } from "../../hooks/useScoringJob";
 import type { DeliveryReport } from "../../lib/api";
 import { scoringInterrupted } from "../../lib/progressUtils";
@@ -9,26 +9,34 @@ import type { JudgeSummary, ScoreReportItem } from "../ScoreCard";
 // page, its Item renderers and the job controller all ask the same question the same way.
 
 /**
- * What deterministic scoring persists for every Reading/Listening Item in either mode. `answer` is
- * the User's own raw Response (typed letters, or the selected option id, including shared's
- * MCQ_UNANSWERED_SENTINEL for a question left unanswered); `skill` exists for multiple-choice Items
- * only.
+ * A Reading/Listening Item's `scoreJson` as the server sends it (shared's
+ * ServedDeterministicItemScoreJson, read as one shape): what deterministic scoring persists in either
+ * mode (DeterministicItemScoreJson, whose fields are documented there), with `correct` absent while
+ * the Attempt's marks are withheld. The words of the Response (`selectedOptionText`,
+ * `selectedOptionIndex`, `prefix`) are absent from rows scored before they were stored.
  */
-export type DeterministicScoreJson = { correct: boolean; module: string; answer: string; skill?: string };
+export type DeterministicScoreJson = Omit<DeterministicItemScoreJson, "correct"> & { correct?: boolean };
 
 export function isDeterministicScoreJson(v: unknown): v is DeterministicScoreJson {
   const j = v as { correct?: unknown; module?: unknown; answer?: unknown };
-  return typeof v === "object" && v !== null && typeof j.correct === "boolean" && typeof j.module === "string" && typeof j.answer === "string";
+  return (
+    typeof v === "object" &&
+    v !== null &&
+    (j.correct === undefined || typeof j.correct === "boolean") &&
+    typeof j.module === "string" &&
+    typeof j.answer === "string"
+  );
 }
 
 /** The `meta` a scored spoken Item carries beside its Score Report: the target and diff, or the question. */
 export type SpeakingMeta = { target?: string; diff?: BuildupDiffOp[]; question?: string };
-export type PersistedScoreItem = ScoreReportItem & { meta?: SpeakingMeta; noSpeechDetected?: boolean };
+export type PersistedScoreItem = ScoreReportItem & { meta?: SpeakingMeta; noSpeechDetected?: boolean; noWordsWritten?: boolean };
 /**
- * What Build a Sentence scoring persists. `correctAnswers` (the key) is absent while a Simulation
- * is not yet completed: the server withholds it until then, and correctness alone is shown.
+ * A Build a Sentence Item's `scoreJson` as the server sends it (shared's
+ * ServedBuildSentenceItemScoreJson, read as one shape). `correctAnswers` (the key) is absent while a
+ * Simulation is not yet completed, and `correct` while the Attempt's marks are withheld.
  */
-export type BuildSentenceScoreJson = { correct: boolean; correctAnswers?: string[][] };
+export type BuildSentenceScoreJson = { correct?: boolean; correctAnswers?: string[][] };
 export type FailedScoreJson = { error: string };
 
 export function isPersistedScoreItem(v: unknown): v is PersistedScoreItem {
@@ -42,12 +50,18 @@ export function isPersistedScoreItem(v: unknown): v is PersistedScoreItem {
   );
 }
 
+/**
+ * Every field is optional (a frameless Item with its marks withheld is sent as `{}`), so this tells a
+ * Build a Sentence score from a wrong-typed one, not from another Task Type's: ask it of a Build a
+ * Sentence Item only.
+ */
 export function isBuildSentenceScoreJson(v: unknown): v is BuildSentenceScoreJson {
   const key = (v as { correctAnswers?: unknown } | null)?.correctAnswers;
+  const correct = (v as { correct?: unknown } | null)?.correct;
   return (
     typeof v === "object" &&
     v !== null &&
-    typeof (v as { correct?: unknown }).correct === "boolean" &&
+    (correct === undefined || typeof correct === "boolean") &&
     (key === undefined || Array.isArray(key))
   );
 }

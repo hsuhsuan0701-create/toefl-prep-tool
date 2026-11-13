@@ -491,6 +491,11 @@ export const listFullTests = (opts: { limit?: number; status?: FullTestRunStatus
 export const advanceFullTest = (runId: string): Promise<FullTestRunVM> =>
   fetch(`/api/full-tests/${runId}/advance`, { method: "POST" }).then((r) => json(r));
 
+// Gives up on a Run in progress: it ends abandoned with no Overall, its finished sections keep their
+// Attempts and bands, and the section being sat is discarded. Idempotent; a completed Run is a 409.
+export const abandonFullTest = (runId: string): Promise<FullTestRunVM> =>
+  fetch(`/api/full-tests/${runId}/abandon`, { method: "POST" }).then((r) => json(r));
+
 // ---------------------------------------------------------------------------------------------
 // Drill Lab — backward buildup (倒序堆疊)
 // ---------------------------------------------------------------------------------------------

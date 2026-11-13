@@ -1,7 +1,10 @@
 import { useEffect, useRef } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import type { ItemVM } from "@toefl-prep/shared";
+import type { ItemVM, MarksWithheldReason } from "@toefl-prep/shared";
+import { appRoutes } from "../App";
+import { reviewOriginOf } from "../hooks/useAttemptListPlace";
 import { pollReasons, useAttemptReview } from "../hooks/useAttemptReview";
+import { pageTitleFor } from "../routeTitle";
 import { taskTypeEntry, taskTypeLabel } from "../lib/taskTypes";
 import { Chip, StatusChip } from "../ui/Chip";
 import { EmptyState } from "../ui/EmptyState";
@@ -22,7 +25,7 @@ import SpokenItemReview from "../components/review/SpokenItemReview";
 import SceneImage from "../components/SceneImage";
 import TaskJobController from "../components/review/TaskJobController";
 import { rescoreCandidates } from "../components/review/reviewItems";
-import { correctSummary, judgedSummary, moduleName, reviewGroups, type ReviewGroup } from "../components/review/reviewText";
+import { correctSummary, judgedSummary, moduleName, reviewGroups, unmarkedSummary, type ReviewGroup } from "../components/review/reviewText";
 import { spokenNumberFor, spokenPromptAudioFor } from "./attemptSetSnapshot";
 
 // Attempt review (/attempts/:id): what the User did, how it scored and what to do next, Item by Item
@@ -38,8 +41,9 @@ function groupTitle(group: ReviewGroup): string {
   return group.kind === "module" ? moduleName(group.module) : taskTypeLabel(group.taskType);
 }
 
-function groupSummary(group: ReviewGroup): string {
-  return group.kind === "judged" ? judgedSummary(group.items) : correctSummary(group.items);
+function groupSummary(group: ReviewGroup, marksWithheld: MarksWithheldReason | undefined): string {
+  if (group.kind === "judged") return judgedSummary(group.items);
+  return marksWithheld ? unmarkedSummary(group.items) : correctSummary(group.items);
 }
 
 function isSpoken(taskType: string): boolean {
@@ -98,7 +102,7 @@ export default function AttemptReview() {
     );
   }
 
-  const { attempt, items, judgeReports, estimate, bandStatus, deterministicReview, spokenPrompts } = detail;
+  const { attempt, items, judgeReports, estimate, bandStatus, deterministicReview, spokenPrompts, marksWithheld } = detail;
   const reasons = pollReasons(detail);
   const settled = !reasons.transcriptionActive && !reasons.scoringActive && !reasons.captureFinalizing;
   const section = SECTION_LABEL[attempt.kind];
@@ -112,6 +116,9 @@ export default function AttemptReview() {
   // of a Drill whatever its status. When the review is owed and still absent, the Set could not be
   // read or two of its Items share an id; otherwise it is withheld by rule and the notice says why.
   const reviewOwed = attempt.status === "completed" || (attempt.mode === "drill" && items.some((item) => item.scoringStatus === "scored"));
+  // Whether each Response is marked is the server's call (`marksWithheld`, CLAUDE.md "Sets and
+  // answers"): while it withholds them it sends no Item's correctness, and the review shows each
+  // Response unmarked, with no "n of m correct" tally, and says when the marks come.
 
   const judgedProps = (item: ItemVM) => ({
     judgeReports,
@@ -189,7 +196,7 @@ export default function AttemptReview() {
             <span className="text-graphite">Items, in test order:</span>
             {groups.map((group) => (
               <HashLink key={group.key} href={`#group-${group.key}`}>
-                {groupTitle(group)} · {groupSummary(group)}
+                {groupTitle(group)} · {groupSummary(group, marksWithheld)}
               </HashLink>
             ))}
           </nav>
@@ -200,6 +207,14 @@ export default function AttemptReview() {
           !deterministicReview &&
           (reviewOwed ? (
             <Notice tone="info">The key and Explanations aren't available for this Attempt: its Set could not be read.</Notice>
+          ) : marksWithheld === "attempt-in-progress" ? (
+            <Notice tone="info">Whether each Response is correct, the key and the Explanations appear once this Attempt is complete.</Notice>
+          ) : marksWithheld === "full-test-run-in-progress" ? (
+            // The Attempt a restarted Full-Test section replaced: the Run is still sitting its Set.
+            <Notice tone="info">
+              This Attempt was discarded when its section was started again, so its key and Explanations are not shown. Whether each Response is correct appears once
+              its Full-Test Run ends.
+            </Notice>
           ) : attempt.status === "aborted" ? (
             // Here the key review waits for completion (a Simulation, or a Drill with no scored
             // Item), and a discard is final.
@@ -226,7 +241,7 @@ export default function AttemptReview() {
               <SectionHeader
                 id={headingId}
                 title={groupTitle(group)}
-                description={groupSummary(group)}
+                description={groupSummary(group, marksWithheld)}
                 action={
                   group.kind === "judged" && (
                     <GroupRescoreAction
@@ -244,8 +259,8 @@ export default function AttemptReview() {
                   <SceneImage file={scene.file} />
                 </div>
               )}
-              {group.kind === "build_sentence" && <BuildSentenceGroup items={group.items} setSnapshot={setSnapshot} />}
-              {group.kind === "module" && <DeterministicModuleGroup items={group.items} setSnapshot={setSnapshot} reviewByItemId={reviewByItemId} showStimulus={attempt.status === "completed"} />}
+              {group.kind === "build_sentence" && <BuildSentenceGroup items={group.items} setSnapshot={setSnapshot} marksWithheld={marksWithheld} />}
+              {group.kind === "module" && <DeterministicModuleGroup items={group.items} setSnapshot={setSnapshot} reviewByItemId={reviewByItemId} showStimulus={attempt.status === "completed"} marksWithheld={marksWithheld} />}
               {group.kind === "judged" && (
                 <div className="space-y-6">
                   {group.items.map(({ item, position }, i) =>
@@ -280,11 +295,21 @@ export default function AttemptReview() {
   );
 }
 
+/**
+ * Back to the page the review was opened from, named by its route title: Progress, the Practice
+ * page (the Dashboard) or a Full-Test Run's report. Progress when the link into the review said
+ * nothing (a direct visit, a Drill's or Simulation's own report link). The link names the entry it
+ * leads back to, so that page puts the opened row back where it was, as the browser's Back does.
+ */
 function BackLink() {
+  const { state } = useLocation();
+  const origin = reviewOriginOf(state);
+  const title = origin && pageTitleFor(appRoutes, origin.path);
+  const back = origin && title ? { to: origin.path, state: { returnTo: origin.key }, title } : { to: "/progress", state: undefined, title: "Progress" };
   return (
-    <TextLink to="/progress" className="inline-flex items-center gap-1">
+    <TextLink to={back.to} state={back.state} className="inline-flex items-center gap-1">
       <IconArrowLeft size={14} />
-      Progress
+      {back.title}
     </TextLink>
   );
 }

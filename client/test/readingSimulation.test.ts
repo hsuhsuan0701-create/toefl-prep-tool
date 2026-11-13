@@ -3,6 +3,8 @@ import { useFakeTimersInTest } from "./fakeTimers";
 import type { ServedReadingSet } from "@toefl-prep/shared";
 import {
   buildScoreRequests,
+  flattenReadingModule,
+  readingResponseStates,
   reduceReadingSim,
   type ReadingSimEvent,
   type ReadingSimState,
@@ -258,5 +260,37 @@ describe("buildScoreRequests", () => {
 
   it("returns no requests for an empty module", () => {
     expect(buildScoreRequests(fixtureSet, "lower", new Map())).toEqual([]);
+  });
+});
+
+describe("readingResponseStates", () => {
+  const stimuli = flattenReadingModule(fixtureSet.router);
+
+  it("counts a gap as answered only once every slot holds a letter, and a gap typed short as partly filled (issue #41)", () => {
+    const states = readingResponseStates(
+      stimuli,
+      new Map([
+        ["ctw-r1-g1", "t"],
+        ["ctw-r1-g2", "r"],
+      ]),
+    );
+    expect(states.get("ctw-r1-g1")).toBe("answered");
+    expect(states.get("ctw-r1-g2")).toBe("partly");
+    expect(readingResponseStates(stimuli, new Map([["ctw-r1-g2", "re"]])).get("ctw-r1-g2")).toBe("answered");
+  });
+
+  it("does not let whitespace stand in for a letter, and calls an untyped gap no Response", () => {
+    const states = readingResponseStates(stimuli, new Map([["ctw-r1-g2", "r "], ["ctw-r1-g1", "  "]]));
+    expect(states.get("ctw-r1-g2")).toBe("partly");
+    expect(states.get("ctw-r1-g1")).toBe("none");
+  });
+
+  it("counts a multiple-choice Item as answered once an option is chosen", () => {
+    expect(readingResponseStates(stimuli, new Map()).get("dl-r1-q1")).toBe("none");
+    expect(readingResponseStates(stimuli, new Map([["dl-r1-q1", "b"]])).get("dl-r1-q1")).toBe("answered");
+  });
+
+  it("covers every Item of the Module", () => {
+    expect([...readingResponseStates(stimuli, new Map()).keys()]).toEqual(["ctw-r1-g1", "ctw-r1-g2", "dl-r1-q1"]);
   });
 });

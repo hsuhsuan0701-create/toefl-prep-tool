@@ -150,6 +150,39 @@ describe("a spoken Response with no words in it", () => {
   });
 });
 
+describe("an essay with no words in it", () => {
+  it("reads a no-words 0 as 'No Response written' with its summary, offers no Re-score, and shows no judging", async () => {
+    await renderReview(
+      detail("writing", [
+        item({
+          itemId: "email-1",
+          taskType: "email",
+          responseText: "  \n ",
+          score: 0,
+          scoringStatus: "scored",
+          scoreJson: {
+            ...report("email-1", { ownScore: 0, finalScore: 0, dimensions: [], feedbackZh: "這篇作答沒有寫下任何文字。" }),
+            reconciliationNote: "No Response was written for this task, so it was scored 0 without being sent to the Judges.",
+            noWordsWritten: true,
+          },
+        }),
+      ]),
+    );
+    const card = screen.getByTestId("item-email-1");
+    expect(within(card).getByTestId("no-words-note")).toHaveTextContent("No Response written");
+    expect(within(card).getByTestId("no-words-note")).toHaveTextContent(/scored 0 without being sent to the Judges/);
+    expect(within(card).getByText("這篇作答沒有寫下任何文字。")).toHaveAttribute("lang", "zh-Hant");
+    expect(within(card).getByText("No Response was submitted.")).toBeInTheDocument();
+    expect(within(card).getByText("0")).toBeInTheDocument();
+    // Scored, so nothing to re-score; and no Judge was asked, so no caution about the Judges and no
+    // Arbiter reasoning or Deductions to show.
+    expect(within(card).queryByRole("button", { name: "Re-score" })).toBeNull();
+    expect(within(card).queryByText("One Judge")).toBeNull();
+    expect(card).not.toHaveTextContent(/How the Arbiter reached/);
+    expect(card).not.toHaveTextContent(/Deductions/);
+  });
+});
+
 describe("a judged Response's Deductions", () => {
   it("lists a Deduction whose quote is not in the Response with its number, unmarked, instead of dropping it", async () => {
     const text = "I would like to request a refund for this month.";

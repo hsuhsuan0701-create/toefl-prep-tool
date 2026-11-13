@@ -84,6 +84,25 @@ export const ITEM_RESULT_UPSERT_SQL = `INSERT INTO item_results (attempt_id, ite
 export const ATTEMPT_COUNTS_AS_SITTING_SQL = `EXISTS (SELECT 1 FROM item_results sitting_item
   WHERE sitting_item.attempt_id = a.id AND (sitting_item.scoring_status = 'scored' OR a.status = 'completed'))`;
 
+/**
+ * Whether an Attempt's marks are withheld, as SQL over an `attempts` row aliased `a`: whether each of
+ * its deterministic Items was right (`item_results.score`, `score_json.correct`) and any count of
+ * them stays on the server (CLAUDE.md, "Sets and answers"). True for a Simulation still in progress,
+ * and for a discarded Simulation on the Set a Full-Test Run still in progress drew for that section,
+ * started once the Run was: the Attempt a restarted section replaced, which the Run no longer points
+ * at but whose Set it is still sitting, under the same Repeat tag. Its marks come with the Run's end,
+ * completed or abandoned. Nothing records which Run a replaced Attempt belonged to, so the Set is the
+ * link: a standalone Simulation on a live Run's Set, started after the Run and discarded, waits too,
+ * the safe side of a Set the Run is still to sit. Never a Drill. Every reader that sends a mark or a
+ * tally uses it.
+ */
+export const MARKS_WITHHELD_SQL = `(a.mode = 'simulation' AND (a.status = 'in_progress' OR (a.status = 'aborted' AND EXISTS (
+  SELECT 1 FROM full_test_runs live_run
+   WHERE live_run.status = 'in-progress'
+     AND a.started_at >= live_run.created_at
+     AND a.set_id = CASE a.kind WHEN 'reading' THEN live_run.reading_set_id WHEN 'listening' THEN live_run.listening_set_id
+                                WHEN 'writing' THEN live_run.writing_set_id WHEN 'speaking' THEN live_run.speaking_set_id END))))`;
+
 /** The WHERE clause the Attempt listing and its count share, so a page and its total always agree. */
 function attemptFilter(q: { kind?: string; setId?: string }): { where: string; params: string[] } {
   const clauses: string[] = [];
@@ -203,6 +222,14 @@ export function createSqliteAttemptStore(db: Database.Database) {
       return db.prepare(`SELECT * FROM attempts ${where} ORDER BY started_at DESC, rowid DESC LIMIT ? OFFSET ?`)
         .all(...params, limit, q.offset ?? 0) as AttemptRow[];
     },
+    // Which of these Attempts have their marks withheld (MARKS_WITHHELD_SQL), in one read for a page
+    // of the log or a single review.
+    listMarksWithheldAttemptIds(attemptIds: readonly string[]): Set<string> {
+      const rows = db.prepare(
+        `SELECT a.id FROM attempts a WHERE a.id IN (SELECT value FROM json_each(?)) AND ${MARKS_WITHHELD_SQL}`
+      ).all(JSON.stringify(attemptIds)) as { id: string }[];
+      return new Set(rows.map((row) => row.id));
+    },
     countAttempts(q: { kind?: string; setId?: string } = {}): number {
       const { where, params } = attemptFilter(q);
       return (db.prepare(`SELECT COUNT(*) AS n FROM attempts ${where}`).get(...params) as { n: number }).n;
@@ -314,13 +341,17 @@ export function createSqliteAttemptStore(db: Database.Database) {
     // left out: a gap has no skill. `taskType` is returned because the two sections' skill enums share
     // names ("detail", "inference"), so the caller needs it to assign the section. The caller passes a
     // wider window than the weakness breakdown's, since a per-skill pane needs several Attempts' worth.
+    // An Attempt whose marks are withheld (MARKS_WITHHELD_SQL) is left out: a per-skill count over
+    // its Items would tell right from wrong before its marks are due.
     recentScoredReadingListeningItemResults(limit: number): { scoreJson: string; taskType: string }[] {
       const placeholders = MCQ_TASK_TYPES.map(() => "?").join(",");
       return db.prepare(
-        `SELECT score_json AS scoreJson, task_type AS taskType FROM item_results
-         WHERE scoring_status = 'scored' AND score_json IS NOT NULL AND scored_at IS NOT NULL
-           AND task_type IN (${placeholders})
-         ORDER BY scored_at DESC, rowid DESC LIMIT ?`
+        `SELECT ir.score_json AS scoreJson, ir.task_type AS taskType FROM item_results ir
+         JOIN attempts a ON a.id = ir.attempt_id
+         WHERE ir.scoring_status = 'scored' AND ir.score_json IS NOT NULL AND ir.scored_at IS NOT NULL
+           AND ir.task_type IN (${placeholders})
+           AND NOT ${MARKS_WITHHELD_SQL}
+         ORDER BY ir.scored_at DESC, ir.rowid DESC LIMIT ?`
       ).all(...MCQ_TASK_TYPES, limit) as { scoreJson: string; taskType: string }[];
     },
     // One point per completed Attempt whose Items of this Task Type are all scored, the band rule's

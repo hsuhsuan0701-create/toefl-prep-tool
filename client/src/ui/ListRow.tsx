@@ -137,6 +137,10 @@ type AttemptRowProps = {
   /** Formatted with ui/format's formatWhen. */
   when: string;
   to: string;
+  /** History state for the row's link (the page the review was opened from). */
+  linkState?: unknown;
+  /** Called with the row's link as it is followed. */
+  onOpen?: (link: HTMLAnchorElement) => void;
   status: AttemptStatus;
   /** The Attempt's own Band Estimate, if one was computed. Drills of Reading/Listening never have one. */
   band?: number | null;
@@ -160,13 +164,29 @@ type AttemptRowProps = {
  * One Attempt in a list. Its name is what it was — "Writing Simulation" — then which Set and when;
  * the outcome on the right is its band if it has one, otherwise its status. Never the UUID.
  */
-export function AttemptRow({ section, mode, setTitle, when, to, status, band, modulePath, repeat, flagged, missingBand, summary, actions }: AttemptRowProps) {
+export function AttemptRow({
+  section,
+  mode,
+  setTitle,
+  when,
+  to,
+  linkState,
+  onOpen,
+  status,
+  band,
+  modulePath,
+  repeat,
+  flagged,
+  missingBand,
+  summary,
+  actions,
+}: AttemptRowProps) {
   const showBand = status === "completed" && band !== undefined && band !== null;
   return (
     <li className={cx(ROW, "grid gap-y-2 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center")}>
       <div className="min-w-0">
         <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
-          <Link to={to} className={cx(ROW_LINK, "text-body font-medium text-ink")}>
+          <Link to={to} state={linkState} onClick={onOpen && ((e) => onOpen(e.currentTarget))} className={cx(ROW_LINK, "text-body font-medium text-ink")}>
             {SECTION_LABEL[section]} {ATTEMPT_MODE_LABEL[mode]}
           </Link>
           {repeat && (

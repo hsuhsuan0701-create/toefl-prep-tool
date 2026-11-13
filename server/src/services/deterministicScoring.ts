@@ -1,6 +1,7 @@
 import type {
   AnySet,
   AnyTaskType,
+  DeterministicItemScoreJson,
   ListeningModule,
   ListeningSet,
   ReadingModule,
@@ -38,10 +39,12 @@ export type AttemptWithItems = AttemptRow & { items: ItemResultRow[] };
 // took (sectionEstimates.ts's bandShortfall). `transcript` is set only for Listening's conversation, announcement and
 // academic talk questions: the audio is not on screen the way a Reading passage is, so a Drill's
 // review needs the words. Listen and Choose a Response never gets one (see indexListeningModule).
+// A gap's `prefix` is the letters the passage printed before it, persisted with the Response so a
+// review can show the whole word without the Set (issue #56).
 type McqTaskType = Exclude<AnyTaskType, "complete_words" | SpeakingWritingTaskType>;
 
 export type DeterministicItemRef =
-  | { taskType: "complete_words"; module: "router" | "lower" | "upper"; completion: string; explanationZh: string }
+  | { taskType: "complete_words"; module: "router" | "lower" | "upper"; prefix: string; completion: string; explanationZh: string }
   | {
       taskType: McqTaskType;
       module: "router" | "lower" | "upper";
@@ -73,7 +76,7 @@ function mcqEntry(
 function* readingModuleEntries(module: ReadingModule, modulePath: "router" | "lower" | "upper"): Generator<DeterministicItemEntry> {
   for (const passage of module.ctwPassages) {
     for (const gap of passage.gaps) {
-      yield [gap.id, { taskType: "complete_words", module: modulePath, completion: gap.completion, explanationZh: gap.explanationZh }];
+      yield [gap.id, { taskType: "complete_words", module: modulePath, prefix: gap.prefix, completion: gap.completion, explanationZh: gap.explanationZh }];
     }
   }
   for (const text of module.dailyLife) for (const question of text.questions) yield mcqEntry("daily_life", modulePath, question);
@@ -296,6 +299,8 @@ export function scoreDeterministicItems(args: {
     let skill: string | undefined;
     let answer: string;
     let transcript: string | undefined;
+    // The Response in words (DeterministicItemScoreJson): only what the run showed the User.
+    let answered: Pick<DeterministicItemScoreJson, "selectedOptionText" | "selectedOptionIndex" | "prefix">;
 
     if (ref.taskType === "complete_words") {
       const typed = "typed" in raw ? raw.typed : "";
@@ -303,6 +308,7 @@ export function scoreDeterministicItems(args: {
       key = ref.completion;
       explanationZh = ref.explanationZh;
       answer = typed;
+      answered = { prefix: ref.prefix };
       // A gap carries no skill tag and no transcript.
     } else {
       const selectedOptionId = "selectedOptionId" in raw ? raw.selectedOptionId : "";
@@ -313,9 +319,13 @@ export function scoreDeterministicItems(args: {
       skill = ref.question.skill;
       answer = selectedOptionId;
       transcript = ref.transcript;
+      // The selected option only: never the key or the other options. An unanswered question, or an
+      // id that names no option, has no text to keep.
+      const selectedOptionIndex = ref.question.options.findIndex((option) => option.id === selectedOptionId);
+      answered = selectedOptionIndex < 0 ? {} : { selectedOptionText: ref.question.options[selectedOptionIndex].text, selectedOptionIndex };
     }
 
-    return { itemId, module: ref.module, correct, key, explanationZh, skill, answer, transcript };
+    return { itemId, module: ref.module, correct, key, explanationZh, skill, answer, answered, transcript };
   });
 
   repo.scoreDeterministicItemsBatch(
@@ -324,11 +334,13 @@ export function scoreDeterministicItems(args: {
       itemId: c.itemId,
       taskType,
       score: c.correct ? 1 : 0,
-      scoreJson: JSON.stringify(
-        c.skill !== undefined
-          ? { correct: c.correct, skill: c.skill, module: c.module, answer: c.answer }
-          : { correct: c.correct, module: c.module, answer: c.answer }
-      ),
+      scoreJson: JSON.stringify({
+        correct: c.correct,
+        ...(c.skill !== undefined ? { skill: c.skill } : {}),
+        module: c.module,
+        answer: c.answer,
+        ...c.answered,
+      } satisfies DeterministicItemScoreJson),
     }))
   );
 

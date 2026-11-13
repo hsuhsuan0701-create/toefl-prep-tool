@@ -586,3 +586,88 @@ describe("Writing Simulation", () => {
     expect(api.flagAttempt).toHaveBeenCalledWith("att-1");
   });
 });
+
+// Submit on an essay with no words (nothing, or only whitespace) asks before handing it in, since it
+// scores 0 (docs/adr/0018), as Build a Sentence asks before finishing with an empty blank. The clock
+// running out is not a press, and asks nothing.
+describe("Writing Simulation: an essay with no words", () => {
+  beforeEach(async () => {
+    const api = await import("../src/lib/api");
+    mocked(api.getSet).mockResolvedValue(set);
+    mocked(api.scoreTask).mockImplementation(async (_id: string, body: { taskType: string }) =>
+      body.taskType === "build_sentence" ? { items: [] } : { jobId: "job-1" },
+    );
+    mocked(api.completeAttempt).mockResolvedValue({});
+    window.sessionStorage.clear();
+    useFakeTimersInTest({ shouldAdvanceTime: true });
+  });
+  afterEach(() => {
+    vi.clearAllMocks();
+    vi.restoreAllMocks();
+  });
+
+  const openDialog = () => screen.queryAllByRole("dialog", { hidden: true }).find((d) => d.hasAttribute("open")) ?? null;
+  const essayTexts = async (taskType: "email" | "discussion") => {
+    const api = await import("../src/lib/api");
+    return mocked(api.scoreTask).mock.calls.filter(([, body]) => body.taskType === taskType).map(([, body]) => body.items[0].text);
+  };
+
+  it.each([
+    ["empty", ""],
+    ["whitespace-only", "  {Enter} "],
+  ])("asks before handing in an %s post; Keep writing keeps the editor and its clock", async (_label, typed) => {
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+    renderSimulation();
+    await beginSimulation(user);
+    await finishBuildSentence(user);
+    await writeAndSubmit(user, "Write an Email", "Dear Professor.");
+    await screen.findByRole("heading", { name: "Academic Discussion" });
+    if (typed) await user.type(screen.getByRole("textbox"), typed);
+
+    await user.click(screen.getByRole("button", { name: "Submit post" }));
+
+    const asked = openDialog();
+    expect(asked).toHaveTextContent("Hand in an empty post?");
+    expect(asked).toHaveTextContent(/scores 0/);
+    expect(await essayTexts("discussion")).toEqual([]);
+
+    await user.click(within(asked!).getByRole("button", { name: "Keep writing", hidden: true }));
+    expect(openDialog()).toBeNull();
+    expect(screen.getByRole("heading", { name: "Academic Discussion" })).toBeInTheDocument();
+    const before = remainingSeconds();
+    await act(async () => { vi.advanceTimersByTime(5_000); });
+    expect(remainingSeconds()).toBeLessThan(before);
+
+    // Asked again, and confirmed: the post is handed in as it stands and the section wraps up.
+    await user.click(screen.getByRole("button", { name: "Submit post" }));
+    await user.click(within(openDialog()!).getByRole("button", { name: "Submit empty post", hidden: true }));
+    const api = await import("../src/lib/api");
+    await waitFor(() => expect(api.completeAttempt).toHaveBeenCalledTimes(1));
+    expect(await essayTexts("discussion")).toEqual([typed.replace(/\{Enter\}/g, "\n")]);
+  });
+
+  it("hands an Email with words in without asking", async () => {
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+    renderSimulation();
+    await beginSimulation(user);
+    await finishBuildSentence(user);
+    await writeAndSubmit(user, "Write an Email", "Dear");
+
+    expect(openDialog()).toBeNull();
+    await screen.findByRole("heading", { name: "Academic Discussion" });
+    expect(await essayTexts("email")).toEqual(["Dear"]);
+  });
+
+  it("asks nothing when the Email's clock runs out with nothing written", async () => {
+    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+    renderSimulation();
+    await beginSimulation(user);
+    await finishBuildSentence(user);
+
+    await act(async () => { vi.advanceTimersByTime((EMAIL_SECONDS + 1) * 1000); });
+
+    await screen.findByRole("heading", { name: "Academic Discussion" });
+    expect(openDialog()).toBeNull();
+    expect(await essayTexts("email")).toEqual([""]);
+  });
+});

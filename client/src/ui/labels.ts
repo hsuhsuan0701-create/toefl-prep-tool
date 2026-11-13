@@ -5,6 +5,7 @@ import type {
   FullTestSectionState,
   GenerationBatchStatus,
   GenerationJobStatus,
+  MarksWithheldReason,
   ModulePath,
   ScoringJobStatus,
   Section,
@@ -60,7 +61,12 @@ export const FULL_TEST_RUN_STATUS: Record<FullTestRunStatus, StatusPresentation>
     hint: "Resume picks up at the section you were on.",
   },
   completed: { label: "Completed", tone: "positive", glyph: "check" },
-  abandoned: { label: "Abandoned", tone: "neutral", glyph: "dash" },
+  abandoned: {
+    label: "Abandoned",
+    tone: "neutral",
+    glyph: "dash",
+    hint: "Given up before every section was sat: no Overall, and its finished sections keep their bands.",
+  },
 };
 
 /** An Item's `scoringStatus` (typed `string` on ItemVM, hence the fallback in itemScoringStatus). */
@@ -80,6 +86,27 @@ export const ITEM_SCORING_STATUS: Record<ItemScoringStatus, StatusPresentation> 
     tone: "critical",
     glyph: "cross",
     hint: "Nothing was scored for this Item. Re-score it, or leave it out.",
+  },
+};
+
+/**
+ * A scored Item whose mark the server withholds (AttemptDetailVM.marksWithheld), keyed by why: a
+ * Simulation still in progress, whose marks come with its completion as its key does, or the
+ * Attempt a restarted Full-Test section replaced, whose marks come once its Run ends. The chip says
+ * only that the Item is not marked yet, and when it will be.
+ */
+export const ITEM_MARK_WITHHELD: Record<MarksWithheldReason, StatusPresentation> = {
+  "attempt-in-progress": {
+    label: "Not marked yet",
+    tone: "neutral",
+    glyph: "dash",
+    hint: "Marked correct or incorrect once this Attempt is complete.",
+  },
+  "full-test-run-in-progress": {
+    label: "Not marked yet",
+    tone: "neutral",
+    glyph: "dash",
+    hint: "Marked correct or incorrect once the Full-Test Run it was part of ends.",
   },
 };
 
@@ -631,5 +658,5 @@ export const FULL_TEST_SECTION_STATE: Record<FullTestSectionState, StatusPresent
   pending: { label: "Not started", tone: "neutral", glyph: "pending" },
   "in-progress": { label: "In progress", tone: "caution", glyph: "progress", hint: "Left part-way through." },
   completed: { label: "Complete", tone: "positive", glyph: "check" },
-  aborted: { label: "Abandoned", tone: "neutral", glyph: "dash", hint: "The Run moved past this section without a finished Attempt." },
+  aborted: { label: "Abandoned", tone: "neutral", glyph: "dash", hint: "Its Attempt was discarded before it was finished, so it has no band." },
 };

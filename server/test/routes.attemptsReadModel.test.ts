@@ -212,11 +212,11 @@ describe("GET / — the Attempt log", () => {
     // an unfinished Attempt.
     expect(new Set(itemStates.mock.calls.map(([id]) => Number(id.slice(4)) % 5))).toEqual(new Set([0, 1, 2]));
     expect(itemStates).toHaveBeenCalledTimes(60);
-    // The page, its total and the Runs (3), one estimate lookup per row (100), the Task Types of the
-    // twenty one-Task-Type Speaking Drills (20), and the Task Types, active scoring jobs and
-    // transcriptions of the forty rows meant to give a band (120). Before: 322, with sixty whole-Attempt
-    // reads.
-    expect(statements.count()).toBeLessThanOrEqual(243);
+    // The page, its total, the Runs and which rows' marks are withheld (4), one estimate lookup per
+    // row (100), the Task Types of the twenty one-Task-Type Speaking Drills (20), and the Task Types,
+    // active scoring jobs and transcriptions of the forty rows meant to give a band (120). Before:
+    // 322, with sixty whole-Attempt reads.
+    expect(statements.count()).toBeLessThanOrEqual(244);
   });
 
   it("pages with limit and offset while total keeps counting the whole log", async () => {

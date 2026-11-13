@@ -2,7 +2,7 @@ import type Database from "better-sqlite3";
 import type { FullTestRunStatus, FullTestSection } from "@toefl-prep/shared";
 import type { FullTestRunRow } from "../rows.js";
 import { sqliteTimestamp } from "../timestamps.js";
-import { ATTEMPT_COUNTS_AS_SITTING_SQL } from "./attempts.js";
+import { ATTEMPT_COUNTS_AS_SITTING_SQL, createSqliteAttemptStore } from "./attempts.js";
 import type { FullTestRunStore } from "../../routes/fullTests.js";
 
 // ---------------------------------------------------------------------------------------------
@@ -19,6 +19,16 @@ import type { FullTestRunStore } from "../../routes/fullTests.js";
 // an aggregate that no longer answers it.
 
 export function createSqliteFullTestStore(db: Database.Database) {
+  // The Attempt writers the two Run transactions below call, so a section's Attempt is opened, the one
+  // it replaces discarded, and a Run's live section discarded through the same statements POST
+  // /api/attempts and POST /api/attempts/:id/abort run. The Attempt aggregate owns them; this is the
+  // same adapter over the same connection.
+  const attempts = createSqliteAttemptStore(db);
+  // Column name interpolated from a CLOSED union (FullTestSection), never from request data — the
+  // same treatment updateItemScore's scored_at expression gets.
+  const linkFullTestAttempt = (runId: string, section: FullTestSection, attemptId: string): boolean =>
+    db.prepare(`UPDATE full_test_runs SET ${section}_attempt_id=? WHERE id=?`).run(attemptId, runId).changes > 0;
+
   return {
 
     // -----------------------------------------------------------------------------------------
@@ -83,22 +93,45 @@ export function createSqliteFullTestStore(db: Database.Database) {
           "SELECT * FROM full_test_runs ORDER BY created_at DESC, rowid DESC LIMIT ?"
         ).all(q.limit ?? 20) as FullTestRunRow[];
     },
-    // Every Set id any Run has already drawn, in any section. Feeds the "never reuse a Set another Run
-    // already claimed, while alternatives remain" half of Set selection, the only reason a Run needs
-    // to see any Run but its own.
+    // Every Set id a Run has claimed, in any section. Feeds the "never reuse a Set another Run already
+    // claimed, while alternatives remain" half of Set selection, the only reason a Run needs to see
+    // any Run but its own. A Run in progress or completed claims all four of its Sets. An abandoned
+    // Run claims only the Sets that were sat (ATTEMPT_COUNTS_AS_SITTING_SQL, the attempted rule):
+    // a Run started by mistake and abandoned at once has sat nothing, and must not keep its Sets from
+    // every later Run.
     listFullTestSetIds(): string[] {
       const rows = db.prepare(
-        `SELECT reading_set_id AS a, listening_set_id AS b, writing_set_id AS c, speaking_set_id AS d
-         FROM full_test_runs`
-      ).all() as { a: string | null; b: string | null; c: string | null; d: string | null }[];
-      return rows.flatMap((r) => [r.a, r.b, r.c, r.d]).filter((id): id is string => id !== null);
+        `SELECT claimed.set_id AS setId FROM (
+           SELECT status, reading_set_id AS set_id FROM full_test_runs
+           UNION ALL SELECT status, listening_set_id FROM full_test_runs
+           UNION ALL SELECT status, writing_set_id FROM full_test_runs
+           UNION ALL SELECT status, speaking_set_id FROM full_test_runs
+         ) claimed
+         WHERE claimed.set_id IS NOT NULL
+           AND (claimed.status <> 'abandoned'
+             OR EXISTS (SELECT 1 FROM attempts a WHERE a.set_id = claimed.set_id AND ${ATTEMPT_COUNTS_AS_SITTING_SQL}))`
+      ).all() as { setId: string }[];
+      return rows.map((r) => r.setId);
     },
-    // Points one section at the Attempt that is sitting it. Column name is interpolated from a
-    // CLOSED union (FullTestSection), never from request data — the same treatment updateItemScore's
-    // scored_at expression gets.
-    linkFullTestAttempt(runId: string, section: FullTestSection, attemptId: string): boolean {
-      return db.prepare(`UPDATE full_test_runs SET ${section}_attempt_id=? WHERE id=?`)
-        .run(attemptId, runId).changes > 0;
+    // Points one section at the Attempt that is sitting it.
+    linkFullTestAttempt,
+    // A section's Attempt opened inside its Run, in one transaction: the Attempt row, the Run's link
+    // to it and, when it restarts the section, the discard of the Attempt it replaces. Discarding that
+    // one in the same step keeps it from being finished later (its review would show the key of a Set
+    // the Run is still sitting) and from being listed as unfinished beside the live one. Discarding
+    // alone would release its marks, which a discarded Simulation shows: MARKS_WITHHELD_SQL keeps them
+    // on the server until the Run ends, since the restart sits the same Set under the same tag.
+    openFullTestSectionAttempt(o: {
+      runId: string;
+      section: FullTestSection;
+      attempt: { id: string; mode: string; setId: string; isRepeat: boolean };
+      replacedAttemptId: string | null;
+    }): void {
+      db.transaction(() => {
+        attempts.createAttempt({ ...o.attempt, kind: o.section });
+        linkFullTestAttempt(o.runId, o.section, o.attempt.id);
+        if (o.replacedAttemptId) attempts.abortAttempt(o.replacedAttemptId);
+      })();
     },
     setFullTestCurrentSection(runId: string, section: FullTestSection | null): boolean {
       return db.prepare("UPDATE full_test_runs SET current_section=? WHERE id=?")
@@ -114,6 +147,20 @@ export function createSqliteFullTestStore(db: Database.Database) {
             SET status='completed', current_section=NULL, completed_at=COALESCE(completed_at,?)
           WHERE id=? AND status='in-progress'`
       ).run(now, runId).changes > 0;
+    },
+    // A Run given up on: it ends 'abandoned', with no current section and no completion time, and the
+    // section it was sitting, if any, is discarded in the same transaction. Finished sections keep
+    // their Attempts and Band Estimates. Guarded on 'in-progress' like completeFullTestRun, and the
+    // discard runs only once that guard has passed, so a completed Run is never abandoned and its
+    // sections are never touched. Returns whether this call abandoned the Run.
+    abandonFullTestRun(runId: string, liveAttemptIds: readonly string[]): boolean {
+      return db.transaction(() => {
+        const abandoned = db.prepare(
+          "UPDATE full_test_runs SET status='abandoned', current_section=NULL WHERE id=? AND status='in-progress'"
+        ).run(runId).changes > 0;
+        if (abandoned) for (const attemptId of liveAttemptIds) attempts.abortAttempt(attemptId);
+        return abandoned;
+      })();
     },
     // The start of each Set's most recent sitting (ATTEMPT_COUNTS_AS_SITTING_SQL), for
     // least-recently-attempted Set selection: an id absent from the map has never been attempted, so a

@@ -4,6 +4,7 @@ import AppErrorBoundary, { PageErrorScreen } from "./components/AppErrorBoundary
 import LeaveGuardHost from "./components/LeaveGuardHost";
 import RouteFallback from "./components/RouteFallback";
 import { SetupStatusProvider } from "./components/setup/SetupStatusProvider";
+import { noteDocumentEntry, useForgetLeftPlaces } from "./hooks/useAttemptListPlace";
 import NotFound from "./pages/NotFound";
 import { documentTitle, sectionParamLabel, useRouteDocumentTitle, type RouteHandle } from "./routeTitle";
 
@@ -99,6 +100,7 @@ function RouteError() {
 // keeps the last answer while a fresh one is asked for.
 function AppRoot() {
   useRouteDocumentTitle();
+  useForgetLeftPlaces();
   return (
     <AppErrorBoundary>
       <LeaveGuardHost>
@@ -120,6 +122,11 @@ export const appRoutes: RouteObject[] = [{ element: <AppRoot />, errorElement: <
 let router: ReturnType<typeof createBrowserRouter> | undefined;
 
 export default function App() {
-  router ??= createBrowserRouter(appRoutes);
+  if (!router) {
+    router = createBrowserRouter(appRoutes);
+    // The entry this page load opened on: arriving there again by a reload is a fresh visit, not a
+    // Back to a list (hooks/useAttemptListPlace.ts).
+    noteDocumentEntry(router);
+  }
   return <RouterProvider router={router} />;
 }

@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import type { AttemptListVM, Section, SetListEntryVM, StatsSectionVM, StatsSettingsVM, StatsSummaryVM } from "@toefl-prep/shared";
+import type { AttemptListVM, FullTestRunVM, Section, SetListEntryVM, StatsSectionVM, StatsSettingsVM, StatsSummaryVM } from "@toefl-prep/shared";
 import type { SetupStatus } from "../src/lib/api";
 import * as api from "../src/lib/api";
 import Dashboard from "../src/pages/Dashboard";
@@ -26,6 +26,7 @@ vi.mock("../src/lib/api", async (importOriginal) => {
     completeAttempt: vi.fn(),
     abortAttempt: vi.fn(),
     listFullTests: vi.fn(async () => []),
+    abandonFullTest: vi.fn(),
     listActiveGeneration: vi.fn(async () => ({ active: [] })),
     createFullTest: vi.fn(),
     startGenerate: vi.fn(async () => ({ jobId: "job-1" })),
@@ -434,6 +435,70 @@ describe("Dashboard — acting on an unfinished Attempt in Recent Attempts", () 
     await userEvent.click(screen.getByRole("button", { name: "Discard" }));
 
     expect(mocked.abortAttempt).toHaveBeenCalledWith("att-writing");
+    await waitFor(() => expect(mocked.getStatsSummary).toHaveBeenCalledTimes(2));
+  });
+});
+
+// Abandoning a Run from the Full-Test panel discards its live section's Attempt, so the rest of the
+// page reads again, the way a Discard in Recent Attempts makes it: the row stops offering to resume a
+// Run that has ended, and the bands are re-read.
+describe("Dashboard — abandoning a Full-Test Run from its panel", () => {
+  const LIVE_RUN: FullTestRunVM = {
+    id: "run-open",
+    status: "in-progress",
+    currentSection: "listening",
+    createdAt: "2026-11-10T09:00:00.000Z",
+    completedAt: null,
+    sections: (["reading", "listening", "writing", "speaking"] as const).map((section, i) => ({
+      section,
+      order: i + 1,
+      setId: `set-${section}`,
+      attemptId: section === "listening" ? "att-listening" : null,
+      state: section === "listening" ? "in-progress" : "pending",
+      runnable: true,
+      launchable: section === "listening",
+      bandStatus: { status: "not-finished" },
+      estimate: null,
+      modulePath: null,
+    })),
+    overall: { band: null, method: "mean-of-sections-v1", scoredSections: 0, pendingSections: [] },
+  };
+  const liveSection = (status: "in_progress" | "aborted", runStatus: "in-progress" | "abandoned"): AttemptListVM => ({
+    items: [
+      {
+        ...SOME_ATTEMPTS.items[0],
+        id: "att-listening",
+        kind: "listening",
+        setId: "set-listening",
+        setTitle: "A campus shuttle announcement",
+        status,
+        completedAt: null,
+        estimate: null,
+        fullTestRun: { id: LIVE_RUN.id, status: runStatus },
+      },
+    ],
+    total: 1,
+  });
+
+  it("stops offering to resume the Run in Recent Attempts and re-reads the bands", async () => {
+    setUp({ summary: summary([band("reading", 6)], null), attempts: liveSection("in_progress", "in-progress") });
+    let run = LIVE_RUN;
+    mocked.listFullTests.mockImplementation(async (q) => (q?.status === run.status ? [run] : []));
+    mocked.abandonFullTest.mockImplementation(async () => {
+      run = { ...LIVE_RUN, status: "abandoned", currentSection: null };
+      mocked.listAttempts.mockResolvedValue(liveSection("aborted", "abandoned"));
+      return run;
+    });
+    renderDashboard();
+    expect(await screen.findByRole("link", { name: "Resume the Full-Test Run" })).toHaveAttribute("href", "/full-test/run-open");
+    await waitFor(() => expect(mocked.getStatsSummary).toHaveBeenCalledTimes(1));
+
+    await userEvent.click(screen.getByRole("button", { name: "Abandon Run…" }));
+    await userEvent.click(within(screen.getByRole("dialog")).getByRole("button", { name: "Abandon Run" }));
+
+    expect(mocked.abandonFullTest).toHaveBeenCalledWith("run-open");
+    await waitFor(() => expect(screen.queryByRole("link", { name: "Resume the Full-Test Run" })).toBeNull());
+    expect(screen.queryByText("A section of a Full-Test Run in progress")).toBeNull();
     await waitFor(() => expect(mocked.getStatsSummary).toHaveBeenCalledTimes(2));
   });
 });

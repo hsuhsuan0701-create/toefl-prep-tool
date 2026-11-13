@@ -117,9 +117,10 @@ export function attemptsRouteStore(s: SqliteStores): AttemptsRouteStore {
     ...s.attempts,
     ...s.scoring,
     ...s.estimates,
-    // The section Simulation names its Run when it opens its Attempt; that link is the ONLY thing
-    // this route does with a Full-Test Run. It neither creates, advances nor completes one.
-    linkFullTestAttempt: s.fullTests.linkFullTestAttempt,
+    // The section Simulation names its Run when it opens its Attempt; that link (with the discard of
+    // the Attempt a restart replaces, in the same transaction) is the ONLY thing this route does with
+    // a Full-Test Run. It neither creates, advances, completes nor abandons one.
+    openFullTestSectionAttempt: s.fullTests.openFullTestSectionAttempt,
     // Read on this route's behalf by `checkFullTestLink`, which refuses a link the Run's own rules
     // do not allow BEFORE the Attempt row exists.
     getFullTestRun: s.fullTests.getFullTestRun,

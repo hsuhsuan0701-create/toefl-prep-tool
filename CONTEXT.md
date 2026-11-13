@@ -63,7 +63,7 @@ An Attempt mode with relaxed constraints (pauses, instant feedback, re-recording
 _Avoid_: practice mode
 
 **Simulation**:
-An Attempt mode under exam constraints: continuous, play-once audio, deferred feedback. Preferred source for Band Estimates; for Reading/Listening, the only source — Drills never produce them.
+An Attempt mode under exam constraints: continuous, play-once audio, deferred feedback. Deferred covers the marks as well as the key and the Explanations: whether a Response was correct is not shown while the Attempt is in progress. A discarded Simulation shows its marks and never its key, except the Attempt a restarted Full-Test section replaces, which stays unmarked until its Run ends. Preferred source for Band Estimates; for Reading/Listening, the only source — Drills never produce them.
 _Avoid_: mock test, full test
 
 **Module Path**:
@@ -75,7 +75,7 @@ The Router-Module raw fraction (≥ 0.6) at which an Attempt routes to the Upper
 _Avoid_: presenting it as ETS policy
 
 **Full-Test Run**:
-Four linked Simulation Attempts in ETS order (Reading, Listening, Writing, Speaking) under one combined report whose Overall band uses the official mean-then-round rule (`mean-of-sections-v1`). The Overall band is derived from the four section bands on every read, never stored, and absent until all four exist. A section whose Attempt still has scoring outstanding is pending, even if it once had a band; a settled section with no band says which Items and Task Types stand in the way. A sitting ends at Speaking's capture with its Judges still running, so a report usually starts with pending sections and states which, rather than averaging the ones it has.
+Four linked Simulation Attempts in ETS order (Reading, Listening, Writing, Speaking) under one combined report whose Overall band uses the official mean-then-round rule (`mean-of-sections-v1`). The Overall band is derived from the four section bands on every read, never stored, and absent until all four exist. A section whose Attempt still has scoring outstanding is pending, even if it once had a band; a settled section with no band says which Items and Task Types stand in the way. A sitting ends at Speaking's capture with its Judges still running, so a report usually starts with pending sections and states which, rather than averaging the ones it has. A Run in progress can be abandoned: it ends with no Overall, its finished sections keep their Attempts and bands, and the section being sat is discarded. A section restarted after a reload discards the Attempt it replaces in the same step.
 _Avoid_: full test (unqualified), mock exam, a partial Overall band
 
 **Repeat**:

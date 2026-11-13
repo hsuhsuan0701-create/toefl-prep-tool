@@ -129,6 +129,16 @@ export function ScoringOutcome({ item, jobView, taskBusy, canRescore, rescoreCou
     );
   }
 
+  if (item.scoringStatus === "scored" && isPersistedScoreItem(item.scoreJson) && item.scoreJson.noWordsWritten) {
+    return (
+      <div data-testid="no-words-note">
+        <Notice tone="caution" title="No Response written">
+          {item.scoreJson.reconciliationNote}
+        </Notice>
+      </div>
+    );
+  }
+
   if (item.scoringStatus === "transcription_pending" && !item.transcriptionJob) {
     return (
       <p className="text-ui text-ink-soft">

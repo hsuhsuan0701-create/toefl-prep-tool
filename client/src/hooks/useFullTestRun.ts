@@ -21,6 +21,16 @@ export function isTerminalSection(state: FullTestSectionState): boolean {
   return state === "completed" || state === "aborted";
 }
 
+/**
+ * The section a Run in progress waits on, or undefined once every section is finished: the
+ * client-side twin of launchableFullTestSection, over the states the server derived. Undefined on a
+ * Run in progress means its hand-off was lost: it is finished, its next advance completes it, and
+ * the abandon route refuses it.
+ */
+export function nextSectionToSit(run: FullTestRunVM): FullTestRunVM["sections"][number] | undefined {
+  return run.sections.find((s) => !isTerminalSection(s.state));
+}
+
 /** Loads one Full-Test Run by id, with a `reload` that keeps the last good copy on screen. */
 export function useFullTestRun(runId: string | undefined) {
   const [run, setRun] = useState<FullTestRunVM | null>(null);

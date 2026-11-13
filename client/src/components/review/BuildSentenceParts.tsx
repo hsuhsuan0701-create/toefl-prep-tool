@@ -1,5 +1,5 @@
 import { Chip } from "../../ui/Chip";
-import { sentenceAnswerParts } from "../sentenceAnswerText";
+import { sentenceAnswerParts, sentenceBlankCount } from "../sentenceAnswerText";
 
 // What a Build a Sentence Item looks like once it is answered, drawn the same way on Attempt review
 // and on the Writing Drill's results: the sentence with the placed tiles boxed apart from the words
@@ -26,6 +26,59 @@ export function ComposedSentence({ frame, tiles }: { frame: string | undefined; 
           <span key={i}>{part.text}</span>
         ),
       )}
+    </>
+  );
+}
+
+/**
+ * The User's Response to one Item, as review can truthfully show it.
+ *
+ * A Response is stored as tile texts in blank order with the empty blanks dropped
+ * (`blankOrderTexts`), so a Response shorter than the Item's blank count no longer says which blanks
+ * its tiles were in. Composing it would put them in the first blanks, an arrangement the User may
+ * never have made. So a partial Response is shown as what is known: how many blanks were left
+ * empty, the Frame with every blank drawn as a blank, and the tiles placed, left to right. A full
+ * Response reads as the sentence it is, and one with no tile at all as no Response.
+ *
+ * `keyArrangements` is used only to count a frameless Item's blanks; without the key (a Simulation
+ * not yet completed) a frameless Response cannot be told partial and is joined as before.
+ */
+export function SentenceResponse({
+  frame,
+  tiles,
+  keyArrangements,
+}: {
+  frame: string | undefined;
+  tiles: readonly string[];
+  keyArrangements: readonly (readonly string[])[] | null;
+}) {
+  if (tiles.length === 0) return <>(no Response submitted)</>;
+  const blanks = sentenceBlankCount(frame, keyArrangements);
+  if (blanks === undefined || tiles.length >= blanks) return <ComposedSentence frame={frame} tiles={tiles} />;
+
+  const empty = blanks - tiles.length;
+  const framed = sentenceBlankCount(frame, null) !== undefined;
+  return (
+    <>
+      <span data-unfinished="">
+        <span className="figures">{empty}</span> of <span className="figures">{blanks}</span> blanks left empty.
+      </span>
+      {framed && (
+        <span className="block text-ink-soft">
+          <ComposedSentence frame={frame} tiles={[]} />
+        </span>
+      )}
+      <span className="mt-1 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+        <span className="text-meta text-graphite">{tiles.length === 1 ? "Tile placed:" : "Tiles placed, left to right:"}</span>
+        <span data-placed-tiles="" className="flex flex-wrap gap-1.5">
+          {tiles.map((tile, i) => (
+            <span key={i} data-placed="" className="rounded-chip border border-rule-strong px-1">
+              {tile}
+            </span>
+          ))}
+        </span>
+      </span>
+      <span className="block text-meta text-graphite">Which blank each tile was in is not recorded, so they are not shown in the sentence.</span>
     </>
   );
 }

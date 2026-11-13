@@ -1,4 +1,4 @@
-import { MCQ_UNANSWERED_SENTINEL, type DeterministicReviewItemVM, type ItemVM } from "@toefl-prep/shared";
+import { MCQ_UNANSWERED_SENTINEL, type DeterministicReviewItemVM, type ItemVM, type MarksWithheldReason } from "@toefl-prep/shared";
 import { taskTypeLabel } from "../../lib/taskTypes";
 import { questionFor, stimulusAudioFor, stimulusContentFor, stimulusFor, type AttemptSetSnapshot, type QuestionSnapshot, type SnapshotModule } from "../../pages/attemptSetSnapshot";
 import StimulusReplay from "../StimulusReplay";
@@ -9,11 +9,11 @@ import { Disclosure } from "../../ui/Disclosure";
 import { Kicker } from "../../ui/Heading";
 import { IconChevronRight } from "../../ui/icons";
 import { Prose } from "../../ui/Prose";
-import { itemScoringStatus } from "../../ui/labels";
+import { ITEM_MARK_WITHHELD, itemScoringStatus } from "../../ui/labels";
 import { ResultMark } from "./ReviewParts";
 import ReviewStimulus, { type ReviewedGap } from "./ReviewStimulus";
-import { isDeterministicScoreJson } from "./reviewItems";
-import { capitalise, correctSummary, type IndexedItem } from "./reviewText";
+import { isDeterministicScoreJson, type DeterministicScoreJson } from "./reviewItems";
+import { capitalise, correctSummary, unmarkedSummary, type IndexedItem } from "./reviewText";
 
 type StimulusRun = {
   key: string;
@@ -64,10 +64,19 @@ function optionText(question: QuestionSnapshot | undefined, optionId: string): s
   return `${String.fromCharCode(65 + index)}. ${question.options[index].text}`;
 }
 
+/**
+ * The option the User selected, in the words scoring stored with the Response (issue #56): what the
+ * review says when the Set can no longer be read. Null for a row scored before they were stored.
+ */
+function storedOptionText(score: DeterministicScoreJson): string | null {
+  if (score.selectedOptionText === undefined) return null;
+  return score.selectedOptionIndex === undefined ? score.selectedOptionText : `${String.fromCharCode(65 + score.selectedOptionIndex)}. ${score.selectedOptionText}`;
+}
+
 /** The multiple-choice Task Types, Reading's and Listening's, whose opened row lists every option of the question. */
 const QUESTION_TYPES = new Set(["daily_life", "academic_passage", "listen_choose", "conversation", "announcement", "academic_talk"]);
 
-/** A Response whose option the Set can no longer name. */
+/** A Response whose option neither the Set nor its stored score can name. */
 const OPTION_NOT_SHOWN = "An option that can no longer be shown";
 
 export type DeterministicModuleGroupProps = {
@@ -86,10 +95,21 @@ export type DeterministicModuleGroupProps = {
    * whose review the server sends); the rest show the Items alone.
    */
   showStimulus: boolean;
+  /**
+   * The Attempt's `marksWithheld`, as its detail sent it: when set, the server sent no Item's
+   * correctness, and the review shows the Responses unmarked, with no tally, and says when the marks
+   * come. Undefined, each scored Item shows its Correct or Incorrect mark and each Stimulus its tally.
+   */
+  marksWithheld: MarksWithheldReason | undefined;
 };
 
 /** Each Complete the Words gap of a run, filled in from its Item: what was typed, right or wrong, and the word. */
-function reviewedGaps(run: StimulusRun, setSnapshot: AttemptSetSnapshot | null, reviewByItemId: ReadonlyMap<string, DeterministicReviewItemVM>): Map<string, ReviewedGap> {
+function reviewedGaps(
+  run: StimulusRun,
+  setSnapshot: AttemptSetSnapshot | null,
+  reviewByItemId: ReadonlyMap<string, DeterministicReviewItemVM>,
+  marksWithheld: MarksWithheldReason | undefined,
+): Map<string, ReviewedGap> {
   const gaps = new Map<string, ReviewedGap>();
   for (const { item, position } of run.items) {
     const score = item.scoringStatus === "scored" && isDeterministicScoreJson(item.scoreJson) ? item.scoreJson : null;
@@ -98,7 +118,7 @@ function reviewedGaps(run: StimulusRun, setSnapshot: AttemptSetSnapshot | null, 
     gaps.set(item.itemId, {
       number: position,
       typed,
-      correct: score ? score.correct : null,
+      correct: marksWithheld ? null : (score?.correct ?? null),
       ...(key === undefined ? {} : { completion: `${questionFor(setSnapshot, item.itemId)?.prefix ?? ""}${key}` }),
     });
   }
@@ -107,7 +127,7 @@ function reviewedGaps(run: StimulusRun, setSnapshot: AttemptSetSnapshot | null, 
 
 const STIMULUS_SUMMARY: Record<string, string> = { daily_life: "The text", academic_passage: "The passage" };
 
-export default function DeterministicModuleGroup({ items, setSnapshot, reviewByItemId, showStimulus }: DeterministicModuleGroupProps) {
+export default function DeterministicModuleGroup({ items, setSnapshot, reviewByItemId, showStimulus, marksWithheld }: DeterministicModuleGroupProps) {
   return (
     <div className="space-y-4">
       {stimulusRuns(items, setSnapshot).map((run) => {
@@ -137,7 +157,7 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
                   </h3>
                 )}
               </div>
-              <p className="text-meta text-graphite">{correctSummary(run.items)}</p>
+              <p className="text-meta text-graphite">{marksWithheld ? unmarkedSummary(run.items) : correctSummary(run.items)}</p>
             </header>
             {audio && (
               <div className="min-w-0 border-b border-rule px-4 py-3">
@@ -148,7 +168,7 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
               <div className="min-w-0 border-b border-rule px-4 py-3">
                 <ReviewStimulus
                   content={content}
-                  gaps={content.kind === "gapped" ? reviewedGaps(run, setSnapshot, reviewByItemId) : undefined}
+                  gaps={content.kind === "gapped" ? reviewedGaps(run, setSnapshot, reviewByItemId, marksWithheld) : undefined}
                   summary={STIMULUS_SUMMARY[run.taskType]}
                 />
               </div>
@@ -163,6 +183,7 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
                     position={position}
                     question={question}
                     review={reviewByItemId.get(item.itemId)}
+                    marksWithheld={marksWithheld}
                     replayAudio={
                       question && (showStimulus || reviewByItemId.has(item.itemId)) && item.taskType === "listen_choose"
                         ? stimulusAudioFor(setSnapshot, question.module, question.stimulusId)
@@ -203,20 +224,23 @@ function DeterministicRow({
   position,
   question,
   review,
+  marksWithheld,
   replayAudio,
 }: {
   item: ItemVM;
   position: number;
   question?: QuestionSnapshot;
   review?: DeterministicReviewItemVM;
+  marksWithheld: MarksWithheldReason | undefined;
   replayAudio?: string;
 }) {
   const score = item.scoringStatus === "scored" && isDeterministicScoreJson(item.scoreJson) ? item.scoreJson : null;
   const isGap = item.taskType === "complete_words";
   const shown = review ? question : undefined;
   // A gap's prefix was printed in the paragraph the User read, so it is no key: the Response reads
-  // as the whole word they produced whether or not the Attempt is complete.
-  const prefix = question?.prefix ?? "";
+  // as the whole word they produced whether or not the Attempt is complete. Without the Set, the
+  // prefix scoring stored with the Response stands in (absent from rows scored before it was).
+  const prefix = question?.prefix ?? score?.prefix ?? "";
   const unanswered = score !== null && (score.answer === MCQ_UNANSWERED_SENTINEL || score.answer.trim() === "");
 
   const responseText = !score
@@ -225,9 +249,11 @@ function DeterministicRow({
       ? "No Response"
       : isGap
         ? `${prefix}${score.answer}`
-        : (optionText(question, score.answer) ?? OPTION_NOT_SHOWN);
+        : (optionText(question, score.answer) ?? storedOptionText(score) ?? OPTION_NOT_SHOWN);
   const keyText = review?.key === undefined ? null : isGap ? `${prefix}${review.key}` : optionText(shown, review.key);
   const showsOptions = QUESTION_TYPES.has(item.taskType) && (shown?.options.length ?? 0) > 0;
+  // While the marks are withheld the server sent no `correct`; the row says when it will be marked.
+  const mark = marksWithheld ? undefined : score?.correct;
 
   const line = (
     <>
@@ -247,7 +273,11 @@ function DeterministicRow({
           </span>
         )}
       </span>
-      {score ? <ResultMark correct={score.correct} unanswered={unanswered} /> : <StatusChip status={itemScoringStatus(item.scoringStatus)} />}
+      {mark !== undefined ? (
+        <ResultMark correct={mark} unanswered={unanswered} />
+      ) : (
+        <StatusChip status={score && marksWithheld ? ITEM_MARK_WITHHELD[marksWithheld] : itemScoringStatus(item.scoringStatus)} />
+      )}
     </>
   );
 

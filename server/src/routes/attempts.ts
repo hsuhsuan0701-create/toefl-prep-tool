@@ -20,6 +20,7 @@ import {
   type TranscriptionJobVM,
 } from "@toefl-prep/shared";
 import {
+  marksWithheldReason,
   pageParam,
   readSetForDisplay,
   setTitleOrNull,
@@ -135,7 +136,7 @@ function findSpeakingItem(set: SpeakingSet, itemId: string): SpeakingItemLookup 
  *   write-once capture    CaptureStore's combined seam is the only writer of the capture marker and
  *                         the missing-Item placeholders; the SetUnavailable branches below use it
  *                         with an empty placeholder list.
- *   Full-Test Runs        Only `linkFullTestAttempt`, the reads `checkFullTestLink` needs,
+ *   Full-Test Runs        Only `openFullTestSectionAttempt`, the reads `checkFullTestLink` needs,
  *                         `getFullTestRunForAttempt` (abort refuses the section a Run in progress
  *                         is sitting) and `listFullTestRunsForAttempts` (the log names a section's
  *                         Run, one read per page); the rest of a Run's
@@ -157,7 +158,7 @@ export type AttemptsRouteStore =
   & Omit<ScoreStore, "getAttempt" | "getScoringJob">
   & Omit<ScoringStore, "getAttempt">
   & Omit<EstimateStore, "getAttempt">
-  & Pick<FullTestRunStore, "linkFullTestAttempt" | "getFullTestRunForAttempt" | "listFullTestRunsForAttempts">
+  & Pick<FullTestRunStore, "openFullTestSectionAttempt" | "getFullTestRunForAttempt" | "listFullTestRunsForAttempts">
   & FullTestLinkCheckStore
   & RecordingStore
   & DeterministicScoreStore
@@ -286,6 +287,14 @@ function buildSpokenPrompts(set: AnySet, items: ItemVM[]): SpokenPromptVM[] | un
 function withoutBuildSentenceKey(scoreJson: unknown): unknown {
   if (typeof scoreJson !== "object" || scoreJson === null || !("correctAnswers" in scoreJson)) return scoreJson;
   const { correctAnswers: _key, ...rest } = scoreJson as Record<string, unknown>;
+  return rest;
+}
+
+// A deterministic Item's score_json without its mark (`correct`): the Response, its Module and the
+// words it was given in stay (ServedDeterministicItemScoreJson, ServedBuildSentenceItemScoreJson).
+function withoutMark(scoreJson: unknown): unknown {
+  if (typeof scoreJson !== "object" || scoreJson === null || !("correct" in scoreJson)) return scoreJson;
+  const { correct: _mark, ...rest } = scoreJson as Record<string, unknown>;
   return rest;
 }
 
@@ -427,8 +436,17 @@ export function buildAttemptsRoutes(deps: AttemptsRouteDeps) {
       const replaced = replacedSectionAttemptId ? deps.repo.getAttempt(replacedSectionAttemptId) : undefined;
       const isRepeat = replaced ? replaced.is_repeat === 1 : deps.repo.isSetAttempted(setId);
       const id = crypto.randomUUID();
-      deps.repo.createAttempt({ id, kind, mode, setId, isRepeat });
-      if (fullTestRunId) deps.repo.linkFullTestAttempt(fullTestRunId, kind, id);
+      if (fullTestRunId) {
+        // The new Attempt, its link and the discard of the one it replaces commit together.
+        deps.repo.openFullTestSectionAttempt({
+          runId: fullTestRunId,
+          section: kind,
+          attempt: { id, mode, setId, isRepeat },
+          replacedAttemptId: replacedSectionAttemptId,
+        });
+      } else {
+        deps.repo.createAttempt({ id, kind, mode, setId, isRepeat });
+      }
       return c.json({ attemptId: id, isRepeat, ...(fullTestRunId ? { fullTestRunId } : {}) }, 201);
     })
     .post("/:id/items/:itemId/audio", async (c) => {
@@ -888,7 +906,12 @@ export function buildAttemptsRoutes(deps: AttemptsRouteDeps) {
       // Display-only: the Set orders the Items, titles the Attempt and supplies a completed
       // Reading/Listening review. An unreadable Set degrades each of those, never the readback.
       const set = readSetForDisplay(attempt.set_id);
-      const attemptVM = toAttemptVM(attempt, setTitleOrNull(set));
+      // Whether each deterministic Item was right waits, as its key does, until the marks are due
+      // (MARKS_WITHHELD_SQL): its `score` and `scoreJson.correct` stay here, and `marksWithheld`
+      // tells the client so. A judged Item's Score Report is shown whatever the status, so it is
+      // left alone.
+      const marksWithheld = marksWithheldReason(attempt, deps.repo.listMarksWithheldAttemptIds([attempt.id]));
+      const attemptVM = toAttemptVM(attempt, setTitleOrNull(set), marksWithheld !== undefined);
 
       // The current transcription job per Item, as TranscriptionJobVM (status, attempt count, retry
       // timing, failure kind, safe error, linked scoring job; never the recording path, its hash,
@@ -921,6 +944,8 @@ export function buildAttemptsRoutes(deps: AttemptsRouteDeps) {
           }
         }
         if (withholdKeys && item.task_type === "build_sentence") scoreJson = withoutBuildSentenceKey(scoreJson);
+        const withholdMark = marksWithheld !== undefined && isDeterministicTaskType(item.task_type);
+        if (withholdMark) scoreJson = withoutMark(scoreJson);
         const transcriptionJob = transcriptionJobs.get(item.item_id);
         return {
           attemptId: item.attempt_id,
@@ -929,7 +954,7 @@ export function buildAttemptsRoutes(deps: AttemptsRouteDeps) {
           responseText: item.response_text,
           responseAudioPath: item.response_audio_path,
           transcript: item.transcript,
-          score: item.score,
+          score: withholdMark ? null : item.score,
           scoreJson,
           scoringStatus: item.scoring_status,
           deliveryReport: item.delivery_report,
@@ -1015,6 +1040,7 @@ export function buildAttemptsRoutes(deps: AttemptsRouteDeps) {
         bandStatus,
         activeJobs,
         ...(deterministicReview ? { deterministicReview } : {}),
+        ...(marksWithheld ? { marksWithheld } : {}),
         ...(spokenPrompts ? { spokenPrompts } : {}),
       } satisfies AttemptDetailVM);
     });

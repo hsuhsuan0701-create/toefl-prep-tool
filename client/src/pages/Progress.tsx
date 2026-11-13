@@ -5,13 +5,17 @@ import { requestErrorMessage } from "../lib/requestError";
 import AttemptsFeed from "../components/AttemptsFeed";
 import TrendsSection from "../components/TrendsSection";
 import WeaknessPanel from "../components/WeaknessPanel";
-import { useAttempts } from "../hooks/usePracticeData";
+import { useAttemptListArrival, useReturnPlace } from "../hooks/useAttemptListPlace";
+import { ATTEMPT_PAGE_SIZE, useAttempts } from "../hooks/usePracticeData";
 import { Button, ButtonLink } from "../ui/Button";
 import { SectionHeader, PageHeader } from "../ui/Heading";
 import { Notice } from "../ui/Notice";
 import { PageShell } from "../ui/PageShell";
 import { Skeleton } from "../ui/Skeleton";
 import { computeSkillAccuracy } from "./weaknessCategories";
+
+/** The Attempt list's id: "See all N Attempts" links to /progress#attempts. */
+const ATTEMPT_LIST_ID = "attempts";
 
 // Everything that answers "how am I doing": each Task Type's trend, where points go, and the whole
 // Attempt log. None of it is needed to start practising, which is why it is off the Practice page.
@@ -20,8 +24,11 @@ export default function Progress() {
   const [error, setError] = useState<string | null>(null);
   const [summaryRequest, setSummaryRequest] = useState(0);
   // Attempts only: this page renders no Sets, and `listSets` re-parses the whole Set bank
-  // server-side on every call. The log is paged, and its total is the whole history.
-  const attemptLog = useAttempts();
+  // server-side on every call. The log is paged, and its total is the whole history. Coming back
+  // from an Attempt review, it loads as many rows as it had and puts the opened one back in place.
+  const returnPlace = useReturnPlace();
+  const attemptLog = useAttempts(0, ATTEMPT_PAGE_SIZE, returnPlace?.rows);
+  useAttemptListArrival(ATTEMPT_LIST_ID, attemptLog.attempts, returnPlace);
   const ids = useId();
 
   useEffect(() => {
@@ -93,7 +100,7 @@ export default function Progress() {
           )}
         </section>
 
-        <section aria-labelledby={`${ids}-log`} className="space-y-4">
+        <section id={ATTEMPT_LIST_ID} aria-labelledby={`${ids}-log`} className="scroll-mt-6 space-y-4">
           <SectionHeader
             id={`${ids}-log`}
             title="All Attempts"

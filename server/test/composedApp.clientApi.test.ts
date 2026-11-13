@@ -98,6 +98,16 @@ describe("the client API against the composed app", () => {
     const { path: modulePath } = await api.routeAttempt(attemptId);
     expect(modulePath).toBe("upper");
 
+    // Read back mid-sitting, the review gets each Response and its Module, and none of its marks
+    // (ServedDeterministicItemScoreJson).
+    const during = await api.getAttempt(attemptId);
+    expect(during.marksWithheld).toBe("attempt-in-progress");
+    expect(during.items).toHaveLength(correctAnswers(onDisk.router).size);
+    for (const item of during.items) {
+      expect(item).toMatchObject({ scoringStatus: "scored", score: null, scoreJson: { module: "router", answer: expect.any(String) } });
+      expect(item.scoreJson).not.toHaveProperty("correct");
+    }
+
     const secondModule = modulePath === "upper" ? onDisk.upperModule : onDisk.lowerModule;
     for (const request of buildScoreRequests(served, modulePath, correctAnswers(secondModule))) {
       await api.scoreDeterministicTask(attemptId, request);
@@ -111,6 +121,8 @@ describe("the client API against the composed app", () => {
     expect(review.bandStatus.status).toBe("estimated");
     const itemCount = correctAnswers(onDisk.router).size + correctAnswers(secondModule).size;
     expect(review.items).toHaveLength(itemCount);
+    expect(review.marksWithheld).toBeUndefined();
+    expect(review.items.every((item) => item.score === 1 && (item.scoreJson as { correct?: boolean }).correct === true)).toBe(true);
     // Keys reach the client only now, with the Attempt complete.
     expect(review.deterministicReview).toHaveLength(itemCount);
     expect(review.deterministicReview!.every((item) => item.correct)).toBe(true);
@@ -129,6 +141,21 @@ describe("the client API against the composed app", () => {
     expect(error).toBeInstanceOf(api.HttpError);
     expect((error as api.HttpError).status).toBe(409);
     expect((await api.getAttempt(attemptId)).attempt.status).toBe("in_progress");
+  });
+
+  it("abandons a Full-Test Run, discarding the section it was sitting", async () => {
+    const run = await api.createFullTest();
+    const reading = run.sections.find((s) => s.section === "reading")!;
+    const { attemptId } = await api.createAttempt({ kind: "reading", mode: "simulation", setId: reading.setId!, fullTestRunId: run.id });
+    createdAttempts.push(attemptId);
+
+    const abandoned = await api.abandonFullTest(run.id);
+    expect(abandoned.status).toBe("abandoned");
+    expect(abandoned.overall.band).toBeNull();
+    expect(abandoned.sections.find((s) => s.section === "reading")).toMatchObject({ attemptId, state: "aborted" });
+    expect((await api.getAttempt(attemptId)).attempt.status).toBe("aborted");
+    expect((await api.listFullTests({ status: "abandoned" })).map((r) => r.id)).toContain(run.id);
+    expect((await api.abandonFullTest(run.id)).status).toBe("abandoned");
   });
 
   it("answers the client's own error shapes: an unknown Attempt is an HttpError carrying its status", async () => {

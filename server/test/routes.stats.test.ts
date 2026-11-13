@@ -390,6 +390,33 @@ describe("GET /summary", () => {
       expect(body.skillItems).toHaveLength(4);
     });
 
+    // Issue #48: a Simulation defers its marks until it completes, so the per-skill pane counts none
+    // of its Items before then. A Drill counts as soon as an Item is scored; a completed or discarded
+    // Simulation counts as before.
+    it("leaves out the Items of a Simulation still in progress, and counts them once it completes", async () => {
+      ctx.repo.createAttempt({ id: "att-sim", kind: "reading", mode: "simulation", setId: "rd-1", isRepeat: false });
+      ctx.repo.createAttempt({ id: "att-off", kind: "listening", mode: "simulation", setId: "ls-1", isRepeat: false });
+      ctx.repo.createAttempt({ id: "att-drill", kind: "listening", mode: "drill", setId: "ls-1", isRepeat: false });
+      scoreItem(ctx, "att-sim", "dl-1", "daily_life", 0, { correct: false, skill: "detail", module: "router", answer: "b" });
+      scoreItem(ctx, "att-off", "lc-1", "listen_choose", 0, { correct: false, skill: "gist", module: "router", answer: "b" });
+      scoreItem(ctx, "att-drill", "lc-2", "listen_choose", 1, { correct: true, skill: "detail", module: "router", answer: "a" });
+      ctx.repo.abortAttempt("att-off");
+
+      const during = (await (await ctx.app.request("/summary")).json()) as StatsSummaryVM;
+      expect(during.skillItems).toEqual(
+        expect.arrayContaining([
+          { section: "listening", skill: "detail", correct: true },
+          { section: "listening", skill: "gist", correct: false },
+        ]),
+      );
+      expect(during.skillItems).toHaveLength(2);
+
+      ctx.repo.completeAttempt("att-sim");
+      const after = (await (await ctx.app.request("/summary")).json()) as StatsSummaryVM;
+      expect(after.skillItems).toContainEqual({ section: "reading", skill: "detail", correct: false });
+      expect(after.skillItems).toHaveLength(3);
+    });
+
     // The pane's caption names its window, so the summary says how many Items the window holds, and
     // the Items it sends are never more than that.
     it("sends the latest skillItemsLimit Items and the limit with them", async () => {

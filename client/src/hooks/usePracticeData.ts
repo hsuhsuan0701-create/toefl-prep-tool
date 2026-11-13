@@ -25,9 +25,11 @@ export type AttemptLog = {
 /**
  * The Attempt log, a page at a time. `total` comes from the server, so "N attempts" is the true
  * count however few are loaded. A reload re-fetches as many Attempts as are already on screen, so
- * acting on one row of a long log does not collapse it back to the first page.
+ * acting on one row of a long log does not collapse it back to the first page. `initialRows` makes
+ * the first fetch that long too: coming back to the list (useAttemptListPlace.ts) it holds the row
+ * that was opened, however far down the log that was.
  */
-export function useAttempts(refreshKey = 0, pageSize = ATTEMPT_PAGE_SIZE): AttemptLog {
+export function useAttempts(refreshKey = 0, pageSize = ATTEMPT_PAGE_SIZE, initialRows = 0): AttemptLog {
   const [attempts, setAttempts] = useState<AttemptListVM | null>(null);
   const [error, setError] = useState<string | undefined>(undefined);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -38,7 +40,7 @@ export function useAttempts(refreshKey = 0, pageSize = ATTEMPT_PAGE_SIZE): Attem
   // id whichever lands first (see the reload's tail below).
   const reloadSeq = useRef(0);
   const moreSeq = useRef(0);
-  const loadedCount = useRef(0);
+  const loadedCount = useRef(initialRows);
 
   const reload = useCallback(() => setLocalRefresh((n) => n + 1), []);
 

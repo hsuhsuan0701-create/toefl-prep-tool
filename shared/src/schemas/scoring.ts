@@ -59,6 +59,72 @@ export type ScoreReport = z.infer<typeof ScoreReportSchema>;
  */
 export const MCQ_UNANSWERED_SENTINEL = "__none__";
 
+/**
+ * What deterministic scoring persists in `item_results.score_json` for a Reading or Listening Item,
+ * in either mode (server/src/services/deterministicScoring.ts writes it).
+ *
+ * - `correct`: the Item's correctness; `score` is 1 or 0 to match.
+ * - `module`: the Module the Item belongs to ("router", "lower", "upper"). The Module-order guard and
+ *   the band rule read it (docs/adr/0010).
+ * - `answer`: the User's raw Response: the letters typed into a gap, or the selected option id
+ *   (MCQ_UNANSWERED_SENTINEL for a question left unanswered).
+ * - `skill`: a multiple-choice Item's skill category; a gap has none.
+ *
+ * The Response in words, so a review can say it when the Set can no longer be read (issue #56).
+ * Each is something the run put in front of the User, never a key: neither the key, the other
+ * options nor the Explanation is stored. Rows scored before these existed lack them.
+ * - `selectedOptionText`, `selectedOptionIndex`: the selected option's text and its place among
+ *   the question's options (0 for the first, so the review can print its letter as the run did).
+ *   Absent when no option was selected, or the id names none.
+ * - `prefix`: a gap's prefix, the letters printed before it in the passage. The User's whole word is
+ *   `prefix` + `answer`.
+ */
+export type DeterministicItemScoreJson = {
+  correct: boolean;
+  module: string;
+  answer: string;
+  skill?: string;
+  selectedOptionText?: string;
+  selectedOptionIndex?: number;
+  prefix?: string;
+};
+
+/**
+ * What Build a Sentence scoring persists in `item_results.score_json`, in either mode
+ * (server/src/services/scoreItems.ts writes it): the Item's correctness (`score` is 1 or 0 to
+ * match), every accepted arrangement (`correctAnswers`, the key) and the Item's frame as the Set had
+ * it (`frame`; absent, or null, for an Item with none).
+ */
+export type BuildSentenceItemScoreJson = {
+  correct: boolean;
+  correctAnswers: string[][];
+  frame?: string | null;
+};
+
+/**
+ * Why GET /api/attempts/:id withholds an Attempt's marks (AttemptDetailVM.marksWithheld): it is a
+ * Simulation still in progress, or a discarded Simulation of a Full-Test Run still in progress (the
+ * Attempt a restarted section replaced), whose marks wait for the Run to end.
+ */
+export type MarksWithheldReason = "attempt-in-progress" | "full-test-run-in-progress";
+
+/**
+ * A Reading or Listening Item's `scoreJson` as GET /api/attempts/:id sends it: what scoring
+ * persisted, without `correct` while the Attempt's marks are withheld (the Item's `score` is then
+ * null too). The Response and its Module are sent either way, never whether it was right.
+ */
+export type ServedDeterministicItemScoreJson = DeterministicItemScoreJson | Omit<DeterministicItemScoreJson, "correct">;
+
+/**
+ * A Build a Sentence Item's `scoreJson` as GET /api/attempts/:id sends it. A Simulation's key
+ * (`correctAnswers`) stays on the server until the Attempt is completed, and while its marks are
+ * withheld `correct` stays there too, so only the frame is sent.
+ */
+export type ServedBuildSentenceItemScoreJson =
+  | BuildSentenceItemScoreJson
+  | Omit<BuildSentenceItemScoreJson, "correctAnswers">
+  | Omit<BuildSentenceItemScoreJson, "correctAnswers" | "correct">;
+
 export const ScoreRequestSchema = z.discriminatedUnion("taskType", [
   z.object({
     taskType: z.literal("build_sentence"),
@@ -141,6 +207,19 @@ export const EarsResultSchema = z.object({
   deliveryReport: DeliveryReportSchema,
 });
 export type EarsResult = z.infer<typeof EarsResultSchema>;
+
+// ---------------------------------------------------------------------------------------------
+// An essay with no words (docs/adr/0018).
+//
+// The boundary is whitespace: an Email or Academic Discussion Response that is empty once its
+// whitespace is trimmed has no words, scores a deterministic 0 and never reaches a Judge, the written
+// counterpart of a recording with no speech. Anything else, a single word or a lone punctuation mark
+// included, is an essay and goes to the Judges, who score how little it says. The server's scoring
+// and the editor's "hand in an empty essay?" question both read this one rule.
+// ---------------------------------------------------------------------------------------------
+export function essayHasNoWords(text: string): boolean {
+  return text.trim() === "";
+}
 
 // ---------------------------------------------------------------------------------------------
 // A deliberately skipped Speaking Simulation Item.

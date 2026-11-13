@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { FULL_TEST_SECTION_ORDER, type FullTestRunVM, type FullTestSection, type ReadingSet, type StatsSummaryVM } from "@toefl-prep/shared";
+import { FULL_TEST_SECTION_ORDER, type AttemptDetailVM, type FullTestRunVM, type FullTestSection, type ReadingSet, type StatsSummaryVM } from "@toefl-prep/shared";
 import { Hono } from "hono";
 import { openDb } from "../src/db/db.js";
 import { sqliteStores } from "./helpers/sqliteStores.js";
@@ -263,6 +263,38 @@ describe("POST /api/full-tests creates a run over the whole test", () => {
     const readingOf = (run: FullTestRunVM) => run.sections.find((s) => s.section === "reading")!.setId;
     expect(readingOf(first)).not.toBe(readingOf(second));
     expect([readingOf(first), readingOf(second)].sort()).toEqual(["rd-a", "rd-b"]);
+  });
+
+  // A Run started by mistake and abandoned at once sat nothing, so it holds no claim on its Sets: the
+  // next Run may draw them. A Set a section did sit stays claimed, as the attempted rule
+  // (ATTEMPT_COUNTS_AS_SITTING_SQL) already counts it.
+  it("lets a later run draw the Sets an abandoned run reserved but never sat", async () => {
+    const h = harness(bankWith("rd-a", "rd-b"));
+    const first = (await createRun(h.app)).run;
+    expect((await h.app.request(`/full-tests/${first.id}/abandon`, { method: "POST" })).status).toBe(200);
+
+    const second = (await createRun(h.app)).run;
+    expect(second.sections.map((s) => s.setId)).toEqual(first.sections.map((s) => s.setId));
+    // The second Run is in progress, so it claims them again.
+    const third = (await createRun(h.app)).run;
+    expect(third.sections.find((s) => s.section === "reading")!.setId).toBe("rd-b");
+  });
+
+  it("keeps a Set claimed when the abandoned run's section sat it", async () => {
+    const h = harness(bankWith(DISK_SET_ID, OTHER_DISK_SET_ID));
+    const first = (await createRun(h.app)).run;
+    expect(first.sections.find((s) => s.section === "reading")!.setId).toBe(DISK_SET_ID);
+    await sitReading(h, first.id);
+    expect((await h.app.request(`/full-tests/${first.id}/abandon`, { method: "POST" })).status).toBe(200);
+    // The other Reading Set sat more recently, so least-recently-attempted alone would choose the
+    // abandoned Run's Set: only its claim keeps the next Run off it.
+    h.r.createAttempt({ id: "att-other", kind: "reading", mode: "drill", setId: OTHER_DISK_SET_ID, isRepeat: false });
+    h.r.insertItemResult({ attemptId: "att-other", itemId: "r-1", taskType: "complete_words" });
+    h.r.updateItemScore({ attemptId: "att-other", itemId: "r-1", score: 1, scoreJson: "{}", scoringStatus: "scored" });
+    h.db.prepare("UPDATE attempts SET started_at='2999-01-01 00:00:00' WHERE id='att-other'").run();
+
+    const second = (await createRun(h.app)).run;
+    expect(second.sections.find((s) => s.section === "reading")!.setId).toBe(OTHER_DISK_SET_ID);
   });
 
   it("honours an explicit Set per section, and refuses one that is unknown or of the wrong kind", async () => {
@@ -690,6 +722,185 @@ describe("all four sections run in ETS order inside one run", () => {
     expect(again.body.attemptId).not.toBe(started.body.attemptId);
     const afterResume = (await (await h.app.request(`/full-tests/${run.id}`)).json()) as FullTestRunVM;
     expect(afterResume.sections.find((s) => s.section === "listening")!.attemptId).toBe(again.body.attemptId);
+  });
+});
+
+// A restarted section and an abandoned Run are the two ways a section's Attempt ends without being
+// finished inside its Run. Each is discarded in the same step that leaves it behind, so it cannot be
+// finished later through the Attempt lists, and an abandoned Run ends with its finished sections
+// intact and no Overall.
+describe("a section left behind: restarted, or its Run abandoned", () => {
+  async function newRun(h: ReturnType<typeof harness>) {
+    const { run } = await createRun(h.app, { sets: SECTION_SET_IDS });
+    return run;
+  }
+  const getRun = async (h: ReturnType<typeof harness>, id: string) =>
+    (await (await h.app.request(`/full-tests/${id}`)).json()) as FullTestRunVM;
+  const abandon = (h: ReturnType<typeof harness>, id: string) =>
+    h.app.request(`/full-tests/${id}/abandon`, { method: "POST" });
+
+  it("discards the Attempt a restart replaces as the new one is linked, and keeps its Repeat tag", async () => {
+    const h = harness();
+    const run = await newRun(h);
+    const first = await startSection(h, run.id, "reading", DISK_SET_ID);
+    const replaced = first.body.attemptId!;
+    // A scored Item makes the replaced Attempt a sitting of the Set (ATTEMPT_COUNTS_AS_SITTING_SQL),
+    // discarded or not. The restart must still carry its tag rather than count it as a prior sitting.
+    h.r.insertItemResult({ attemptId: replaced, itemId: "r-1", taskType: "complete_words" });
+    h.r.updateItemScore({ attemptId: replaced, itemId: "r-1", score: 1, scoreJson: "{}", scoringStatus: "scored" });
+    expect(h.r.getAttempt(replaced)!.is_repeat).toBe(0);
+
+    const again = await startSection(h, run.id, "reading", DISK_SET_ID);
+    expect(again.status).toBe(201);
+    const restarted = again.body.attemptId!;
+
+    expect(h.r.getAttempt(replaced)!.status).toBe("aborted");
+    expect(h.r.getAttempt(restarted)!.status).toBe("in_progress");
+    // Tagged as before this change: the replaced sitting's tag, not a recomputation.
+    expect(h.r.getAttempt(restarted)!.is_repeat).toBe(0);
+    expect((again.body as { isRepeat?: boolean }).isRepeat).toBe(false);
+    // The replaced Attempt cannot be finished any more, so its review can never show the key of the
+    // Set the Run is still sitting.
+    const finish = await h.app.request(`/attempts/${replaced}/complete`, { method: "POST" });
+    expect(finish.status).toBe(409);
+    expect(h.r.getAttempt(replaced)!.status).toBe("aborted");
+    expect((await getRun(h, run.id)).sections.find((s) => s.section === "reading")!.attemptId).toBe(restarted);
+  });
+
+  // The replaced Attempt is discarded while the Run is still sitting its Set, and the restart that
+  // replaced it carries its tag, so its marks would tell right from wrong on the Set whose band
+  // feeds the Run's Overall. They wait for the Run to end, everywhere a mark reaches the client: the
+  // Attempt's detail and the per-skill accuracy pane.
+  async function restartWithAScoredItem(h: ReturnType<typeof harness>, runId: string) {
+    const first = await startSection(h, runId, "reading", DISK_SET_ID);
+    const replaced = first.body.attemptId!;
+    h.r.insertItemResult({ attemptId: replaced, itemId: "dl-x-q1", taskType: "daily_life" });
+    h.r.updateItemScore({
+      attemptId: replaced,
+      itemId: "dl-x-q1",
+      score: 1,
+      scoreJson: JSON.stringify({ correct: true, module: "router", answer: "a", skill: "detail" }),
+      scoringStatus: "scored",
+    });
+    expect((await startSection(h, runId, "reading", DISK_SET_ID)).status).toBe(201);
+    return replaced;
+  }
+  const detailOf = async (h: ReturnType<typeof harness>, attemptId: string) =>
+    (await (await h.app.request(`/attempts/${attemptId}`)).json()) as AttemptDetailVM;
+  const skillItems = async (h: ReturnType<typeof harness>) =>
+    ((await (await h.app.request("/stats/summary")).json()) as StatsSummaryVM).skillItems;
+
+  it("withholds a restarted section's replaced Attempt's marks while its Run is in progress, and sends them once it is abandoned", async () => {
+    const h = harness();
+    const run = await newRun(h);
+    const replaced = await restartWithAScoredItem(h, run.id);
+
+    const during = await detailOf(h, replaced);
+    expect(during.attempt.status).toBe("aborted");
+    expect(during.marksWithheld).toBe("full-test-run-in-progress");
+    expect(during.items[0]).toMatchObject({ scoringStatus: "scored", score: null, scoreJson: { module: "router", answer: "a" } });
+    expect(during.items[0].scoreJson).not.toHaveProperty("correct");
+    expect(during).not.toHaveProperty("deterministicReview");
+    expect(await skillItems(h)).toEqual([]);
+
+    expect((await abandon(h, run.id)).status).toBe(200);
+    const after = await detailOf(h, replaced);
+    expect(after).not.toHaveProperty("marksWithheld");
+    expect(after.items[0]).toMatchObject({ score: 1, scoreJson: { correct: true } });
+    // Discarded, so still no key, as for any discarded Simulation.
+    expect(after).not.toHaveProperty("deterministicReview");
+    expect(await skillItems(h)).toEqual([{ section: "reading", skill: "detail", correct: true }]);
+  });
+
+  it("sends a restarted section's replaced Attempt's marks once its Run is completed", async () => {
+    const h = harness();
+    const run = await newRun(h);
+    const replaced = await restartWithAScoredItem(h, run.id);
+    // Each section sat to its end. sitSection's Reading replaces the restarted Attempt in turn.
+    for (const section of FULL_TEST_SECTION_ORDER) {
+      await sitSection(h, run.id, section);
+      expect((await detailOf(h, replaced)).marksWithheld).toBe("full-test-run-in-progress");
+      await h.app.request(`/full-tests/${run.id}/advance`, { method: "POST" });
+    }
+    expect((await getRun(h, run.id)).status).toBe("completed");
+
+    const after = await detailOf(h, replaced);
+    expect(after).not.toHaveProperty("marksWithheld");
+    expect(after.items[0]).toMatchObject({ score: 1, scoreJson: { correct: true } });
+  });
+
+  it("abandons a Run in progress: the live section discarded, the finished ones and their bands untouched", async () => {
+    const h = harness();
+    const run = await newRun(h);
+    const readingId = await sitSection(h, run.id, "reading");
+    await h.app.request(`/full-tests/${run.id}/advance`, { method: "POST" });
+    const listening = await startSection(h, run.id, "listening", LISTENING_SET_ID);
+    const listeningId = listening.body.attemptId!;
+    const before = await getRun(h, run.id);
+    const readingBefore = before.sections.find((s) => s.section === "reading")!;
+    expect(readingBefore.estimate?.band).toEqual(expect.any(Number));
+
+    const res = await abandon(h, run.id);
+    expect(res.status).toBe(200);
+    const after = (await res.json()) as FullTestRunVM;
+
+    expect(after.status).toBe("abandoned");
+    expect(after.currentSection).toBeNull();
+    expect(after.completedAt).toBeNull();
+    expect(after.sections.some((s) => s.launchable)).toBe(false);
+    expect(h.r.getAttempt(listeningId)!.status).toBe("aborted");
+    expect(after.sections.find((s) => s.section === "listening")!.state).toBe("aborted");
+    // The finished section keeps its Attempt, its completion and its band.
+    expect(h.r.getAttempt(readingId)!.status).toBe("completed");
+    expect(after.sections.find((s) => s.section === "reading")).toEqual(readingBefore);
+    // Four real Band Estimates or none: an abandoned Run has no Overall.
+    expect(after.overall.band).toBeNull();
+
+    // Idempotent: a second abandon answers the same Run and writes nothing.
+    const second = await abandon(h, run.id);
+    expect(second.status).toBe(200);
+    expect(await second.json()).toEqual(after);
+    // Its sections can no longer be sat, and it is not listed with the Runs waiting to be resumed.
+    expect((await startSection(h, run.id, "listening", LISTENING_SET_ID)).status).toBe(409);
+    const waiting = (await (await h.app.request("/full-tests?status=in-progress")).json()) as FullTestRunVM[];
+    expect(waiting.map((r) => r.id)).not.toContain(run.id);
+    const abandonedRuns = (await (await h.app.request("/full-tests?status=abandoned")).json()) as FullTestRunVM[];
+    expect(abandonedRuns.map((r) => r.id)).toEqual([run.id]);
+  });
+
+  it("abandons a Run nothing has been sat in yet, discarding nothing", async () => {
+    const h = harness();
+    const run = await newRun(h);
+    const res = await abandon(h, run.id);
+    expect(res.status).toBe(200);
+    const after = (await res.json()) as FullTestRunVM;
+    expect(after.status).toBe("abandoned");
+    expect(after.sections.every((s) => s.state === "pending" && s.attemptId === null)).toBe(true);
+  });
+
+  it("refuses to abandon a completed Run, or one whose sections are all finished, and 404s an unknown one", async () => {
+    const h = harness();
+    const run = await newRun(h);
+    for (const section of FULL_TEST_SECTION_ORDER) await sitSection(h, run.id, section);
+    // Every hand-off lost: the Run is still in progress with nothing left to sit. It is finished,
+    // not given up on, so it is refused, and its next advance completes it with its Overall. The
+    // refusal reaches a User only from a stale tab, so it names the step the UI offers (opening the
+    // Run), not the advance route.
+    const finished = await abandon(h, run.id);
+    expect(finished.status).toBe(409);
+    const { error } = (await finished.json()) as { error: string };
+    expect(error).toMatch(/Open the Run/);
+    expect(error).not.toMatch(/advance/);
+    expect(h.r.getFullTestRun(run.id)!.status).toBe("in-progress");
+
+    await h.app.request(`/full-tests/${run.id}/advance`, { method: "POST" });
+    const completed = await getRun(h, run.id);
+    expect(completed.status).toBe("completed");
+    const refused = await abandon(h, run.id);
+    expect(refused.status).toBe(409);
+    expect(await getRun(h, run.id)).toEqual(completed);
+
+    expect((await abandon(h, "no-such-run")).status).toBe(404);
   });
 });
 

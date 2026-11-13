@@ -278,6 +278,16 @@ export function correctSummary(items: readonly IndexedItem[]): string {
   return unscored > 0 ? `${base} · ${unscored} not scored` : base;
 }
 
+/**
+ * What a group adds up to while the Attempt's marks are withheld (AttemptDetailVM.marksWithheld): how
+ * many Items, and how many are not scored, but never how many are correct.
+ */
+export function unmarkedSummary(items: readonly IndexedItem[]): string {
+  const { scored } = correctCount(items);
+  const unscored = items.length - scored;
+  return unscored > 0 ? `${itemsWord(items.length)} · ${unscored} not scored` : itemsWord(items.length);
+}
+
 /** What one judged group adds up to, for the jump list: "4 / 5", "Scoring failed", "7 Items · 1 failed". */
 export function judgedSummary(items: readonly IndexedItem[]): string {
   if (items.length === 1) {

@@ -9,9 +9,11 @@ import SetSection from "../components/SetSection";
 import { ProviderNotice } from "../components/setup/ProviderNotice";
 import { SetupSection } from "../components/setup/SetupSection";
 import { useSetupStatus } from "../components/setup/useSetupStatus";
+import { useAttemptListArrival, useReturnPlace } from "../hooks/useAttemptListPlace";
 import { SECTION_ROUTES, usePracticeData } from "../hooks/usePracticeData";
 import { useProviderStatus } from "../hooks/useProviderStatus";
 import { getStatsSettings, getStatsSummary, putStatsSettings } from "../lib/api";
+import { followWhilePageLoads } from "../lib/followIntoView";
 import { requestErrorMessage } from "../lib/requestError";
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
@@ -42,11 +44,6 @@ const FIRST_RUN_LEDE =
  * at the bottom, collapsed. Below either: the four sections' bands against their Targets, the next
  * unattempted Sets, Full-Test Runs and recent Attempts.
  */
-/** How long an arrival at /#setup keeps Setup at the top while the page above it loads. */
-const FOLLOW_SETUP_MS = 3000;
-/** What the User does to scroll the page themselves, which ends that. */
-const TAKES_OVER_SCROLL = ["wheel", "touchstart", "pointerdown", "keydown"] as const;
-
 export default function Dashboard() {
   const [summary, setSummary] = useState<StatsSummaryVM | null>(null);
   const [summaryError, setSummaryError] = useState<string | null>(null);
@@ -57,6 +54,9 @@ export default function Dashboard() {
   const [setupOpen, setSetupOpen] = useState(false);
   const providerStatus = useProviderStatus();
   const practice = usePracticeData(setsRefreshKey);
+  // Back from an Attempt review opened from Recent Attempts puts its row back where it was.
+  const returnPlace = useReturnPlace();
+  useAttemptListArrival("recent-attempts", practice.attempts, returnPlace);
   const setup = useSetupStatus();
 
   // A saved Target, a finished or discarded Attempt and the first load each re-read the summary, and
@@ -105,6 +105,7 @@ export default function Dashboard() {
 
   // Finishing or discarding an Attempt can change a section's band, and with it the Overall and the
   // suggested next step: the summary is read again with the log, so the cards agree with the row.
+  // Abandoning a Full-Test Run discards its live section's Attempt, so it reads both again too.
   const reloadPractice = practice.reload;
   const onAttemptChanged = useCallback(() => {
     reloadPractice();
@@ -137,20 +138,9 @@ export default function Dashboard() {
     followSetupRef.current = false;
     target?.scrollIntoView?.({ behavior: follow ? "auto" : "smooth", block: "start" });
     target?.focus({ preventScroll: true });
-    if (!target || !follow || typeof ResizeObserver === "undefined") return;
-    // Each part of the page that lands above Setup pushes it down after the scroll has been made, so
-    // Setup is put back at the top whenever the page changes height, until the page has had time to
-    // finish loading or the User takes over.
-    const observer = new ResizeObserver(() => target.scrollIntoView({ block: "start" }));
-    observer.observe(target.closest("main") ?? document.body);
-    const stop = () => {
-      observer.disconnect();
-      window.clearTimeout(timer);
-      for (const type of TAKES_OVER_SCROLL) window.removeEventListener(type, stop);
-    };
-    const timer = window.setTimeout(stop, FOLLOW_SETUP_MS);
-    for (const type of TAKES_OVER_SCROLL) window.addEventListener(type, stop, { passive: true });
-    return stop;
+    if (!target || !follow) return;
+    // The rest of the page is still loading above Setup: keep it at the top until that settles.
+    return followWhilePageLoads(() => target.scrollIntoView({ block: "start" }), target.closest("main") ?? document.body);
   }, [setupScrollRequest]);
 
   const estimates = new Map((summary?.sections ?? []).map((s) => [s.section, s]));
@@ -270,9 +260,9 @@ export default function Dashboard() {
           </div>
         </section>
 
-        <FullTestPanel />
+        <FullTestPanel onRunAbandoned={onAttemptChanged} />
 
-        <section aria-labelledby="recent-heading" className="space-y-4">
+        <section id="recent-attempts" aria-labelledby="recent-heading" className="scroll-mt-6 space-y-4">
           <SectionHeader id="recent-heading" title="Recent Attempts" />
           {firstRun ? (
             <EmptyState title="No Attempts yet">Your Attempts appear here as soon as you start one — finished or not.</EmptyState>
@@ -282,7 +272,7 @@ export default function Dashboard() {
               error={practice.errors.attempts}
               onChanged={onAttemptChanged}
               limit={HOME_ATTEMPTS}
-              seeAllHref="/progress"
+              seeAllHref="/progress#attempts"
             />
           )}
         </section>

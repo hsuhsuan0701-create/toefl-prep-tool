@@ -1,10 +1,10 @@
-import type { ItemVM } from "@toefl-prep/shared";
+import type { ItemVM, MarksWithheldReason } from "@toefl-prep/shared";
 import { buildSentenceComposition, sentencePromptFor, sentenceTilesFor, type AttemptSetSnapshot } from "../../pages/attemptSetSnapshot";
 import { Card } from "../../ui/Card";
 import { StatusChip } from "../../ui/Chip";
 import { IconChevronRight } from "../../ui/icons";
-import { itemScoringStatus } from "../../ui/labels";
-import { ComposedSentence, OfferedTiles, PLACED_WORDS_NOTE } from "./BuildSentenceParts";
+import { ITEM_MARK_WITHHELD, itemScoringStatus } from "../../ui/labels";
+import { ComposedSentence, OfferedTiles, PLACED_WORDS_NOTE, SentenceResponse } from "./BuildSentenceParts";
 import { ResultMark } from "./ReviewParts";
 import { isBuildSentenceScoreJson } from "./reviewItems";
 import { failureText, itemsWord, type IndexedItem } from "./reviewText";
@@ -14,7 +14,17 @@ import { failureText, itemsWord, type IndexedItem } from "./reviewText";
  * do not push the essays below the fold. Native <details>: closed, every row is still in the
  * document, so search and the jump list reach it.
  */
-export default function BuildSentenceGroup({ items, setSnapshot }: { items: IndexedItem[]; setSnapshot: AttemptSetSnapshot | null }) {
+// `marksWithheld` is the Attempt's, as its detail sent it: when set, the server sent no Item's
+// correctness, and each scored Item says when it will be marked instead.
+export default function BuildSentenceGroup({
+  items,
+  setSnapshot,
+  marksWithheld,
+}: {
+  items: IndexedItem[];
+  setSnapshot: AttemptSetSnapshot | null;
+  marksWithheld: MarksWithheldReason | undefined;
+}) {
   return (
     <Card padding="none">
       <details className="group">
@@ -30,7 +40,7 @@ export default function BuildSentenceGroup({ items, setSnapshot }: { items: Inde
         <p className="border-t border-rule px-4 py-2 text-meta text-graphite">{PLACED_WORDS_NOTE}</p>
         <ol className="divide-y divide-rule border-t border-rule">
           {items.map(({ item, position }) => (
-            <BuildSentenceRow key={item.itemId} item={item} position={position} setSnapshot={setSnapshot} />
+            <BuildSentenceRow key={item.itemId} item={item} position={position} setSnapshot={setSnapshot} marksWithheld={marksWithheld} />
           ))}
         </ol>
       </details>
@@ -44,7 +54,17 @@ export default function BuildSentenceGroup({ items, setSnapshot }: { items: Inde
 // the frame buildSentenceComposition picks: the one persisted with the Response, else the Set file's
 // current one when the Response still fits that Item, else none (tiles in order) with a note that
 // the Set changed.
-function BuildSentenceRow({ item, position, setSnapshot }: { item: ItemVM; position: number; setSnapshot: AttemptSetSnapshot | null }) {
+function BuildSentenceRow({
+  item,
+  position,
+  setSnapshot,
+  marksWithheld,
+}: {
+  item: ItemVM;
+  position: number;
+  setSnapshot: AttemptSetSnapshot | null;
+  marksWithheld: MarksWithheldReason | undefined;
+}) {
   let tileOrder: string[] = [];
   try {
     if (item.responseText) tileOrder = JSON.parse(item.responseText) as string[];
@@ -60,6 +80,7 @@ function BuildSentenceRow({ item, position, setSnapshot }: { item: ItemVM; posit
   // key are drawn from them; the extra one is marked only beside a key the server has shown.
   const tiles = revised ? undefined : sentenceTilesFor(setSnapshot, item.itemId, arrangements);
   const prompt = sentencePromptFor(setSnapshot, item.itemId);
+  const mark = marksWithheld ? undefined : scored?.correct;
 
   return (
     <li id={`item-${item.itemId}`} data-testid={`item-${item.itemId}`} className="space-y-1.5 px-4 py-3">
@@ -68,12 +89,17 @@ function BuildSentenceRow({ item, position, setSnapshot }: { item: ItemVM; posit
           <span className="figures">Item {position}</span>
           {prompt && <span className="text-ink-soft"> · {prompt}</span>}
         </p>
-        {scored ? <ResultMark correct={scored.correct} /> : <StatusChip status={itemScoringStatus(item.scoringStatus)} />}
+        {mark !== undefined ? (
+          <ResultMark correct={mark} />
+        ) : (
+          <StatusChip status={scored && marksWithheld ? ITEM_MARK_WITHHELD[marksWithheld] : itemScoringStatus(item.scoringStatus)} />
+        )}
       </div>
       <p data-testid={`bas-answer-${item.itemId}`} className="text-body text-ink">
         <span className="text-graphite">Your Response: </span>
-        {/* An Item nobody touched says so outright rather than echoing the bare frame back. */}
-        {tileOrder.length > 0 ? <ComposedSentence frame={frame} tiles={tileOrder} /> : "(no Response submitted)"}
+        {/* An Item nobody touched says so outright rather than echoing the bare frame back, and a
+            partly filled one is listed rather than composed (see SentenceResponse). */}
+        <SentenceResponse frame={frame} tiles={tileOrder} keyArrangements={scored?.correctAnswers ?? null} />
       </p>
       {scored?.correctAnswers && (
         // Labelled apart from the Response: the two sit one above the other and must not be confused.

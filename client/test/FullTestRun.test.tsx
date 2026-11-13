@@ -778,3 +778,99 @@ describe("a finished sitting's section with no band", () => {
     expect(overall).toHaveTextContent(/No Overall yet: Writing has no band until its unscored Items are scored/);
   });
 });
+
+// A Run in progress can be given up on from its own page, behind a confirmation that says what it
+// costs. The page then shows the Run as abandoned: the finished sections with their bands, no
+// Overall, and nothing left to start.
+describe("abandoning the Run from its page", () => {
+  const readingBand = estimate({ section: "reading", band: 4.5, method: "table3-v1", coverage: [{ taskType: "academic_passage", itemCount: 3, skippedCount: 0 }] });
+  const sitting = () =>
+    run({
+      currentSection: "listening",
+      sections: [
+        section({ section: "reading", order: 1, state: "completed", attemptId: "att-r", launchable: false, estimate: readingBand }),
+        section({ section: "listening", order: 2, state: "in-progress", attemptId: "att-l", launchable: true }),
+        section({ section: "writing", order: 3, launchable: false }),
+        section({ section: "speaking", order: 4, launchable: false }),
+      ],
+    });
+
+  function stubRun() {
+    let current = sitting();
+    const posts: string[] = [];
+    vi.stubGlobal(
+      "fetch",
+      vi.fn((input: RequestInfo | URL, init?: RequestInit) => {
+        const url = typeof input === "string" ? input : input.toString();
+        if (init?.method === "POST") {
+          posts.push(url);
+          if (url !== `/api/full-tests/${RUN_ID}/abandon`) throw new Error(`unhandled POST in test: ${url}`);
+          const sections = current.sections.map((s) =>
+            s.state === "in-progress" ? { ...s, state: "aborted" as const, launchable: false } : { ...s, launchable: false },
+          );
+          current = { ...current, status: "abandoned", currentSection: null, sections, overall: overallFor(sections) };
+        } else if (url !== `/api/full-tests/${RUN_ID}`) {
+          throw new Error(`unhandled fetch in test: ${url}`);
+        }
+        return Promise.resolve(new Response(JSON.stringify(current), { status: 200, headers: { "Content-Type": "application/json" } }));
+      }) as unknown as typeof fetch,
+    );
+    render(
+      <MemoryRouter initialEntries={[`/full-test/${RUN_ID}`]}>
+        <Routes>
+          <Route path="/full-test/:runId" element={<FullTestRun />} />
+        </Routes>
+      </MemoryRouter>,
+    );
+    return posts;
+  }
+
+  it("says what abandoning does, and changes nothing on Cancel", async () => {
+    const posts = stubRun();
+    const abandon = await screen.findByRole("button", { name: "Abandon Run…" });
+    await act(async () => abandon.click());
+
+    const dialog = screen.getByRole("dialog", { name: "Abandon this Full-Test Run?" });
+    expect(dialog).toHaveTextContent("The Run ends here, without an Overall band: the Overall needs all four sections.");
+    expect(dialog).toHaveTextContent("The section you finished keeps its Attempt and its band.");
+    expect(dialog).toHaveTextContent("The Listening section you left part-way is discarded.");
+    expect(dialog).toHaveTextContent("This can't be undone.");
+
+    await act(async () => within(dialog).getByRole("button", { name: "Keep the Run" }).click());
+    expect(posts).toEqual([]);
+    expect(screen.queryByRole("dialog")).toBeNull();
+    expect(screen.getByRole("link", { name: "Start Listening again" })).toBeInTheDocument();
+  });
+
+  it("calls the route on confirm and shows the Run abandoned, keeping the finished section's band and no Overall", async () => {
+    const posts = stubRun();
+    const abandon = await screen.findByRole("button", { name: "Abandon Run…" });
+    await act(async () => abandon.click());
+    await act(async () => within(screen.getByRole("dialog")).getByRole("button", { name: "Abandon Run" }).click());
+
+    expect(posts).toEqual([`/api/full-tests/${RUN_ID}/abandon`]);
+    const report = await screen.findByTestId("full-test-abandoned");
+    expect(report).toHaveTextContent("This Full-Test Run was abandoned, so it has no Overall: the Overall needs all four section bands.");
+    expect(report).toHaveTextContent("The section finished before it ended keeps its Attempt and band, below.");
+    expect(screen.queryByTestId("overall-band")).toBeNull();
+    // The Run's own status, from labels.ts, and each section's.
+    expect(screen.getAllByText("Abandoned").length).toBeGreaterThanOrEqual(2);
+    const rows = sectionRowsNow();
+    expect(within(rows[0]).getByTestId("section-band-reading")).toHaveTextContent("4.5");
+    expect(within(rows[1]).getByText("Abandoned")).toBeInTheDocument();
+    // Nothing is left to start, and nothing claims a section is waiting its turn.
+    expect(screen.queryByRole("link", { name: /^Start / })).toBeNull();
+    expect(screen.queryByText(/Starts once the earlier sections are finished/)).toBeNull();
+    expect(screen.queryByRole("button", { name: "Abandon Run…" })).toBeNull();
+    expect(screen.queryByText(/Elapsed/)).toBeNull();
+  });
+
+  // Four sections finished with the hand-off lost: the Run is finished, not given up on, and the
+  // abandon route refuses it. The page offers only the way forward, finishing it.
+  it("offers no Abandon on a Run in progress whose four sections are all finished", async () => {
+    renderRun(run({ currentSection: "speaking", sections: completedSections({ reading: 4.5, listening: 5, writing: 4, speaking: 4.5 }) }));
+    await sectionRows();
+    expect(await screen.findByText(/All four sections are finished|never recorded the handoff/)).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Abandon Run…" })).toBeNull();
+  });
+});

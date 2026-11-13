@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
-import type { FullTestOverallVM, FullTestRunVM } from "@toefl-prep/shared";
+import type { FullTestOverallVM, FullTestRunVM, FullTestSectionVM } from "@toefl-prep/shared";
 import FullTestPanel from "../src/components/FullTestPanel";
 
 // The practice page's Full-Test panel is the only way back to a Full-Test Run once the User has left
@@ -100,7 +100,7 @@ describe("an unfinished sitting is never pushed off the panel", () => {
       "fetch",
       vi.fn((input: RequestInfo | URL) => {
         const url = typeof input === "string" ? input : input.toString();
-        const body = url.includes("status=in-progress") ? [unfinished] : recent;
+        const body = url.includes("status=in-progress") ? [unfinished] : url.includes("status=abandoned") ? [] : recent;
         return Promise.resolve(new Response(JSON.stringify(body), { status: 200, headers: { "Content-Type": "application/json" } }));
       }) as unknown as typeof fetch,
     );
@@ -148,5 +148,162 @@ describe("a finished sitting's report stays reachable", () => {
     renderPanel([1, 2, 3].map((i) => run({ id: `run-done-${i}`, status: "completed" })));
     expect(await screen.findAllByRole("link", { name: "View report" })).toHaveLength(3);
     expect(screen.queryByRole("button", { name: "Show earlier finished Runs" })).toBeNull();
+  });
+
+  it("lists an abandoned Run among the finished ones, newest first, marked abandoned", async () => {
+    renderPanel([
+      run({ id: "run-gave-up", status: "abandoned", createdAt: "2026-08-24T02:00:00.000Z" }),
+      run({ id: "run-done", status: "completed" }),
+    ]);
+    const links = await screen.findAllByRole("link", { name: "View report" });
+    expect(links.map((a) => a.getAttribute("href"))).toEqual(["/full-test/run-gave-up", "/full-test/run-done"]);
+    const rows = within(screen.getByRole("list", { name: "Finished Full-Test Runs" })).getAllByRole("listitem");
+    expect(within(rows[0]).getByText("Abandoned")).toBeInTheDocument();
+    expect(within(rows[1]).queryByText("Abandoned")).toBeNull();
+    expect(screen.queryByRole("link", { name: "Resume" })).toBeNull();
+  });
+});
+
+function sectionVM(section: FullTestSectionVM["section"], order: number, state: FullTestSectionVM["state"]): FullTestSectionVM {
+  return {
+    section,
+    order,
+    setId: `set-${section}`,
+    attemptId: state === "pending" ? null : `att-${section}`,
+    state,
+    runnable: true,
+    launchable: state === "in-progress",
+    bandStatus: { status: "not-finished" },
+    estimate: null,
+    modulePath: null,
+  };
+}
+
+// A Run started by mistake goes away from the panel, behind a confirmation that says what it costs.
+// Starting stays one press because of it.
+describe("abandoning a Run in progress from the panel", () => {
+  it("asks first, changes nothing on Cancel, and lists the Run as abandoned once confirmed", async () => {
+    const sections = [
+      sectionVM("reading", 1, "completed"),
+      sectionVM("listening", 2, "in-progress"),
+      sectionVM("writing", 3, "pending"),
+      sectionVM("speaking", 4, "pending"),
+    ];
+    let current = run({ id: "run-open", status: "in-progress", sections, overall: overall({ scoredSections: 1 }) });
+    const posts: string[] = [];
+    const json = (body: unknown) =>
+      Promise.resolve(new Response(JSON.stringify(body), { status: 200, headers: { "Content-Type": "application/json" } }));
+    vi.stubGlobal(
+      "fetch",
+      vi.fn((input: RequestInfo | URL, init?: RequestInit) => {
+        const url = new URL(typeof input === "string" ? input : input.toString(), "http://localhost");
+        if (init?.method === "POST") {
+          posts.push(url.pathname);
+          if (url.pathname !== "/api/full-tests/run-open/abandon") throw new Error(`unhandled POST in test: ${url.pathname}`);
+          current = {
+            ...current,
+            status: "abandoned",
+            currentSection: null,
+            sections: sections.map((s) => (s.state === "in-progress" ? { ...s, state: "aborted" as const, launchable: false } : s)),
+          };
+          return json(current);
+        }
+        if (url.pathname !== "/api/full-tests") throw new Error(`unhandled fetch in test: ${url.toString()}`);
+        return json(url.searchParams.get("status") === current.status ? [current] : []);
+      }) as unknown as typeof fetch,
+    );
+    render(
+      <MemoryRouter>
+        <FullTestPanel />
+      </MemoryRouter>,
+    );
+
+    await userEvent.click(await screen.findByRole("button", { name: "Abandon Run…" }));
+    const dialog = screen.getByRole("dialog", { name: "Abandon this Full-Test Run?" });
+    expect(dialog).toHaveTextContent("The Run ends here, without an Overall band");
+    expect(dialog).toHaveTextContent("The section you finished keeps its Attempt and its band.");
+    expect(dialog).toHaveTextContent("The Listening section you left part-way is discarded.");
+
+    await userEvent.click(within(dialog).getByRole("button", { name: "Keep the Run" }));
+    expect(posts).toEqual([]);
+    expect(screen.getByRole("link", { name: "Resume" })).toHaveAttribute("href", "/full-test/run-open");
+
+    await userEvent.click(screen.getByRole("button", { name: "Abandon Run…" }));
+    await userEvent.click(within(screen.getByRole("dialog")).getByRole("button", { name: "Abandon Run" }));
+
+    expect(posts).toEqual(["/api/full-tests/run-open/abandon"]);
+    expect(await screen.findByRole("link", { name: "View report" })).toHaveAttribute("href", "/full-test/run-open");
+    expect(within(screen.getByRole("list", { name: "Finished Full-Test Runs" })).getByText("Abandoned")).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "Resume" })).toBeNull();
+    expect(screen.getByText("1 of 4 sections have a band")).toBeInTheDocument();
+  });
+});
+
+// A Run in progress whose four sections are finished lost its hand-off: it is finished, not given up
+// on, and the abandon route refuses it. Its row offers only Resume, whose Run page completes it.
+describe("a Run in progress with no section left to sit", () => {
+  it("offers Resume and no Abandon", async () => {
+    const sections = (["reading", "listening", "writing", "speaking"] as const).map((s, i) => sectionVM(s, i + 1, "completed"));
+    renderPanel([run({ id: "run-handoff-lost", status: "in-progress", currentSection: "speaking", sections })]);
+    expect(await screen.findByRole("link", { name: "Resume" })).toHaveAttribute("href", "/full-test/run-handoff-lost");
+    expect(screen.queryByRole("button", { name: "Abandon Run…" })).toBeNull();
+  });
+});
+
+// GET /api/full-tests as stubListing answers it, over a list the stub's POST .../abandon changes, so
+// a test can abandon a Run and read the listings that follow.
+function stubAbandonableListing(runs: FullTestRunVM[]): { posts: string[] } {
+  const posts: string[] = [];
+  const json = (body: unknown) =>
+    Promise.resolve(new Response(JSON.stringify(body), { status: 200, headers: { "Content-Type": "application/json" } }));
+  vi.stubGlobal(
+    "fetch",
+    vi.fn((input: RequestInfo | URL, init?: RequestInit) => {
+      const url = new URL(typeof input === "string" ? input : input.toString(), "http://localhost");
+      const abandon = url.pathname.match(/^\/api\/full-tests\/([^/]+)\/abandon$/);
+      if (init?.method === "POST" && abandon) {
+        posts.push(url.pathname);
+        const i = runs.findIndex((r) => r.id === abandon[1]);
+        runs[i] = { ...runs[i], status: "abandoned", currentSection: null };
+        return json(runs[i]);
+      }
+      if (url.pathname !== "/api/full-tests") throw new Error(`unhandled fetch in test: ${url.toString()}`);
+      const status = url.searchParams.get("status");
+      const limit = url.searchParams.get("limit");
+      const matching = runs.filter((r) => status === null || r.status === status);
+      return json(limit === null ? matching : matching.slice(0, Number(limit)));
+    }) as unknown as typeof fetch,
+  );
+  return { posts };
+}
+
+// The panel re-reads its lists after an abandon. Earlier finished Runs the User opened stay open:
+// the re-read fetches every finished Run, and the Run just abandoned joins them.
+describe("abandoning a Run with the earlier finished Runs shown", () => {
+  it("keeps every finished Run listed, the abandoned one among them", async () => {
+    const finished = [1, 2, 3, 4].map((i) =>
+      run({ id: `run-done-${i}`, status: "completed", createdAt: `2026-08-1${5 - i}T02:00:00.000Z` }),
+    );
+    const sections = (["reading", "listening", "writing", "speaking"] as const).map((s, i) => sectionVM(s, i + 1, "pending"));
+    const open = run({ id: "run-open", status: "in-progress", createdAt: "2026-08-20T02:00:00.000Z", sections });
+    const { posts } = stubAbandonableListing([open, ...finished]);
+    render(
+      <MemoryRouter>
+        <FullTestPanel />
+      </MemoryRouter>,
+    );
+
+    await userEvent.click(await screen.findByRole("button", { name: "Show earlier finished Runs" }));
+    await waitFor(() => expect(screen.getAllByRole("link", { name: "View report" })).toHaveLength(4));
+
+    await userEvent.click(screen.getByRole("button", { name: "Abandon Run…" }));
+    await userEvent.click(within(screen.getByRole("dialog")).getByRole("button", { name: "Abandon Run" }));
+    expect(posts).toEqual(["/api/full-tests/run-open/abandon"]);
+
+    await waitFor(() => expect(screen.getAllByRole("link", { name: "View report" })).toHaveLength(5));
+    expect(screen.getAllByRole("link", { name: "View report" }).map((a) => a.getAttribute("href"))).toEqual(
+      ["run-open", ...finished.map((r) => r.id)].map((id) => `/full-test/${id}`),
+    );
+    expect(screen.queryByRole("link", { name: "Resume" })).toBeNull();
   });
 });

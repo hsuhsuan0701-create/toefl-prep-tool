@@ -142,9 +142,12 @@ describe("Attempt review — a Build a Sentence Response against a Set revised a
     );
     expect(screen.getByTestId("bas-revised-bas-1")).toHaveTextContent(/revised after this Attempt/);
 
-    expect(screen.getByTestId("bas-answer-bas-2")).toHaveTextContent(
-      "Your Response: Because the loose balcony handrail is unsafe, we moved you to a main-floor replacement seat",
-    );
+    // Four tiles against a five-tile key: a partly filled Response, so its tiles are listed in
+    // order and the empty blank counted (#40), and today's frame is not drawn around them.
+    const partial = screen.getByTestId("bas-answer-bas-2");
+    expect(partial).toHaveTextContent("Your Response: 1 of 5 blanks left empty.");
+    expect(Array.from(partial.querySelectorAll("[data-placed-tiles] [data-placed]")).map((el) => el.textContent)).toEqual(OLD_BAS_2);
+    expect(partial).not.toHaveTextContent("___");
     expect(screen.getByTestId("bas-key-bas-2")).not.toHaveTextContent("Because Because");
   });
 
