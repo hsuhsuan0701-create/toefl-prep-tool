@@ -38,7 +38,11 @@ async function listEndedRuns(limit?: number): Promise<FullTestRunVM[]> {
   return limit === undefined ? merged : merged.slice(0, limit);
 }
 
-export default function FullTestPanel() {
+/**
+ * `onRunAbandoned` runs after a Run is abandoned from the panel: the panel re-reads its own lists, and
+ * the page around it re-reads what the abandon changed (the live section's Attempt is discarded).
+ */
+export default function FullTestPanel({ onRunAbandoned }: { onRunAbandoned?: () => void } = {}) {
   const [inProgress, setInProgress] = useState<FullTestRunVM[]>([]);
   // The most recent finished Runs, one more than are shown so the panel knows whether there are
   // earlier ones; every finished Run once the User asks for them.
@@ -122,7 +126,14 @@ export default function FullTestPanel() {
       {inProgress.length > 0 && (
         <List label="Full-Test Runs in progress">
           {inProgress.map((run) => (
-            <InProgressRun key={run.id} run={run} onAbandoned={() => void reload()} />
+            <InProgressRun
+              key={run.id}
+              run={run}
+              onAbandoned={() => {
+                void reload();
+                onRunAbandoned?.();
+              }}
+            />
           ))}
         </List>
       )}

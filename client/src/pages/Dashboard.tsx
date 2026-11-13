@@ -105,6 +105,7 @@ export default function Dashboard() {
 
   // Finishing or discarding an Attempt can change a section's band, and with it the Overall and the
   // suggested next step: the summary is read again with the log, so the cards agree with the row.
+  // Abandoning a Full-Test Run discards its live section's Attempt, so it reads both again too.
   const reloadPractice = practice.reload;
   const onAttemptChanged = useCallback(() => {
     reloadPractice();
@@ -259,7 +260,7 @@ export default function Dashboard() {
           </div>
         </section>
 
-        <FullTestPanel />
+        <FullTestPanel onRunAbandoned={onAttemptChanged} />
 
         <section id="recent-attempts" aria-labelledby="recent-heading" className="scroll-mt-6 space-y-4">
           <SectionHeader id="recent-heading" title="Recent Attempts" />
