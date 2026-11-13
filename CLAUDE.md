@@ -48,6 +48,12 @@ when it records a decision.
   keeps the tag of the Attempt it replaces. `routes.attempts.repeat.test.ts`.
 - A recording with no speech scores a deterministic 0 and never reaches a Judge.
   `noSpeechScoring.test.ts`.
+- An Email or Academic Discussion with no words (empty once whitespace is trimmed,
+  `essayHasNoWords` in `shared/src/schemas/scoring.ts`) scores a deterministic 0 marked
+  `noWordsWritten` and never reaches a Judge or the Arbiter, on a first scoring and a Re-score
+  alike; a single word is an essay and is judged. The editor (`TimedEditor`) asks before Submit
+  hands one in; the clock running out never asks (ADR 0018). `noWordsEssayScoring.test.ts`,
+  `WritingDrill.test.tsx`, `WritingSimulation.test.tsx`, `AttemptReviewStates.test.tsx`.
 - Score-bearing state (Item results, Score Reports, estimates, API responses, UI) names no provider.
   Two exceptions, and only these:
   - item-level `selfArbitrated`, set when Codex wrote both the OpenAI Judge Report and the
