@@ -4,7 +4,7 @@ import { Card } from "../../ui/Card";
 import { StatusChip } from "../../ui/Chip";
 import { IconChevronRight } from "../../ui/icons";
 import { itemScoringStatus } from "../../ui/labels";
-import { ComposedSentence, OfferedTiles, PLACED_WORDS_NOTE } from "./BuildSentenceParts";
+import { ComposedSentence, OfferedTiles, PLACED_WORDS_NOTE, SentenceResponse } from "./BuildSentenceParts";
 import { ResultMark } from "./ReviewParts";
 import { isBuildSentenceScoreJson } from "./reviewItems";
 import { failureText, itemsWord, type IndexedItem } from "./reviewText";
@@ -72,8 +72,9 @@ function BuildSentenceRow({ item, position, setSnapshot }: { item: ItemVM; posit
       </div>
       <p data-testid={`bas-answer-${item.itemId}`} className="text-body text-ink">
         <span className="text-graphite">Your Response: </span>
-        {/* An Item nobody touched says so outright rather than echoing the bare frame back. */}
-        {tileOrder.length > 0 ? <ComposedSentence frame={frame} tiles={tileOrder} /> : "(no Response submitted)"}
+        {/* An Item nobody touched says so outright rather than echoing the bare frame back, and a
+            partly filled one is listed rather than composed (see SentenceResponse). */}
+        <SentenceResponse frame={frame} tiles={tileOrder} keyArrangements={scored?.correctAnswers ?? null} />
       </p>
       {scored?.correctAnswers && (
         // Labelled apart from the Response: the two sit one above the other and must not be confused.

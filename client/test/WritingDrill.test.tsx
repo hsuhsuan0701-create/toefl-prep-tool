@@ -344,7 +344,7 @@ describe("WritingDrill results: a Build a Sentence Response reads back as its wh
     }));
   });
 
-  it("frames the submitted Response and the key, and keeps a partial Response's blanks visible", async () => {
+  it("frames the submitted Response and the key, and lists a partial Response's tiles without composing them", async () => {
     const user = userEvent.setup();
     renderRoutes([{ path: "/writing/:setId", element: <WritingDrill /> }], "/writing/wri-test");
 
@@ -357,9 +357,11 @@ describe("WritingDrill results: a Build a Sentence Response reads back as its wh
     await dragTilesIntoBlanks(user, REFERENCE_ANSWER);
     await user.click(screen.getByRole("button", { name: "Next" }));
 
-    // Item 2: one tile placed, then the Task finished early with two blanks still empty.
+    // Item 2: tiles on the second and third blanks only, then the Task finished early with the
+    // first blank still empty.
     await screen.findByText("Describe the museum.");
-    await dragTile(user, "was", { blank: 0 });
+    await dragTile(user, "not", { blank: 1 });
+    await dragTile(user, "very", { blank: 2 });
     await finishBuildSentence(user);
 
     await screen.findByRole("heading", { name: "Results" });
@@ -370,8 +372,16 @@ describe("WritingDrill results: a Build a Sentence Response reads back as its wh
     expect(screen.getByTestId("bas-key-bas-1")).toHaveTextContent(
       "Key: The volunteers who led us through the new wing were wonderful.",
     );
-    // The gap the User left stays a gap; the sentence does not close up over it.
-    expect(screen.getByTestId("bas-answer-bas-2")).toHaveTextContent("Your Response: The museum was ___ ___ crowded.");
+    // The Response is stored without its empty blank, so which blanks the two tiles were in is gone:
+    // the results list them and count the gap rather than moving them to the first blanks (#40).
+    const partial = screen.getByTestId("bas-answer-bas-2");
+    expect(partial).toHaveTextContent("Your Response: 1 of 3 blanks left empty.");
+    expect(partial).toHaveTextContent("The museum ___ ___ ___ crowded.");
+    expect(partial).not.toHaveTextContent("The museum not very");
+    expect(Array.from(partial.querySelectorAll("[data-placed-tiles] [data-placed]")).map((el) => el.textContent)).toEqual([
+      "not",
+      "very",
+    ]);
     expect(screen.getByTestId("bas-key-bas-2")).toHaveTextContent("Key: The museum was not very crowded.");
 
     // Every tile the Item offered, A to Z, with the one the key leaves out marked: a Drill's
@@ -385,7 +395,7 @@ describe("WritingDrill results: a Build a Sentence Response reads back as its wh
     const placed = (testId: string) =>
       Array.from(screen.getByTestId(testId).querySelectorAll("[data-placed]")).map((el) => el.textContent);
     expect(placed("bas-answer-bas-1")).toEqual(REFERENCE_ANSWER);
-    expect(placed("bas-answer-bas-2")).toEqual(["was"]);
+    expect(placed("bas-answer-bas-2")).toEqual(["not", "very"]);
     expect(placed("bas-key-bas-2")).toEqual(["was", "not", "very"]);
   });
 });
@@ -446,9 +456,8 @@ describe("WritingDrill Build a Sentence: the Items in, the Responses out", () =>
     ]);
 
     // …and the Responses that came back out are what the results view reads.
-    expect(screen.getByTestId("bas-answer-bas-1")).toHaveTextContent(
-      "Your Response: The volunteers ___ ___ ___ ___ ___ wonderful.",
-    );
+    expect(screen.getByTestId("bas-answer-bas-1")).toHaveTextContent("Your Response: 5 of 6 blanks left empty.");
+    expect(screen.getByTestId("bas-answer-bas-1")).not.toHaveTextContent("The volunteers");
     expect(screen.getByTestId("bas-answer-bas-2")).toHaveTextContent("Your Response: (no Response submitted)");
   });
 });

@@ -50,7 +50,9 @@ export function sentenceAnswerParts(frame: string | undefined, tileTexts: readon
     // were. Reading it back the same way keeps the results view true to what was scored, and the
     // shortfall stays visible as blanks rather than closing the sentence up over the gap: a User
     // reviewing an unfinished Item needs to see that they ran out of tiles, not a tidy sentence
-    // that was never submitted.
+    // that was never submitted. A review does not present this layout as the User's arrangement,
+    // though: it puts tiles in blanks the User may not have used, so SentenceResponse
+    // (review/BuildSentenceParts.tsx) lists a partial Response's tiles instead of composing them.
     const tile = tileTexts[segment.index];
     parts.push(tile === undefined ? { kind: "blank", text: FRAME_BLANK_MARKER } : { kind: "placed", text: tile });
     filled = Math.max(filled, segment.index + 1);
@@ -60,6 +62,22 @@ export function sentenceAnswerParts(frame: string | undefined, tileTexts: readon
   // blank), but dropping part of a Response would be a far worse way to be wrong than trailing it.
   const surplus = tileTexts.slice(filled);
   return surplus.length === 0 ? parts : [...parts, { kind: "frame", text: " " }, ...spaced(surplus)];
+}
+
+/**
+ * How many blanks an Item has, read from what the page holds: the Frame's blanks, else (a frameless
+ * Item, or a Frame that does not parse) the length of a key arrangement, since every accepted
+ * arrangement fills every blank. Undefined when neither is to hand (a frameless Item of a Simulation
+ * whose key is still withheld), so the caller cannot tell a partly filled Response from a full one.
+ */
+export function sentenceBlankCount(
+  frame: string | undefined,
+  keyArrangements: readonly (readonly string[])[] | null | undefined,
+): number | undefined {
+  const blanks = parseFrameOrNull(frame)?.filter((segment) => segment.type === "blank").length ?? 0;
+  if (blanks > 0) return blanks;
+  const keyLength = keyArrangements?.[0]?.length ?? 0;
+  return keyLength > 0 ? keyLength : undefined;
 }
 
 function spaced(tileTexts: readonly string[]): SentencePart[] {

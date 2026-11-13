@@ -137,6 +137,12 @@ async function renderSettledReview() {
   await act(async () => {});
 }
 
+/** The tiles a partly filled Response lists, in the order it lists them. */
+function placedTiles(answer: HTMLElement): (string | null)[] {
+  const list = answer.querySelector("[data-placed-tiles]");
+  return list ? Array.from(list.querySelectorAll("[data-placed]")).map((el) => el.textContent) : [];
+}
+
 beforeEach(() => {
   vi.mocked(getAttempt).mockReset();
   vi.mocked(getSet).mockReset();
@@ -164,11 +170,18 @@ describe("Attempt review — a Build a Sentence Response against a framed Set", 
     expect(screen.getByTestId("bas-key-bas-framed")).toHaveTextContent(`Key: ${REFERENCE_SENTENCE}`);
   });
 
-  it("keeps a partially filled Item's unfilled gaps visible instead of closing up over them", async () => {
+  it("lists a partly filled Item's tiles and its empty blanks, and never puts the tiles in the first blanks", async () => {
+    // A Response is stored with its empty blanks dropped, so which blanks these three tiles were in
+    // is gone. Composing them from the first blank would show an arrangement the User may never
+    // have made (issue #40).
     await renderSettledReview();
-    expect(screen.getByTestId("bas-answer-bas-partial")).toHaveTextContent(
-      "Your Response: The volunteers who led us through ___ ___ ___ wonderful.",
-    );
+    const answer = screen.getByTestId("bas-answer-bas-partial");
+    expect(answer).toHaveTextContent("Your Response: 3 of 6 blanks left empty.");
+    expect(answer).not.toHaveTextContent("The volunteers who led us through");
+    // The frame is drawn as the frame, every blank a blank.
+    expect(answer).toHaveTextContent("The ___ ___ ___ ___ ___ ___ wonderful.");
+    expect(placedTiles(answer)).toEqual(REFERENCE_ANSWER.slice(0, 3));
+    expect(answer).toHaveTextContent("Which blank each tile was in is not recorded");
   });
 
   it("lists every tile the Item offered, A to Z, and marks the one no key arrangement uses", async () => {
@@ -204,6 +217,36 @@ describe("Attempt review — a Build a Sentence Response against a framed Set", 
     await renderSettledReview();
     expect(screen.getByTestId("bas-answer-bas-legacy")).toHaveTextContent("Your Response: I think it's mine.");
     expect(screen.getByTestId("bas-key-bas-legacy")).toHaveTextContent("Key: I think it's mine.");
+  });
+});
+
+describe("Attempt review — a Build a Sentence Item handed in with blanks empty", () => {
+  const incomplete = (itemId: string, tileOrder: string[], key: string[][]): ItemVM => ({
+    ...basItem(itemId, tileOrder, key),
+    score: 0,
+    scoreJson: { correct: false, correctAnswers: key },
+  });
+
+  it("lists a partly filled frameless Item's tiles and counts its empty blanks from the key", async () => {
+    vi.mocked(getAttempt).mockResolvedValue(detailWith([incomplete("bas-legacy", ["think", "it's mine."], [LEGACY_ANSWER])]));
+    vi.mocked(getSet).mockResolvedValue(servedSet);
+
+    await renderSettledReview();
+    const answer = screen.getByTestId("bas-answer-bas-legacy");
+    expect(answer).toHaveTextContent("Your Response: 1 of 3 blanks left empty.");
+    expect(placedTiles(answer)).toEqual(["think", "it's mine."]);
+    expect(answer).not.toHaveTextContent("think it's mine.");
+    expect(screen.getByTestId("bas-key-bas-legacy")).toHaveTextContent("Key: I think it's mine.");
+  });
+
+  it("still says an Item with no tile placed has no Response", async () => {
+    vi.mocked(getAttempt).mockResolvedValue(detailWith([incomplete("bas-partial", [], [REFERENCE_ANSWER])]));
+    vi.mocked(getSet).mockResolvedValue(servedSet);
+
+    await renderSettledReview();
+    const answer = screen.getByTestId("bas-answer-bas-partial");
+    expect(answer).toHaveTextContent("Your Response: (no Response submitted)");
+    expect(answer).not.toHaveTextContent("blanks left empty");
   });
 });
 
@@ -270,6 +313,12 @@ describe("Attempt review — a Simulation's Build a Sentence Items before the ke
     expect(screen.getByTestId("bas-answer-bas-framed")).toHaveTextContent(`Your Response: ${REFERENCE_SENTENCE}`);
     expect(screen.getByTestId("item-bas-framed")).toHaveTextContent("Correct");
     expect(screen.getByTestId("item-bas-partial")).toHaveTextContent("Incorrect");
+    // Without the key the frame still counts the blanks, so the partial Item is listed, not composed.
+    const partial = screen.getByTestId("bas-answer-bas-partial");
+    expect(partial).toHaveTextContent("Your Response: 3 of 6 blanks left empty.");
+    expect(partial).not.toHaveTextContent("The volunteers who led us through");
+    expect(placedTiles(partial)).toEqual(REFERENCE_ANSWER.slice(0, 3));
+    expect(screen.queryByText(/^Key/)).not.toBeInTheDocument();
     expect(screen.queryByTestId("bas-key-bas-framed")).not.toBeInTheDocument();
     expect(screen.queryByTestId("bas-key-bas-partial")).not.toBeInTheDocument();
     expect(screen.getAllByText("1 of 2 correct").length).toBeGreaterThan(0);

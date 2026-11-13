@@ -5,7 +5,7 @@ import { TASK_TYPES } from "../lib/taskTypes";
 import { scoringInterrupted } from "../lib/progressUtils";
 import { forgetScoringJob, scoringJobKey, startScoringJobOnce } from "../lib/scoringJobOnce";
 import { useScoringJob } from "../hooks/useScoringJob";
-import { ComposedSentence, OfferedTiles, PLACED_WORDS_NOTE } from "../components/review/BuildSentenceParts";
+import { ComposedSentence, OfferedTiles, PLACED_WORDS_NOTE, SentenceResponse } from "../components/review/BuildSentenceParts";
 import type { BuildSentenceItem } from "../components/buildSentence";
 import ScoreCard, { type EssayScoreResult } from "../components/ScoreCard";
 import ScoringProgress from "../components/ScoringProgress";
@@ -107,13 +107,10 @@ function BuildSentenceResults({ stage }: { stage: CompletedBuildSentence }) {
           const submitted = stage.answers.find((a) => a.itemId === item.id);
           // An Item nobody touched says so outright, rather than echoing the bare frame back: with
           // every blank still empty there is no Response to read, and the frame alone could be
-          // misread as one.
-          const userResponse =
-            submitted && submitted.tileOrder.length > 0 ? (
-              <ComposedSentence frame={item.frame} tiles={submitted.tileOrder} />
-            ) : (
-              "(no Response submitted)"
-            );
+          // misread as one. A partly filled one is listed rather than composed (SentenceResponse).
+          const userResponse = (
+            <SentenceResponse frame={item.frame} tiles={submitted?.tileOrder ?? []} keyArrangements={result?.correctAnswers ?? null} />
+          );
           const isCorrect = Boolean(result?.correct);
           return (
             <li key={item.id} className="space-y-2 px-4 py-3">
