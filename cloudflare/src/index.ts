@@ -4,7 +4,12 @@
  * Do not show guessed scores or quietly drop attempts.
  * Protect with Cloudflare Access before storing personal practice data.
  */
+import { generateScheduledDraft } from "./scheduledGeneration.js";
+
 interface Env {
+  GEMINI_API_KEY?: string;
+  GEMINI_MODEL?: string;
+  AI_GENERATION_ENABLED?: string;
   DB: D1Database;
   ASSETS: Fetcher;
 }
@@ -47,5 +52,10 @@ export default {
     }
 
     return env.ASSETS.fetch(request);
+  },
+  async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
+    ctx.waitUntil(generateScheduledDraft(env, controller.scheduledTime).then((result) => {
+      console.log("Gemini draft generation result:", result);
+    }));
   },
 } satisfies ExportedHandler<Env>;
