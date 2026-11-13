@@ -32,9 +32,9 @@ jobs:
       - name: Build existing React client
         run: npm run build -w client
       - name: Smoke-test Worker adapter (mock D1 and assets)
-        run: node --experimental-strip-types --test cloudflare/test/worker.test.mjs
+        run: node --import tsx --test cloudflare/test/worker.test.mjs
       - name: Test Gemini draft validation (mock HTTP, no API key)
-        run: node --experimental-strip-types --test cloudflare/test/gemini-draft.test.mjs
+        run: node --import tsx --test cloudflare/test/gemini-draft.test.mjs
       - name: Check D1 schema can create its tables
         run: |
           python3 - <<'PY'
