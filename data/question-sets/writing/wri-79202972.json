@@ -1,0 +1,565 @@
+{
+  "id": "wri-79202972",
+  "source": "generated",
+  "createdAt": "2026-11-13T08:16:10.581Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Why must the balance room door stay shut while my powder sample is on the pan?",
+        "frame": "Draughts ___ ___ ___ ___ the readings.",
+        "tiles": [
+          "can",
+          "the corridor",
+          "disturbs",
+          "from",
+          "disturb"
+        ],
+        "answers": [
+          [
+            "from",
+            "the corridor",
+            "can",
+            "disturb"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Why are we leaving the upper-floor windows for another day and only cleaning the ground-floor panes?",
+        "frame": "We ___ ___ ___ ___ in gusty wind.",
+        "tiles": [
+          "long ladders",
+          "use",
+          "never",
+          "uses",
+          "the"
+        ],
+        "answers": [
+          [
+            "never",
+            "use",
+            "the",
+            "long ladders"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Would it be all right to plant a rose bush on our family grave?",
+        "frame": "A rose bush ___ ___ ___ the path, ___ only low plants inside the kerb ___ allowed.",
+        "tiles": [
+          "so",
+          "is",
+          "grow",
+          "are",
+          "would",
+          "over"
+        ],
+        "answers": [
+          [
+            "would",
+            "grow",
+            "over",
+            "so",
+            "are"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Why does each snail get a dot of paint on its shell if we want the size of the whole population?",
+        "frame": "A week later, the dots ___ ___ ___ ___ ___ found again.",
+        "tiles": [
+          "we",
+          "how many",
+          "has",
+          "will show",
+          "have",
+          "snails"
+        ],
+        "answers": [
+          [
+            "will show",
+            "how many",
+            "snails",
+            "we",
+            "have"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "My printed colours look much duller than they did on screen, and I changed nothing before export.",
+        "frame": "___ ___ ___ ___ ___ ___ screen colour mode instead of the print one?",
+        "tiles": [
+          "the file",
+          "in",
+          "saved",
+          "did",
+          "the",
+          "save",
+          "you"
+        ],
+        "answers": [
+          [
+            "did",
+            "you",
+            "save",
+            "the file",
+            "in",
+            "the"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Why do the finished bowls sit on that shelf for a week, turned over halfway through, before you fire them?",
+        "frame": "___ ___ ___ ___ ___ ___ in the kiln.",
+        "tiles": [
+          "to",
+          "that goes in damp",
+          "tend",
+          "a",
+          "crack",
+          "tends",
+          "bowl"
+        ],
+        "answers": [
+          [
+            "a",
+            "bowl",
+            "that goes in damp",
+            "tends",
+            "to",
+            "crack"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "How soon am I allowed to eat after this filling?",
+        "frame": "___ ___ ___ ___ until the numbness ___ ___ ___ your cheek, and then start with soft food on the other side.",
+        "tiles": [
+          "gone",
+          "had better",
+          "have",
+          "eat",
+          "you",
+          "from",
+          "not",
+          "has"
+        ],
+        "answers": [
+          [
+            "you",
+            "had better",
+            "not",
+            "eat",
+            "has",
+            "gone",
+            "from"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Will my return ticket still work if I spend a night at the summit hut?",
+        "frame": "___ ___ ___ ___ the next day because the return half ___ ___ ___ three days, but the last car down leaves at five.",
+        "tiles": [
+          "valid",
+          "to use it",
+          "are",
+          "you",
+          "for",
+          "be able",
+          "is",
+          "will"
+        ],
+        "answers": [
+          [
+            "you",
+            "will",
+            "be able",
+            "to use it",
+            "is",
+            "valid",
+            "for"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Why do curtains hang round the lamp room by day?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "could",
+          "to the wooden floor",
+          "focusing",
+          "sunlight",
+          "fire",
+          "by the great lens",
+          "any",
+          "set",
+          "focused"
+        ],
+        "answers": [
+          [
+            "any",
+            "sunlight",
+            "focused",
+            "by the great lens",
+            "could",
+            "set",
+            "fire",
+            "to the wooden floor"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Why are the restaurant tablecloths washed separately from the overalls?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "hot enough",
+          "the",
+          "shrinking",
+          "needs",
+          "that",
+          "kitchen grease",
+          "overalls",
+          "would be",
+          "a wash",
+          "to shrink"
+        ],
+        "answers": [
+          [
+            "kitchen grease",
+            "needs",
+            "a wash",
+            "that",
+            "would be",
+            "hot enough",
+            "to shrink",
+            "the",
+            "overalls"
+          ],
+          [
+            "the",
+            "kitchen grease",
+            "needs",
+            "a wash",
+            "that",
+            "would be",
+            "hot enough",
+            "to shrink",
+            "overalls"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You keep bees as a hobby. Marta Lindqvist, the producer of a small podcast about gardening and food that you have listened to for some time, has written to invite you to record a guest episode about beekeeping. You would like to take part, but the recording week she proposes falls in the middle of your honey harvest, when you will be busy with the hives every day.",
+    "to": "marta.lindqvist@backgardenradio.example",
+    "subject": "Re: Invitation to record a beekeeping episode",
+    "bullets": [
+      "Thank the producer for the invitation and say what you have enjoyed about the podcast's earlier episodes.",
+      "Explain why you cannot record during the week she proposed.",
+      "Suggest a date after the harvest and ask her to send the questions before the recording."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Teaching and Learning in Higher Education",
+    "professorName": "Dr. Okafor",
+    "professorPost": "This week we are looking at how assessment shapes learning. Some universities allow every student to resubmit a marked essay once: the student reads the tutor's feedback, revises the same essay, and can receive a higher mark in the same course. Other universities treat the first mark as final. What do you think? Should a university let every student resubmit a marked essay once for a higher mark? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Priya",
+        "post": "I think resubmission should be allowed. At the moment most of us read the mark, skim the comments, and move on. If I could revise the same essay, I would actually have to put my tutor's feedback to use, and that is when I would learn how to build a better argument."
+      },
+      {
+        "name": "Tomas",
+        "post": "I disagree. A mark should show what a student can do on a first attempt, and that is what makes marks comparable from one student to the next. A revised essay partly reflects the tutor's own suggestions. Resubmission would also give tutors a second round of marking, leaving them less time for everyone else."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "campus-academics",
+          "situation": "A chemistry student asks the professor why the door of the balance room must stay shut during weighing and learns that draughts disturb the readings.",
+          "participantRoles": [
+            "chemistry student weighing a powder sample",
+            "chemistry professor supervising the practical"
+          ],
+          "noveltyKey": "balance-room-door-shut-draughts",
+          "requiredConcepts": [
+            "balance room door kept shut",
+            "draughts disturbing the readings",
+            "powder sample on the pan"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-ab10b0b1",
+              "reason": "That exchange was about preparing dialect transcripts alone; this one is about air movement spoiling a weighing."
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A new employee at a window-cleaning firm asks the crew manager why work on the upper floors has stopped and learns that long ladders are not used in gusty wind.",
+          "participantRoles": [
+            "newly hired employee carrying buckets",
+            "crew manager of the window-cleaning firm"
+          ],
+          "noveltyKey": "window-cleaners-ladder-wind-limit",
+          "requiredConcepts": [
+            "upper-floor windows left for another day",
+            "long ladders in gusty wind",
+            "ground-floor panes still cleaned"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-f4e1c52b",
+              "reason": "That exchange was a fixed morning grinder routine in a café; this one is a weather limit on ladder work."
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A resident asks the groundskeeper of the municipal cemetery whether a rose bush may be planted on a family grave and learns that only low plants inside the kerb are allowed.",
+          "participantRoles": [
+            "resident tending a family grave",
+            "groundskeeper of the municipal cemetery"
+          ],
+          "noveltyKey": "cemetery-grave-low-plants-only",
+          "requiredConcepts": [
+            "rose bush on a family grave",
+            "low plants inside the kerb",
+            "nothing that spreads over the path"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-30b485f9",
+              "reason": "That exchange concerned a shed on a rented growing plot; this one concerns what may be planted on a grave."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A field assistant asks a biology researcher why each snail gets a small dot of paint on its shell and learns that the dots show how many are found again a week later.",
+          "participantRoles": [
+            "field assistant on a first snail survey",
+            "biology researcher leading the snail count"
+          ],
+          "noveltyKey": "snail-shell-dots-recapture-count",
+          "requiredConcepts": [
+            "dot of paint on each shell",
+            "snails found again a week later",
+            "size of the whole population"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2b1ded8d",
+              "reason": "That exchange was about when moth traps are emptied; this one is about marking animals to count recaptures."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "An illustrator asks a software instructor why printed colours look duller than they did on screen and learns that the file was saved in the screen colour mode.",
+          "participantRoles": [
+            "freelance illustrator holding a test print",
+            "software instructor for the drawing program"
+          ],
+          "noveltyKey": "print-colours-duller-screen-colour-mode",
+          "requiredConcepts": [
+            "printed colours duller than on screen",
+            "file saved in screen colour mode",
+            "print colour mode chosen before export"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2b1ded8d",
+              "reason": "That exchange was a frame-rate mismatch making subtitles drift; this one is a colour-mode mismatch dulling a print."
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A visitor to a ceramic studio asks the potter why finished bowls sit on a shelf for a week before firing and learns that damp clay cracks in the kiln.",
+          "participantRoles": [
+            "visitor watching bowls being thrown",
+            "potter who runs the ceramic studio"
+          ],
+          "noveltyKey": "ceramic-bowls-dry-week-before-kiln",
+          "requiredConcepts": [
+            "bowls drying on the shelf for a week",
+            "damp clay cracking in the kiln",
+            "turned over halfway through drying"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-30b485f9",
+              "reason": "That exchange was new bow hair settling before collection; this one is clay drying fully before the kiln."
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A patient asks the dental nurse at a clinic how soon eating is allowed after a filling and learns to wait until the numbness has gone so the cheek is not bitten.",
+          "participantRoles": [
+            "patient who has just had a filling",
+            "dental nurse at the clinic"
+          ],
+          "noveltyKey": "filling-eat-after-numbness-fades",
+          "requiredConcepts": [
+            "eating after a filling",
+            "numbness gone from the cheek",
+            "soft food on the other side first"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2b1ded8d",
+              "reason": "That exchange was fasting before a morning blood test; this one is waiting to eat after dental work."
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A walker asks the cable car ticket seller whether a return ticket still works after a night at the summit hut and learns that the return half is valid for three days.",
+          "participantRoles": [
+            "walker planning a night at the summit hut",
+            "ticket seller at the cable car window"
+          ],
+          "noveltyKey": "cable-car-return-ticket-three-days",
+          "requiredConcepts": [
+            "return ticket after a night at the summit",
+            "return half valid for three days",
+            "last car down at five"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-ab10b0b1",
+              "reason": "That exchange was whether a bicycle needs its own ferry fare; this one is how long a cable car return stays valid."
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A visitor asks the guide at a heritage lighthouse why curtains hang round the lamp room by day and learns that the great lens would focus sunlight and start a fire.",
+          "participantRoles": [
+            "visitor climbing to the lamp room",
+            "guide at the heritage lighthouse"
+          ],
+          "noveltyKey": "heritage-lighthouse-lens-curtains-daylight",
+          "requiredConcepts": [
+            "curtains round the lamp room by day",
+            "lens focusing sunlight",
+            "fire risk to the wooden floor"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-30b485f9",
+              "reason": "That exchange explained shallow pans at a salt works; this one explains daytime curtains round a lighthouse lens."
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A new employee at a commercial laundry asks the shift manager why restaurant tablecloths are washed apart from overalls and learns that grease needs a hotter wash.",
+          "participantRoles": [
+            "newly hired employee loading the machines",
+            "shift manager of the commercial laundry"
+          ],
+          "noveltyKey": "laundry-tablecloths-separate-grease",
+          "requiredConcepts": [
+            "restaurant tablecloths washed separately",
+            "grease needing a hotter wash",
+            "overalls shrinking at that heat"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2b1ded8d",
+              "reason": "That exchange was a second stamp on delivery invoices; this one is why two kinds of washing are kept in separate loads."
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "technology-media",
+      "noveltyKey": "beekeeping-podcast-guest-invitation-harvest-week",
+      "requiredConcepts": [
+        "invitation to record a beekeeping episode",
+        "honey harvest in the recording week",
+        "a date after the harvest",
+        "questions sent ahead of the recording"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-7a20b90b",
+          "reason": "That email reported a paid-tier fault to a support team; this one answers a producer's guest invitation."
+        },
+        {
+          "setId": "wri-4661c123",
+          "reason": "That email reported lost study records after an update; this one declines a recording date and offers another."
+        },
+        {
+          "setId": "wri-6023c170",
+          "reason": "That email asked for a longer file recovery window; this one involves no fault, only scheduling a guest appearance."
+        }
+      ],
+      "situation": "A hobby beekeeper has been invited by the producer of a small podcast to record a guest episode, but the proposed recording week falls in the middle of the honey harvest.",
+      "recipientRole": "Producer of the podcast, whom the writer has never met",
+      "communicativeActs": [
+        "Express appreciation for the invitation and for the podcast's earlier episodes",
+        "Decline the proposed recording week and explain the honey harvest clash",
+        "Propose a later recording date and request the questions in advance"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "campus-academics",
+      "noveltyKey": "essay-resubmission-after-feedback-for-higher-mark",
+      "requiredConcepts": [
+        "resubmitting a marked essay",
+        "feedback put to use in a revision",
+        "extra marking time for tutors",
+        "first-attempt marks staying comparable"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-6c0c961a",
+          "reason": "That discussion weighed pass/fail grading of an elective; this one weighs a second attempt at a marked essay."
+        },
+        {
+          "setId": "wri-6d6c11da",
+          "reason": "That discussion concerned a required study-skills class before electives; this one concerns revising work after feedback."
+        },
+        {
+          "setId": "wri-cd14eb34",
+          "reason": "That discussion concerned note-taking by hand versus on screens; this one concerns how essay marks are finalised."
+        }
+      ],
+      "proposition": "A university should let every student resubmit a marked essay once, after feedback, for a higher mark in the same course.",
+      "competingValues": [
+        "Learning more by putting a tutor's feedback to use on the same essay",
+        "Keeping marks comparable across first attempts and sparing tutors a second round of marking"
+      ]
+    }
+  }
+}

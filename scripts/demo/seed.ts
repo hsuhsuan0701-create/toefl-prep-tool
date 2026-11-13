@@ -548,7 +548,7 @@ async function writeHistory(s: Seeder): Promise<void> {
   await s.speaking({ label: "d14-speaking-sim", mode: "simulation", content: SPEAKING.artsSimulation, start: s.at(14, "20:20") });
 
   // Week two: Simulations, with a Writing Drill left unfinished late one night.
-  await s.writing({ label: "d13-writing-drill", mode: "drill", setId: "wri-6c0c961a", start: s.at(13, "22:10"), buildSentence: 6, essays: "none", leaveUnfinished: true });
+  await s.writing({ label: "d13-writing-drill", mode: "drill", setId: "wri-b5e4cabe", start: s.at(13, "22:10"), buildSentence: 6, essays: "none", leaveUnfinished: true });
   await s.deterministic("reading", { label: "d12-reading-sim", mode: "simulation", setId: "rd-47ae9ca3", start: s.at(12, "19:45"), router: 0.72, second: 0.72 });
   await s.speaking({ label: "d11-speaking-drill", mode: "drill", content: SPEAKING.groceryDrill, start: s.at(11, "20:30") });
   await s.deterministic("listening", { label: "d10-listening-sim", mode: "simulation", setId: "lsn-ac7788d4", start: s.at(10, "20:05"), router: 0.76, second: 0.72, flagged: true });

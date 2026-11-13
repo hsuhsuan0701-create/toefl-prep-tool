@@ -1,0 +1,594 @@
+{
+  "id": "wri-8cf58f79",
+  "source": "generated",
+  "createdAt": "2026-11-13T08:19:47.000Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "May I trace the coastline on this old sheet map with a soft pencil?",
+        "frame": "You ___ ___ ___ ___ laid over the sheet.",
+        "tiles": [
+          "through",
+          "trace it",
+          "tracing it",
+          "clear film",
+          "can only"
+        ],
+        "answers": [
+          [
+            "can only",
+            "trace it",
+            "through",
+            "clear film"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Why do we scrub the empty buckets with bleach every evening before closing?",
+        "frame": "Dirty buckets ___ ___ ___ ___ in the water.",
+        "tiles": [
+          "rot",
+          "the",
+          "to rot",
+          "make",
+          "cut stems"
+        ],
+        "answers": [
+          [
+            "make",
+            "the",
+            "cut stems",
+            "rot"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Why are the lane ropes taken out on Sunday afternoons?",
+        "frame": "The whole pool is given over to family swimming then, so you ___ ___ ___ ___ ___ instead.",
+        "tiles": [
+          "before",
+          "swimming",
+          "your lengths",
+          "will have to",
+          "noon",
+          "swim"
+        ],
+        "answers": [
+          [
+            "will have to",
+            "swim",
+            "your lengths",
+            "before",
+            "noon"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Why does the moth trap have to be emptied before sunrise?",
+        "frame": "Birds ___ ___ ___ ___ ___ as soon as it gets light, so set your alarm for four.",
+        "tiles": [
+          "off",
+          "picked",
+          "the sheet",
+          "will be",
+          "the moths",
+          "picking"
+        ],
+        "answers": [
+          [
+            "will be",
+            "picking",
+            "the moths",
+            "off",
+            "the sheet"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Why does this cell show only a row of hash marks?",
+        "frame": "___ ___ ___ ___ ___ ___ the number, so try dragging its edge wider.",
+        "tiles": [
+          "to",
+          "became",
+          "the column",
+          "show",
+          "has",
+          "too narrow",
+          "become"
+        ],
+        "answers": [
+          [
+            "the column",
+            "has",
+            "become",
+            "too narrow",
+            "to",
+            "show"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Why does my cello spike rest in a strap looped round the chair leg?",
+        "frame": "___ ___ ___ ___ ___ ___ this polished floor.",
+        "tiles": [
+          "held",
+          "slides",
+          "that",
+          "across",
+          "a spike",
+          "slide",
+          "isn't"
+        ],
+        "answers": [
+          [
+            "a spike",
+            "that",
+            "isn't",
+            "held",
+            "slides",
+            "across"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Why are you measuring my blood pressure twice in one visit?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ from nerves, so only the second is written down.",
+        "tiles": [
+          "that",
+          "often runs",
+          "we",
+          "high",
+          "found",
+          "often run",
+          "the first reading",
+          "have"
+        ],
+        "answers": [
+          [
+            "we",
+            "have",
+            "found",
+            "that",
+            "the first reading",
+            "often runs",
+            "high"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "The doors of the front two coaches stay locked at the next halt, because the platform there is too short for the whole train.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ before we get there?",
+        "tiles": [
+          "walk back",
+          "everyone",
+          "do",
+          "the third one",
+          "does",
+          "to",
+          "in this coach",
+          "have to"
+        ],
+        "answers": [
+          [
+            "does",
+            "everyone",
+            "in this coach",
+            "have to",
+            "walk back",
+            "to",
+            "the third one"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Why is this building so long and narrow?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "who",
+          "to twist",
+          "the building",
+          "walking backwards",
+          "long enough for",
+          "one straight length of rope",
+          "had to be",
+          "rope makers",
+          "walked backwards"
+        ],
+        "answers": [
+          [
+            "the building",
+            "had to be",
+            "long enough for",
+            "rope makers",
+            "who",
+            "walked backwards",
+            "to twist",
+            "one straight length of rope"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Why does the online booking form keep refusing phone numbers? Should we add a hint under the field?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "are",
+          "accept",
+          "the field",
+          "typed without spaces",
+          "written",
+          "accepts",
+          "to",
+          "only numbers",
+          "was",
+          "that"
+        ],
+        "answers": [
+          [
+            "the field",
+            "was",
+            "written",
+            "to",
+            "accept",
+            "only numbers",
+            "that",
+            "are",
+            "typed without spaces"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "Your amateur theater group hired a set of period costumes from Harlow Costume Hire for last week's production. After the final night, while packing up, you found that the lining of one hired coat had been torn: its sleeve caught on a nail backstage during a quick scene change. The costumes are due back at the workshop soon, and you have never met the wardrobe keeper who looks after them.",
+    "to": "wardrobe@harlowcostumehire.example",
+    "subject": "Damage to a hired coat",
+    "bullets": [
+      "Apologize for the torn lining of the hired coat.",
+      "Explain how the coat was damaged backstage.",
+      "Propose a solution for getting the lining repaired, such as paying for a tailor's repair or returning the coat with the other costumes for the workshop to mend."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Introduction to Transport Planning",
+    "professorName": "Dr. Okafor",
+    "professorPost": "This week we are looking at how bus operators collect fares. On most regional buses, every rider boards at the front door and shows a ticket to the driver. Some operators have instead opened every door for boarding and rely on inspectors who check tickets at random during the journey. Should a regional bus operator let riders board through every door and rely on random ticket inspections? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Mireille",
+        "post": "I think every door should be open. On my route the bus loses a minute or two at each busy stop while people queue at the front, and by the end of the line it is always late. A bus that keeps to its timetable attracts more riders, which matters more than catching a few cheats."
+      },
+      {
+        "name": "Tobias",
+        "post": "I disagree. When the driver sees every ticket, almost nobody travels without paying. Inspectors can only cover a few buses a day, so plenty of riders will take the risk, and a regional operator with thin fare income cannot afford that. Honest passengers would end up paying higher fares to cover the loss."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "campus-academics",
+          "situation": "A student asks the attendant of the library map room whether an old sheet map may be traced, and learns that tracing is allowed only through clear film laid over the sheet.",
+          "participantRoles": [
+            "student copying a coastline for a geography essay",
+            "attendant of the library map room"
+          ],
+          "noveltyKey": "map-room-tracing-through-clear-film",
+          "requiredConcepts": [
+            "tracing an old sheet map",
+            "clear film laid over the sheet",
+            "soft pencil only"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-79202972",
+              "reason": "That exchange was about a balance room door and draughts during weighing; this one is about how old maps may be copied."
+            },
+            {
+              "setId": "wri-39a90e7d",
+              "reason": "That exchange set a loan period for a borrowed book; this one sets a handling rule for tracing a map sheet."
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A new employee at a flower wholesaler asks the shift manager why the empty buckets are scrubbed with bleach every evening, and learns that dirty buckets make cut stems rot.",
+          "participantRoles": [
+            "newly hired employee stacking empty buckets",
+            "shift manager at a flower wholesaler"
+          ],
+          "noveltyKey": "flower-buckets-bleach-scrub-stems-rot",
+          "requiredConcepts": [
+            "buckets scrubbed with bleach",
+            "cut stems rotting in dirty water",
+            "every evening before closing"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-79202972",
+              "reason": "That exchange separated greasy tablecloths in a laundry wash; this one explains nightly bucket cleaning for cut flowers."
+            },
+            {
+              "setId": "wri-f4e1c52b",
+              "reason": "That exchange was about recalibrating a coffee grinder each morning; this one is about hygiene of flower buckets."
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A resident asks the lifeguard at the municipal swimming pool why the lane ropes come out on Sunday afternoons, and learns that the whole pool is given over to family swimming then.",
+          "participantRoles": [
+            "resident who swims lengths every week",
+            "lifeguard at the municipal swimming pool"
+          ],
+          "noveltyKey": "pool-lane-ropes-out-family-swim",
+          "requiredConcepts": [
+            "lane ropes taken out",
+            "Sunday afternoon family swimming",
+            "lengths before noon instead"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-79202972",
+              "reason": "That exchange limited planting on a cemetery grave; this one explains a weekly change in how a swimming pool is laid out."
+            },
+            {
+              "setId": "wri-30b485f9",
+              "reason": "That exchange was about what may be built on an allotment plot; this one is about lane ropes and family swimming."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A field assistant asks a biology researcher why the moth trap must be emptied before sunrise, and learns that birds pick the moths off the sheet as soon as it gets light.",
+          "participantRoles": [
+            "field assistant on a first moth survey",
+            "biology researcher running the moth trap"
+          ],
+          "noveltyKey": "moth-trap-emptied-before-sunrise-birds",
+          "requiredConcepts": [
+            "moth trap emptied before sunrise",
+            "birds picking moths off the sheet",
+            "alarm set for four"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-79202972",
+              "reason": "That exchange explained paint dots for recounting snails; this one explains the timing of emptying a moth trap."
+            },
+            {
+              "setId": "wri-39a90e7d",
+              "reason": "That exchange postponed a bat count because of wind; this one is about birds eating the catch at first light."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A retired bookkeeper asks a software instructor why a spreadsheet column shows only a row of hash marks, and learns that the column is too narrow for the number.",
+          "participantRoles": [
+            "retired bookkeeper learning a spreadsheet program",
+            "software instructor leading an evening class"
+          ],
+          "noveltyKey": "spreadsheet-hash-marks-narrow-column",
+          "requiredConcepts": [
+            "row of hash marks in the cell",
+            "column too narrow for the number",
+            "dragging the column edge wider"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-79202972",
+              "reason": "That exchange explained dull print colours from a drawing program; this one explains a display quirk in a spreadsheet."
+            },
+            {
+              "setId": "wri-39a90e7d",
+              "reason": "That exchange was about a license key active on too many computers; this one is about column width hiding a number."
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A young cellist asks a music teacher why the cello spike rests in a strap looped round the chair leg, and learns that the spike slides on the polished floor without it.",
+          "participantRoles": [
+            "young cellist setting up for a lesson",
+            "music teacher who gives cello lessons"
+          ],
+          "noveltyKey": "cello-spike-strap-polished-floor",
+          "requiredConcepts": [
+            "cello spike in a strap",
+            "strap looped round the chair leg",
+            "spike sliding on the polished floor"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-30b485f9",
+              "reason": "That exchange was about new bow hair needing days to settle; this one is about keeping a cello spike from slipping."
+            },
+            {
+              "setId": "wri-39a90e7d",
+              "reason": "That exchange swapped a faulty grand piano for an upright; this one explains a strap used under a cello."
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A patient asks a clinic nurse why blood pressure is measured twice in one visit, and learns that the first reading often runs high from nerves, so only the second is written down.",
+          "participantRoles": [
+            "patient at a yearly check-up",
+            "clinic nurse taking blood pressure"
+          ],
+          "noveltyKey": "blood-pressure-measured-twice-second-counts",
+          "requiredConcepts": [
+            "blood pressure measured twice",
+            "first reading high from nerves",
+            "second reading written down"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-79202972",
+              "reason": "That exchange was about when to eat after a dental filling; this one explains a repeated blood pressure reading."
+            },
+            {
+              "setId": "wri-30b485f9",
+              "reason": "That exchange was about where opened eye drops are kept; this one is about which of two readings counts."
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A passenger asks the train guard why the doors of the front two coaches stay locked at a small rural halt, and learns that the platform there is too short for the whole train.",
+          "participantRoles": [
+            "passenger sitting in the front coach",
+            "train guard walking through the coaches"
+          ],
+          "noveltyKey": "front-coaches-locked-short-platform",
+          "requiredConcepts": [
+            "front two coaches kept locked",
+            "platform too short for the whole train",
+            "walking back to the third coach"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-79202972",
+              "reason": "That exchange was about how long a cable car return stays valid; this one explains locked doors at a short platform."
+            },
+            {
+              "setId": "wri-39a90e7d",
+              "reason": "That exchange was about reissuing a flight booking with a misspelt surname; this one is about where to get off a train."
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A visitor asks the guide at a heritage ropewalk why the building is so long and narrow, and learns that each rope had to be twisted in one straight length from end to end.",
+          "participantRoles": [
+            "visitor walking the length of the building",
+            "guide at a heritage ropewalk"
+          ],
+          "noveltyKey": "heritage-ropewalk-long-narrow-building",
+          "requiredConcepts": [
+            "long narrow building",
+            "rope twisted in one straight length",
+            "rope makers walking backwards"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-30b485f9",
+              "reason": "That exchange explained shallow pans at a salt works; this one explains the shape of a rope-making building."
+            },
+            {
+              "setId": "wri-f4e1c52b",
+              "reason": "That exchange explained why a mill waterwheel no longer turns; this one explains why rope needed a long shed."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A café owner asks a freelance web designer why the online booking form keeps refusing phone numbers, and learns that the field accepts a number only when it is typed without spaces.",
+          "participantRoles": [
+            "café owner testing the new booking form",
+            "freelance web designer who built the form"
+          ],
+          "noveltyKey": "online-booking-form-phone-number-spaces",
+          "requiredConcepts": [
+            "online booking form refusing phone numbers",
+            "number typed without spaces",
+            "hint added under the field"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-f4e1c52b",
+              "reason": "That exchange was about a headline corrected after a story was posted; this one is about a form field rejecting spaces."
+            },
+            {
+              "setId": "wri-30b485f9",
+              "reason": "That exchange explained hollow sound on a recording; this one explains why a booking form refuses a phone number."
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "arts-culture",
+      "noveltyKey": "hired-theater-costume-coat-torn-lining",
+      "requiredConcepts": [
+        "hired costume coat with a torn lining",
+        "sleeve caught on a nail backstage",
+        "paying for a tailor's repair",
+        "coat returned with the other costumes"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-be127d2e",
+          "reason": "That apology went to a friend over a snapped tent pole; this one goes to a stranger at a costume hire workshop over a torn coat lining."
+        },
+        {
+          "setId": "wri-8f7e61bf",
+          "reason": "That email reported a pickup roster listing the wrong name; here the writer is the one at fault and offers to pay for a repair."
+        },
+        {
+          "setId": "wri-bbbfc85e",
+          "reason": "That email asked for help recovering a lost wallet; this one owns up to damage done to a hired costume."
+        }
+      ],
+      "situation": "The writer's amateur theater group hired period costumes from a costume hire workshop, and after the final night the writer found that the lining of a hired coat had been torn backstage.",
+      "recipientRole": "wardrobe keeper of the costume hire workshop, whom the writer has never met",
+      "communicativeActs": [
+        "apologize for the torn lining of the hired coat",
+        "explain how the coat was damaged backstage",
+        "propose a solution for getting the lining repaired"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "services-travel",
+      "noveltyKey": "bus-all-door-boarding-vs-driver-ticket-check",
+      "requiredConcepts": [
+        "boarding through every door",
+        "random ticket inspections",
+        "time lost at each stop",
+        "riders who travel without paying"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-e29d9e9c",
+          "reason": "That debate was about compulsory seat reservations on long-distance trains; this one is about how tickets are checked when boarding a bus."
+        },
+        {
+          "setId": "wri-aaa3d20f",
+          "reason": "That debate was about a quiet carriage for rest; this one weighs boarding speed against fare income."
+        },
+        {
+          "setId": "wri-b5e4cabe",
+          "reason": "That debate was about who may buy airport lounge access; this one is about trusting bus riders to hold a valid ticket."
+        }
+      ],
+      "proposition": "A regional bus operator should let riders board through every door and rely on random ticket inspections, rather than having every rider show a ticket to the driver at the front door.",
+      "competingValues": [
+        "quicker boarding and buses that keep to the timetable",
+        "fare income protected because the driver sees every ticket"
+      ]
+    }
+  }
+}

@@ -147,7 +147,10 @@ practice is worth a pull request.
    of that render's Set.
 4. **Check that it loads.** The Set appears on `/sets` with no "could not be loaded" notice
    (`GET /api/sets/unloadable` reports a count of 0). Its audio plays. Attempt at least one Item.
-   Then run `npm test`; several suites read the whole bank.
+   For a Writing Set, also put every Build a Sentence key into its frame and read the whole
+   sentence, and look for another order of the same tiles that is equally good English: scoring is
+   by exact match, and `scripts/check-bas.ts` checks an Item's shape, not whether its key is right
+   or the only right one. Then run `npm test`; several suites read the whole bank.
 5. **Commit the file as generated, `advisoryNotes` included.** Do not edit or remove a note, even
    one the app does not show: which kinds a learner sees is decided in the client
    (`advisoryNoteLines` in `client/src/ui/labels.ts`), and the rest stay in the file for whoever
@@ -157,6 +160,13 @@ practice is worth a pull request.
 To replace a Speaking, Reading or Listening Set, pass `supersedesSetId` in the `POST /api/generate`
 body. Once the replacement publishes, the server records the retirement in
 `data/question-sets/supersessions.json`; commit that file with the new Set.
+
+The route refuses `supersedesSetId` for Writing. To replace a Writing Set, generate the new Set,
+then add the pair to `data/question-sets/supersessions.json` yourself and commit it with the new
+Set. Pairs are sorted by `setId`, and `supersededAt` is UTC as `YYYY-MM-DD HH:MM:SS`
+(`formatSupersessionManifest` in `shared/src/supersessions.ts` is the file's one form, and
+`supersessionManifest.test.ts` checks it). If the demo history (`scripts/demo/seed.ts`) names the
+retired Set, point it at a live one.
 
 ## Larger changes
 

@@ -1,0 +1,598 @@
+{
+  "id": "wri-f4e1c52b",
+  "source": "generated",
+  "createdAt": "2026-11-13T07:41:21.118Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Professor, may I type my field notebook for this course?",
+        "frame": "No, typed pages are not accepted; the whole notebook ___ ___ ___ ___ hand, including your sketches of rock layers.",
+        "tiles": [
+          "by",
+          "wrote",
+          "must",
+          "written",
+          "be"
+        ],
+        "answers": [
+          [
+            "must",
+            "be",
+            "written",
+            "by"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "The espresso grinder has to be recalibrated each morning, and the new grind setting goes on the board.",
+        "frame": "Do we ___ ___ ___ ___ shot before the doors open?",
+        "tiles": [
+          "test",
+          "to pull",
+          "pulling",
+          "need",
+          "a"
+        ],
+        "answers": [
+          [
+            "need",
+            "to pull",
+            "a",
+            "test"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "How do I get permission to close our street for a neighborhood block gathering?",
+        "frame": "Most households on the street ___ ___ ___ ___ ___ issue a closure permit, and the barriers are picked up the day before.",
+        "tiles": [
+          "before",
+          "signs",
+          "the form",
+          "must",
+          "we",
+          "sign"
+        ],
+        "answers": [
+          [
+            "must",
+            "sign",
+            "the form",
+            "before",
+            "we"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "It's my first day here. Which dogs am I allowed to walk?",
+        "frame": "Only the dogs ___ ___ ___ ___ ___ out to the walking loop behind the shelter, since the others are still under observation.",
+        "tiles": [
+          "may",
+          "kennel tags",
+          "goes",
+          "with",
+          "go",
+          "green"
+        ],
+        "answers": [
+          [
+            "with",
+            "green",
+            "kennel tags",
+            "may",
+            "go"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Why are the tadpole tanks always kept covered?",
+        "frame": "___ ___ ___ ___ ___ ___ the growth that we measure every third day.",
+        "tiles": [
+          "would",
+          "the corridor",
+          "changes",
+          "stray",
+          "from",
+          "change",
+          "light"
+        ],
+        "answers": [
+          [
+            "stray",
+            "light",
+            "from",
+            "the corridor",
+            "would",
+            "change"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Why was my headline changed after the story went online?",
+        "frame": "___ ___ ___ ___ ___ ___ the bakery owner was misspelled, and there is now a correction note under the story.",
+        "tiles": [
+          "because",
+          "of",
+          "we",
+          "due to",
+          "the name",
+          "it",
+          "changed"
+        ],
+        "answers": [
+          [
+            "we",
+            "changed",
+            "it",
+            "because",
+            "the name",
+            "of"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Is drawing allowed in the portrait gallery? I brought my sketchbook.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ pencil, because ink and charcoal are not allowed near the portraits, and there are folding stools by the entrance.",
+        "tiles": [
+          "with",
+          "you",
+          "are",
+          "the only thing",
+          "is",
+          "draw",
+          "that",
+          "may"
+        ],
+        "answers": [
+          [
+            "the only thing",
+            "that",
+            "you",
+            "may",
+            "draw",
+            "with",
+            "is"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "I sprained my ankle two weeks ago. When can I start running again?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ the injured foot without pain, so take short walks on flat ground first.",
+        "tiles": [
+          "until",
+          "hop",
+          "running",
+          "hopping",
+          "can",
+          "on",
+          "has to wait",
+          "you"
+        ],
+        "answers": [
+          [
+            "running",
+            "has to wait",
+            "until",
+            "you",
+            "can",
+            "hop",
+            "on"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Can I just wait at the side entrance for the airport shuttle that leaves before dawn?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "whose",
+          "reserved the night before",
+          "the driver",
+          "who",
+          "pick up",
+          "was not",
+          "anyone",
+          "will not",
+          "seat"
+        ],
+        "answers": [
+          [
+            "the driver",
+            "will not",
+            "pick up",
+            "anyone",
+            "whose",
+            "seat",
+            "was not",
+            "reserved the night before"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "Why doesn't the waterwheel at this mill turn anymore?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "that",
+          "is",
+          "the original",
+          "by hand only once a year",
+          "was wearing out",
+          "so badly",
+          "the wheel",
+          "oak timbers",
+          "turned",
+          "were wearing out"
+        ],
+        "answers": [
+          [
+            "the original",
+            "oak timbers",
+            "were wearing out",
+            "so badly",
+            "that",
+            "the wheel",
+            "is",
+            "turned",
+            "by hand only once a year"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "Last weekend you traveled by train with your grandmother, who uses a wheelchair. When you arrived at Marlow Junction, a regional station, the platform lift was out of service, and you reached your train only because an attendant opened the freight ramp for you. You will pass through the same station on your return trip next week. Write an email to the station manager.",
+    "to": "station.manager@marlowjunction-rail.example",
+    "subject": "Platform lift and step-free access at Marlow Junction",
+    "bullets": [
+      "Express your appreciation for the attendant who helped you and your grandmother reach the platform.",
+      "Report that the platform lift was out of service when you visited.",
+      "Ask how you will be able to reach the platform without steps on your return trip next week."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Introduction to Local Government",
+    "professorName": "Dr. Okafor",
+    "professorPost": "This week we are looking at how cities decide what to spend money on. In most cities, elected officials make every spending decision. Some cities, however, set aside a fixed share of the municipal budget and let residents vote directly on how it is used in their neighborhoods. What do you think? Should a city let residents vote on how a share of its budget is spent, or should all spending decisions stay with elected officials? Why?",
+    "studentPosts": [
+      {
+        "name": "Priya",
+        "post": "I think residents should get that vote. People who live on a street know better than anyone whether it needs a safer playground or brighter street lighting. When neighbors see their own choice actually get built, they also start paying attention to city affairs, and that kind of involvement is hard to create any other way."
+      },
+      {
+        "name": "Lucas",
+        "post": "I would leave spending to elected officials. Voters naturally choose projects they can see, so repairs nobody sees, such as aging drainage pipes, lose out until something fails. Turnout at budget votes is also usually low, which means a small, well-organized group can end up deciding for the whole neighborhood."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "campus-academics",
+          "situation": "A student asks the geology professor whether the field notebook for the course may be typed and learns it must be written by hand.",
+          "participantRoles": [
+            "student enrolled in the geology course",
+            "geology professor who grades the field notebooks"
+          ],
+          "noveltyKey": "geology-field-notebook-handwritten-only",
+          "requiredConcepts": [
+            "field notebook written by hand",
+            "typed pages not accepted",
+            "sketches of rock layers"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-39a90e7d",
+              "reason": "That exchange concerns a report regraded under an old rubric; this one concerns the required handwritten form of field notes."
+            },
+            {
+              "setId": "wri-4661c123",
+              "reason": "That exchange concerns a sold-out textbook; this one concerns how a notebook must be kept."
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A café manager tells a newly hired employee that the espresso grinder must be recalibrated each morning before the doors open.",
+          "participantRoles": [
+            "café manager on the opening shift",
+            "newly hired employee learning the counter"
+          ],
+          "noveltyKey": "cafe-grinder-recalibrated-each-morning",
+          "requiredConcepts": [
+            "espresso grinder recalibrated each morning",
+            "test shot before the doors open",
+            "grind setting written on the board"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-4661c123",
+              "reason": "That exchange concerns a desk delivered to the wrong floor; this one concerns a daily machine adjustment."
+            },
+            {
+              "setId": "wri-03fd69a4",
+              "reason": "That exchange concerns a jammed label printer before a mail cutoff; this one is a routine morning task, not a breakdown."
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A resident asks a city clerk how to close a street for a neighborhood block gathering and learns that most households must sign first.",
+          "participantRoles": [
+            "resident planning a neighborhood block gathering",
+            "city clerk handling street closure permits"
+          ],
+          "noveltyKey": "street-closure-permit-household-signatures",
+          "requiredConcepts": [
+            "street closure permit",
+            "signatures from most households",
+            "barriers picked up the day before"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-03fd69a4",
+              "reason": "That exchange concerns delayed lifeguard paperwork; this one concerns signatures needed to close a street."
+            },
+            {
+              "setId": "wri-4661c123",
+              "reason": "That exchange concerns a moved toy collection box; this one concerns permission for a block gathering."
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A first-day volunteer at the municipal animal shelter asks which dogs may be walked and learns only those with green kennel tags may go out.",
+          "participantRoles": [
+            "first-day volunteer dog walker",
+            "volunteer coordinator at the municipal animal shelter"
+          ],
+          "noveltyKey": "animal-shelter-green-tag-dog-walking",
+          "requiredConcepts": [
+            "green kennel tags",
+            "dogs still under observation",
+            "walking loop behind the shelter"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1da7837a",
+              "reason": "That exchange concerns a checkout kiosk losing its network; this one concerns which shelter dogs may be walked."
+            },
+            {
+              "setId": "wri-03fd69a4",
+              "reason": "That exchange concerns a shuttle driver calling in sick; this one concerns a kennel tag rule."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A laboratory assistant asks why the tadpole tanks are kept covered and learns that stray light would change the results of the experiment.",
+          "participantRoles": [
+            "laboratory assistant feeding the tadpoles",
+            "researcher running the tadpole experiment"
+          ],
+          "noveltyKey": "tadpole-tanks-covered-against-stray-light",
+          "requiredConcepts": [
+            "covered tadpole tanks",
+            "stray light from the corridor",
+            "growth measured every third day"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-39a90e7d",
+              "reason": "That exchange concerns a failed fume hood airflow test; this one explains why animal tanks stay covered."
+            },
+            {
+              "setId": "wri-4661c123",
+              "reason": "That exchange concerns seed samples moved after a freezer alarm; this one concerns light control, with nothing broken."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A reporter asks the digital editor why a headline was changed after the story went online and learns that a name in it was misspelled.",
+          "participantRoles": [
+            "reporter who wrote the story",
+            "digital editor of a local news site"
+          ],
+          "noveltyKey": "headline-changed-after-posting-misspelled-name",
+          "requiredConcepts": [
+            "headline changed after posting",
+            "misspelled name of the bakery owner",
+            "correction note under the story"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-4661c123",
+              "reason": "That exchange concerns re-recording an echoing audio segment; this one concerns a corrected written headline."
+            },
+            {
+              "setId": "wri-1da7837a",
+              "reason": "That exchange concerns a stalled video processing queue; this one concerns an editorial correction."
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A visitor carrying a sketchbook asks a museum guard whether drawing is allowed in the portrait gallery and learns that only pencil is permitted.",
+          "participantRoles": [
+            "visitor carrying a sketchbook",
+            "museum guard in the portrait gallery"
+          ],
+          "noveltyKey": "portrait-gallery-sketching-pencil-only",
+          "requiredConcepts": [
+            "sketching in pencil only",
+            "no ink or charcoal near the portraits",
+            "folding stools by the entrance"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-39a90e7d",
+              "reason": "That exchange concerns a piano with a sticking pedal before a recital; this one concerns a visitor drawing rule."
+            },
+            {
+              "setId": "wri-03fd69a4",
+              "reason": "That exchange concerns a cracked ink roller on a shared press; this one concerns what visitors may draw with."
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A runner asks a clinic physiotherapist when to resume exercise after an ankle sprain and learns to wait until hopping on that foot is painless.",
+          "participantRoles": [
+            "runner recovering from an ankle sprain",
+            "clinic physiotherapist reviewing the ankle"
+          ],
+          "noveltyKey": "ankle-sprain-hop-test-before-running",
+          "requiredConcepts": [
+            "hopping on the injured foot without pain",
+            "short walks on flat ground first",
+            "ankle sprain two weeks ago"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-4661c123",
+              "reason": "That exchange concerns a prescription needing fresh approval; this one concerns readiness to run after an injury."
+            },
+            {
+              "setId": "wri-39a90e7d",
+              "reason": "That exchange concerns glasses remade with the right coating; this one concerns a recovery milestone."
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A hotel guest asks the concierge about the airport shuttle that leaves before dawn and learns a seat must be reserved the night before.",
+          "participantRoles": [
+            "hotel guest with an early flight",
+            "hotel concierge at the evening desk"
+          ],
+          "noveltyKey": "pre-dawn-airport-shuttle-seat-reserved-night-before",
+          "requiredConcepts": [
+            "airport shuttle leaving before dawn",
+            "seat reserved the night before",
+            "pickup at the side entrance"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-4661c123",
+              "reason": "That exchange concerns a room safe left locked by the last occupant; this one concerns booking an early shuttle seat."
+            },
+            {
+              "setId": "wri-39a90e7d",
+              "reason": "That exchange concerns reissuing a misspelled booking; this one concerns advance reservation of a shuttle."
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A visitor at a restored heritage mill asks the guide why the waterwheel no longer turns and learns it was stopped to protect the historical timber.",
+          "participantRoles": [
+            "visitor touring the heritage mill",
+            "guide who looks after the mill"
+          ],
+          "noveltyKey": "heritage-mill-waterwheel-stopped-to-protect-timber",
+          "requiredConcepts": [
+            "waterwheel that no longer turns",
+            "original oak timber",
+            "wheel turned by hand once a year"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-39a90e7d",
+              "reason": "That exchange concerns a keeper's logbook out on loan; this one concerns why old machinery is kept still."
+            },
+            {
+              "setId": "wri-03fd69a4",
+              "reason": "That exchange concerns a grant falling short of repair costs; this one concerns a deliberate preservation choice."
+            },
+            {
+              "setId": "wri-1da7837a",
+              "reason": "That exchange concerns an overheated scanner halting a conversion project; this one concerns a mill wheel."
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "services-travel",
+      "noveltyKey": "platform-lift-out-of-service-wheelchair-return-trip",
+      "requiredConcepts": [
+        "attendant who opened the freight ramp",
+        "platform lift out of service",
+        "grandmother who uses a wheelchair",
+        "step-free way to the platform next week"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-00c1e95f",
+          "reason": "That email comments on a proposed timetable cut; this one concerns a broken platform lift and an upcoming return trip."
+        },
+        {
+          "setId": "wri-f9779355",
+          "reason": "That email concerns a wrong date on a tour booking; this one concerns step-free access for a wheelchair user."
+        },
+        {
+          "setId": "wri-8a7f1e12",
+          "reason": "That email apologizes for a missed appointment after a cancellation; this one praises staff and reports a fault."
+        }
+      ],
+      "situation": "While traveling with a grandmother who uses a wheelchair, the writer found the platform lift at a regional train station out of service; an attendant got them aboard by a freight ramp, and they return next week.",
+      "recipientRole": "Station manager of the regional train station, whom the writer has never met",
+      "communicativeActs": [
+        "Express appreciation for the attendant who helped them reach the platform",
+        "Report that the platform lift was out of service",
+        "Request information about step-free access for the return trip next week"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "community-civic",
+      "noveltyKey": "resident-vote-on-share-of-municipal-budget",
+      "requiredConcepts": [
+        "residents voting on a share of the budget",
+        "playgrounds and street lighting",
+        "repairs nobody sees, such as drainage pipes",
+        "low turnout at budget votes"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-8a7f1e12",
+          "reason": "That discussion weighs mown lawns against rough meadow; this one weighs who decides how local money is spent."
+        },
+        {
+          "setId": "wri-787b9d66",
+          "reason": "That discussion concerns converting curb space; this one concerns direct voting on spending."
+        },
+        {
+          "setId": "wri-77af733e",
+          "reason": "That discussion concerns allocating downtown street space; this one concerns the decision process for a budget."
+        }
+      ],
+      "proposition": "A city should let residents vote directly on how a fixed share of the municipal budget is spent, rather than leaving every spending decision to elected officials.",
+      "competingValues": [
+        "Residents' direct say over spending in their own neighborhood, and the civic involvement it encourages",
+        "Officials' fuller view of less visible long-term needs that a popular vote tends to overlook"
+      ]
+    }
+  }
+}
