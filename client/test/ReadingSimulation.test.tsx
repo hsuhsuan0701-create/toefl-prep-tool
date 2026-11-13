@@ -375,6 +375,102 @@ describe("Reading Simulation", () => {
     ).toEqual([{ itemId: "dl-l1-q1", selectedOptionId: "b" }]);
   });
 
+  // A gap is answered only when it holds as many letters as it has slots: a completion always fills
+  // every slot, so one typed short cannot be right as it stands (issue #41). The navigator and the
+  // submit confirmation say so; scoring and the submit itself are unchanged.
+  describe("a Complete the Words gap typed short", () => {
+    const passage = (id: string, gaps: { id: string; prefix: string; blankLength: number }[]) => ({
+      id,
+      taskType: "complete_words" as const,
+      topic: id,
+      segments: gaps.flatMap((g) => [
+        { type: "text" as const, text: " word " },
+        { type: "gap" as const, gapId: g.id },
+      ]),
+      gaps,
+    });
+    const shortGapSet: ServedReadingSet = {
+      ...set,
+      router: {
+        ...set.router,
+        ctwPassages: [
+          passage("ctw-a", [
+            { id: "a-g1", prefix: "ca", blankLength: 2 },
+            { id: "a-g2", prefix: "ho", blankLength: 3 },
+            { id: "a-g3", prefix: "ri", blankLength: 4 },
+          ]),
+          passage("ctw-b", [
+            { id: "b-g1", prefix: "su", blankLength: 2 },
+            { id: "b-g2", prefix: "mo", blankLength: 2 },
+          ]),
+        ],
+      },
+    };
+    const navigator = () => screen.getByRole("navigation", { name: "Questions in this Module" });
+    const gap = (prefix: string) => screen.getByLabelText(`Gap starting with "${prefix}"`);
+
+    beforeEach(async () => {
+      const api = await import("../src/lib/api");
+      vi.mocked(api.getSet).mockResolvedValue(shortGapSet);
+    });
+
+    it("leaves the count unchanged and the passage Partly when each gap holds one letter", async () => {
+      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+      renderSimulation();
+      await beginSimulation(user);
+      for (const prefix of ["ca", "ho", "ri"]) await user.type(gap(prefix), "x");
+
+      expect(navigator()).toHaveTextContent("0 of 6 Items answered");
+      expect(
+        within(navigator()).getByRole("button", { name: "Questions 1 to 3, 0 of 3 answered, 3 partly filled, on screen" }),
+      ).toBeInTheDocument();
+      // The passage with nothing typed stays Not yet.
+      expect(within(navigator()).getByRole("button", { name: "Questions 4 to 5, not answered" })).toBeInTheDocument();
+    });
+
+    it("counts the passage's Items and calls it Answered once every gap is complete", async () => {
+      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+      renderSimulation();
+      await beginSimulation(user);
+      await user.type(gap("ca"), "ts");
+      await user.type(gap("ho"), "use");
+      await user.type(gap("ri"), "ver");
+      expect(navigator()).toHaveTextContent("2 of 6 Items answered");
+      await user.type(gap("ri"), "s");
+
+      expect(navigator()).toHaveTextContent("3 of 6 Items answered");
+      expect(within(navigator()).getByRole("button", { name: "Questions 1 to 3, answered, on screen" })).toBeInTheDocument();
+      expect(within(navigator()).getByRole("button", { name: "Questions 4 to 5, not answered" })).toBeInTheDocument();
+    });
+
+    it("names the partly filled gaps with their count beside the Items with no Response, and still submits", async () => {
+      const api = await import("../src/lib/api");
+      const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
+      renderSimulation();
+      await beginSimulation(user);
+      await user.type(gap("ca"), "ts");
+      await user.type(gap("ho"), "u");
+      await user.type(gap("ri"), "v");
+
+      await user.click(screen.getByRole("button", { name: "Submit Module…" }));
+      const dialog = await screen.findByRole("dialog");
+      expect(dialog).toHaveTextContent("3 of 6 Items have no Response.");
+      expect(dialog).toHaveTextContent("2 gaps are only partly filled.");
+
+      // Nothing is blocked, and the short gaps are sent as typed.
+      await user.click(within(dialog).getByRole("button", { name: "Submit Module" }));
+      await screen.findByRole("heading", { name: "Module Path: Lower Module" });
+      const ctw = vi.mocked(api.scoreDeterministicTask).mock.calls.find(([, req]) => req.taskType === "complete_words");
+      expect(ctw?.[1].items).toEqual([
+        { itemId: "a-g1", typed: "ts" },
+        { itemId: "a-g2", typed: "u" },
+        { itemId: "a-g3", typed: "v" },
+        { itemId: "b-g1", typed: "" },
+        { itemId: "b-g2", typed: "" },
+      ]);
+    });
+  });
+
   // On the Upper path a Module's `dailyLife` is legitimately empty. The navigator must show only the
   // two Stimuli that exist, and buildScoreRequests must send complete_words and academic_passage
   // and no empty daily_life request (an empty items array would be a score request for nothing,

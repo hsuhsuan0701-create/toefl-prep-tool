@@ -173,6 +173,36 @@ export function readingItemCount(mod: ServedReadingModule): number {
 }
 
 /**
+ * How far an Item's Response goes, for the question navigator and the submit confirmation (issue
+ * #41). A multiple-choice Item is `answered` once an option is chosen. A Complete the Words gap is
+ * `answered` only when it holds as many letters as it has slots (`blankLength`, the same number its
+ * box is sized by): a completion always fills every slot, so a gap typed short cannot be right as it
+ * stands and is `partly` filled. Scoring is not affected: such a gap scores Incorrect either way.
+ */
+export type ReadingResponseState = "answered" | "partly" | "none";
+
+/** The Response state of every Item in a Module's Stimuli, by Item id. */
+export function readingResponseStates(
+  stimuli: readonly ServedReadingStimulus[],
+  answers: ReadonlyMap<string, string>,
+): Map<string, ReadingResponseState> {
+  const states = new Map<string, ReadingResponseState>();
+  for (const stimulus of stimuli) {
+    if (stimulus.taskType === "complete_words") {
+      for (const gap of stimulus.gaps) {
+        // GapInput already keeps whitespace out of a gap; counting only letters keeps a stray space
+        // from ever standing in for one.
+        const letters = (answers.get(gap.id) ?? "").replace(/\s/g, "").length;
+        states.set(gap.id, letters === 0 ? "none" : letters >= gap.blankLength ? "answered" : "partly");
+      }
+      continue;
+    }
+    for (const q of stimulus.questions) states.set(q.id, (answers.get(q.id) ?? "").trim() !== "" ? "answered" : "none");
+  }
+  return states;
+}
+
+/**
  * Builds one ScoreRequest per Task Type present in the given Module, grouping the Items of every
  * Stimulus of that Task Type together (matching POST /:id/score's per-Task-Type batching). Every
  * Item the Module contains is included, rather than left out, so a Simulation's coverage always

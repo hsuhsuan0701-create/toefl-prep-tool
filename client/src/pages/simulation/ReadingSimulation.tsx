@@ -8,8 +8,10 @@ import {
   buildScoreRequests,
   flattenReadingModule,
   readingItemCount,
+  readingResponseStates,
   readingScreens,
   reduceReadingSim,
+  type ReadingResponseState,
 } from "../readingSimulation";
 import { useLeaveGuard } from "../../hooks/useLeaveGuard";
 import { useStageEntry } from "../../hooks/useStageEntry";
@@ -51,11 +53,8 @@ import { submitModule } from "./submitModule";
 // screen, then each question of a Daily Life text or an academic passage beside its text. Within a
 // Module the User moves freely — Back, Next, or any stop on the question navigator — and changes any
 // Response until the Module is submitted, by the User (after a confirmation that counts the Items
-// with no Response) or by its clock.
+// with no Response and the gaps only partly filled) or by its clock.
 // ---------------------------------------------------------------------------
-
-const hasResponse = (answers: ReadonlyMap<string, string>, itemId: string) => (answers.get(itemId) ?? "").trim() !== "";
-
 
 export default function ReadingSimulation({ fullTest }: { fullTest?: FullTestSectionContext }) {
   // Read out once so the hooks below can depend on primitives rather than on an object identity
@@ -357,7 +356,13 @@ export default function ReadingSimulation({ fullTest }: { fullTest?: FullTestSec
     const stimulus = stimuli[current.stimulusIdx];
     const lastItem = current.firstItem + current.itemIds.length - 1;
     const isLast = screenIdx === screens.length - 1;
-    const unanswered = screens.reduce((n, sc) => n + sc.itemIds.filter((id) => !hasResponse(simState.answers, id)).length, 0);
+    // A gap counts as answered only once every slot holds a letter (readingResponseStates); a gap
+    // typed short is counted apart, so the confirmation never calls a half-typed passage done.
+    const states = readingResponseStates(stimuli, simState.answers);
+    const countIn = (ids: readonly string[], state: ReadingResponseState) =>
+      ids.filter((id) => (states.get(id) ?? "none") === state).length;
+    const unanswered = screens.reduce((n, sc) => n + countIn(sc.itemIds, "none"), 0);
+    const partlyFilled = screens.reduce((n, sc) => n + countIn(sc.itemIds, "partly"), 0);
     const go = (i: number) => dispatch({ type: "navigate", stimulusIdx: screens[i].stimulusIdx, questionIdx: screens[i].questionIdx });
     const stops: NavigatorStop[] = screens.map((sc) => {
       const last = sc.firstItem + sc.itemIds.length - 1;
@@ -366,7 +371,8 @@ export default function ReadingSimulation({ fullTest }: { fullTest?: FullTestSec
         key: `${sc.stimulusIdx}:${sc.questionIdx}`,
         label: range ? `${sc.firstItem}–${last}` : String(sc.firstItem),
         name: range ? `Questions ${sc.firstItem} to ${last}` : `Question ${sc.firstItem}`,
-        answered: sc.itemIds.filter((id) => hasResponse(simState.answers, id)).length,
+        answered: countIn(sc.itemIds, "answered"),
+        partly: countIn(sc.itemIds, "partly"),
         total: sc.itemIds.length,
       };
     });
@@ -447,6 +453,12 @@ export default function ReadingSimulation({ fullTest }: { fullTest?: FullTestSec
             <p>
               {unanswered} of {itemTotal} {itemTotal === 1 ? "Item has" : "Items have"} no Response. As on the test, they will
               score 0.
+            </p>
+          )}
+          {partlyFilled > 0 && (
+            <p>
+              {partlyFilled} {partlyFilled === 1 ? "gap is" : "gaps are"} only partly filled. A gap needs a letter in every
+              slot, so as {partlyFilled === 1 ? "it stands it" : "they stand they"} will score as Incorrect.
             </p>
           )}
           <p>After you submit, you can't change any Response in this Module.</p>
