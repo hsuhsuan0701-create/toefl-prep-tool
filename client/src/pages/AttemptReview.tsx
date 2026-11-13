@@ -1,7 +1,10 @@
 import { useEffect, useRef } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import type { ItemVM } from "@toefl-prep/shared";
+import { appRoutes } from "../App";
+import { reviewOriginOf } from "../hooks/useAttemptListPlace";
 import { pollReasons, useAttemptReview } from "../hooks/useAttemptReview";
+import { pageTitleFor } from "../routeTitle";
 import { taskTypeEntry, taskTypeLabel } from "../lib/taskTypes";
 import { Chip, StatusChip } from "../ui/Chip";
 import { EmptyState } from "../ui/EmptyState";
@@ -287,11 +290,21 @@ export default function AttemptReview() {
   );
 }
 
+/**
+ * Back to the page the review was opened from, named by its route title: Progress, the Practice
+ * page (the Dashboard) or a Full-Test Run's report. Progress when the link into the review said
+ * nothing (a direct visit, a Drill's or Simulation's own report link). The link names the entry it
+ * leads back to, so that page puts the opened row back where it was, as the browser's Back does.
+ */
 function BackLink() {
+  const { state } = useLocation();
+  const origin = reviewOriginOf(state);
+  const title = origin && pageTitleFor(appRoutes, origin.path);
+  const back = origin && title ? { to: origin.path, state: { returnTo: origin.key }, title } : { to: "/progress", state: undefined, title: "Progress" };
   return (
-    <TextLink to="/progress" className="inline-flex items-center gap-1">
+    <TextLink to={back.to} state={back.state} className="inline-flex items-center gap-1">
       <IconArrowLeft size={14} />
-      Progress
+      {back.title}
     </TextLink>
   );
 }

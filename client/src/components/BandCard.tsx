@@ -8,6 +8,7 @@ import { Kicker } from "../ui/Heading";
 import { InlineEdit } from "../ui/InlineEdit";
 import { ATTEMPT_MODE_LABEL, SECTION_LABEL } from "../ui/labels";
 import { Skeleton } from "../ui/Skeleton";
+import { useReviewLinkState } from "../hooks/useAttemptListPlace";
 import { rangeText } from "../pages/dashboard/sectionCopy";
 import ModulePathDisclosure from "./ModulePathDisclosure";
 
@@ -31,6 +32,7 @@ type BandCardProps = {
  */
 export default function BandCard({ section, estimate, loading = false, target, onTargetChange, missing }: BandCardProps) {
   const name = SECTION_LABEL[section];
+  const reviewLinkState = useReviewLinkState();
   return (
     <Card as="section" aria-label={`${name} band`} aria-busy={loading || undefined} className="flex flex-col gap-4">
       <Kicker as="h3">{name}</Kicker>
@@ -47,7 +49,7 @@ export default function BandCard({ section, estimate, loading = false, target, o
             <>
               <p className="text-meta text-graphite">
                 From{" "}
-                <TextLink to={`/attempts/${estimate.attemptId}`}>
+                <TextLink to={`/attempts/${estimate.attemptId}`} state={reviewLinkState}>
                   your {name} {ATTEMPT_MODE_LABEL[estimate.mode]}
                 </TextLink>
                 , {formatWhen(estimate.attemptedAt)}

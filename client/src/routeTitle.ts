@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useMatches, type Params } from "react-router-dom";
+import { matchRoutes, useMatches, type Params, type RouteObject } from "react-router-dom";
 import { SECTION_LABEL } from "./ui/labels";
 import type { Section } from "@toefl-prep/shared";
 
@@ -34,18 +34,27 @@ function routeHandleTitle(handle: unknown): RouteTitle | null {
   return typeof title === "string" || typeof title === "function" ? (title as RouteTitle) : null;
 }
 
+/** The page name of the deepest matched route that names one. */
+function deepestTitle(matches: readonly { handle?: unknown; route?: { handle?: unknown }; params: Params }[]): string | null {
+  for (let i = matches.length - 1; i >= 0; i--) {
+    const title = routeHandleTitle(matches[i].handle ?? matches[i].route?.handle);
+    if (title !== null) return resolveRouteTitle(title, matches[i].params);
+  }
+  return null;
+}
+
+/** The page name `routes` give `path` ("/progress" is "Progress"), or null when none matches. */
+export function pageTitleFor(routes: RouteObject[], path: string): string | null {
+  return deepestTitle(matchRoutes(routes, path) ?? []);
+}
+
 /**
  * Sets the document title from the deepest matched route that names one. Called once, in the root
  * route, so every page gets its title from the route table and none sets its own. It follows the
  * router's matches, so a link, Back and Forward all update it.
  */
 export function useRouteDocumentTitle(): void {
-  const matches = useMatches();
-  let page: string | null = null;
-  for (let i = matches.length - 1; i >= 0 && page === null; i--) {
-    const title = routeHandleTitle(matches[i].handle);
-    if (title !== null) page = resolveRouteTitle(title, matches[i].params);
-  }
+  const page = deepestTitle(useMatches());
   useEffect(() => {
     if (page !== null) document.title = documentTitle(page);
   }, [page]);

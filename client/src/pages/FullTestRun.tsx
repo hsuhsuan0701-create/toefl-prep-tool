@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import type { AttemptDetailVM, BandShortfallVM, FullTestRunVM, FullTestSection, FullTestSectionVM } from "@toefl-prep/shared";
 import { advanceFullTest, getAttempt } from "../lib/api";
 import { requestErrorMessage } from "../lib/requestError";
+import { useReviewLinkState } from "../hooks/useAttemptListPlace";
 import { NOT_RUNNABLE, isTerminalSection, useFullTestRun } from "../hooks/useFullTestRun";
 import { totalSkipped } from "../lib/coverage";
 import { taskTypeLabel } from "../lib/taskTypes";
@@ -287,6 +288,8 @@ function SectionRow({ runId, section, noBand, sitting }: { runId: string; sectio
   const leftPartWay = section.state === "in-progress";
   const resumes = resumableInThisTab(runId, section);
   const label = SECTION_LABEL[section.section];
+  // The report's back link leads here, to this Run.
+  const reviewLinkState = useReviewLinkState();
   return (
     <Card as="li" className="space-y-4">
       <div className="flex flex-wrap items-start justify-between gap-3">
@@ -322,7 +325,7 @@ function SectionRow({ runId, section, noBand, sitting }: { runId: string; sectio
             </ButtonLink>
           )}
           {section.attemptId && section.state !== "in-progress" && (
-            <TextLink to={`/attempts/${section.attemptId}`} className="text-ui">
+            <TextLink to={`/attempts/${section.attemptId}`} state={reviewLinkState} className="text-ui">
               View this section's report
             </TextLink>
           )}

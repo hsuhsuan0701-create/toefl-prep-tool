@@ -1,5 +1,7 @@
 import { useState, type ReactNode } from "react";
+import { useLocation } from "react-router-dom";
 import type { AttemptListItemVM, AttemptListVM } from "@toefl-prep/shared";
+import { rememberOpenedRow, useReviewLinkState } from "../hooks/useAttemptListPlace";
 import { abortAttempt, completeAttempt } from "../lib/api";
 import { requestErrorMessage } from "../lib/requestError";
 import { Button, ButtonLink, TextLink } from "../ui/Button";
@@ -74,6 +76,10 @@ export default function AttemptsFeed({
   const [pending, setPending] = useState<PendingAction | null>(null);
   const [busy, setBusy] = useState(false);
   const [actionError, setActionError] = useState<Record<string, string>>({});
+  // Opening a row remembers it against this history entry, so coming back puts it where it was, and
+  // tells the review which page to lead back to.
+  const { key: locationKey } = useLocation();
+  const reviewLinkState = useReviewLinkState();
 
   // "Finish and score" runs the completion the run itself would have (for a Speaking Simulation,
   // the durable finalizer that computes the band); "Discard" marks the Attempt aborted. Both ask
@@ -146,6 +152,8 @@ export default function AttemptsFeed({
               setTitle={a.setTitle ?? a.setId}
               when={formatWhen(a.startedAt)}
               to={`/attempts/${a.id}`}
+              linkState={reviewLinkState}
+              onOpen={(link) => rememberOpenedRow(locationKey, { attemptId: a.id, top: link.getBoundingClientRect().top, rows: items?.length ?? 0 })}
               status={a.status}
               band={a.estimate?.band ?? null}
               modulePath={a.modulePath}
