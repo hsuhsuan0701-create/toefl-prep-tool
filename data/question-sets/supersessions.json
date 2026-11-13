@@ -199,6 +199,26 @@
       "setId": "spk-fbe10c5d",
       "supersededBy": "spk-f9fe8bad",
       "supersededAt": "2026-08-23 15:03:27"
+    },
+    {
+      "setId": "wri-1da7837a",
+      "supersededBy": "wri-4661c123",
+      "supersededAt": "2026-11-13 07:45:34"
+    },
+    {
+      "setId": "wri-6c0c961a",
+      "supersededBy": "wri-39a90e7d",
+      "supersededAt": "2026-11-13 07:45:34"
+    },
+    {
+      "setId": "wri-6d6c11da",
+      "supersededBy": "wri-ab10b0b1",
+      "supersededAt": "2026-11-13 07:45:34"
+    },
+    {
+      "setId": "wri-f8adc240",
+      "supersededBy": "wri-f4e1c52b",
+      "supersededAt": "2026-11-13 07:45:34"
     }
   ]
 }
