@@ -50,6 +50,10 @@ export default function EssayItemReview({
   const task = essayTaskFor(setSnapshot, item.itemId);
   const inPlace = jobViewInPlaceOfItem(jobView, item);
   const showReport = report && !inPlace;
+  // An essay with no words was scored 0 without a Judge or the Arbiter: its Summary says so, and the
+  // rest of a Score Report (Deductions, the Arbiter's reasoning) would describe a judging that never
+  // happened, so the Response is shown on its own instead.
+  const noWords = report?.noWordsWritten === true;
 
   return (
     <ItemCard
@@ -78,7 +82,17 @@ export default function EssayItemReview({
         discarded={discarded}
       />
 
-      {showReport ? (
+      {showReport && noWords ? (
+        <>
+          {report.feedbackZh && (
+            <section className="space-y-2">
+              <h3 className="text-body font-semibold text-ink">Summary</h3>
+              <Prose lang="zh-Hant">{report.feedbackZh}</Prose>
+            </section>
+          )}
+          <EssayResponse userText={userText} />
+        </>
+      ) : showReport ? (
         <>
           {cautions.length > 0 && (
             <div className="space-y-2">

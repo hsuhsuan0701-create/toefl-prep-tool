@@ -2,6 +2,7 @@ import {
   type AnySet,
   type BuildSentenceScoreVM,
   type DeliveryReport,
+  essayHasNoWords,
   type ScoreRequest,
   type ScoreReport,
 } from "@toefl-prep/shared";
@@ -19,6 +20,7 @@ import {
   failRescorable,
   noSpeechReportItem,
   noSpeechScoreWrite,
+  noWordsReportItem,
   runJudges,
   spokenItemMeta,
   type AdmittedEssay,
@@ -241,6 +243,21 @@ async function scoreEssay(
   const aggregate = deps.aggregate ?? realAggregate;
   const { taskType, itemId, responseText: text, materials } = admitted;
   const hadScore = committed.has(itemId);
+
+  // An essay with no words (nothing, or only whitespace: essayHasNoWords) scores a deterministic 0
+  // and never reaches a Judge or the Arbiter, the written counterpart of a recording with no speech
+  // (docs/adr/0018). A Re-score of it lands here too, so the empty text is never sent anywhere. Any
+  // Judge Report from an earlier scoring of the Item is deleted with it, so nothing judged sits
+  // beside the 0.
+  if (essayHasNoWords(text)) {
+    const reportItem = noWordsReportItem(itemId);
+    session.persist((writes) => {
+      onProgress?.({ stage: "persisting" });
+      writes.deleteJudgeReports(attemptId, itemId);
+      writes.updateItemScore({ attemptId, itemId, score: 0, scoreJson: JSON.stringify(reportItem), scoringStatus: "scored" });
+    });
+    return { taskType, report: { taskType, items: [reportItem] }, judges: [], judgesFailed: [] };
+  }
 
   const markFailed = (message: string) => {
     if (hadScore) return;

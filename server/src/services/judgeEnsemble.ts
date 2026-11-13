@@ -231,6 +231,35 @@ export function noSpeechScoreWrite(attemptId: string, itemId: string, prompt: Sp
 }
 
 // ---------------------------------------------------------------------------------------------
+// The essay with no words
+// ---------------------------------------------------------------------------------------------
+
+const NO_WORDS_NOTE = "No Response was written for this task, so it was scored 0 without being sent to the Judges.";
+const NO_WORDS_FEEDBACK_ZH = "這篇作答沒有寫下任何文字，因此本題以 0 分計算，與正式考試中沒有作答的題目相同。";
+
+export type NoWordsReportItem = ScoreReport["items"][number] & { noWordsWritten: true };
+
+/**
+ * The Score Report item an Email or Academic Discussion with no words (`essayHasNoWords`) is
+ * persisted as, the written counterpart of noSpeechReportItem: the Score Report's shape, so every
+ * reader of a scored essay reads it, with `noWordsWritten` telling it apart from a judged 0. No Judge
+ * Report exists behind it, and it names no provider.
+ */
+export function noWordsReportItem(itemId: string): NoWordsReportItem {
+  return {
+    itemId,
+    ownScore: 0,
+    finalScore: 0,
+    maxScore: 5,
+    dimensions: [],
+    deductions: [],
+    reconciliationNote: NO_WORDS_NOTE,
+    feedbackZh: NO_WORDS_FEEDBACK_ZH,
+    noWordsWritten: true,
+  };
+}
+
+// ---------------------------------------------------------------------------------------------
 // admit
 // ---------------------------------------------------------------------------------------------
 

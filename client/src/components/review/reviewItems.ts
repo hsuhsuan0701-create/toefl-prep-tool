@@ -23,7 +23,7 @@ export function isDeterministicScoreJson(v: unknown): v is DeterministicScoreJso
 
 /** The `meta` a scored spoken Item carries beside its Score Report: the target and diff, or the question. */
 export type SpeakingMeta = { target?: string; diff?: BuildupDiffOp[]; question?: string };
-export type PersistedScoreItem = ScoreReportItem & { meta?: SpeakingMeta; noSpeechDetected?: boolean };
+export type PersistedScoreItem = ScoreReportItem & { meta?: SpeakingMeta; noSpeechDetected?: boolean; noWordsWritten?: boolean };
 /**
  * What Build a Sentence scoring persists. `correctAnswers` (the key) is absent while a Simulation
  * is not yet completed: the server withholds it until then, and correctness alone is shown.

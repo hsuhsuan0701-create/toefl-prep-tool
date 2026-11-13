@@ -1,7 +1,9 @@
 import { useCallback, useRef, useState, type ReactNode } from "react";
+import { essayHasNoWords } from "@toefl-prep/shared";
 import { useDeadlineCountdown } from "../hooks/useDeadlineCountdown";
 import { TASK_TYPES } from "../lib/taskTypes";
 import { Button } from "../ui/Button";
+import { ConfirmDialog } from "../ui/ConfirmDialog";
 import { EssayField, WordCount } from "../ui/EssayEditor";
 import { ExamClock, ExamShell } from "../ui/ExamShell";
 import { formatDuration } from "../ui/format";
@@ -68,7 +70,9 @@ type TimedEditorProps =
  *
  * The clock is a wall-clock deadline fixed once per mount, so a laptop put to sleep mid-essay comes
  * back with that time gone rather than handed back. The Task is handed over exactly once — by Submit
- * or by the clock running out, whichever is first. A reload is asked about by the page's leave guard
+ * or by the clock running out, whichever is first. Submit with no words in the field (nothing, or
+ * only whitespace: essayHasNoWords) asks first, since that essay scores 0 (docs/adr/0018); the clock
+ * running out never asks, and hands in whatever the field holds, empty or not. A reload is asked about by the page's leave guard
  * (useLeaveGuard), which is up whenever this editor is. A caller that shows two Tasks in a row keys
  * each one, so the second starts with an empty field and a full clock.
  */
@@ -104,7 +108,23 @@ export default function TimedEditor({
     [onSubmit],
   );
 
-  const handleExpire = useCallback(() => submitOnce(seconds), [submitOnce, seconds]);
+  // Submit on an essay with no words asks before handing it in; one with any word goes at once.
+  const [confirmingEmpty, setConfirmingEmpty] = useState(false);
+  const handleSubmitClick = () => {
+    if (essayHasNoWords(textRef.current)) setConfirmingEmpty(true);
+    else submitOnce(secondsUsedNow());
+  };
+  const handleEmptyConfirmed = () => {
+    setConfirmingEmpty(false);
+    submitOnce(secondsUsedNow());
+  };
+
+  // The clock running out is not a press: it closes any open question and hands the essay in as it
+  // stands.
+  const handleExpire = useCallback(() => {
+    setConfirmingEmpty(false);
+    submitOnce(seconds);
+  }, [submitOnce, seconds]);
   const secondsLeft = useDeadlineCountdown(deadline, handleExpire);
 
   const handleChange = (next: string) => {
@@ -126,7 +146,7 @@ export default function TimedEditor({
       footer={
         <>
           <WordCount count={countWords(text)} guide={guide} />
-          <Button variant="primary" className="shrink-0" onClick={() => submitOnce(secondsUsedNow())}>
+          <Button variant="primary" className="shrink-0" onClick={handleSubmitClick}>
             {isEmail ? "Submit Email" : "Submit post"}
           </Button>
         </>
@@ -169,6 +189,19 @@ export default function TimedEditor({
           />
         </section>
       </div>
+      <ConfirmDialog
+        open={confirmingEmpty}
+        title={isEmail ? "Hand in an empty email?" : "Hand in an empty post?"}
+        confirmLabel={isEmail ? "Submit empty email" : "Submit empty post"}
+        cancelLabel="Keep writing"
+        onConfirm={handleEmptyConfirmed}
+        onCancel={() => setConfirmingEmpty(false)}
+      >
+        <p>
+          Nothing is written yet. As on the test, an empty Response scores 0, and you can&apos;t come back to
+          this task once it is handed in. The clock keeps running while you decide.
+        </p>
+      </ConfirmDialog>
     </ExamShell>
   );
 }

@@ -143,6 +143,19 @@ export const EarsResultSchema = z.object({
 export type EarsResult = z.infer<typeof EarsResultSchema>;
 
 // ---------------------------------------------------------------------------------------------
+// An essay with no words (docs/adr/0018).
+//
+// The boundary is whitespace: an Email or Academic Discussion Response that is empty once its
+// whitespace is trimmed has no words, scores a deterministic 0 and never reaches a Judge, the written
+// counterpart of a recording with no speech. Anything else, a single word or a lone punctuation mark
+// included, is an essay and goes to the Judges, who score how little it says. The server's scoring
+// and the editor's "hand in an empty essay?" question both read this one rule.
+// ---------------------------------------------------------------------------------------------
+export function essayHasNoWords(text: string): boolean {
+  return text.trim() === "";
+}
+
+// ---------------------------------------------------------------------------------------------
 // A deliberately skipped Speaking Simulation Item.
 //
 // An Item the User never recorded in a Simulation scores a deterministic 0, as an unanswered item does

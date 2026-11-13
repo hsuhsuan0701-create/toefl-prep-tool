@@ -4,6 +4,7 @@ import { Card } from "../ui/Card";
 import { Chip, StatusChip } from "../ui/Chip";
 import { Disclosure } from "../ui/Disclosure";
 import { Kicker } from "../ui/Heading";
+import { Notice } from "../ui/Notice";
 import { MarkedText, Prose } from "../ui/Prose";
 import { markQuotes } from "../ui/markQuotes";
 import { countWords } from "../ui/wordCount";
@@ -34,6 +35,8 @@ export type ScoreReportItem = {
   selfArbitrated?: boolean;
   /** A recording with no speech: scored 0 without any Judge. */
   noSpeechDetected?: boolean;
+  /** An essay with no words: scored 0 without any Judge (docs/adr/0018). */
+  noWordsWritten?: boolean;
 };
 
 export type JudgeSummary = {
@@ -284,8 +287,27 @@ export default function ScoreCard({ result, userText }: ScoreCardProps) {
         <ScoreFigure score={item.finalScore} max={item.maxScore} />
       </header>
       <div className="space-y-6 px-4 py-5 sm:px-6 sm:py-6">
-        <ScoreCautionNotes cautions={cautions} />
-        <ScoreReport item={item} judges={result.judges} responseText={userText} />
+        {item.noWordsWritten ? (
+          // An essay with no words was scored 0 without a Judge or the Arbiter (docs/adr/0018): there
+          // are no Deductions to mark and no reasoning to show, only why the score is 0.
+          <>
+            <div data-testid="no-words-note">
+              <Notice tone="caution" title="No Response written">
+                {item.reconciliationNote}
+              </Notice>
+            </div>
+            {item.feedbackZh && (
+              <Section title="Summary" level="h3">
+                <Prose lang="zh-Hant">{item.feedbackZh}</Prose>
+              </Section>
+            )}
+          </>
+        ) : (
+          <>
+            <ScoreCautionNotes cautions={cautions} />
+            <ScoreReport item={item} judges={result.judges} responseText={userText} />
+          </>
+        )}
       </div>
     </Card>
   );
