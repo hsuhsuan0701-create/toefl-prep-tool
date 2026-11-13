@@ -1,0 +1,600 @@
+{
+  "id": "wri-30b485f9",
+  "source": "generated",
+  "createdAt": "2026-11-13T08:10:29.022Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Why does my timetable list two rooms for this tutorial, one of them on the upper floor?",
+        "frame": "The group ___ ___ ___ ___ by surname.",
+        "tiles": [
+          "split",
+          "two rooms",
+          "are",
+          "is",
+          "between"
+        ],
+        "answers": [
+          [
+            "is",
+            "split",
+            "between",
+            "two rooms"
+          ],
+          [
+            "are",
+            "split",
+            "between",
+            "two rooms"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "Why did you turn that heavy parcel away after putting it on the scale beside the sorting table?",
+        "frame": "Our ___ ___ ___ ___ light loads only.",
+        "tiles": [
+          "for",
+          "is",
+          "cargo bikes",
+          "built",
+          "are"
+        ],
+        "answers": [
+          [
+            "cargo bikes",
+            "are",
+            "built",
+            "for"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "May I put up a shed on the allotment plot I've just rented?",
+        "frame": "No, but you ___ ___ ___ ___ ___ the fence.",
+        "tiles": [
+          "than",
+          "low",
+          "keep",
+          "a tool chest",
+          "may",
+          "lower"
+        ],
+        "answers": [
+          [
+            "may",
+            "keep",
+            "a tool chest",
+            "lower",
+            "than"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "Why do we weigh the seedling trays every morning and write the figures on the tray label?",
+        "frame": "The weight ___ ___ ___ ___ ___ overnight.",
+        "tiles": [
+          "lost",
+          "has",
+          "the trays",
+          "shows",
+          "how much water",
+          "have"
+        ],
+        "answers": [
+          [
+            "shows",
+            "how much water",
+            "the trays",
+            "have",
+            "lost"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "Why does last week's interview sound so hollow? Do we need a second microphone next time?",
+        "frame": "___ ___ ___ ___ ___ ___ the microphone.",
+        "tiles": [
+          "far",
+          "were",
+          "the guest",
+          "from",
+          "sitting",
+          "was",
+          "too"
+        ],
+        "answers": [
+          [
+            "the guest",
+            "was",
+            "sitting",
+            "too",
+            "far",
+            "from"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "When can I collect the violin bow I left with you for rehairing?",
+        "frame": "___ ___ ___ ___ ___ ___ for two days and been rosined.",
+        "tiles": [
+          "has",
+          "be ready",
+          "until the new hair",
+          "have",
+          "your bow",
+          "settled",
+          "won't"
+        ],
+        "answers": [
+          [
+            "your bow",
+            "won't",
+            "be ready",
+            "until the new hair",
+            "has",
+            "settled"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "Do these new eye drops have to go in the refrigerator?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ opened, but throw it away after four weeks.",
+        "tiles": [
+          "that",
+          "enough",
+          "have",
+          "a cool cupboard",
+          "been",
+          "for a bottle",
+          "is",
+          "has"
+        ],
+        "answers": [
+          [
+            "a cool cupboard",
+            "is",
+            "enough",
+            "for a bottle",
+            "that",
+            "has",
+            "been"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "May I carry these skis up to my room? Someone just handed me a numbered tag for them.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ in the drying room beside the entrance?",
+        "tiles": [
+          "them",
+          "to leave",
+          "mind",
+          "the racks",
+          "would",
+          "leaving",
+          "on",
+          "you"
+        ],
+        "answers": [
+          [
+            "would",
+            "you",
+            "mind",
+            "leaving",
+            "them",
+            "on",
+            "the racks"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Why are these old iron evaporating pans so shallow? I can see where the salt was raked to the sides.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "would",
+          "of brine",
+          "boiled away",
+          "the salt makers",
+          "faster",
+          "that",
+          "a shallow layer",
+          "knew",
+          "boil away"
+        ],
+        "answers": [
+          [
+            "the salt makers",
+            "knew",
+            "that",
+            "a shallow layer",
+            "of brine",
+            "would",
+            "boil away",
+            "faster"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "May we do the weekly readings in translation, or do you want page numbers from the original edition in our essays?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "taken",
+          "you",
+          "the original edition",
+          "must",
+          "took",
+          "any passage",
+          "from",
+          "that",
+          "be",
+          "quote"
+        ],
+        "answers": [
+          [
+            "any passage",
+            "that",
+            "you",
+            "quote",
+            "must",
+            "be",
+            "taken",
+            "from",
+            "the original edition"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "Last week you attended an evening talk at your town's heritage society, where a retired tannery foreman, Mr. Aldous Finch, described working life at the old tannery. You lead a weekend walking group of thirty members, and next spring the group will follow a heritage walk that passes the tannery yard. You have never met Mr. Finch, but you would like him to give the same talk at the group's spring meeting, which could be held on either of two Saturdays.",
+    "to": "aldous.finch@millbrookheritage.example",
+    "subject": "Invitation to repeat your tannery talk for our walking group",
+    "bullets": [
+      "Tell Mr. Finch what you appreciated about his talk on the old tannery.",
+      "Invite him to give the talk to your walking group and explain why it would interest the members.",
+      "Propose two possible Saturday dates in spring and ask which one would suit him."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Introduction to Media Studies",
+    "professorName": "Dr. Okafor",
+    "professorPost": "This week we are looking at how online news sites deal with their audiences. Many sites let readers post comments directly beneath each story, while others have closed these sections and accept responses only in other ways. Before our next class, I would like your view: should online news sites keep reader comment sections open beneath their stories, or is it better to close them? Why?",
+    "studentPosts": [
+      {
+        "name": "Marta",
+        "post": "I think comment sections should stay open. Readers often know things the reporter doesn't. Under a story about flooding in my town, residents pointed out that a street name was wrong, and the site corrected it within an hour. Without comments, readers lose their chance to answer back and add local knowledge."
+      },
+      {
+        "name": "Devon",
+        "post": "I would close them. Comment sections fill up quickly with abusive or misleading remarks, and someone on staff has to spend hours screening them instead of reporting. A letters page, where editors choose a few thoughtful responses to publish, still gives readers a voice without leaving insults sitting right under a serious story."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "campus-academics",
+          "situation": "A student asks the registrar's clerk why the printed timetable shows two rooms for one tutorial and learns the group is split by surname.",
+          "participantRoles": [
+            "student holding a printed timetable",
+            "registrar's clerk at the enrolment counter"
+          ],
+          "noveltyKey": "tutorial-two-rooms-split-by-surname",
+          "requiredConcepts": [
+            "two rooms listed for one tutorial",
+            "group split by surname",
+            "second room on the upper floor"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2b1ded8d",
+              "reason": "That campus exchange was about a carrel key due back before closing; this one is about a tutorial group divided between two rooms."
+            },
+            {
+              "setId": "wri-39a90e7d",
+              "reason": "That set covered a regraded report and a loan limit; this one explains a timetable listing."
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "A new employee at a bicycle courier firm asks the dispatcher why heavy parcels are turned away and learns the cargo bikes carry only light loads.",
+          "participantRoles": [
+            "newly hired employee sorting parcels",
+            "dispatcher who assigns the deliveries"
+          ],
+          "noveltyKey": "bicycle-courier-heavy-parcels-refused",
+          "requiredConcepts": [
+            "heavy parcels turned away",
+            "cargo bikes for light loads only",
+            "scale beside the sorting table"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2b1ded8d",
+              "reason": "That exchange explained a second stamp on warehouse invoices; this one explains a weight limit on courier parcels."
+            },
+            {
+              "setId": "wri-f4e1c52b",
+              "reason": "That exchange was about recalibrating a café grinder; this one is about what a cargo bike can carry."
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A resident asks the municipal allotment warden whether a shed may be put up on a plot and learns only low tool chests are allowed.",
+          "participantRoles": [
+            "resident who has just rented a plot",
+            "municipal allotment warden"
+          ],
+          "noveltyKey": "allotment-no-sheds-low-tool-chests",
+          "requiredConcepts": [
+            "shed on an allotment plot",
+            "low tool chests only",
+            "nothing taller than the fence"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-f4e1c52b",
+              "reason": "That set covered street closure signatures and shelter dog tags; this one is a building rule on allotment plots."
+            },
+            {
+              "setId": "wri-ab10b0b1",
+              "reason": "That exchange explained a roped-off pool end; this one concerns what may stand on a rented plot."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A new assistant asks a biology researcher why the seedling trays are weighed every morning and learns the weight shows how much water was lost overnight.",
+          "participantRoles": [
+            "new assistant carrying seedling trays",
+            "biology researcher running the drought trial"
+          ],
+          "noveltyKey": "seedling-trays-weighed-water-loss",
+          "requiredConcepts": [
+            "seedling trays weighed every morning",
+            "water lost overnight",
+            "figures written on the tray label"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-f4e1c52b",
+              "reason": "That exchange was about shielding tadpole tanks from stray light; this one is about weighing trays to track water loss."
+            },
+            {
+              "setId": "wri-2b1ded8d",
+              "reason": "That exchange concerned emptying moth traps before sunrise; this one concerns a daily weighing step."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A podcast host asks the sound editor why last week's interview sounds hollow and learns the guest sat too far from the microphone.",
+          "participantRoles": [
+            "podcast host reviewing the recording",
+            "sound editor who mixed the episode"
+          ],
+          "noveltyKey": "podcast-interview-hollow-guest-far-from-microphone",
+          "requiredConcepts": [
+            "hollow sound in the interview",
+            "guest too far from the microphone",
+            "second microphone next time"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2b1ded8d",
+              "reason": "That exchange traced drifting subtitles to a frame rate setting; this one traces hollow audio to microphone distance."
+            },
+            {
+              "setId": "wri-f4e1c52b",
+              "reason": "That exchange was about a corrected headline; this one is about recorded sound quality."
+            }
+          ]
+        },
+        {
+          "domain": "arts-culture",
+          "situation": "A violinist asks the bow maker at a music shop when the rehaired bow can be collected and learns the new hair must settle for two days first.",
+          "participantRoles": [
+            "violinist who left a bow for rehairing",
+            "bow maker at the music shop"
+          ],
+          "noveltyKey": "violin-bow-rehair-settles-two-days",
+          "requiredConcepts": [
+            "rehaired violin bow",
+            "new hair settling for two days",
+            "rosin applied before collection"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-39a90e7d",
+              "reason": "That exchange swapped pianos because of a sticking pedal; this one is about a waiting period after a bow repair."
+            },
+            {
+              "setId": "wri-2b1ded8d",
+              "reason": "That set covered cello case storage and a dim tapestry hall; this one concerns instrument repair timing."
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A patient asks the clinic pharmacist whether newly prescribed eye drops belong in the refrigerator and learns a cool cupboard is enough once the bottle is opened.",
+          "participantRoles": [
+            "patient collecting eye drops",
+            "clinic pharmacist at the dispensing window"
+          ],
+          "noveltyKey": "eye-drops-cool-cupboard-once-opened",
+          "requiredConcepts": [
+            "eye drops in the refrigerator",
+            "cool cupboard once opened",
+            "bottle thrown away after four weeks"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2b1ded8d",
+              "reason": "That clinic exchange was about fasting before a blood test; this one is about storing eye drops."
+            },
+            {
+              "setId": "wri-39a90e7d",
+              "reason": "That exchange concerned glasses remade with a new coating; this one concerns medicine storage."
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A guest asks the hotel porter whether skis may be carried up to the room and learns they stay on racks in the drying room beside the entrance.",
+          "participantRoles": [
+            "guest arriving with skis",
+            "hotel porter at the entrance"
+          ],
+          "noveltyKey": "hotel-skis-drying-room-racks",
+          "requiredConcepts": [
+            "skis carried up to the room",
+            "racks in the drying room",
+            "numbered tag for each pair"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-f4e1c52b",
+              "reason": "That hotel exchange was about reserving a shuttle seat the night before; this one is about where skis are kept."
+            },
+            {
+              "setId": "wri-ab10b0b1",
+              "reason": "That set covered ferry bicycle fares and a mountain path after rockfall; this one is a storage rule for ski gear."
+            }
+          ]
+        },
+        {
+          "domain": "history-social-change",
+          "situation": "A visitor asks the guide at a heritage salt works why the old evaporating pans are so shallow and learns that shallow brine boiled away faster.",
+          "participantRoles": [
+            "visitor looking into an iron pan",
+            "guide at the heritage salt works"
+          ],
+          "noveltyKey": "heritage-salt-works-shallow-pans",
+          "requiredConcepts": [
+            "shallow iron evaporating pans",
+            "brine boiled away faster",
+            "salt raked to the sides"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-2b1ded8d",
+              "reason": "That exchange explained inkwell holes in schoolhouse desks; this one explains the shape of salt pans."
+            },
+            {
+              "setId": "wri-f4e1c52b",
+              "reason": "That exchange was about a stopped mill waterwheel; this one is about how brine was boiled."
+            }
+          ]
+        },
+        {
+          "domain": "campus-academics",
+          "situation": "A student asks a philosophy professor whether the weekly readings may be read in translation and learns the original is needed only for passages quoted in the essay.",
+          "participantRoles": [
+            "student preparing the weekly readings",
+            "philosophy professor who set the essay"
+          ],
+          "noveltyKey": "readings-in-translation-original-for-quotes",
+          "requiredConcepts": [
+            "weekly readings in translation",
+            "original text for quoted passages",
+            "page numbers from the original edition"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-ab10b0b1",
+              "reason": "That exchange ruled out preparing dialect transcripts in pairs; this one is about reading set texts in translation."
+            },
+            {
+              "setId": "wri-f4e1c52b",
+              "reason": "That exchange required handwritten field notebooks; this one concerns which edition to quote from."
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "history-social-change",
+      "noveltyKey": "tannery-talk-invitation-walking-group",
+      "requiredConcepts": [
+        "evening talk on the old tannery",
+        "weekend walking group of thirty members",
+        "two Saturday dates in spring",
+        "heritage walk past the tannery yard"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-91d6d3b8",
+          "reason": "That email reported a wrong year on a plaque; this one invites a speaker and reports no error."
+        },
+        {
+          "setId": "wri-6d6c11da",
+          "reason": "That email flagged mislabeled recordings; this one is an invitation with proposed dates."
+        },
+        {
+          "setId": "wri-736f2103",
+          "reason": "That email reported a diary shelved without a sleeve; this one asks a speaker to repeat a talk."
+        }
+      ],
+      "situation": "After hearing a heritage society evening talk about the town's former tannery, the writer, who leads a weekend walking group, wants the speaker to give the same talk at the group's spring meeting.",
+      "recipientRole": "the heritage society's guest speaker, a retired tannery foreman whom the writer has never met",
+      "communicativeActs": [
+        "express appreciation for the tannery talk",
+        "invite the speaker to address the walking group",
+        "propose two possible dates and ask which one suits"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "technology-media",
+      "noveltyKey": "online-news-reader-comment-sections",
+      "requiredConcepts": [
+        "reader comments beneath news stories",
+        "mistakes pointed out by readers",
+        "abusive remarks and screening work",
+        "letters page as an alternative"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-6023c170",
+          "reason": "That discussion asked whether platforms must reveal removal criteria; this one asks whether news sites should host reader comments at all."
+        },
+        {
+          "setId": "wri-2936d16f",
+          "reason": "That discussion weighed podcast release timing; this one weighs open reader responses against their upkeep."
+        },
+        {
+          "setId": "wri-7024b060",
+          "reason": "That discussion concerned default playlists for new users; this one concerns comment sections under news stories."
+        }
+      ],
+      "proposition": "Online news sites should keep reader comment sections open beneath their stories rather than closing them.",
+      "competingValues": [
+        "readers' chance to answer back, add local knowledge and point out mistakes",
+        "keeping abusive or misleading remarks off the page and sparing staff the work of screening them"
+      ]
+    }
+  }
+}
