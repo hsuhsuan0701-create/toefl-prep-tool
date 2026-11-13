@@ -118,7 +118,9 @@ export function createSqliteFullTestStore(db: Database.Database) {
     // A section's Attempt opened inside its Run, in one transaction: the Attempt row, the Run's link
     // to it and, when it restarts the section, the discard of the Attempt it replaces. Discarding that
     // one in the same step keeps it from being finished later (its review would show the key of a Set
-    // the Run is still sitting) and from being listed as unfinished beside the live one.
+    // the Run is still sitting) and from being listed as unfinished beside the live one. Discarding
+    // alone would release its marks, which a discarded Simulation shows: MARKS_WITHHELD_SQL keeps them
+    // on the server until the Run ends, since the restart sits the same Set under the same tag.
     openFullTestSectionAttempt(o: {
       runId: string;
       section: FullTestSection;

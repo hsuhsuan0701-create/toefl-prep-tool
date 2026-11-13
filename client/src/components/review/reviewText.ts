@@ -279,8 +279,8 @@ export function correctSummary(items: readonly IndexedItem[]): string {
 }
 
 /**
- * What a group of an in-progress Simulation adds up to while its marks are withheld: how many Items,
- * and how many are not scored, but never how many are correct (issue #48).
+ * What a group adds up to while the Attempt's marks are withheld (AttemptDetailVM.marksWithheld): how
+ * many Items, and how many are not scored, but never how many are correct.
  */
 export function unmarkedSummary(items: readonly IndexedItem[]): string {
   const { scored } = correctCount(items);

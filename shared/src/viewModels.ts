@@ -1,4 +1,4 @@
-import type { FullTestSection, JudgeReport, SetAdvisoryNote } from "./schemas.js";
+import type { FullTestSection, JudgeReport, MarksWithheldReason, SetAdvisoryNote } from "./schemas.js";
 
 // The response shapes server routes build and the client consumes as-is. Distinct from the row types in
 // server/src/db/rows.ts, which mirror SQLite's snake_case columns and stay on the server. A route that
@@ -35,7 +35,9 @@ export interface AttemptVM {
   captureFinishedAt: string | null;
   flagged: boolean;
   // The Module Path a Reading/Listening Simulation was routed to and the Router raw score the cut was
-  // applied to; both null (or absent) for an Attempt that was never routed.
+  // applied to; both null (or absent) for an Attempt that was never routed. The raw score is the
+  // share of the Router Module answered right, so it is null too while the Attempt's marks are
+  // withheld (AttemptDetailVM.marksWithheld); the Module Path is not, since the run sits that Module.
   modulePath?: "lower" | "upper" | null;
   routerRaw?: number | null;
 }
@@ -93,7 +95,10 @@ export interface ItemVM {
   // Parsed item_results.score_json when present AND parseable; null when absent OR when the
   // persisted JSON is corrupt (defensive — never throws/500s, just omits the parsed field). A
   // Simulation's Build a Sentence Item carries its key (`correctAnswers`) only once the Attempt is
-  // completed; before that the field is absent.
+  // completed; before that the field is absent. While the Attempt's marks are withheld
+  // (AttemptDetailVM.marksWithheld), a deterministic Item (Reading, Listening, Build a Sentence)
+  // carries no `correct` and its `score` is null, whatever its `scoringStatus`
+  // (ServedDeterministicItemScoreJson, ServedBuildSentenceItemScoreJson). A judged Item is untouched.
   scoreJson: unknown | null;
   scoringStatus: string;
   deliveryReport: string | null;
@@ -356,6 +361,15 @@ export interface AttemptDetailVM {
   // an unfinished or discarded Simulation, a Drill with no scored Item, and a Set that cannot be read
   // or two of whose Items share an id.
   deterministicReview?: DeterministicReviewItemVM[];
+  /**
+   * Present when this Attempt's marks are withheld, and why: a Simulation still in progress, or a
+   * discarded Simulation of a Full-Test Run still in progress (the Attempt a restarted section
+   * replaced, which waits for its Run to end). Its deterministic Items then carry no `score` and no
+   * `scoreJson.correct`, so no surface can tell a right Response from a wrong one; the review shows
+   * them unmarked from this field alone. Absent once the marks are sent: a Drill, a completed
+   * Attempt, a discarded Simulation outside a Run in progress.
+   */
+  marksWithheld?: MarksWithheldReason;
   // Present only for a completed Speaking Attempt, Drill or Simulation (a Full-Test Run's Speaking
   // section included), whose Set can still be read: one entry per spoken Item of the Attempt that
   // the Set carries. Absent, not empty, for an in-progress or discarded Attempt, so an Item with no

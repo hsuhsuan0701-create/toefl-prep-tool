@@ -6,11 +6,13 @@ import type {
   AttemptStatus,
   AttemptVM,
   FullTestRunStatus,
+  MarksWithheldReason,
   ScoringJobStatus,
   ScoringJobVM,
 } from "@toefl-prep/shared";
 import type { AttemptRow, ScoringJobRow } from "../db/rows.js";
 import type { FullTestRunStore } from "./fullTests.js";
+import type { AttemptReadStore } from "../services/attemptStore.js";
 import { sqliteTimestampToIso } from "../db/timestamps.js";
 import { readPersistedEstimate, type EstimateReadStore } from "../services/sectionEstimates.js";
 import { requiredTaskTypes } from "../services/bandEstimator.js";
@@ -21,7 +23,21 @@ import { setTitleFor } from "../services/setTitle.js";
 // The read side of the Attempts route: how an `attempts` row and a `scoring_jobs` row become the
 // view models the client renders. Every Attempt timestamp leaves through `sqliteTimestampToIso` here.
 
-export function toAttemptVM(row: AttemptRow, setTitle: string | null): AttemptVM {
+/**
+ * Why an Attempt's marks are withheld, given the ids `listMarksWithheldAttemptIds` returned for it
+ * (MARKS_WITHHELD_SQL decides), or undefined when they are sent. In progress, the Attempt is waiting
+ * on itself; otherwise it is a restarted section's replaced Attempt, waiting on its Run.
+ */
+export function marksWithheldReason(row: AttemptRow, withheldIds: ReadonlySet<string>): MarksWithheldReason | undefined {
+  if (!withheldIds.has(row.id)) return undefined;
+  return row.status === "in_progress" ? "attempt-in-progress" : "full-test-run-in-progress";
+}
+
+/**
+ * `marksWithheld`: the Router raw score is the share of the Router Module answered right, so it
+ * waits with the Attempt's marks. The Module Path does not: the run sits the Module it names.
+ */
+export function toAttemptVM(row: AttemptRow, setTitle: string | null, marksWithheld = false): AttemptVM {
   return {
     id: row.id,
     kind: row.kind as AttemptKind,
@@ -35,7 +51,7 @@ export function toAttemptVM(row: AttemptRow, setTitle: string | null): AttemptVM
     captureFinishedAt: sqliteTimestampToIso(row.capture_finished_at),
     flagged: row.flagged === 1,
     modulePath: row.module_path,
-    routerRaw: row.router_raw,
+    routerRaw: marksWithheld ? null : row.router_raw,
   };
 }
 
@@ -50,14 +66,16 @@ export function toAttemptVM(row: AttemptRow, setTitle: string | null): AttemptVM
 export function toAttemptListItemVMs(
   rows: readonly AttemptRow[],
   setTitles: ReadonlyMap<string, string | null>,
-  repo: EstimateReadStore & MissingBandStore & Pick<FullTestRunStore, "listFullTestRunsForAttempts">,
+  repo: EstimateReadStore & MissingBandStore & Pick<FullTestRunStore, "listFullTestRunsForAttempts"> & Pick<AttemptReadStore, "listMarksWithheldAttemptIds">,
 ): AttemptListItemVM[] {
-  const runs = rows.length > 0 ? repo.listFullTestRunsForAttempts(rows.map((row) => row.id)) : new Map<string, { id: string; status: string }>();
+  const ids = rows.map((row) => row.id);
+  const runs = rows.length > 0 ? repo.listFullTestRunsForAttempts(ids) : new Map<string, { id: string; status: string }>();
+  const marksWithheld = rows.length > 0 ? repo.listMarksWithheldAttemptIds(ids) : new Set<string>();
   return rows.map((row) => {
     const estimate = readPersistedEstimate(repo, row.id);
     const run = runs.get(row.id);
     return {
-      ...toAttemptVM(row, setTitles.get(row.set_id) ?? null),
+      ...toAttemptVM(row, setTitles.get(row.set_id) ?? null, marksWithheld.has(row.id)),
       estimate: estimate ? { band: estimate.band, method: estimate.method } : null,
       // Worked out only where the log shows it: a completed, non-Repeat Attempt with no band.
       missingBand: row.status === "completed" && !estimate && row.is_repeat !== 1 ? missingBand(row, repo) : null,

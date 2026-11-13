@@ -533,9 +533,11 @@ describe("POST /:id/route", () => {
     expect(attempt.router_raw).toBe(11 / 17);
 
     const getRes = await app.request(`/${attemptId}`);
-    const detail = (await getRes.json()) as { attempt: { modulePath: string; routerRaw: number } };
+    const detail = (await getRes.json()) as { attempt: { modulePath: string; routerRaw: number | null } };
     expect(detail.attempt.modulePath).toBe("upper");
-    expect(detail.attempt.routerRaw).toBe(11 / 17);
+    // The review withholds the raw score with the marks until the Attempt completes ("GET /:id — a
+    // Simulation's marks" below); the route's own answer above is part of the run, as a score is.
+    expect(detail.attempt.routerRaw).toBeNull();
   });
 
   it("is idempotent: a second POST returns the SAME body, without recomputing or rewriting", async () => {
@@ -810,6 +812,66 @@ describe("a routed Simulation finished before its second Module", () => {
 // every Item once the Attempt is completed. Before that, a Drill gets it for the Items it has
 // scored (its own score responses showed them already), and a Simulation gets none: its keys and
 // Explanations reach the client only after the Attempt completes.
+// A Simulation's marks wait for its completion, as its key does (CLAUDE.md, "Sets and answers"), and
+// the route enforces it: while they wait, a scored Item's `score` and `scoreJson.correct` stay on
+// the server, and `marksWithheld` says so. The Response itself (`answer`, the option's words, the
+// Module) is still sent, so the review can show what was answered.
+describe("GET /:id — a Simulation's marks", () => {
+  const scoredItem = (detail: AttemptDetailVM, itemId: string) => detail.items.find((item) => item.itemId === itemId)!;
+
+  it("withholds every scored Item's mark and the Router score while the Simulation is in progress, and sends them once it completes", async () => {
+    const { app } = buildTestApp();
+    const { attemptId } = await createAttempt(app, { kind: "reading", mode: "simulation", setId: SET_ID });
+    await scoreAllRouterItemsElevenOfSeventeenCorrect(app, attemptId);
+    expect((await postRoute(app, attemptId)).status).toBe(200);
+
+    const during = (await (await app.request(`/${attemptId}`)).json()) as AttemptDetailVM;
+    expect(during.marksWithheld).toBe("attempt-in-progress");
+    const wrong = scoredItem(during, "dl-1-q1");
+    expect(wrong).toMatchObject({ scoringStatus: "scored", score: null });
+    expect(wrong.scoreJson).toEqual(expect.objectContaining({ module: "router", answer: "b", skill: expect.any(String) }));
+    expect(wrong.scoreJson).not.toHaveProperty("correct");
+    for (const item of during.items) {
+      expect(item.score).toBeNull();
+      expect(item.scoreJson).not.toHaveProperty("correct");
+    }
+    // The Router Module's raw score is a count of correct Items; the Module Path the run needs stays.
+    expect(during.attempt.routerRaw).toBeNull();
+    expect(during.attempt.modulePath).toBe("upper");
+    const listed = (await (await app.request("/")).json()) as AttemptListVM;
+    expect(listed.items.find((row) => row.id === attemptId)).toMatchObject({ routerRaw: null, modulePath: "upper" });
+
+    expect((await postComplete(app, attemptId)).status).toBe(200);
+    const after = (await (await app.request(`/${attemptId}`)).json()) as AttemptDetailVM;
+    expect(after).not.toHaveProperty("marksWithheld");
+    expect(scoredItem(after, "dl-1-q1")).toMatchObject({ score: 0, scoreJson: { correct: false, module: "router", answer: "b" } });
+    expect(scoredItem(after, "ap-1-q2")).toMatchObject({ score: 1, scoreJson: { correct: true } });
+    expect(after.attempt.routerRaw).toBeCloseTo(11 / 17);
+  });
+
+  it("sends a Drill's marks as soon as an Item is scored", async () => {
+    const { app } = buildTestApp();
+    const { attemptId } = await createAttempt(app, { kind: "reading", mode: "drill", setId: SET_ID });
+    await postScore(app, attemptId, { taskType: "daily_life", items: [{ itemId: "dl-1-q1", selectedOptionId: "a" }] });
+    const detail = (await (await app.request(`/${attemptId}`)).json()) as AttemptDetailVM;
+    expect(detail.attempt.status).toBe("in_progress");
+    expect(detail).not.toHaveProperty("marksWithheld");
+    expect(scoredItem(detail, "dl-1-q1")).toMatchObject({ score: 1, scoreJson: { correct: true } });
+  });
+
+  it("sends a discarded standalone Simulation's marks, and still no key", async () => {
+    const { app } = buildTestApp();
+    const { attemptId } = await createAttempt(app, { kind: "reading", mode: "simulation", setId: SET_ID });
+    await postScore(app, attemptId, { taskType: "daily_life", items: [{ itemId: "dl-1-q1", selectedOptionId: "b" }] });
+    expect((await app.request(`/${attemptId}/abort`, { method: "POST" })).status).toBe(200);
+    const detail = (await (await app.request(`/${attemptId}`)).json()) as AttemptDetailVM;
+    expect(detail.attempt.status).toBe("aborted");
+    expect(detail).not.toHaveProperty("marksWithheld");
+    expect(scoredItem(detail, "dl-1-q1")).toMatchObject({ score: 0, scoreJson: { correct: false } });
+    expect(detail).not.toHaveProperty("deterministicReview");
+  });
+});
+
 describe("GET /:id — deterministicReview", () => {
   it("is absent for an in-progress Drill with nothing scored, and for an unfinished Simulation", async () => {
     const { app } = buildTestApp();

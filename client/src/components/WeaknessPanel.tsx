@@ -97,7 +97,7 @@ export default function WeaknessPanel({ weaknesses, judgeAgreement, skillAccurac
           as="h3"
           id={`${ids}-skills`}
           title="Reading and Listening skills"
-          description={`Percent correct on each skill in your ${skillItemsLimit} most recently scored multiple-choice Reading and Listening Items, weakest first. A Complete the Words gap has no skill, so it is not counted. A Drill counts as soon as an Item is scored, a Simulation once it is finished or discarded.`}
+          description={`Percent correct on each skill in your ${skillItemsLimit} most recently scored multiple-choice Reading and Listening Items, weakest first. A Complete the Words gap has no skill, so it is not counted. A Drill counts as soon as an Item is scored, a Simulation once its review marks each Response.`}
         />
         {skillAccuracy.length === 0 ? (
           <EmptyState title="Not enough scored Items yet">

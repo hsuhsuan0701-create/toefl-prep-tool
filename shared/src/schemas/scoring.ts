@@ -89,6 +89,42 @@ export type DeterministicItemScoreJson = {
   prefix?: string;
 };
 
+/**
+ * What Build a Sentence scoring persists in `item_results.score_json`, in either mode
+ * (server/src/services/scoreItems.ts writes it): the Item's correctness (`score` is 1 or 0 to
+ * match), every accepted arrangement (`correctAnswers`, the key) and the Item's frame as the Set had
+ * it (`frame`; absent, or null, for an Item with none).
+ */
+export type BuildSentenceItemScoreJson = {
+  correct: boolean;
+  correctAnswers: string[][];
+  frame?: string | null;
+};
+
+/**
+ * Why GET /api/attempts/:id withholds an Attempt's marks (AttemptDetailVM.marksWithheld): it is a
+ * Simulation still in progress, or a discarded Simulation of a Full-Test Run still in progress (the
+ * Attempt a restarted section replaced), whose marks wait for the Run to end.
+ */
+export type MarksWithheldReason = "attempt-in-progress" | "full-test-run-in-progress";
+
+/**
+ * A Reading or Listening Item's `scoreJson` as GET /api/attempts/:id sends it: what scoring
+ * persisted, without `correct` while the Attempt's marks are withheld (the Item's `score` is then
+ * null too). The Response and its Module are sent either way, never whether it was right.
+ */
+export type ServedDeterministicItemScoreJson = DeterministicItemScoreJson | Omit<DeterministicItemScoreJson, "correct">;
+
+/**
+ * A Build a Sentence Item's `scoreJson` as GET /api/attempts/:id sends it. A Simulation's key
+ * (`correctAnswers`) stays on the server until the Attempt is completed, and while its marks are
+ * withheld `correct` stays there too, so only the frame is sent.
+ */
+export type ServedBuildSentenceItemScoreJson =
+  | BuildSentenceItemScoreJson
+  | Omit<BuildSentenceItemScoreJson, "correctAnswers">
+  | Omit<BuildSentenceItemScoreJson, "correctAnswers" | "correct">;
+
 export const ScoreRequestSchema = z.discriminatedUnion("taskType", [
   z.object({
     taskType: z.literal("build_sentence"),

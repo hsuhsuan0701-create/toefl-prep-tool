@@ -65,6 +65,12 @@ export type AttemptReadStore = {
   /** An Attempt's Items with only their id, Task Type and scoring status, in stored order. */
   listItemScoringStates(attemptId: string): { item_id: string; task_type: string; scoring_status: string }[];
   listAttempts(q?: { kind?: string; setId?: string; limit?: number; offset?: number }): AttemptRow[];
+  /**
+   * Which of these Attempts have their marks withheld (MARKS_WITHHELD_SQL in db/stores/attempts.ts):
+   * a Simulation in progress, or the discarded Attempt of a Full-Test section restarted in a Run
+   * still in progress. Every route that sends an Attempt's marks or a count of them asks this.
+   */
+  listMarksWithheldAttemptIds(attemptIds: readonly string[]): Set<string>;
   /** How many Attempts `listAttempts` would return for the same filters with no page bound. */
   countAttempts(q?: { kind?: string; setId?: string }): number;
   /**

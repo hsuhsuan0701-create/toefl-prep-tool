@@ -1,4 +1,4 @@
-import { MCQ_UNANSWERED_SENTINEL, type DeterministicReviewItemVM, type ItemVM } from "@toefl-prep/shared";
+import { MCQ_UNANSWERED_SENTINEL, type DeterministicReviewItemVM, type ItemVM, type MarksWithheldReason } from "@toefl-prep/shared";
 import { taskTypeLabel } from "../../lib/taskTypes";
 import { questionFor, stimulusAudioFor, stimulusContentFor, stimulusFor, type AttemptSetSnapshot, type QuestionSnapshot, type SnapshotModule } from "../../pages/attemptSetSnapshot";
 import StimulusReplay from "../StimulusReplay";
@@ -9,7 +9,7 @@ import { Disclosure } from "../../ui/Disclosure";
 import { Kicker } from "../../ui/Heading";
 import { IconChevronRight } from "../../ui/icons";
 import { Prose } from "../../ui/Prose";
-import { ITEM_MARK_DEFERRED, itemScoringStatus } from "../../ui/labels";
+import { ITEM_MARK_WITHHELD, itemScoringStatus } from "../../ui/labels";
 import { ResultMark } from "./ReviewParts";
 import ReviewStimulus, { type ReviewedGap } from "./ReviewStimulus";
 import { isDeterministicScoreJson, type DeterministicScoreJson } from "./reviewItems";
@@ -96,11 +96,11 @@ export type DeterministicModuleGroupProps = {
    */
   showStimulus: boolean;
   /**
-   * Show each scored Item's Correct or Incorrect mark and each Stimulus's tally. False for a
-   * Simulation still in progress, whose feedback waits for completion like its key: its review
-   * shows the Responses alone (issue #48).
+   * The Attempt's `marksWithheld`, as its detail sent it: when set, the server sent no Item's
+   * correctness, and the review shows the Responses unmarked, with no tally, and says when the marks
+   * come. Undefined, each scored Item shows its Correct or Incorrect mark and each Stimulus its tally.
    */
-  showMarks: boolean;
+  marksWithheld: MarksWithheldReason | undefined;
 };
 
 /** Each Complete the Words gap of a run, filled in from its Item: what was typed, right or wrong, and the word. */
@@ -108,7 +108,7 @@ function reviewedGaps(
   run: StimulusRun,
   setSnapshot: AttemptSetSnapshot | null,
   reviewByItemId: ReadonlyMap<string, DeterministicReviewItemVM>,
-  showMarks: boolean,
+  marksWithheld: MarksWithheldReason | undefined,
 ): Map<string, ReviewedGap> {
   const gaps = new Map<string, ReviewedGap>();
   for (const { item, position } of run.items) {
@@ -118,7 +118,7 @@ function reviewedGaps(
     gaps.set(item.itemId, {
       number: position,
       typed,
-      correct: score && showMarks ? score.correct : null,
+      correct: marksWithheld ? null : (score?.correct ?? null),
       ...(key === undefined ? {} : { completion: `${questionFor(setSnapshot, item.itemId)?.prefix ?? ""}${key}` }),
     });
   }
@@ -127,7 +127,7 @@ function reviewedGaps(
 
 const STIMULUS_SUMMARY: Record<string, string> = { daily_life: "The text", academic_passage: "The passage" };
 
-export default function DeterministicModuleGroup({ items, setSnapshot, reviewByItemId, showStimulus, showMarks }: DeterministicModuleGroupProps) {
+export default function DeterministicModuleGroup({ items, setSnapshot, reviewByItemId, showStimulus, marksWithheld }: DeterministicModuleGroupProps) {
   return (
     <div className="space-y-4">
       {stimulusRuns(items, setSnapshot).map((run) => {
@@ -157,7 +157,7 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
                   </h3>
                 )}
               </div>
-              <p className="text-meta text-graphite">{showMarks ? correctSummary(run.items) : unmarkedSummary(run.items)}</p>
+              <p className="text-meta text-graphite">{marksWithheld ? unmarkedSummary(run.items) : correctSummary(run.items)}</p>
             </header>
             {audio && (
               <div className="min-w-0 border-b border-rule px-4 py-3">
@@ -168,7 +168,7 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
               <div className="min-w-0 border-b border-rule px-4 py-3">
                 <ReviewStimulus
                   content={content}
-                  gaps={content.kind === "gapped" ? reviewedGaps(run, setSnapshot, reviewByItemId, showMarks) : undefined}
+                  gaps={content.kind === "gapped" ? reviewedGaps(run, setSnapshot, reviewByItemId, marksWithheld) : undefined}
                   summary={STIMULUS_SUMMARY[run.taskType]}
                 />
               </div>
@@ -183,7 +183,7 @@ export default function DeterministicModuleGroup({ items, setSnapshot, reviewByI
                     position={position}
                     question={question}
                     review={reviewByItemId.get(item.itemId)}
-                    showMark={showMarks}
+                    marksWithheld={marksWithheld}
                     replayAudio={
                       question && (showStimulus || reviewByItemId.has(item.itemId)) && item.taskType === "listen_choose"
                         ? stimulusAudioFor(setSnapshot, question.module, question.stimulusId)
@@ -224,14 +224,14 @@ function DeterministicRow({
   position,
   question,
   review,
-  showMark,
+  marksWithheld,
   replayAudio,
 }: {
   item: ItemVM;
   position: number;
   question?: QuestionSnapshot;
   review?: DeterministicReviewItemVM;
-  showMark: boolean;
+  marksWithheld: MarksWithheldReason | undefined;
   replayAudio?: string;
 }) {
   const score = item.scoringStatus === "scored" && isDeterministicScoreJson(item.scoreJson) ? item.scoreJson : null;
@@ -252,6 +252,8 @@ function DeterministicRow({
         : (optionText(question, score.answer) ?? storedOptionText(score) ?? OPTION_NOT_SHOWN);
   const keyText = review?.key === undefined ? null : isGap ? `${prefix}${review.key}` : optionText(shown, review.key);
   const showsOptions = QUESTION_TYPES.has(item.taskType) && (shown?.options.length ?? 0) > 0;
+  // While the marks are withheld the server sent no `correct`; the row says when it will be marked.
+  const mark = marksWithheld ? undefined : score?.correct;
 
   const line = (
     <>
@@ -271,10 +273,10 @@ function DeterministicRow({
           </span>
         )}
       </span>
-      {score && showMark ? (
-        <ResultMark correct={score.correct} unanswered={unanswered} />
+      {mark !== undefined ? (
+        <ResultMark correct={mark} unanswered={unanswered} />
       ) : (
-        <StatusChip status={score ? ITEM_MARK_DEFERRED : itemScoringStatus(item.scoringStatus)} />
+        <StatusChip status={score && marksWithheld ? ITEM_MARK_WITHHELD[marksWithheld] : itemScoringStatus(item.scoringStatus)} />
       )}
     </>
   );

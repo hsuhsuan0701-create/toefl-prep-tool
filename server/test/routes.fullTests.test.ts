@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { FULL_TEST_SECTION_ORDER, type FullTestRunVM, type FullTestSection, type ReadingSet, type StatsSummaryVM } from "@toefl-prep/shared";
+import { FULL_TEST_SECTION_ORDER, type AttemptDetailVM, type FullTestRunVM, type FullTestSection, type ReadingSet, type StatsSummaryVM } from "@toefl-prep/shared";
 import { Hono } from "hono";
 import { openDb } from "../src/db/db.js";
 import { sqliteStores } from "./helpers/sqliteStores.js";
@@ -765,6 +765,68 @@ describe("a section left behind: restarted, or its Run abandoned", () => {
     expect(finish.status).toBe(409);
     expect(h.r.getAttempt(replaced)!.status).toBe("aborted");
     expect((await getRun(h, run.id)).sections.find((s) => s.section === "reading")!.attemptId).toBe(restarted);
+  });
+
+  // The replaced Attempt is discarded while the Run is still sitting its Set, and the restart that
+  // replaced it carries its tag, so its marks would tell right from wrong on the Set whose band
+  // feeds the Run's Overall. They wait for the Run to end, everywhere a mark reaches the client: the
+  // Attempt's detail and the per-skill accuracy pane.
+  async function restartWithAScoredItem(h: ReturnType<typeof harness>, runId: string) {
+    const first = await startSection(h, runId, "reading", DISK_SET_ID);
+    const replaced = first.body.attemptId!;
+    h.r.insertItemResult({ attemptId: replaced, itemId: "dl-x-q1", taskType: "daily_life" });
+    h.r.updateItemScore({
+      attemptId: replaced,
+      itemId: "dl-x-q1",
+      score: 1,
+      scoreJson: JSON.stringify({ correct: true, module: "router", answer: "a", skill: "detail" }),
+      scoringStatus: "scored",
+    });
+    expect((await startSection(h, runId, "reading", DISK_SET_ID)).status).toBe(201);
+    return replaced;
+  }
+  const detailOf = async (h: ReturnType<typeof harness>, attemptId: string) =>
+    (await (await h.app.request(`/attempts/${attemptId}`)).json()) as AttemptDetailVM;
+  const skillItems = async (h: ReturnType<typeof harness>) =>
+    ((await (await h.app.request("/stats/summary")).json()) as StatsSummaryVM).skillItems;
+
+  it("withholds a restarted section's replaced Attempt's marks while its Run is in progress, and sends them once it is abandoned", async () => {
+    const h = harness();
+    const run = await newRun(h);
+    const replaced = await restartWithAScoredItem(h, run.id);
+
+    const during = await detailOf(h, replaced);
+    expect(during.attempt.status).toBe("aborted");
+    expect(during.marksWithheld).toBe("full-test-run-in-progress");
+    expect(during.items[0]).toMatchObject({ scoringStatus: "scored", score: null, scoreJson: { module: "router", answer: "a" } });
+    expect(during.items[0].scoreJson).not.toHaveProperty("correct");
+    expect(during).not.toHaveProperty("deterministicReview");
+    expect(await skillItems(h)).toEqual([]);
+
+    expect((await abandon(h, run.id)).status).toBe(200);
+    const after = await detailOf(h, replaced);
+    expect(after).not.toHaveProperty("marksWithheld");
+    expect(after.items[0]).toMatchObject({ score: 1, scoreJson: { correct: true } });
+    // Discarded, so still no key, as for any discarded Simulation.
+    expect(after).not.toHaveProperty("deterministicReview");
+    expect(await skillItems(h)).toEqual([{ section: "reading", skill: "detail", correct: true }]);
+  });
+
+  it("sends a restarted section's replaced Attempt's marks once its Run is completed", async () => {
+    const h = harness();
+    const run = await newRun(h);
+    const replaced = await restartWithAScoredItem(h, run.id);
+    // Each section sat to its end. sitSection's Reading replaces the restarted Attempt in turn.
+    for (const section of FULL_TEST_SECTION_ORDER) {
+      await sitSection(h, run.id, section);
+      expect((await detailOf(h, replaced)).marksWithheld).toBe("full-test-run-in-progress");
+      await h.app.request(`/full-tests/${run.id}/advance`, { method: "POST" });
+    }
+    expect((await getRun(h, run.id)).status).toBe("completed");
+
+    const after = await detailOf(h, replaced);
+    expect(after).not.toHaveProperty("marksWithheld");
+    expect(after.items[0]).toMatchObject({ score: 1, scoreJson: { correct: true } });
   });
 
   it("abandons a Run in progress: the live section discarded, the finished ones and their bands untouched", async () => {

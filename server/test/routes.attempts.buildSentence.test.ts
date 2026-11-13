@@ -152,22 +152,29 @@ describe("Build a Sentence in a Simulation", () => {
     expect(JSON.parse(row.score_json!).correctAnswers).toEqual(bas1.answers);
   });
 
-  it("withholds the key from the Attempt review until the Attempt completes, then shows it", async () => {
+  it("withholds the key and the marks from the Attempt review until the Attempt completes, then shows them", async () => {
     const attemptId = await createWritingAttempt(h.app, "simulation");
     await scoreTiles(h.app, attemptId, request());
 
+    // In progress: each scored Item keeps its Response and frame, and neither its key, its
+    // correctness nor its score leaves the server (CLAUDE.md, "Sets and answers").
     const during = (await (await h.app.request(`/${attemptId}`)).json()) as AttemptDetailVM;
+    expect(during.marksWithheld).toBe("attempt-in-progress");
     const duringItems = during.items.filter((i) => i.taskType === "build_sentence");
     expect(duringItems).toHaveLength(2);
     for (const item of duringItems) {
-      expect(Object.hasOwn(item.scoreJson as object, "correctAnswers")).toBe(false);
-      expect(item.scoreJson).toMatchObject({ correct: item.itemId === bas1.id, frame: expect.any(String) });
+      expect(item.scoringStatus).toBe("scored");
+      expect(item.score).toBeNull();
+      expect(item.scoreJson).toEqual({ frame: expect.any(String) });
     }
     expect(JSON.stringify(during)).not.toContain("correctAnswers");
+    expect(JSON.stringify(during)).not.toContain('"correct"');
 
     expect((await h.app.request(`/${attemptId}/complete`, { method: "POST" })).status).toBe(200);
     const after = (await (await h.app.request(`/${attemptId}`)).json()) as AttemptDetailVM;
+    expect(after).not.toHaveProperty("marksWithheld");
     const reviewed = after.items.find((i) => i.itemId === bas1.id)!;
+    expect(reviewed.score).toBe(1);
     expect(reviewed.scoreJson).toEqual({ correct: true, correctAnswers: bas1.answers, frame: bas1.frame });
   });
 
@@ -210,7 +217,8 @@ describe("Build a Sentence in a Simulation", () => {
     const attemptId = await createWritingAttempt(h.app, "drill");
     await scoreTiles(h.app, attemptId, request());
     const detail = (await (await h.app.request(`/${attemptId}`)).json()) as AttemptDetailVM;
-    expect(detail.items.find((i) => i.itemId === bas1.id)!.scoreJson).toMatchObject({ correctAnswers: bas1.answers });
+    expect(detail).not.toHaveProperty("marksWithheld");
+    expect(detail.items.find((i) => i.itemId === bas1.id)!).toMatchObject({ score: 1, scoreJson: { correct: true, correctAnswers: bas1.answers } });
 
     const again = await scoreTiles(h.app, attemptId, [{ itemId: bas2.id, tileOrder: bas2.answers[0] }]);
     expect(again.status).toBe(200);

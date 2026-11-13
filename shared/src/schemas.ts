@@ -124,8 +124,12 @@ export {
   SKIPPED_ITEM_REASON,
 } from "./schemas/scoring.js";
 export type {
+  BuildSentenceItemScoreJson,
   DeliveryReport,
   DeterministicItemScoreJson,
+  MarksWithheldReason,
+  ServedBuildSentenceItemScoreJson,
+  ServedDeterministicItemScoreJson,
   DeterministicScoreRequest,
   EarsResult,
   JudgeReport,

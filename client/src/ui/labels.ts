@@ -5,6 +5,7 @@ import type {
   FullTestSectionState,
   GenerationBatchStatus,
   GenerationJobStatus,
+  MarksWithheldReason,
   ModulePath,
   ScoringJobStatus,
   Section,
@@ -89,14 +90,24 @@ export const ITEM_SCORING_STATUS: Record<ItemScoringStatus, StatusPresentation> 
 };
 
 /**
- * A scored Item of a Simulation still in progress: its mark waits for the Attempt to complete, as the
- * key and the Explanation do, so the chip says only that the Response is in (issue #48).
+ * A scored Item whose mark the server withholds (AttemptDetailVM.marksWithheld), keyed by why: a
+ * Simulation still in progress, whose marks come with its completion as its key does, or the
+ * Attempt a restarted Full-Test section replaced, whose marks come once its Run ends. The chip says
+ * only that the Item is not marked yet, and when it will be.
  */
-export const ITEM_MARK_DEFERRED: StatusPresentation = {
-  label: "Submitted",
-  tone: "neutral",
-  glyph: "dash",
-  hint: "Marked correct or incorrect once this Attempt is complete.",
+export const ITEM_MARK_WITHHELD: Record<MarksWithheldReason, StatusPresentation> = {
+  "attempt-in-progress": {
+    label: "Not marked yet",
+    tone: "neutral",
+    glyph: "dash",
+    hint: "Marked correct or incorrect once this Attempt is complete.",
+  },
+  "full-test-run-in-progress": {
+    label: "Not marked yet",
+    tone: "neutral",
+    glyph: "dash",
+    hint: "Marked correct or incorrect once the Full-Test Run it was part of ends.",
+  },
 };
 
 export function itemScoringStatus(raw: string): StatusPresentation {

@@ -291,29 +291,30 @@ describe("Attempt review — a Build a Sentence Response with no frame to be had
   });
 });
 
-// A Simulation's keys reach the client only once the Attempt is completed, so until then the server
-// sends each Build a Sentence Item's correctness without its `correctAnswers`. The review shows each
-// Response with no key line, and, since a Simulation defers its feedback (issue #48), with no
-// Correct or Incorrect mark and no count of correct Items either.
+// A Simulation's keys reach the client only once the Attempt is completed, and its marks with them:
+// until then the server sends each Build a Sentence Item's frame with neither its `correctAnswers`
+// nor its `correct`, and says the marks are withheld. The review shows each Response with no key
+// line, no Correct or Incorrect mark and no count of correct Items.
 describe("Attempt review — a Simulation's Build a Sentence Items before the key is shown", () => {
   it("shows each Response with no mark, no count and no key", async () => {
-    const keyless = (itemId: string, tileOrder: string[], correct: boolean): ItemVM => ({
+    const keyless = (itemId: string, tileOrder: string[]): ItemVM => ({
       ...basItem(itemId, tileOrder, []),
-      score: correct ? 1 : 0,
-      scoreJson: { correct, frame: REFERENCE_FRAME },
+      score: null,
+      scoreJson: { frame: REFERENCE_FRAME },
     });
-    const base = detailWith([keyless("bas-framed", REFERENCE_ANSWER, true), keyless("bas-partial", REFERENCE_ANSWER.slice(0, 3), false)]);
+    const base = detailWith([keyless("bas-framed", REFERENCE_ANSWER), keyless("bas-partial", REFERENCE_ANSWER.slice(0, 3))]);
     vi.mocked(getAttempt).mockResolvedValue({
       ...base,
       attempt: { ...base.attempt, mode: "simulation", status: "in_progress", completedAt: null },
       bandStatus: { status: "unfinished" },
+      marksWithheld: "attempt-in-progress",
     });
     vi.mocked(getSet).mockResolvedValue(servedSet);
 
     await renderSettledReview();
     expect(screen.getByTestId("bas-answer-bas-framed")).toHaveTextContent(`Your Response: ${REFERENCE_SENTENCE}`);
-    expect(screen.getByTestId("item-bas-framed")).toHaveTextContent("Submitted");
-    expect(screen.getByTestId("item-bas-partial")).toHaveTextContent("Submitted");
+    expect(screen.getByTestId("item-bas-framed")).toHaveTextContent("Not marked yet");
+    expect(screen.getByTestId("item-bas-partial")).toHaveTextContent("Not marked yet");
     expect(document.body.textContent).not.toMatch(/\bCorrect\b|\bIncorrect\b|\d+ of \d+ correct/);
     // Without the key the frame still counts the blanks, so the partial Item is listed, not composed.
     const partial = screen.getByTestId("bas-answer-bas-partial");
@@ -327,12 +328,13 @@ describe("Attempt review — a Simulation's Build a Sentence Items before the ke
 
   it("lists the tiles the Item offered without marking which one is extra", async () => {
     // The tiles are what the run showed; which of them belongs in no accepted sentence is the key.
-    const keyless = { ...basItem("bas-framed", REFERENCE_ANSWER, []), scoreJson: { correct: true, frame: REFERENCE_FRAME } };
+    const keyless = { ...basItem("bas-framed", REFERENCE_ANSWER, []), score: null, scoreJson: { frame: REFERENCE_FRAME } };
     const base = detailWith([keyless]);
     vi.mocked(getAttempt).mockResolvedValue({
       ...base,
       attempt: { ...base.attempt, mode: "simulation", status: "in_progress", completedAt: null },
       bandStatus: { status: "unfinished" },
+      marksWithheld: "attempt-in-progress",
     });
     vi.mocked(getSet).mockResolvedValue(servedSet);
 
