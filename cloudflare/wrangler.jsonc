@@ -1,0 +1,20 @@
+{
+  // Run from the repository root: npx wrangler deploy --config cloudflare/wrangler.jsonc
+  "name": "toefl-prep-private",
+  "main": "./src/index.ts",
+  "compatibility_date": "2026-11-13",
+  "assets": {
+    "directory": "../client/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "toefl-prep-private",
+      "database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID",
+      "migrations_dir": "migrations"
+    }
+  ]
+}
