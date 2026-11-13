@@ -1,0 +1,630 @@
+{
+  "id": "wri-4661c123",
+  "source": "generated",
+  "createdAt": "2026-11-13T07:33:12.633Z",
+  "kind": "writing",
+  "buildASentence": {
+    "items": [
+      {
+        "id": "bas-1",
+        "prompt": "Is the chemistry textbook really sold out? I need it for class.",
+        "frame": "The ___ ___ ___ ___ your first quiz, but the lending desk keeps a reserve copy.",
+        "tiles": [
+          "next shipment",
+          "arrives",
+          "two days",
+          "after",
+          "arrive"
+        ],
+        "answers": [
+          [
+            "next shipment",
+            "arrives",
+            "two days",
+            "after"
+          ]
+        ]
+      },
+      {
+        "id": "bas-2",
+        "prompt": "The safe in my room is locked, and I can't get it open.",
+        "frame": "The last guest left it locked, so the front desk ___ ___ ___ ___ in a few minutes.",
+        "tiles": [
+          "will",
+          "send",
+          "you",
+          "a reset code",
+          "sends"
+        ],
+        "answers": [
+          [
+            "will",
+            "send",
+            "you",
+            "a reset code"
+          ]
+        ]
+      },
+      {
+        "id": "bas-3",
+        "prompt": "Has the standing desk I requested arrived yet?",
+        "frame": "It was delivered to the wrong floor, but the movers ___ ___ ___ ___ ___ tomorrow morning.",
+        "tiles": [
+          "are",
+          "coming back",
+          "to bring",
+          "it",
+          "up",
+          "is"
+        ],
+        "answers": [
+          [
+            "are",
+            "coming back",
+            "to bring",
+            "it",
+            "up"
+          ],
+          [
+            "are",
+            "coming back",
+            "up",
+            "to bring",
+            "it"
+          ]
+        ]
+      },
+      {
+        "id": "bas-4",
+        "prompt": "I brought a bag of toys, but I can't find the collection box.",
+        "frame": "We ___ ___ ___ ___ ___ the fire hall lobby, where drop-off hours run until six.",
+        "tiles": [
+          "had",
+          "to",
+          "move",
+          "the box",
+          "into",
+          "moved"
+        ],
+        "answers": [
+          [
+            "had",
+            "to",
+            "move",
+            "the box",
+            "into"
+          ]
+        ]
+      },
+      {
+        "id": "bas-5",
+        "prompt": "One team withdrew, so we drew the presentation order again, and yours has changed.",
+        "frame": "___ ___ ___ ___ ___ ___ on Monday?",
+        "tiles": [
+          "does",
+          "our team",
+          "have",
+          "to present",
+          "in",
+          "the first slot",
+          "has"
+        ],
+        "answers": [
+          [
+            "does",
+            "our team",
+            "have",
+            "to present",
+            "in",
+            "the first slot"
+          ]
+        ]
+      },
+      {
+        "id": "bas-6",
+        "prompt": "Can I still get a hot meal in the dining car?",
+        "frame": "___ ___ ___ ___ ___ ___ drinking water, so a snack trolley is coming through instead.",
+        "tiles": [
+          "it",
+          "closed early",
+          "because",
+          "the kitchen",
+          "ran",
+          "out of",
+          "run"
+        ],
+        "answers": [
+          [
+            "it",
+            "closed early",
+            "because",
+            "the kitchen",
+            "ran",
+            "out of"
+          ],
+          [
+            "the kitchen",
+            "closed early",
+            "because",
+            "it",
+            "ran",
+            "out of"
+          ]
+        ]
+      },
+      {
+        "id": "bas-7",
+        "prompt": "I heard there's a problem with the interview recording.",
+        "frame": "___ ___ ___ ___ ___ ___ ___, so we should record it again in a quieter room.",
+        "tiles": [
+          "the segment",
+          "in which",
+          "you",
+          "introduce the guest",
+          "has",
+          "picked up",
+          "an echo",
+          "have"
+        ],
+        "answers": [
+          [
+            "the segment",
+            "in which",
+            "you",
+            "introduce the guest",
+            "has",
+            "picked up",
+            "an echo"
+          ]
+        ]
+      },
+      {
+        "id": "bas-8",
+        "prompt": "Are my allergy tablets ready to pick up?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ the changed dose, which should happen by this afternoon.",
+        "tiles": [
+          "the prescription",
+          "cannot",
+          "be",
+          "filled",
+          "until",
+          "your doctor",
+          "approves",
+          "approve"
+        ],
+        "answers": [
+          [
+            "the prescription",
+            "cannot",
+            "be",
+            "filled",
+            "until",
+            "your doctor",
+            "approves"
+          ]
+        ]
+      },
+      {
+        "id": "bas-9",
+        "prompt": "Why aren't my seed samples where I left them? The temperature log looked fine yesterday.",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "it",
+          "was",
+          "the overnight alarm",
+          "that",
+          "made us",
+          "move",
+          "your samples",
+          "to the backup freezer",
+          "to move"
+        ],
+        "answers": [
+          [
+            "it",
+            "was",
+            "the overnight alarm",
+            "that",
+            "made us",
+            "move",
+            "your samples",
+            "to the backup freezer"
+          ]
+        ]
+      },
+      {
+        "id": "bas-10",
+        "prompt": "My transfer record is missing two credits. What can I do about it?",
+        "frame": "___ ___ ___ ___ ___ ___ ___ ___ ___.",
+        "tiles": [
+          "the form",
+          "used to request",
+          "a second review",
+          "must",
+          "be",
+          "submitted",
+          "with",
+          "the syllabus",
+          "from your earlier school",
+          "submit"
+        ],
+        "answers": [
+          [
+            "the form",
+            "used to request",
+            "a second review",
+            "must",
+            "be",
+            "submitted",
+            "with",
+            "the syllabus",
+            "from your earlier school"
+          ],
+          [
+            "the syllabus",
+            "from your earlier school",
+            "must",
+            "be",
+            "submitted",
+            "with",
+            "the form",
+            "used to request",
+            "a second review"
+          ]
+        ]
+      }
+    ]
+  },
+  "email": {
+    "id": "email-1",
+    "scenario": "You study English every day with a language-learning app called WordTrail, and you have enjoyed its short daily lessons for several months. After the app updated itself last weekend, all of your saved vocabulary lists and your study record disappeared. You have a placement test next week and were relying on those lists to review.",
+    "to": "support@wordtrail-app.example",
+    "subject": "Vocabulary lists missing after the latest update",
+    "bullets": [
+      "Tell the support team what you appreciate about the app's daily lessons.",
+      "Explain what happened to your vocabulary lists and study record after the update.",
+      "Ask the team to restore your lists from a backup before your placement test next week."
+    ],
+    "timeLimitSec": 420,
+    "wordGuidance": {
+      "min": 80,
+      "max": 120
+    }
+  },
+  "academicDiscussion": {
+    "id": "disc-1",
+    "courseTitle": "Introduction to Arts Management",
+    "professorName": "Dr. Okafor",
+    "professorPost": "This week we are looking at how community arts events decide who performs. Many small towns hold an annual music festival, and organizers must choose who gets the main stage. Some give it to local amateur performers, while others book well-known visiting acts and place local musicians on smaller side stages. What do you think? Should a town music festival fill its main stage with local amateur performers rather than well-known visiting acts? Why or why not?",
+    "studentPosts": [
+      {
+        "name": "Mirela",
+        "post": "I think the main stage should belong to local amateurs. A town festival exists for the town, and playing for a large audience is how new performers improve and get noticed. Famous bands already have plenty of stages. If locals are always pushed to a side tent, they never get the experience that helps them grow."
+      },
+      {
+        "name": "Tobias",
+        "post": "I disagree. Without a famous name on the poster, far fewer people buy tickets, and the festival loses the income that pays for sound equipment, security, and everything else. A well-known visiting act brings a big crowd, and local musicians who play earlier that day reach more listeners than they ever would alone."
+      }
+    ],
+    "timeLimitSec": 600,
+    "minWords": 100
+  },
+  "generationPlan": {
+    "version": "cross-set-diversity-v1",
+    "kind": "writing",
+    "buildASentence": {
+      "situations": [
+        {
+          "domain": "campus-academics",
+          "situation": "A campus bookstore clerk tells a student that the required chemistry textbook is sold out until after the first quiz.",
+          "participantRoles": [
+            "campus bookstore clerk at the textbook counter",
+            "first-year student buying a chemistry textbook"
+          ],
+          "noveltyKey": "chemistry-textbook-sold-out-before-quiz",
+          "requiredConcepts": [
+            "sold-out chemistry textbook",
+            "next shipment after the first quiz",
+            "reserve copy at the lending desk"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "That set's campus exchange is about a broken poster printer before a conference, not a sold-out textbook."
+            },
+            {
+              "setId": "wri-03fd69a4",
+              "reason": "That set's campus exchange is about overlapping telescope slots, not a bookstore shortage."
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A hotel housekeeping supervisor tells a guest that the room safe was left locked by the last occupant and needs a reset code.",
+          "participantRoles": [
+            "hotel housekeeping supervisor",
+            "guest who just checked in"
+          ],
+          "noveltyKey": "hotel-room-safe-left-locked",
+          "requiredConcepts": [
+            "locked room safe",
+            "reset code from the front desk"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-4313e236",
+              "reason": "That set's hotel exchange is about a late checkout clashing with a group arrival, not a locked safe."
+            },
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "That set's exchange is about a full airport shuttle, not equipment inside a guest room."
+            }
+          ]
+        },
+        {
+          "domain": "workplace-business",
+          "situation": "An office manager tells a new employee that the standing desk they requested was delivered to the wrong floor.",
+          "participantRoles": [
+            "office manager handling furniture requests",
+            "new employee waiting for a standing desk"
+          ],
+          "noveltyKey": "standing-desk-delivered-wrong-floor",
+          "requiredConcepts": [
+            "standing desk on the wrong floor",
+            "movers coming back tomorrow morning"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1da7837a",
+              "reason": "That set's exchange is about a catering van breakdown leaving meetings without breakfast, not misplaced furniture."
+            },
+            {
+              "setId": "wri-03fd69a4",
+              "reason": "That set's exchange is about a jammed label printer before a mail cutoff."
+            },
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "That set's exchange is about an inventory count that does not match the register."
+            }
+          ]
+        },
+        {
+          "domain": "community-civic",
+          "situation": "A volunteer coordinator at a neighborhood toy drive tells a donor that the collection box was moved to the fire hall lobby.",
+          "participantRoles": [
+            "volunteer coordinator of the toy drive",
+            "neighborhood donor carrying a bag of toys"
+          ],
+          "noveltyKey": "toy-drive-collection-box-moved",
+          "requiredConcepts": [
+            "collection box in the fire hall lobby",
+            "drop-off hours until six"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-4313e236",
+              "reason": "That set's exchanges cover an overflowing glass bin and a pavilion permit overlap, not a relocated donation box."
+            },
+            {
+              "setId": "wri-03fd69a4",
+              "reason": "That set's exchanges cover a lifeguard paperwork delay and a shuttle driver shortage."
+            }
+          ]
+        },
+        {
+          "domain": "campus-academics",
+          "situation": "A professor's teaching assistant tells a student that the order of group presentations was drawn again after one team withdrew.",
+          "participantRoles": [
+            "teaching assistant running the seminar schedule",
+            "student whose team now presents first"
+          ],
+          "noveltyKey": "presentation-order-redrawn-after-withdrawal",
+          "requiredConcepts": [
+            "new presentation order",
+            "one team's withdrawal",
+            "first slot on Monday"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1da7837a",
+              "reason": "That set's campus exchange is about a robot failing a weight check, not a reshuffled presentation order."
+            },
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "That set's campus exchange is about a poster printer outage."
+            }
+          ]
+        },
+        {
+          "domain": "services-travel",
+          "situation": "A train conductor tells a passenger that the dining car closed early because its kitchen ran out of drinking water.",
+          "participantRoles": [
+            "train conductor walking through the cars",
+            "passenger hoping to buy a hot meal"
+          ],
+          "noveltyKey": "train-dining-car-closed-early",
+          "requiredConcepts": [
+            "dining car closed early",
+            "no drinking water in the kitchen",
+            "snack trolley coming through instead"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-4313e236",
+              "reason": "That set's exchange is about an express fare that is invalid on a replacement vehicle, not onboard food service."
+            },
+            {
+              "setId": "wri-1da7837a",
+              "reason": "That set's exchange is about a failed gangway inspection at a cruise terminal."
+            }
+          ]
+        },
+        {
+          "domain": "technology-media",
+          "situation": "A podcast producer tells a guest host that the recorded interview has an echo and one segment must be recorded again.",
+          "participantRoles": [
+            "podcast producer editing the episode",
+            "guest host who led the interview"
+          ],
+          "noveltyKey": "podcast-interview-echo-rerecord",
+          "requiredConcepts": [
+            "echo on the interview recording",
+            "one segment to record again",
+            "quieter room for the second take"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1da7837a",
+              "reason": "That set's exchange is about a stalled transcoding queue before a premiere, not an audio flaw in an interview."
+            },
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "That set's exchange is about a paywall blocking paid readers of a news site."
+            },
+            {
+              "setId": "wri-03fd69a4",
+              "reason": "That set's exchange is about a question tool crashing during a meetup session."
+            }
+          ]
+        },
+        {
+          "domain": "health-wellbeing",
+          "situation": "A clinic pharmacist tells a patient that the allergy prescription needs fresh approval because the dose was changed.",
+          "participantRoles": [
+            "clinic pharmacist filling prescriptions",
+            "patient picking up allergy tablets"
+          ],
+          "noveltyKey": "allergy-prescription-needs-fresh-approval",
+          "requiredConcepts": [
+            "changed dose on the allergy prescription",
+            "doctor's approval by this afternoon"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-4313e236",
+              "reason": "That set's exchanges cover a moved counseling slot and a full yoga class, not a prescription approval."
+            },
+            {
+              "setId": "wri-03fd69a4",
+              "reason": "That set's exchange is about a reminder system dialing wrong numbers at a dentist's front desk."
+            },
+            {
+              "setId": "wri-1da7837a",
+              "reason": "That set's exchange is about a crashed intake computer in urgent care."
+            }
+          ]
+        },
+        {
+          "domain": "science-environment",
+          "situation": "A laboratory supervisor tells a visiting researcher that the sample freezer alarm sounded overnight and the seed samples were moved to a backup freezer.",
+          "participantRoles": [
+            "laboratory supervisor responsible for cold storage",
+            "visiting researcher who stored seed samples"
+          ],
+          "noveltyKey": "freezer-alarm-seed-samples-moved",
+          "requiredConcepts": [
+            "freezer alarm overnight",
+            "seed samples in the backup freezer",
+            "temperature log to check"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1da7837a",
+              "reason": "That set's exchange is about a cracked waterproof housing delaying a reef survey, not cold storage."
+            },
+            {
+              "setId": "wri-03fd69a4",
+              "reason": "That set's exchange is about an expired tide pool sampling permit."
+            },
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "That set's exchange is about a drifting rooftop humidity sensor before a storm."
+            }
+          ]
+        },
+        {
+          "domain": "campus-academics",
+          "situation": "A university registrar's assistant tells a transfer student that two credits from an earlier school did not carry over.",
+          "participantRoles": [
+            "registrar's assistant reviewing transcripts",
+            "transfer student checking credit totals"
+          ],
+          "noveltyKey": "transfer-credits-not-carried-over",
+          "requiredConcepts": [
+            "two credits missing from the transfer record",
+            "form to request a second review",
+            "syllabus from the earlier school"
+          ],
+          "distinguishesFrom": [
+            {
+              "setId": "wri-1da7837a",
+              "reason": "That set's campus exchange is about a robot failing a weight check before a qualifying round."
+            },
+            {
+              "setId": "wri-03fd69a4",
+              "reason": "That set's campus exchange is about a telescope slot overlapping a research session."
+            },
+            {
+              "setId": "wri-e29d9e9c",
+              "reason": "That set's campus exchange is about a poster printer outage, not credit records."
+            }
+          ]
+        }
+      ]
+    },
+    "email": {
+      "domain": "technology-media",
+      "noveltyKey": "language-app-update-erased-vocabulary-lists",
+      "requiredConcepts": [
+        "vocabulary lists gone after the update",
+        "placement test next week",
+        "restoring the lists from a backup"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-6023c170",
+          "reason": "That email asks a photo storage service to extend a recovery window after auto-deletion; this one concerns study data wiped by an app update."
+        },
+        {
+          "setId": "wri-7a20b90b",
+          "reason": "That email reports ads still playing on a paid listening plan, not lost learning records."
+        }
+      ],
+      "situation": "After a software update, a language-learning app erased the writer's saved vocabulary lists and study record shortly before a placement test.",
+      "recipientRole": "The app developer's user support team",
+      "communicativeActs": [
+        "Express appreciation for the app's daily lessons",
+        "Report that the vocabulary lists and study record vanished after the update",
+        "Request that the lost lists be restored before the placement test"
+      ]
+    },
+    "academicDiscussion": {
+      "domain": "arts-culture",
+      "noveltyKey": "festival-local-amateurs-vs-visiting-headliners",
+      "requiredConcepts": [
+        "local amateur performers on the main stage",
+        "well-known visiting acts",
+        "crowd size and festival income"
+      ],
+      "distinguishesFrom": [
+        {
+          "setId": "wri-f9779355",
+          "reason": "That discussion weighs a fixed cap on theater seat prices against demand pricing, not who gets the stage."
+        },
+        {
+          "setId": "wri-1696d60a",
+          "reason": "That discussion weighs headset-based exhibits against seeing physical objects in person."
+        },
+        {
+          "setId": "wri-68e48fb1",
+          "reason": "That discussion weighs removing printed wall labels in favor of a phone app."
+        }
+      ],
+      "proposition": "A town music festival should fill its main stage with local amateur performers rather than well-known visiting acts.",
+      "competingValues": [
+        "exposure and growth for local performers",
+        "larger crowds and income drawn by famous names"
+      ]
+    }
+  }
+}
