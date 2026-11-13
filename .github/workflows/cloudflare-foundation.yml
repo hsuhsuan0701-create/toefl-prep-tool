@@ -33,13 +33,16 @@ jobs:
         run: npm run build -w client
       - name: Smoke-test Worker adapter (mock D1 and assets)
         run: node --experimental-strip-types --test cloudflare/test/worker.test.mjs
+      - name: Test Gemini draft validation (mock HTTP, no API key)
+        run: node --experimental-strip-types --test cloudflare/test/gemini-draft.test.mjs
       - name: Check D1 schema can create its tables
         run: |
           python3 - <<'PY'
           import sqlite3
           from pathlib import Path
           db=sqlite3.connect(':memory:')
-          db.executescript(Path('cloudflare/migrations/0001_cloud_baseline.sql').read_text())
+          for migration in sorted(Path('cloudflare/migrations').glob('*.sql')):
+              db.executescript(migration.read_text())
           db.execute("INSERT INTO attempts(id,kind,mode,set_id) VALUES('smoke','reading','simulation','test-set')")
           assert db.execute('SELECT COUNT(*) FROM attempts').fetchone()[0] == 1
           PY
