@@ -135,7 +135,7 @@ function findSpeakingItem(set: SpeakingSet, itemId: string): SpeakingItemLookup 
  *   write-once capture    CaptureStore's combined seam is the only writer of the capture marker and
  *                         the missing-Item placeholders; the SetUnavailable branches below use it
  *                         with an empty placeholder list.
- *   Full-Test Runs        Only `linkFullTestAttempt`, the reads `checkFullTestLink` needs,
+ *   Full-Test Runs        Only `openFullTestSectionAttempt`, the reads `checkFullTestLink` needs,
  *                         `getFullTestRunForAttempt` (abort refuses the section a Run in progress
  *                         is sitting) and `listFullTestRunsForAttempts` (the log names a section's
  *                         Run, one read per page); the rest of a Run's
@@ -157,7 +157,7 @@ export type AttemptsRouteStore =
   & Omit<ScoreStore, "getAttempt" | "getScoringJob">
   & Omit<ScoringStore, "getAttempt">
   & Omit<EstimateStore, "getAttempt">
-  & Pick<FullTestRunStore, "linkFullTestAttempt" | "getFullTestRunForAttempt" | "listFullTestRunsForAttempts">
+  & Pick<FullTestRunStore, "openFullTestSectionAttempt" | "getFullTestRunForAttempt" | "listFullTestRunsForAttempts">
   & FullTestLinkCheckStore
   & RecordingStore
   & DeterministicScoreStore
@@ -427,8 +427,17 @@ export function buildAttemptsRoutes(deps: AttemptsRouteDeps) {
       const replaced = replacedSectionAttemptId ? deps.repo.getAttempt(replacedSectionAttemptId) : undefined;
       const isRepeat = replaced ? replaced.is_repeat === 1 : deps.repo.isSetAttempted(setId);
       const id = crypto.randomUUID();
-      deps.repo.createAttempt({ id, kind, mode, setId, isRepeat });
-      if (fullTestRunId) deps.repo.linkFullTestAttempt(fullTestRunId, kind, id);
+      if (fullTestRunId) {
+        // The new Attempt, its link and the discard of the one it replaces commit together.
+        deps.repo.openFullTestSectionAttempt({
+          runId: fullTestRunId,
+          section: kind,
+          attempt: { id, mode, setId, isRepeat },
+          replacedAttemptId: replacedSectionAttemptId,
+        });
+      } else {
+        deps.repo.createAttempt({ id, kind, mode, setId, isRepeat });
+      }
       return c.json({ attemptId: id, isRepeat, ...(fullTestRunId ? { fullTestRunId } : {}) }, 201);
     })
     .post("/:id/items/:itemId/audio", async (c) => {

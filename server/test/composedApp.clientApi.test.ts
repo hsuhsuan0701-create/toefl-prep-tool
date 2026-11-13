@@ -131,6 +131,21 @@ describe("the client API against the composed app", () => {
     expect((await api.getAttempt(attemptId)).attempt.status).toBe("in_progress");
   });
 
+  it("abandons a Full-Test Run, discarding the section it was sitting", async () => {
+    const run = await api.createFullTest();
+    const reading = run.sections.find((s) => s.section === "reading")!;
+    const { attemptId } = await api.createAttempt({ kind: "reading", mode: "simulation", setId: reading.setId!, fullTestRunId: run.id });
+    createdAttempts.push(attemptId);
+
+    const abandoned = await api.abandonFullTest(run.id);
+    expect(abandoned.status).toBe("abandoned");
+    expect(abandoned.overall.band).toBeNull();
+    expect(abandoned.sections.find((s) => s.section === "reading")).toMatchObject({ attemptId, state: "aborted" });
+    expect((await api.getAttempt(attemptId)).attempt.status).toBe("aborted");
+    expect((await api.listFullTests({ status: "abandoned" })).map((r) => r.id)).toContain(run.id);
+    expect((await api.abandonFullTest(run.id)).status).toBe("abandoned");
+  });
+
   it("answers the client's own error shapes: an unknown Attempt is an HttpError carrying its status", async () => {
     const error = await api.getAttempt("no-such-attempt").catch((e: unknown) => e);
     expect(error).toBeInstanceOf(api.HttpError);

@@ -69,8 +69,23 @@ export type FullTestRunStore = {
   listFullTestRuns(q?: { limit?: number; status?: FullTestRunStatus }): FullTestRunRow[];
   listFullTestSetIds(): string[];
   linkFullTestAttempt(runId: string, section: FullTestSection, attemptId: string): boolean;
+  /**
+   * Opens a section's Attempt and links it, discarding the Attempt it replaces when the section is
+   * restarted, all in one transaction. POST /api/attempts is its one caller.
+   */
+  openFullTestSectionAttempt(o: {
+    runId: string;
+    section: FullTestSection;
+    attempt: { id: string; mode: string; setId: string; isRepeat: boolean };
+    replacedAttemptId: string | null;
+  }): void;
   setFullTestCurrentSection(runId: string, section: FullTestSection | null): boolean;
   completeFullTestRun(runId: string, now?: SqliteTimestamp): boolean;
+  /**
+   * One-way, like `completeFullTestRun`: `WHERE status='in-progress'`, and the named live section
+   * Attempts are discarded in the same transaction only when this call abandoned the Run.
+   */
+  abandonFullTestRun(runId: string, liveAttemptIds: readonly string[]): boolean;
   lastAttemptStartedAtBySetId(): Map<string, string>;
 };
 
@@ -277,8 +292,10 @@ export function checkFullTestLink(
   }
   // An in-progress Attempt already linked to this section is replaced rather than refused: that is
   // a section restarted after a reload, and the Run follows the Attempt actually being sat. The old
-  // Attempt keeps its row; it stops being the one this Run points at. An aborted one is never
-  // replaced, because an aborted section is terminal and launchableFullTestSection has moved past it.
+  // Attempt keeps its row but is discarded in the same transaction that links the new one
+  // (openFullTestSectionAttempt), so it can neither be finished later nor pass for the live section.
+  // An aborted one is never replaced, because an aborted section is terminal and
+  // launchableFullTestSection has moved past it.
   return { ok: true, run };
 }
 
@@ -291,7 +308,7 @@ const FULL_TEST_RUN_STATUSES: readonly FullTestRunStatus[] = ["in-progress", "co
 // The most Runs one GET / may ask for.
 const FULL_TEST_PAGE_MAX = 50;
 
-/** `/api/full-tests`: create, list, read and advance Full-Test Runs. */
+/** `/api/full-tests`: create, list, read, advance and abandon Full-Test Runs. */
 export function buildFullTestRoutes(deps: FullTestsDeps) {
   return new Hono()
     .post("/", async (c) => {
@@ -406,6 +423,36 @@ export function buildFullTestRoutes(deps: FullTestsDeps) {
         deps.repo.setFullTestCurrentSection(row.id, next);
       }
 
+      const fresh = deps.repo.getFullTestRun(row.id);
+      if (!fresh) return c.json({ error: "internal error" }, 500);
+      return c.json(toFullTestRunVM(deps.repo, fresh));
+    })
+    // Gives up on a Run in progress: it ends 'abandoned', with no Overall (four real Band Estimates
+    // or none, and an abandoned Run never gets its fourth). Its finished sections keep their Attempts
+    // and bands. The section being sat, if any, is discarded in the same transaction, the way POST
+    // /api/attempts/:id/abort discards an Attempt; that route refuses a Run's live section, so this is
+    // the way that section ends. A Speaking section whose capture has finished is not live (its
+    // Judges may still be scoring it) and is left to finish.
+    //
+    // Idempotent: an abandoned Run answers with its view model and nothing is written. A completed
+    // Run is refused. It reads no body.
+    .post("/:id/abandon", (c) => {
+      const row = deps.repo.getFullTestRun(c.req.param("id"));
+      if (!row) return c.json({ error: "unknown full test run" }, 404);
+      if (row.status === "completed") return c.json({ error: "full test run is already completed" }, 409);
+      if (row.status === "in-progress") {
+        const attempts = sectionAttempts(deps.repo, row);
+        // Every section finished means the Run's hand-off was lost, not that it was given up on: it
+        // completes at its next advance, which the Run page makes on load, and gets its Overall.
+        if (!launchableFullTestSection(statesOf(attempts))) {
+          return c.json({ error: "every section of this full test run is finished; advance it to complete it" }, 409);
+        }
+        const live = FULL_TEST_SECTION_ORDER
+          .map((section) => attempts[section])
+          .filter((attempt): attempt is SectionAttempt => fullTestSectionState(attempt) === "in-progress")
+          .map((attempt) => attempt.id);
+        deps.repo.abandonFullTestRun(row.id, live);
+      }
       const fresh = deps.repo.getFullTestRun(row.id);
       if (!fresh) return c.json({ error: "internal error" }, 500);
       return c.json(toFullTestRunVM(deps.repo, fresh));

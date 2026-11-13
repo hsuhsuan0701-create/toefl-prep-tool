@@ -100,11 +100,11 @@ describe("the compositions production hands out", () => {
     // read that finds the Run an Attempt is a section of. A Run's lifecycle (create it, complete it,
     // move its section cursor, list every Run and every Run's Sets) belongs to routes/fullTests.ts
     // and is absent here.
-    expect(typeof repo.linkFullTestAttempt).toBe("function");
+    expect(typeof repo.openFullTestSectionAttempt).toBe("function");
     expect(typeof repo.getFullTestRun).toBe("function");
     expect(typeof repo.getFullTestRunForAttempt).toBe("function");
     for (const member of [
-      "createFullTestRun", "completeFullTestRun", "setFullTestCurrentSection",
+      "createFullTestRun", "completeFullTestRun", "abandonFullTestRun", "setFullTestCurrentSection", "linkFullTestAttempt",
       "listFullTestRuns", "listFullTestSetIds", "lastAttemptStartedAtBySetId",
     ]) {
       expect(absent(repo, member), `${member} must not be on the Attempts route's store`).toBeUndefined();

@@ -60,7 +60,12 @@ export const FULL_TEST_RUN_STATUS: Record<FullTestRunStatus, StatusPresentation>
     hint: "Resume picks up at the section you were on.",
   },
   completed: { label: "Completed", tone: "positive", glyph: "check" },
-  abandoned: { label: "Abandoned", tone: "neutral", glyph: "dash" },
+  abandoned: {
+    label: "Abandoned",
+    tone: "neutral",
+    glyph: "dash",
+    hint: "Given up before every section was sat: no Overall, and its finished sections keep their bands.",
+  },
 };
 
 /** An Item's `scoringStatus` (typed `string` on ItemVM, hence the fallback in itemScoringStatus). */
@@ -631,5 +636,5 @@ export const FULL_TEST_SECTION_STATE: Record<FullTestSectionState, StatusPresent
   pending: { label: "Not started", tone: "neutral", glyph: "pending" },
   "in-progress": { label: "In progress", tone: "caution", glyph: "progress", hint: "Left part-way through." },
   completed: { label: "Complete", tone: "positive", glyph: "check" },
-  aborted: { label: "Abandoned", tone: "neutral", glyph: "dash", hint: "The Run moved past this section without a finished Attempt." },
+  aborted: { label: "Abandoned", tone: "neutral", glyph: "dash", hint: "Its Attempt was discarded before it was finished, so it has no band." },
 };

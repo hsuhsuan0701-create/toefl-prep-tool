@@ -14,7 +14,8 @@ export type StartFullTest = {
 /**
  * Starting a Full-Test Run: one request, then the Run's own page. Shared by the Full-Test Run panel
  * and the Dashboard's suggested next step, so both refuse a double click and report a failure the
- * same way.
+ * same way. Starting asks for no confirmation: a Run started by mistake is abandoned from its page
+ * or the panel (AbandonFullTestRun), which costs nothing.
  */
 export function useStartFullTest(): StartFullTest {
   const navigate = useNavigate();

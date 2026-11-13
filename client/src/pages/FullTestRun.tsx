@@ -6,6 +6,7 @@ import { requestErrorMessage } from "../lib/requestError";
 import { NOT_RUNNABLE, isTerminalSection, useFullTestRun } from "../hooks/useFullTestRun";
 import { totalSkipped } from "../lib/coverage";
 import { taskTypeLabel } from "../lib/taskTypes";
+import AbandonFullTestRun from "../components/AbandonFullTestRun";
 import ModulePathDisclosure from "../components/ModulePathDisclosure";
 import { shortfallReasons, shortfallRemedy, type ShortfallRemedy } from "../components/review/reviewText";
 import { BandFigure } from "../ui/BandFigure";
@@ -277,7 +278,7 @@ function resumableInThisTab(runId: string, section: FullTestSectionVM): boolean 
   return readWritingSession(runId)?.attemptId === section.attemptId;
 }
 
-function SectionRow({ runId, section, noBand }: { runId: string; section: FullTestSectionVM; noBand: NoBand | null }) {
+function SectionRow({ runId, section, noBand, sitting }: { runId: string; section: FullTestSectionVM; noBand: NoBand | null; sitting: boolean }) {
   // `launchable` is the server's own answer to "is this the section the Run is waiting on" — the ETS
   // order, decided in one place (launchableFullTestSection) and applied by both this button and
   // POST /api/attempts. Not re-derived here: a page that decided which section is next could offer
@@ -300,8 +301,9 @@ function SectionRow({ runId, section, noBand }: { runId: string; section: FullTe
 
       {!section.setId && <p className="text-ui text-ink-soft">No Set was available in the bank for this section.</p>}
       {!section.runnable && <p className="text-ui text-ink-soft">{NOT_RUNNABLE}</p>}
-      {/* Why a section that is neither finished nor startable is sitting there: the exam's order. */}
-      {section.runnable && section.state === "pending" && !section.launchable && (
+      {/* Why a section that is neither finished nor startable is sitting there: the exam's order.
+          An abandoned Run starts nothing, so it does not say so. */}
+      {sitting && section.runnable && section.state === "pending" && !section.launchable && (
         <p className="text-ui text-graphite">Starts once the earlier sections are finished.</p>
       )}
       {canStart && leftPartWay && (
@@ -436,6 +438,33 @@ function RunReport({ run, reads }: { run: FullTestRunVM; reads: AttemptReads }) 
 }
 
 /**
+ * The Overall of an abandoned Run, which it never has: an abandoned Run never gets its fourth band,
+ * and the Overall is four real Band Estimates or none. The sections finished before it ended keep
+ * their bands, below.
+ */
+function AbandonedReport({ run }: { run: FullTestRunVM }) {
+  const finished = run.sections.filter((s) => s.state === "completed").length;
+  return (
+    <Card padding="lg" data-testid="full-test-abandoned" className="space-y-4">
+      <Kicker as="h2">Overall</Kicker>
+      <BandFigure
+        band={null}
+        size="lg"
+        emptyLabel="No band"
+        missing={
+          <>
+            This Full-Test Run was abandoned, so it has no Overall: the Overall needs all four section bands.{" "}
+            {finished === 0
+              ? "No section was finished before it ended."
+              : `The ${finished === 1 ? "section" : `${finished} sections`} finished before it ended ${finished === 1 ? "keeps its" : "keep their"} Attempt${finished === 1 ? "" : "s"} and band${finished === 1 ? "" : "s"}, below.`}
+          </>
+        }
+      />
+    </Card>
+  );
+}
+
+/**
  * The recovery half of the section handoff.
  *
  * Each section's Simulation fires POST /api/full-tests/:id/advance itself as it finishes,
@@ -518,7 +547,9 @@ function BackLink() {
 }
 
 function RunPage({ run, reload }: { run: FullTestRunVM; reload: () => void }) {
-  const elapsed = useRunElapsed(run.createdAt, run.completedAt);
+  const abandoned = run.status === "abandoned";
+  // An abandoned Run has no end time to count to, and is not still open: it shows no elapsed time.
+  const elapsed = useRunElapsed(run.createdAt, abandoned ? run.createdAt : run.completedAt);
   const reads = useNoBandAttempts(run);
   const sitting = run.status === "in-progress";
   return (
@@ -531,20 +562,25 @@ function RunPage({ run, reload }: { run: FullTestRunVM; reload: () => void }) {
           <>
             <span>{formatWhenRange(run.createdAt, run.completedAt)}</span>
             <StatusChip status={FULL_TEST_RUN_STATUS[run.status]} />
-            <span>
-              {run.completedAt ? "Took" : "Elapsed"} {elapsed} · the whole test runs {EXPECTED_ENVELOPE}
-            </span>
+            {!abandoned && (
+              <span>
+                {run.completedAt ? "Took" : "Elapsed"} {elapsed} · the whole test runs {EXPECTED_ENVELOPE}
+              </span>
+            )}
           </>
         }
       />
 
       <div className="space-y-12">
         <div className="space-y-4">
-          {/* A finished sitting leads with its Overall; a sitting in progress gets its rules instead. */}
+          {/* A finished sitting leads with its Overall, an abandoned one with why it has none; a
+              sitting in progress gets its rules, and the way to give it up. */}
           {run.status === "completed" ? (
             <RunReport run={run} reads={reads} />
+          ) : abandoned ? (
+            <AbandonedReport run={run} />
           ) : (
-            <Notice tone="info">
+            <Notice tone="info" action={<AbandonFullTestRun run={run} size="sm" onAbandoned={reload} />}>
               The four sections run in the order ETS gives them, one at a time: each unlocks when the one before it is finished, and a
               finished section cannot be sat again. If you leave part-way, the Run waits at the section you were on — but a Reading,
               Listening or Speaking section left part-way starts again from its beginning, and Writing picks up only in the same browser
@@ -567,7 +603,7 @@ function RunPage({ run, reload }: { run: FullTestRunVM; reload: () => void }) {
           />
           <ol aria-labelledby="run-sections" className="grid gap-4 lg:grid-cols-2">
             {run.sections.map((section) => (
-              <SectionRow key={section.section} runId={run.id} section={section} noBand={noBandOf(section, reads)} />
+              <SectionRow key={section.section} runId={run.id} section={section} noBand={noBandOf(section, reads)} sitting={sitting} />
             ))}
           </ol>
         </section>
