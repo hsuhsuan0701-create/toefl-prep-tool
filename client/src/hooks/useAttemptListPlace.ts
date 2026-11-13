@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigationType, type Location } from "react-router-dom";
 import type { AttemptListVM } from "@toefl-prep/shared";
 import { followWhilePageLoads } from "../lib/followIntoView";
@@ -33,9 +33,13 @@ function readPlaces(): [string, RowPlace][] {
   }
 }
 
-/** Remembers the row opened from the history entry `locationKey`. */
-export function rememberOpenedRow(locationKey: string, place: RowPlace): void {
-  const places = [...readPlaces().filter(([key]) => key !== locationKey), [locationKey, place] as [string, RowPlace]].slice(-MAX_PLACES);
+/** Sets, or with `null` forgets, the row the history entry `locationKey` brings back. */
+function storePlace(locationKey: string, place: RowPlace | null): void {
+  const stored = readPlaces();
+  const others = stored.filter(([key]) => key !== locationKey);
+  // Most navigations leave an entry with no row: nothing to write.
+  if (!place && others.length === stored.length) return;
+  const places = (place ? [...others, [locationKey, place] as [string, RowPlace]] : others).slice(-MAX_PLACES);
   memory.clear();
   for (const [key, value] of places) memory.set(key, value);
   try {
@@ -43,6 +47,36 @@ export function rememberOpenedRow(locationKey: string, place: RowPlace): void {
   } catch {
     // Kept in memory only: it still serves Back within this page load.
   }
+}
+
+// The row whose link was just clicked, until the navigation it starts lands (useForgetLeftPlaces).
+let opening: { key: string; path: string } | null = null;
+
+/** Remembers the row opened from the history entry `locationKey`. */
+export function rememberOpenedRow(locationKey: string, place: RowPlace): void {
+  storePlace(locationKey, place);
+  opening = { key: locationKey, path: `/attempts/${place.attemptId}` };
+}
+
+/**
+ * An entry brings its row back only if the User last left it by opening that row. Leaving it any
+ * other way (another link on the page, the nav, a band card) forgets its row, so a Back to it later
+ * does not drag the page down to a row the User had moved on from. A Back or Forward away keeps
+ * it: Back, Forward and Back again retraces the row's own trail. Mounted once, at the app's root.
+ */
+export function useForgetLeftPlaces(): void {
+  const { key, pathname } = useLocation();
+  const navigationType = useNavigationType();
+  const previousKey = useRef(key);
+  useEffect(() => {
+    const left = previousKey.current;
+    const opened = opening;
+    previousKey.current = key;
+    opening = null;
+    if (left === key || navigationType === "POP") return;
+    if (opened?.key === left && opened.path === pathname) return;
+    storePlace(left, null);
+  }, [key, pathname, navigationType]);
 }
 
 function placeFor(locationKey: string): RowPlace | null {
@@ -81,16 +115,19 @@ function cameBackToDocument(): boolean {
 export function useReturnPlace(): RowPlace | null {
   const location = useLocation();
   const navigationType = useNavigationType();
-  const [place] = useState(() => {
+  const [arrival] = useState(() => {
     if (onDocumentEntry && location.key === documentEntryKey && !cameBackToDocument()) return null;
-    // An entry's own row comes first: the entry the back link pushed keeps its `returnTo` on every
-    // Back to it, and a row opened from it since is the one to bring back.
-    const own = navigationType === "POP" ? placeFor(location.key) : null;
-    if (own) return own;
+    // A Back or Forward reads only the entry's own row. The entry the back link pushed keeps its
+    // `returnTo` on every Back to it, so that is read on arriving by the link alone, and the row is
+    // then remembered for the new entry too, where leaving it by another link forgets it.
+    if (navigationType === "POP") return { place: placeFor(location.key), key: null };
     const returnTo = (location.state as { returnTo?: unknown } | null)?.returnTo;
-    return typeof returnTo === "string" ? placeFor(returnTo) : null;
+    return typeof returnTo === "string" ? { place: placeFor(returnTo), key: location.key } : null;
   });
-  return place;
+  useEffect(() => {
+    if (arrival?.place && arrival.key) storePlace(arrival.key, arrival.place);
+  }, [arrival]);
+  return arrival?.place ?? null;
 }
 
 function rowLink(list: Element, attemptId: string): HTMLElement | null {

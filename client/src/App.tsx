@@ -4,7 +4,7 @@ import AppErrorBoundary, { PageErrorScreen } from "./components/AppErrorBoundary
 import LeaveGuardHost from "./components/LeaveGuardHost";
 import RouteFallback from "./components/RouteFallback";
 import { SetupStatusProvider } from "./components/setup/SetupStatusProvider";
-import { noteDocumentEntry } from "./hooks/useAttemptListPlace";
+import { noteDocumentEntry, useForgetLeftPlaces } from "./hooks/useAttemptListPlace";
 import NotFound from "./pages/NotFound";
 import { documentTitle, sectionParamLabel, useRouteDocumentTitle, type RouteHandle } from "./routeTitle";
 
@@ -100,6 +100,7 @@ function RouteError() {
 // keeps the last answer while a fresh one is asked for.
 function AppRoot() {
   useRouteDocumentTitle();
+  useForgetLeftPlaces();
   return (
     <AppErrorBoundary>
       <LeaveGuardHost>

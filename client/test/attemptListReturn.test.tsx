@@ -331,13 +331,20 @@ describe("the Attempt review's back link", () => {
 });
 
 // Which row an entry brings back is the row the User last left that entry by. Each list page is
-// walked through the same trails: its own list and its back link's name.
+// walked through the same trails: its own list, its back link's name, and a nav link that leaves it.
 const LIST_PAGES = [
-  { page: "Progress", path: "/progress", heading: "Progress", rows: 25, back: "Progress", a: "att-5", b: "att-15" },
-  { page: "the Dashboard", path: "/", heading: "Practice", rows: 5, back: "Practice", a: "att-2", b: "att-4" },
+  { page: "Progress", path: "/progress", heading: "Progress", rows: 25, back: "Progress", leaveBy: "Practice", a: "att-5", b: "att-15" },
+  { page: "the Dashboard", path: "/", heading: "Practice", rows: 5, back: "Practice", leaveBy: "Progress", a: "att-2", b: "att-4" },
 ] as const;
 
-describe.each(LIST_PAGES)("the row $page brings back", ({ path, heading, rows, back, a, b }) => {
+/** A link of the app's nav (the review's header has links of the same names). */
+function navLink(name: string): HTMLElement {
+  const link = screen.getAllByRole("link", { name }).find((l) => l.closest("nav"));
+  if (!link) throw new Error(`no nav link ${name}`);
+  return link;
+}
+
+describe.each(LIST_PAGES)("the row $page brings back", ({ path, heading, rows, back, leaveBy, a, b }) => {
   async function listPage() {
     const router = mount(path);
     await waitFor(() => expect(rowLinks()).toHaveLength(rows));
@@ -350,6 +357,15 @@ describe.each(LIST_PAGES)("the row $page brings back", ({ path, heading, rows, b
     await act(go);
     await screen.findByRole("heading", { level: 1, name: heading });
     await waitFor(() => expect(rowLinks()).toHaveLength(rows));
+  }
+
+  /** Opens row `a` from where it sat 300px down, and comes back to it by Back: it is put back. */
+  async function openAndComeBack(router: ReturnType<typeof mount>) {
+    rowTop[`/attempts/${a}`] = 300;
+    await openReview(a);
+    rowTop[`/attempts/${a}`] = 900;
+    await backOnList(() => router.navigate(-1));
+    await waitFor(() => restoredTo(600));
   }
 
   // The back link pushes a new entry that names the one the row was opened from; a row opened from
@@ -368,5 +384,66 @@ describe.each(LIST_PAGES)("the row $page brings back", ({ path, heading, rows, b
     await backOnList(() => router.navigate(-1));
     await waitFor(() => restoredTo(1300));
     expect(scrollTo).not.toHaveBeenCalledWith({ top: 600, behavior: "instant" });
+  });
+
+  it("is nothing once the User left the entry by another link", async () => {
+    const router = await listPage();
+    await openAndComeBack(router);
+
+    await userEvent.click(navLink(leaveBy));
+    await screen.findByRole("heading", { level: 1, name: leaveBy });
+    await backOnList(() => router.navigate(-1));
+    expect(scrollTo).not.toHaveBeenCalled();
+  });
+
+  it("is nothing once the User left by another link the entry the back link pushed", async () => {
+    const router = await listPage();
+    rowTop[`/attempts/${a}`] = 300;
+    await openReview(a);
+    rowTop[`/attempts/${a}`] = 900;
+    await backOnList(() => userEvent.click(backLink(back)));
+    await waitFor(() => restoredTo(600));
+
+    await userEvent.click(navLink(leaveBy));
+    await screen.findByRole("heading", { level: 1, name: leaveBy });
+    await backOnList(() => router.navigate(-1));
+    expect(scrollTo).not.toHaveBeenCalled();
+  });
+
+  // Forgetting a row once it is brought back would lose this: the User left the entry by the row.
+  it("is still the opened row after Back, Forward and Back again", async () => {
+    const router = await listPage();
+    await openAndComeBack(router);
+
+    await act(() => router.navigate(1));
+    await screen.findByText("No Items were recorded for this Attempt.");
+    await backOnList(() => router.navigate(-1));
+    await waitFor(() => restoredTo(600));
+  });
+});
+
+describe("the Dashboard's band card link", () => {
+  it("leaves the entry with no row to bring back", async () => {
+    mocked.getStatsSummary.mockResolvedValue({
+      ...SUMMARY,
+      sections: [
+        { section: "reading", band: 5, method: "table3-v1", attemptId: "att-30", mode: "simulation", attemptedAt: "2026-11-10T09:30:00.000Z", target: 5.5, modulePath: "upper" },
+      ],
+    });
+    const router = mount("/");
+    await waitFor(() => expect(rowLinks()).toHaveLength(5));
+    rowTop["/attempts/att-2"] = 300;
+    await openReview("att-2");
+    rowTop["/attempts/att-2"] = 900;
+    await act(() => router.navigate(-1));
+    await waitFor(() => restoredTo(600));
+
+    await userEvent.click(await screen.findByRole("link", { name: "your Reading Simulation" }));
+    await screen.findByText("No Items were recorded for this Attempt.");
+    scrollTo.mockClear();
+    await act(() => router.navigate(-1));
+    await screen.findByRole("link", { name: "your Reading Simulation" });
+    await waitFor(() => expect(rowLinks()).toHaveLength(5));
+    expect(scrollTo).not.toHaveBeenCalled();
   });
 });
