@@ -1,0 +1,45 @@
+name: Cloudflare foundation checks
+
+on:
+  push:
+    branches: [cloudflare-migration]
+    paths:
+      - 'cloudflare/**'
+      - '.github/workflows/cloudflare-foundation.yml'
+      - 'client/**'
+      - 'shared/**'
+      - 'package.json'
+      - 'package-lock.json'
+  pull_request:
+    paths:
+      - 'cloudflare/**'
+      - '.github/workflows/cloudflare-foundation.yml'
+      - 'client/**'
+      - 'shared/**'
+      - 'package.json'
+      - 'package-lock.json'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Build existing React client
+        run: npm run build -w client
+      - name: Smoke-test Worker adapter (mock D1 and assets)
+        run: node --experimental-strip-types --test cloudflare/test/worker.test.mjs
+      - name: Check D1 schema can create its tables
+        run: |
+          python3 - <<'PY'
+          import sqlite3
+          from pathlib import Path
+          db=sqlite3.connect(':memory:')
+          db.executescript(Path('cloudflare/migrations/0001_cloud_baseline.sql').read_text())
+          db.execute("INSERT INTO attempts(id,kind,mode,set_id) VALUES('smoke','reading','simulation','test-set')")
+          assert db.execute('SELECT COUNT(*) FROM attempts').fetchone()[0] == 1
+          PY
