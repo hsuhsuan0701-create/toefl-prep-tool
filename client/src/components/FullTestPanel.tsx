@@ -44,6 +44,8 @@ export default function FullTestPanel() {
   // earlier ones; every finished Run once the User asks for them.
   const [finished, setFinished] = useState<FullTestRunVM[]>([]);
   const [showAllFinished, setShowAllFinished] = useState(false);
+  // Read by `reload`, which keeps one identity for the mount effect.
+  const showAllFinishedRef = useRef(false);
   const [loadingEarlier, setLoadingEarlier] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const mountedRef = useRef(true);
@@ -59,12 +61,14 @@ export default function FullTestPanel() {
   // Runs in progress and finished Runs are fetched apart, so neither can push the other off the
   // panel: every Run in progress, however old or many (Start creates one at once, so a few
   // mis-clicks make several), and then the most recent finished Runs for their reports. An
-  // abandoned Run is finished too, listed as abandoned with what it kept.
+  // abandoned Run is finished too, listed as abandoned with what it kept. Once the User has opened
+  // the earlier finished Runs, a reload (after an abandon) reads them all again rather than cutting
+  // the list back to the newest few with its "Show earlier" button gone.
   const reload = useCallback(async () => {
     try {
       const [unfinished, recentFinished] = await Promise.all([
         listFullTests({ status: "in-progress" }),
-        listEndedRuns(HOME_FINISHED_RUNS + 1),
+        listEndedRuns(showAllFinishedRef.current ? undefined : HOME_FINISHED_RUNS + 1),
       ]);
       if (!mountedRef.current) return;
       setInProgress(unfinished);
@@ -85,6 +89,7 @@ export default function FullTestPanel() {
       const all = await listEndedRuns();
       if (!mountedRef.current) return;
       setFinished(all);
+      showAllFinishedRef.current = true;
       setShowAllFinished(true);
     } catch (e) {
       if (mountedRef.current) setError(requestErrorMessage(e));

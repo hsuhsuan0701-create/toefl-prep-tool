@@ -238,3 +238,60 @@ describe("abandoning a Run in progress from the panel", () => {
     expect(screen.getByText("1 of 4 sections have a band")).toBeInTheDocument();
   });
 });
+
+// GET /api/full-tests as stubListing answers it, over a list the stub's POST .../abandon changes, so
+// a test can abandon a Run and read the listings that follow.
+function stubAbandonableListing(runs: FullTestRunVM[]): { posts: string[] } {
+  const posts: string[] = [];
+  const json = (body: unknown) =>
+    Promise.resolve(new Response(JSON.stringify(body), { status: 200, headers: { "Content-Type": "application/json" } }));
+  vi.stubGlobal(
+    "fetch",
+    vi.fn((input: RequestInfo | URL, init?: RequestInit) => {
+      const url = new URL(typeof input === "string" ? input : input.toString(), "http://localhost");
+      const abandon = url.pathname.match(/^\/api\/full-tests\/([^/]+)\/abandon$/);
+      if (init?.method === "POST" && abandon) {
+        posts.push(url.pathname);
+        const i = runs.findIndex((r) => r.id === abandon[1]);
+        runs[i] = { ...runs[i], status: "abandoned", currentSection: null };
+        return json(runs[i]);
+      }
+      if (url.pathname !== "/api/full-tests") throw new Error(`unhandled fetch in test: ${url.toString()}`);
+      const status = url.searchParams.get("status");
+      const limit = url.searchParams.get("limit");
+      const matching = runs.filter((r) => status === null || r.status === status);
+      return json(limit === null ? matching : matching.slice(0, Number(limit)));
+    }) as unknown as typeof fetch,
+  );
+  return { posts };
+}
+
+// The panel re-reads its lists after an abandon. Earlier finished Runs the User opened stay open:
+// the re-read fetches every finished Run, and the Run just abandoned joins them.
+describe("abandoning a Run with the earlier finished Runs shown", () => {
+  it("keeps every finished Run listed, the abandoned one among them", async () => {
+    const finished = [1, 2, 3, 4].map((i) =>
+      run({ id: `run-done-${i}`, status: "completed", createdAt: `2026-08-1${5 - i}T02:00:00.000Z` }),
+    );
+    const open = run({ id: "run-open", status: "in-progress", createdAt: "2026-08-20T02:00:00.000Z" });
+    const { posts } = stubAbandonableListing([open, ...finished]);
+    render(
+      <MemoryRouter>
+        <FullTestPanel />
+      </MemoryRouter>,
+    );
+
+    await userEvent.click(await screen.findByRole("button", { name: "Show earlier finished Runs" }));
+    await waitFor(() => expect(screen.getAllByRole("link", { name: "View report" })).toHaveLength(4));
+
+    await userEvent.click(screen.getByRole("button", { name: "Abandon Run…" }));
+    await userEvent.click(within(screen.getByRole("dialog")).getByRole("button", { name: "Abandon Run" }));
+    expect(posts).toEqual(["/api/full-tests/run-open/abandon"]);
+
+    await waitFor(() => expect(screen.getAllByRole("link", { name: "View report" })).toHaveLength(5));
+    expect(screen.getAllByRole("link", { name: "View report" }).map((a) => a.getAttribute("href"))).toEqual(
+      ["run-open", ...finished.map((r) => r.id)].map((id) => `/full-test/${id}`),
+    );
+    expect(screen.queryByRole("link", { name: "Resume" })).toBeNull();
+  });
+});
