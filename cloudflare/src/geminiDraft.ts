@@ -34,7 +34,7 @@ export function validateDraft(x: unknown): Draft {
     }
     if (optionIds.size !== 4 || optionTexts.size !== 4 || !optionIds.has(q.correctOptionId)) throw new Error("Invalid answer choices");
   }
-  return x as Draft;
+  return x as unknown as Draft;
 }
 const bag = (s: string) => new Set(norm(s).split(/\s+/).filter(Boolean));
 function overlap(a: Set<string>, b: Set<string>): number {
