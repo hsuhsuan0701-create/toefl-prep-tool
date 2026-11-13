@@ -194,6 +194,9 @@ export default function TimedEditor({
         title={isEmail ? "Hand in an empty email?" : "Hand in an empty post?"}
         confirmLabel={isEmail ? "Submit empty email" : "Submit empty post"}
         cancelLabel="Keep writing"
+        // Handing in no words is a 0 that cannot be taken back, so focus starts on Keep writing: a
+        // key still held from Submit must not confirm the question it has just opened.
+        tone="destructive"
         onConfirm={handleEmptyConfirmed}
         onCancel={() => setConfirmingEmpty(false)}
       >

@@ -654,6 +654,23 @@ describe("WritingDrill: an essay with no words asks before it is handed in", () 
     expect((await emailScoreTexts()).map((t) => t.trim())).toEqual(["Dear"]);
   });
 
+  it("opens the question on Keep writing, so Enter pressed again does not hand the empty essay in", async () => {
+    const user = userEvent.setup();
+    await startEmail(user);
+
+    // By keyboard, as a User who presses Enter on Submit and holds it a moment does.
+    screen.getByRole("button", { name: "Submit Email" }).focus();
+    await user.keyboard("{Enter}");
+    const asked = openDialog();
+    expect(asked).not.toBeNull();
+    expect(within(asked!).getByRole("button", { name: "Keep writing", hidden: true })).toHaveFocus();
+
+    await user.keyboard("{Enter}");
+    expect(openDialog()).toBeNull();
+    expect(screen.getByRole("heading", { name: "Write an Email" })).toBeInTheDocument();
+    expect(await emailScoreTexts()).toEqual([]);
+  });
+
   it("hands the empty essay in once the User confirms", async () => {
     const user = userEvent.setup();
     await startEmail(user);
