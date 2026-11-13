@@ -67,6 +67,7 @@ export type FullTestRunStore = {
   /** getFullTestRunForAttempt for many Attempts in one read, keyed by Attempt id; one no Run names is absent. */
   listFullTestRunsForAttempts(attemptIds: readonly string[]): Map<string, { id: string; status: string }>;
   listFullTestRuns(q?: { limit?: number; status?: FullTestRunStatus }): FullTestRunRow[];
+  /** The Set ids existing Runs claim; an abandoned Run claims only the Sets it sat. */
   listFullTestSetIds(): string[];
   linkFullTestAttempt(runId: string, section: FullTestSection, attemptId: string): boolean;
   /**

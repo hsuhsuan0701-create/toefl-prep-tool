@@ -93,15 +93,25 @@ export function createSqliteFullTestStore(db: Database.Database) {
           "SELECT * FROM full_test_runs ORDER BY created_at DESC, rowid DESC LIMIT ?"
         ).all(q.limit ?? 20) as FullTestRunRow[];
     },
-    // Every Set id any Run has already drawn, in any section. Feeds the "never reuse a Set another Run
-    // already claimed, while alternatives remain" half of Set selection, the only reason a Run needs
-    // to see any Run but its own.
+    // Every Set id a Run has claimed, in any section. Feeds the "never reuse a Set another Run already
+    // claimed, while alternatives remain" half of Set selection, the only reason a Run needs to see
+    // any Run but its own. A Run in progress or completed claims all four of its Sets. An abandoned
+    // Run claims only the Sets that were sat (ATTEMPT_COUNTS_AS_SITTING_SQL, the attempted rule):
+    // a Run started by mistake and abandoned at once has sat nothing, and must not keep its Sets from
+    // every later Run.
     listFullTestSetIds(): string[] {
       const rows = db.prepare(
-        `SELECT reading_set_id AS a, listening_set_id AS b, writing_set_id AS c, speaking_set_id AS d
-         FROM full_test_runs`
-      ).all() as { a: string | null; b: string | null; c: string | null; d: string | null }[];
-      return rows.flatMap((r) => [r.a, r.b, r.c, r.d]).filter((id): id is string => id !== null);
+        `SELECT claimed.set_id AS setId FROM (
+           SELECT status, reading_set_id AS set_id FROM full_test_runs
+           UNION ALL SELECT status, listening_set_id FROM full_test_runs
+           UNION ALL SELECT status, writing_set_id FROM full_test_runs
+           UNION ALL SELECT status, speaking_set_id FROM full_test_runs
+         ) claimed
+         WHERE claimed.set_id IS NOT NULL
+           AND (claimed.status <> 'abandoned'
+             OR EXISTS (SELECT 1 FROM attempts a WHERE a.set_id = claimed.set_id AND ${ATTEMPT_COUNTS_AS_SITTING_SQL}))`
+      ).all() as { setId: string }[];
+      return rows.map((r) => r.setId);
     },
     // Points one section at the Attempt that is sitting it.
     linkFullTestAttempt,

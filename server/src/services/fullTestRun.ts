@@ -184,7 +184,7 @@ export function pickFullTestSets(input: {
   sets: readonly SelectableSet[];
   /** setId -> start of its most recent Attempt that counts as a sitting (space-form UTC, so it sorts as text). */
   lastAttemptedAt: ReadonlyMap<string, string>;
-  /** Set ids already drawn by any existing Run. */
+  /** Set ids an existing Run claims: all four of a Run in progress or completed, the sat ones of an abandoned Run. */
   claimedSetIds: ReadonlySet<string>;
   overrides?: Partial<Record<FullTestSection, string>>;
 }): FullTestSetSelection {

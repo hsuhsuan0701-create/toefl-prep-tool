@@ -265,6 +265,38 @@ describe("POST /api/full-tests creates a run over the whole test", () => {
     expect([readingOf(first), readingOf(second)].sort()).toEqual(["rd-a", "rd-b"]);
   });
 
+  // A Run started by mistake and abandoned at once sat nothing, so it holds no claim on its Sets: the
+  // next Run may draw them. A Set a section did sit stays claimed, as the attempted rule
+  // (ATTEMPT_COUNTS_AS_SITTING_SQL) already counts it.
+  it("lets a later run draw the Sets an abandoned run reserved but never sat", async () => {
+    const h = harness(bankWith("rd-a", "rd-b"));
+    const first = (await createRun(h.app)).run;
+    expect((await h.app.request(`/full-tests/${first.id}/abandon`, { method: "POST" })).status).toBe(200);
+
+    const second = (await createRun(h.app)).run;
+    expect(second.sections.map((s) => s.setId)).toEqual(first.sections.map((s) => s.setId));
+    // The second Run is in progress, so it claims them again.
+    const third = (await createRun(h.app)).run;
+    expect(third.sections.find((s) => s.section === "reading")!.setId).toBe("rd-b");
+  });
+
+  it("keeps a Set claimed when the abandoned run's section sat it", async () => {
+    const h = harness(bankWith(DISK_SET_ID, OTHER_DISK_SET_ID));
+    const first = (await createRun(h.app)).run;
+    expect(first.sections.find((s) => s.section === "reading")!.setId).toBe(DISK_SET_ID);
+    await sitReading(h, first.id);
+    expect((await h.app.request(`/full-tests/${first.id}/abandon`, { method: "POST" })).status).toBe(200);
+    // The other Reading Set sat more recently, so least-recently-attempted alone would choose the
+    // abandoned Run's Set: only its claim keeps the next Run off it.
+    h.r.createAttempt({ id: "att-other", kind: "reading", mode: "drill", setId: OTHER_DISK_SET_ID, isRepeat: false });
+    h.r.insertItemResult({ attemptId: "att-other", itemId: "r-1", taskType: "complete_words" });
+    h.r.updateItemScore({ attemptId: "att-other", itemId: "r-1", score: 1, scoreJson: "{}", scoringStatus: "scored" });
+    h.db.prepare("UPDATE attempts SET started_at='2999-01-01 00:00:00' WHERE id='att-other'").run();
+
+    const second = (await createRun(h.app)).run;
+    expect(second.sections.find((s) => s.section === "reading")!.setId).toBe(OTHER_DISK_SET_ID);
+  });
+
   it("honours an explicit Set per section, and refuses one that is unknown or of the wrong kind", async () => {
     const h = harness();
     const chosen = await createRun(h.app, { sets: { reading: OTHER_DISK_SET_ID } });
