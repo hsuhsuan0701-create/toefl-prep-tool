@@ -90,11 +90,19 @@ when it records a decision.
   Build a Sentence Item once: an all-scored request is answered from the stored rows and writes
   nothing, a mixed one is refused. `routes.attempts.reading.test.ts`,
   `routes.attempts.listening.test.ts`, `routes.attempts.buildSentence.test.ts`.
-- Until a Simulation is completed, its review shows each Response without a Correct or Incorrect
-  mark or a correct-count tally (Reading, Listening and Build a Sentence alike), and the per-skill
-  accuracy pane leaves out its Items. A Drill shows its marks as soon as an Item is scored, and a
-  discarded Simulation shows its marks without the key. `AttemptReviewDeterministic.test.tsx`,
-  `AttemptReview.test.tsx`, `routes.stats.test.ts`.
+- While a Simulation is in progress, `GET /api/attempts/:id` withholds whether each Reading,
+  Listening and Build a Sentence Item was right: the Item goes out with a null `score` and no
+  `scoreJson.correct`, the Attempt's `routerRaw` is null (in the Attempt log too), and
+  `marksWithheld` says why. The same holds for a discarded Simulation on the Set a Full-Test Run
+  still in progress drew for that section, which is the Attempt a restarted section replaces, until
+  that Run ends. `MARKS_WITHHELD_SQL` in `db/stores/attempts.ts` decides it for the detail, the log
+  and the per-skill accuracy pane alike, and the review renders from `marksWithheld` alone: each
+  Response unmarked ("Not marked yet"), with no correct-count tally. A Drill sends its marks as soon
+  as an Item is scored, and any other discarded Simulation sends its marks without the key. Judged
+  Items are untouched, and the score responses keep their bare correctness.
+  `routes.attempts.reading.test.ts`, `routes.attempts.buildSentence.test.ts`,
+  `routes.fullTests.test.ts`, `composedApp.clientApi.test.ts`,
+  `AttemptReviewDeterministic.test.tsx`, `AttemptReview.test.tsx`, `routes.stats.test.ts`.
 - A Simulation scores its Modules in order: Router Module Items only until it is routed, then only
   the Module it was routed to (409 otherwise). `routes.attempts.reading.test.ts`.
 - A published Set is never edited: past Attempts are reviewed against the file. Publish a replacement
