@@ -36,6 +36,8 @@ jobs:
           node scripts/stage-cloudflare-listening-audio.mjs
           test -f client/dist/listening-audio/lsn-03948a55/lcr-r1.mp3
           test ! -f client/dist/listening-audio/lsn-03948a55/audio-manifest.json
+      - name: Test durable Listening refill queue and 3-a-day limit (no paid calls)
+        run: node --import tsx --test cloudflare/test/listening-refill.test.mjs
       - name: Test offline Listening WAV validation (no API calls)
         run: node --test cloudflare/test/listening-wav-sanity.test.mjs
       - name: Dry-run original Listening Gemini 3.8 voice trial (no API calls)
