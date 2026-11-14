@@ -2,7 +2,9 @@ import fs from "node:fs";
 import path from "node:path";
 import type { ListeningAccent, ListeningModule, ListeningSet, SetAdvisoryNote } from "@toefl-prep/shared";
 import { config } from "../lib/config.js";
-import { countEnglishWords, paceWarning } from "./audioPace.js";
+import { countEnglishWords, paceWarning, LISTENING_ROLE_POLICY, type ListeningAudioRole } from "./audioPace.js";
+export { LISTENING_ROLE_POLICY } from "./audioPace.js";
+export type { ListeningAudioRole } from "./audioPace.js";
 import { renderClipWithPaceCorrection } from "./audioPaceCorrection.js";
 import { classifyGenerationCheck } from "./generationCheckPolicy.js";
 import {
@@ -26,39 +28,6 @@ import type { TtsRequest, TtsSpeaker } from "./tts.js";
 // ---------------------------------------------------------------------------
 // Roles + pace policy
 // ---------------------------------------------------------------------------
-
-// Each Listening role's pace band, in words per minute of SPEECH: the clip less the silence at each
-// end, as transcode.ts's `probeSpeechDurationSec` measures it. generator.ts injects that probe at
-// both render call sites, and these numbers only mean anything against it: Gemini adds a near-fixed
-// ~0.68 s of silence to every clip, which a file-duration rate charges hardest to the shortest
-// clips.
-//
-// Gemini has no rate parameter, so pace is steered by prompt wording alone (audioPrompt.ts's
-// `pacingDirection` picks a prose line by `targetWpm`; no number reaches the model). A clip that
-// misses its band buys bounded corrective re-renders (LISTENING_PACE_CORRECTION_ROUNDS), and the best
-// take is published either way, with an advisory note naming the clip if it is still out of band.
-// Of the pace verdicts, only a malfunction (a truncated, empty or stuck synthesis) fails the render.
-//
-// ETS publishes no speech rate for TOEFL audio
-// (docs/research/2026-08-23-listen-and-repeat-speech-rate.md §2.4), so these bands describe what
-// this renderer delivers under its instructions, not an ETS target. The measurements behind them,
-// and why three of the four were left where they were, are in
-// docs/research/2026-08-23-listening-role-band-recentring.md.
-export const LISTENING_ROLE_POLICY = {
-  // Target 170 is the median of 140 measured first takes; 135-205 brackets their p10-p90. 170 is also
-  // the top of pacingDirection's "easy, conversational pace" bucket (151-170), the instruction those
-  // takes were rendered under: a target above 170 selects a different instruction and invalidates
-  // the measurement, so a retune past it needs a re-measure. Pinned by listeningAudioRenderer.test.ts.
-  "lcr-utterance": { targetWpm: 170, minWpm: 135, maxWpm: 205 },
-  // `conversation` times the whole dialogue as one clip, pauses between speakers included. Do not fit
-  // it to the manifest of a Set rendered by the retired per-turn pipeline (lsn-14659f38): those
-  // turns were concatenated with a fixed 350 ms gap, which lowers the whole-conversation rate by
-  // 9-11 WPM.
-  conversation: { targetWpm: 162, minWpm: 150, maxWpm: 175 },
-  announcement: { targetWpm: 150, minWpm: 140, maxWpm: 160 },
-  "academic-talk": { targetWpm: 148, minWpm: 140, maxWpm: 155 },
-} as const;
-export type ListeningAudioRole = keyof typeof LISTENING_ROLE_POLICY;
 
 // The most corrective re-renders one Listening clip may buy: one for any miss, then up to two more
 // only while the clip stays far below its band (audioPace.ts's FAR_BELOW_BAND_WPM, which on the
