@@ -33,3 +33,23 @@ test("missing manual secret refuses even a bearer token", async () => {
   }), { GEMINI_API_KEY:"mock-key", AI_GENERATION_ENABLED:"false" });
   assert.equal(res.status,401);
 });
+
+test("draft review cannot be read without separate admin token", async () => {
+ const response=await worker.fetch(new Request(host+"/api/cloud/gemini-review-latest",{method:"POST",headers:{origin:host,"content-type":"application/json"},body:"{}"}),env);
+ assert.equal(response.status,401);
+});
+test("draft review returns D1 content only to authorized caller",async()=>{
+ const DB={prepare(sql){assert.match(sql,/FROM generation_drafts/);return{first:async()=>({title:"Title",status:"pending_review",created_at:"2026-11-14 00:00:00",content_json:JSON.stringify({title:"Title",passage:"Passage",questions:[]})})};}};
+ const response=await worker.fetch(new Request(host+"/api/cloud/gemini-review-latest",{method:"POST",headers:{origin:host,"content-type":"application/json",authorization:"Bearer "+"a".repeat(48)},body:"{}"}),{...env,DB});
+ assert.equal(response.status,200);
+ const body=await response.json();
+ assert.equal(body.draft.status,"pending_review");
+ assert.equal(body.draft.title,"Title");
+});
+test("draft review browser UI remains behind Access and does not contain credentials",async()=>{
+ const response=await worker.fetch(new Request(host+"/api/cloud/gemini-review"),env);
+ assert.equal(response.status,200);
+ const html=await response.text();
+ assert.match(html,/草稿審閱/);
+ assert.doesNotMatch(html,/fake-gemini-key/);
+});
