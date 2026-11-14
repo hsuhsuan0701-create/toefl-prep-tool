@@ -32,8 +32,8 @@ test("missing D1 migration is explicit", async () => {
   assert.doesNotMatch(JSON.stringify(body), /no such table/);
 });
 
-test("unmigrated practice/scoring API refuses requests", async () => {
-  const response = await worker.fetch(new Request("https://toefl.example/api/attempts", { method: "POST" }), { ASSETS: assets });
+test("unmigrated generation API still refuses requests", async () => {
+  const response = await worker.fetch(new Request("https://toefl.example/api/generate", { method: "POST" }), { ASSETS: assets });
   assert.equal(response.status, 501);
   assert.match((await response.json()).error, /not been migrated/);
 });
