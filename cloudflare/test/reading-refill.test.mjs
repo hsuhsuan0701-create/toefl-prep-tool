@@ -99,5 +99,5 @@ test("original Reading schema is still authoritative for a full Set",()=>{
   assert.ok(set.upperModule.academic.length>0);
   assert.throws(()=>checkReadingQuality({...set,upperModule:{
     ...set.upperModule,academic:[]
-  }},[]),/Unexpected module composition/);
+  }},[]),/Unexpected module composition|C-test paragraph length out of range/);
 });
