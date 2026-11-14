@@ -47,6 +47,8 @@ jobs:
         run: node --import tsx --test cloudflare/test/academic-practice.test.mjs
       - name: End-to-end original Reading Set → Attempt → Score → Route → Results
         run: node --import tsx --test cloudflare/test/reading-d1-e2e.test.mjs
+      - name: Test canonical Listening audio, private import, scoring and adaptive D1
+        run: node --import tsx --test cloudflare/test/listening-d1-e2e.test.mjs
       - name: Test original Dashboard stats routes against D1
         run: node --import tsx --test cloudflare/test/stats-d1.test.mjs
       - name: Test automatic Reading refill cost guard, inventory and authentication
@@ -64,4 +66,5 @@ jobs:
           assert db.execute("SELECT COUNT(*) FROM sqlite_master WHERE name='academic_practice_attempts'").fetchone()[0] == 1
           assert db.execute("SELECT COUNT(*) FROM sqlite_master WHERE name='reading_sets'").fetchone()[0] == 1
           assert db.execute("SELECT COUNT(*) FROM sqlite_master WHERE name='reading_refill_runs'").fetchone()[0] == 1
+          assert db.execute("SELECT COUNT(*) FROM sqlite_master WHERE name='listening_sets'").fetchone()[0] == 1
           PY
