@@ -22,6 +22,7 @@
     "predemo:seed": "node scripts/check-node.mjs",
     "demo:seed": "tsx scripts/seed-demo-data.ts",
     "typecheck": "tsc --noEmit -p server/tsconfig.json && tsc --noEmit -p shared/tsconfig.json && npm run typecheck -w client",
+    "deploy:cloudflare": "npm run build -w client && node scripts/stage-cloudflare-listening-audio.mjs && npx wrangler deploy --config cloudflare/wrangler.jsonc",
     "audit:novelty": "tsx scripts/audit-set-novelty.ts",
     "rubrics:check": "tsx scripts/check-rubrics.ts"
   },
