@@ -5,6 +5,7 @@
  * Protect with Cloudflare Access before storing personal practice data.
  */
 import { generateScheduledDraft } from "./scheduledGeneration.js";
+import { checkGeminiModel } from "./geminiModelCheck.js";
 
 interface Env {
   GEMINI_API_KEY?: string;
@@ -40,6 +41,14 @@ export default {
           { status: 503, headers: jsonHeaders },
         );
       }
+    }
+
+    // Diagnostic only: metadata GET, never generation, never echoes the secret.
+    // This must remain behind Cloudflare Access.
+    if (pathname === "/api/cloud/gemini-check" && request.method === "GET") {
+      const model = env.GEMINI_MODEL || "gemini-3.1-flash-lite";
+      const result = await checkGeminiModel(env.GEMINI_API_KEY, model);
+      return Response.json(result, { status: result.modelAccessible ? 200 : 503, headers: jsonHeaders });
     }
 
     if (pathname.startsWith("/api/")) {
