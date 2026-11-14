@@ -74,8 +74,11 @@ test("completed Reading Simulation yields the original Stats VM, not an Overall 
   const result=await request(env,"/api/stats/summary");
   assert.equal(result.status,200,JSON.stringify(result.data));
   assert.equal(result.data.overall.band,null);
-  // This fixture intentionally does not pretend that five scored Items cover
-  // the original full module. The canonical persistedRowToEstimate must reject.
-  assert.equal(result.data.sections.length,0);
+  // All required Task Types exist for Router + Upper in this synthetic
+  // fixture, so the canonical persisted-row guard accepts the Reading estimate.
+  assert.equal(result.data.sections.length,1);
+  assert.equal(result.data.sections[0].section,"reading");
+  assert.equal(result.data.sections[0].band,5);
+  assert.equal(result.data.overall.missingSections.length,3);
  }finally{sql.close();}
 });
