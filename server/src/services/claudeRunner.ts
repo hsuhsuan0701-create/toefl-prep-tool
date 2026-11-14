@@ -52,6 +52,7 @@ export const CLI_PERMISSIONS_SETTINGS = JSON.stringify({
   permissions: {
     deny: [
       "Read(server/**)",
+      "Read(cloudflare/**)",
       "Read(shared/**)",
       "Read(client/**)",
       "Read(scripts/**)",
