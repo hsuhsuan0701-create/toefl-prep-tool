@@ -53,7 +53,7 @@ test("target updates require same-origin JSON, and persist in existing D1 settin
 test("completed Reading Simulation yields the original Stats VM, not an Overall with missing sections",async()=>{
  const {sql,env}=setup();
  try{
-  sql.prepare("INSERT INTO attempts(id,kind,mode,set_id,status,module_path,is_repeat,completed_at) VALUES('test-attempt','reading','simulation','rd-abc','completed','upper',0,datetime('now'))").run();
+  sql.prepare("INSERT INTO attempts(id,kind,mode,set_id,status,module_path,is_repeat) VALUES('test-attempt','reading','simulation','rd-abc','in_progress','upper',0)").run();
   const items=[
    ["complete_words","ctw1","router"],["daily_life","d1","router"],["academic_passage","a1","router"],
    ["complete_words","ctw2","upper"],["academic_passage","a2","upper"]
@@ -61,6 +61,7 @@ test("completed Reading Simulation yields the original Stats VM, not an Overall 
   for(const [task,id,module] of items) sql.prepare(
    "INSERT INTO item_results(attempt_id,item_id,task_type,score,score_json,scoring_status,scored_at) VALUES(?,?,?,?,?,'scored',datetime('now'))"
   ).run("test-attempt",id,task,1,JSON.stringify({correct:true,module,skill:"detail"}));
+  sql.prepare("UPDATE attempts SET status=\'completed\',completed_at=datetime(\'now\') WHERE id=\'test-attempt\'").run();
   const coverage=items.map(([task])=>({taskType:task,itemCount:1,skippedCount:0}));
   sql.prepare(
    "INSERT INTO section_estimates(attempt_id,section,raw_detail,estimated_band,method) VALUES(?,'reading',?,?,?)"
