@@ -9,7 +9,8 @@
 - 只有帶 `--execute` 才會呼叫 **一次** Gemini TTS。遇到 429、503 直接回報，沒有自動重試，以免測試費用失控。
 - 不改原版 14 套 MP3，也不寫入正式 D1／Cloudflare R2。新檔存在 git 忽略的 `tmp/tts-trials/`。
 - 新模型的 REST 格式改成 `speechMetadata` 和 `voiceConfig.voice`；雙人對話以每個 turn 一個 Part 搭配 `speechMetadata.speaker`，不是舊模型內嵌的 `Speaker: ...` 字串。
-- 本階段先保存 WAV（Gemini 3.8 unary 原生輸出），透過本機 ffmpeg 轉成 MP3，以便與原版做 A/B 比較。
+- 本階段先保存 WAV（Gemini 3.8 unary 原生輸出）；正式系統**仍只接受 MP3**。使用本機 ffmpeg 轉 MP3 以便比較，轉檔不會額外呼叫 Gemini。
+- 品質檢查限定**零額外 AI API**：WAV 格式、長度、異常靜音、概略語速。**不進行雲端語音轉錄／AI 聽感審核／自動付費重新生成**。此類檢查不能可靠找出疊字或漏字，遇到異常請人工試聽；未獲確認不要發布。
 
 ## Windows PowerShell
 
@@ -41,7 +42,15 @@ try {
 
 輸出在 `tmp/tts-trials/lsn-03948a55/`；用 Windows 播放器聽新 MP3，與既有 `data/audio/stimuli/lsn-03948a55/conv-r1.mp3` 比較。
 
-如果 `ffmpeg`／`ffprobe` 尚未安裝，WAV 仍可能成功保存（可直接試聽），但 MP3 轉檔不會完成。若本機金鑰沒開通 TTS 模型或免費額度，會顯示 HTTP 狀態，**不要重複嘗試直到確認原因**。
+如果 `ffmpeg`／`ffprobe` 尚未安裝，WAV 仍可能成功保存（可直接試聽），但 MP3 轉檔不會完成。**已有 WAV 請不要再用 `--execute` 重做**；請用下列不需要 API Key、完全不呼叫 Gemini 的指令：
+
+```powershell
+node scripts/check-listening-wav.mjs .\tmp\tts-trials\lsn-03948a55\conv-r1-gemini-3.8-flash-lite-tts.wav
+# 安裝好 ffmpeg 後，直接轉檔（不重新生成）：
+node scripts/check-listening-wav.mjs .\tmp\tts-trials\lsn-03948a55\conv-r1-gemini-3.8-flash-lite-tts.wav --mp3
+```
+
+曾觀察到這段範例最後約六秒疊字。**WAV 檢查不會宣稱已找出或修正此問題**，已知瑕疵的試聽檔不得直接成為正式 Listening 題目。若本機金鑰沒開通 TTS 模型或免費額度，會顯示 HTTP 狀態，**不要重複嘗試直到確認原因**。
 
 ## 驗收後才能進下一步
 
