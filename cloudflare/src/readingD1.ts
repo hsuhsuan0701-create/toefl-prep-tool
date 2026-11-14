@@ -291,23 +291,21 @@ export async function readingD1Api(request:Request,env:ReadingEnv):Promise<Respo
       return respond({status:"completed",estimate});
     }
     if (row.status!=="in_progress") return respond({error:"attempt is already "+row.status},409);
-    if (row.mode==="simulation"&&!row.module_path) return respond({error:"Router has not yet selected a second module"},409);
     try {
-      // Simulation must actually score every Item of the routed two modules;
-      // an incomplete submission never receives a guessed band.
-      const total=neededItems(set,row.mode,row.module_path).size;
-      const scored=items.filter(i=>i.scoring_status==="scored").length;
-      if (row.mode==="simulation"&&!completeCoverage(set,row,items))
-        return respond({error:"Reading module has unscored questions; submit before completing"},409);
-      const guard=row.mode==="simulation" ?
+      // Original route permits ending an incomplete simulation, but grants no band.
+      // If fully scored, use the DB count guard to avoid a concurrent stale estimate.
+      const complete=row.mode==="simulation" && completeCoverage(set,row,items);
+      const total=complete?neededItems(set,row.mode,row.module_path).size:0;
+      const guard=complete ?
         " AND (SELECT COUNT(*) FROM item_results WHERE attempt_id=? AND scoring_status='scored')=?" : "";
       const update=await db.prepare(
         "UPDATE attempts SET status='completed',completed_at=datetime('now') WHERE id=? AND status='in_progress'"+guard
-      ).bind(...(row.mode==="simulation"?[id,id,total]:[id])).run();
-      if (update.meta.changes===0) return respond({error:"Attempt changed or score incomplete; retry the completion"},409);
+      ).bind(...(complete?[id,id,total]:[id])).run();
+      if (update.meta.changes===0) return respond({error:"Attempt changed; retry completion"},409);
       const completed=await readAttempt(db,id);
       if (!completed) return respond({error:"Attempt could not be read back"},503);
-      const estimate=row.mode==="simulation"?estimateFromRows(completed.row,completed.items):null;
+      const estimate=row.mode==="simulation" && completeCoverage(set,completed.row,completed.items)
+        ? estimateFromRows(completed.row,completed.items):null;
       if (estimate) await saveEstimate(db,id,estimate);
       return respond({status:"completed",estimate});
     } catch(e){return mapError(e);}
