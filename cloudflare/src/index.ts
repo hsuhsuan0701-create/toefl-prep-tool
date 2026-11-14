@@ -12,6 +12,7 @@ import { handleAcademicApi } from "./academicPractice.js";
 import { academicPracticePage } from "./academicPracticePage.js";
 import { readingD1Api } from "./readingD1.js";
 import { readingImportPage } from "./readingImportPage.js";
+import { serveListeningAudio } from "./listeningAudio.js";
 import { refillReadingBank, unusedReadingSets, readingRefillEnabled } from "./readingRefill.js";
 import { authorizedAdmin, validPost } from "./academicPractice.js";
 import { readingRefillPage } from "./readingRefillPage.js";
@@ -194,13 +195,21 @@ export default {
       if (academicResponse) return academicResponse;
     }
 
+    if (pathname.startsWith("/api/audio/stimuli/")) {
+      const audioResponse=await serveListeningAudio(request,env.ASSETS);
+      if(audioResponse)return audioResponse;
+    }
+    if (pathname === "/api/cloud/listening-sets/import" && request.method === "GET") {
+      return readingImportPage("listening");
+    }
+
     if (pathname === "/api/cloud/reading-sets/import" && request.method === "GET") {
       return readingImportPage();
     }
 
     if (pathname === "/api/sets" || pathname.startsWith("/api/sets/") ||
         pathname === "/api/attempts" || pathname.startsWith("/api/attempts/") ||
-        pathname === "/api/cloud/reading-sets/import") {
+        (pathname === "/api/cloud/reading-sets/import" || pathname === "/api/cloud/listening-sets/import")) {
       const readingResponse = await readingD1Api(request, env);
       if (readingResponse) return readingResponse;
     }
