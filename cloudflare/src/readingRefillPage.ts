@@ -1,0 +1,40 @@
+/** One administrative control, not an alternative Reading practice UI. */
+export function readingRefillPage(): Response {
+  const html=[
+    '<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">',
+    '<title>Reading 題庫自動補充</title><style>',
+    'body{font-family:system-ui,"Noto Sans TC",sans-serif;max-width:780px;margin:32px auto;padding:0 18px;line-height:1.7;color:#193454}',
+    'h1{font-size:1.5rem}button,input{font:inherit;padding:10px}button{border:0;background:#174987;color:#fff;border-radius:7px;cursor:pointer}',
+    'button:disabled{opacity:.5}input{width:95%;max-width:520px}pre{white-space:pre-wrap;word-break:break-word;background:#f1f5fa;padding:15px;border-radius:9px}',
+    '.muted{color:#536982}.panel{border:1px solid #d5dfeb;border-radius:9px;padding:16px;margin:20px 0}',
+    'a{color:#174987}</style></head><body>',
+    '<h1>TOEFL Reading｜題庫補充管理</h1>',
+    '<p>原版 Reading 題庫共用。未作答題組少於 3 套時，每 UTC 日最多嘗試生成一套完整題組；未通過驗證不會發布。這會使用 Gemini API 額度。</p>',
+    '<div class="panel"><h2>目前庫存與執行狀態</h2><pre id="status">讀取中…</pre><button id="refresh">更新狀態</button></div>',
+    '<div class="panel"><h2>手動執行一次完整補充</h2>',
+    '<p class="muted">即使自動執行維持關閉，也可以使用私人管理密碼執行一次受控測試。若當天已執行過，或庫存仍有至少 3 套，將不再生成。</p>',
+    '<label for="token">TOEFL_MANUAL_TEST_TOKEN（不是 Gemini API Key）</label><p><input id="token" type="password" autocomplete="off" placeholder="請貼上測試密碼"></p>',
+    '<button id="run">確認並嘗試補充一套 Reading Set</button><pre id="result">尚未執行。</pre>',
+    '</div><p><a href="/sets?section=reading">返回原版 Reading Sets 頁面</a></p>',
+    '<script>',
+    'const $=id=>document.getElementById(id);',
+    'async function refresh(){try{const r=await fetch("/api/cloud/reading-refill/status",{credentials:"same-origin"});const d=await r.json();if(!r.ok)throw Error(d.error||"HTTP "+r.status);',
+    '$("status").textContent="未作答 Reading Sets："+d.unused+"\\n補充門檻："+d.threshold+"\\n每日自動補充："+(d.enabled?"已啟用":"目前關閉")+"\\n最後執行："+JSON.stringify(d.lastRun,null,2);',
+    '}catch(e){$("status").textContent="無法讀取："+e.message;}}',
+    '$("refresh").addEventListener("click",refresh);',
+    '$("run").addEventListener("click",async()=>{const token=$("token").value.trim();if(!token){$("result").textContent="請先貼上測試密碼";return;}',
+    'if(!confirm("可能呼叫 Gemini 多次並消耗 API 額度。確定要嘗試補充一套完整 Reading Set 嗎？"))return;',
+    'const b=$("run");b.disabled=true;$("result").textContent="正在生成與審核完整 Reading Set。請保留此頁直到結果返回；不要重複點擊。";',
+    'try{const r=await fetch("/api/cloud/reading-refill/run-once",{method:"POST",credentials:"same-origin",',
+    'headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json"},body:JSON.stringify({confirm:"REFILL_READING_ONCE"})});',
+    'const d=await r.json();$("result").textContent=JSON.stringify({httpStatus:r.status,...d},null,2);await refresh();',
+    '}catch(e){$("result").textContent="呼叫未取得回覆（不可推定失敗）："+e.message+"。請先刷新狀態，不要重複提交。";await refresh();',
+    '}finally{$("token").value="";b.disabled=false;}});refresh();',
+    '</script></body></html>',
+  ].join("\n");
+  return new Response(html,{headers:{
+    "Content-Type":"text/html; charset=utf-8","Cache-Control":"no-store",
+    "X-Content-Type-Options":"nosniff",
+    "Content-Security-Policy":"default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+  }});
+}
