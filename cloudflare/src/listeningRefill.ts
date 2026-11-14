@@ -187,6 +187,38 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
       .bind(body!.setId).run();
     return reply({result:"blocked",setId:body!.setId,stimulusId:body!.stimulusId});
   }
+  // Explicit recovery only: a human must flag and then authorize a fresh
+  // attempt. The old daily slot remains consumed. Never automatic.
+  if(path==="/api/cloud/listening-refill/reset-flagged"){
+    if(!env.LISTENING_AUDIO)return reply({error:"R2 bucket not configured"},503);
+    const body=await req.json().catch(()=>null) as {setId?:string;stimulusId?:string;confirm?:string}|null;
+    if(body?.confirm!=="RESET_FLAGGED_NEXT_DAY"||!SAFE.test(body?.setId??"")||
+        !SAFE_STIMULUS.test(body?.stimulusId??""))return reply({error:"Explicit recovery confirmation required"},400);
+    const clip=await getClip(env.DB,body!.setId!,body!.stimulusId!);
+    if(!clip||clip.status!=="flagged")return reply({error:"Only a flagged clip can be reset"},409);
+    const draft=await getDraft(env.DB,body!.setId!);
+    if(!draft||draft.state!=="blocked")return reply({error:"Draft not in blocked review state"},409);
+    if(clip.object_key){
+      // Remove the bad/overlapping audio before making a fresh claim eligible.
+      // Failed deletion intentionally leaves the draft blocked.
+      try{await env.LISTENING_AUDIO.delete(clip.object_key);}
+      catch{return reply({error:"Unable to remove rejected audio from R2"},503);}
+    }
+    try{
+      await env.DB.batch([
+        env.DB.prepare("UPDATE listening_refill_clips SET status='pending',claim_day=NULL,"+
+          "claimed_at=NULL,uploaded_at=NULL,object_key=NULL,bytes=NULL "+
+          "WHERE set_id=? AND stimulus_id=? AND status='flagged'")
+          .bind(body!.setId,body!.stimulusId),
+        env.DB.prepare("UPDATE listening_refill_drafts SET state='rendering',updated_at=datetime('now') "+
+          "WHERE id=? AND state='blocked' AND NOT EXISTS("+
+          "SELECT 1 FROM listening_refill_clips WHERE set_id=? AND status='flagged' AND stimulus_id<>?)")
+          .bind(body!.setId,body!.setId,body!.stimulusId),
+      ]);
+      return reply({result:"pending-manual-retry",setId:body!.setId,
+        stimulusId:body!.stimulusId,autoRetry:false,previousSlotConsumed:true});
+    }catch{return reply({error:"Recovery state uncertain; check R2 and D1"},503);}
+  }
   if(path==="/api/cloud/listening-refill/publish"){
     if(!env.LISTENING_AUDIO)return reply({error:"R2 bucket not configured"},503);
     const body=await req.json().catch(()=>null) as {setId?:string;confirm?:string}|null;
