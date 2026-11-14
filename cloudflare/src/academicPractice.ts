@@ -48,7 +48,7 @@ export function gradeAcademic(d: Draft, answers: unknown) {
     review
   };
 }
-async function authorizedAdmin(req: Request, token: string | undefined): Promise<boolean> {
+export async function authorizedAdmin(req: Request, token: string | undefined): Promise<boolean> {
   const authorization = req.headers.get("authorization");
   const given = authorization?.startsWith("Bearer ") ? authorization.slice(7) : "";
   const encoded = new TextEncoder();
@@ -58,7 +58,7 @@ async function authorizedAdmin(req: Request, token: string | undefined): Promise
   for (let i = 0; i < 32; i++) delta |= a[i]! ^ b[i]!;
   return !!token && token.length >= 32 && given.length >= 32 && delta === 0;
 }
-function validPost(req: Request): boolean {
+export function validPost(req: Request): boolean {
   const origin = req.headers.get("origin");
   const url = new URL(req.url);
   return origin === url.origin && req.headers.get("content-type")?.split(";")[0].trim() === "application/json";
