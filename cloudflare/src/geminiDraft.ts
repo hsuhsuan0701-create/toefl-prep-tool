@@ -88,13 +88,21 @@ export async function geminiDraft(
     "Avoid these previously used topics and titles: " + JSON.stringify(recentTitles.slice(0,30)),
     "Return valid JSON only."
   ].join("\n");
-  const response = await doFetch("https://generativelanguage.googleapis.com/v1beta/models/" + model + ":generateContent", {
-    method: "POST", headers: { "Content-Type": "application/json", "x-goog-api-key": key },
-    body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: prompt }] }],
-      generationConfig: { responseMimeType: "application/json", responseSchema: schema, temperature: 0.7 } }),
-    signal: AbortSignal.timeout(60000)
-  });
-  if (!response.ok) throw new Error("Gemini HTTP " + response.status);
+  // Limited exponential backoff for temporary upstream failures. A retry
+  // may consume additional API quota; do not retry 400/401/403 errors.
+  const transient = new Set([408, 429, 500, 502, 503, 504]);
+  let response: Response | undefined;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    response = await doFetch("https://generativelanguage.googleapis.com/v1beta/models/" + model + ":generateContent", {
+      method: "POST", headers: { "Content-Type": "application/json", "x-goog-api-key": key },
+      body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: prompt }] }],
+        generationConfig: { responseMimeType: "application/json", responseSchema: schema, temperature: 0.7 } }),
+      signal: AbortSignal.timeout(60000)
+    });
+    if (response.ok || !transient.has(response.status) || attempt === 2) break;
+    await new Promise(resolve => setTimeout(resolve, (1000 * 2 ** attempt) + Math.floor(Math.random() * 250)));
+  }
+  if (!response?.ok) throw new Error("Gemini HTTP " + (response?.status ?? "unknown"));
   const data = await response.json() as { candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }> };
   const result = data.candidates?.[0]?.content?.parts?.map(p => p.text || "").join("");
   if (!result) throw new Error("Gemini returned no usable draft");
