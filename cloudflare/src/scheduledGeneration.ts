@@ -17,7 +17,14 @@ export async function generateScheduledDraft(env: GenerationEnv, timestamp: numb
   if (!env.GEMINI_API_KEY) return "missing-key";
   const day = new Date(timestamp).toISOString().slice(0, 10);
   const claim = await env.DB.prepare("INSERT OR IGNORE INTO generation_runs(day,status) VALUES (?,'started')").bind(day).run();
-  if (claim.meta.changes !== 1) return "already-attempted";
+  if (claim.meta.changes !== 1) {
+    if (!manualTest) return "already-attempted";
+    // Only one human-triggered retry of a FAILED day, atomically claimed.
+    const retry = await env.DB.prepare(
+      "UPDATE generation_runs SET status='started', failure_reason=NULL, manual_retries=manual_retries+1 WHERE day=? AND status='failed' AND manual_retries=0"
+    ).bind(day).run();
+    if (retry.meta.changes !== 1) return "already-attempted";
+  }
   try {
     const rows = await env.DB.prepare("SELECT content_json FROM generation_drafts ORDER BY created_at DESC LIMIT 50").all<{ content_json: string }>();
     const previous: Draft[] = [];
