@@ -195,7 +195,7 @@ export async function readingD1Api(request:Request,env:ReadingEnv):Promise<Respo
       const where="WHERE kind='reading'"+(setId?" AND set_id=?":"");
       const params=setId?[setId]:[];
       const count=await db.prepare("SELECT COUNT(*) as n FROM attempts "+where).bind(...params).first<{n:number}>();
-      const rows=await db.prepare("SELECT * FROM attempts "+where+" ORDER BY started_at DESC,id DESC LIMIT ? OFFSET ?")
+      const rows=await db.prepare("SELECT * FROM attempts "+where+" ORDER BY started_at DESC,rowid DESC LIMIT ? OFFSET ?")
         .bind(...params,limit,offset).all<Row>();
       const result=await Promise.all(rows.results.map(async a=>{
         const set=await readSet(db,a.set_id);
