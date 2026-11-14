@@ -12,12 +12,16 @@ import { handleAcademicApi } from "./academicPractice.js";
 import { academicPracticePage } from "./academicPracticePage.js";
 import { readingD1Api } from "./readingD1.js";
 import { readingImportPage } from "./readingImportPage.js";
+import { refillReadingBank, unusedReadingSets } from "./readingRefill.js";
+import { authorizedAdmin, validPost } from "./academicPractice.js";
+import { readingRefillPage } from "./readingRefillPage.js";
 
 interface Env {
   GEMINI_API_KEY?: string;
   TOEFL_MANUAL_TEST_TOKEN?: string;
   GEMINI_MODEL?: string;
   AI_GENERATION_ENABLED?: string;
+  AI_READING_REFILL_ENABLED?: string;
   DB: D1Database;
   ASSETS: Fetcher;
 }
@@ -122,6 +126,40 @@ export default {
       return Response.json({ result, published: false, cronEnabled: env.AI_GENERATION_ENABLED === "true" }, { status, headers: jsonHeaders });
     }
 
+    if (pathname === "/api/cloud/reading-refill" && request.method === "GET") {
+      return readingRefillPage();
+    }
+    if (pathname === "/api/cloud/reading-refill/status" && request.method === "GET") {
+      try {
+        const unused = await unusedReadingSets(env.DB);
+        const last = await env.DB.prepare(
+          "SELECT day,status,new_set_id,error_code,unused_sets_at_start,finished_at FROM reading_refill_runs ORDER BY day DESC LIMIT 1"
+        ).first();
+        return Response.json({
+          unused, threshold: 3, enabled: env.AI_READING_REFILL_ENABLED === "true",
+          lastRun: last || null,
+        }, {headers:jsonHeaders});
+      } catch {
+        return Response.json({error:"Reading refill database not ready"},{status:503,headers:jsonHeaders});
+      }
+    }
+    if (pathname === "/api/cloud/reading-refill/run-once" && request.method === "POST") {
+      if (!(await authorizedAdmin(request, env.TOEFL_MANUAL_TEST_TOKEN)))
+        return Response.json({error:"Unauthorized"},{status:401,headers:jsonHeaders});
+      if (!validPost(request))
+        return Response.json({error:"Same-origin JSON required"},{status:403,headers:jsonHeaders});
+      const body=await request.json().catch(()=>null);
+      if (!body || typeof body !== "object" || !("confirm" in body) ||
+          body.confirm !== "REFILL_READING_ONCE")
+        return Response.json({error:"Explicit confirmation required"},{status:400,headers:jsonHeaders});
+      const result=await refillReadingBank(env,Date.now(),fetch,{manual:true});
+      const code=result.result==="published"?201:
+        result.result==="skipped"?200:
+        result.result==="already-attempted"?409:
+        result.result==="missing-key"?503:502;
+      return Response.json(result,{status:code,headers:jsonHeaders});
+    }
+
     if (pathname === "/api/cloud/academic-practice" && request.method === "GET") {
       return academicPracticePage();
     }
@@ -154,8 +192,15 @@ export default {
     return env.ASSETS.fetch(request);
   },
   async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext): Promise<void> {
-    ctx.waitUntil(generateScheduledDraft(env, controller.scheduledTime).then((result) => {
-      console.log("Gemini draft generation result:", result);
+    // Complete Reading Set refill runs ONLY when the independent flag is enabled;
+    // legacy one-passage draft generation stays disabled by its own flag.
+    ctx.waitUntil(refillReadingBank(env, controller.scheduledTime).then((outcome) => {
+      console.log("Reading bank refill:", outcome.result);
     }));
+    if (env.AI_GENERATION_ENABLED === "true") {
+      ctx.waitUntil(generateScheduledDraft(env, controller.scheduledTime).then(result => {
+        console.log("Legacy academic draft result:", result);
+      }));
+    }
   },
 } satisfies ExportedHandler<Env>;
