@@ -6,6 +6,7 @@
  */
 import { generateScheduledDraft } from "./scheduledGeneration.js";
 import { checkGeminiModel } from "./geminiModelCheck.js";
+import { geminiTestPage } from "./geminiTestPage.js";
 
 interface Env {
   GEMINI_API_KEY?: string;
@@ -50,6 +51,10 @@ export default {
       const model = env.GEMINI_MODEL || "gemini-3.1-flash-lite";
       const result = await checkGeminiModel(env.GEMINI_API_KEY, model);
       return Response.json(result, { status: result.modelAccessible ? 200 : 503, headers: jsonHeaders });
+    }
+
+    if (pathname === "/api/cloud/gemini-test" && request.method === "GET") {
+      return geminiTestPage();
     }
 
     // One-off test is intentionally not a public browsing endpoint.
