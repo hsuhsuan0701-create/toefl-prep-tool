@@ -10,6 +10,8 @@ import { geminiTestPage } from "./geminiTestPage.js";
 import { geminiReviewPage } from "./geminiReviewPage.js";
 import { handleAcademicApi } from "./academicPractice.js";
 import { academicPracticePage } from "./academicPracticePage.js";
+import { readingD1Api } from "./readingD1.js";
+import { readingImportPage } from "./readingImportPage.js";
 
 interface Env {
   GEMINI_API_KEY?: string;
@@ -127,6 +129,17 @@ export default {
     if (pathname.startsWith("/api/cloud/academic")) {
       const academicResponse = await handleAcademicApi(request, env);
       if (academicResponse) return academicResponse;
+    }
+
+    if (pathname === "/api/cloud/reading-sets/import" && request.method === "GET") {
+      return readingImportPage();
+    }
+
+    if (pathname === "/api/sets" || pathname.startsWith("/api/sets/") ||
+        pathname === "/api/attempts" || pathname.startsWith("/api/attempts/") ||
+        pathname === "/api/cloud/reading-sets/import") {
+      const readingResponse = await readingD1Api(request, env);
+      if (readingResponse) return readingResponse;
     }
 
     if (pathname.startsWith("/api/")) {
