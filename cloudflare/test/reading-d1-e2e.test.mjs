@@ -116,6 +116,10 @@ test("Original Reading Simulation → Router → Upper → full score → persis
   const env=d1Mock();
   try{
     await call(env,"/api/cloud/reading-sets/import","POST",originalSet,true);
+    const unfinishedStart=await call(env,"/api/attempts","POST",{kind:"reading",mode:"simulation",setId:originalSet.id});
+    const unfinished=await call(env,"/api/attempts/"+unfinishedStart.data.attemptId+"/complete","POST",{});
+    assert.equal(unfinished.status,200);
+    assert.equal(unfinished.data.estimate,null,"Unrouted simulation can finish but has no band");
     const start=await call(env,"/api/attempts","POST",{kind:"reading",mode:"simulation",setId:originalSet.id});
     assert.equal(start.status,201);
     const id=start.data.attemptId;
@@ -142,8 +146,6 @@ test("Original Reading Simulation → Router → Upper → full score → persis
     assert.equal(lateRouter.status,409);
     const wrong=await call(env,"/api/attempts/"+id+"/score","POST",requestsForModule(originalSet,"lowerModule")[0]);
     assert.equal(wrong.status,409);
-    const incomplete=await call(env,"/api/attempts/"+id+"/complete","POST",{});
-    assert.equal(incomplete.status,409);
     for(const submission of requestsForModule(originalSet,"upper")) {
       const scored=await call(env,"/api/attempts/"+id+"/score","POST",submission);
       assert.equal(scored.status,200,JSON.stringify(scored.data));
