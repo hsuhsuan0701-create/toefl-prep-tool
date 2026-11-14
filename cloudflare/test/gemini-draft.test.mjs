@@ -24,3 +24,16 @@ test("Gemini validates response JSON before accepting draft",async()=>{
  const mock=async()=>Response.json({candidates:[{content:{parts:[{text:JSON.stringify(sample)}]}}]});
  assert.equal((await geminiDraft("DUMMY_PRIVATE_KEY","example-model",[],mock)).title,sample.title);
 });
+
+test("Gemini retries temporary 503 twice then accepts response",async()=>{
+ let calls=0;
+ const mock=async()=>{calls++;return calls<3 ? new Response("unavailable",{status:503}):Response.json({candidates:[{content:{parts:[{text:JSON.stringify(sample)}]}}]});};
+ const draft=await geminiDraft("DUMMY_PRIVATE_KEY","example-model",[],mock);
+ assert.equal(draft.title,sample.title);
+ assert.equal(calls,3);
+});
+test("Gemini never retries nontransient bad request",async()=>{
+ let calls=0;
+ await assert.rejects(geminiDraft("DUMMY_PRIVATE_KEY","example-model",[],async()=>{calls++;return new Response("bad input",{status:400});}),/HTTP 400/);
+ assert.equal(calls,1);
+});
