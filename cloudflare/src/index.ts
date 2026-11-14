@@ -17,6 +17,7 @@ import { refillReadingBank, unusedReadingSets, readingRefillEnabled } from "./re
 import { authorizedAdmin, validPost } from "./academicPractice.js";
 import { readingRefillPage } from "./readingRefillPage.js";
 import { statsD1Api } from "./statsD1.js";
+import { handleListeningRefill, servePublishedR2Audio } from "./listeningRefill.js";
 
 interface Env {
   GEMINI_API_KEY?: string;
@@ -26,6 +27,7 @@ interface Env {
   AI_READING_REFILL_ENABLED?: string;
   DB: D1Database;
   ASSETS: Fetcher;
+  LISTENING_AUDIO?: R2Bucket;
 }
 
 const jsonHeaders = { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" };
@@ -197,7 +199,14 @@ export default {
 
     if (pathname.startsWith("/api/audio/stimuli/")) {
       const audioResponse=await serveListeningAudio(request,env.ASSETS);
+      if(audioResponse?.ok)return audioResponse;
+      const r2Response=await servePublishedR2Audio(request,env);
+      if(r2Response)return r2Response;
       if(audioResponse)return audioResponse;
+    }
+    if(pathname.startsWith("/api/cloud/listening-refill/")) {
+      const queueResponse=await handleListeningRefill(request,env);
+      if(queueResponse)return queueResponse;
     }
     if (pathname === "/api/cloud/listening-sets/import" && request.method === "GET") {
       return readingImportPage("listening");
