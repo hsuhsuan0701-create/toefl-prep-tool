@@ -8,7 +8,7 @@
 import {
   ReadingGenerationInputSchema, ReadingSetSchema,
   READING_MODULE_COMPOSITION, READING_MODULE_TIME_LIMITS_SEC,
-  type ReadingGenerationInput, type ReadingModule, type ReadingSet,
+  type ReadingModule, type ReadingSet,
 } from "@toefl-prep/shared";
 import { deriveCtwGaps } from "../../server/src/services/ctest.js";
 import {
@@ -34,7 +34,6 @@ export type RefillOutcome = {
 };
 const moduleNames = ["router", "lowerModule", "upperModule"] as const;
 type ModuleName = typeof moduleNames[number];
-const SAFE_WORDS = /^[a-zA-Z]+$/;
 const CJK = /[\u3400-\u9fff]/u;
 const normalize = (value: string): string => value.normalize("NFKC").toLowerCase()
   .replace(/[^\p{L}\p{N}]+/gu," ").trim();
