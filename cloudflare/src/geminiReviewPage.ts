@@ -1,0 +1,48 @@
+/** Read-only review of the latest D1 draft; no publication or modification. */
+export function geminiReviewPage(): Response {
+  const html = [
+    '<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">',
+    '<title>TOEFL Reading 草稿審閱</title>',
+    '<style>',
+    'body{font-family:system-ui,"Noto Sans TC",sans-serif;max-width:850px;margin:36px auto;padding:0 18px;color:#152238;line-height:1.7}',
+    'h1,h2,h3{line-height:1.3}h1{font-size:1.7rem}h2{margin-top:2.5rem}h3{font-size:1.1rem}',
+    'label{font-weight:650}input,button{font:inherit;padding:10px}input{width:100%;max-width:480px;box-sizing:border-box}',
+    'button{margin-top:12px;background:#17499a;color:#fff;border:0;border-radius:7px;cursor:pointer}',
+    'button:disabled{opacity:.5;cursor:not-allowed}.muted{color:#53657e}.passage{white-space:pre-wrap;line-height:1.85}',
+    '.card{padding:18px;margin:18px 0;border:1px solid #d7e0ed;border-radius:10px}.option{margin:9px 0 9px 10px}',
+    '.correct{font-weight:700;color:#126b4b}.explanation{background:#f1f5fb;border-radius:7px;padding:12px;margin-top:14px}',
+    '#error{color:#a22a2a;white-space:pre-wrap}.tag{display:inline-block;background:#e8eef9;border-radius:8px;padding:3px 9px}',
+    '</style></head><body>',
+    '<h1>TOEFL Reading｜AI 草稿審閱</h1>',
+    '<p class="muted">只讀取 D1 最新草稿。這不是正式題庫，尚未進行專業品質審核。</p>',
+    '<p><label for="token">測試密碼（TOEFL_MANUAL_TEST_TOKEN；不是 Gemini API Key）</label></p>',
+    '<input id="token" type="password" autocomplete="off" spellcheck="false" placeholder="貼上你先前產生的測試密碼">',
+    '<p><button id="load">讀取最新待審草稿</button></p>',
+    '<p id="error" role="alert"></p><main id="review" aria-live="polite"></main>',
+    '<script>',
+    'const b=document.getElementById("load"),err=document.getElementById("error"),root=document.getElementById("review"),field=document.getElementById("token");',
+    'function el(tag,text,cls){const node=document.createElement(tag);if(text!==undefined)node.textContent=String(text);if(cls)node.className=cls;return node;}',
+    'function render(d){root.replaceChildren();root.append(el("h2",d.title),el("p","領域："+d.discipline+" ｜ 狀態："+d.status+" ｜ 建立時間："+d.createdAt,"muted"));',
+    'const p=el("section");p.append(el("h3","英文閱讀文章"),el("div",d.passage,"passage"));root.append(p);',
+    'root.append(el("h2","選擇題與答案解析"));',
+    '(d.questions||[]).forEach((q,i)=>{const c=el("section",undefined,"card");c.append(el("span",q.skill,"tag"),el("h3",(i+1)+". "+q.stem));',
+    '(q.options||[]).forEach(o=>{const correct=o.id===q.correctOptionId;c.append(el("div",o.id+". "+o.text+(correct?" ✓ 正確答案":""),"option"+(correct?" correct":"")));});',
+    'c.append(el("p","繁體中文解析："+q.explanationZh,"explanation"));root.append(c);});',
+    'root.append(el("p","內容僅供審閱；尚未發布至正式 TOEFL 題庫。","muted"));',
+    '}',
+    'b.addEventListener("click",async()=>{const token=field.value.trim();if(!token){err.textContent="請先輸入測試密碼";return;}',
+    'b.disabled=true;err.textContent="";root.replaceChildren(el("p","正在從 D1 讀取草稿…"));',
+    'try{const r=await fetch("/api/cloud/gemini-review-latest",{method:"POST",credentials:"same-origin",headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json"},body:"{}"});',
+    'const data=await r.json();if(!r.ok){throw new Error(data.error||("HTTP "+r.status));}render(data.draft);',
+    '}catch(e){root.replaceChildren();err.textContent="讀取失敗："+e.message;}finally{field.value="";b.disabled=false;}});',
+    '</script></body></html>'
+  ].join("\n");
+  return new Response(html, {
+    headers: {
+      "Content-Type": "text/html; charset=utf-8",
+      "Cache-Control": "no-store",
+      "X-Content-Type-Options": "nosniff",
+      "Content-Security-Policy": "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'",
+    }
+  });
+}
