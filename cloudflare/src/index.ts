@@ -9,6 +9,7 @@ import { checkGeminiModel } from "./geminiModelCheck.js";
 
 interface Env {
   GEMINI_API_KEY?: string;
+  TOEFL_MANUAL_TEST_TOKEN?: string;
   GEMINI_MODEL?: string;
   AI_GENERATION_ENABLED?: string;
   DB: D1Database;
@@ -49,6 +50,34 @@ export default {
       const model = env.GEMINI_MODEL || "gemini-3.1-flash-lite";
       const result = await checkGeminiModel(env.GEMINI_API_KEY, model);
       return Response.json(result, { status: result.modelAccessible ? 200 : 503, headers: jsonHeaders });
+    }
+
+    // One-off test is intentionally not a public browsing endpoint.
+    // Cloudflare Access must protect the entire Worker; a separate revocable
+    // token is also required. Calls never include the API key in responses.
+    if (pathname === "/api/cloud/gemini-generate-once" && request.method === "POST") {
+      const expected = env.TOEFL_MANUAL_TEST_TOKEN;
+      const actual = request.headers.get("authorization");
+      const bearer = actual?.startsWith("Bearer ") ? actual.slice(7) : "";
+      const a = new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(bearer)));
+      const b = new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(expected ?? "")));
+      let mismatch = 0;
+      for (let i = 0; i < a.length; i++) mismatch |= a[i]! ^ b[i]!;
+      const accepted = !!expected && expected.length >= 32 && bearer.length >= 32 && mismatch === 0;
+      if (!accepted) {
+        return Response.json({ error: "Unauthorized" }, { status: 401, headers: jsonHeaders });
+      }
+      if (request.headers.get("origin") !== new URL(request.url).origin ||
+          request.headers.get("content-type")?.split(";")[0].trim() !== "application/json") {
+        return Response.json({ error: "Origin and JSON content type required" }, { status: 403, headers: jsonHeaders });
+      }
+      const payload = await request.json().catch(() => null);
+      if (!payload || typeof payload !== "object" || !("confirm" in payload) || payload.confirm !== "GENERATE_ONCE") {
+        return Response.json({ error: "Confirmation missing" }, { status: 400, headers: jsonHeaders });
+      }
+      const result = await generateScheduledDraft(env, Date.now(), fetch, true);
+      const status = result === "pending_review" ? 201 : result === "already-attempted" ? 409 : 502;
+      return Response.json({ result, published: false, cronEnabled: env.AI_GENERATION_ENABLED === "true" }, { status, headers: jsonHeaders });
     }
 
     if (pathname.startsWith("/api/")) {
