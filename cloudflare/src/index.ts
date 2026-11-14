@@ -7,6 +7,7 @@
 import { generateScheduledDraft } from "./scheduledGeneration.js";
 import { checkGeminiModel } from "./geminiModelCheck.js";
 import { geminiTestPage } from "./geminiTestPage.js";
+import { geminiReviewPage } from "./geminiReviewPage.js";
 
 interface Env {
   GEMINI_API_KEY?: string;
@@ -55,6 +56,38 @@ export default {
 
     if (pathname === "/api/cloud/gemini-test" && request.method === "GET") {
       return geminiTestPage();
+    }
+
+    if (pathname === "/api/cloud/gemini-review" && request.method === "GET") {
+      return geminiReviewPage();
+    }
+
+    // Read-only draft review. Uses same Access + independent token as manual test.
+    if (pathname === "/api/cloud/gemini-review-latest" && request.method === "POST") {
+      const expected = env.TOEFL_MANUAL_TEST_TOKEN;
+      const actual = request.headers.get("authorization");
+      const bearer = actual?.startsWith("Bearer ") ? actual.slice(7) : "";
+      const a = new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(bearer)));
+      const b = new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(expected ?? "")));
+      let mismatch = 0;
+      for (let i = 0; i < a.length; i++) mismatch |= a[i]! ^ b[i]!;
+      if (!expected || expected.length < 32 || bearer.length < 32 || mismatch !== 0) {
+        return Response.json({ error: "Unauthorized" }, { status: 401, headers: jsonHeaders });
+      }
+      if (request.headers.get("origin") !== new URL(request.url).origin ||
+          request.headers.get("content-type")?.split(";")[0].trim() !== "application/json") {
+        return Response.json({ error: "Origin and JSON content type required" }, { status: 403, headers: jsonHeaders });
+      }
+      try {
+        const item = await env.DB.prepare(
+          "SELECT title, status, created_at, content_json FROM generation_drafts WHERE status='pending_review' ORDER BY created_at DESC LIMIT 1"
+        ).first<{ title: string; status: string; created_at: string; content_json: string }>();
+        if (!item) return Response.json({ error: "No pending draft found" }, { status: 404, headers: jsonHeaders });
+        const content = JSON.parse(item.content_json);
+        return Response.json({ draft: { ...content, status: item.status, createdAt: item.created_at } }, { headers: jsonHeaders });
+      } catch {
+        return Response.json({ error: "Unable to read draft" }, { status: 503, headers: jsonHeaders });
+      }
     }
 
     // One-off test is intentionally not a public browsing endpoint.
