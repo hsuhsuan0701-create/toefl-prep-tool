@@ -26,12 +26,10 @@ cd C:\Users\isaac\toefl-prep-tool
 git status --short
 git pull --ff-only origin cloudflare-migration
 npx.cmd wrangler d1 migrations apply toefl-prep-private --remote --config cloudflare/wrangler.jsonc
-npm.cmd run build -w client
-node scripts/stage-cloudflare-listening-audio.mjs
-npx.cmd wrangler deploy --config cloudflare/wrangler.jsonc
+npm.cmd run deploy:cloudflare
 ```
 
-新 Migration 是 `0007_listening_sets.sql`；若前一階段的 `0006_reading_refill.sql` 尚未套用，Wrangler 會依序補齊。沒有破壞已存在的 Reading 題庫。
+`npm.cmd run deploy:cloudflare` 會依序建立前端、放入原始 MP3、部署 Worker，可避免重新 build 清空聽力音檔。新 Migration 是 `0007_listening_sets.sql`；若前一階段的 `0006_reading_refill.sql` 尚未套用，Wrangler 會依序補齊。沒有破壞已存在的 Reading 題庫。
 
 匯入完成後在 `/sets?section=listening` 選一份 Listening Drill 作答，並在 `/simulate/listening` 測試適性分流；Practice／Progress 頁面現在應能讀取統計資料。
 
