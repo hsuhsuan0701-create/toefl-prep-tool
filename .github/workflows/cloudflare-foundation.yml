@@ -47,6 +47,8 @@ jobs:
         run: node --import tsx --test cloudflare/test/academic-practice.test.mjs
       - name: End-to-end original Reading Set → Attempt → Score → Route → Results
         run: node --import tsx --test cloudflare/test/reading-d1-e2e.test.mjs
+      - name: Test original Dashboard stats routes against D1
+        run: node --import tsx --test cloudflare/test/stats-d1.test.mjs
       - name: Test automatic Reading refill cost guard, inventory and authentication
         run: node --import tsx --test cloudflare/test/reading-refill.test.mjs
       - name: Check D1 schema can create its tables
