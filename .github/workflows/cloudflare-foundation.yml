@@ -39,6 +39,8 @@ jobs:
         run: node --import tsx --test cloudflare/test/gemini-model-check.test.mjs
       - name: Test manual generation guard (no real API calls)
         run: node --import tsx --test cloudflare/test/manual-generation.test.mjs
+      - name: Test Academic Reading approval, grading, privacy and history
+        run: node --import tsx --test cloudflare/test/academic-practice.test.mjs
       - name: Check D1 schema can create its tables
         run: |
           python3 - <<'PY'
@@ -49,4 +51,5 @@ jobs:
               db.executescript(migration.read_text())
           db.execute("INSERT INTO attempts(id,kind,mode,set_id) VALUES('smoke','reading','simulation','test-set')")
           assert db.execute('SELECT COUNT(*) FROM attempts').fetchone()[0] == 1
+          assert db.execute("SELECT COUNT(*) FROM sqlite_master WHERE name='academic_practice_attempts'").fetchone()[0] == 1
           PY
