@@ -6,3 +6,4 @@ export * from "./supersessions.js";
 export * from "./viewModels.js";
 export * from "./backwardBuildup.js";
 export { scoreMcq } from "./mcqScorer.js";
+export { ROUTER_PROMOTION_THRESHOLD, decidePath } from "./moduleRouter.js";
