@@ -35,6 +35,8 @@ jobs:
         run: node --import tsx --test cloudflare/test/worker.test.mjs
       - name: Test Gemini draft validation (mock HTTP, no API key)
         run: node --import tsx --test cloudflare/test/gemini-draft.test.mjs
+      - name: Test Gemini model metadata probe without real API calls
+        run: node --import tsx --test cloudflare/test/gemini-model-check.test.mjs
       - name: Check D1 schema can create its tables
         run: |
           python3 - <<'PY'
