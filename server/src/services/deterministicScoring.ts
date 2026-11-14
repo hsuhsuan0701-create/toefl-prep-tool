@@ -11,7 +11,7 @@ import type {
 } from "@toefl-prep/shared";
 import { scoreCtwGap } from "./ctwScorer.js";
 import { scoreMcq } from "./mcqScorer.js";
-import { NotFound } from "./scoreItems.js";
+import { NotFound } from "./scoringErrors.js";
 import type { AttemptRow, ItemResultRow } from "../db/rows.js";
 
 /**
@@ -220,13 +220,22 @@ export function censusRouterItems(
  * every Item or none. A Drill's response carries each Item's key and Explanation; a Simulation's
  * carries bare correctness.
  */
-export function scoreDeterministicItems(args: {
-  repo: Repo;
+export type PreparedDeterministicScore = {
+  taskType: string;
+  items: DeterministicScoreItem[];
+  writes: Array<{ attemptId: string; itemId: string; taskType: string; score: number; scoreJson: string }>;
+};
+
+/**
+ * Pure scoring preparation shared by SQLite and Cloudflare D1.
+ * No persistence occurs here; the adapter must commit every write atomically.
+ */
+export function prepareDeterministicScore(args: {
   attempt: AttemptWithItems;
   set: AnySet;
   request: ScoreRequest;
-}): { taskType: string; items: DeterministicScoreItem[] } {
-  const { repo, attempt, set, request } = args;
+}): PreparedDeterministicScore {
+  const { attempt, set, request } = args;
   const taskType = request.taskType;
 
   // Rules out a Speaking or Writing Attempt; the per-Item Task Type check in Phase 1 is what pins the
@@ -328,21 +337,19 @@ export function scoreDeterministicItems(args: {
     return { itemId, module: ref.module, correct, key, explanationZh, skill, answer, answered, transcript };
   });
 
-  repo.scoreDeterministicItemsBatch(
-    computed.map((c) => ({
-      attemptId: attempt.id,
-      itemId: c.itemId,
-      taskType,
-      score: c.correct ? 1 : 0,
-      scoreJson: JSON.stringify({
-        correct: c.correct,
-        ...(c.skill !== undefined ? { skill: c.skill } : {}),
-        module: c.module,
-        answer: c.answer,
-        ...c.answered,
-      } satisfies DeterministicItemScoreJson),
-    }))
-  );
+  const writes = computed.map((c) => ({
+    attemptId: attempt.id,
+    itemId: c.itemId,
+    taskType,
+    score: c.correct ? 1 : 0,
+    scoreJson: JSON.stringify({
+      correct: c.correct,
+      ...(c.skill !== undefined ? { skill: c.skill } : {}),
+      module: c.module,
+      answer: c.answer,
+      ...c.answered,
+    } satisfies DeterministicItemScoreJson),
+  }));
 
   // `transcript` is spread in only when present, so a Reading Drill response carries no
   // `transcript` key at all, and a Simulation response carries no review field of any kind.
@@ -350,5 +357,20 @@ export function scoreDeterministicItems(args: {
     drill ? { itemId, correct, key, explanationZh, ...(transcript !== undefined ? { transcript } : {}) } : { itemId, correct }
   );
 
-  return { taskType, items };
+  return { taskType, items, writes };
+}
+
+/**
+ * Original Node SQLite adapter: unchanged transaction writer and response contract.
+ * Cloudflare calls prepareDeterministicScore and commits writes through D1.batch.
+ */
+export function scoreDeterministicItems(args: {
+  repo: Repo;
+  attempt: AttemptWithItems;
+  set: AnySet;
+  request: ScoreRequest;
+}): { taskType: string; items: DeterministicScoreItem[] } {
+  const prepared = prepareDeterministicScore(args);
+  args.repo.scoreDeterministicItemsBatch(prepared.writes);
+  return { taskType: prepared.taskType, items: prepared.items };
 }
