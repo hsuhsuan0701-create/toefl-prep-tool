@@ -152,7 +152,13 @@ test("Original Reading Simulation → Router → Upper → full score → persis
     }
     const completed=await call(env,"/api/attempts/"+id+"/complete","POST",{});
     assert.equal(completed.status,200,JSON.stringify(completed.data));
-    assert.equal(completed.data.estimate?.method,"table3-v1");
+    assert.equal(completed.data.estimate?.method,"table3-v1",JSON.stringify({
+      completed:completed.data,
+      router:env.sqlite.prepare("SELECT count(*) AS n FROM item_results WHERE attempt_id=? AND json_extract(score_json, '$.module')='router'").get(id),
+      upper:env.sqlite.prepare("SELECT count(*) AS n FROM item_results WHERE attempt_id=? AND json_extract(score_json, '$.module')='upper'").get(id),
+      all:env.sqlite.prepare("SELECT task_type, json_extract(score_json, '$.module') AS mod, count(*) AS n FROM item_results WHERE attempt_id=? GROUP BY task_type, mod").all(id),
+      route:env.sqlite.prepare("SELECT module_path,status FROM attempts WHERE id=?").get(id)
+    }));
     const reopened=await call(env,"/api/attempts/"+id);
     assert.equal(reopened.status,200);
     assert.equal(reopened.data.attempt.modulePath,"upper");
