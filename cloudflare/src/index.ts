@@ -12,7 +12,7 @@ import { handleAcademicApi } from "./academicPractice.js";
 import { academicPracticePage } from "./academicPracticePage.js";
 import { readingD1Api } from "./readingD1.js";
 import { readingImportPage } from "./readingImportPage.js";
-import { refillReadingBank, unusedReadingSets } from "./readingRefill.js";
+import { refillReadingBank, unusedReadingSets, readingRefillEnabled } from "./readingRefill.js";
 import { authorizedAdmin, validPost } from "./academicPractice.js";
 import { readingRefillPage } from "./readingRefillPage.js";
 
@@ -136,11 +136,30 @@ export default {
           "SELECT day,status,new_set_id,error_code,unused_sets_at_start,finished_at FROM reading_refill_runs ORDER BY day DESC LIMIT 1"
         ).first();
         return Response.json({
-          unused, threshold: 3, enabled: env.AI_READING_REFILL_ENABLED === "true",
+          unused, threshold: 3, enabled: await readingRefillEnabled(env),
           lastRun: last || null,
         }, {headers:jsonHeaders});
       } catch {
         return Response.json({error:"Reading refill database not ready"},{status:503,headers:jsonHeaders});
+      }
+    }
+    if (pathname === "/api/cloud/reading-refill/settings" && request.method === "POST") {
+      if (!(await authorizedAdmin(request, env.TOEFL_MANUAL_TEST_TOKEN)))
+        return Response.json({error:"Unauthorized"},{status:401,headers:jsonHeaders});
+      if (!validPost(request))
+        return Response.json({error:"Same-origin JSON required"},{status:403,headers:jsonHeaders});
+      const body=await request.json().catch(()=>null);
+      if (!body || typeof body !== "object" || !("enabled" in body) ||
+          typeof body.enabled !== "boolean" || !("confirm" in body) ||
+          body.confirm!=="SET_READING_AUTO_REFILL")
+        return Response.json({error:"Explicit configuration confirmation required"},{status:400,headers:jsonHeaders});
+      try {
+        await env.DB.prepare(
+          "INSERT INTO settings(key,value) VALUES('reading_refill_enabled',?) ON CONFLICT(key) DO UPDATE SET value=excluded.value"
+        ).bind(body.enabled?"true":"false").run();
+        return Response.json({enabled:body.enabled},{headers:jsonHeaders});
+      } catch {
+        return Response.json({error:"Cannot save refill setting"},{status:503,headers:jsonHeaders});
       }
     }
     if (pathname === "/api/cloud/reading-refill/run-once" && request.method === "POST") {
