@@ -101,3 +101,24 @@ test("original Reading schema is still authoritative for a full Set",()=>{
     ...set.upperModule,academic:[]
   }},[]),/Unexpected module composition|C-test paragraph length out of range/);
 });
+
+test("private settings action enables scheduled checks without redeploy",async()=>{
+ const {sql,env}=setup();
+ try{
+   const url=host+"/api/cloud/reading-refill/settings";
+   const post=(token,enabled)=>worker.fetch(new Request(url,{
+     method:"POST",headers:{origin:host,"Content-Type":"application/json",
+       ...(token?{Authorization:"Bearer "+token}:{})},
+     body:JSON.stringify({enabled,confirm:"SET_READING_AUTO_REFILL"})
+   }),env);
+   assert.equal((await post(null,true)).status,401);
+   assert.equal((await post(secret,true)).status,200);
+   const on=await worker.fetch(new Request(host+"/api/cloud/reading-refill/status"),env);
+   assert.equal((await on.json()).enabled,true);
+   assert.equal((await post(secret,false)).status,200);
+   const off=await worker.fetch(new Request(host+"/api/cloud/reading-refill/status"),env);
+   assert.equal((await off.json()).enabled,false);
+   const saved=sql.prepare("SELECT value FROM settings WHERE key='reading_refill_enabled'").get();
+   assert.equal(saved.value,"false");
+ }finally{sql.close();}
+});
