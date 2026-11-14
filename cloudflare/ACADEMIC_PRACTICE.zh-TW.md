@@ -41,3 +41,13 @@ Cloudflare Access 必須先確定**所有 Worker 路徑**都受到私人登入�
 - 核准的 editor checklist 是人工聲明，不等於外部文獻自動查核。
 - 尚未建立來源導向生成、重新編修草稿 UI、正式難度校準或標準化 TOEFL 分數。
 - 草稿審閱目前一次顯示最新 pending，不支援完整審稿清單。
+
+## 2026-11-14 共用核心整合（避免重工）
+
+- **唯一 MCQ 評分器**：既有 `server/src/services/mcqScorer.ts` 改為 re-export `shared/src/mcqScorer.ts`。原 Node 版與 Cloudflare Academic Practice 都呼叫同一個 `scoreMcq`；不再維護兩份判分比較。
+- **唯一 MCQ 答案遮罩**：Cloudflare 改用原 `shared/src/servedSet.ts` 的 `stripMcqQuestion`（現公開匯出）；正解、skill、解析都由共用程式移除。
+- **原 Reading 題目 Schema**：Gemini 草稿用 `mcqQuestionSchema(ReadingSkillCategory)` 驗證問題欄位及 skill；既有草稿額外限制（五題、四選項、中文解析下限、選項與題目不重複）仍額外執行。
+- 沒有新的 D1 migration，也沒有修改已保存的草稿、審閱狀態或練習紀錄。
+- **尚未移植**：原 Reading Set 的完整多題型生成、五輪 Verifier／remediation、Module routing、整體評分與舊前端流程。原 `generationCheckPolicy` 仍按原專案定義，**不是每項警告都阻擋發布**，也不是已實現外部來源的事實查核。請勿將簡化 Academic 草稿的通過誤認為原完整 Set 驗證通過。
+
+正式架構方向：單一原專案共享的 Schema／答案隱藏／評分；Cloudflare Worker 僅負責 Web API、D1 持久化與 Gemini 供應者整合，避免長期維護平行系統。
