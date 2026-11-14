@@ -1,0 +1,40 @@
+name: Daily Listening MP3 refill (opt-in)
+
+# A GitHub scheduled workflow runs ONLY when this workflow is on the default
+# branch. While under cloudflare-migration, this remains intentionally dormant.
+on:
+  schedule:
+    - cron: '0 9 * * *' # 17:00 Asia/Taipei, after Pacific midnight quota reset
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-listening-audio
+  cancel-in-progress: false
+
+jobs:
+  refill:
+    if: ${{ vars.LISTENING_DAILY_REFILL_ENABLED }} == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Check ffmpeg
+        run: ffmpeg -version
+      - name: Claim and render at most three audio clips
+        env:
+          LISTENING_DAILY_REFILL_ENABLED: ${{ vars.LISTENING_DAILY_REFILL_ENABLED }}
+          TOEFL_WORKER_URL: ${{ vars.TOEFL_WORKER_URL }}
+          TOEFL_MANUAL_TEST_TOKEN: ${{ secrets.TOEFL_MANUAL_TEST_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: node --import tsx scripts/refill-listening-daily.mjs --execute --max=3
