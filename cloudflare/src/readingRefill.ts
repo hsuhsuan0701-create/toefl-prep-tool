@@ -55,6 +55,12 @@ export function unusedSetCountSQL(): string {
     "SELECT 1 FROM attempts a WHERE a.kind='reading' AND a.set_id=s.id AND EXISTS ("+
     "SELECT 1 FROM item_results i WHERE i.attempt_id=a.id AND i.scoring_status='scored'))";
 }
+/** Administrator's D1 preference takes precedence; env flag remains deployment default. */
+export async function readingRefillEnabled(env:RefillEnv):Promise<boolean> {
+  const row=await env.DB.prepare("SELECT value FROM settings WHERE key='reading_refill_enabled'")
+    .first<{value:string}>();
+  return row ? row.value==="true" : env.AI_READING_REFILL_ENABLED==="true";
+}
 export async function unusedReadingSets(db: D1Database): Promise<number> {
   const row=await db.prepare(unusedSetCountSQL()).first<{n:number}>();
   return row?.n ?? 0;
@@ -249,7 +255,10 @@ export async function refillReadingBank(
   env:RefillEnv,time:number,doFetch:typeof fetch=fetch,
   opts:{manual?:boolean;produce?:typeof produceFullReadingSet}={}
 ):Promise<RefillOutcome> {
-  if(env.AI_READING_REFILL_ENABLED!=="true"&&!opts.manual)return {result:"disabled",unused:null};
+  if(!opts.manual) {
+    try { if(!await readingRefillEnabled(env)) return {result:"disabled",unused:null}; }
+    catch { return {result:"failed",unused:null,reason:"database-unavailable"}; }
+  }
   if(!env.GEMINI_API_KEY)return {result:"missing-key",unused:null};
   const day=new Date(time).toISOString().slice(0,10);
   let unused:number|null=null;
