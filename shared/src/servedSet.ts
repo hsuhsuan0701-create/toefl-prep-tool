@@ -270,7 +270,7 @@ export function asUntrustedServedSet(value: unknown): UntrustedServedSet {
 
 // One strip for every MCQ built from the mcqQuestionSchema factory, Reading's and Listening's alike,
 // so the two cannot strip differently.
-function stripMcqQuestion<Q extends { correctOptionId: string; skill: string; explanationZh: string }>(
+export function stripMcqQuestion<Q extends { correctOptionId: string; skill: string; explanationZh: string }>(
   { correctOptionId: _correctOptionId, skill: _skill, explanationZh: _explanationZh, ...question }: Q
 ) {
   return question;
