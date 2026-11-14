@@ -11,8 +11,9 @@ export type GenerationEnv = {
  * Cost guard: one attempted request per UTC day. Default disabled.
  * A valid draft is NOT a full adaptive TOEFL set; it is quarantined.
  */
-export async function generateScheduledDraft(env: GenerationEnv, timestamp: number, doFetch: typeof fetch = fetch): Promise<string> {
-  if (env.AI_GENERATION_ENABLED !== "true") return "disabled";
+export async function generateScheduledDraft(env: GenerationEnv, timestamp: number, doFetch: typeof fetch = fetch, manualTest = false): Promise<string> {
+  // Scheduled calls remain disabled; only the separately authenticated one-off test can bypass the cron flag.
+  if (env.AI_GENERATION_ENABLED !== "true" && !manualTest) return "disabled";
   if (!env.GEMINI_API_KEY) return "missing-key";
   const day = new Date(timestamp).toISOString().slice(0, 10);
   const claim = await env.DB.prepare("INSERT OR IGNORE INTO generation_runs(day,status) VALUES (?,'started')").bind(day).run();
