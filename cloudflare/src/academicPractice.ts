@@ -3,6 +3,7 @@
  * Cloudflare Access must protect all routes. Never send answer keys before submission.
  */
 import { validateDraft, type Draft } from "./geminiDraft.js";
+import { scoreMcq, stripMcqQuestion } from "@toefl-prep/shared";
 
 export interface AcademicEnv {
   DB: D1Database;
@@ -16,10 +17,7 @@ const isObject = (x: unknown): x is Record<string, unknown> => x !== null && typ
 export function stripAcademicAnswers(d: Draft) {
   return {
     title: d.title, discipline: d.discipline, passage: d.passage,
-    questions: d.questions.map(q => ({
-      id: q.id, stem: q.stem,
-      options: q.options.map(o => ({ id: o.id, text: o.text }))
-    }))
+    questions: d.questions.map(stripMcqQuestion)
   };
 }
 
@@ -39,7 +37,7 @@ export function gradeAcademic(d: Draft, answers: unknown) {
     return {
       id: q.id, stem: q.stem, skill: q.skill,
       selectedOptionId: selected, correctOptionId: q.correctOptionId,
-      correct: selected === q.correctOptionId,
+      correct: scoreMcq(q, selected).correct,
       explanationZh: q.explanationZh,
       options: q.options.map(o => ({ id: o.id, text: o.text }))
     };
