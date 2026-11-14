@@ -10,7 +10,7 @@
     "run_worker_first": ["/api/*"]
   },
   "triggers": { "crons": ["0 1 * * *"] },
-  "vars": { "AI_GENERATION_ENABLED": "false", "GEMINI_MODEL": "gemini-3.1-flash-lite" },
+  "vars": { "AI_GENERATION_ENABLED": "false", "AI_READING_REFILL_ENABLED": "false", "GEMINI_MODEL": "gemini-3.1-flash-lite" },
   "d1_databases": [
     {
       "binding": "DB",
