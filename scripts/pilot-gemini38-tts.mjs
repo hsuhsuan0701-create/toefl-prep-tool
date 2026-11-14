@@ -17,6 +17,7 @@ import {ListeningSetSchema} from "../shared/src/index.ts";
 import {buildRenderPlan,deliveryNotes,spokenWordCount} from "../server/src/services/listeningAudioRenderer.ts";
 import {ACCENT_DIRECTION,pacingDirection} from "../server/src/services/audioPrompt.ts";
 import {assessPace} from "../server/src/services/audioPace.ts";
+import {inspectPcmWav,inspectExpectedDuration} from "./lib/listening-audio-sanity.mjs";
 
 const root=resolve(fileURLToPath(new URL("..",import.meta.url)));
 const argv=process.argv.slice(2);
@@ -108,6 +109,28 @@ else {
       const wav=outputWav;
       const mp3=outputMp3;
       writeFileSync(wav,bytes,{flag:"wx"});
+      let sanity;
+      try {
+        sanity=inspectPcmWav(bytes);
+        const duration=inspectExpectedDuration(sanity,spokenWordCount(clip.text,clip.speakers),notes.band.targetWpm);
+        process.stdout.write(JSON.stringify({
+          check:"offline WAV sanity (no API usage)",
+          ...sanity,...duration,
+          warnings:[
+            ...(!duration.durationPlausible?["implausible duration"]:[]),
+            ...(sanity.longSilences.length?["long silence requires listening review"]:[])
+          ],
+          caveat:"Cannot detect repeated or overlapping speech or omitted words without listening or transcription"
+        },null,2)+"\n");
+        if(!duration.durationPlausible){
+          fail("WAV duration implausible: retaining original file for manual inspection; conversion skipped");
+        }
+      } catch(e) {
+        fail("WAV inspection failed; keeping original file and skipping conversion: "+(e instanceof Error?e.message:"unknown"));
+      }
+      if (!sanity || !inspectExpectedDuration(sanity,spokenWordCount(clip.text,clip.speakers),notes.band.targetWpm).durationPlausible) {
+        // Explicitly no automatic Gemini retry, paid transcription, or publication.
+      } else {
       const conversion=spawnSync("ffmpeg",["-hide_banner","-loglevel","error","-y",
        "-i",wav,"-codec:a","libmp3lame","-qscale:a","3",mp3],{timeout:60000,encoding:"utf8"});
       if(conversion.status!==0)fail("WAV saved, but ffmpeg could not convert it to MP3.");
@@ -123,6 +146,7 @@ else {
         pace:assessment.verdict,approxWpm:+assessment.wpm.toFixed(1),
         published:false,r2Uploaded:false
        },null,2)+"\n");
+      }
       }
     }
    }
