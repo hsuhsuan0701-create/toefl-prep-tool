@@ -154,6 +154,7 @@ export async function readingD1Api(request:Request,env:ReadingEnv):Promise<Respo
           ...setTitleFor(set),attempted:attempted.has(set.id),
           ...(set.advisoryNotes?.length?{advisoryNotes:set.advisoryNotes}:{})};
       });
+      listing.sort((a,b)=>b.createdAt.localeCompare(a.createdAt));
       return respond(listing);
     } catch {return respond({error:"Unable to list Reading Sets"},503);}
   }
@@ -198,8 +199,6 @@ export async function readingD1Api(request:Request,env:ReadingEnv):Promise<Respo
         .bind(...params,limit,offset).all<Row>();
       const result=await Promise.all(rows.results.map(async a=>{
         const set=await readSet(db,a.set_id);
-        const scored=await db.prepare("SELECT 1 AS got FROM item_results WHERE attempt_id=? AND scoring_status='scored' LIMIT 1")
-          .bind(a.id).first();
         const estimate=await storedEstimate(db,a.id);
         return {...attemptVM(a,set?setTitleFor(set).title:null),estimate:estimate?{band:estimate.band,method:estimate.method}:null,
           missingBand:a.mode==="simulation"&&a.status==="completed"&&!estimate&&!a.is_repeat?"incomplete":null,
@@ -212,6 +211,8 @@ export async function readingD1Api(request:Request,env:ReadingEnv):Promise<Respo
   const match=/^\/api\/attempts\/([0-9a-f-]{36})(?:\/(score|route|complete|abort|flag))?$/.exec(path);
   if (!match||!attemptIdRe.test(match[1])) return respond({error:"Reading endpoint not found"},404);
   const id=match[1],action=match[2]??"";
+  if (method==="POST" && request.headers.get("origin")!==url.origin)
+    return respond({error:"Same-origin request required"},403);
   const snapshot=await readAttempt(db,id).catch(()=>null);
   if (!snapshot) return respond({error:"unknown Reading Attempt"},404);
   const {row,items}=snapshot;
@@ -243,12 +244,11 @@ export async function readingD1Api(request:Request,env:ReadingEnv):Promise<Respo
     } catch(e) {
       // A replay when the first response was lost is idempotently acknowledged
       // only if *all* requested item IDs have been scored, never for a partial commit.
-      if (!(e instanceof AlreadyScoredError)) {
-        const saved=await readAttempt(db,id).catch(()=>null);
-        const ids=parsed.data.items.map(i=>i.itemId);
-        if (ids.length>0 && saved && ids.every(w=>saved.items.some(i=>i.item_id===w&&i.scoring_status==="scored")))
-          return respond({error:"already scored: complete request persisted",alreadyScored:true},409);
-      }
+      const saved=await readAttempt(db,id).catch(()=>null);
+      const ids=parsed.data.items.map(i=>i.itemId);
+      const allPersisted=ids.length>0&&!!saved&&ids.every(w=>saved.items.some(i=>i.item_id===w&&i.scoring_status==="scored"));
+      if (allPersisted) return respond({error:"already scored: complete request persisted",alreadyScored:true},409);
+      if (e instanceof AlreadyScoredError) return respond({error:"Request overlaps an earlier submission; not every item was scored"},409);
       return mapError(e);
     }
   }
@@ -282,7 +282,14 @@ export async function readingD1Api(request:Request,env:ReadingEnv):Promise<Respo
     } catch {return respond({error:"Unable to abort Reading Attempt"},503);}
   }
   if (action==="complete" && method==="POST") {
-    if (row.status==="completed") return respond({status:"completed",estimate:await storedEstimate(db,id)});
+    if (row.status==="completed") {
+      let estimate=await storedEstimate(db,id);
+      if (!estimate && row.mode==="simulation" && completeCoverage(set,row,items)) {
+        estimate=estimateFromRows(row,items);
+        if (estimate) await saveEstimate(db,id,estimate);
+      }
+      return respond({status:"completed",estimate});
+    }
     if (row.status!=="in_progress") return respond({error:"attempt is already "+row.status},409);
     if (row.mode==="simulation"&&!row.module_path) return respond({error:"Router has not yet selected a second module"},409);
     try {
