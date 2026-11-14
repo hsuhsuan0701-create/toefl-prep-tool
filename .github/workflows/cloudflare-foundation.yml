@@ -31,6 +31,10 @@ jobs:
       - run: npm ci
       - name: Build existing React client
         run: npm run build -w client
+      - name: Typecheck original shared, Node and React contracts
+        run: npm run typecheck
+      - name: Bundle Cloudflare Worker in browser-compatible mode
+        run: node --input-type=module -e "import { build } from 'esbuild'; await build({entryPoints:['cloudflare/src/index.ts'],bundle:true,platform:'browser',format:'esm',target:'es2022',outfile:'/tmp/toefl-worker-check.mjs'});"
       - name: Smoke-test Worker adapter (mock D1 and assets)
         run: node --import tsx --test cloudflare/test/worker.test.mjs
       - name: Test Gemini draft validation (mock HTTP, no API key)
