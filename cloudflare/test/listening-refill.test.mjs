@@ -104,5 +104,15 @@ test("flagged overlap blocks publication without using another AI API",async()=>
   const publish=await json(env,"/api/cloud/listening-refill/publish",
    {setId:original.id,confirm:"PUBLISH_REVIEWED_LISTENING_SET"});
   assert.equal(publish.status,409);
+  const repaired=await json(env,"/api/cloud/listening-refill/reset-flagged",
+   {setId:original.id,stimulusId:c.data.stimulusId,confirm:"RESET_FLAGGED_NEXT_DAY"});
+  assert.equal(repaired.status,200);
+  assert.equal(repaired.data.result,"pending-manual-retry");
+  assert.equal(sql.prepare("SELECT status FROM listening_refill_clips WHERE set_id=? AND stimulus_id=?")
+    .get(original.id,c.data.stimulusId).status,"pending");
+  assert.equal(sql.prepare("SELECT COUNT(*) AS n FROM listening_refill_daily_attempts").get().n,1,
+   "Flag reset must not refund any daily quota");
+  assert.equal((await claim(env)).status,409,
+   "Same clip cannot be regenerated twice within the same Pacific day");
  }finally{sql.close();}
 });
