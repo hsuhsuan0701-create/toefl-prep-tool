@@ -2,6 +2,8 @@
  * Gemini -> gated academic Reading draft, not yet a full TOEFL Set.
  * Drafts must never be served as assessed exam questions before review.
  */
+import { ReadingSkillCategory, mcqQuestionSchema } from "@toefl-prep/shared";
+
 export type Draft = {
   title: string; discipline: string; passage: string;
   questions: Array<{
@@ -12,7 +14,7 @@ export type Draft = {
 const isObj = (x: unknown): x is Record<string, unknown> => !!x && typeof x === "object" && !Array.isArray(x);
 const good = (x: unknown): x is string => typeof x === "string" && !!x.trim();
 const norm = (s: string) => s.normalize("NFKC").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
-const skills = new Set(["main_idea", "detail", "inference", "vocabulary", "purpose", "organization", "figurative_language", "grammatical_complexity", "rhetorical_structure"]);
+const readingQuestionSchema = mcqQuestionSchema(ReadingSkillCategory);
 export function validateDraft(x: unknown): Draft {
   if (!isObj(x) || !good(x.title) || !good(x.discipline) || !good(x.passage)) throw new Error("Missing passage metadata");
   const words = x.passage.trim().split(/\s+/).length;
@@ -20,18 +22,15 @@ export function validateDraft(x: unknown): Draft {
   if (!Array.isArray(x.questions) || x.questions.length !== 5) throw new Error("Exactly five questions required");
   const used = new Set<string>();
   for (const q of x.questions) {
-    if (!isObj(q) || !good(q.id) || !good(q.stem) || !good(q.skill) || !good(q.explanationZh) || !good(q.correctOptionId)) throw new Error("Incomplete question");
-    if (!/^[A-Za-z0-9_-]{1,64}$/.test(q.id) || used.has(q.id)) throw new Error("Invalid or duplicate question id");
+    // Original repository schema is authoritative for question fields, option IDs,
+    // skill taxonomy and basic shape. Cloudflare adds stricter draft-only gates.
+    if (!readingQuestionSchema.safeParse(q).success) throw new Error("Invalid canonical Reading question");
+    if (used.has(q.id)) throw new Error("Invalid or duplicate question id");
     used.add(q.id);
-    if (!skills.has(q.skill)) throw new Error("Invalid skill");
     if (q.explanationZh.trim().length < 25) throw new Error("Explanation too short");
-    if (!Array.isArray(q.options) || q.options.length !== 4) throw new Error("Exactly four options required");
-    const optionIds = new Set<string>(), optionTexts = new Set<string>();
-    for (const opt of q.options) {
-      if (!isObj(opt) || !good(opt.id) || !good(opt.text)) throw new Error("Invalid option");
-      if (!/^[A-Za-z0-9_-]{1,64}$/.test(opt.id)) throw new Error("Invalid option id");
-      optionIds.add(opt.id); optionTexts.add(norm(opt.text));
-    }
+    if (q.options.length !== 4) throw new Error("Exactly four options required");
+    const optionIds = new Set(q.options.map(o => o.id));
+    const optionTexts = new Set(q.options.map(o => norm(o.text)));
     if (optionIds.size !== 4 || optionTexts.size !== 4 || !optionIds.has(q.correctOptionId)) throw new Error("Invalid answer choices");
   }
   return x as unknown as Draft;
