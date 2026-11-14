@@ -15,6 +15,7 @@ import { readingImportPage } from "./readingImportPage.js";
 import { refillReadingBank, unusedReadingSets, readingRefillEnabled } from "./readingRefill.js";
 import { authorizedAdmin, validPost } from "./academicPractice.js";
 import { readingRefillPage } from "./readingRefillPage.js";
+import { statsD1Api } from "./statsD1.js";
 
 interface Env {
   GEMINI_API_KEY?: string;
@@ -124,6 +125,11 @@ export default {
       const result = await generateScheduledDraft(env, Date.now(), fetch, true);
       const status = result === "pending_review" ? 201 : result === "already-attempted" ? 409 : 502;
       return Response.json({ result, published: false, cronEnabled: env.AI_GENERATION_ENABLED === "true" }, { status, headers: jsonHeaders });
+    }
+
+    if (pathname.startsWith("/api/stats/")) {
+      const statsResponse = await statsD1Api(request, env);
+      if (statsResponse) return statsResponse;
     }
 
     if (pathname === "/api/cloud/reading-refill" && request.method === "GET") {
