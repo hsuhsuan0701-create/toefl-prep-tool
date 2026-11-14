@@ -7,8 +7,8 @@
  * still 501. Cloudflare Access must protect the entire Worker.
  */
 import {
-  ReadingSetSchema, ScoreRequestSchema, stripAnswers, decidePath,
-  type ReadingSet, type SectionEstimateVM,
+  ReadingSetSchema, ListeningSetSchema, ScoreRequestSchema, stripAnswers, decidePath,
+  type ReadingSet, type ListeningSet, type SectionEstimateVM,
 } from "@toefl-prep/shared";
 import { setTitleFor } from "../../server/src/services/setTitle.js";
 import {
@@ -19,11 +19,15 @@ import {
 import { NotFound } from "../../server/src/services/scoringErrors.js";
 import { computeSectionEstimate, type EstimateItemRow } from "../../server/src/services/sectionEstimates.js";
 import { authorizedAdmin, validPost } from "./academicPractice.js";
+import { allAudioReady, type AudioAssets } from "./listeningAudio.js";
 
 export interface ReadingEnv {
   DB: D1Database;
+  ASSETS: AudioAssets;
   TOEFL_MANUAL_TEST_TOKEN?: string;
 }
+type PracticeSet = ReadingSet | ListeningSet;
+type Section = PracticeSet["kind"];
 const jsonHeaders = { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" };
 const respond = (body: unknown, status = 200) => Response.json(body, { status, headers: jsonHeaders });
 const setIdRe = /^[A-Za-z0-9_-]{1,64}$/;
@@ -41,15 +45,19 @@ type ItemRow = {
   attempt_id: string; item_id: string; task_type: string; response_text: string | null;
   score: number | null; score_json: string | null; scoring_status: string; created_at: string;
 };
-async function readSet(db: D1Database, id: string): Promise<ReadingSet | null> {
-  if (!setIdRe.test(id)) return null;
-  const row = await db.prepare("SELECT content_json FROM reading_sets WHERE id=?").bind(id).first<{content_json:string}>();
-  if (!row) return null;
-  return ReadingSetSchema.parse(JSON.parse(row.content_json));
+async function readSet(db:D1Database,id:string):Promise<PracticeSet|null>{
+ if(!setIdRe.test(id))return null;
+ const isListening=id.startsWith("lsn-");
+ const table=isListening?"listening_sets":"reading_sets";
+ const row=await db.prepare("SELECT content_json FROM "+table+" WHERE id=?").bind(id).first<{content_json:string}>();
+ if(!row)return null;
+ const set=isListening?ListeningSetSchema.parse(JSON.parse(row.content_json)):ReadingSetSchema.parse(JSON.parse(row.content_json));
+ if(set.id!==id)throw Error("Mismatched Set ID");
+ return set;
 }
 async function readAttempt(db: D1Database, id: string): Promise<{ row: Row; items: ItemRow[] } | null> {
   if (!attemptIdRe.test(id)) return null;
-  const row = await db.prepare("SELECT * FROM attempts WHERE id=? AND kind='reading'").bind(id).first<Row>();
+  const row = await db.prepare("SELECT * FROM attempts WHERE id=? AND kind IN ('reading','listening')").bind(id).first<Row>();
   if (!row) return null;
   const rows = await db.prepare(
     "SELECT attempt_id,item_id,task_type,response_text,score,score_json,scoring_status,created_at FROM item_results WHERE attempt_id=? ORDER BY created_at,item_id"
@@ -57,28 +65,28 @@ async function readAttempt(db: D1Database, id: string): Promise<{ row: Row; item
   return { row, items: rows.results };
 }
 async function storedEstimate(db: D1Database, id: string): Promise<SectionEstimateVM | null> {
-  const r = await db.prepare("SELECT raw_detail,estimated_band,method FROM section_estimates WHERE attempt_id=? AND section='reading'").bind(id)
-    .first<{raw_detail:string;estimated_band:number;method:string}>();
+  const r = await db.prepare("SELECT se.raw_detail,se.estimated_band,se.method,a.kind FROM section_estimates se JOIN attempts a ON a.id=se.attempt_id WHERE se.attempt_id=? AND se.section=a.kind").bind(id)
+    .first<{raw_detail:string;estimated_band:number;method:string;kind:Section}>();
   if (!r) return null;
   const details = asJson(r.raw_detail) as { raw?: number; coverage?: SectionEstimateVM["coverage"] } | null;
   if (!details || typeof details.raw !== "number" || !Array.isArray(details.coverage)) return null;
-  return { section:"reading",band:r.estimated_band,raw:details.raw,method:r.method,coverage:details.coverage };
+  return { section:r.kind,band:r.estimated_band,raw:details.raw,method:r.method,coverage:details.coverage };
 }
 function attemptVM(a: Row, title: string | null, withheld = false) {
   return {
-    id:a.id,kind:"reading" as const,mode:a.mode,setId:a.set_id,setTitle:title,
+    id:a.id,kind:a.kind as Section,mode:a.mode,setId:a.set_id,setTitle:title,
     isRepeat:a.is_repeat===1,status:a.status,
     startedAt:iso(a.started_at),completedAt:iso(a.completed_at),
     captureFinishedAt:null,flagged:a.flagged===1,modulePath:a.module_path,
     routerRaw:withheld?null:a.router_raw,
   };
 }
-function neededItems(set: ReadingSet, mode: Row["mode"], path: Row["module_path"]): Set<string> {
+function neededItems(set: PracticeSet, mode: Row["mode"], path: Row["module_path"]): Set<string> {
   const index=indexDeterministicItems(set);
   return new Set([...index].filter(([,v])=>mode==="drill"?v.module==="router":
     v.module==="router" || v.module===path).map(([id])=>id));
 }
-function completeCoverage(set: ReadingSet, a: Row, items: ItemRow[]): boolean {
+function completeCoverage(set: PracticeSet, a: Row, items: ItemRow[]): boolean {
   if (a.mode==="simulation" && !a.module_path) return false;
   const needed=neededItems(set,a.mode,a.module_path);
   const scored=new Set(items.filter(x=>x.scoring_status==="scored").map(x=>x.item_id));
@@ -86,7 +94,7 @@ function completeCoverage(set: ReadingSet, a: Row, items: ItemRow[]): boolean {
 }
 function estimateFromRows(a: Row, items: ItemRow[]): SectionEstimateVM | null {
   const result = computeSectionEstimate({
-    kind: "reading", mode:a.mode,module_path:a.module_path,
+    kind: a.kind, mode:a.mode,module_path:a.module_path,
     items:items.map(x=>({task_type:x.task_type,score:x.score,score_json:x.score_json,
       scoring_status:x.scoring_status} satisfies EstimateItemRow))
   });
@@ -94,8 +102,8 @@ function estimateFromRows(a: Row, items: ItemRow[]): SectionEstimateVM | null {
 }
 async function saveEstimate(db:D1Database, attemptId:string, estimate:SectionEstimateVM):Promise<void> {
   await db.prepare(
-    "INSERT INTO section_estimates(attempt_id,section,raw_detail,estimated_band,method) VALUES(?,'reading',?,?,?) ON CONFLICT(attempt_id,section) DO UPDATE SET raw_detail=excluded.raw_detail,estimated_band=excluded.estimated_band,method=excluded.method"
-  ).bind(attemptId,JSON.stringify({raw:estimate.raw,coverage:estimate.coverage}),estimate.band,estimate.method).run();
+    "INSERT INTO section_estimates(attempt_id,section,raw_detail,estimated_band,method) VALUES(?,?,?,?,?) ON CONFLICT(attempt_id,section) DO UPDATE SET raw_detail=excluded.raw_detail,estimated_band=excluded.estimated_band,method=excluded.method"
+  ).bind(attemptId,estimate.section,JSON.stringify({raw:estimate.raw,coverage:estimate.coverage}),estimate.band,estimate.method).run();
 }
 function mapError(e:unknown):Response {
   if (e instanceof UnknownItemError || e instanceof NotFound) return respond({error:e.message},404);
@@ -119,7 +127,7 @@ export async function readingD1Api(request:Request,env:ReadingEnv):Promise<Respo
   const url=new URL(request.url),path=url.pathname,method=request.method,db=env.DB;
   if (!(path==="/api/sets" || path.startsWith("/api/sets/") ||
         path==="/api/attempts" || path.startsWith("/api/attempts/") ||
-        path==="/api/cloud/reading-sets/import")) return null;
+        (path==="/api/cloud/reading-sets/import" || path==="/api/cloud/listening-sets/import"))) return null;
 
   if (path==="/api/cloud/reading-sets/import" && method==="POST") {
     if (!await authorizedAdmin(request,env.TOEFL_MANUAL_TEST_TOKEN)) return respond({error:"Unauthorized"},401);
@@ -136,21 +144,40 @@ export async function readingD1Api(request:Request,env:ReadingEnv):Promise<Respo
       return respond({id:set.id,status:"imported",kind:"reading"},201);
     } catch {return respond({error:"Unable to import Reading Set"},503);}
   }
+  if(path==="/api/cloud/listening-sets/import" && method==="POST"){
+   if(!await authorizedAdmin(request,env.TOEFL_MANUAL_TEST_TOKEN))return respond({error:"Unauthorized"},401);
+   if(!validPost(request))return respond({error:"Same-origin JSON required"},403);
+   const parsed=ListeningSetSchema.safeParse(await jsonBody(request,450_000));
+   if(!parsed.success)return respond({error:"Invalid canonical Listening Set"},400);
+   const set=parsed.data;
+   try {
+    indexDeterministicItems(set);
+    if(!await allAudioReady(env.ASSETS,set,url.origin))
+     return respond({error:"Listening MP3 files are not staged; deploy them before importing the Set"},409);
+    const saved=await db.prepare("INSERT OR IGNORE INTO listening_sets(id,content_json) VALUES(?,?)")
+     .bind(set.id,JSON.stringify(set)).run();
+    if(saved.meta.changes!==1)return respond({error:"Listening Set already exists"},409);
+    return respond({id:set.id,kind:"listening",status:"imported"},201);
+   }catch{return respond({error:"Unable to import Listening Set"},503);}
+  }
   if (path==="/api/sets/unloadable" && method==="GET") {
     return respond({count:0,failures:[]});
   }
   if (path==="/api/sets" && method==="GET") {
     const kind=url.searchParams.get("kind");
-    if (kind && kind!=="reading") return respond([]);
+    if (kind && kind!=="reading" && kind!=="listening") return respond([]);
     try {
-      const rows=await db.prepare("SELECT id,content_json FROM reading_sets ORDER BY created_at DESC,id DESC LIMIT 150").all<{id:string;content_json:string}>();
+      const rows=await db.prepare((kind==="reading"?"SELECT id,content_json FROM reading_sets":
+          kind==="listening"?"SELECT id,content_json FROM listening_sets":
+          "SELECT id,content_json FROM reading_sets UNION ALL SELECT id,content_json FROM listening_sets")+" LIMIT 150").all<{id:string;content_json:string}>();
       const used=await db.prepare(
-        "SELECT DISTINCT a.set_id FROM attempts a WHERE a.kind='reading' AND EXISTS (SELECT 1 FROM item_results i WHERE i.attempt_id=a.id AND i.scoring_status='scored')"
+        "SELECT DISTINCT a.set_id FROM attempts a WHERE a.kind IN ('reading','listening') AND EXISTS (SELECT 1 FROM item_results i WHERE i.attempt_id=a.id AND i.scoring_status='scored')"
       ).all<{set_id:string}>();
       const attempted=new Set(used.results.map(x=>x.set_id));
       const listing=rows.results.map(row=>{
-        const set=ReadingSetSchema.parse(JSON.parse(row.content_json));
-        return {id:set.id,kind:"reading",source:set.source,createdAt:set.createdAt,
+        const raw=JSON.parse(row.content_json);
+        const set=raw.kind==="listening"?ListeningSetSchema.parse(raw):ReadingSetSchema.parse(raw);
+        return {id:set.id,kind:set.kind,source:set.source,createdAt:set.createdAt,
           ...setTitleFor(set),attempted:attempted.has(set.id),
           ...(set.advisoryNotes?.length?{advisoryNotes:set.advisoryNotes}:{})};
       });
@@ -169,31 +196,31 @@ export async function readingD1Api(request:Request,env:ReadingEnv):Promise<Respo
   if (path==="/api/attempts" && method==="POST") {
     if (!validPost(request)) return respond({error:"Same-origin JSON required"},403);
     const data=await jsonBody(request);
-    if (!isRecord(data)||data.kind!=="reading"||!["drill","simulation"].includes(String(data.mode))||
+    if (!isRecord(data)||(data.kind!=="reading" && data.kind!=="listening")||!["drill","simulation"].includes(String(data.mode))||
        typeof data.setId!=="string"||!setIdRe.test(data.setId)||data.fullTestRunId!==undefined)
        return respond({error:"Reading drill/simulation only; Full-Test Run is not migrated"},400);
     try {
       const set=await readSet(db,data.setId);
-      if (!set) return respond({error:"unknown Reading Set"},404);
+      if (!set || set.kind!==data.kind) return respond({error:"unknown Set"},404);
       const prev=await db.prepare(
-        "SELECT 1 AS used FROM attempts a WHERE a.set_id=? AND a.kind='reading' AND EXISTS (SELECT 1 FROM item_results i WHERE i.attempt_id=a.id AND i.scoring_status='scored') LIMIT 1"
-      ).bind(data.setId).first<{used:number}>();
+        "SELECT 1 AS used FROM attempts a WHERE a.set_id=? AND a.kind=? AND EXISTS (SELECT 1 FROM item_results i WHERE i.attempt_id=a.id AND i.scoring_status='scored') LIMIT 1"
+      ).bind(data.setId,data.kind).first<{used:number}>();
       const isRepeat=!!prev,id=crypto.randomUUID();
-      await db.prepare("INSERT INTO attempts(id,kind,mode,set_id,is_repeat) VALUES(?,'reading',?,?,?)")
-        .bind(id,data.mode,data.setId,isRepeat?1:0).run();
+      await db.prepare("INSERT INTO attempts(id,kind,mode,set_id,is_repeat) VALUES(?,?,?,?,?)")
+        .bind(id,data.kind,data.mode,data.setId,isRepeat?1:0).run();
       return respond({attemptId:id,isRepeat},201);
     } catch {return respond({error:"Unable to start Reading Attempt"},503);}
   }
   if (path==="/api/attempts" && method==="GET") {
     try {
       const kind=url.searchParams.get("kind");
-      if (kind&&kind!=="reading") return respond({items:[],total:0});
+      if (kind&&kind!=="reading"&&kind!=="listening") return respond({items:[],total:0});
       const setId=url.searchParams.get("setId");
       if (setId&&!setIdRe.test(setId)) return respond({error:"Invalid setId"},400);
       const limit=Math.max(1,Math.min(100,Number(url.searchParams.get("limit")||25)||25));
       const offset=Math.max(0,Math.min(100000,Number(url.searchParams.get("offset")||0)||0));
-      const where="WHERE kind='reading'"+(setId?" AND set_id=?":"");
-      const params=setId?[setId]:[];
+      const where="WHERE kind IN (\'reading\',\'listening\')"+(kind?" AND kind=?":"")+(setId?" AND set_id=?":"");
+      const params=[...(kind?[kind]:[]),...(setId?[setId]:[])];
       const count=await db.prepare("SELECT COUNT(*) as n FROM attempts "+where).bind(...params).first<{n:number}>();
       const rows=await db.prepare("SELECT * FROM attempts "+where+" ORDER BY started_at DESC,rowid DESC LIMIT ? OFFSET ?")
         .bind(...params,limit,offset).all<Row>();
@@ -224,7 +251,7 @@ export async function readingD1Api(request:Request,env:ReadingEnv):Promise<Respo
     if (row.status!=="in_progress") return respond({error:"attempt is already "+row.status},409);
     const data=await jsonBody(request);
     const parsed=ScoreRequestSchema.safeParse(data);
-    if (!parsed.success||!["complete_words","daily_life","academic_passage"].includes(parsed.data.taskType))
+    if (!parsed.success || !(row.kind==="reading"?["complete_words","daily_life","academic_passage"]:["listen_choose","conversation","announcement","academic_talk"]).includes(parsed.data.taskType))
       return respond({error:"Invalid Reading score request"},400);
     try {
       const plan=prepareDeterministicScore({
@@ -261,8 +288,8 @@ export async function readingD1Api(request:Request,env:ReadingEnv):Promise<Respo
       if (census.missing>0) return respond({error:"router module incomplete: "+census.missing+" item(s) not scored"},409);
       const decision=decidePath(census.correctCount,census.total);
       const result=await db.prepare(
-        "UPDATE attempts SET module_path=?,router_raw=? WHERE id=? AND kind='reading' AND mode='simulation' AND status='in_progress' AND module_path IS NULL"
-      ).bind(decision.path,decision.routerRaw,id).run();
+        "UPDATE attempts SET module_path=?,router_raw=? WHERE id=? AND kind=? AND mode='simulation' AND status='in_progress' AND module_path IS NULL"
+      ).bind(decision.path,decision.routerRaw,id,row.kind).run();
       if (result.meta.changes===1) return respond(decision);
       const current=await readAttempt(db,id);
       if (current?.row.module_path) return respond({path:current.row.module_path,routerRaw:current.row.router_raw});
