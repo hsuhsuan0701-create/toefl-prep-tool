@@ -52,6 +52,8 @@ jobs:
         run: node --import tsx --test cloudflare/test/academic-practice.test.mjs
       - name: End-to-end original Reading Set → Attempt → Score → Route → Results
         run: node --import tsx --test cloudflare/test/reading-d1-e2e.test.mjs
+      - name: Verify all 14 original Listening Sets have every referenced MP3
+        run: node --import tsx --test cloudflare/test/listening-assets.test.mjs
       - name: Test canonical Listening audio, private import, scoring and adaptive D1
         run: node --import tsx --test cloudflare/test/listening-d1-e2e.test.mjs
       - name: Test original Dashboard stats routes against D1
