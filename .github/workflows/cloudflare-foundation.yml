@@ -36,6 +36,8 @@ jobs:
           node scripts/stage-cloudflare-listening-audio.mjs
           test -f client/dist/listening-audio/lsn-03948a55/lcr-r1.mp3
           test ! -f client/dist/listening-audio/lsn-03948a55/audio-manifest.json
+      - name: Dry-run original Listening Gemini 3.8 voice trial (no API calls)
+        run: node --import tsx scripts/pilot-gemini38-tts.mjs --set lsn-03948a55 --role conversation
       - name: Typecheck original shared, Node and React contracts
         run: npm run typecheck
       - name: Bundle Cloudflare Worker in browser-compatible mode
