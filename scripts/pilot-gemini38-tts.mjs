@@ -9,7 +9,7 @@
  * One paid request maximum, when explicitly asked:
  * node --import tsx scripts/pilot-gemini38-tts.mjs --set lsn-03948a55 --role conversation --execute
  */
-import {readFileSync,writeFileSync,mkdirSync} from "node:fs";
+import {readFileSync,writeFileSync,mkdirSync,existsSync} from "node:fs";
 import {spawnSync} from "node:child_process";
 import {join,resolve} from "node:path";
 import {fileURLToPath} from "node:url";
@@ -76,6 +76,11 @@ if(!execute){
  process.stdout.write("Dry-run complete. Nothing was generated, charged, uploaded or published.\n");
  process.exit(0);
 }
+const outputDir=join(root,"tmp","tts-trials",setId);
+const outputWav=join(outputDir,clip.stimulusId+"-"+model+".wav");
+const outputMp3=join(outputDir,clip.stimulusId+"-"+model+".mp3");
+if(existsSync(outputWav)||existsSync(outputMp3))
+ throw Error("Trial already exists; refusing paid regeneration or overwrite. Choose another clip.");
 const key=process.env.GEMINI_API_KEY;
 if(!key){fail("GEMINI_API_KEY is not set locally. Never paste your key into chat, Git or a command argument.");}
 else {
@@ -99,10 +104,9 @@ else {
        bytes.subarray(8,12).toString("ascii")!=="WAVE") {
       fail("Unexpected audio format: Gemini 3.8 unary output must be a WAV with RIFF header");
     } else {
-      const dir=join(root,"tmp","tts-trials",setId);
-      mkdirSync(dir,{recursive:true});
-      const wav=join(dir,clip.stimulusId+"-"+model+".wav");
-      const mp3=join(dir,clip.stimulusId+"-"+model+".mp3");
+      mkdirSync(outputDir,{recursive:true});
+      const wav=outputWav;
+      const mp3=outputMp3;
       writeFileSync(wav,bytes,{flag:"wx"});
       const conversion=spawnSync("ffmpeg",["-hide_banner","-loglevel","error","-y",
        "-i",wav,"-codec:a","libmp3lame","-qscale:a","3",mp3],{timeout:60000,encoding:"utf8"});
