@@ -18,7 +18,7 @@
 import {readFileSync,readdirSync,writeFileSync,mkdirSync} from "node:fs";
 import {join,resolve} from "node:path";
 import {fileURLToPath} from "node:url";
-import {listeningModuleJsonSchema,structuralIssues} from "./lib/listening-module-json-schema.mjs";
+import {listeningModuleJsonSchema,listeningSchemaSummary,structuralIssues} from "./lib/listening-module-json-schema.mjs";
 import {
   ListeningGenerationInputSchema,ListeningSetSchema,
   LISTENING_MODULE_COMPOSITION,LISTENING_MODULE_TIME_LIMITS_SEC,
@@ -35,6 +35,7 @@ const root=resolve(fileURLToPath(new URL("..",import.meta.url)));
 const execute=process.argv.includes("--execute");
 const pilot=process.argv.includes("--pilot");
 const structured=process.argv.includes("--structured");
+const inspectSchema=process.argv.includes("--inspect-schema");
 const inspectOption=process.argv.find(arg=>arg.startsWith("--inspect="));
 const inspectPath=inspectOption?.slice("--inspect=".length)??null;
 const origin=new URL(process.env.TOEFL_WORKER_URL||
@@ -102,7 +103,7 @@ async function callGemini(prompt,maxOutputTokens,schema){
   const message=typeof body?.error?.message==="string"?body.error.message:"";
   const causes=[
     ["empty-enum",/enum.{0,100}(empty|string value)/i],
-    ["schema-complexity",/complex|too large|too deep|nesting|nest|depth|schema size/i],
+    ["schema-complexity",/complex|too large|too deep|nesting|nest|depth|schema size|too many states|branching|constraints|maxItems|minItems/i],
     ["unsupported-schema-keyword",/unsupported|unknown name|not allowed|invalid json payload/i],
     ["response-json-schema",/responseJsonSchema|responseSchema/i],
     ["quota",/quota|resource.exhausted|rate limit/i],
@@ -190,13 +191,27 @@ async function independentReview(name,module){
  if(!v.passed||v.issues.length)throw Error("Independent review rejected "+name+"; no draft uploaded");
 }
 console.log(JSON.stringify({
- phase:execute?(pilot?"one-module text pilot requested":"text generation requested"):"dry-run only",
+ phase:inspectSchema?"offline schema inspection":inspectPath?"offline candidate inspection":
+  execute?(pilot?"one-module text pilot requested":"text generation requested"):"dry-run only",
  existingLocalSets:existing.length,modules:pilot?["router"]:moduleNames,
- structuredOutput:structured,inspectOnly:!!inspectPath,
- plannedTextRequests:MAX_TEXT_API_CALLS,ttsRequests:0,
+ structuredOutput:structured,inspectOnly:!!inspectPath||inspectSchema,
+ plannedTextRequests:inspectSchema||!!inspectPath?0:MAX_TEXT_API_CALLS,ttsRequests:0,
  publishes:false,schedules:false,
  caveat:"Model quota and billing must be checked separately in Google AI Studio"
 },null,2));
+if(inspectSchema){
+ // No network, no keys, no private content; only a summary of the current
+ // request schema. This can be run even if --execute is accidentally supplied.
+ const schemas=Object.fromEntries((pilot?["router"]:moduleNames).map(name=>[
+  name,listeningSchemaSummary(listeningModuleJsonSchema(
+    LISTENING_MODULE_COMPOSITION[name],LISTENING_MODULE_TIME_LIMITS_SEC[name]))
+ ]));
+ if(Object.values(schemas).some(s=>s.boundedArrays||s.numericBounds||s.emptyEnums))
+  throw Error("Unsafe Gemini schema constraints; refusing structured pilot");
+ console.log(JSON.stringify({result:"offline-schema-inspection",apiRequests:0,
+  uploadedToD1:false,structuredGenerationSupportedByLocalShape:true,schemas},null,2));
+ process.exit(0);
+}
 if(inspectPath){
  // Offline-only inspection: no network, no API key, no D1, no audio output.
  const raw=JSON.parse(readFileSync(resolve(inspectPath),"utf8"));
