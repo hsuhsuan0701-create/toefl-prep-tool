@@ -52,7 +52,7 @@ if(!enabled){
   console.log("Dry-run only: Listening daily runner is disabled. Admin token missing; no quota consumed.");
  }else {
   const s=await status();
-  console.log(JSON.stringify({dryRun:true,day:s.day,limit:s.limit,claimed:s.claimed,queue:s.queue,geminiCalls:0},null,2));
+  console.log(JSON.stringify({dryRun:true,enabled:s.enabled,day:s.day,limit:s.limit,claimed:s.claimed,queue:s.queue,geminiCalls:0},null,2));
  }
  process.exit(0);
 }
@@ -63,8 +63,9 @@ if(!key || !token || token.length<32)
 const ff=spawnSync("ffmpeg",["-version"],{encoding:"utf8",timeout:10000});
 if(ff.error||ff.status!==0)throw Error("ffmpeg is required to produce final MP3s before consuming a claim");
 const s=await status();
-console.log(JSON.stringify({phase:"preflight",day:s.day,claimed:s.claimed,limit:s.limit,
+console.log(JSON.stringify({phase:"preflight",enabled:s.enabled,day:s.day,claimed:s.claimed,limit:s.limit,
  queue:s.queue.map(x=>({id:x.id,state:x.state,clips:x.clips}))},null,2));
+if(!s.enabled){console.log("Listening auto-generation has been stopped in the private manager. No Gemini request.");process.exit(0);}
 if(s.claimed>=s.limit){console.log("Daily quota already exhausted. No Gemini request.");process.exit(0);}
 if(!s.queue.some(x=>(x.state==="draft"||x.state==="rendering")&&(x.clips?.pending||0)>0)){
  console.log("No prepared Listening draft with pending audio. No Gemini request.");
@@ -72,6 +73,9 @@ if(!s.queue.some(x=>(x.state==="draft"||x.state==="rendering")&&(x.clips?.pendin
 }
 const count=Math.min(maxArg,s.limit-s.claimed);
 for(let i=0;i<count;i++){
+ // Check the remote stop switch before each new paid claim (not only at job start).
+ const live=await status();
+ if(!live.enabled){console.log("Stop switch activated; no further Gemini requests.");break;}
  let claim;
  try{
   claim=await api("/api/cloud/listening-refill/claim","POST",{confirm:"CLAIM_LISTENING_TTS_ONCE"});
