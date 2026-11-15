@@ -102,3 +102,77 @@ test("original local Zod gate still rejects a wrong stimulus count after Gemini 
   assert.match(res.stdout,/"apiRequests": 0/);
  }finally{rmSync(dir,{recursive:true,force:true});}
 });
+
+test("reviewed Router file dry-run saves one Gemini text request without API access",()=>{
+ const dir=mkdtempSync(join(tmpdir(),"toefl-reviewed-router-"));
+ try{
+  const file=join(dir,"router.json");
+  writeFileSync(file,JSON.stringify({response:canonical}));
+  const res=spawnSync(process.execPath,["--import","tsx","scripts/generate-listening-draft.mjs",
+    "--structured","--router-file="+file],{
+    cwd:root,encoding:"utf8",timeout:30000,
+    env:{...process.env,GEMINI_API_KEY:"",LISTENING_DRAFT_GENERATION_ENABLED:"false"},
+  });
+  assert.equal(res.status,0,res.stderr);
+  assert.match(res.stdout,/"routerReused": true/);
+  assert.match(res.stdout,/"plannedTextRequests": 5/);
+  assert.match(res.stdout,/"ttsRequests": 0/);
+ }finally{rmSync(dir,{recursive:true,force:true});}
+});
+
+test("full generation refuses saved Router without explicit human review before any API request",()=>{
+ const dir=mkdtempSync(join(tmpdir(),"toefl-review-gate-"));
+ try{
+  const file=join(dir,"router.json");
+  writeFileSync(file,JSON.stringify(canonical));
+  const res=spawnSync(process.execPath,["--import","tsx","scripts/generate-listening-draft.mjs",
+    "--structured","--router-file="+file,"--execute"],{
+    cwd:root,encoding:"utf8",timeout:30000,
+    env:{...process.env,GEMINI_API_KEY:"",LISTENING_DRAFT_GENERATION_ENABLED:"false"},
+  });
+  assert.notEqual(res.status,0);
+  assert.match(res.stdout+res.stderr,/requires manual content review/);
+  assert.match(res.stdout,/"plannedTextRequests": 5/);
+ }finally{rmSync(dir,{recursive:true,force:true});}
+});
+
+test("an invalid Router reuse file fails local Zod before any model request",()=>{
+ const dir=mkdtempSync(join(tmpdir(),"toefl-invalid-resume-"));
+ try{
+  const file=join(dir,"invalid-router.json");
+  const invalid=structuredClone(canonical);
+  invalid.listenChoose.pop();
+  writeFileSync(file,JSON.stringify(invalid));
+  const res=spawnSync(process.execPath,["--import","tsx","scripts/generate-listening-draft.mjs",
+    "--structured","--router-file="+file],{
+    cwd:root,encoding:"utf8",timeout:30000,
+    env:{...process.env,GEMINI_API_KEY:"",LISTENING_DRAFT_GENERATION_ENABLED:"false"},
+  });
+  assert.notEqual(res.status,0);
+  assert.match(res.stdout+res.stderr,/Original Listening router schema rejected/);
+  assert.doesNotMatch(res.stdout+res.stderr,/Gemini returned HTTP/);
+ }finally{rmSync(dir,{recursive:true,force:true});}
+});
+
+test("private Router manual review packet contains the exact transcript and answer keys, with no network",()=>{
+ const dir=mkdtempSync(join(tmpdir(),"toefl-review-output-"));
+ let outputPath=null;
+ try{
+  const file=join(dir,"router-"+process.pid+".json");
+  writeFileSync(file,JSON.stringify(canonical));
+  const res=spawnSync(process.execPath,["--import","tsx","scripts/review-listening-router.mjs",
+    "--file="+file],{cwd:root,encoding:"utf8",timeout:30000,env:{...process.env,GEMINI_API_KEY:""}});
+  assert.equal(res.status,0,res.stderr);
+  const payload=JSON.parse(res.stdout);
+  outputPath=payload.outputPath;
+  assert.equal(payload.stimuli,17);
+  assert.equal(payload.apiRequests,0);
+  const markdown=readFileSync(outputPath,"utf8");
+  assert.match(markdown,/人工內容審閱/);
+  assert.match(markdown,/（正解）/);
+  assert.ok(markdown.includes(canonical.conversations[0].transcript[0].text));
+ }finally{
+  if(outputPath)rmSync(outputPath,{force:true});
+  rmSync(dir,{recursive:true,force:true});
+ }
+});
