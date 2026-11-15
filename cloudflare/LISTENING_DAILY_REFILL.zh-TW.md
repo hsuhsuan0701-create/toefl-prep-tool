@@ -38,6 +38,22 @@
 - 若成功產生草稿，網站會顯示 pending=36；當 **GitHub 和網站兩個停止開關都啟用**、R2/金鑰就緒時，每天最多配音 3 段。完成 36 段後仍**不自動公開**，需人工試聽與正式發布核准。
 - 新草稿生成器目前優先避免程式功能分叉、先驗證完整原版 schema；**生成品質與逐字稿答案一致性尚待實測**。原本的 Claude/Codex 生成與反覆修補並未被替代為等價的雲端品質流程。
 
+**小額 Pilot（正式完整文字生成前先做這步）**：`--pilot --execute` 只生成 **Router 一個模組、呼叫 Gemini 文字 API 最多一次**，將完整候選 JSON 留在本機 `tmp/listening-draft-pilots/`；沒有 D1 上傳、沒有 TTS，也不會發布。首次試跑前，需在自己的 PowerShell 工作階段設定 `GEMINI_API_KEY` 與 `LISTENING_DRAFT_GENERATION_ENABLED=true`，並確認 Google AI Studio 專案的 Free Tier／Billing。**API Key 不要貼入聊天、Git、日誌或螢幕截圖。**
+
+```powershell
+cd C:\Users\isaac\toefl-prep-tool
+git pull --ff-only origin cloudflare-migration
+
+# 安全 dry-run：無 API 呼叫
+node --import tsx scripts/generate-listening-draft.mjs --pilot
+
+# 確認 quota / billing 且本機環境變數已設好後，才明確執行：
+# $env:LISTENING_DRAFT_GENERATION_ENABLED="true"
+# node --import tsx scripts/generate-listening-draft.mjs --pilot --execute
+```
+
+真正完整草稿的 `--execute` 至多執行 6 次文字 API 請求；請先評估 Pilot 成果再決定是否執行。**目前尚未啟用文字草稿或 MP3 的每日排程。**
+
 乾跑指令：
 
 ```powershell
