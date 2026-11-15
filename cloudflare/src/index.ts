@@ -18,6 +18,7 @@ import { authorizedAdmin, validPost } from "./academicPractice.js";
 import { readingRefillPage } from "./readingRefillPage.js";
 import { statsD1Api } from "./statsD1.js";
 import { handleListeningRefill, servePublishedR2Audio } from "./listeningRefill.js";
+import { listeningRefillPage } from "./listeningRefillPage.js";
 
 interface Env {
   GEMINI_API_KEY?: string;
@@ -203,6 +204,9 @@ export default {
       const r2Response=await servePublishedR2Audio(request,env);
       if(r2Response)return r2Response;
       if(audioResponse)return audioResponse;
+    }
+    if(pathname==="/api/cloud/listening-refill" && request.method==="GET") {
+      return listeningRefillPage();
     }
     if(pathname.startsWith("/api/cloud/listening-refill/")) {
       const queueResponse=await handleListeningRefill(request,env);
