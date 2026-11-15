@@ -36,6 +36,8 @@ jobs:
           node scripts/stage-cloudflare-listening-audio.mjs
           test -f client/dist/listening-audio/lsn-03948a55/lcr-r1.mp3
           test ! -f client/dist/listening-audio/lsn-03948a55/audio-manifest.json
+      - name: Dry-run original-schema Listening text draft builder (no API calls)
+        run: node --import tsx scripts/generate-listening-draft.mjs
       - name: Dry-run daily Listening runner (no paid calls)
         run: node --import tsx scripts/refill-listening-daily.mjs
       - name: Test durable Listening refill queue and 3-a-day limit (no paid calls)
