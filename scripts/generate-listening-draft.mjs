@@ -5,10 +5,12 @@
  *
  * Dry run by default. --pilot --execute makes ONE Gemini TEXT request and
  * saves a single Router module locally for inspection; never sends it to D1.
- * Full --execute performs at most six sequential Gemini TEXT
- * requests (3 module generations + 3 independent reviews), NO retries, then
- * submits one validated draft to the private Cloudflare Worker. This is not
- * eligible for scheduled execution until it has passed a real manual pilot.
+ * Full --execute performs at most six sequential Gemini TEXT requests
+ * (3 module generations + 3 independent reviews), NO retries, then submits
+ * one validated draft to the private Cloudflare Worker. Optionally reuse a
+ * previously human-reviewed Router pilot with --router-file=<private JSON path>
+ * --reviewed-router; then maximum 5 text requests (2 new modules + 3 reviews).
+ * No TTS and no publishing in either case. Offline preflight by default.
  *
  * Usage:
  *   node --import tsx scripts/generate-listening-draft.mjs
@@ -38,6 +40,14 @@ const structured=process.argv.includes("--structured");
 const inspectSchema=process.argv.includes("--inspect-schema");
 const inspectOption=process.argv.find(arg=>arg.startsWith("--inspect="));
 const inspectPath=inspectOption?.slice("--inspect=".length)??null;
+const routerFileOption=process.argv.find(arg=>arg.startsWith("--router-file="));
+const routerFile=routerFileOption?.slice("--router-file=".length)??null;
+const reviewedRouter=process.argv.includes("--reviewed-router");
+if(routerFileOption && !routerFile)throw Error("--router-file needs an existing local JSON file path");
+if((routerFile&&pilot)||(reviewedRouter&&!routerFile))
+ throw Error("--router-file is only for FULL generation; --reviewed-router requires --router-file");
+if(routerFile&&(inspectSchema||inspectPath))
+ throw Error("--router-file cannot be combined with offline inspector modes");
 const origin=new URL(process.env.TOEFL_WORKER_URL||
   "https://toefl-prep-private.ihsuan0701.workers.dev").origin;
 const token=process.env.TOEFL_MANUAL_TEST_TOKEN;
@@ -66,8 +76,18 @@ function validateModule(name,generated){
 }
 const existing=readdirSync(bankDir).filter(x=>/^lsn-[A-Za-z0-9_-]+\.json$/.test(x))
  .map(x=>ListeningSetSchema.parse(JSON.parse(readFileSync(join(bankDir,x),"utf8"))));
+// Validate a saved pilot locally before ANY worker/API operation. The file may
+// be the raw Router object or the original {response: Router} diagnostics.
+const reusedRouter=routerFile?loadRouterFromFile(routerFile):null;
+function loadRouterFromFile(path){
+ const parsed=JSON.parse(readFileSync(resolve(path),"utf8"));
+ const candidate=parsed?.response??parsed;
+ const checked=validateModule("router",candidate);
+ if(!checked.valid)throw Error("Saved Router failed original local Schema; no API calls");
+ return checked.module;
+}
 const SYNTHETIC_REVIEWS=3;
-const MAX_TEXT_API_CALLS=pilot?1:moduleNames.length+SYNTHETIC_REVIEWS;
+const MAX_TEXT_API_CALLS=pilot?1:moduleNames.length-(reusedRouter?1:0)+SYNTHETIC_REVIEWS;
 function authHeaders(extra={}){
  return {
   ...(accessId&&accessSecret?{"CF-Access-Client-Id":accessId,"CF-Access-Client-Secret":accessSecret}:{}),
@@ -195,6 +215,7 @@ console.log(JSON.stringify({
   execute?(pilot?"one-module text pilot requested":"text generation requested"):"dry-run only",
  existingLocalSets:existing.length,modules:pilot?["router"]:moduleNames,
  structuredOutput:structured,inspectOnly:!!inspectPath||inspectSchema,
+ routerReused:!!reusedRouter,routerReviewConfirmed:reviewedRouter,
  plannedTextRequests:inspectSchema||!!inspectPath?0:MAX_TEXT_API_CALLS,ttsRequests:0,
  publishes:false,schedules:false,
  caveat:"Model quota and billing must be checked separately in Google AI Studio"
@@ -226,6 +247,8 @@ if(inspectPath){
  process.exit();
 }
 if(!execute)process.exit(0);
+if(reusedRouter&&!reviewedRouter)
+ throw Error("Saved Router requires manual content review and --reviewed-router; zero API calls sent");
 if(process.env.LISTENING_DRAFT_GENERATION_ENABLED!=="true")
  throw Error("LISTENING_DRAFT_GENERATION_ENABLED must be explicitly true; no paid requests sent");
 if(!key)throw Error("GEMINI_API_KEY is required; never paste it into chat or GitHub");
@@ -269,12 +292,13 @@ const modules={};
 const already=existing.flatMap(synopsis);
 for(const name of moduleNames){
  const prefix=id.slice(4,10)+"-"+name.slice(0,2);
- const result=await callGemini(makePrompt(name,already,already,prefix),24000,
+ const saved=name==="router"&&!!reusedRouter;
+ const result=saved?reusedRouter:await callGemini(makePrompt(name,already,already,prefix),24000,
   listeningModuleJsonSchema(LISTENING_MODULE_COMPOSITION[name],LISTENING_MODULE_TIME_LIMITS_SEC[name]));
- const diagnosticPath=saveDiagnostic(name+"-response",{response:result});
+ const diagnosticPath=saved?null:saveDiagnostic(name+"-response",{response:result});
  const validated=validateModule(name,result);
  if(!validated.valid){
-  console.error("Incomplete text saved locally: "+diagnosticPath);
+  if(diagnosticPath)console.error("Incomplete text saved locally: "+diagnosticPath);
   throw Error("Generated "+name+" failed ORIGINAL module schema; no retry");
  }
  modules[name]=validated.module;
