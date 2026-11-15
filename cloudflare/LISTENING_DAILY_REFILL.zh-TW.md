@@ -29,6 +29,25 @@
 - **所有 36 個 MP3 上傳 R2 並存在確認後，才可由管理員帶指定確認字串發布**。未發布草稿的原文、答案與音訊不會出現在一般練習 API。MP3 播放位址保持原版的 \`/api/audio/stimuli/<setId>/<clip>.mp3\`。
 - 對於「已上傳但 R2 儲存與 D1 狀態未同步」的異常，**禁止自動重做**，必須人工恢復，不得重複消耗 Gemini。
 
+## 新增：完整 Listening 文字草稿產生器（待人工試跑）
+
+- `scripts/generate-listening-draft.mjs`：現在已可從原有 **14 套 Listening Set** 取材做避重參考，分別生成 Router、Lower、Upper 三個模組，組合成原版 **36 段 Stimuli** 的完整候選 Set。
+- 沿用 `ListeningGenerationInputSchema` / `ListeningSetSchema`、`assignSpeakerRendering`、`deterministicListeningPreChecks`、`compareListeningModuleDifficulty`、`indexDeterministicItems`、`buildRenderPlan` 與 `generationCatalog`。另外讓 Gemini 對三個模組各執行一次獨立答案／逐字稿檢查；任何一關不合格，就不送入 D1 草稿。
+- **預設只做本機 dry-run**，不連 Google、不產生新草稿、不消耗任何文字／語音 API。實際執行須另設 `LISTENING_DRAFT_GENERATION_ENABLED=true` 且明確帶 `--execute`；最多 **六個 Gemini 文字生成／審核請求**，不會重試，不生成音訊，不發布正式題組。
+- 現階段尚未跑過付費／實際 Free Tier 的完整文字生成試驗；**不要把此步驟放進無人值守的每日 GitHub 排程**，直到模型回傳 schema、文字品質及總花費都經過實測。此測試失敗時不能保證 Google 免費額度足以完成 6 次請求。
+- 若成功產生草稿，網站會顯示 pending=36；當 **GitHub 和網站兩個停止開關都啟用**、R2/金鑰就緒時，每天最多配音 3 段。完成 36 段後仍**不自動公開**，需人工試聽與正式發布核准。
+- 新草稿生成器目前優先避免程式功能分叉、先驗證完整原版 schema；**生成品質與逐字稿答案一致性尚待實測**。原本的 Claude/Codex 生成與反覆修補並未被替代為等價的雲端品質流程。
+
+乾跑指令：
+
+```powershell
+cd C:\Users\isaac\toefl-prep-tool
+git pull --ff-only origin cloudflare-migration
+node --import tsx scripts/generate-listening-draft.mjs
+```
+
+**完整自動化目前尚未啟用。** 使用者已確認原有 Listening 504 段音訊、答題和計分正常，新增流程只涉及未發布草稿，不應改動原版 14 套題庫。
+
 ## 目前已完成的程式碼
 
 - \`cloudflare/migrations/0008_listening_refill.sql\`：持久化 Listening 草稿、逐段完成狀態、每日 claim ledger。
