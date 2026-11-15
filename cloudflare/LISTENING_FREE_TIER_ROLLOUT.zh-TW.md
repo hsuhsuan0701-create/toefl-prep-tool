@@ -57,6 +57,16 @@ npm run deploy:cloudflare
 
 此時網站可以上線展示管理 UI，但 `LISTENING_DAILY_REFILL_ENABLED` 與後端總開關仍保持 false；不要啟用任何配音工作。GitHub scheduled workflow 僅在預設分支運行：如果尚未整合到預設 `main`，每日任務仍然不會自動運行。不要為了啟用排程而匆忙合併未驗收的整套 Cloudflare migration 至正式 `main`。
 
+## 2026-11-15 帳戶配額快照（非持續有效的授權）
+
+帳戶擁有者提供的 Google AI Studio Free Tier 截圖顯示，`gemini-3.8-flash-lite-tts` 與 `gemini-3.8-flash-tts` 都是 **RPM 3 / TPM 10,000 / RPD 10**，當日 RPD 皆為 **0/10**。這提供了雙模型分流的配額依據，**並不代表新系統已經通過試音或可以正式啟用**。
+
+- 這是**截圖時間點**的當日配額；應在每次開啟配音前於同一專案再次確認，並確保沒有連結 Paid Tier Billing。
+- 本程式雖能追蹤自己當日的 claim，無法涵蓋其他 API Key 和 Google 專案內的外部使用。需扣除其他用途占用量，留安全緩衝。
+- TPM 為每分鐘 Token 數限制，並非每日 Requests。保留目前同模型至少 65 秒的間隔；若遇 429 不重試，應先核對 Google Usage。
+- 初次試音最多各呼叫 1 次，先人工確認音訊品質、聲線分離、語速和 R2/D1 完整性。首次排程若驗收通過，建議從每日 **1 Lite + 1 Flash** 的保守額度開始，再視實際用量調整。
+- 更重要的是，完整 Listening 文字草稿生成器先前仍有 Gemini HTTP 400 問題，未取得可用的 36 段草稿前，**不得為了填滿 RPD 而啟動配音**。
+
 ## 階段 D：Google 實際數據確認與單段試音
 
 請開啟 https://aistudio.google.com/rate-limit ，選相同 Gemini API Project、`All models`，取得兩款 TTS 的 RPM / RPD / 今日使用量；再開 Billing 確認該專案沒有付費連結。
