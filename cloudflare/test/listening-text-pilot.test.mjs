@@ -20,7 +20,9 @@ test("one Router schema captures exact original 17-stimulus counts",()=>{
  assert.equal(schema.properties.announcements.minItems,3);
  assert.equal(schema.properties.academicTalks.minItems,1);
  assert.equal(schema.properties.timeLimitSec.minimum,1080);
- assert.equal(schema.properties.listenChoose.items.properties.audio.enum[0],"");
+ assert.equal(schema.properties.listenChoose.items.properties.audio.type,"string");
+ assert.equal("enum" in schema.properties.listenChoose.items.properties.audio,false);
+ assert.equal(schema.properties.conversations.items.properties.audio.type,"string");
 });
 
 test("offline inspector accepts existing original Router without API",()=>{
