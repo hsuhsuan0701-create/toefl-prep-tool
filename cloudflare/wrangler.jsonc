@@ -11,6 +11,9 @@
   },
   "triggers": { "crons": ["0 1 * * *"] },
   "vars": { "AI_GENERATION_ENABLED": "false", "AI_READING_REFILL_ENABLED": "false", "GEMINI_MODEL": "gemini-3.1-flash-lite" },
+  // One-time prerequisite: create this private bucket in the same Cloudflare account before deploy.
+  // No public R2 domain; access is only via authenticated Worker routes.
+  "r2_buckets": [{ "binding": "LISTENING_AUDIO", "bucket_name": "toefl-listening-audio" }],
   "d1_databases": [
     {
       "binding": "DB",
