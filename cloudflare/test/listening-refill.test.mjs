@@ -39,6 +39,9 @@ async function json(env,path,body){
  return {status:res.status,data:await res.json()};
 }
 async function claim(env){return json(env,"/api/cloud/listening-refill/claim",{confirm:"CLAIM_LISTENING_TTS_ONCE"});}
+async function changeEnabled(env,enabled){
+ return json(env,"/api/cloud/listening-refill/settings",{enabled,confirm:"SET_LISTENING_AUTO_REFILL"});
+}
 async function upload(env,setId,stimulusId){
  const mp3=Buffer.concat([Buffer.from("ID3"),Buffer.alloc(2048)]);
  const r=await handleListeningRefill(new Request(host+"/api/cloud/listening-refill/upload?setId="+setId+"&stimulusId="+stimulusId,{
@@ -69,6 +72,8 @@ test("claims 3 total per Pacific day, MP3 upload idempotence, no automatic publi
  const {sql,env}=fixture();
  try{
   await json(env,"/api/cloud/listening-refill/draft",original);
+  assert.equal((await claim(env)).data.result,"disabled","Default must refuse paid TTS");
+  assert.equal((await changeEnabled(env,true)).status,200);
   const ids=[];
   for(let i=0;i<3;i++){
     const c=await claim(env);
@@ -94,6 +99,7 @@ test("flagged overlap blocks publication without using another AI API",async()=>
  const {sql,env}=fixture();
  try{
   await json(env,"/api/cloud/listening-refill/draft",original);
+  await changeEnabled(env,true);
   const c=await claim(env);
   const flagged=await json(env,"/api/cloud/listening-refill/flag",
     {setId:original.id,stimulusId:c.data.stimulusId,confirm:"FLAG_BAD_AUDIO"});
@@ -114,5 +120,28 @@ test("flagged overlap blocks publication without using another AI API",async()=>
    "Flag reset must not refund any daily quota");
   assert.equal((await claim(env)).status,409,
    "Same clip cannot be regenerated twice within the same Pacific day");
+ }finally{sql.close();}
+});
+
+test("stop switch is persistent, rejects new claims, does not delete already uploaded MP3",async()=>{
+ const {sql,env,map}=fixture();
+ try{
+  await json(env,"/api/cloud/listening-refill/draft",original);
+  assert.equal((await claim(env)).data.result,"disabled");
+  await changeEnabled(env,true);
+  const first=await claim(env);
+  assert.equal(first.data.result,"claimed");
+  await upload(env,original.id,first.data.stimulusId);
+  assert.equal(map.size,1);
+  const stopped=await changeEnabled(env,false);
+  assert.equal(stopped.data.enabled,false);
+  assert.equal(stopped.data.stopped,true);
+  const next=await claim(env);
+  assert.equal(next.data.result,"disabled");
+  assert.equal(map.size,1);
+  assert.equal(sql.prepare("SELECT COUNT(*) AS n FROM listening_refill_daily_attempts").get().n,1);
+  const status=await handleListeningRefill(new Request(host+"/api/cloud/listening-refill/status",{
+    headers:{authorization:"Bearer "+token}}),env);
+  assert.equal((await status.json()).enabled,false);
  }finally{sql.close();}
 });
