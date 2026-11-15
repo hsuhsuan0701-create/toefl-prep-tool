@@ -191,10 +191,11 @@ async function independentReview(name,module){
  if(!v.passed||v.issues.length)throw Error("Independent review rejected "+name+"; no draft uploaded");
 }
 console.log(JSON.stringify({
- phase:execute?(pilot?"one-module text pilot requested":"text generation requested"):"dry-run only",
+ phase:inspectSchema?"offline schema inspection":inspectPath?"offline candidate inspection":
+  execute?(pilot?"one-module text pilot requested":"text generation requested"):"dry-run only",
  existingLocalSets:existing.length,modules:pilot?["router"]:moduleNames,
  structuredOutput:structured,inspectOnly:!!inspectPath||inspectSchema,
- plannedTextRequests:MAX_TEXT_API_CALLS,ttsRequests:0,
+ plannedTextRequests:inspectSchema||!!inspectPath?0:MAX_TEXT_API_CALLS,ttsRequests:0,
  publishes:false,schedules:false,
  caveat:"Model quota and billing must be checked separately in Google AI Studio"
 },null,2));
