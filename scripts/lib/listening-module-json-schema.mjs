@@ -3,6 +3,9 @@
  * The server's Zod schema remains the final authority; this only reduces malformed
  * responses from the model, never bypasses checks or changes the published schema.
  * No API usage occurs in this module.
+ * Empty-string enum is deliberately omitted: some Google structured-output
+ * validation backends reject enum values of "", with HTTP 400. The prompt
+ * says audio="", and ORIGINAL Zod/renderer checks are still authoritative.
  */
 const str={type:"string"};
 const id={type:"string",description:"Unique ASCII identifier, letters/numbers/-/_ only, <=64 characters"};
@@ -23,19 +26,19 @@ function obj(properties,required=Object.keys(properties)){
  return {type:"object",properties,required,additionalProperties:false};
 }
 function sized(items,n){return {type:"array",minItems:n,maxItems:n,items};}
-const lcr=obj({id,taskType:{type:"string",enum:["listen_choose"]},audio:{type:"string",enum:[""]},
+const lcr=obj({id,taskType:{type:"string",enum:["listen_choose"]},audio:{type:"string",description:"MUST be exactly the empty string; audio is filled by renderer later"},
  speaker,utterance:str,options:sized(option,4),
  correctOptionId:{type:"string",enum:["A","B","C","D"]},
  skill:{type:"string",enum:["gist","detail","inference","function","attitude"]},explanationZh:str});
 const conversation=obj({id,taskType:{type:"string",enum:["conversation"]},
- audio:{type:"string",enum:[""]},setting:str,speakers:sized(speaker,2),
+ audio:{type:"string",description:"MUST be exactly the empty string; audio is filled by renderer later"},setting:str,speakers:sized(speaker,2),
  transcript:{type:"array",minItems:6,items:obj({speakerId:id,text:str})},
  questions:sized(question,2)});
 const announcement=obj({id,taskType:{type:"string",enum:["announcement"]},
- audio:{type:"string",enum:[""]},setting:str,speaker,transcript:str,
+ audio:{type:"string",description:"MUST be exactly the empty string; audio is filled by renderer later"},setting:str,speaker,transcript:str,
  questions:sized(question,2)});
 const academicTalk=obj({id,taskType:{type:"string",enum:["academic_talk"]},
- audio:{type:"string",enum:[""]},discipline:str,speaker,transcript:str,
+ audio:{type:"string",description:"MUST be exactly the empty string; audio is filled by renderer later"},discipline:str,speaker,transcript:str,
  questions:sized(question,4)});
 export function listeningModuleJsonSchema(counts,timeLimitSec){
  return obj({
