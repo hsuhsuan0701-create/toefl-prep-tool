@@ -64,6 +64,14 @@ node --import tsx scripts/generate-listening-draft.mjs
 
 **完整自動化目前尚未啟用。** 使用者已確認原有 Listening 504 段音訊、答題和計分正常，新增流程只涉及未發布草稿，不應改動原版 14 套題庫。
 
+## 2026-11-15 Structured Output HTTP 400 診斷
+
+- 首次 `--pilot --structured --execute` 已呼叫 Gemini，但 HTTP **400**，**沒有回傳題目 JSON**。這和前一次「已回傳內容、卻無法通過本機 Zod 驗證」不同。
+- 舊版沒有紀錄 Google HTTP 錯誤內容，因此不能由此判斷究竟是空字串 `enum`、Schema 複雜度、或其他不相容欄位造成；請勿重複發送請求來猜原因。
+- 修正後從 Structured Output JSON Schema 中移除 `audio` 的空字串 enum（仍由 prompt 要求空字串，且由原版 Zod 與 render plan 嚴格驗證），並且若遇 Gemini 非 2xx，將只含 HTTP 狀態碼、錯誤分類、模型名稱、請求次數的**脫敏診斷**保存至本機 `tmp/listening-draft-pilots/gemini-http-error-*.json`。不保存原始 Google 錯誤正文，避免洩漏 prompt、題目、金鑰。
+- 先執行不呼叫任何 API 的測試：`node --import tsx --test cloudflare/test/listening-text-pilot.test.mjs`。若仍要再次呼叫一次 API，請先檢查 Google AI Studio Usage/Billing；本測試最多一次，不能保證免費。
+- **不需要重部署 Cloudflare Worker**。此修正只在本機草稿生成器與單元測試。
+
 ## Pilot 失敗時的診斷（不需要重新呼叫 Gemini）
 
 2026-11-15 的 Router 試跑確實完成一次 Gemini 文字請求，但回傳 JSON 未通過原版 Listening Schema。舊版程式只顯示一行錯誤，且在驗證失敗前沒有把原始模型回應存檔；**這次失敗輸出無法靠新程式回溯**，也不建議為了診斷立刻重跑並再次消耗額度。
