@@ -16,6 +16,21 @@ Google 官方資料：
 - [價格與 Free Tier](https://ai.google.dev/gemini-api/docs/pricing)
 - [配額限制](https://ai.google.dev/gemini-api/docs/rate-limits)
 
+## 2026-11-15 Google AI Studio 免費配額畫面確認
+
+以下資料來自帳戶擁有者當天在**同一 Google API 專案**的 AI Studio Rate Limits 截圖，不是程式從 Google API 自動讀取，也不保證明天相同。專案畫面顯示 `Free tier` 及 `Set up billing`。
+
+| Model | RPM | TPM | RPD（截圖用量／上限） |
+|---|---:|---:|---:|
+| Gemini 3.8 Flash-Lite TTS | 3 | 10,000 | **0 / 10** |
+| Gemini 3.8 Flash TTS | 3 | 10,000 | **0 / 10** |
+
+Lite 在 RPM 欄為 `1/3`、TPM 為 `151/10K`，Flash 為 `0/3`、`0/10K`；這些是圖表的用量指標，**不是剩餘每日請求次數**。RPD `0/10` 才表示截圖時當日記錄為零次、每日最高 10 次。兩模型合計的理論 RPD 上限為 20 次，但仍受各自 RPM/TPM、同專案其他使用及模型失敗影響，不能保證每天成功生成 20 段音訊。
+
+**安全操作：** 雖然已從截圖確認當日 RPD，兩個模型在 D1 內仍必須維持 `dailyLimit=0`，直到私有 Worker 已安全部署、草稿/音質驗收完畢、並於**當天**重新核對 Google Billing、RPD 使用量後，才由管理員逐一確認開啟。首次手動試音各最多 1 次；不得直接一次把兩款設到 10 次。當 Google 專案已連結付費 Billing 或用量不明時，保持配音關閉。
+
+截圖同時列出 Gemini 3.1 Flash TTS、Gemini 2.5 Flash TTS 也是 3 RPM / 10K TPM / 10 RPD，但**不加入這版 allowlist**，避免未經測試的 API 格式與聲音品質差異擴大風險。
+
 ## 免費方案的重要限制
 
 **Cloudflare Worker 無法直接核對 Google 專案的 Billing 設定或其他 API Key/應用程式已使用的額度。** 因此這是一套嚴格的「預設拒絕 + 每日人工確認 + 軟體內部計數」防護，而不是 Google 官方的計費保證。對於嚴格不希望付款者，應保持 Gemini API 所屬 Google 專案**未啟用付費帳務**，每天在 AI Studio 確認目前仍是 Free Tier。
