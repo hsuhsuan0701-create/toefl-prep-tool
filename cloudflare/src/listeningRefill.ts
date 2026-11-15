@@ -25,6 +25,12 @@ const SAFE=/^lsn-[A-Za-z0-9_-]{1,60}$/;
 const SAFE_STIMULUS=/^[A-Za-z0-9_-]{1,64}$/;
 const MAX_MP3_BYTES=8*1024*1024;
 const MAX_DAILY_TTS=3;
+/** Fail closed: no row or database error must never authorize new paid TTS. */
+export async function listeningRefillEnabled(db:D1Database):Promise<boolean>{
+  const row=await db.prepare("SELECT value FROM settings WHERE key='listening_refill_enabled'")
+    .first<{value:string}>();
+  return row?.value==="true";
+}
 export function ttsQuotaDay(now=new Date()):string{
   // Google rate limits renew midnight US Pacific. Use its civil date, not UTC.
   const parts=new Intl.DateTimeFormat("en-US",{timeZone:"America/Los_Angeles",
@@ -69,7 +75,7 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
           .bind(draft.id).all<{status:string;n:number}>();
         return {...draft,clips:Object.fromEntries(counts.results.map(x=>[x.status,x.n]))};
       }));
-      return reply({day,limit:MAX_DAILY_TTS,claimed:used?.n??0,queue:summary,scheduled:false,ttsCallsByWorker:0});
+      return reply({day,limit:MAX_DAILY_TTS,claimed:used?.n??0,queue:summary,enabled:await listeningRefillEnabled(env.DB),r2Configured:!!env.LISTENING_AUDIO,ttsCallsByWorker:0});
     }catch{return reply({error:"Listening refill migrations not ready"},503);}
   }
 
@@ -80,6 +86,22 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
       (req.headers.get("origin")!==url.origin || req.headers.get("content-type")?.split(";")[0].toLowerCase()!=="audio/mpeg"))
     return reply({error:"Same-origin audio/mpeg required"},403);
 
+  if(path==="/api/cloud/listening-refill/settings"){
+    const body=await req.json().catch(()=>null) as {enabled?:unknown;confirm?:string}|null;
+    if(body?.confirm!=="SET_LISTENING_AUTO_REFILL"||typeof body.enabled!=="boolean")
+      return reply({error:"Explicit enable/disable confirmation required"},400);
+    if(body.enabled && !env.LISTENING_AUDIO)
+      return reply({error:"R2 bucket is not configured; activation rejected"},503);
+    try{
+      await env.DB.prepare(
+        "INSERT INTO settings(key,value) VALUES('listening_refill_enabled',?) "+
+        "ON CONFLICT(key) DO UPDATE SET value=excluded.value"
+      ).bind(body.enabled?"true":"false").run();
+      return reply({enabled:body.enabled,stopped:!body.enabled,
+        note:body.enabled?"At most three clips per Pacific day; charges depend on Google tier":
+          "No further TTS claims will be accepted. An already submitted upstream request may finish."});
+    }catch{return reply({error:"Unable to update Listening refill setting"},503);}
+  }
   if(path==="/api/cloud/listening-refill/draft"){
     const txt=await req.text().catch(()=>"");
     if(txt.length>450_000)return reply({error:"Listening draft too large"},413);
@@ -111,6 +133,12 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
   if(path==="/api/cloud/listening-refill/claim"){
     const body=await req.json().catch(()=>null) as {confirm?:string}|null;
     if(body?.confirm!=="CLAIM_LISTENING_TTS_ONCE")return reply({error:"Explicit claim confirmation required"},400);
+    // Kill switch is checked on every request, not only at GitHub schedule time.
+    // Disabling from the private webpage blocks future paid claims immediately.
+    try{
+      if(!await listeningRefillEnabled(env.DB))
+        return reply({result:"disabled",enabled:false,ttsCalls:0});
+    }catch{return reply({error:"Unable to verify stop switch; no TTS claim issued"},503);}
     if(!env.LISTENING_AUDIO)return reply({error:"R2 bucket not configured; refusing to spend TTS"},503);
     try{
       const day=ttsQuotaDay();
