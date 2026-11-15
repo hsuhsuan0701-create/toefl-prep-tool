@@ -3,16 +3,19 @@
  * Never publishes the draft and never produces TTS; the separate daily
  * workflow can consume up to three MP3 claims only AFTER this draft exists.
  *
- * Dry run by default. --execute performs at most six sequential Gemini TEXT
+ * Dry run by default. --pilot --execute makes ONE Gemini TEXT request and
+ * saves a single Router module locally for inspection; never sends it to D1.
+ * Full --execute performs at most six sequential Gemini TEXT
  * requests (3 module generations + 3 independent reviews), NO retries, then
  * submits one validated draft to the private Cloudflare Worker. This is not
  * eligible for scheduled execution until it has passed a real manual pilot.
  *
  * Usage:
  *   node --import tsx scripts/generate-listening-draft.mjs
+ *   LISTENING_DRAFT_GENERATION_ENABLED=true node --import tsx scripts/generate-listening-draft.mjs --pilot --execute
  *   LISTENING_DRAFT_GENERATION_ENABLED=true node --import tsx scripts/generate-listening-draft.mjs --execute
  */
-import {readFileSync,readdirSync} from "node:fs";
+import {readFileSync,readdirSync,writeFileSync,mkdirSync} from "node:fs";
 import {join,resolve} from "node:path";
 import {fileURLToPath} from "node:url";
 import {
@@ -29,6 +32,7 @@ import {entriesFromSet,findCatalogCollisions} from "../server/src/services/gener
 
 const root=resolve(fileURLToPath(new URL("..",import.meta.url)));
 const execute=process.argv.includes("--execute");
+const pilot=process.argv.includes("--pilot");
 const origin=new URL(process.env.TOEFL_WORKER_URL||
   "https://toefl-prep-private.ihsuan0701.workers.dev").origin;
 const token=process.env.TOEFL_MANUAL_TEST_TOKEN;
@@ -41,7 +45,7 @@ const bankDir=join(root,"data","question-sets","listening");
 const existing=readdirSync(bankDir).filter(x=>/^lsn-[A-Za-z0-9_-]+\.json$/.test(x))
  .map(x=>ListeningSetSchema.parse(JSON.parse(readFileSync(join(bankDir,x),"utf8"))));
 const SYNTHETIC_REVIEWS=3;
-const MAX_TEXT_API_CALLS=moduleNames.length+SYNTHETIC_REVIEWS;
+const MAX_TEXT_API_CALLS=pilot?1:moduleNames.length+SYNTHETIC_REVIEWS;
 function authHeaders(extra={}){
  return {
   ...(accessId&&accessSecret?{"CF-Access-Client-Id":accessId,"CF-Access-Client-Secret":accessSecret}:{}),
@@ -138,8 +142,8 @@ async function independentReview(name,module){
  if(!v.passed||v.issues.length)throw Error("Independent review rejected "+name+"; no draft uploaded");
 }
 console.log(JSON.stringify({
- phase:execute?"text generation requested":"dry-run only",
- existingLocalSets:existing.length,modules:moduleNames,
+ phase:execute?(pilot?"one-module text pilot requested":"text generation requested"):"dry-run only",
+ existingLocalSets:existing.length,modules:pilot?["router"]:moduleNames,
  plannedTextRequests:MAX_TEXT_API_CALLS,ttsRequests:0,
  publishes:false,schedules:false,
  caveat:"Model quota and billing must be checked separately in Google AI Studio"
@@ -147,8 +151,30 @@ console.log(JSON.stringify({
 if(!execute)process.exit(0);
 if(process.env.LISTENING_DRAFT_GENERATION_ENABLED!=="true")
  throw Error("LISTENING_DRAFT_GENERATION_ENABLED must be explicitly true; no paid requests sent");
-if(!key||!token||token.length<32)throw Error("Gemini key and private Worker admin token required");
+if(!key)throw Error("GEMINI_API_KEY is required; never paste it into chat or GitHub");
 if(!/^[A-Za-z0-9._-]+$/.test(model))throw Error("Unsafe Gemini model name");
+// Limited-cost local pilot: one TEXT call, one ORIGINAL router module, no private
+// Worker/admin-token dependency, no D1 write, no TTS, no publication.
+if(pilot){
+ const prior=existing.flatMap(synopsis);
+ const generated=await callGemini(makePrompt("router",prior,[],"pilot-r0"),24000);
+ let parsed;
+ try{parsed=ListeningGenerationInputSchema.shape.router.parse(generated);}
+ catch{throw Error("Router pilot failed original TOEFL Listening module schema; no retry");}
+ const outputDir=join(root,"tmp","listening-draft-pilots");
+ mkdirSync(outputDir,{recursive:true});
+ const outputPath=join(outputDir,"router-"+crypto.randomUUID().slice(0,12)+".json");
+ writeFileSync(outputPath,JSON.stringify(parsed,null,2),{flag:"wx"});
+ console.log(JSON.stringify({
+  result:"router-pilot-saved",module:"router",schemaValid:true,
+  stimuli:parsed.listenChoose.length+parsed.conversations.length+
+    parsed.announcements.length+parsed.academicTalks.length,
+  outputPath,geminiTextRequests:used,ttsRequests:0,uploadedToD1:false,
+  published:false,manualContentReviewRequired:true
+ },null,2));
+ process.exit(0);
+}
+if(!token||token.length<32)throw Error("Private Worker admin token required");
 const status=await queueStatus();
 if(!status.r2Configured)throw Error("Cloudflare R2 not bound; no generation");
 if(status.queue.some(x=>["draft","rendering","ready","blocked"].includes(x.state)))
