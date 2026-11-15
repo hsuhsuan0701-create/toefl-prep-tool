@@ -39,13 +39,21 @@
 
 ## 尚未完成的部署與前提
 
-1. 在 Cloudflare 帳戶建立 R2 bucket（例如 \`toefl-listening-audio\`）。
-2. 在 \`cloudflare/wrangler.jsonc\` 中加入既有 bucket 的 R2 binding：
-   \`\`\`jsonc
-   "r2_buckets": [{"binding":"LISTENING_AUDIO","bucket_name":"toefl-listening-audio"}]
-   \`\`\`
-   **在 bucket 確實存在之前不要加入，避免原網站部署失敗。**
-3. 執行 D1 migration 0008 並部署 Worker，確認私人 API 連線。設定 Cloudflare Access 的 service token，若原站要求 Cloudflare Access。
+1. **需要在你自己的 Cloudflare 帳戶操作一次**（不能從 GitHub 原始碼直接替你建立）：
+   ```powershell
+   cd C:\Users\isaac\toefl-prep-tool
+   git pull --ff-only origin cloudflare-migration
+   npx wrangler login
+   npx wrangler r2 bucket create toefl-listening-audio
+   ```
+   先確認帳戶已啟用 R2，並接受 Cloudflare 顯示的方案與費用條件。若已存在同名 bucket，請先用 `npx wrangler r2 bucket list` 確認，不要重複建立。
+2. GitHub 的 `cloudflare/wrangler.jsonc` 已準備好私人 R2 binding `LISTENING_AUDIO`，指向 `toefl-listening-audio`。**bucket 建立前不要部署這版 Worker**。不要把 bucket 設為公開讀取。
+3. **完成 R2 後**，才執行一次 D1 migration 及 Cloudflare deploy：
+   ```powershell
+   npx wrangler d1 migrations apply toefl-prep-private --remote --config cloudflare/wrangler.jsonc
+   npm run deploy:cloudflare
+   ```
+   先檢查 Worker 與原版題庫仍正常，且新的管理頁在 Cloudflare Access 後能讀到 `r2Configured:true`。**這些是實際部署命令，目前尚未在你的 Cloudflare 帳戶執行。**
 4. 匯入一個原版格式、已通過題目品質驗證的完整 36 clips Listening 草稿。建立草稿不呼叫 TTS；未建立草稿時每日 runner 不會生成音訊。
 5. 將此工作流程合併至 GitHub **預設分支**後，於 GitHub repository Actions secrets 設定 \`GEMINI_API_KEY\`、\`TOEFL_MANUAL_TEST_TOKEN\`、若必要則 \`CF_ACCESS_CLIENT_ID\` / \`CF_ACCESS_CLIENT_SECRET\`，Actions variable \`TOEFL_WORKER_URL\` 設定正式網址；確認 Cloudflare 本身的 Private Access 與管理密碼已就緒。
 6. **先人工測試一段**，確認 MP3 與 R2 都正常，再將 Actions variable \`LISTENING_DAILY_REFILL_ENABLED\` 設成 \`true\`。
