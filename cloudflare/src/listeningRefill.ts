@@ -1,6 +1,6 @@
 /**
- * Original Listening Set queue: one private draft, up to three TTS claims per
- * America/Los_Angeles calendar day, durable partial MP3s, manual publication.
+ * Original Listening Set queue: one private draft, daily model-scoped TTS
+ * claims only with same-day Free Tier attestation, durable audio, manual publication.
  *
  * This Worker NEVER invokes Gemini, ffmpeg, speech transcription or an AI judge.
  * A separately scheduled Node runner may use a claim ONCE to synthesize, then
@@ -24,7 +24,46 @@ const reply=(data:unknown,status=200)=>Response.json(data,{status,headers:NO_CAC
 const SAFE=/^lsn-[A-Za-z0-9_-]{1,60}$/;
 const SAFE_STIMULUS=/^[A-Za-z0-9_-]{1,64}$/;
 const MAX_MP3_BYTES=8*1024*1024;
-const MAX_DAILY_TTS=3;
+export const TTS_MODELS=[
+  "gemini-3.8-flash-lite-tts",
+  "gemini-3.8-flash-tts",
+] as const;
+type TtsModel=typeof TTS_MODELS[number];
+type TtsPolicy={dailyLimit:number;confirmedDay:string};
+type ModelState={model:TtsModel;dailyLimit:number;claimed:number;remaining:number;
+  freeTierVerifiedToday:boolean;ready:boolean};
+const MAX_MODEL_DAILY=10;
+const policyKey=(model:TtsModel)=>"listening_tts_model_policy_"+model;
+function isTtsModel(value:unknown):value is TtsModel{
+ return typeof value==="string"&&(TTS_MODELS as readonly string[]).includes(value);
+}
+/** A human must re-confirm the project is unbilled, with actual AI Studio RPD, each Pacific day.
+ * This is an explicit attestation, not a claim that Google billing status can be read by Worker.
+ * All missing, malformed or stale policy rows fail closed. */
+async function modelStates(db:D1Database,day:string):Promise<ModelState[]>{
+ return Promise.all(TTS_MODELS.map(async model=>{
+  const row=await db.prepare("SELECT value FROM settings WHERE key=?").bind(policyKey(model))
+    .first<{value:string}>();
+  let policy:Partial<TtsPolicy>|null=null;
+  try{policy=row?JSON.parse(row.value) as Partial<TtsPolicy>:null;}catch{policy=null;}
+  const confirmed=policy?.confirmedDay===day;
+  const cap=confirmed&&Number.isInteger(policy?.dailyLimit)&&
+    (policy?.dailyLimit??0)>=0&&(policy?.dailyLimit??0)<=MAX_MODEL_DAILY?
+      policy!.dailyLimit!:0;
+  const used=await db.prepare(
+    "SELECT COUNT(*) AS n FROM listening_refill_model_attempts WHERE day=? AND model=?"
+  ).bind(day,model).first<{n:number}>();
+  const claimed=used?.n??0;
+  return {model,dailyLimit:cap,claimed,remaining:Math.max(0,cap-claimed),
+    freeTierVerifiedToday:confirmed,ready:confirmed&&cap>claimed};
+ }));
+}
+function isLongSpeech(set:ListeningSet,stimulusId:string):boolean{
+ const modules=[set.router,set.lowerModule,set.upperModule];
+ return modules.some(m=>
+  m.conversations.some(x=>x.id===stimulusId)||m.academicTalks.some(x=>x.id===stimulusId));
+}
+
 /** Fail closed: no row or database error must never authorize new paid TTS. */
 export async function listeningRefillEnabled(db:D1Database):Promise<boolean>{
   const row=await db.prepare("SELECT value FROM settings WHERE key='listening_refill_enabled'")
@@ -68,14 +107,16 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
       const rows=await env.DB.prepare("SELECT id,state,created_at FROM listening_refill_drafts ORDER BY created_at DESC LIMIT 10")
         .all<{id:string;state:string;created_at:string}>();
       const day=ttsQuotaDay();
-      const used=await env.DB.prepare("SELECT COUNT(*) AS n FROM listening_refill_daily_attempts WHERE day=?")
-        .bind(day).first<{n:number}>();
+      const models=await modelStates(env.DB,day);
       const summary=await Promise.all(rows.results.map(async draft=>{
         const counts=await env.DB.prepare("SELECT status,COUNT(*) AS n FROM listening_refill_clips WHERE set_id=? GROUP BY status")
           .bind(draft.id).all<{status:string;n:number}>();
         return {...draft,clips:Object.fromEntries(counts.results.map(x=>[x.status,x.n]))};
       }));
-      return reply({day,limit:MAX_DAILY_TTS,claimed:used?.n??0,queue:summary,enabled:await listeningRefillEnabled(env.DB),r2Configured:!!env.LISTENING_AUDIO,ttsCallsByWorker:0});
+      return reply({day,limit:models.reduce((n,x)=>n+x.dailyLimit,0),
+        claimed:models.reduce((n,x)=>n+x.claimed,0),models,queue:summary,
+        enabled:await listeningRefillEnabled(env.DB),r2Configured:!!env.LISTENING_AUDIO,
+        ttsCallsByWorker:0,freeTierAttestationRequiredDaily:true});
     }catch{return reply({error:"Listening refill migrations not ready"},503);}
   }
 
@@ -98,9 +139,27 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
         "ON CONFLICT(key) DO UPDATE SET value=excluded.value"
       ).bind(body.enabled?"true":"false").run();
       return reply({enabled:body.enabled,stopped:!body.enabled,
-        note:body.enabled?"At most three clips per Pacific day; charges depend on Google tier":
+        note:body.enabled?"Only manually attested model limits may claim clips; Google billing is not verified automatically":
           "No further TTS claims will be accepted. An already submitted upstream request may finish."});
     }catch{return reply({error:"Unable to update Listening refill setting"},503);}
+  }
+  if(path==="/api/cloud/listening-refill/model-policy"){
+    const body=await req.json().catch(()=>null) as
+      {model?:unknown;dailyLimit?:unknown;confirm?:unknown}|null;
+    if(!isTtsModel(body?.model)||!Number.isInteger(body?.dailyLimit)||
+       typeof body?.dailyLimit!=="number"||body.dailyLimit<0||body.dailyLimit>MAX_MODEL_DAILY||
+       body.confirm!==(body.dailyLimit===0?"DISABLE_TTS_MODEL":"I_VERIFIED_FREE_TIER_TODAY"))
+      return reply({error:"Only allowlisted TTS models, 0-10 daily calls and explicit free-tier verification are accepted"},400);
+    const day=ttsQuotaDay();
+    // The daily ceiling must be copied from AI Studio, not inferred from pricing pages.
+    // A zero cap disables this model; a nonzero cap expires at next Pacific midnight.
+    try{
+      await env.DB.prepare("INSERT INTO settings(key,value) VALUES(?,?) "+
+        "ON CONFLICT(key) DO UPDATE SET value=excluded.value")
+        .bind(policyKey(body.model),JSON.stringify({dailyLimit:body.dailyLimit,confirmedDay:day})).run();
+      return reply({model:body.model,dailyLimit:body.dailyLimit,confirmedDay:day,
+        attestedNotVerifiedByGoogle:true,expiresAtPacificMidnight:true});
+    }catch{return reply({error:"Model policy could not be saved; refusing TTS"},503);}
   }
   if(path==="/api/cloud/listening-refill/draft"){
     const txt=await req.text().catch(()=>"");
@@ -133,8 +192,6 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
   if(path==="/api/cloud/listening-refill/claim"){
     const body=await req.json().catch(()=>null) as {confirm?:string}|null;
     if(body?.confirm!=="CLAIM_LISTENING_TTS_ONCE")return reply({error:"Explicit claim confirmation required"},400);
-    // Kill switch is checked on every request, not only at GitHub schedule time.
-    // Disabling from the private webpage blocks future paid claims immediately.
     try{
       if(!await listeningRefillEnabled(env.DB))
         return reply({result:"disabled",enabled:false,ttsCalls:0});
@@ -142,41 +199,65 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
     if(!env.LISTENING_AUDIO)return reply({error:"R2 bucket not configured; refusing to spend TTS"},503);
     try{
       const day=ttsQuotaDay();
-      const used=await env.DB.prepare("SELECT COUNT(*) AS n FROM listening_refill_daily_attempts WHERE day=?")
-        .bind(day).first<{n:number}>();
-      if((used?.n??0)>=MAX_DAILY_TTS)return reply({result:"daily-limit",day,claimed:used?.n??0});
+      const models=await modelStates(env.DB,day);
+      if(!models.some(m=>m.ready))return reply({
+        result:models.some(m=>m.freeTierVerifiedToday)?"daily-limit":"free-tier-unverified",
+        day,claimed:models.reduce((n,m)=>n+m.claimed,0),ttsCalls:0,
+      });
       const active=await env.DB.prepare(
         "SELECT id,content_json,state FROM listening_refill_drafts WHERE state IN ('draft','rendering') ORDER BY created_at ASC,id ASC LIMIT 1"
       ).first<DraftRow>();
       if(!active)return reply({result:"no-draft"});
-      const clip=await env.DB.prepare(
-        "SELECT stimulus_id,status,ordinal,claim_day,object_key FROM listening_refill_clips WHERE set_id=? AND status='pending' ORDER BY ordinal LIMIT 1"
-      ).bind(active.id).first<ClipRow>();
-      if(!clip)return reply({result:"no-pending",setId:active.id});
+      const pending=await env.DB.prepare(
+        "SELECT stimulus_id,status,ordinal,claim_day,object_key FROM listening_refill_clips WHERE set_id=? AND status='pending' ORDER BY ordinal"
+      ).bind(active.id).all<ClipRow>();
+      if(!pending.results.length)return reply({result:"no-pending",setId:active.id});
       const set=ListeningSetSchema.parse(JSON.parse(active.content_json));
-      const slot=(used?.n??0)+1;
-      // D1 batch is atomic; losing a claim race cannot create a fourth slot.
-      await env.DB.batch([
+      const lite=models.find(m=>m.model===TTS_MODELS[0]);
+      const flash=models.find(m=>m.model===TTS_MODELS[1]);
+      const longWaiting=pending.results.some(c=>isLongSpeech(set,c.stimulus_id));
+      let chosen:{clip:ClipRow;candidate:ModelState}|null=null;
+      for(const clip of pending.results){
+        const long=isLongSpeech(set,clip.stimulus_id);
+        // A prior Lite Conversation trial was unstable. Never use Lite for long audio.
+        // Reserve Flash for all waiting long clips before allowing short-audio overflow.
+        const candidate=long?(flash?.ready?flash:null):
+          (lite?.ready?lite:flash?.ready&&!longWaiting?flash:null);
+        if(candidate){chosen={clip,candidate};break;}
+      }
+      if(!chosen)return reply({result:"model-unavailable",ttsCalls:0});
+      const {clip,candidate}=chosen;
+      const {model,dailyLimit,claimed}=candidate;
+      const slot=claimed+1;
+      // Atomic, model-scoped ledger insertion is mandatory before a paid request.
+      // Unique(day,set_id,stimulus_id) prevents a manual reset from reusing today's claim
+      // even with a different model. Failed/aborted attempts never refund a slot.
+      const writes=await env.DB.batch([
         env.DB.prepare(
-          "INSERT INTO listening_refill_daily_attempts(day,slot,set_id,stimulus_id) "+
-          "SELECT ?,?,?,? WHERE (SELECT COUNT(*) FROM listening_refill_daily_attempts WHERE day=?) < 3 "+
-          "AND NOT EXISTS(SELECT 1 FROM listening_refill_daily_attempts WHERE set_id=? AND stimulus_id=?)"
-        ).bind(day,slot,active.id,clip.stimulus_id,day,active.id,clip.stimulus_id),
+          "INSERT INTO listening_refill_model_attempts(day,model,slot,set_id,stimulus_id) "+
+          "SELECT ?,?,?,?,? WHERE (SELECT COUNT(*) FROM listening_refill_model_attempts WHERE day=? AND model=?) < ? "+
+          "AND NOT EXISTS(SELECT 1 FROM listening_refill_model_attempts WHERE day=? AND set_id=? AND stimulus_id=?)"
+        ).bind(day,model,slot,active.id,clip.stimulus_id,
+          day,model,dailyLimit,day,active.id,clip.stimulus_id),
         env.DB.prepare(
           "UPDATE listening_refill_clips SET status='claimed',claim_day=?,claimed_at=datetime('now') "+
           "WHERE set_id=? AND stimulus_id=? AND status='pending' "+
-          "AND EXISTS(SELECT 1 FROM listening_refill_daily_attempts WHERE day=? AND slot=? AND set_id=? AND stimulus_id=?)"
-        ).bind(day,active.id,clip.stimulus_id,day,slot,active.id,clip.stimulus_id),
+          "AND EXISTS(SELECT 1 FROM listening_refill_model_attempts "+
+          "WHERE day=? AND model=? AND slot=? AND set_id=? AND stimulus_id=?)"
+        ).bind(day,active.id,clip.stimulus_id,day,model,slot,active.id,clip.stimulus_id),
         env.DB.prepare(
           "UPDATE listening_refill_drafts SET state='rendering',updated_at=datetime('now') WHERE id=? AND state='draft'"
-        ).bind(active.id)
+        ).bind(active.id),
       ]);
+      // A conditional INSERT can affect zero rows without throwing on a losing
+      // concurrent claim. Never return the other worker's paid claim as ours.
+      if(writes[0]?.meta?.changes!==1||writes[1]?.meta?.changes!==1)
+        return reply({result:"conflict-no-tts",ttsCalls:0},409);
       const confirmed=await getClip(env.DB,active.id,clip.stimulus_id);
       if(confirmed?.status!=="claimed"||confirmed.claim_day!==day)
         return reply({result:"conflict-no-tts"},409);
-      return reply({result:"claimed",day,slot,setId:active.id,stimulusId:clip.stimulus_id,
-        // original text/answers only go to the independently authenticated admin runner
-        draft:set,quotaLimit:MAX_DAILY_TTS,autoRetry:false});
+      return reply({result:"claimed",day,slot,model,setId:active.id,stimulusId:clip.stimulus_id,
+        draft:set,quotaLimit:dailyLimit,autoRetry:false,freeTierAttestedToday:true});
     }catch{return reply({error:"Claim conflict; do not generate audio"},409);}
   }
   if(path==="/api/cloud/listening-refill/upload"){
@@ -192,15 +273,20 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
     if(buf.length!==declared||!isMp3(buf))return reply({error:"Malformed or incomplete MP3"},400);
     const key=objectKey(setId,stimulus);
     try{
+      const attempt=await env.DB.prepare(
+        "SELECT model FROM listening_refill_model_attempts WHERE day=? AND set_id=? AND stimulus_id=?"
+      ).bind(clip.claim_day,setId,stimulus).first<{model:string}>();
+      if(!isTtsModel(attempt?.model))return reply({error:"No attested claim model for clip"},409);
       if(await env.LISTENING_AUDIO.head(key))return reply({error:"Clip already exists; manual reconciliation required"},409);
-      await env.LISTENING_AUDIO.put(key,buf,{httpMetadata:{contentType:"audio/mpeg"}});
+      await env.LISTENING_AUDIO.put(key,buf,{httpMetadata:{contentType:"audio/mpeg"},
+        customMetadata:{ttsModel:attempt.model}});
       await env.DB.batch([
         env.DB.prepare("UPDATE listening_refill_clips SET status='uploaded',object_key=?,bytes=?,uploaded_at=datetime('now') "+
           "WHERE set_id=? AND stimulus_id=? AND status='claimed'").bind(key,buf.length,setId,stimulus),
-        env.DB.prepare("UPDATE listening_refill_daily_attempts SET status='uploaded' "+
+        env.DB.prepare("UPDATE listening_refill_model_attempts SET status='uploaded' "+
           "WHERE set_id=? AND stimulus_id=? AND status='claimed'").bind(setId,stimulus),
       ]);
-      return reply({result:"uploaded",setId,stimulusId:stimulus,bytes:buf.length},201);
+      return reply({result:"uploaded",setId,stimulusId:stimulus,model:attempt.model,bytes:buf.length},201);
     }catch{return reply({error:"Upload status uncertain. Do not regenerate; inspect R2 and D1 manually."},503);}
   }
   if(path==="/api/cloud/listening-refill/flag"){
