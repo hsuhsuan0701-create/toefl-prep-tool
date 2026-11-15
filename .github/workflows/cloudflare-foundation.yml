@@ -48,6 +48,8 @@ jobs:
         run: node --test cloudflare/test/listening-wav-sanity.test.mjs
       - name: Dry-run original Listening Gemini 3.8 voice trial (no API calls)
         run: node --import tsx scripts/pilot-gemini38-tts.mjs --set lsn-03948a55 --role conversation
+      - name: Dry-run BOTH Free Tier TTS models with safe voice roles (no API calls)
+        run: node --import tsx --test cloudflare/test/listening-dual-tts-pilot.test.mjs
       - name: Typecheck original shared, Node and React contracts
         run: npm run typecheck
       - name: Bundle Cloudflare Worker in browser-compatible mode
