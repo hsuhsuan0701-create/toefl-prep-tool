@@ -5,6 +5,19 @@
 原版網站及 14 套 Listening Set 的呈現、作答、計分和路由完全保留。
 新功能只利用與原版相同的 ListeningSetSchema、buildRenderPlan、deliveryNotes，為一個完整 **36 clips** 的候選 Listening Set 持續增加音檔。
 
+## 如何停止、恢復（不刪任何已完成的音檔）
+
+**正式部署後，管理頁是 `https://toefl-prep-private.ihsuan0701.workers.dev/api/cloud/listening-refill`。**
+
+1. 開啟上面的私人管理頁，輸入 `TOEFL_MANUAL_TEST_TOKEN`（不是 Gemini API Key）。
+2. 點「停止每日 Listening 生成」，確認後畫面會顯示「已停止」；後端每次 `claim` 都會重新檢查 D1 `settings.listening_refill_enabled=false`。**新的 Gemini 語音請求不再領取**，但停用瞬間已發出的請求可能仍完成。
+3. 若想更徹底停用每日排程，到 GitHub repository **Settings → Secrets and variables → Actions → Variables**，將 `LISTENING_DAILY_REFILL_ENABLED` 設為 `false`。此開關控制整個 GitHub Actions job 是否執行；既有題庫、R2 MP3、D1 進度都保留。
+4. 日後需要恢復，先確認實際 Google Free Tier／R2／排程，再在私人管理頁選「恢復」，並將 GitHub variable 設為 `true`。**兩個開關都啟用才有可能開始新的 TTS 請求**。
+
+最安全的停止方式是**兩個開關都關閉**。即使 GitHub Actions 在關閉後仍執行了一次，後端的停止開關也會拒絕新的 claim。若要永久停用，可以到 GitHub 的 **Actions → Daily Listening MP3 refill (opt-in) → Disable workflow**；不要刪除 R2 或 D1，否則會遺失已完成的累積內容。
+
+> 注意：停止的是 Listening 每日生成，不會關閉 TOEFL 網站、原本的 Reading 題庫或 Listening 練習。
+
 ## 每日生成規則
 
 - **每日最多 3 次 Gemini Flash-Lite TTS 請求**：以 Google Pacific 當地日期計算；所有網站/金鑰共用的 Google 專案配額**無法由這個工具保證**，這只是本程式內部的上限。實際是否免費請查 Google AI Studio 的專案 Usage/Billing。
