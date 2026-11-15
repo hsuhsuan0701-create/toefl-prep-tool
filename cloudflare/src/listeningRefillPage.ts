@@ -1,0 +1,51 @@
+/** Private Listening queue control. No client-side state is trusted for authorization. */
+export function listeningRefillPage():Response{
+ const html=[
+ '<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">',
+ '<title>Listening 每日累積管理</title><style>',
+ 'body{font-family:system-ui,"Noto Sans TC",sans-serif;max-width:780px;margin:32px auto;padding:0 18px;line-height:1.7;color:#193454}',
+ 'h1{font-size:1.5rem}button,input{font:inherit;padding:10px}button{border:0;background:#174987;color:#fff;border-radius:7px;cursor:pointer}',
+ 'button.danger{background:#a92f3a}button:disabled{opacity:.5}input{width:95%;max-width:520px}pre{white-space:pre-wrap;word-break:break-word;background:#f1f5fa;padding:15px;border-radius:9px}',
+ '.muted{color:#536982}.panel{border:1px solid #d5dfeb;border-radius:9px;padding:16px;margin:20px 0}',
+ 'a{color:#174987}</style></head><body>',
+ '<h1>TOEFL Listening｜每日自動累積管理</h1>',
+ '<p>完成部署後，每天最多領取 3 段 Gemini 語音生成機會。已完成 MP3 會保留；36 段全部完成後仍需人工確認才發布。這個系統不保證 Google 計費為零。</p>',
+ '<div class="panel"><h2>狀態</h2>',
+ '<p class="muted">此管理頁僅在 Cloudflare Access 與獨立管理密碼保護下使用。金鑰不會儲存在瀏覽器。</p>',
+ '<label for="token">私人管理密碼 TOEFL_MANUAL_TEST_TOKEN（不是 Gemini API Key）</label>',
+ '<p><input id="token" type="password" autocomplete="off" placeholder="輸入管理密碼"></p>',
+ '<button id="refresh">查看最新狀態</button><pre id="status">尚未查詢。</pre></div>',
+ '<div class="panel"><h2>隨時停止或恢復</h2>',
+ '<p>按下「停止」後，Cloudflare 的伺服器會阻止所有新的音訊生成認領（claim）。已經送給 Gemini 的請求可能仍會完成。保留所有已生成的 MP3、原題庫與學習紀錄。</p>',
+ '<button id="stop" class="danger">停止每日 Listening 生成</button> ',
+ '<button id="start">恢復每日 Listening 生成</button>',
+ '<pre id="result">尚未修改設定。</pre>',
+ '<p class="muted">恢復前需先確認 Google AI Studio 免費層級、R2／D1 已設定，以及 GitHub Actions 工作流程已啟用。網站開關本身不會啟動 GitHub 停用的排程。</p>',
+ '</div><p><a href="/sets?section=listening">回到 Listening 題庫</a></p>',
+ '<script>',
+ 'const $=id=>document.getElementById(id);',
+ 'async function request(path,body){const token=$("token").value.trim();if(!token)throw Error("請先輸入管理密碼");',
+ 'const r=await fetch(path,{method:body?"POST":"GET",credentials:"same-origin",headers:{"Authorization":"Bearer "+token,...(body?{"Content-Type":"application/json"}:{})},...(body?{body:JSON.stringify(body)}:{})});',
+ 'const data=await r.json();if(!r.ok)throw Error(data.error||"HTTP "+r.status);return data;}',
+ 'async function refresh(){try{const d=await request("/api/cloud/listening-refill/status");',
+ '$("status").textContent="每日自動生成："+(d.enabled?"已啟用":"已停止")+"\\nR2 已連接："+(d.r2Configured?"是":"否")+"\\nGoogle 配額日期（Pacific）："+d.day+"\\n本程式當日已領取："+d.claimed+"/"+d.limit+"\\n草稿清單：\\n"+JSON.stringify(d.queue,null,2);',
+ '}catch(e){$("status").textContent="無法確認狀態："+e.message;}}',
+ '$("refresh").addEventListener("click",refresh);',
+ 'async function update(enabled){if(!$("token").value.trim()){ $("result").textContent="請先輸入管理密碼";return;}',
+ 'const prompt=enabled?"確定恢復每日 Listening 生成？請先確認免費額度與部署！":"確定停止每日 Listening 生成？已開始的一次 API 請求可能完成。";',
+ 'if(!confirm(prompt))return;',
+ 'const b=enabled?$("start"):$("stop");b.disabled=true;',
+ 'try{const d=await request("/api/cloud/listening-refill/settings",{enabled,confirm:"SET_LISTENING_AUTO_REFILL"});',
+ '$("result").textContent=d.enabled?"已恢復：後續符合條件的排程可取得生成機會。":"已停止：新的 Gemini TTS claim 會被拒絕。";await refresh();',
+ '}catch(e){$("result").textContent="修改失敗："+e.message+"；請先確認後端狀態。";}',
+ 'finally{b.disabled=false;}}',
+ '$("stop").addEventListener("click",()=>update(false));',
+ '$("start").addEventListener("click",()=>update(true));',
+ '</script></body></html>'
+ ].join("\n");
+ return new Response(html,{headers:{
+  "Content-Type":"text/html; charset=utf-8","Cache-Control":"no-store",
+  "X-Content-Type-Options":"nosniff",
+  "Content-Security-Policy":"default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+ }});
+}
