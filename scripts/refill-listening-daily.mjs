@@ -4,7 +4,7 @@
  *
  * This is NOT a generator of question content. No AI quality-review API.
  * It shares original buildRenderPlan/deliveryNotes/accent/pace with native Node.
- * Default is read-only. --execute is needed to consume up to 3 quota claims.
+ * Default is read-only. --execute needs a same-day human Free Tier attestation.
  * Claims are consumed on failure; rerunning does NOT repeat a paid clip.
  *
  * Needs one Cloudflare R2 bucket binding, migrated D1, TOEFL admin token,
@@ -22,7 +22,10 @@ import {inspectPcmWav,inspectExpectedDuration} from "./lib/listening-audio-sanit
 const root=resolve(fileURLToPath(new URL("..",import.meta.url)));
 const enabled=process.argv.includes("--execute");
 const maxArg=Number(process.argv.find(x=>x.startsWith("--max="))?.slice(6)??3);
-if(!Number.isInteger(maxArg)||maxArg<1||maxArg>3)throw Error("Daily max must be 1, 2 or 3");
+if(!Number.isInteger(maxArg)||maxArg<1||maxArg>20)throw Error("Daily max must be between 1 and 20");
+const ALLOWED_TTS_MODELS=new Set(["gemini-3.8-flash-lite-tts","gemini-3.8-flash-tts"]);
+const MIN_MODEL_INTERVAL_MS=65000;
+const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 const base=process.env.TOEFL_WORKER_URL||"https://toefl-prep-private.ihsuan0701.workers.dev";
 const origin=new URL(base).origin;
 if(!/^https:\/\//.test(origin))throw Error("Worker URL must be HTTPS");
@@ -64,14 +67,20 @@ const ff=spawnSync("ffmpeg",["-version"],{encoding:"utf8",timeout:10000});
 if(ff.error||ff.status!==0)throw Error("ffmpeg is required to produce final MP3s before consuming a claim");
 const s=await status();
 console.log(JSON.stringify({phase:"preflight",enabled:s.enabled,day:s.day,claimed:s.claimed,limit:s.limit,
- queue:s.queue.map(x=>({id:x.id,state:x.state,clips:x.clips}))},null,2));
+ models:s.models,queue:s.queue.map(x=>({id:x.id,state:x.state,clips:x.clips}))},null,2));
 if(!s.enabled){console.log("Listening auto-generation has been stopped in the private manager. No Gemini request.");process.exit(0);}
+if(!Array.isArray(s.models)||!s.models.some(m=>
+  ALLOWED_TTS_MODELS.has(m.model)&&m.ready&&m.freeTierVerifiedToday&&m.remaining>0)){
+ console.log("No TTS model has a same-day Free Tier attestation and remaining quota; no Gemini request.");
+ process.exit(0);
+}
 if(s.claimed>=s.limit){console.log("Daily quota already exhausted. No Gemini request.");process.exit(0);}
 if(!s.queue.some(x=>(x.state==="draft"||x.state==="rendering")&&(x.clips?.pending||0)>0)){
  console.log("No prepared Listening draft with pending audio. No Gemini request.");
  process.exit(0);
 }
 const count=Math.min(maxArg,s.limit-s.claimed);
+const lastSentAt=new Map();
 for(let i=0;i<count;i++){
  // Check the remote stop switch before each new paid claim (not only at job start).
  const live=await status();
@@ -82,6 +91,14 @@ for(let i=0;i<count;i++){
  }catch(err){console.error("Claim failed; no TTS requested: "+err.message);process.exitCode=1;break;}
  if(claim.result!=="claimed"){console.log("Queue: "+claim.result);break;}
  const id=claim.setId,stimulus=claim.stimulusId;
+ // Never trust a remote response to choose an arbitrary billable model.
+ const model=claim.model;
+ const authorizedModel=live.models?.find(m=>m.model===model&&m.freeTierVerifiedToday&&
+   m.ready&&m.remaining>0);
+ if(!ALLOWED_TTS_MODELS.has(model)||claim.day!==live.day||!authorizedModel){
+  console.error("Claimed model lacks same-day Free Tier authorization; no Gemini request.");
+  process.exitCode=1;break;
+ }
  const dir=join(root,"tmp","listening-daily",id);
  mkdirSync(dir,{recursive:true});
  const wavPath=join(dir,stimulus+".wav"),mp3Path=join(dir,stimulus+".mp3");
@@ -104,8 +121,13 @@ for(let i=0;i<count;i++){
     {multiSpeakerVoiceConfig:{speakerVoiceConfigs:spec.speakers.map(s=>({
       speaker:s.speaker,voiceConfig:{voice:s.voice}
     }))}}:{voiceConfig:{voice:spec.voice}};
+  // Conservative <=1 request per 65 s per model within this runner (never an API retry).
+  const last=lastSentAt.get(model);
+  if(last!==undefined&&Date.now()-last<MIN_MODEL_INTERVAL_MS)
+    await sleep(MIN_MODEL_INTERVAL_MS-(Date.now()-last));
+  lastSentAt.set(model,Date.now());
   const tts=await fetch(
-    "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash-lite-tts:generateContent",
+    "https://generativelanguage.googleapis.com/v1beta/models/"+model+":generateContent",
     {method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":key},
       body:JSON.stringify({contents:[{role:"user",parts}],generationConfig:{
         responseModalities:["AUDIO"],speechConfig}}),signal:AbortSignal.timeout(120000)});
@@ -130,7 +152,7 @@ for(let i=0;i<count;i++){
         "Content-Length":String(mp3.length)}),body:mp3,signal:AbortSignal.timeout(45000)});
   if(!upload.ok)throw Error("MP3 upload uncertain (HTTP "+upload.status+"); do NOT regenerate");
   console.log(JSON.stringify({result:"uploaded",setId:id,stimulus,day:claim.day,slot:claim.slot,
-    durationSec:checked.durationSec,roughWpm:expected.roughWpm,
+    model,durationSec:checked.durationSec,roughWpm:expected.roughWpm,
     longSilences:checked.longSilences.length,
     manualListeningRequired:true,geminiApiCallsThisSlot:1}));
  }catch(e){

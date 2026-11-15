@@ -1,4 +1,6 @@
-# Listening 每日累積 3 段 MP3：部署狀態與啟用條件
+# Listening 每日累積 3 段 MP3：舊版實作紀錄
+
+> **2026-11-15 開發版更新**：本文保留舊版「單模型／每日 3 次」設計紀錄。新的兩模型 Free Tier 安全機制請改讀 [LISTENING_MULTIMODEL_FREE_TIER.zh-TW.md](LISTENING_MULTIMODEL_FREE_TIER.zh-TW.md)。新功能尚未合併或部署，必須在私人管理頁每天確認每個模型的實際免費配額，否則全部停止。以下舊版限制、API 行為與指令不可直接當作新版本操作指示。
 
 **目前是已提交 GitHub 的封閉測試版本，尚未部署、尚未啟用每日自動產生音訊。**
 
