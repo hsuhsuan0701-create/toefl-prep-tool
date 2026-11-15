@@ -93,7 +93,33 @@ async function callGemini(prompt,maxOutputTokens,schema){
       ...(structured&&schema?{responseJsonSchema:schema}:{})}}),
    signal:AbortSignal.timeout(120000)
   });
- if(!r.ok)throw Error("Gemini text HTTP "+r.status+" (no automatic retry)");
+ if(!r.ok){
+  // Gemini error text is untrusted provider input and may contain request
+  // excerpts. Only store a whitelisted diagnosis, never the raw response,
+  // token, prompt, transcript or complete error message.
+  let body;
+  try{body=await r.json();}catch{body=null;}
+  const message=typeof body?.error?.message==="string"?body.error.message:"";
+  const causes=[
+    ["empty-enum",/enum.{0,100}(empty|string value)/i],
+    ["schema-complexity",/complex|too large|too deep|nesting|nest|depth|schema size/i],
+    ["unsupported-schema-keyword",/unsupported|unknown name|not allowed|invalid json payload/i],
+    ["response-json-schema",/responseJsonSchema|responseSchema/i],
+    ["quota",/quota|resource.exhausted|rate limit/i],
+    ["model",/model not found|model.*unsupported/i],
+  ].filter(([,pattern])=>pattern.test(message)).map(([code])=>code);
+  const issue={
+    httpStatus:r.status,errorCode:typeof body?.error?.code==="number"?body.error.code:null,
+    status:typeof body?.error?.status==="string"&&/^[A-Z_]{3,40}$/.test(body.error.status)?body.error.status:null,
+    categories:causes.length?causes:["unclassified"],
+    structured,model,geminiTextRequests:used,automaticRetry:false,
+  };
+  const saved=saveDiagnostic("gemini-http-error",issue);
+  console.error("Gemini returned HTTP "+r.status+"; sanitized diagnostics: "+saved);
+  console.error("Diagnostic categories: "+issue.categories.join(", ")+
+    ". No automatic retry; API usage must be verified in AI Studio.");
+  throw Error("Gemini text HTTP "+r.status+" (no automatic retry)");
+ }
  const body=await r.json();
  const text=body.candidates?.[0]?.content?.parts?.map(p=>p.text||"").join("");
  if(!text)throw Error("Gemini returned no text");
