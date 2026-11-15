@@ -64,6 +64,18 @@ node --import tsx scripts/generate-listening-draft.mjs
 
 **完整自動化目前尚未啟用。** 使用者已確認原有 Listening 504 段音訊、答題和計分正常，新增流程只涉及未發布草稿，不應改動原版 14 套題庫。
 
+## Pilot 失敗時的診斷（不需要重新呼叫 Gemini）
+
+2026-11-15 的 Router 試跑確實完成一次 Gemini 文字請求，但回傳 JSON 未通過原版 Listening Schema。舊版程式只顯示一行錯誤，且在驗證失敗前沒有把原始模型回應存檔；**這次失敗輸出無法靠新程式回溯**，也不建議為了診斷立刻重跑並再次消耗額度。
+
+修正版加入：
+- **路徑化 Zod 錯誤摘要**：只輸出 `conversations.0.speakers.0.gender` 等結構位置及錯誤代碼，不顯示答案、逐字稿或 API Key。
+- **先保留本機原始模型 JSON**：放在 git ignored 的 `tmp/listening-draft-pilots/router-response-*.json`，即使驗證失敗，也保留資料供離線檢查，不會上傳到 GitHub、D1 或公開網站。
+- **不用 API 的驗證模式**：`node --import tsx scripts/generate-listening-draft.mjs --inspect="完整檔案路徑"`，直接驗證已經保存的 JSON，不發出任何 HTTP 請求。
+- **可選的 JSON Schema 控制**：`--structured` 會讓 Gemini API 接收原版 Router 題型的 JSON 結構條件。這能降低格式不符的風險，但不是品質保證；不同模型對 JSON Schema 支援可能不同。**首次仍先以無付費的離線檢查確認程式及本機環境。**
+
+**不要立即執行 `--pilot --execute`，也不要將 `tmp` 中含完整未公開題目與答案的 JSON 上傳至公開 GitHub。** Google AI Studio 的一次請求是否計費，依實際 Free/Paid Tier 而定。
+
 ## 目前已完成的程式碼
 
 - \`cloudflare/migrations/0008_listening_refill.sql\`：持久化 Listening 草稿、逐段完成狀態、每日 claim ledger。
