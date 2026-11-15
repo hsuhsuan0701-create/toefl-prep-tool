@@ -164,7 +164,12 @@ for(const name of moduleNames){
  try{
   modules[name]=ListeningGenerationInputSchema.shape[name].parse(result);
  }catch{throw Error("Generated "+name+" failed ORIGINAL module schema; no retry");}
- already.push(...synopsis({router:modules[name],lowerModule:modules[name],upperModule:modules[name]}));
+ already.push(...[
+  ...modules[name].listenChoose.map(x=>x.utterance),
+  ...modules[name].conversations.map(x=>x.setting),
+  ...modules[name].announcements.map(x=>x.setting),
+  ...modules[name].academicTalks.map(x=>x.discipline)
+ ]);
 }
 const raw=ListeningGenerationInputSchema.parse({
  id,source:"generated",kind:"listening",createdAt:new Date().toISOString(),...modules
@@ -192,7 +197,7 @@ if(!compareListeningModuleDifficulty(candidate).upperIsHarder)
 if(buildRenderPlan(candidate).length!==36)throw Error("Incorrect 36-clip render plan");
 const entryRows=[...existing,candidate].flatMap(entriesFromSet);
 const collisions=findCatalogCollisions(entryRows,{withinSet:true})
- .filter(x=>x.setId===id||x.otherSetId===id);
+ .filter(x=>x.conflictingSetIds.includes(id));
 if(collisions.length)throw Error("Novelty audit found repeated prior content; no upload");
 // Only after all free deterministic gates pass do we spend further independent reviews.
 for(const name of moduleNames)await independentReview(name,candidate[name]);
