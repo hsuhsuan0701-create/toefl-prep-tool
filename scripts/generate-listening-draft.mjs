@@ -18,6 +18,7 @@
 import {readFileSync,readdirSync,writeFileSync,mkdirSync} from "node:fs";
 import {join,resolve} from "node:path";
 import {fileURLToPath} from "node:url";
+import {listeningModuleJsonSchema,structuralIssues} from "./lib/listening-module-json-schema.mjs";
 import {
   ListeningGenerationInputSchema,ListeningSetSchema,
   LISTENING_MODULE_COMPOSITION,LISTENING_MODULE_TIME_LIMITS_SEC,
@@ -33,6 +34,9 @@ import {entriesFromSet,findCatalogCollisions} from "../server/src/services/gener
 const root=resolve(fileURLToPath(new URL("..",import.meta.url)));
 const execute=process.argv.includes("--execute");
 const pilot=process.argv.includes("--pilot");
+const structured=process.argv.includes("--structured");
+const inspectOption=process.argv.find(arg=>arg.startsWith("--inspect="));
+const inspectPath=inspectOption?.slice("--inspect=".length)??null;
 const origin=new URL(process.env.TOEFL_WORKER_URL||
   "https://toefl-prep-private.ihsuan0701.workers.dev").origin;
 const token=process.env.TOEFL_MANUAL_TEST_TOKEN;
@@ -42,6 +46,23 @@ const accessId=process.env.CF_ACCESS_CLIENT_ID;
 const accessSecret=process.env.CF_ACCESS_CLIENT_SECRET;
 const moduleNames=["router","lowerModule","upperModule"];
 const bankDir=join(root,"data","question-sets","listening");
+const diagnosticDir=join(root,"tmp","listening-draft-pilots");
+function saveDiagnostic(name,payload){
+ mkdirSync(diagnosticDir,{recursive:true});
+ const path=join(diagnosticDir,name+"-"+crypto.randomUUID().slice(0,12)+".json");
+ writeFileSync(path,JSON.stringify(payload,null,2),{flag:"wx",mode:0o600});
+ return path;
+}
+function validateModule(name,generated){
+ const result=ListeningGenerationInputSchema.shape[name].safeParse(generated);
+ if(!result.success){
+  const errors=structuralIssues(result.error.issues);
+  console.error("Original Listening "+name+" schema rejected; first "+errors.length+" structural issues:");
+  console.error(JSON.stringify(errors,null,2));
+  return {valid:false,issues:errors};
+ }
+ return {valid:true,module:result.data};
+}
 const existing=readdirSync(bankDir).filter(x=>/^lsn-[A-Za-z0-9_-]+\.json$/.test(x))
  .map(x=>ListeningSetSchema.parse(JSON.parse(readFileSync(join(bankDir,x),"utf8"))));
 const SYNTHETIC_REVIEWS=3;
@@ -61,14 +82,15 @@ async function queueStatus(){
  return v;
 }
 let used=0;
-async function callGemini(prompt,maxOutputTokens){
+async function callGemini(prompt,maxOutputTokens,schema){
  if(used>=MAX_TEXT_API_CALLS)throw Error("Text API call safety ceiling reached");
  used+=1;
  const r=await fetch("https://generativelanguage.googleapis.com/v1beta/models/"+
   model+":generateContent",{
    method:"POST",headers:{"x-goog-api-key":key,"Content-Type":"application/json"},
    body:JSON.stringify({contents:[{role:"user",parts:[{text:prompt}]}],
-    generationConfig:{responseMimeType:"application/json",maxOutputTokens,temperature:0.4}}),
+    generationConfig:{responseMimeType:"application/json",maxOutputTokens,temperature:0.4,
+      ...(structured&&schema?{responseJsonSchema:schema}:{})}}),
    signal:AbortSignal.timeout(120000)
   });
  if(!r.ok)throw Error("Gemini text HTTP "+r.status+" (no automatic retry)");
@@ -144,10 +166,24 @@ async function independentReview(name,module){
 console.log(JSON.stringify({
  phase:execute?(pilot?"one-module text pilot requested":"text generation requested"):"dry-run only",
  existingLocalSets:existing.length,modules:pilot?["router"]:moduleNames,
+ structuredOutput:structured,inspectOnly:!!inspectPath,
  plannedTextRequests:MAX_TEXT_API_CALLS,ttsRequests:0,
  publishes:false,schedules:false,
  caveat:"Model quota and billing must be checked separately in Google AI Studio"
 },null,2));
+if(inspectPath){
+ // Offline-only inspection: no network, no API key, no D1, no audio output.
+ const raw=JSON.parse(readFileSync(resolve(inspectPath),"utf8"));
+ const candidate=raw?.response??raw;
+ const checked=validateModule("router",candidate);
+ console.log(JSON.stringify({result:"offline-router-validation",
+  valid:checked.valid,apiRequests:0,uploadedToD1:false,
+  ...(checked.valid?{stimuli:checked.module.listenChoose.length+
+    checked.module.conversations.length+checked.module.announcements.length+
+    checked.module.academicTalks.length}:{structuralIssues:checked.issues})},null,2));
+ process.exitCode=checked.valid?0:1;
+ process.exit();
+}
 if(!execute)process.exit(0);
 if(process.env.LISTENING_DRAFT_GENERATION_ENABLED!=="true")
  throw Error("LISTENING_DRAFT_GENERATION_ENABLED must be explicitly true; no paid requests sent");
@@ -157,14 +193,20 @@ if(!/^[A-Za-z0-9._-]+$/.test(model))throw Error("Unsafe Gemini model name");
 // Worker/admin-token dependency, no D1 write, no TTS, no publication.
 if(pilot){
  const prior=existing.flatMap(synopsis);
- const generated=await callGemini(makePrompt("router",prior,[],"pilot-r0"),24000);
- let parsed;
- try{parsed=ListeningGenerationInputSchema.shape.router.parse(generated);}
- catch{throw Error("Router pilot failed original TOEFL Listening module schema; no retry");}
- const outputDir=join(root,"tmp","listening-draft-pilots");
- mkdirSync(outputDir,{recursive:true});
- const outputPath=join(outputDir,"router-"+crypto.randomUUID().slice(0,12)+".json");
- writeFileSync(outputPath,JSON.stringify(parsed,null,2),{flag:"wx"});
+ const generated=await callGemini(makePrompt("router",prior,[],"pilot-r0"),24000,
+   listeningModuleJsonSchema(LISTENING_MODULE_COMPOSITION.router,LISTENING_MODULE_TIME_LIMITS_SEC.router));
+ // Save the model's complete JSON response locally BEFORE schema checking.
+ // This lets us inspect the first failed request at no extra API cost.
+ const diagnosticPath=saveDiagnostic("router-response",{response:generated});
+ const validated=validateModule("router",generated);
+ if(!validated.valid){
+  console.error("Full generated text saved locally (never published): "+diagnosticPath);
+  console.error("No retries. Do not paste unpublished answers or API keys in chat.");
+  process.exitCode=1;
+  process.exit();
+ }
+ const parsed=validated.module;
+ const outputPath=saveDiagnostic("router-validated",parsed);
  console.log(JSON.stringify({
   result:"router-pilot-saved",module:"router",schemaValid:true,
   stimuli:parsed.listenChoose.length+parsed.conversations.length+
@@ -186,10 +228,15 @@ const modules={};
 const already=existing.flatMap(synopsis);
 for(const name of moduleNames){
  const prefix=id.slice(4,10)+"-"+name.slice(0,2);
- const result=await callGemini(makePrompt(name,already,already,prefix),24000);
- try{
-  modules[name]=ListeningGenerationInputSchema.shape[name].parse(result);
- }catch{throw Error("Generated "+name+" failed ORIGINAL module schema; no retry");}
+ const result=await callGemini(makePrompt(name,already,already,prefix),24000,
+  listeningModuleJsonSchema(LISTENING_MODULE_COMPOSITION[name],LISTENING_MODULE_TIME_LIMITS_SEC[name]));
+ const diagnosticPath=saveDiagnostic(name+"-response",{response:result});
+ const validated=validateModule(name,result);
+ if(!validated.valid){
+  console.error("Incomplete text saved locally: "+diagnosticPath);
+  throw Error("Generated "+name+" failed ORIGINAL module schema; no retry");
+ }
+ modules[name]=validated.module;
  already.push(...[
   ...modules[name].listenChoose.map(x=>x.utterance),
   ...modules[name].conversations.map(x=>x.setting),
