@@ -33,7 +33,7 @@ export function listeningRefillPage():Response{
  '<button id="flash-off" class="danger">停用 Flash</button>',
  '<pre id="policy-result">兩個模型都必須個別確認；未確認的一款保持停用。</pre>',
  '<p class="muted">確認只對當前 Google Pacific 日期有效；隔天將自動歸零並停止新請求。此設定不會變更 Google 的實際配額或帳務狀態。</p>',
- '</div><p><a href="/sets?section=listening">回到 Listening 題庫</a></p>',
+ '</div><div class="panel"><h2>雲端生成音檔人工驗收</h2><p>新配音先進入私人暫存區，不會自動核准或發布。</p><a href="/api/cloud/listening-refill/review">前往試聽與人工審核</a></div><p><a href="/sets?section=listening">回到 Listening 題庫</a></p>',
  '<script>',
  'const $=id=>document.getElementById(id);',
  'async function request(path,body){const token=$("token").value.trim();if(!token)throw Error("請先輸入管理密碼");',

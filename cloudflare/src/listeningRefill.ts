@@ -13,6 +13,8 @@ import { ListeningSetSchema, type ListeningSet } from "@toefl-prep/shared";
 import { indexDeterministicItems } from "../../server/src/services/deterministicScoring.js";
 import { listeningClips } from "./listeningAudio.js";
 import { authorizedAdmin, validPost } from "./academicPractice.js";
+import { handleListeningStaging } from "./listeningStaging.js";
+import { listeningStagingPage } from "./listeningStagingPage.js";
 
 export interface ListeningRefillEnv {
   DB: D1Database;
@@ -101,6 +103,8 @@ function isMp3(buf:Uint8Array):boolean{
 export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):Promise<Response|null>{
   const url=new URL(req.url),path=url.pathname,method=req.method;
   if(!path.startsWith("/api/cloud/listening-refill/"))return null;
+  // The HTML shell contains no private data; every data/audio/decision request is authenticated.
+  if(path==="/api/cloud/listening-refill/review" && method==="GET")return listeningStagingPage();
   if(!await authorizedAdmin(req,env.TOEFL_MANUAL_TEST_TOKEN))return reply({error:"Unauthorized"},401);
   if(path==="/api/cloud/listening-refill/status" && method==="GET"){
     try{
@@ -120,6 +124,9 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
     }catch{return reply({error:"Listening refill migrations not ready"},503);}
   }
 
+  // Private staging/API audition is independently safe and never invokes Gemini.
+  const stageResponse=await handleListeningStaging(req,env);
+  if(stageResponse)return stageResponse;
   if(method!=="POST")return reply({error:"Unsupported method"},405);
   if(path!=="/api/cloud/listening-refill/upload" && !validPost(req))
     return reply({error:"Same-origin JSON required"},403);
@@ -198,6 +205,12 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
     }catch{return reply({error:"Unable to verify stop switch; no TTS claim issued"},503);}
     if(!env.LISTENING_AUDIO)return reply({error:"R2 bucket not configured; refusing to spend TTS"},503);
     try{
+      // Never issue a new paid claim while any prior claim awaits review or reconciliation.
+      const awaiting=await env.DB.prepare(
+        "SELECT COUNT(*) AS n FROM listening_refill_clips WHERE status='claimed'"
+      ).first<{n:number}>();
+      if((awaiting?.n??0)>0)return reply({result:"awaiting-review-or-reconciliation",
+        awaiting:awaiting!.n,ttsCalls:0});
       const day=ttsQuotaDay();
       const models=await modelStates(env.DB,day);
       if(!models.some(m=>m.ready))return reply({
