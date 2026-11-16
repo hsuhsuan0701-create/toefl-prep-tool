@@ -30,15 +30,19 @@ Cloudflare D1 原子 claim（先記錄配額）→ GitHub Actions Node Runner �
 - cloudflare/src/listeningRefill.ts：新 API 掛載、未結案 claimed clip 阻止新 TTS claim。
 - cloudflare/src/listeningRefillPage.ts：每日管理頁加上試聽審核連結。
 - cloudflare/test/listening-staging.test.mjs：鑑權、一次性匯入、拒絕封鎖及不發布測試。
+- cloudflare/test/listening-reviewed-import-preserved.test.mjs：原本人工匯入路由的鑑權與邊界回歸測試。
+- scripts/import-reviewed-listening-audio.mjs、scripts/listening-tts-batch-safe.mjs：由上傳 ZIP 精確回存本機工具原始碼，CI 僅作語法檢查，不會呼叫 Gemini。
 
 ## 部署前必要檢查
 
 1. 先確認 GitHub CI、Cloudflare foundation checks 完整綠燈，不得跳過任何失敗測試。
-2. 你的 Windows 本機有 0010_listening_reviewed_audio_imports.sql、
-   listeningReviewedImport.ts、以及修改後的 index.ts。
-   目前遠端 cloudflare-migration 分支沒有這些已部署的本機修正。
-   **必須先安全整合**本機 0010 與 Reviewed MP3 Import route，
-   避免從 GitHub 部署時覆寫成功運作的匯入機制。
+2. **已完成原始碼層面的 0010 與 Reviewed MP3 Import 整合**：收到的 ZIP
+   已核對，0010 SQL、兩支本機 Node 腳本均以原始 Git blob 一致的內容加入此 Draft PR；
+   listeningReviewedImport.ts 僅將 objectKey 的模板字串改為同義字串串接，
+   index.ts 以保留既有路由的方式與新版本整合。
+   **尚未完成正式 Worker 部署、D1 遠端備份及 0011 migration 的套用**。
+   正式部署前仍需在本機對照目前已部署 Worker 的版本與路由完整性，
+   確保所有既有 MP3 匯入行為不回歸。
 3. 先備份遠端 Cloudflare D1。確認 0010 已執行，檢查 0011 migration SQL，
    再做 Wrangler dry-run、本機回歸測試與新 Worker 的受保護測試。
 4. GitHub Repository Secrets 需設定：GEMINI_API_KEY、TOEFL_MANUAL_TEST_TOKEN、
