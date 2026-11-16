@@ -16,8 +16,8 @@ concurrency:
 jobs:
   one-take:
     name: At most one verified Free Tier request, then private review
-    # An absent GitHub repository variable is FALSE. Never auto-enable it.
-    if: ${{ vars.LISTENING_CLOUD_TTS_ENABLED == 'true' }}
+    # BOTH independent repository variables must be explicitly set to true.\n    # Unset = false; creating this workflow will NEVER enable daily TTS by itself.
+    if: ${{ vars.LISTENING_CLOUD_TTS_ENABLED == 'true' && vars.LISTENING_DAILY_TTS_SCHEDULE_ENABLED == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
