@@ -1,0 +1,35 @@
+name: TOEFL Listening Daily — Safe Preflight Only
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 09:45 UTC = 17:45 Taipei (after either Pacific-midnight reset).
+    - cron: '45 9 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: listening-daily-safe-preflight
+  cancel-in-progress: false
+
+jobs:
+  inspect-private-listening-queue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verify zero-network safety mode
+        run: |
+          node --check scripts/listening-daily-preflight.mjs
+          node scripts/listening-daily-preflight.mjs --self-test
+          node scripts/listening-daily-preflight.mjs --dry-run
+      - name: One authorized Cloudflare read-only GET
+        env:
+          TOEFL_MANUAL_TEST_TOKEN: ${{ secrets.TOEFL_MANUAL_TEST_TOKEN }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: node scripts/listening-daily-preflight.mjs --check
