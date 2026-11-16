@@ -46,6 +46,13 @@ jobs:
         run: node --import tsx --test cloudflare/test/listening-refill.test.mjs
       - name: Test offline Listening WAV validation (no API calls)
         run: node --test cloudflare/test/listening-wav-sanity.test.mjs
+      - name: Test cloud TTS runner without network or credentials
+        run: |
+          node --check scripts/listening-cloud-tts-once.mjs
+          node --import tsx scripts/listening-cloud-tts-once.mjs --self-test
+          node --import tsx scripts/listening-cloud-tts-once.mjs --dry-run
+      - name: Test private staging, human approval and reject (no Gemini)
+        run: node --import tsx --test cloudflare/test/listening-staging.test.mjs
       - name: Dry-run original Listening Gemini 3.8 voice trial (no API calls)
         run: node --import tsx scripts/pilot-gemini38-tts.mjs --set lsn-03948a55 --role conversation
       - name: Dry-run BOTH Free Tier TTS models with safe voice roles (no API calls)
