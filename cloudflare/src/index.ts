@@ -18,6 +18,7 @@ import { authorizedAdmin, validPost } from "./academicPractice.js";
 import { readingRefillPage } from "./readingRefillPage.js";
 import { statsD1Api } from "./statsD1.js";
 import { handleListeningRefill, servePublishedR2Audio } from "./listeningRefill.js";
+import { handleReviewedAudioImport } from "./listeningReviewedImport.js";
 import { listeningRefillPage } from "./listeningRefillPage.js";
 
 interface Env {
@@ -209,6 +210,9 @@ export default {
       return listeningRefillPage();
     }
     if(pathname.startsWith("/api/cloud/listening-refill/")) {
+      // Preserve the already-deployed reviewed local MP3 import route before generic queue routing.
+      const reviewedImportResponse=await handleReviewedAudioImport(request,env);
+      if(reviewedImportResponse)return reviewedImportResponse;
       const queueResponse=await handleListeningRefill(request,env);
       if(queueResponse)return queueResponse;
     }
