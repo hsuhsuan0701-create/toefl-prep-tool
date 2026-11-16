@@ -1,0 +1,93 @@
+name: TOEFL Listening — Access Connection Test (Read Only)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: toefl-listening-access-readonly
+  cancel-in-progress: false
+
+jobs:
+  check:
+    name: One authenticated GET, zero writes
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Read-only Cloudflare Access and TOEFL Worker smoke test
+        env:
+          TOEFL_MANUAL_TEST_TOKEN: ${{ secrets.TOEFL_MANUAL_TEST_TOKEN }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: |
+          node --input-type=module <<'NODE'
+          import { appendFileSync } from 'node:fs';
+
+          // One GET only. No Git checkout, D1 writes, R2 upload, Gemini key or retry.
+          const token = process.env.TOEFL_MANUAL_TEST_TOKEN || '';
+          const accessId = process.env.CF_ACCESS_CLIENT_ID || '';
+          const accessSecret = process.env.CF_ACCESS_CLIENT_SECRET || '';
+          if (token.length < 32 || !accessId || !accessSecret) {
+            throw new Error('One or more required GitHub Actions secrets are missing; STOP');
+          }
+
+          const url = 'https://toefl-prep-private.ihsuan0701.workers.dev/api/cloud/listening-refill/status';
+          const response = await fetch(url, {
+            method: 'GET', redirect: 'error', signal: AbortSignal.timeout(12000),
+            headers: {
+              Accept: 'application/json',
+              'Cache-Control': 'no-store',
+              Authorization: 'Bearer ' + token,
+              'CF-Access-Client-Id': accessId,
+              'CF-Access-Client-Secret': accessSecret,
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error('Private status GET rejected (HTTP ' + response.status +
+              '). Check Access policy and Worker token. No retry.');
+          }
+          if (!(response.headers.get('content-type') || '').includes('application/json')) {
+            throw new Error('Unexpected response type; STOP');
+          }
+
+          const data = await response.json();
+          if (data?.enabled !== false || data?.r2Configured !== true) {
+            throw new Error('Remote safety switches do not match expected disabled/connected state');
+          }
+          const drafts = Array.isArray(data.queue)
+            ? data.queue.filter(d => d?.id === 'lsn-a97620b2c800') : [];
+          if (drafts.length !== 1 || drafts[0].state !== 'draft' ||
+              drafts[0].clips?.uploaded !== 10 || drafts[0].clips?.pending !== 26 ||
+              Number(drafts[0].clips?.claimed || 0) !== 0) {
+            throw new Error('Listening draft inventory changed; inspect manually before any TTS');
+          }
+          const models = data.models;
+          const expected = ['gemini-3.8-flash-lite-tts', 'gemini-3.8-flash-tts'];
+          if (!Array.isArray(models) || models.length !== 2 ||
+              !expected.every(name => models.some(m => m?.model === name &&
+                m.dailyLimit === 0 && m.claimed === 0 &&
+                m.freeTierVerifiedToday === false && m.ready === false))) {
+            throw new Error('TTS quota states are not safely disabled');
+          }
+
+          console.log('PASS: Authenticated private status GET, Worker + D1 response verified');
+          console.log('PASS: Listening 10 uploaded / 26 pending / 0 claimed');
+          console.log('PASS: Listening generation disabled, both TTS models disabled');
+          console.log('PASS: Gemini calls 0; database writes 0; R2 uploads 0; no publication');
+          if (process.env.GITHUB_STEP_SUMMARY) {
+            appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+              '## TOEFL Listening — read-only connection test\n\n' +
+              '- Authenticated private Worker GET: **PASS**\n' +
+              '- Listening clips: **10 uploaded / 26 pending / 0 claimed**\n' +
+              '- Automatic Listening generation: **disabled**\n' +
+              '- Both model daily limits: **0**\n' +
+              '- Gemini calls / D1 writes / R2 uploads / published sets: **0**\n');
+          }
+          NODE
