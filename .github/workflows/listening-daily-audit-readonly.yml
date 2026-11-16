@@ -1,0 +1,126 @@
+name: TOEFL Listening — Daily Read-Only Audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 09:45 UTC = 17:45 Asia/Taipei; safely after Pacific midnight.
+    - cron: '45 9 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: toefl-listening-daily-readonly
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    name: D1 status, R2 binding, policy and pending review (GET only)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Use Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Two authenticated read-only GETs; never log secrets or transcripts
+        env:
+          TOEFL_MANUAL_TEST_TOKEN: ${{ secrets.TOEFL_MANUAL_TEST_TOKEN }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: |
+          node --input-type=module <<'NODE'
+          import { appendFileSync } from 'node:fs';
+
+          const token = process.env.TOEFL_MANUAL_TEST_TOKEN || '';
+          const clientId = process.env.CF_ACCESS_CLIENT_ID || '';
+          const clientSecret = process.env.CF_ACCESS_CLIENT_SECRET || '';
+          if (token.length < 32 || !clientId || !clientSecret)
+            throw Error('Required Access or Worker secret is missing. STOP.');
+
+          const base = 'https://toefl-prep-private.ihsuan0701.workers.dev/api/cloud/listening-refill/';
+          async function get(path) {
+            // Exactly one request per path; no retries, POSTs, Gemini or R2 writes.
+            const res = await fetch(base + path, {
+              method: 'GET', redirect: 'error', signal: AbortSignal.timeout(12000),
+              headers: {
+                Accept: 'application/json',
+                'Cache-Control': 'no-store',
+                Authorization: 'Bearer ' + token,
+                'CF-Access-Client-Id': clientId,
+                'CF-Access-Client-Secret': clientSecret,
+              },
+            });
+            if (!res.ok) throw Error('Read-only ' + path + ' returned HTTP ' + res.status);
+            if (!(res.headers.get('content-type') || '').includes('application/json'))
+              throw Error('Unexpected Content-Type for ' + path);
+            return res.json();
+          }
+
+          const status = await get('status');
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(status?.day || '') ||
+              typeof status.enabled !== 'boolean' ||
+              status.r2Configured !== true ||
+              !Array.isArray(status.models) || status.models.length !== 2 ||
+              !Array.isArray(status.queue)) {
+            throw Error('Invalid Listening status or missing private R2 binding');
+          }
+          const allowed = ['gemini-3.8-flash-lite-tts','gemini-3.8-flash-tts'];
+          if (!allowed.every(name => status.models.some(m => m?.model === name &&
+                Number.isInteger(m.dailyLimit) && Number.isInteger(m.claimed) &&
+                typeof m.freeTierVerifiedToday === 'boolean'))) {
+            throw Error('Incomplete TTS quota model states');
+          }
+
+          const review = await get('staged');
+          if (review?.result !== 'pending-human-review' || !Array.isArray(review.queue))
+            throw Error('Invalid pending-review inventory');
+          // NEVER print review.queue: it includes private transcripts.
+          const target = status.queue.find(d => d?.id === 'lsn-a97620b2c800');
+          if (!target || !target.clips) throw Error('Expected Listening draft absent');
+          const counts = target.clips;
+          const uploaded = counts.uploaded ?? 0;
+          const pending = counts.pending ?? 0;
+          const claimed = counts.claimed ?? 0;
+          const flagged = counts.flagged ?? 0;
+          if (![uploaded,pending,claimed,flagged].every(n => Number.isInteger(n) && n >= 0) ||
+              uploaded + pending + claimed + flagged !== 36)
+            throw Error('Listening clip inventory inconsistent; manual investigation needed');
+
+          const daily = status.models.map(m => ({
+            model: m.model, claimed: m.claimed, dailyLimit: m.dailyLimit,
+            verifiedToday: m.freeTierVerifiedToday, ready: m.ready,
+          }));
+          console.log(JSON.stringify({
+            result: 'daily-read-only-audit',
+            pacificDay: status.day, enabled: status.enabled, r2BindingPresent: true,
+            draftState: target.state, clips: {uploaded,pending,claimed,flagged},
+            pendingHumanReviews: review.queue.length,
+            modelPolicies: daily,
+            geminiCalls: 0, databaseWrites: 0, r2Writes: 0, published: false,
+          }));
+          if (claimed > 0 || flagged > 0 || review.queue.length > 0)
+            console.log('::warning::Listening has claimed/flagged/staged items needing human inspection.');
+          if (status.enabled)
+            console.log('::notice::Listening claim switch is enabled; TTS schedule still has independent gate.');
+
+          if (process.env.GITHUB_STEP_SUMMARY) {
+            const summary = [
+              '## TOEFL Listening — Daily read-only audit','',
+              '- Pacific quota day: ' + status.day,
+              '- Worker generation switch: **' + (status.enabled ? 'enabled' : 'disabled') + '**',
+              '- Private R2 binding: **present** (not a per-object integrity test)',
+              '- Draft state: ' + target.state,
+              '- Clips: **' + uploaded + ' uploaded / ' + pending + ' pending / ' +
+                claimed + ' claimed / ' + flagged + ' flagged**',
+              '- Waiting for human review: **' + review.queue.length + '**',
+              '', '| Model | Verified today | Claimed | Daily cap | Ready |',
+              '|---|---|---:|---:|---|',
+              ...daily.map(m => '| ' + m.model + ' | ' + m.verifiedToday +
+                ' | ' + m.claimed + ' | ' + m.dailyLimit + ' | ' + m.ready + ' |'),
+              '', '**Only two authenticated GET requests. Gemini calls, writes, uploads, publication: 0.**',
+            ];
+            appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary.join('\n') + '\n');
+          }
+          NODE
