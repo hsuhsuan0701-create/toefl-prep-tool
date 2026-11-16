@@ -1,0 +1,43 @@
+name: TOEFL Listening — One Cloud TTS Take (Review Required)
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 10:07 UTC = 18:07 Taipei. Scheduled workflows only run from default branch.
+    - cron: '7 10 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: toefl-listening-cloud-tts-once
+  cancel-in-progress: false
+
+jobs:
+  one-take:
+    # Explicit GitHub repository variable, default false if absent.
+    if: vars.LISTENING_CLOUD_TTS_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install ffmpeg / ffprobe
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Zero-network tests (no Gemini)
+        run: |
+          node --check scripts/listening-cloud-tts-once.mjs
+          node --import tsx scripts/listening-cloud-tts-once.mjs --self-test
+          node --import tsx scripts/listening-cloud-tts-once.mjs --dry-run
+      - name: At most one cloud TTS claim and one Gemini request
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TOEFL_MANUAL_TEST_TOKEN: ${{ secrets.TOEFL_MANUAL_TEST_TOKEN }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: node --import tsx scripts/listening-cloud-tts-once.mjs --once
