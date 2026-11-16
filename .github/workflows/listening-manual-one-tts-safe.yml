@@ -1,0 +1,131 @@
+name: TOEFL Listening — Manual One TTS (No Schedule)
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "inspect_only first; generate_one can spend ONE Gemini request after same-project Free Tier verification and D1 daily cap 1"
+        type: choice
+        required: true
+        default: inspect_only
+        options:
+          - inspect_only
+          - generate_one
+      confirmation:
+        description: "For generate_one ONLY type I_VERIFIED_FREE_TIER_AND_APPROVE_ONE_TTS"
+        type: string
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: toefl-listening-cloud-tts-once
+  cancel-in-progress: false
+
+jobs:
+  manual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Validate manual choices before any network operations
+        env:
+          MODE: ${{ inputs.mode }}
+          CONFIRMATION: ${{ inputs.confirmation }}
+        run: |
+          set -euo pipefail
+          if [[ "$MODE" != "inspect_only" && "$MODE" != "generate_one" ]]; then
+            echo "::error::Unexpected mode"; exit 1
+          fi
+          if [[ "$MODE" == "generate_one" && "$CONFIRMATION" != "I_VERIFIED_FREE_TIER_AND_APPROVE_ONE_TTS" ]]; then
+            echo "::error::Explicit Free Tier and one-request confirmation required"; exit 1
+          fi
+
+      - name: Checkout pinned, previously CI-verified code (not default main)
+        uses: actions/checkout@v4
+        with:
+          ref: 7467227f3f3fcdc9e151ec4518d918976f4cf227
+          persist-credentials: false
+
+      - name: Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: One read-only Cloudflare Access and Worker GET
+        env:
+          TOEFL_MANUAL_TEST_TOKEN: ${{ secrets.TOEFL_MANUAL_TEST_TOKEN }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: |
+          node --check scripts/listening-daily-preflight.mjs
+          node scripts/listening-daily-preflight.mjs --self-test
+          node scripts/listening-daily-preflight.mjs --check
+
+      - name: Strict one-take model policy check (generate_one ONLY)
+        if: ${{ inputs.mode == 'generate_one' }}
+        env:
+          TOEFL_MANUAL_TEST_TOKEN: ${{ secrets.TOEFL_MANUAL_TEST_TOKEN }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: |
+          node --input-type=module <<'NODE'
+          const auth = process.env.TOEFL_MANUAL_TEST_TOKEN || '';
+          const id = process.env.CF_ACCESS_CLIENT_ID || '';
+          const secret = process.env.CF_ACCESS_CLIENT_SECRET || '';
+          if (auth.length < 32 || !id || !secret) throw Error('Missing auth; STOP');
+          const res = await fetch('https://toefl-prep-private.ihsuan0701.workers.dev/api/cloud/listening-refill/status', {
+            method: 'GET', redirect: 'error', signal: AbortSignal.timeout(12000),
+            headers: { Authorization: 'Bearer ' + auth,
+              'CF-Access-Client-Id': id, 'CF-Access-Client-Secret': secret,
+              Accept: 'application/json', 'Cache-Control': 'no-store' },
+          });
+          if (!res.ok) throw Error('Refusing TTS: status HTTP ' + res.status);
+          const data = await res.json();
+          if (data.enabled !== true || data.r2Configured !== true) throw Error('Listening disabled or R2 missing; STOP');
+          const draft = data.queue?.find(d => d.id === 'lsn-a97620b2c800');
+          if (!draft || !['draft','rendering'].includes(draft.state) ||
+              draft.clips?.uploaded !== 10 || draft.clips?.pending !== 26 ||
+              Number(draft.clips?.claimed || 0) !== 0) {
+            throw Error('Unexpected Listening inventory or active claim; STOP');
+          }
+          const expected = ['gemini-3.8-flash-lite-tts','gemini-3.8-flash-tts'];
+          if (!Array.isArray(data.models) || data.models.length !== 2 ||
+              !expected.every(n => data.models.some(m => m.model === n))) {
+            throw Error('Unexpected TTS model list; STOP');
+          }
+          const active = data.models.filter(m => m.dailyLimit === 1 &&
+            m.claimed === 0 && m.freeTierVerifiedToday === true && m.ready === true);
+          const inactive = data.models.filter(m => m.dailyLimit === 0 &&
+            m.ready === false);
+          if (active.length !== 1 || inactive.length !== 1) {
+            throw Error('Test requires exactly ONE manually attested model with daily cap 1; the other must be 0');
+          }
+          console.log('PASS: One model at daily cap 1; other model disabled; no active claim');
+          console.log('PASS: Status is ready; zero Gemini calls so far');
+          NODE
+
+      - name: Install ffmpeg / ffprobe (generate_one ONLY)
+        if: ${{ inputs.mode == 'generate_one' }}
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
+
+      - name: Install locked dependencies (generate_one ONLY)
+        if: ${{ inputs.mode == 'generate_one' }}
+        run: npm ci
+
+      - name: Offline TTS safety tests (generate_one ONLY)
+        if: ${{ inputs.mode == 'generate_one' }}
+        run: |
+          node --check scripts/listening-cloud-tts-once.mjs
+          node --import tsx scripts/listening-cloud-tts-once.mjs --self-test
+          node --import tsx scripts/listening-cloud-tts-once.mjs --dry-run
+
+      - name: EXACTLY ONE Gemini call maximum; private staging, human review
+        if: ${{ inputs.mode == 'generate_one' }}
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TOEFL_MANUAL_TEST_TOKEN: ${{ secrets.TOEFL_MANUAL_TEST_TOKEN }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: node --import tsx scripts/listening-cloud-tts-once.mjs --once
