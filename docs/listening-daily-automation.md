@@ -1,45 +1,75 @@
-# TOEFL Listening 每日自動化：安全起始階段
+# TOEFL Listening 雲端配音＋網頁人工驗收（尚未部署）
 
-這個版本 **只做每日自動檢查**，不呼叫 Gemini、不生成音檔、不寫入 D1/R2，也不會發布題庫。它不能被誤認為已經啟用每日自動配音。
+這個 Draft PR 開發的目標：
+Cloudflare D1 原子 claim（先記錄配額）→ GitHub Actions Node Runner 最多一次 Gemini TTS →
+離線 WAV sanity check → ffmpeg MP3 → 私有 R2 staging/ → 私人網頁試聽 →
+人工核准後才一次性匯入 stimuli/ R2 與 D1。
+這不是每天自動發布題庫，也不會自動重試任何失敗或不明確的 API 呼叫。
 
-## 已建立
+## 既有資料，務必保留
 
-- GitHub Actions 排程：UTC 每日 09:45（台灣 17:45），落在太平洋配額日午夜後。
-- 每次執行先執行 `--self-test` 與 `--dry-run`；均不使用網路。
-- 若設定了三個私有密鑰，才會對 Cloudflare Worker 的 `/api/cloud/listening-refill/status` 發出 **一次 GET**；沒有 POST、重試或付費模型請求。
-- 產生 GitHub Actions Job Summary：顯示當日配額日期、管理開關、模型人工確認狀態及草稿佇列。
-- 不碰已完成的 8 段 MP3、原有 Listening 題庫或既存 D1/R2 資料。
+- Draft Set lsn-a97620b2c800 共 36 段。先前 8 段已人工驗收、匯入 R2/D1。
+- pilot-r0-lc7、pilot-r0-lc8 已在 Windows 本機生成且有人工驗收紀錄，
+  但尚未匯入 Cloudflare。匯入之前不得啟用新的雲端 TTS Runner，
+  否則可能把同一段誤認為遠端 pending，重複配音。
+- 保留原本 14 套 Listening 與所有已存在 MP3；不覆寫、不自動發佈。
+- 禁止把 tmp/、私人 MP3、題目 JSON、任何 .env 或金鑰 commit 到 GitHub。
 
-## 憑證（只保存在 GitHub Repository Secrets）
+## 已加入 GitHub 草稿分支
 
-儲存庫 `Settings → Secrets and variables → Actions` 下設定三項 Repository secrets：
+- .github/workflows/listening-daily-preflight.yml：每日台灣 17:45 進行只讀檢查。
+- scripts/listening-daily-preflight.mjs：最多一個遠端 GET，無付費 API。
+- .github/workflows/listening-cloud-tts-once.yml：每日台灣 18:07 最多一個 TTS take。
+  只有 Repository Variable LISTENING_CLOUD_TTS_ENABLED=true 才執行；預設停用。
+- scripts/listening-cloud-tts-once.mjs：使用原本 buildRenderPlan、deliveryNotes、
+  Gemini 3.8 speechMetadata request shape、ffmpeg 與 WAV sanity 檢查。
+  本機 listening-tts-batch-safe.mjs 並未上傳，這是可在 GitHub Actions 執行的等效單次 Runner。
+- cloudflare/migrations/0011_listening_auto_review_staged.sql：新增未審核音訊 ledger。
+- cloudflare/src/listeningStaging.ts：暫存、取回私有音檔、核准/拒絕；R2 寫入條件限定物件不存在。
+- cloudflare/src/listeningStagingPage.ts：私人試聽與 transcript 對照頁。
+- cloudflare/src/listeningRefill.ts：新 API 掛載、未結案 claimed clip 阻止新 TTS claim。
+- cloudflare/src/listeningRefillPage.ts：每日管理頁加上試聽審核連結。
+- cloudflare/test/listening-staging.test.mjs：鑑權、一次性匯入、拒絕封鎖及不發布測試。
 
-- `TOEFL_MANUAL_TEST_TOKEN`：Cloudflare Worker 的管理 Bearer token。
-- `CF_ACCESS_CLIENT_ID`：Cloudflare Access Service Token ID。
-- `CF_ACCESS_CLIENT_SECRET`：Cloudflare Access Service Token Secret。
+## 部署前必要檢查
 
-禁止把密鑰貼進 issue、PR、聊天、`.env`、程式碼或 Git。沒有憑證時會安全跳過檢查；即使有憑證，本版仍只讀取。
+1. 先確認 GitHub CI、Cloudflare foundation checks 完整綠燈，不得跳過任何失敗測試。
+2. 你的 Windows 本機有 0010_listening_reviewed_audio_imports.sql、
+   listeningReviewedImport.ts、以及修改後的 index.ts。
+   目前遠端 cloudflare-migration 分支沒有這些已部署的本機修正。
+   **必須先安全整合**本機 0010 與 Reviewed MP3 Import route，
+   避免從 GitHub 部署時覆寫成功運作的匯入機制。
+3. 先備份遠端 Cloudflare D1。確認 0010 已執行，檢查 0011 migration SQL，
+   再做 Wrangler dry-run、本機回歸測試與新 Worker 的受保護測試。
+4. GitHub Repository Secrets 需設定：GEMINI_API_KEY、TOEFL_MANUAL_TEST_TOKEN、
+   CF_ACCESS_CLIENT_ID、CF_ACCESS_CLIENT_SECRET。禁止寫到原始碼、聊天或 PR。
+5. GitHub Actions schedule **僅在預設分支**執行。本 PR 合併到非預設分支不會啟用每日排程。
+6. 所有已驗收的本機 MP3（包含 lc7/lc8）都正式入庫且雲端驗證後，
+   才能逐項啟用 GitHub variable LISTENING_CLOUD_TTS_ENABLED=true、
+   Cloudflare Listening refill 開關及當日 TTS model policy。
+7. 每個 Pacific 日都要手動在 Google AI Studio 確認 Free Tier 與剩餘 RPD。
+   Worker 不能自動確認 Google 帳務，所以未簽核時自動停止；即使排程存在也不會付費呼叫。
+8. 錯誤或逾時時不重新執行 TTS。D1 claim 永久保留，人工查明 R2／D1 狀態後再處理。
 
-## 重要限制
+## 管理頁（部署本 PR 後才會出現新功能）
 
-GitHub Actions `schedule` 只會在**預設分支**執行；此 PR 所在功能分支不會自行啟用每日排程。不要在審核完成前合併或打開任何 Gemini 生成排程。
+- 配額管理：https://toefl-prep-private.ihsuan0701.workers.dev/api/cloud/listening-refill
+- 音檔人工驗收：https://toefl-prep-private.ihsuan0701.workers.dev/api/cloud/listening-refill/review
 
-已測試的 `scripts/listening-tts-batch-safe.mjs`、`scripts/import-reviewed-listening-audio.mjs` 目前只存在於 Windows 本機，未出現在 GitHub `cloudflare-migration` 分支。不能在雲端排程直接引用它們，也不能把 `.gitignore` 排除的 `tmp/` 連同私有 JSON、MP3、API Key 推到 GitHub。
+兩個頁面需受 Cloudflare Access 保護，API 再使用獨立 Bearer 管理密碼。
+審核者可在瀏覽器試聽、對照文字與核准或拒絕。
+核准才匯入 canonical R2 與 D1；整套題庫仍保留 draft，直到另外人工發布。
 
-## 後續實作必要條件
+## 本機無網路測試指令
 
-1. 安全移植本機 TTS 腳本、TTS prompt 與必要 helper（不提交 private 音檔、私人題目、密鑰）。
-2. 建立 GitHub Actions 無狀態 Runner：從 Cloudflare 領取具備 D1 原子去重的單次生成請求；Gemini TTS 發出一次後即記帳，不自動 retry。
-3. 新增 **未審核雲端暫存** 與 Cloudflare Access 保護的網頁試聽／核准／拒絕介面；人工確認前不可自動標記已核准、不可發布。
-4. 每個太平洋配額日人工在 Google AI Studio 確認 Free Tier 與剩餘額度，再於現有 `/api/cloud/listening-refill` 管理頁設定兩款模型的每日上限。程式無法證明 Google Billing 是否已啟用，必須 fail closed。
-5. 在全套測試之前，維持 `listening_refill_enabled=false`。網頁開關本身不等於 TTS Runner 已準備就緒。
+    node --check .\scripts\listening-cloud-tts-once.mjs
+    node --import tsx .\scripts\listening-cloud-tts-once.mjs --self-test
+    node --import tsx .\scripts\listening-cloud-tts-once.mjs --dry-run
+    node --import tsx --test .\cloudflare\test\listening-staging.test.mjs
 
-## 離線測試
+測試期間不要執行 --once、不要開啟 GitHub TTS 變數，也不要開啟 Cloudflare refill。
 
-```powershell
-node --check .\scripts\listening-daily-preflight.mjs
-node .\scripts\listening-daily-preflight.mjs --self-test
-node .\scripts\listening-daily-preflight.mjs --dry-run
-```
+## 限制
 
-`pilot-r0-lc7`、`pilot-r0-lc8` 尚未產生：之前只有 `--plan` 配額查詢、沒有執行 `--execute`；本次新增的唯讀排程也**不會**生成這兩段。
+本 PR 只累積正在等待完成的 Listening Set 的音檔，**尚未提供每天生成新的一套 36 段題目**。
+完整自動增加新題庫仍須加入題目起草、原創與難度審查、重複檢查、完整 36 MP3 驗收及發布管理。
