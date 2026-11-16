@@ -66,6 +66,10 @@ jobs:
         run: npm run typecheck
       - name: Bundle Cloudflare Worker in browser-compatible mode
         run: node --input-type=module -e "import { build } from 'esbuild'; await build({entryPoints:['cloudflare/src/index.ts'],bundle:true,platform:'browser',format:'esm',target:'es2022',outfile:'/tmp/toefl-worker-check.mjs'});"
+      - name: Cloudflare Wrangler deploy dry-run ONLY (no account credentials)
+        run: |
+          npx --no-install wrangler deploy --dry-run --config cloudflare/wrangler.jsonc --outdir /tmp/toefl-worker-dry-run
+          test -d /tmp/toefl-worker-dry-run
       - name: Smoke-test Worker adapter (mock D1 and assets)
         run: node --import tsx --test cloudflare/test/worker.test.mjs
       - name: Test Gemini draft validation (mock HTTP, no API key)
