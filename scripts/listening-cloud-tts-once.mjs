@@ -146,8 +146,14 @@ async function runOnce() {
     console.log(JSON.stringify({ result: 'skipped-safety-gate', day, geminiCalls: 0 }));
     return;
   }
-  if (status.queue?.some(q => Number(q.clips?.claimed || 0) > 0)) {
-    console.log(JSON.stringify({ result: 'skipped-awaiting-human-review-or-reconciliation',
+  // Claimed clips that have been durably staged may wait for nightly human
+  // review. A claimed clip without a matching staging record remains unsafe.
+  const staged = await worker('staged', creds.headers);
+  const claimedCount = status.queue?.reduce((n,q)=>n+Number(q.clips?.claimed||0),0);
+  if (!Number.isSafeInteger(claimedCount) || !Array.isArray(staged?.queue) ||
+      staged.result !== 'pending-human-review' ||
+      claimedCount !== staged.queue.length) {
+    console.log(JSON.stringify({ result: 'skipped-unreconciled-claim-or-staging',
       geminiCalls: 0 }));
     return;
   }
