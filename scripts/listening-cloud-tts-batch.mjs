@@ -11,9 +11,13 @@ const PREFIX='/api/cloud/listening-refill/';
 const LITE='gemini-3.8-flash-lite-tts', FLASH='gemini-3.8-flash-tts';
 const LIMIT=3, MAX_BATCH=6;
 const args=process.argv.slice(2);
-const day=()=>new Intl.DateTimeFormat('en-CA',{
-  timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit',
-}).format(new Date()).replace(/\//g,'-');
+const day=()=>{
+  const parts=new Intl.DateTimeFormat('en-US',{
+    timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit',
+  }).formatToParts(new Date());
+  const value=k=>parts.find(p=>p.type===k)?.value;
+  return [value('year'),value('month'),value('day')].join('-');
+};
 
 function valid(status,staged,expectedDay) {
   if(status?.day!==expectedDay || status.enabled!==true || status.r2Configured!==true ||
