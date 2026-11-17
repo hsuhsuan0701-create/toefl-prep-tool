@@ -1,0 +1,64 @@
+name: TOEFL Listening — Daily Batch TTS (Private Review, Opt In)
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "inspect_only (offline tests) or run_batch (up to 3 per model)"
+        type: choice
+        required: true
+        default: inspect_only
+        options:
+          - inspect_only
+          - run_batch
+      confirmation:
+        description: "Only run_batch: I_VERIFIED_TODAY_FREE_TIER_AND_APPROVE_BATCH"
+        type: string
+        required: false
+  schedule:
+    # 18:07 Taipei = 10:07 UTC, after Pacific midnight.
+    - cron: '7 10 * * *'
+
+permissions:
+  contents: read
+
+# Keep existing one-take/manual/scheduled workflows mutually exclusive.
+concurrency:
+  group: toefl-listening-cloud-tts-once
+  cancel-in-progress: false
+
+jobs:
+  daily-batch:
+    name: Up to three Lite and three Flash, all to private review
+    if: ${{ vars.LISTENING_CLOUD_TTS_ENABLED == 'true' && vars.LISTENING_BATCH_TTS_ENABLED == 'true' && (github.event_name == 'schedule' || (inputs.mode == 'run_batch' && inputs.confirmation == 'I_VERIFIED_TODAY_FREE_TIER_AND_APPROVE_BATCH')) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout reviewed branch code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Validate scripts without network or Gemini
+        run: |
+          node --check scripts/listening-cloud-tts-once.mjs
+          node --check scripts/listening-cloud-tts-batch.mjs
+          node scripts/listening-cloud-tts-batch.mjs --self-test
+          node scripts/listening-cloud-tts-batch.mjs --dry-run
+      - name: Install locked dependencies and ffmpeg
+        run: |
+          npm ci
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends ffmpeg
+      - name: Execute bounded same-day TTS batch to staging only
+        env:
+          LISTENING_BATCH_APPROVED: 'true'
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TOEFL_MANUAL_TEST_TOKEN: ${{ secrets.TOEFL_MANUAL_TEST_TOKEN }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: node scripts/listening-cloud-tts-batch.mjs --execute
