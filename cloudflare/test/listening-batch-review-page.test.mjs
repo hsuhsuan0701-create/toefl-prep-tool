@@ -20,6 +20,13 @@ test('consolidated private management page has valid browser JavaScript', async 
   assert.match(html, /URL\.revokeObjectURL/);
   assert.doesNotMatch(html, /localStorage|sessionStorage/);
   assert.doesNotMatch(html, /document\.cookie/);
+  assert.match(response.headers.get('content-security-policy'), /media-src 'self' blob:/);
+  assert.match(html, /完整性驗證通過/);
+  assert.match(html, /crypto\.subtle\.digest/);
+  assert.match(html, /heardCheck\.checked/);
+  assert.match(html, /下載 MP3 本機驗收/);
+  assert.match(html, /player\.addEventListener\("ended"/);
+  assert.doesNotMatch(html, /await player\.play\(\)/);
 });
 
 test('review still authenticates each API call using the existing token input', async () => {
