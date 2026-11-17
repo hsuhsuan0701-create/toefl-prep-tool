@@ -1,0 +1,130 @@
+name: TOEFL Listening — Manual Batch 3 Lite + 3 Flash (NO Schedule)
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "inspect_only (no cloud/Gemini) or run_batch (up to 6 TTS calls)"
+        type: choice
+        required: true
+        default: inspect_only
+        options:
+          - inspect_only
+          - run_batch
+      expected_uploaded:
+        description: "Number of human-approved clips BEFORE this run, check private manager"
+        type: string
+        required: true
+        default: '28'
+      pacific_day:
+        description: "Pacific Google quota day YYYY-MM-DD from private manager"
+        type: string
+        required: true
+      confirmation:
+        description: "For run_batch ONLY: I_VERIFIED_FREE_TIER_AND_APPROVE_SIX_TTS_MAX"
+        type: string
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: toefl-listening-cloud-tts-once
+  cancel-in-progress: false
+
+jobs:
+  manual-batch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Validate manual mode, date, inventory and user consent
+        env:
+          MODE: ${{ inputs.mode }}
+          EXPECTED: ${{ inputs.expected_uploaded }}
+          DAY: ${{ inputs.pacific_day }}
+          CONFIRMATION: ${{ inputs.confirmation }}
+        run: |
+          set -euo pipefail
+          [[ "$MODE" == "inspect_only" || "$MODE" == "run_batch" ]] || exit 1
+          [[ "$EXPECTED" =~ ^([0-9]|[12][0-9]|3[0-5])$ ]] || exit 1
+          [[ "$DAY" =~ ^20[0-9]{2}-[0-9]{2}-[0-9]{2}$ ]] || exit 1
+          if [[ "$MODE" == "run_batch" && "$CONFIRMATION" != "I_VERIFIED_FREE_TIER_AND_APPROVE_SIX_TTS_MAX" ]]; then
+            echo "::error::Same-project Free Tier, billing OFF, model RPD and six-attempt confirmation required"
+            exit 1
+          fi
+      - uses: actions/checkout@v4
+        with:
+          ref: 27849d8ab525b1c78c983a33fce57abf266852b9
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Run offline syntax and safety checks
+        run: |
+          node --check scripts/listening-cloud-tts-batch.mjs
+          node scripts/listening-cloud-tts-batch.mjs --self-test
+          node scripts/listening-cloud-tts-batch.mjs --dry-run
+      - name: Inspect exact queue and both models with two private read-only GETs
+        if: ${{ inputs.mode == 'run_batch' }}
+        env:
+          EXPECTED: ${{ inputs.expected_uploaded }}
+          DAY: ${{ inputs.pacific_day }}
+          TOEFL_MANUAL_TEST_TOKEN: ${{ secrets.TOEFL_MANUAL_TEST_TOKEN }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: |
+          node --input-type=module <<'NODE'
+          const token=process.env.TOEFL_MANUAL_TEST_TOKEN||'';
+          const id=process.env.CF_ACCESS_CLIENT_ID||'';
+          const secret=process.env.CF_ACCESS_CLIENT_SECRET||'';
+          if(token.length<32||!id||!secret)throw Error('Missing access credentials');
+          const day=()=>{
+            const p=new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',
+              year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+            const v=k=>p.find(x=>x.type===k)?.value;return [v('year'),v('month'),v('day')].join('-');
+          };
+          if(process.env.DAY!==day())throw Error('Pacific day mismatch; NO Gemini');
+          const base='https://toefl-prep-private.ihsuan0701.workers.dev/api/cloud/listening-refill/';
+          async function get(p){
+            const r=await fetch(base+p,{redirect:'error',signal:AbortSignal.timeout(12000),
+              headers:{Authorization:'Bearer '+token,'CF-Access-Client-Id':id,
+                'CF-Access-Client-Secret':secret,Accept:'application/json','Cache-Control':'no-store'}});
+            if(!r.ok)throw Error('Private GET '+p+' HTTP '+r.status);
+            return r.json();
+          }
+          const status=await get('status'),staged=await get('staged');
+          const drafts=status.queue?.filter(q=>q.id==='lsn-a97620b2c800')||[];
+          const c=drafts[0]?.clips||{};
+          const uploaded=Number(process.env.EXPECTED);
+          const names=['gemini-3.8-flash-lite-tts','gemini-3.8-flash-tts'];
+          if(!(status.day===day()&&status.enabled===true&&status.r2Configured===true&&
+            status.queue?.length===1&&drafts.length===1&&
+            ['draft','rendering'].includes(drafts[0].state)&&
+            c.uploaded===uploaded&&c.pending===36-uploaded&&c.pending>0&&
+            Number(c.claimed||0)===0&&Number(c.flagged||0)===0&&
+            staged?.result==='pending-human-review'&&staged.queue?.length===0&&
+            status.models?.length===2&&names.every(name=>{
+              const m=status.models.find(x=>x.model===name);
+              return m&&m.dailyLimit===3&&m.claimed===0&&m.ready===true&&
+                m.freeTierVerifiedToday===true;
+            })))throw Error('Exact 3+3 quota, status, approved count or review gate mismatch; NO Gemini');
+          console.log(JSON.stringify({result:'safe-preflight-3plus3',day:day(),uploaded,
+            remainingDraft:c.pending,maxGeminiAttempts:6,geminiCallsSoFar:0}));
+          NODE
+      - name: Install locked dependencies and audio tools only for requested batch
+        if: ${{ inputs.mode == 'run_batch' }}
+        run: |
+          npm ci
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends ffmpeg
+      - name: Generate at most three Lite and three Flash to private R2 staging ONLY
+        if: ${{ inputs.mode == 'run_batch' }}
+        env:
+          LISTENING_BATCH_APPROVED: 'true'
+          LISTENING_BATCH_MAX_ATTEMPTS: '6'
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TOEFL_MANUAL_TEST_TOKEN: ${{ secrets.TOEFL_MANUAL_TEST_TOKEN }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: node scripts/listening-cloud-tts-batch.mjs --execute
