@@ -30,7 +30,7 @@ concurrency:
 jobs:
   daily-batch:
     name: Up to three Lite and three Flash, all to private review
-    if: ${{ vars.LISTENING_CLOUD_TTS_ENABLED == 'true' && vars.LISTENING_BATCH_TTS_ENABLED == 'true' && (github.event_name == 'schedule' || (inputs.mode == 'run_batch' && inputs.confirmation == 'I_VERIFIED_TODAY_FREE_TIER_AND_APPROVE_BATCH')) }}
+    if: ${{ vars.LISTENING_CLOUD_TTS_ENABLED == 'true' && vars.LISTENING_BATCH_TTS_ENABLED == 'true' && vars.LISTENING_DAILY_TTS_SCHEDULE_ENABLED != 'true' && (github.event_name == 'schedule' || (inputs.mode == 'run_batch' && inputs.confirmation == 'I_VERIFIED_TODAY_FREE_TIER_AND_APPROVE_BATCH')) }}
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
