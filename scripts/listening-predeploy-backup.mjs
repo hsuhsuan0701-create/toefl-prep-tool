@@ -15,7 +15,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync, statSync } from 'no
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
-import Database from 'better-sqlite3';
+import { DatabaseSync } from 'node:sqlite';
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const BASE = join(ROOT, 'data', 'backups');
@@ -94,7 +94,7 @@ function verifyMp3(file,expected){
   return got;
 }
 function test(){
-  const db=new Database(':memory:');
+  const db=new DatabaseSync(':memory:');
   db.exec(`CREATE TABLE listening_refill_clips(set_id TEXT,stimulus_id TEXT,status TEXT,object_key TEXT,bytes INTEGER);
     CREATE TABLE listening_auto_review_staged(set_id TEXT,stimulus_id TEXT,status TEXT,object_key TEXT,sha256 TEXT,bytes INTEGER);
     CREATE TABLE listening_refill_audio_imports(set_id TEXT,stimulus_id TEXT,object_key TEXT,mp3_sha256 TEXT,bytes INTEGER);
@@ -128,7 +128,7 @@ async function main(){
   console.log('Exporting read-only remote D1 to a PRIVATE, gitignored local folder.');
   cli(['d1','export',D1,'--remote','--config',CONFIG,'--output',sqlFile]);
   if(!existsSync(sqlFile)||statSync(sqlFile).size<1024)die('D1 export is missing/too small. STOP');
-  const db=new Database(':memory:');
+  const db=new DatabaseSync(':memory:');
   try{
     db.exec(readFileSync(sqlFile,'utf8'));
     const m=deriveManifest(db);
