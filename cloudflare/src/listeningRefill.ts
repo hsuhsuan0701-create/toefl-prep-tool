@@ -205,9 +205,15 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
     }catch{return reply({error:"Unable to verify stop switch; no TTS claim issued"},503);}
     if(!env.LISTENING_AUDIO)return reply({error:"R2 bucket not configured; refusing to spend TTS"},503);
     try{
-      // Never issue a new paid claim while any prior claim awaits review or reconciliation.
+      // A completed R2 staging upload remains "claimed" until a human reviews it.
+      // Allow more clips to be staged for a nightly review, but NEVER proceed if
+      // even one claimed clip lacks a durable pending_review ledger row.
+      // This fails closed on interrupted, failed or ambiguous Gemini/R2 attempts.
       const awaiting=await env.DB.prepare(
-        "SELECT COUNT(*) AS n FROM listening_refill_clips WHERE status='claimed'"
+        "SELECT COUNT(*) AS n FROM listening_refill_clips c WHERE c.status='claimed' " +
+        "AND NOT EXISTS (SELECT 1 FROM listening_auto_review_staged s " +
+        "WHERE s.set_id=c.set_id AND s.stimulus_id=c.stimulus_id " +
+        "AND s.status='pending_review')"
       ).first<{n:number}>();
       if((awaiting?.n??0)>0)return reply({result:"awaiting-review-or-reconciliation",
         awaiting:awaiting!.n,ttsCalls:0});
