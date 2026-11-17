@@ -11,6 +11,14 @@ const PREFIX='/api/cloud/listening-refill/';
 const LITE='gemini-3.8-flash-lite-tts', FLASH='gemini-3.8-flash-tts';
 const LIMIT=3, MAX_BATCH=6;
 const args=process.argv.slice(2);
+const PILOT=process.env.LISTENING_BATCH_PILOT==='true';
+const maxAttempts=process.env.LISTENING_BATCH_MAX_ATTEMPTS
+  ? Number(process.env.LISTENING_BATCH_MAX_ATTEMPTS):MAX_BATCH;
+const expectedPilotDay=process.env.LISTENING_BATCH_EXPECTED_PACIFIC_DAY||'';
+const expectedPilotUploaded=Number(process.env.LISTENING_BATCH_EXPECTED_UPLOADED);
+if(!Number.isSafeInteger(maxAttempts)||maxAttempts<1||maxAttempts>MAX_BATCH)
+  throw Error('Invalid bounded maximum attempts; no Gemini request');
+
 const day=()=>{
   const parts=new Intl.DateTimeFormat('en-US',{
     timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit',
@@ -37,6 +45,20 @@ function valid(status,staged,expectedDay) {
     Number(q.clips?.flagged||0)===0);
   return known && caps && inventory && claims===staged.queue.length;
 }
+function pilotReady(status,staged,expectedDay,uploaded){
+  if(!valid(status,staged,expectedDay)||staged.queue.length!==0||
+     !Number.isInteger(uploaded)||uploaded<0||uploaded>=36)return false;
+  const drafts=status.queue.filter(q=>q.id==='lsn-a97620b2c800');
+  if(drafts.length!==1||status.queue.length!==1)return false;
+  const clips=drafts[0].clips||{};
+  if(clips.uploaded!==uploaded||clips.pending!==36-uploaded||
+     Number(clips.claimed||0)!==0||Number(clips.flagged||0)!==0)return false;
+  return [LITE,FLASH].every(name=>{
+    const model=status.models.find(m=>m.model===name);
+    return model?.ready===true&&model.freeTierVerifiedToday===true&&
+      model.dailyLimit-model.claimed===1;
+  });
+}
 function offlineTest(){
   const d='2026-11-17';
   const status={day:d,enabled:true,r2Configured:true,
@@ -49,12 +71,21 @@ function offlineTest(){
   assert.ok(!valid({...status,models:status.models.map(m=>({...m,dailyLimit:10}))},staged,d));
   assert.ok(!valid({...status,day:'2026-11-16'},staged,d));
   assert.ok(!valid({...status,queue:[{clips:{...status.queue[0].clips,flagged:1}}]},staged,d));
+  const pilotStatus={...status,
+    queue:[{id:'lsn-a97620b2c800',clips:{uploaded:26,pending:10,claimed:0,flagged:0}}],
+    models:status.models.map(m=>({...m,
+      dailyLimit:m.claimed+1,remaining:1,ready:true}))};
+  assert.ok(pilotReady(pilotStatus,{result:'pending-human-review',queue:[]},d,26));
+  assert.ok(!pilotReady(pilotStatus,staged,d,26));
+  assert.ok(!pilotReady(pilotStatus,{result:'pending-human-review',queue:[]},d,25));
+  assert.ok(!pilotReady({...pilotStatus,models:pilotStatus.models.map(m=>({...m,dailyLimit:m.dailyLimit+1}))},
+    {result:'pending-human-review',queue:[]},d,26));
   console.log(JSON.stringify({result:'batch-offline-tests-passed',geminiCalls:0,writes:0}));
 }
 async function main() {
   if(args.length===1 && args[0]==='--self-test')return offlineTest();
   if(args.length===1 && args[0]==='--dry-run'){
-    console.log(JSON.stringify({result:'batch-dry-run',geminiCalls:0,writes:0,maxAttempts:MAX_BATCH}));
+    console.log(JSON.stringify({result:'batch-dry-run',geminiCalls:0,writes:0,maxAttempts}));
     return;
   }
   if(args.length!==1 || args[0]!=='--execute')throw Error('Only --execute, --self-test or --dry-run');
@@ -66,6 +97,10 @@ async function main() {
   if(token.length<32 || !id || !secret || !process.env.GEMINI_API_KEY)
     throw Error('Missing credentials; no Gemini request');
   const confirmedDay=day();
+  if(PILOT&&(maxAttempts!==2||expectedPilotDay!==confirmedDay||
+     !Number.isInteger(expectedPilotUploaded)||expectedPilotUploaded<0||
+     expectedPilotUploaded>=36))
+    throw Error('Pilot requires exactly two attempts and matching Pacific day/inventory; STOP');
   const get=async(endpoint)=>{
     const res=await fetch(ORIGIN+PREFIX+endpoint,{
       method:'GET',redirect:'error',signal:AbortSignal.timeout(12000),
@@ -76,11 +111,17 @@ async function main() {
     return res.json();
   };
   let completed=0;
-  while(completed<MAX_BATCH){
+  let initialClaims=null;
+  while(completed<maxAttempts){
     if(day()!==confirmedDay)throw Error('Pacific day changed; stop without new claim');
     const status=await get('status'),staged=await get('staged');
     if(!valid(status,staged,confirmedDay))
       throw Error('Free Tier/model caps, unresolved claim or draft state invalid; STOP');
+    if(PILOT&&completed===0){
+      if(!pilotReady(status,staged,confirmedDay,expectedPilotUploaded))
+        throw Error('Pilot requires exact inventory, zero pending reviews, one remaining Lite and one remaining Flash; STOP');
+      initialClaims=Object.fromEntries(status.models.map(m=>[m.model,m.claimed]));
+    }
     const allReady=status.models.some(m=>m.ready);
     const pending=status.queue.some(q=>Number(q.clips?.pending||0)>0);
     if(!allReady||!pending){
@@ -108,6 +149,15 @@ async function main() {
     completed++;
     console.log(JSON.stringify({result:'one-more-staged',completed,
       pendingHumanReview:newStaged.queue.length,apiAttempts:completed,published:false}));
+  }
+  if(PILOT){
+    if(completed!==2||!initialClaims)
+      throw Error('Pilot ended before two staged clips; inspect status, no automatic retry');
+    const finished=await get('status'),review=await get('staged');
+    if(!valid(finished,review,confirmedDay)||
+       ![LITE,FLASH].every(name=>
+         finished.models.find(m=>m.model===name)?.claimed===initialClaims[name]+1))
+      throw Error('Expected exactly one Lite and one Flash claim; inspect and reconcile manually');
   }
   console.log(JSON.stringify({result:'batch-complete-for-human-review',completed,
     published:false,manualReviewRequired:true}));
