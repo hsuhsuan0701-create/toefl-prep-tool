@@ -33,6 +33,8 @@ jobs:
           node --check scripts/listening-cloud-tts-batch.mjs
           node scripts/listening-cloud-tts-batch.mjs --self-test
           node scripts/listening-cloud-tts-batch.mjs --dry-run
+          node --check scripts/listening-predeploy-backup.mjs
+          node scripts/listening-predeploy-backup.mjs --self-test
       - name: Verify D1/R2 batch staging using local fixtures only
         run: node --import tsx --test cloudflare/test/listening-staging.test.mjs
       - name: Typecheck project
