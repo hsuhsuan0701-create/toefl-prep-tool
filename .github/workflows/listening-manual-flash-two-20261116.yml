@@ -129,7 +129,7 @@ jobs:
             claimed === 0 && flagged === 0 &&
             !status.queue.some(x=>Number(x.clips?.claimed||0)>0) &&
             staged.queue.length === 0 &&
-            lite.dailyLimit === 0 && lite.claimed === 4 && lite.ready === false &&
+            lite.dailyLimit === 4 && lite.claimed === 4 && lite.ready === false &&
             flash.dailyLimit === 2 && flash.claimed === expected-14 &&
             flash.freeTierVerifiedToday === true && flash.ready === true;
           console.log(JSON.stringify({
