@@ -23,3 +23,19 @@
 - No auto-retry, no failover between models for long clips, no automatic quality approval, no auto publication.
 - No second long-lived login session has been implemented. Consolidation avoids a second password entry **while using one browser page**; it does not eliminate the second-factor Bearer token.
 - If legacy one-take scheduling and batch scheduling are both enabled, batch's GitHub job is gated OFF. Do not use two scheduling jobs for the same queue.
+
+## Local predeployment backups (manual, no Gemini)
+This repository is a **fork of `jayin92/toefl-prep-tool`**. All PRs and code changes are on `hsuhsuan0701-create/toefl-prep-tool`. No upstream push or PR is involved.
+
+From a private computer with Node 24, npm, and your **own** authenticated Cloudflare Wrangler account:
+
+```powershell
+npm ci
+npx wrangler whoami
+node scripts/listening-predeploy-backup.mjs --self-test
+node scripts/listening-predeploy-backup.mjs --execute --min-uploaded=24
+```
+
+The remote operation exports D1 SQL and downloads **only MP3 objects referenced by D1**, using the read-only Wrangler commands `d1 export --remote` and `r2 object get --remote`. The script verifies object sizes and SHA-256 where known; `verification.json` summarizes the result. Review its count against your current live admin dashboard; the 24 minimum is a historical floor, **not a claim about today's current count**. If `verification.json` is missing or the backup command fails, **do not deploy**. Exported data may contain sensitive content; keep it locally encrypted/offline and never commit or upload it. Git ignores `data/backups/`.
+
+Important: an R2 backup of D1-referenced audio is not a full bucket snapshot and does **not** cover unindexed/orphaned objects. If full R2 restore coverage is needed, take a separate Cloudflare account–authorized bucket backup/snapshot before a production swap. This script never deploys or changes live state.
