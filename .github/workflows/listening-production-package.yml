@@ -1,0 +1,110 @@
+name: TOEFL Listening — Production Candidate Package (NO DEPLOY)
+
+on:
+  push:
+    branches:
+      - feat/listening-batch-review-20261117
+    paths:
+      - '.github/workflows/listening-production-package.yml'
+      - 'cloudflare/src/**'
+      - 'cloudflare/wrangler.jsonc'
+      - 'client/**'
+      - 'shared/**'
+      - 'scripts/stage-cloudflare-listening-audio.mjs'
+      - 'package-lock.json'
+      - 'package.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: listening-candidate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  candidate:
+    name: Build complete Worker and site assets with ZERO deployment
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Run offline safety checks (no Cloudflare account / Gemini)
+        run: |
+          node scripts/listening-cloud-tts-batch.mjs --self-test
+          node scripts/listening-predeploy-backup.mjs --self-test
+          node --import tsx --test cloudflare/test/listening-staging.test.mjs
+          node --import tsx --test cloudflare/test/listening-batch-review-page.test.mjs
+      - name: Build existing site and stage original Listening MP3s
+        run: |
+          npm run build -w client
+          node scripts/stage-cloudflare-listening-audio.mjs
+          test -f client/dist/index.html
+          test -f client/dist/listening-audio/lsn-03948a55/lcr-r1.mp3
+          test ! -f client/dist/listening-audio/lsn-03948a55/audio-manifest.json
+      - name: Create version-pinned Worker bundle via Wrangler dry run
+        run: |
+          mkdir -p "$RUNNER_TEMP/listening-bundle"
+          npx --yes wrangler@4.162.0 deploy --dry-run --config cloudflare/wrangler.jsonc --outdir "$RUNNER_TEMP/listening-bundle"
+          find "$RUNNER_TEMP/listening-bundle" -maxdepth 2 -type f -printf '%P\n'
+      - name: Assemble self-contained production candidate
+        run: |
+          set -euo pipefail
+          mkdir -p release/cloudflare/src release/client
+          mapfile -t JS < <(find "$RUNNER_TEMP/listening-bundle" -maxdepth 1 -type f -name '*.js' | sort)
+          if [ "${#JS[@]}" -ne 1 ]; then
+            echo "Expected exactly one bundled Worker JS file; refusing incomplete release." >&2
+            exit 1
+          fi
+          cp "${JS[0]}" release/cloudflare/src/index.js
+          cp cloudflare/wrangler.jsonc release/cloudflare/wrangler.jsonc
+          cp -a client/dist release/client/
+          node --input-type=module <<'NODE'
+          import { readFileSync, writeFileSync } from 'node:fs';
+          import { createHash } from 'node:crypto';
+          import { readdirSync, statSync } from 'node:fs';
+          import { join } from 'node:path';
+          const p='release/cloudflare/wrangler.jsonc';
+          const conf=readFileSync(p,'utf8');
+          if (!conf.includes('"main": "./src/index.ts"')) throw Error('Wrangler config entry changed');
+          writeFileSync(p,conf.replace('"main": "./src/index.ts"','"main": "./src/index.js"'));
+          const all=[];
+          function visit(d){
+            for(const name of readdirSync(d,{withFileTypes:true})){
+              const f=join(d,name.name);
+              if(name.isDirectory())visit(f);
+              else if(name.isFile())all.push(f);
+            }
+          }
+          visit('release/client/dist');
+          if(all.length<200)throw Error('Site assets seem incomplete: '+all.length);
+          const originals=all.filter(x=>x.includes('/listening-audio/')&&x.endsWith('.mp3'));
+          if(originals.length<500)throw Error('Packaged original Listening MP3s incomplete: '+originals.length);
+          const blob=readFileSync('release/cloudflare/src/index.js');
+          writeFileSync('release/RELEASE-INSTRUCTIONS.txt',
+            'PRIVATE TOEFL WORKER CANDIDATE - NOT DEPLOYED\n'+
+            'Source commit: '+process.env.GITHUB_SHA+'\n'+
+            'Worker SHA256: '+createHash('sha256').update(blob).digest('hex')+'\n'+
+            'Client assets: '+all.length+'; original Listening MP3: '+originals.length+'\n'+
+            'Before any upload: compare currently deployed Worker settings, confirm D1/R2 backup, review cron/vars and Access policy.\n'+
+            'Only after operator approval, from extracted artifact root:\n'+
+            'npx.cmd --yes wrangler@4.162.0 deploy --no-bundle --config .\\cloudflare\\wrangler.jsonc\n'+
+            'Never activate Gemini batch scheduling in the same step.\n');
+          console.log(JSON.stringify({source:process.env.GITHUB_SHA,siteFiles:all.length,originalMp3:originals.length,bundleBytes:blob.length,geminiCalls:0,cloudWrites:0}));
+          NODE
+      - name: Verify release package can deploy using NO-BUNDLE dry run
+        run: |
+          npx --yes wrangler@4.162.0 deploy --dry-run --no-bundle --config release/cloudflare/wrangler.jsonc --outdir "$RUNNER_TEMP/release-verify"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: toefl-worker-candidate-${{ github.sha }}
+          path: release/
+          if-no-files-found: error
+          retention-days: 7
