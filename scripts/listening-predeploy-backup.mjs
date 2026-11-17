@@ -126,7 +126,7 @@ async function main(){
   mkdirSync(folder,{recursive:true});
   const sqlFile=join(folder,'d1-remote.sql');
   console.log('Exporting read-only remote D1 to a PRIVATE, gitignored local folder.');
-  cli(['d1','export',D1,'--remote','--config',CONFIG,'--output',sqlFile,'--skip-confirmation']);
+  cli(['d1','export',D1,'--remote','--config',CONFIG,'--output',sqlFile]);
   if(!existsSync(sqlFile)||statSync(sqlFile).size<1024)die('D1 export is missing/too small. STOP');
   const db=new Database(':memory:');
   try{
