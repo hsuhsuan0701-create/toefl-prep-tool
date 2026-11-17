@@ -117,7 +117,8 @@ test('new take is staged once, auditioned, and imported only after human decisio
     assert.equal(sql.prepare('SELECT COUNT(*) AS n FROM listening_sets').get().n,0);
     const awaiting = await post(env,'/api/cloud/listening-refill/claim',
       {confirm:'CLAIM_LISTENING_TTS_ONCE'});
-    assert.equal((await awaiting.json()).result,'awaiting-review-or-reconciliation');
+    assert.equal((await awaiting.json()).result,'daily-limit',
+      'durably staged clip no longer blocks; the one-call model cap still does');
 
     const listing = await get(env,'/api/cloud/listening-refill/staged');
     const queue = (await listing.json()).queue;
