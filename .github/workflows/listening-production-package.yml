@@ -93,9 +93,9 @@ jobs:
             'Source commit: '+process.env.GITHUB_SHA+'\n'+
             'Worker SHA256: '+createHash('sha256').update(blob).digest('hex')+'\n'+
             'Client assets: '+all.length+'; original Listening MP3: '+originals.length+'\n'+
-            'Before any upload: compare currently deployed Worker settings, confirm D1/R2 backup, review cron/vars and Access policy.\n'+
+            'DO NOT DEPLOY until remote Worker vars and Cron have been compared, D1/R2 backup verified, and explicit operator approval obtained.\n'+
             'Only after operator approval, from extracted artifact root:\n'+
-            'npx.cmd --yes wrangler@4.162.0 deploy --no-bundle --config .\\cloudflare\\wrangler.jsonc\n'+
+            'npx.cmd --yes wrangler@4.162.0 deploy --no-bundle --keep-vars --strict --config .\\cloudflare\\wrangler.jsonc\n'+
             'Never activate Gemini batch scheduling in the same step.\n');
           console.log(JSON.stringify({source:process.env.GITHUB_SHA,siteFiles:all.length,originalMp3:originals.length,bundleBytes:blob.length,geminiCalls:0,cloudWrites:0}));
           NODE
