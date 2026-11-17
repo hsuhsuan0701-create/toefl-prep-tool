@@ -1,0 +1,184 @@
+name: TOEFL Listening — Manual Next TTS (One Clip Per Review)
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "inspect_only (two read-only GETs) OR generate_one (max ONE Gemini TTS request)"
+        type: choice
+        required: true
+        default: inspect_only
+        options:
+          - inspect_only
+          - generate_one
+      expected_uploaded:
+        description: "Approved/uploaded count BEFORE this run (0-35). Verify in private manager."
+        type: string
+        required: true
+        default: '16'
+      confirmation:
+        description: "Only for generate_one: I_VERIFIED_FREE_TIER_AND_APPROVE_ONE_TTS"
+        type: string
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: toefl-listening-cloud-tts-once
+  cancel-in-progress: false
+
+jobs:
+  one-take:
+    name: Inspect or make ONE Listening TTS clip for human review
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Require explicit per-call confirmation
+        env:
+          MODE: ${{ inputs.mode }}
+          EXPECTED_UPLOADED: ${{ inputs.expected_uploaded }}
+          CONFIRM: ${{ inputs.confirmation }}
+        run: |
+          set -euo pipefail
+          [[ "$MODE" == "inspect_only" || "$MODE" == "generate_one" ]] || { echo "::error::Unexpected mode"; exit 1; }
+          [[ "$EXPECTED_UPLOADED" =~ ^([0-9]|[12][0-9]|3[0-5])$ ]] || { echo "::error::Expected uploaded count must be 0-35"; exit 1; }
+          if [[ "$MODE" == "generate_one" && "$CONFIRM" != "I_VERIFIED_FREE_TIER_AND_APPROVE_ONE_TTS" ]]; then
+            echo "::error::Verify same Gemini API project Free Tier, no paid Billing, available RPD for the enabled model(s), and approve one request."
+            exit 1
+          fi
+
+      - name: Checkout exact previously-tested one-take code
+        uses: actions/checkout@v4
+        with:
+          ref: 7467227f3f3fcdc9e151ec4518d918976f4cf227
+          persist-credentials: false
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Inspect remote queue, human review and today model limits (TWO GETs ONLY)
+        id: inspect
+        env:
+          MODE: ${{ inputs.mode }}
+          EXPECTED_UPLOADED: ${{ inputs.expected_uploaded }}
+          TOEFL_MANUAL_TEST_TOKEN: ${{ secrets.TOEFL_MANUAL_TEST_TOKEN }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: |
+          node --input-type=module <<'NODE'
+          import { appendFileSync } from 'node:fs';
+
+          const token = process.env.TOEFL_MANUAL_TEST_TOKEN || '';
+          const id = process.env.CF_ACCESS_CLIENT_ID || '';
+          const secret = process.env.CF_ACCESS_CLIENT_SECRET || '';
+          if (token.length < 32 || !id || !secret)
+            throw Error('Missing private credential. No Gemini request.');
+          const pacificDay = () => {
+            const parts = new Intl.DateTimeFormat('en-US', {
+              timeZone: 'America/Los_Angeles',
+              year: 'numeric', month: '2-digit', day: '2-digit',
+            }).formatToParts(new Date());
+            const v = k => parts.find(p => p.type === k)?.value;
+            return [v('year'),v('month'),v('day')].join('-');
+          };
+          const base = 'https://toefl-prep-private.ihsuan0701.workers.dev/api/cloud/listening-refill/';
+          const get = async p => {
+            const res = await fetch(base + p, {
+              method: 'GET', redirect: 'error', signal: AbortSignal.timeout(12000),
+              headers: {
+                Authorization: 'Bearer ' + token,
+                'CF-Access-Client-Id': id, 'CF-Access-Client-Secret': secret,
+                Accept: 'application/json', 'Cache-Control': 'no-store',
+              },
+            });
+            if (!res.ok) throw Error('Private GET '+p+' HTTP '+res.status+'; STOP');
+            if (!(res.headers.get('content-type')||'').includes('application/json'))
+              throw Error('Unexpected private response; STOP');
+            return res.json();
+          };
+
+          const [status, staged] = [await get('status'), await get('staged')];
+          if (status?.day !== pacificDay() || !Array.isArray(status.queue) ||
+              !Array.isArray(status.models) || status.models.length !== 2 ||
+              staged?.result !== 'pending-human-review' || !Array.isArray(staged.queue))
+            throw Error('Invalid Pacific day or private queue; no TTS');
+          const draft = status.queue.find(d => d.id === 'lsn-a97620b2c800');
+          const c = draft?.clips;
+          if (!draft || !c || !['draft','rendering'].includes(draft.state))
+            throw Error('Expected draft absent or blocked; no TTS');
+          const uploaded = c.uploaded ?? -1, pending = c.pending ?? -1;
+          const claimed = c.claimed ?? 0, flagged = c.flagged ?? 0;
+          if (![uploaded,pending,claimed,flagged].every(x=>Number.isInteger(x)&&x>=0) ||
+              uploaded+pending+claimed+flagged !== 36)
+            throw Error('Inconsistent inventory; no TTS');
+
+          const lite = status.models.find(m=>m.model==='gemini-3.8-flash-lite-tts');
+          const flash = status.models.find(m=>m.model==='gemini-3.8-flash-tts');
+          if (!lite || !flash) throw Error('Unexpected TTS models');
+          const expected = Number(process.env.EXPECTED_UPLOADED);
+          const safeModelStates = [lite,flash].every(m =>
+            Number.isInteger(m.dailyLimit) && m.dailyLimit>=0 && m.dailyLimit<=10 &&
+            Number.isInteger(m.claimed) && m.claimed>=0 &&
+            typeof m.freeTierVerifiedToday === 'boolean' &&
+            typeof m.ready === 'boolean' &&
+            m.ready === (m.freeTierVerifiedToday && m.dailyLimit > m.claimed));
+          // Policy caps can be increased by the human operator AFTER verifying
+          // the same Google project's RPD and Free Tier for this Pacific day.
+          // Never assume software D1 limits equal Google's external quota.
+          const oneModelAvailable = [lite,flash].some(m=>m.ready===true);
+          const ready = safeModelStates && oneModelAvailable && status.day === pacificDay() &&
+            status.enabled === true && status.r2Configured === true &&
+            uploaded === expected && pending === 36-expected &&
+            claimed === 0 && flagged === 0 &&
+            !status.queue.some(x=>Number(x.clips?.claimed||0)>0) &&
+            staged.queue.length === 0;
+          console.log(JSON.stringify({
+            pacificDay:status.day,
+            enabled:status.enabled, r2Configured:status.r2Configured,
+            uploaded,pending,claimed,flagged,
+            waitingForHumanReview:staged.queue.length,
+            lite:{claimed:lite.claimed,cap:lite.dailyLimit,
+              freeTierVerifiedToday:lite.freeTierVerifiedToday,ready:lite.ready},
+            flash:{claimed:flash.claimed,cap:flash.dailyLimit,
+              freeTierVerifiedToday:flash.freeTierVerifiedToday,ready:flash.ready},
+            eligibleForOneTtsRequest:ready,
+            noGeminiCallYet:true,
+          }));
+          if (process.env.MODE === 'generate_one' && !ready)
+            throw Error('Not eligible. No Gemini call. Check uploaded count, review, caps, Free Tier attestation and current Pacific day; STOP.');
+          appendFileSync(process.env.GITHUB_OUTPUT,
+            'eligible='+((process.env.MODE==='generate_one'&&ready)?'true':'false')+'\n');
+          NODE
+
+      - name: Install ffmpeg / ffprobe only when eligible
+        if: steps.inspect.outputs.eligible == 'true'
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
+
+      - name: Install locked dependencies only when eligible
+        if: steps.inspect.outputs.eligible == 'true'
+        run: npm ci
+
+      - name: Offline safety test of pinned, already-proven runner
+        if: steps.inspect.outputs.eligible == 'true'
+        run: |
+          node --check scripts/listening-cloud-tts-once.mjs
+          node --import tsx scripts/listening-cloud-tts-once.mjs --self-test
+          node --import tsx scripts/listening-cloud-tts-once.mjs --dry-run
+
+      - name: At most ONE TTS attempt; R2 staging only; human review mandatory
+        if: steps.inspect.outputs.eligible == 'true'
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TOEFL_MANUAL_TEST_TOKEN: ${{ secrets.TOEFL_MANUAL_TEST_TOKEN }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: |
+          if [ -z "${GEMINI_API_KEY:-}" ]; then
+            echo "::error::Gemini API key missing; STOP"
+            exit 1
+          fi
+          node --import tsx scripts/listening-cloud-tts-once.mjs --once
