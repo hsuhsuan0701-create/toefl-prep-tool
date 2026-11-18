@@ -1,0 +1,59 @@
+name: TOEFL Listening — Create ONE New Private Draft (Manual Only)
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_text_free_tier:
+        description: "I checked Gemini TEXT model Free Tier, Billing OFF and enough requests today"
+        type: boolean
+        required: true
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: toefl-listening-cloud-tts-once
+  cancel-in-progress: false
+
+jobs:
+  create:
+    name: Max six TEXT requests; original schema/reviews/novelty; D1 private draft ONLY
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - name: Enforce explicit human Free Tier confirmation
+        env:
+          CONFIRMED: ${{ inputs.confirm_text_free_tier }}
+        run: |
+          set -euo pipefail
+          if [[ "$CONFIRMED" != 'true' ]]; then
+            echo "::error::Check Google AI Studio TEXT model quota/Billing and tick confirmation."
+            exit 1
+          fi
+      - uses: actions/checkout@v4
+        with:
+          # Branch source includes private reserve-aware duplicate checks.
+          ref: 68842674473059934b7e26e54d43728d9f39ff12
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install locked JS dependencies
+        run: npm ci
+      - name: Offline schema, strict Zod and no-network tests
+        run: |
+          node --import tsx scripts/generate-listening-draft.mjs --structured --inspect-schema
+          node --import tsx --test cloudflare/test/listening-text-pilot.test.mjs
+          node --import tsx scripts/generate-listening-draft.mjs --structured
+      - name: Generate and independently audit ONE new 36-clip Listening TEXT draft
+        env:
+          LISTENING_DRAFT_GENERATION_ENABLED: 'true'
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: gemini-3.1-flash-lite
+          TOEFL_MANUAL_TEST_TOKEN: ${{ secrets.TOEFL_MANUAL_TEST_TOKEN }}
+          CF_ACCESS_CLIENT_ID: ${{ secrets.CF_ACCESS_CLIENT_ID }}
+          CF_ACCESS_CLIENT_SECRET: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}
+        run: |
+          node --import tsx scripts/generate-listening-draft.mjs --structured --execute
