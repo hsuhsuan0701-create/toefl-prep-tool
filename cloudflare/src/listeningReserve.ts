@@ -1,6 +1,6 @@
 /** Private, opt-in Listening reserve. Never synthesize audio or publish on a GET.
  * The public bank has only rows in listening_sets; fully approved drafts remain hidden.
- * Trigger after a successfully scored attempt and on the existing daily cron.
+ * Trigger after a completed listening attempt and on the existing daily cron.
  */
 import { ListeningSetSchema } from "@toefl-prep/shared";
 import { indexDeterministicItems } from "../../server/src/services/deterministicScoring.js";
@@ -66,7 +66,7 @@ export async function releaseOneReservedListeningSet(env:ListeningReserveEnv):Pr
   for(const clip of clips.results){
     const expected="stimuli/"+candidate.id+"/"+clip.stimulus_id+".mp3";
     if(clip.status!=="uploaded"||clip.object_key!==expected||
-       !Number.isSafeInteger(clip.bytes)||clip.bytes!<1024)
+       !Number.isSafeInteger(clip.bytes)||clip.bytes===null||clip.bytes<1024)
       return {result:"invalid-clip-record"};
     const remote=await env.LISTENING_AUDIO.head(expected);
     if(!remote||remote.size!==clip.bytes)return {result:"r2-mismatch"};
