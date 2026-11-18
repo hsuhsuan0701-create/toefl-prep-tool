@@ -15,6 +15,7 @@ import { listeningClips } from "./listeningAudio.js";
 import { authorizedAdmin, validPost } from "./academicPractice.js";
 import { handleListeningStaging } from "./listeningStaging.js";
 import { listeningStagingPage } from "./listeningStagingPage.js";
+import { entriesFromSet,compareCatalogEntries } from "../../server/src/services/generationCatalog.js";
 import { reserveStatus, setReserveAutoRelease } from "./listeningReserve.js";
 
 export interface ListeningRefillEnv {
@@ -200,6 +201,18 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
       const existing=await env.DB.prepare("SELECT id FROM listening_sets WHERE id=?")
         .bind(set.id).first();
       if(existing)return reply({error:"A published set already owns this ID"},409);
+      // A newly submitted private draft must not repeat an earlier private reserve.
+      // Local generation already checks the 14 bundled Sets; D1 owns prior private drafts.
+      const prior=await env.DB.prepare(
+        "SELECT content_json FROM listening_refill_drafts WHERE id<>? LIMIT 40"
+      ).bind(set.id).all<{content_json:string}>();
+      const candidateEntries=entriesFromSet(set);
+      for(const older of prior.results){
+        const oldSet=ListeningSetSchema.parse(JSON.parse(older.content_json));
+        const previousEntries=entriesFromSet(oldSet);
+        if(candidateEntries.some(a=>previousEntries.some(b=>compareCatalogEntries(a,b).length>0)))
+          return reply({error:"New Listening draft overlaps an existing private reserve; no upload"},409);
+      }
       await env.DB.batch([
         env.DB.prepare("INSERT INTO listening_refill_drafts(id,content_json,state) VALUES(?,?,'draft')")
           .bind(set.id,JSON.stringify(set)),
@@ -238,7 +251,10 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
         day,claimed:models.reduce((n,m)=>n+m.claimed,0),ttsCalls:0,
       });
       const active=await env.DB.prepare(
-        "SELECT id,content_json,state FROM listening_refill_drafts WHERE state IN ('draft','rendering') ORDER BY created_at ASC,id ASC LIMIT 1"
+        "SELECT d.id,d.content_json,d.state FROM listening_refill_drafts d "+
+        "WHERE d.state IN ('draft','rendering') "+
+        "AND EXISTS(SELECT 1 FROM listening_refill_clips c WHERE c.set_id=d.id AND c.status='pending') "+
+        "ORDER BY d.created_at ASC,d.id ASC LIMIT 1"
       ).first<DraftRow>();
       if(!active)return reply({result:"no-draft"});
       const pending=await env.DB.prepare(
