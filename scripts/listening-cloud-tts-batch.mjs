@@ -52,8 +52,12 @@ function valid(status,staged,expectedDay) {
   const unfinished=drafts.filter(d=>
     ['draft','rendering'].includes(d.state)&&(d.clips?.pending||0)>0);
   const globalClaims=drafts.reduce((n,d)=>n+(d.clips?.claimed||0),0);
+  const quarantined=status.verifiedQuarantinedClaims;
+  const unquarantined=status.unresolvedUnquarantinedClaims;
   return known&&caps&&inventory&&unfinished.length===1&&
-    globalClaims===staged.queue.length;
+    Number.isSafeInteger(quarantined)&&quarantined>=0&&
+    Number.isSafeInteger(unquarantined)&&unquarantined===0&&
+    globalClaims===staged.queue.length+quarantined;
 }
 function pilotReady(status,staged,expectedDay,uploaded){
   if(!valid(status,staged,expectedDay)||staged.queue.length!==0||
@@ -73,10 +77,22 @@ function offlineTest(){
   const d='2026-11-17';
   const status={day:d,enabled:true,r2Configured:true,
     queue:[{id:'lsn-a97620b2c800',state:'rendering',clips:{uploaded:20,pending:13,claimed:3,flagged:0}}],
+    verifiedQuarantinedClaims:0,unresolvedUnquarantinedClaims:0,
     models:[{model:LITE,dailyLimit:3,claimed:1,freeTierVerifiedToday:true,ready:true},
       {model:FLASH,dailyLimit:3,claimed:2,freeTierVerifiedToday:true,ready:true}]};
   const staged={result:'pending-human-review',queue:[{},{},{}]};
   assert.ok(valid(status,staged,d));
+  const failureStatus={...status,queue:[{...status.queue[0],
+    clips:{uploaded:20,pending:13,claimed:4,flagged:0}}],
+    verifiedQuarantinedClaims:1,unresolvedUnquarantinedClaims:0};
+  // The quarantine must be R2-verified by the authenticated Worker; it never
+  // erases its model attempt or reclaims its daily Lite quota.
+  assert.ok(valid(failureStatus,staged,d));
+  assert.ok(!valid({...failureStatus,verifiedQuarantinedClaims:0,
+    unresolvedUnquarantinedClaims:1},staged,d));
+  assert.ok(!valid({...failureStatus,verifiedQuarantinedClaims:0},staged,d));
+  assert.ok(!valid({...failureStatus,verifiedQuarantinedClaims:2},staged,d));
+
   assert.ok(!valid(status,{...staged,queue:[{},{}]},d));
   assert.ok(!valid({...status,models:status.models.map(m=>({...m,dailyLimit:11}))},staged,d));
   assert.ok(!valid({...status,day:'2026-11-16'},staged,d));
@@ -155,6 +171,8 @@ async function main() {
     console.log(JSON.stringify({result:'live-batch-inspection',pacificDay:confirmedDay,
       serverDay:status?.day,enabled:status?.enabled,r2Configured:status?.r2Configured,
       activeDraftId:active?.id||null,completedReserveCount:status?.queue?.filter(q=>(q.clips?.uploaded||0)===36).length||0,
+      verifiedQuarantinedClaims:status?.verifiedQuarantinedClaims??null,
+      unresolvedUnquarantinedClaims:status?.unresolvedUnquarantinedClaims??null,
       approved:c.uploaded??null,pending:c.pending??null,claimed:c.claimed??null,
       flagged:c.flagged??null,pendingReview:staged?.queue?.length??null,
       models:remaining,geminiCalls:0,published:false}));
