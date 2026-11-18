@@ -74,6 +74,36 @@ test("private draft requires authorization, is immutable, cannot publish with mi
   assert.equal(sql.prepare("SELECT COUNT(*) AS n FROM listening_sets WHERE id=?").get(original.id).n,0);
  }finally{sql.close();}
 });
+test("private completed reserve remains unpublished and is included in next-draft novelty guard",async()=>{
+ const {sql,env}=fixture();
+ try{
+  const created=await json(env,"/api/cloud/listening-refill/draft",original);
+  assert.equal(created.status,201);
+  sql.prepare("UPDATE listening_refill_clips SET status='uploaded',bytes=2048,object_key='private' WHERE set_id=?")
+    .run(original.id);
+  sql.prepare("UPDATE listening_refill_drafts SET state='rendering' WHERE id=?").run(original.id);
+  const req=new Request(host+"/api/cloud/listening-refill/draft-briefs",{
+    headers:{authorization:"Bearer "+token}});
+  const summary=await handleListeningRefill(req,env);
+  assert.equal(summary.status,200);
+  const body=await summary.json();
+  assert.equal(body.drafts.length,1);
+  assert.equal(body.drafts[0].topics.length,36);
+  assert.equal(JSON.stringify(body).includes('"correctOptionId"'),false);
+  const candidate=structuredClone(original);
+  candidate.id="lsn-freshsimilarity";
+  for(const module of [candidate.router,candidate.lowerModule,candidate.upperModule])
+    for(const item of [...module.listenChoose,...module.conversations,
+                       ...module.announcements,...module.academicTalks])
+      item.audio=item.audio.replace(original.id,candidate.id);
+  const repeated=await json(env,"/api/cloud/listening-refill/draft",candidate);
+  assert.equal(repeated.status,409,JSON.stringify(repeated.data));
+  assert.match(repeated.data.error,/overlaps/);
+  assert.equal(sql.prepare("SELECT COUNT(*) n FROM listening_refill_drafts").get().n,1);
+  assert.equal(sql.prepare("SELECT COUNT(*) n FROM listening_sets").get().n,0);
+ }finally{sql.close();}
+});
+
 test("claims 3 total per Pacific day, MP3 upload idempotence, no automatic publication",async()=>{
  const {sql,env}=fixture();
  try{
