@@ -29,7 +29,7 @@ const day=()=>{
 
 function valid(status,staged,expectedDay) {
   if(status?.day!==expectedDay || status.enabled!==true || status.r2Configured!==true ||
-      !Array.isArray(status.queue) || status.queue.length!==1 ||
+      !Array.isArray(status.queue) || status.queue.length<1 || status.queue.length>10 ||
       !Array.isArray(status.models) || status.models.length!==2 ||
       staged?.result!=='pending-human-review' || !Array.isArray(staged.queue))
     return false;
@@ -39,14 +39,21 @@ function valid(status,staged,expectedDay) {
     m.dailyLimit<=LIMIT && Number.isInteger(m.claimed) && m.claimed>=0 &&
     m.claimed<=LIMIT && (m.dailyLimit===0 || m.freeTierVerifiedToday===true) &&
     m.ready===(m.freeTierVerifiedToday===true && m.dailyLimit>m.claimed));
-  const draft=status.queue[0], c=draft?.clips||{};
-  const inventory=draft?.id==='lsn-a97620b2c800' &&
-    ['draft','rendering'].includes(draft.state) &&
-    ['uploaded','pending','claimed','flagged'].every(k=>
-      Number.isInteger(c[k]??0)&&(c[k]??0)>=0) &&
-    ['uploaded','pending','claimed','flagged'].reduce((n,k)=>n+(c[k]??0),0)===36 &&
-    Number(c.flagged||0)===0;
-  return known && caps && inventory && Number(c.claimed||0)===staged.queue.length;
+  const drafts=status.queue;
+  const inventory=drafts.every(d=>{
+    const c=d?.clips||{};
+    return /^lsn-[A-Za-z0-9_-]{1,60}$/.test(d?.id||'') &&
+      ['draft','rendering','ready','published','blocked'].includes(d.state) &&
+      ['uploaded','pending','claimed','flagged'].every(k=>
+        Number.isInteger(c[k]??0)&&(c[k]??0)>=0) &&
+      ['uploaded','pending','claimed','flagged'].reduce((n,k)=>n+(c[k]??0),0)===36 &&
+      (c.flagged||0)===0;
+  });
+  const unfinished=drafts.filter(d=>
+    ['draft','rendering'].includes(d.state)&&(d.clips?.pending||0)>0);
+  const globalClaims=drafts.reduce((n,d)=>n+(d.clips?.claimed||0),0);
+  return known&&caps&&inventory&&unfinished.length===1&&
+    globalClaims===staged.queue.length;
 }
 function pilotReady(status,staged,expectedDay,uploaded){
   if(!valid(status,staged,expectedDay)||staged.queue.length!==0||
@@ -79,6 +86,15 @@ function offlineTest(){
     models:[{model:LITE,dailyLimit:3,claimed:2,freeTierVerifiedToday:true,ready:true},
       {model:FLASH,dailyLimit:3,claimed:1,freeTierVerifiedToday:true,ready:true}]};
   assert.ok(valid(partial,{result:'pending-human-review',queue:[]},d));
+  const reserved={id:'lsn-previous-completed',state:'rendering',
+    clips:{uploaded:36,pending:0,claimed:0,flagged:0}};
+  assert.ok(valid({...partial,queue:[reserved,...partial.queue]},
+    {result:'pending-human-review',queue:[]},d));
+  assert.ok(!valid({...partial,queue:[reserved,...partial.queue,
+    {id:'lsn-unexpected-two',state:'draft',
+      clips:{uploaded:0,pending:36,claimed:0,flagged:0}}]},
+    {result:'pending-human-review',queue:[]},d));
+
   assert.ok(!valid({...partial,queue:[{...partial.queue[0],
     clips:{uploaded:28,pending:7,claimed:0,flagged:0}}]},
     {result:'pending-human-review',queue:[]},d));
@@ -129,13 +145,16 @@ async function main() {
   };
   if(args.length===1 && args[0]==='--inspect-live'){
     const status=await get('status'),staged=await get('staged');
-    const c=status?.queue?.find(q=>q.id==='lsn-a97620b2c800')?.clips||{};
+    const active=status?.queue?.find(q=>['draft','rendering'].includes(q.state)&&
+      (q.clips?.pending||0)>0);
+    const c=active?.clips||{};
     const models=Array.isArray(status?.models)?status.models:[];
     const remaining=models.map(m=>({model:m.model,claimed:m.claimed,
       cap:m.dailyLimit,available:Math.max(0,Math.min(LIMIT,m.dailyLimit)-m.claimed),
       confirmedToday:m.freeTierVerifiedToday===true}));
     console.log(JSON.stringify({result:'live-batch-inspection',pacificDay:confirmedDay,
       serverDay:status?.day,enabled:status?.enabled,r2Configured:status?.r2Configured,
+      activeDraftId:active?.id||null,completedReserveCount:status?.queue?.filter(q=>(q.clips?.uploaded||0)===36).length||0,
       approved:c.uploaded??null,pending:c.pending??null,claimed:c.claimed??null,
       flagged:c.flagged??null,pendingReview:staged?.queue?.length??null,
       models:remaining,geminiCalls:0,published:false}));
