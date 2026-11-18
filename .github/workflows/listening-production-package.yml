@@ -42,6 +42,7 @@ jobs:
           node scripts/listening-predeploy-backup.mjs --self-test
           node --import tsx --test cloudflare/test/listening-staging.test.mjs
           node --import tsx --test cloudflare/test/listening-batch-review-page.test.mjs
+          node --import tsx --test cloudflare/test/listening-reserve.test.mjs
       - name: Build existing site and stage original Listening MP3s
         run: |
           npm run build -w client
