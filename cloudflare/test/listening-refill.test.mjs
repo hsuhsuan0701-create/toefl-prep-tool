@@ -56,6 +56,72 @@ async function upload(env,setId,stimulusId){
  }),env);
  return {status:r.status,data:await r.json()};
 }
+test("429 unresolved claim is retained today, and recovered manually next day without refunding quota",async()=>{
+ const {sql,env,map}=fixture();
+ try{
+  assert.equal((await json(env,"/api/cloud/listening-refill/draft",original)).status,201);
+  await changeEnabled(env,true);
+  await approveModel(env,lite,1);
+  const first=await claim(env);
+  assert.equal(first.data.result,"claimed");
+  const id=first.data.stimulusId, setId=original.id;
+  const attempted=sql.prepare("SELECT day FROM listening_refill_model_attempts WHERE set_id=? AND stimulus_id=?")
+    .get(setId,id).day;
+  assert.equal((await json(env,"/api/cloud/listening-refill/reconcile-failed-claim",
+    {setId,stimulusId:id,confirm:"RECONCILE_FAILED_CLAIM_NEXT_DAY"})).status,409);
+  assert.equal(sql.prepare("SELECT status FROM listening_refill_clips WHERE set_id=? AND stimulus_id=?")
+    .get(setId,id).status,"claimed");
+  await changeEnabled(env,false);
+  assert.equal((await json(env,"/api/cloud/listening-refill/reconcile-failed-claim",
+    {setId,stimulusId:id,confirm:"RECONCILE_FAILED_CLAIM_NEXT_DAY"})).status,409,
+    "Same-day claim must never be retried");
+  const yesterday="2001-01-01";
+  sql.prepare("UPDATE listening_refill_model_attempts SET day=? WHERE set_id=? AND stimulus_id=?")
+    .run(yesterday,setId,id);
+  sql.prepare("UPDATE listening_refill_clips SET claim_day=? WHERE set_id=? AND stimulus_id=?")
+    .run(yesterday,setId,id);
+  const report=await handleListeningRefill(new Request(host+
+    "/api/cloud/listening-refill/unresolved-claims",{
+       headers:{authorization:"Bearer "+token}}),env);
+  assert.equal(report.status,200);
+  assert.equal((await report.json()).unresolved[0].stimulusId,id);
+  assert.equal((await report.json().catch(()=>null)),null,"Body can only be consumed once");
+  const recovered=await json(env,"/api/cloud/listening-refill/reconcile-failed-claim",
+    {setId,stimulusId:id,confirm:"RECONCILE_FAILED_CLAIM_NEXT_DAY"});
+  assert.equal(recovered.status,200,JSON.stringify(recovered.data));
+  assert.equal(recovered.data.result,"pending-for-manual-next-day-generation");
+  assert.equal(sql.prepare("SELECT status FROM listening_refill_clips WHERE set_id=? AND stimulus_id=?")
+    .get(setId,id).status,"pending");
+  assert.equal(sql.prepare("SELECT COUNT(*) n FROM listening_refill_model_attempts WHERE set_id=? AND stimulus_id=?")
+    .get(setId,id).n,1,"Past Gemini request remains in the immutable audit ledger");
+  assert.equal(map.size,0,"No MP3 recreated");
+  assert.equal((await json(env,"/api/cloud/listening-refill/reconcile-failed-claim",
+    {setId,stimulusId:id,confirm:"RECONCILE_FAILED_CLAIM_NEXT_DAY"})).status,409);
+ }finally{sql.close();}
+});
+
+test("manual failed-claim recovery rejects existing R2 audio even after day rollover",async()=>{
+ const {sql,env,map}=fixture();
+ try{
+  await json(env,"/api/cloud/listening-refill/draft",original);
+  await changeEnabled(env,true);await approveModel(env,lite,1);
+  const claimOne=await claim(env);
+  assert.equal(claimOne.data.result,"claimed");
+  const setId=original.id,id=claimOne.data.stimulusId;
+  sql.prepare("UPDATE listening_refill_model_attempts SET day='2001-01-01' WHERE set_id=? AND stimulus_id=?")
+    .run(setId,id);
+  sql.prepare("UPDATE listening_refill_clips SET claim_day='2001-01-01' WHERE set_id=? AND stimulus_id=?")
+    .run(setId,id);
+  await changeEnabled(env,false);
+  map.set("staging/"+setId+"/"+id+".mp3",new Uint8Array(2048));
+  const attempt=await json(env,"/api/cloud/listening-refill/reconcile-failed-claim",
+    {setId,stimulusId:id,confirm:"RECONCILE_FAILED_CLAIM_NEXT_DAY"});
+  assert.equal(attempt.status,409);
+  assert.equal(sql.prepare("SELECT status FROM listening_refill_clips WHERE set_id=? AND stimulus_id=?")
+    .get(setId,id).status,"claimed");
+ }finally{sql.close();}
+});
+
 test("Pacific quota day honors time-zone boundaries without consuming API",()=>{
  assert.equal(ttsQuotaDay(new Date("2026-11-15T07:59:00Z")),"2026-11-14");
  assert.equal(ttsQuotaDay(new Date("2026-11-15T08:01:00Z")),"2026-11-15");
