@@ -83,7 +83,7 @@ function offlineTest(){
   const staged={result:'pending-human-review',queue:[{},{},{}]};
   assert.ok(valid(status,staged,d));
   const failureStatus={...status,queue:[{...status.queue[0],
-    clips:{uploaded:20,pending:13,claimed:4,flagged:0}}],
+    clips:{uploaded:20,pending:12,claimed:4,flagged:0}}],
     verifiedQuarantinedClaims:1,unresolvedUnquarantinedClaims:0};
   // The quarantine must be R2-verified by the authenticated Worker; it never
   // erases its model attempt or reclaims its daily Lite quota.
