@@ -15,6 +15,7 @@ import { listeningClips } from "./listeningAudio.js";
 import { authorizedAdmin, validPost } from "./academicPractice.js";
 import { handleListeningStaging } from "./listeningStaging.js";
 import { listeningStagingPage } from "./listeningStagingPage.js";
+import { reserveStatus, setReserveAutoRelease } from "./listeningReserve.js";
 
 export interface ListeningRefillEnv {
   DB: D1Database;
@@ -122,6 +123,19 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
         enabled:await listeningRefillEnabled(env.DB),r2Configured:!!env.LISTENING_AUDIO,
         ttsCallsByWorker:0,freeTierAttestationRequiredDaily:true});
     }catch{return reply({error:"Listening refill migrations not ready"},503);}
+  }
+
+  if(path==="/api/cloud/listening-refill/reserve-status" && method==="GET"){
+    try{return reply(await reserveStatus(env.DB));}
+    catch{return reply({error:"Unable to check Listening reserve"},503);}
+  }
+  if(path==="/api/cloud/listening-refill/reserve-settings" && method==="POST"){
+    if(!validPost(req))return reply({error:"Same-origin JSON required"},403);
+    const body=await req.json().catch(()=>null) as {enabled?:unknown;confirm?:unknown}|null;
+    if(typeof body?.enabled!=="boolean"||body.confirm!=="SET_LISTENING_RESERVE_AUTO_RELEASE")
+      return reply({error:"Explicit Listening reserve preference required"},400);
+    try{return reply(await setReserveAutoRelease(env.DB,body.enabled));}
+    catch{return reply({error:"Could not update Listening reserve setting"},503);}
   }
 
   // Private staging/API audition is independently safe and never invokes Gemini.
