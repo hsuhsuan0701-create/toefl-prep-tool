@@ -183,6 +183,24 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
         attestedNotVerifiedByGoogle:true,expiresAtPacificMidnight:true});
     }catch{return reply({error:"Model policy could not be saved; refusing TTS"},503);}
   }
+  if(path==="/api/cloud/listening-refill/draft-briefs" && method==="GET"){
+    try{
+      const rows=await env.DB.prepare(
+        "SELECT id,content_json FROM listening_refill_drafts ORDER BY created_at DESC LIMIT 30"
+      ).all<{id:string;content_json:string}>();
+      const drafts=rows.results.map(r=>{
+        const set=ListeningSetSchema.parse(JSON.parse(r.content_json));
+        const modules=[set.router,set.lowerModule,set.upperModule];
+        return {id:r.id,topics:modules.flatMap(m=>[
+          ...m.listenChoose.map(x=>x.utterance.slice(0,110)),
+          ...m.conversations.map(x=>x.setting.slice(0,110)),
+          ...m.announcements.map(x=>x.setting.slice(0,110)),
+          ...m.academicTalks.map(x=>x.discipline.slice(0,110))
+        ])};
+      });
+      return reply({drafts});
+    }catch{return reply({error:"Private Listening draft summaries unavailable"},503);}
+  }
   if(path==="/api/cloud/listening-refill/draft"){
     const txt=await req.text().catch(()=>"");
     if(txt.length>450_000)return reply({error:"Listening draft too large"},413);
