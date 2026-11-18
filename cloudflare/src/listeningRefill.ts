@@ -153,8 +153,15 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
           .bind(draft.id).all<{status:string;n:number}>();
         return {...draft,clips:Object.fromEntries(counts.results.map(x=>[x.status,x.n]))};
       }));
+      const unresolved=await unresolvedClaims(env.DB);
+      let verifiedQuarantined=0;
+      for(const c of unresolved){
+        if(await quarantineVerified(env,c))verifiedQuarantined++;
+      }
       return reply({day,limit:models.reduce((n,x)=>n+x.dailyLimit,0),
         claimed:models.reduce((n,x)=>n+x.claimed,0),models,queue:summary,
+        verifiedQuarantinedClaims:verifiedQuarantined,
+        unresolvedUnquarantinedClaims:unresolved.length-verifiedQuarantined,
         enabled:await listeningRefillEnabled(env.DB),r2Configured:!!env.LISTENING_AUDIO,
         ttsCallsByWorker:0,freeTierAttestationRequiredDaily:true});
     }catch{return reply({error:"Listening refill migrations not ready"},503);}
