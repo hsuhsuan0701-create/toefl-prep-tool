@@ -12,6 +12,16 @@ test('consolidated private management page has valid browser JavaScript', async 
   assert.equal(scripts.length, 1, 'one in-page script; no remote script loads');
   assert.doesNotThrow(() => new Script(scripts[0][1]), 'all UI event handlers must parse');
   assert.match(html, /id="review-queue"/);
+  assert.match(html, /id="status-dashboard" hidden/);
+  assert.match(html, /id="status-models"/);
+  assert.match(html, /id="status-drafts"/);
+  assert.match(html, /id="status-raw"/);
+  assert.match(html, /展開完整技術資訊/);
+  assert.match(html, /function renderStatus\(d\)/);
+  assert.match(html, /stat\("status-raw",JSON\.stringify\(d,null,2\)\)/);
+  assert.match(html, /id="reserve-status" class="reserve-summary"/);
+  assert.doesNotMatch(html, /未計分作答 Listening Sets/);
+  assert.doesNotMatch(html, /<pre id="status">/);
   assert.match(html, /id="review-load"/);
   assert.match(html, /id="token"/);
   assert.match(html, /I_LISTENED_AND_APPROVED_AUDIO/);
