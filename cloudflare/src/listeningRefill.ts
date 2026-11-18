@@ -15,6 +15,8 @@ import { listeningClips } from "./listeningAudio.js";
 import { authorizedAdmin, validPost } from "./academicPractice.js";
 import { handleListeningStaging } from "./listeningStaging.js";
 import { listeningStagingPage } from "./listeningStagingPage.js";
+import { entriesFromSet,compareCatalogEntries } from "../../server/src/services/generationCatalog.js";
+import { reserveStatus, setReserveAutoRelease } from "./listeningReserve.js";
 
 export interface ListeningRefillEnv {
   DB: D1Database;
@@ -96,6 +98,40 @@ async function getClip(db:D1Database,id:string,stimulus:string):Promise<ClipRow|
     .bind(id,stimulus).first<ClipRow>();
 }
 const objectKey=(setId:string,stimulusId:string)=>"stimuli/"+setId+"/"+stimulusId+".mp3";
+const failedQuarantineKey=(setId:string,stimulusId:string)=>
+  "listening_tts_failed_quarantine_"+setId+"_"+stimulusId;
+type UnresolvedFailed={set_id:string;stimulus_id:string;claim_day:string;
+  claimed_at:string|null;model:string;state:string};
+async function unresolvedClaims(db:D1Database){
+ return (await db.prepare(
+   "SELECT c.set_id,c.stimulus_id,c.claim_day,c.claimed_at,d.state,a.model "+
+   "FROM listening_refill_clips c JOIN listening_refill_drafts d ON d.id=c.set_id "+
+   "JOIN listening_refill_model_attempts a ON a.day=c.claim_day "+
+   "AND a.set_id=c.set_id AND a.stimulus_id=c.stimulus_id "+
+   "WHERE c.status='claimed' AND NOT EXISTS ("+
+   "SELECT 1 FROM listening_auto_review_staged s WHERE s.set_id=c.set_id "+
+   "AND s.stimulus_id=c.stimulus_id AND s.status='pending_review') "+
+   "ORDER BY c.claimed_at ASC LIMIT 25"
+ ).all<UnresolvedFailed>()).results;
+}
+async function quarantineVerified(env:ListeningRefillEnv,row:UnresolvedFailed){
+ if(!env.LISTENING_AUDIO||!row.claim_day||!isTtsModel(row.model)||
+    !SAFE.test(row.set_id)||!SAFE_STIMULUS.test(row.stimulus_id))
+   return false;
+ const key=failedQuarantineKey(row.set_id,row.stimulus_id);
+ const setting=await env.DB.prepare("SELECT value FROM settings WHERE key=?")
+   .bind(key).first<{value:string}>();
+ let value:{claimDay?:string;model?:string;setId?:string;stimulusId?:string}|null=null;
+ try{value=setting?JSON.parse(setting.value):null;}catch{return false;}
+ if(value?.claimDay!==row.claim_day||value.model!==row.model||
+    value.setId!==row.set_id||value.stimulusId!==row.stimulus_id)
+   return false;
+ const finalKey=objectKey(row.set_id,row.stimulus_id);
+ const stagedKey="staging/"+row.set_id+"/"+row.stimulus_id+".mp3";
+ return !(await env.LISTENING_AUDIO.head(finalKey)) &&
+        !(await env.LISTENING_AUDIO.head(stagedKey));
+}
+
 function isMp3(buf:Uint8Array):boolean{
   return buf.length>1024 && (new TextDecoder().decode(buf.subarray(0,3))==="ID3" ||
       (buf[0]===0xff && (buf[1]&0xe0)===0xe0));
@@ -117,13 +153,116 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
           .bind(draft.id).all<{status:string;n:number}>();
         return {...draft,clips:Object.fromEntries(counts.results.map(x=>[x.status,x.n]))};
       }));
+      const unresolved=await unresolvedClaims(env.DB);
+      let verifiedQuarantined=0;
+      for(const c of unresolved){
+        if(await quarantineVerified(env,c))verifiedQuarantined++;
+      }
       return reply({day,limit:models.reduce((n,x)=>n+x.dailyLimit,0),
         claimed:models.reduce((n,x)=>n+x.claimed,0),models,queue:summary,
+        verifiedQuarantinedClaims:verifiedQuarantined,
+        unresolvedUnquarantinedClaims:unresolved.length-verifiedQuarantined,
         enabled:await listeningRefillEnabled(env.DB),r2Configured:!!env.LISTENING_AUDIO,
         ttsCallsByWorker:0,freeTierAttestationRequiredDaily:true});
     }catch{return reply({error:"Listening refill migrations not ready"},503);}
   }
 
+  if(path==="/api/cloud/listening-refill/reserve-status" && method==="GET"){
+    try{return reply(await reserveStatus(env.DB));}
+    catch{return reply({error:"Unable to check Listening reserve"},503);}
+  }
+  if(path==="/api/cloud/listening-refill/reserve-settings" && method==="POST"){
+    if(!validPost(req))return reply({error:"Same-origin JSON required"},403);
+    const body=await req.json().catch(()=>null) as {enabled?:unknown;confirm?:unknown}|null;
+    if(typeof body?.enabled!=="boolean"||body.confirm!=="SET_LISTENING_RESERVE_AUTO_RELEASE")
+      return reply({error:"Explicit Listening reserve preference required"},400);
+    try{return reply(await setReserveAutoRelease(env.DB,body.enabled));}
+    catch{return reply({error:"Could not update Listening reserve setting"},503);}
+  }
+
+  if(path==="/api/cloud/listening-refill/draft-briefs" && method==="GET"){
+    try{
+      const rows=await env.DB.prepare(
+        "SELECT id,content_json FROM listening_refill_drafts ORDER BY created_at DESC LIMIT 30"
+      ).all<{id:string;content_json:string}>();
+      const drafts=rows.results.map(r=>{
+        const set=ListeningSetSchema.parse(JSON.parse(r.content_json));
+        const modules=[set.router,set.lowerModule,set.upperModule];
+        return {id:r.id,topics:modules.flatMap(m=>[
+          ...m.listenChoose.map(x=>x.utterance.slice(0,110)),
+          ...m.conversations.map(x=>x.setting.slice(0,110)),
+          ...m.announcements.map(x=>x.setting.slice(0,110)),
+          ...m.academicTalks.map(x=>x.discipline.slice(0,110))
+        ])};
+      });
+      return reply({drafts});
+    }catch{return reply({error:"Private Listening draft summaries unavailable"},503);}
+  }
+
+  // Read-only, with verified R2 quarantine state; no Gemini.
+  if(path==="/api/cloud/listening-refill/unresolved-claims" && method==="GET"){
+    try{
+      const rows=await unresolvedClaims(env.DB);
+      const today=ttsQuotaDay();
+      const enabled=await listeningRefillEnabled(env.DB);
+      const result=[];
+      for(const c of rows){
+        const quarantined=await quarantineVerified(env,c);
+        const ageMs=c.claimed_at?
+          Date.now()-Date.parse(c.claimed_at.replace(" ","T")+"Z"):0;
+        result.push({
+          setId:c.set_id,stimulusId:c.stimulus_id,claimDay:c.claim_day,model:c.model,
+          quarantined,eligibleQuarantine:!enabled&&!quarantined&&
+            c.claim_day===today&&ageMs>=5*60*1000&&c.state==="rendering",
+          eligibleNextDay:c.claim_day<today,noAudioConfirmed:quarantined
+        });
+      }
+      return reply({pacificDay:today,claimSwitchEnabled:enabled,
+        unresolved:result,geminiCalls:0});
+    }catch{return reply({error:"Unable to inspect unresolved claims"},503);}
+  }
+  // Same-day quarantine of ONE manually verified 429. Does not reset, refund or
+  // retry the claimed clip: the original attempt and clip remain 'claimed'.
+  if(path==="/api/cloud/listening-refill/quarantine-failed-claim" && method==="POST"){
+    if(!validPost(req))return reply({error:"Same-origin JSON required"},403);
+    if(!env.LISTENING_AUDIO)return reply({error:"Private R2 unavailable"},503);
+    const body=await req.json().catch(()=>null) as
+      {setId?:unknown;stimulusId?:unknown;confirm?:unknown}|null;
+    if(body?.confirm!=="I_CONFIRMED_GEMINI_429_DO_NOT_RETRY"||
+       typeof body.setId!=="string"||!SAFE.test(body.setId)||
+       typeof body.stimulusId!=="string"||!SAFE_STIMULUS.test(body.stimulusId))
+      return reply({error:"Explicit 429 quarantine confirmation required"},400);
+    try{
+      if(await listeningRefillEnabled(env.DB))
+        return reply({error:"Stop Listening claims before quarantining failure"},409);
+      const rows=await unresolvedClaims(env.DB);
+      const c=rows.find(x=>x.set_id===body.setId&&x.stimulus_id===body.stimulusId);
+      if(!c||c.claim_day!==ttsQuotaDay()||c.state!=="rendering"||
+         !isTtsModel(c.model)||!c.claimed_at||
+         Date.now()-Date.parse(c.claimed_at.replace(" ","T")+"Z")<5*60*1000)
+        return reply({error:"Only a documented, idle same-day failure can be quarantined"},409);
+      if(await quarantineVerified(env,c))
+        return reply({error:"Claim already quarantined; no change needed"},409);
+      const already=await env.DB.prepare("SELECT value FROM settings WHERE key=?")
+        .bind(failedQuarantineKey(c.set_id,c.stimulus_id)).first();
+      if(already)return reply({error:"Conflicting quarantine record; inspect manually"},409);
+      const stage=await env.DB.prepare(
+        "SELECT status FROM listening_auto_review_staged WHERE set_id=? AND stimulus_id=?"
+      ).bind(c.set_id,c.stimulus_id).first();
+      if(stage)return reply({error:"Staging ledger exists; no quarantine"},409);
+      if(await env.LISTENING_AUDIO.head(objectKey(c.set_id,c.stimulus_id))||
+         await env.LISTENING_AUDIO.head("staging/"+c.set_id+"/"+c.stimulus_id+".mp3"))
+        return reply({error:"R2 audio exists; manual review required"},409);
+      const value=JSON.stringify({setId:c.set_id,stimulusId:c.stimulus_id,
+        claimDay:c.claim_day,model:c.model,reason:"human-confirmed-Gemini-429",
+        createdAt:new Date().toISOString()});
+      await env.DB.prepare("INSERT INTO settings(key,value) VALUES(?,?)")
+        .bind(failedQuarantineKey(c.set_id,c.stimulus_id),value).run();
+      return reply({result:"failed-claim-quarantined-no-retry",setId:c.set_id,
+        stimulusId:c.stimulus_id,model:c.model,attemptStillCounted:true,
+        clipStillClaimed:true,geminiCalls:0,published:false});
+    }catch{return reply({error:"Unable to quarantine safely; no new claim authorized"},503);}
+  }
   // Private staging/API audition is independently safe and never invokes Gemini.
   const stageResponse=await handleListeningStaging(req,env);
   if(stageResponse)return stageResponse;
@@ -133,6 +272,58 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
   if(path==="/api/cloud/listening-refill/upload" &&
       (req.headers.get("origin")!==url.origin || req.headers.get("content-type")?.split(";")[0].toLowerCase()!=="audio/mpeg"))
     return reply({error:"Same-origin audio/mpeg required"},403);
+
+  // Manual next-day recovery from an unstarted/failed Gemini request. The old
+  // daily ledger remains consumed; never refund/delete it or retry automatically.
+  if(path==="/api/cloud/listening-refill/reconcile-failed-claim"){
+    if(!env.LISTENING_AUDIO)return reply({error:"Private R2 unavailable"},503);
+    const body=await req.json().catch(()=>null) as
+      {setId?:unknown;stimulusId?:unknown;confirm?:unknown}|null;
+    if(body?.confirm!=="RECONCILE_FAILED_CLAIM_NEXT_DAY"||
+       typeof body.setId!=="string"||!SAFE.test(body.setId)||
+       typeof body.stimulusId!=="string"||!SAFE_STIMULUS.test(body.stimulusId))
+      return reply({error:"Explicit claim reconciliation required"},400);
+    try{
+      if(await listeningRefillEnabled(env.DB))
+        return reply({error:"Stop new Listening claims before reconciliation"},409);
+      const clip=await getClip(env.DB,body.setId,body.stimulusId);
+      if(clip?.status!=="claimed"||!clip.claim_day||clip.claim_day>=ttsQuotaDay()||
+         clip.object_key!==null)return reply({error:"Claim not eligible for next-day recovery"},409);
+      const draft=await getDraft(env.DB,body.setId);
+      if(!draft||draft.state!=="rendering")
+        return reply({error:"Draft is not in review-safe rendering state"},409);
+      const attempt=await env.DB.prepare(
+        "SELECT status FROM listening_refill_model_attempts WHERE day=? AND set_id=? AND stimulus_id=?"
+      ).bind(clip.claim_day,body.setId,body.stimulusId).first<{status:string}>();
+      if(attempt?.status!=="claimed")return reply({error:"Claim audit record inconsistent"},409);
+      const stage=await env.DB.prepare(
+        "SELECT status FROM listening_auto_review_staged WHERE set_id=? AND stimulus_id=?"
+      ).bind(body.setId,body.stimulusId).first<{status:string}>();
+      if(stage)return reply({error:"Staging ledger exists: do not reconcile automatically"},409);
+      const finalKey=objectKey(body.setId,body.stimulusId);
+      const stagedKey="staging/"+body.setId+"/"+body.stimulusId+".mp3";
+      if(await env.LISTENING_AUDIO.head(finalKey)||
+         await env.LISTENING_AUDIO.head(stagedKey))
+        return reply({error:"R2 object exists: manual object inspection required"},409);
+      const changed=await env.DB.prepare(
+        "UPDATE listening_refill_clips SET status='pending',claim_day=NULL,claimed_at=NULL "+
+        "WHERE set_id=? AND stimulus_id=? AND status='claimed' AND claim_day=? "+
+        "AND object_key IS NULL "+
+        "AND NOT EXISTS (SELECT 1 FROM listening_auto_review_staged s "+
+        "WHERE s.set_id=? AND s.stimulus_id=?) "+
+        "AND EXISTS (SELECT 1 FROM listening_refill_model_attempts a "+
+        "WHERE a.day=? AND a.set_id=? AND a.stimulus_id=? AND a.status='claimed')"
+      ).bind(body.setId,body.stimulusId,clip.claim_day,body.setId,body.stimulusId,
+        clip.claim_day,body.setId,body.stimulusId).run();
+      if(changed.meta.changes!==1)return reply({error:"Claim changed concurrently: stop"},409);
+      await env.DB.prepare("DELETE FROM settings WHERE key=?")
+        .bind(failedQuarantineKey(body.setId,body.stimulusId)).run();
+      return reply({result:"pending-for-manual-next-day-generation",
+        setId:body.setId,stimulusId:body.stimulusId,
+        oldClaimDay:clip.claim_day,previousAttemptStillCounted:true,
+        geminiCalls:0,published:false});
+    }catch{return reply({error:"Unable to reconcile safely; no changes authorized"},503);}
+  }
 
   if(path==="/api/cloud/listening-refill/settings"){
     const body=await req.json().catch(()=>null) as {enabled?:unknown;confirm?:string}|null;
@@ -186,6 +377,18 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
       const existing=await env.DB.prepare("SELECT id FROM listening_sets WHERE id=?")
         .bind(set.id).first();
       if(existing)return reply({error:"A published set already owns this ID"},409);
+      // A newly submitted private draft must not repeat an earlier private reserve.
+      // Local generation already checks the 14 bundled Sets; D1 owns prior private drafts.
+      const prior=await env.DB.prepare(
+        "SELECT content_json FROM listening_refill_drafts WHERE id<>? LIMIT 40"
+      ).bind(set.id).all<{content_json:string}>();
+      const candidateEntries=entriesFromSet(set);
+      for(const older of prior.results){
+        const oldSet=ListeningSetSchema.parse(JSON.parse(older.content_json));
+        const previousEntries=entriesFromSet(oldSet);
+        if(candidateEntries.some(a=>previousEntries.some(b=>compareCatalogEntries(a,b).length>0)))
+          return reply({error:"New Listening draft overlaps an existing private reserve; no upload"},409);
+      }
       await env.DB.batch([
         env.DB.prepare("INSERT INTO listening_refill_drafts(id,content_json,state) VALUES(?,?,'draft')")
           .bind(set.id,JSON.stringify(set)),
@@ -205,12 +408,26 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
     }catch{return reply({error:"Unable to verify stop switch; no TTS claim issued"},503);}
     if(!env.LISTENING_AUDIO)return reply({error:"R2 bucket not configured; refusing to spend TTS"},503);
     try{
-      // Never issue a new paid claim while any prior claim awaits review or reconciliation.
+      // A completed R2 staging upload remains "claimed" until a human reviews it.
+      // Allow more clips to be staged for a nightly review, but NEVER proceed if
+      // even one claimed clip lacks a durable pending_review ledger row.
+      // This fails closed on interrupted, failed or ambiguous Gemini/R2 attempts.
       const awaiting=await env.DB.prepare(
-        "SELECT COUNT(*) AS n FROM listening_refill_clips WHERE status='claimed'"
+        "SELECT COUNT(*) AS n FROM listening_refill_clips c WHERE c.status='claimed' " +
+        "AND NOT EXISTS (SELECT 1 FROM listening_auto_review_staged s " +
+        "WHERE s.set_id=c.set_id AND s.stimulus_id=c.stimulus_id " +
+        "AND s.status='pending_review')"
       ).first<{n:number}>();
-      if((awaiting?.n??0)>0)return reply({result:"awaiting-review-or-reconciliation",
-        awaiting:awaiting!.n,ttsCalls:0});
+      if((awaiting?.n??0)>0){
+        const orphaned=await unresolvedClaims(env.DB);
+        if(orphaned.length!==(awaiting?.n??0))
+          return reply({result:"awaiting-review-or-reconciliation",awaiting:awaiting!.n,ttsCalls:0});
+        for(const orphan of orphaned){
+          if(!await quarantineVerified(env,orphan))
+            return reply({result:"awaiting-review-or-reconciliation",
+              awaiting:awaiting!.n,ttsCalls:0});
+        }
+      }
       const day=ttsQuotaDay();
       const models=await modelStates(env.DB,day);
       if(!models.some(m=>m.ready))return reply({
@@ -218,7 +435,10 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
         day,claimed:models.reduce((n,m)=>n+m.claimed,0),ttsCalls:0,
       });
       const active=await env.DB.prepare(
-        "SELECT id,content_json,state FROM listening_refill_drafts WHERE state IN ('draft','rendering') ORDER BY created_at ASC,id ASC LIMIT 1"
+        "SELECT d.id,d.content_json,d.state FROM listening_refill_drafts d "+
+        "WHERE d.state IN ('draft','rendering') "+
+        "AND EXISTS(SELECT 1 FROM listening_refill_clips c WHERE c.set_id=d.id AND c.status='pending') "+
+        "ORDER BY d.created_at ASC,d.id ASC LIMIT 1"
       ).first<DraftRow>();
       if(!active)return reply({result:"no-draft"});
       const pending=await env.DB.prepare(

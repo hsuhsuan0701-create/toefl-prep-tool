@@ -56,6 +56,143 @@ async function upload(env,setId,stimulusId){
  }),env);
  return {status:r.status,data:await r.json()};
 }
+test("an explicitly quarantined same-day Lite 429 permits Flash without refund or retry",async()=>{
+ const {sql,env,map}=fixture();
+ try{
+  assert.equal((await json(env,"/api/cloud/listening-refill/draft",original)).status,201);
+  await changeEnabled(env,true);
+  await approveModel(env,lite,1);
+  await approveModel(env,flash,2);
+  const first=await claim(env);
+  assert.equal(first.data.result,"claimed");
+  assert.equal(first.data.model,lite);
+  const setId=original.id,id=first.data.stimulusId;
+  assert.equal((await claim(env)).data.result,"awaiting-review-or-reconciliation");
+  const quarantinePath="/api/cloud/listening-refill/quarantine-failed-claim";
+  const body={setId,stimulusId:id,confirm:"I_CONFIRMED_GEMINI_429_DO_NOT_RETRY"};
+  assert.equal((await json(env,quarantinePath,body)).status,409,
+    "Must stop new claims before quarantining a known 429");
+  await changeEnabled(env,false);
+  sql.prepare("UPDATE listening_refill_clips SET claimed_at=datetime('now','-10 minutes') WHERE set_id=? AND stimulus_id=?")
+    .run(setId,id);
+  const quarantined=await json(env,quarantinePath,body);
+  assert.equal(quarantined.status,200,JSON.stringify(quarantined.data));
+  assert.equal(quarantined.data.result,"failed-claim-quarantined-no-retry");
+  assert.equal((await json(env,quarantinePath,body)).status,409);
+  let status=await handleListeningRefill(new Request(host+"/api/cloud/listening-refill/status",{
+    headers:{authorization:"Bearer "+token}}),env);
+  let state=await status.json();
+  assert.equal(state.verifiedQuarantinedClaims,1);
+  assert.equal(state.unresolvedUnquarantinedClaims,0);
+  assert.equal(state.queue[0].clips.claimed,1);
+  assert.equal(state.models.find(m=>m.model===lite).claimed,1);
+  await changeEnabled(env,true);
+  const next=await claim(env);
+  assert.equal(next.status,200,JSON.stringify(next.data));
+  assert.equal(next.data.result,"claimed");
+  assert.equal(next.data.model,flash);
+  assert.notEqual(next.data.stimulusId,id);
+  assert.equal((await upload(env,setId,next.data.stimulusId)).status,201);
+  status=await handleListeningRefill(new Request(host+"/api/cloud/listening-refill/status",{
+    headers:{authorization:"Bearer "+token}}),env);
+  state=await status.json();
+  assert.equal(state.queue[0].clips.claimed,1);
+  assert.equal(state.queue[0].clips.uploaded,1);
+  assert.equal(state.models.find(m=>m.model===lite).claimed,1);
+  assert.equal(state.models.find(m=>m.model===flash).claimed,1);
+  assert.equal(map.has("stimuli/"+setId+"/"+id+".mp3"),false);
+  assert.equal(sql.prepare("SELECT status FROM listening_refill_clips WHERE set_id=? AND stimulus_id=?")
+    .get(setId,id).status,"claimed");
+ }finally{sql.close();}
+});
+
+test("unverified quarantine is refused when orphaned MP3 exists in private R2",async()=>{
+ const {sql,env,map}=fixture();
+ try{
+  await json(env,"/api/cloud/listening-refill/draft",original);
+  await changeEnabled(env,true);
+  await approveModel(env,lite,1);await approveModel(env,flash,2);
+  const first=await claim(env),setId=original.id,id=first.data.stimulusId;
+  await changeEnabled(env,false);
+  sql.prepare("UPDATE listening_refill_clips SET claimed_at=datetime('now','-10 minutes') WHERE set_id=? AND stimulus_id=?")
+    .run(setId,id);
+  map.set("staging/"+setId+"/"+id+".mp3",new Uint8Array(2048));
+  const res=await json(env,"/api/cloud/listening-refill/quarantine-failed-claim",
+    {setId,stimulusId:id,confirm:"I_CONFIRMED_GEMINI_429_DO_NOT_RETRY"});
+  assert.equal(res.status,409);
+  const settings=sql.prepare("SELECT COUNT(*) n FROM settings WHERE key LIKE 'listening_tts_failed_quarantine_%'").get().n;
+  assert.equal(settings,0);
+  await changeEnabled(env,true);
+  assert.equal((await claim(env)).data.result,"awaiting-review-or-reconciliation");
+ }finally{sql.close();}
+});
+
+test("429 unresolved claim is retained today, and recovered manually next day without refunding quota",async()=>{
+ const {sql,env,map}=fixture();
+ try{
+  assert.equal((await json(env,"/api/cloud/listening-refill/draft",original)).status,201);
+  await changeEnabled(env,true);
+  await approveModel(env,lite,1);
+  const first=await claim(env);
+  assert.equal(first.data.result,"claimed");
+  const id=first.data.stimulusId, setId=original.id;
+  const attempted=sql.prepare("SELECT day FROM listening_refill_model_attempts WHERE set_id=? AND stimulus_id=?")
+    .get(setId,id).day;
+  assert.equal((await json(env,"/api/cloud/listening-refill/reconcile-failed-claim",
+    {setId,stimulusId:id,confirm:"RECONCILE_FAILED_CLAIM_NEXT_DAY"})).status,409);
+  assert.equal(sql.prepare("SELECT status FROM listening_refill_clips WHERE set_id=? AND stimulus_id=?")
+    .get(setId,id).status,"claimed");
+  await changeEnabled(env,false);
+  assert.equal((await json(env,"/api/cloud/listening-refill/reconcile-failed-claim",
+    {setId,stimulusId:id,confirm:"RECONCILE_FAILED_CLAIM_NEXT_DAY"})).status,409,
+    "Same-day claim must never be retried");
+  const yesterday="2001-01-01";
+  sql.prepare("UPDATE listening_refill_model_attempts SET day=? WHERE set_id=? AND stimulus_id=?")
+    .run(yesterday,setId,id);
+  sql.prepare("UPDATE listening_refill_clips SET claim_day=? WHERE set_id=? AND stimulus_id=?")
+    .run(yesterday,setId,id);
+  const report=await handleListeningRefill(new Request(host+
+    "/api/cloud/listening-refill/unresolved-claims",{
+       headers:{authorization:"Bearer "+token}}),env);
+  assert.equal(report.status,200);
+  assert.equal((await report.json()).unresolved[0].stimulusId,id);
+  assert.equal((await report.json().catch(()=>null)),null,"Body can only be consumed once");
+  const recovered=await json(env,"/api/cloud/listening-refill/reconcile-failed-claim",
+    {setId,stimulusId:id,confirm:"RECONCILE_FAILED_CLAIM_NEXT_DAY"});
+  assert.equal(recovered.status,200,JSON.stringify(recovered.data));
+  assert.equal(recovered.data.result,"pending-for-manual-next-day-generation");
+  assert.equal(sql.prepare("SELECT status FROM listening_refill_clips WHERE set_id=? AND stimulus_id=?")
+    .get(setId,id).status,"pending");
+  assert.equal(sql.prepare("SELECT COUNT(*) n FROM listening_refill_model_attempts WHERE set_id=? AND stimulus_id=?")
+    .get(setId,id).n,1,"Past Gemini request remains in the immutable audit ledger");
+  assert.equal(map.size,0,"No MP3 recreated");
+  assert.equal((await json(env,"/api/cloud/listening-refill/reconcile-failed-claim",
+    {setId,stimulusId:id,confirm:"RECONCILE_FAILED_CLAIM_NEXT_DAY"})).status,409);
+ }finally{sql.close();}
+});
+
+test("manual failed-claim recovery rejects existing R2 audio even after day rollover",async()=>{
+ const {sql,env,map}=fixture();
+ try{
+  await json(env,"/api/cloud/listening-refill/draft",original);
+  await changeEnabled(env,true);await approveModel(env,lite,1);
+  const claimOne=await claim(env);
+  assert.equal(claimOne.data.result,"claimed");
+  const setId=original.id,id=claimOne.data.stimulusId;
+  sql.prepare("UPDATE listening_refill_model_attempts SET day='2001-01-01' WHERE set_id=? AND stimulus_id=?")
+    .run(setId,id);
+  sql.prepare("UPDATE listening_refill_clips SET claim_day='2001-01-01' WHERE set_id=? AND stimulus_id=?")
+    .run(setId,id);
+  await changeEnabled(env,false);
+  map.set("staging/"+setId+"/"+id+".mp3",new Uint8Array(2048));
+  const attempt=await json(env,"/api/cloud/listening-refill/reconcile-failed-claim",
+    {setId,stimulusId:id,confirm:"RECONCILE_FAILED_CLAIM_NEXT_DAY"});
+  assert.equal(attempt.status,409);
+  assert.equal(sql.prepare("SELECT status FROM listening_refill_clips WHERE set_id=? AND stimulus_id=?")
+    .get(setId,id).status,"claimed");
+ }finally{sql.close();}
+});
+
 test("Pacific quota day honors time-zone boundaries without consuming API",()=>{
  assert.equal(ttsQuotaDay(new Date("2026-11-15T07:59:00Z")),"2026-11-14");
  assert.equal(ttsQuotaDay(new Date("2026-11-15T08:01:00Z")),"2026-11-15");
@@ -74,6 +211,36 @@ test("private draft requires authorization, is immutable, cannot publish with mi
   assert.equal(sql.prepare("SELECT COUNT(*) AS n FROM listening_sets WHERE id=?").get(original.id).n,0);
  }finally{sql.close();}
 });
+test("private completed reserve remains unpublished and is included in next-draft novelty guard",async()=>{
+ const {sql,env}=fixture();
+ try{
+  const created=await json(env,"/api/cloud/listening-refill/draft",original);
+  assert.equal(created.status,201);
+  sql.prepare("UPDATE listening_refill_clips SET status='uploaded',bytes=2048,object_key='private' WHERE set_id=?")
+    .run(original.id);
+  sql.prepare("UPDATE listening_refill_drafts SET state='rendering' WHERE id=?").run(original.id);
+  const req=new Request(host+"/api/cloud/listening-refill/draft-briefs",{
+    headers:{authorization:"Bearer "+token}});
+  const summary=await handleListeningRefill(req,env);
+  assert.equal(summary.status,200);
+  const body=await summary.json();
+  assert.equal(body.drafts.length,1);
+  assert.equal(body.drafts[0].topics.length,36);
+  assert.equal(JSON.stringify(body).includes('"correctOptionId"'),false);
+  const candidate=structuredClone(original);
+  candidate.id="lsn-freshsimilarity";
+  for(const module of [candidate.router,candidate.lowerModule,candidate.upperModule])
+    for(const item of [...module.listenChoose,...module.conversations,
+                       ...module.announcements,...module.academicTalks])
+      item.audio=item.audio.replace(original.id,candidate.id);
+  const repeated=await json(env,"/api/cloud/listening-refill/draft",candidate);
+  assert.equal(repeated.status,409,JSON.stringify(repeated.data));
+  assert.match(repeated.data.error,/overlaps/);
+  assert.equal(sql.prepare("SELECT COUNT(*) n FROM listening_refill_drafts").get().n,1);
+  assert.equal(sql.prepare("SELECT COUNT(*) n FROM listening_sets").get().n,0);
+ }finally{sql.close();}
+});
+
 test("claims 3 total per Pacific day, MP3 upload idempotence, no automatic publication",async()=>{
  const {sql,env}=fixture();
  try{

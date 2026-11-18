@@ -1,0 +1,41 @@
+name: TOEFL Listening — Batch Offline Safety Tests
+
+on:
+  push:
+    branches:
+      - feat/listening-batch-review-20261117
+    paths:
+      - 'cloudflare/src/listeningRefill.ts'
+      - 'cloudflare/src/listeningRefillPage.ts'
+      - 'cloudflare/test/listening-staging.test.mjs'
+      - 'scripts/listening-cloud-tts-once.mjs'
+      - 'scripts/listening-cloud-tts-batch.mjs'
+      - '.github/workflows/listening-batch-*.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Parse runner and validate quota logic offline
+        run: |
+          node --check scripts/listening-cloud-tts-once.mjs
+          node --check scripts/listening-cloud-tts-batch.mjs
+          node scripts/listening-cloud-tts-batch.mjs --self-test
+          node scripts/listening-cloud-tts-batch.mjs --dry-run
+          node --check scripts/listening-predeploy-backup.mjs
+          node scripts/listening-predeploy-backup.mjs --self-test
+      - name: Verify D1/R2 batch staging using local fixtures only
+        run: node --import tsx --test cloudflare/test/listening-staging.test.mjs
+      - name: Typecheck project
+        run: npm run typecheck

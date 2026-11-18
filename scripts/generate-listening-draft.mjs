@@ -94,13 +94,28 @@ function authHeaders(extra={}){
   ...(token?{Authorization:"Bearer "+token}:{}),...extra
  };
 }
-async function queueStatus(){
- const r=await fetch(origin+"/api/cloud/listening-refill/status",{headers:authHeaders(),
-  signal:AbortSignal.timeout(20000)});
+async function privateGet(endpoint){
+ const r=await fetch(origin+"/api/cloud/listening-refill/"+endpoint,{
+  headers:authHeaders(),redirect:"error",signal:AbortSignal.timeout(20000)});
  const raw=await r.text();
- let v;try{v=JSON.parse(raw)}catch{throw Error("Private Worker status inaccessible (HTTP "+r.status+")");}
- if(!r.ok)throw Error("Private Worker status HTTP "+r.status);
+ let v;try{v=JSON.parse(raw);}catch{throw Error("Private Worker "+endpoint+" inaccessible (HTTP "+r.status+")");}
+ if(!r.ok)throw Error("Private Worker "+endpoint+" HTTP "+r.status);
  return v;
+}
+async function queueStatus(){return privateGet("status");}
+async function priorDraftTopics(){
+ const result=await privateGet("draft-briefs");
+ if(!Array.isArray(result?.drafts)||result.drafts.length>30)
+  throw Error("Private draft topic snapshot unavailable; no Gemini text calls");
+ const topics=[];
+ for(const draft of result.drafts){
+  if(!/^lsn-[A-Za-z0-9_-]{1,60}$/.test(draft?.id||"")||
+     !Array.isArray(draft.topics)||draft.topics.length!==36||
+     !draft.topics.every(x=>typeof x==="string"&&x.length>0&&x.length<=110))
+   throw Error("Invalid private draft synopsis; refuse incomplete novelty audit");
+  topics.push(...draft.topics);
+ }
+ return topics;
 }
 let used=0;
 async function callGemini(prompt,maxOutputTokens,schema){
@@ -283,13 +298,21 @@ if(pilot){
 if(!token||token.length<32)throw Error("Private Worker admin token required");
 const status=await queueStatus();
 if(!status.r2Configured)throw Error("Cloudflare R2 not bound; no generation");
-if(status.queue.some(x=>["draft","rendering","ready","blocked"].includes(x.state)))
- throw Error("A Listening draft already exists; refusing to generate duplicate content");
+if(!Array.isArray(status.queue)||status.queue.length>9)
+ throw Error("Listening queue incomplete or too many reserved drafts; no Gemini text calls");
+if(status.queue.some(x=>{
+ const clips=x.clips||{};
+ const uploaded=Number(clips.uploaded||0),pending=Number(clips.pending||0);
+ const claimed=Number(clips.claimed||0),flagged=Number(clips.flagged||0);
+ return x.state==="blocked" ||
+   (x.state!=="published" && (uploaded!==36 || pending!==0 || claimed!==0 || flagged!==0));
+}))throw Error("An unfinished, blocked or unreviewed Listening draft exists; no Gemini text calls");
+const cloudTopics=await priorDraftTopics();
 // No dependence on the AUDIO enabled switch: a draft can be safely queued while
 // daily TTS remains stopped, but it can never be automatically published.
 const id="lsn-"+crypto.randomUUID().replace(/-/g,"").slice(0,12);
 const modules={};
-const already=existing.flatMap(synopsis);
+const already=[...existing.flatMap(synopsis),...cloudTopics];
 for(const name of moduleNames){
  const prefix=id.slice(4,10)+"-"+name.slice(0,2);
  const saved=name==="router"&&!!reusedRouter;

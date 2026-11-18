@@ -117,7 +117,8 @@ test('new take is staged once, auditioned, and imported only after human decisio
     assert.equal(sql.prepare('SELECT COUNT(*) AS n FROM listening_sets').get().n,0);
     const awaiting = await post(env,'/api/cloud/listening-refill/claim',
       {confirm:'CLAIM_LISTENING_TTS_ONCE'});
-    assert.equal((await awaiting.json()).result,'awaiting-review-or-reconciliation');
+    assert.equal((await awaiting.json()).result,'daily-limit',
+      'durably staged clip no longer blocks; the one-call model cap still does');
 
     const listing = await get(env,'/api/cloud/listening-refill/staged');
     const queue = (await listing.json()).queue;
@@ -143,6 +144,45 @@ test('new take is staged once, auditioned, and imported only after human decisio
     assert.equal((await post(env,'/api/cloud/listening-refill/stage-decision',{
       setId,stimulusId:clip,decision:'approve',confirm:'I_LISTENED_AND_APPROVED_AUDIO',
     })).status,409,'a second approval can never overwrite MP3');
+  } finally { sql.close(); }
+});
+
+test('durably staged audio can queue for nightly batch review; unresolved claim still blocks', async () => {
+  const { sql, env, map } = fixture();
+  try {
+    const first = await claimOne(env);
+    const secondBeforeStage = await post(env,'/api/cloud/listening-refill/claim',
+      {confirm:'CLAIM_LISTENING_TTS_ONCE'});
+    assert.equal((await secondBeforeStage.json()).result,'awaiting-review-or-reconciliation',
+      'unresolved claim must block any additional Gemini request');
+
+    assert.equal((await stage(env,original.id,first)).status,201);
+    await post(env,'/api/cloud/listening-refill/model-policy',
+      {model:lite,dailyLimit:3,confirm:'I_VERIFIED_FREE_TIER_TODAY'});
+    const secondRes = await post(env,'/api/cloud/listening-refill/claim',
+      {confirm:'CLAIM_LISTENING_TTS_ONCE'});
+    assert.equal(secondRes.status,200);
+    const second = await secondRes.json();
+    assert.equal(second.result,'claimed');
+    assert.notEqual(second.stimulusId,first);
+    assert.equal((await stage(env,original.id,second.stimulusId)).status,201);
+    const thirdRes = await post(env,'/api/cloud/listening-refill/claim',
+      {confirm:'CLAIM_LISTENING_TTS_ONCE'});
+    assert.equal(thirdRes.status,200);
+    const third = await thirdRes.json();
+    assert.equal(third.result,'claimed');
+    assert.equal((await stage(env,original.id,third.stimulusId)).status,201);
+
+    const queued = await get(env,'/api/cloud/listening-refill/staged');
+    const data = await queued.json();
+    assert.equal(data.queue.length,3);
+    assert.equal(sql.prepare("SELECT COUNT(*) AS n FROM listening_refill_clips WHERE status='claimed'").get().n,3);
+    assert.equal(sql.prepare("SELECT COUNT(*) AS n FROM listening_refill_clips WHERE status='uploaded'").get().n,0);
+    assert.equal(sql.prepare("SELECT COUNT(*) AS n FROM listening_sets").get().n,0);
+    assert.equal([...map.keys()].filter(k=>k.startsWith('stimuli/')).length,0);
+    const noMore = await post(env,'/api/cloud/listening-refill/claim',
+      {confirm:'CLAIM_LISTENING_TTS_ONCE'});
+    assert.equal((await noMore.json()).result,'daily-limit');
   } finally { sql.close(); }
 });
 
