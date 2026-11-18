@@ -29,21 +29,24 @@ const day=()=>{
 
 function valid(status,staged,expectedDay) {
   if(status?.day!==expectedDay || status.enabled!==true || status.r2Configured!==true ||
-      !Array.isArray(status.queue) || !Array.isArray(status.models) ||
-      status.models.length!==2 || staged?.result!=='pending-human-review' ||
-      !Array.isArray(staged.queue)) return false;
+      !Array.isArray(status.queue) || status.queue.length!==1 ||
+      !Array.isArray(status.models) || status.models.length!==2 ||
+      staged?.result!=='pending-human-review' || !Array.isArray(staged.queue))
+    return false;
   const models=status.models;
-  const known=[LITE,FLASH].every(model=>models.some(m=>m.model===model));
+  const known=[LITE,FLASH].every(name=>models.filter(m=>m.model===name).length===1);
   const caps=models.every(m=>Number.isInteger(m.dailyLimit) && m.dailyLimit>=0 &&
     m.dailyLimit<=LIMIT && Number.isInteger(m.claimed) && m.claimed>=0 &&
-    m.claimed<=LIMIT && m.freeTierVerifiedToday===true &&
-    m.ready===(m.dailyLimit>m.claimed));
-  const claims=status.queue.reduce((n,q)=>n+Number(q.clips?.claimed||0),0);
-  const inventory=status.queue.every(q=>q?.clips &&
-    ['uploaded','pending','claimed','flagged'].every(k=>Number.isInteger(q.clips[k]??0)&&
-      (q.clips[k]??0)>=0) &&
-    Number(q.clips?.flagged||0)===0);
-  return known && caps && inventory && claims===staged.queue.length;
+    m.claimed<=LIMIT && (m.dailyLimit===0 || m.freeTierVerifiedToday===true) &&
+    m.ready===(m.freeTierVerifiedToday===true && m.dailyLimit>m.claimed));
+  const draft=status.queue[0], c=draft?.clips||{};
+  const inventory=draft?.id==='lsn-a97620b2c800' &&
+    ['draft','rendering'].includes(draft.state) &&
+    ['uploaded','pending','claimed','flagged'].every(k=>
+      Number.isInteger(c[k]??0)&&(c[k]??0)>=0) &&
+    ['uploaded','pending','claimed','flagged'].reduce((n,k)=>n+(c[k]??0),0)===36 &&
+    Number(c.flagged||0)===0;
+  return known && caps && inventory && Number(c.claimed||0)===staged.queue.length;
 }
 function pilotReady(status,staged,expectedDay,uploaded){
   if(!valid(status,staged,expectedDay)||staged.queue.length!==0||
@@ -62,7 +65,7 @@ function pilotReady(status,staged,expectedDay,uploaded){
 function offlineTest(){
   const d='2026-11-17';
   const status={day:d,enabled:true,r2Configured:true,
-    queue:[{clips:{uploaded:20,pending:13,claimed:3,flagged:0}}],
+    queue:[{id:'lsn-a97620b2c800',state:'rendering',clips:{uploaded:20,pending:13,claimed:3,flagged:0}}],
     models:[{model:LITE,dailyLimit:3,claimed:1,freeTierVerifiedToday:true,ready:true},
       {model:FLASH,dailyLimit:3,claimed:2,freeTierVerifiedToday:true,ready:true}]};
   const staged={result:'pending-human-review',queue:[{},{},{}]};
@@ -71,6 +74,19 @@ function offlineTest(){
   assert.ok(!valid({...status,models:status.models.map(m=>({...m,dailyLimit:10}))},staged,d));
   assert.ok(!valid({...status,day:'2026-11-16'},staged,d));
   assert.ok(!valid({...status,queue:[{clips:{...status.queue[0].clips,flagged:1}}]},staged,d));
+  const partial={...status,queue:[{id:'lsn-a97620b2c800',state:'rendering',
+    clips:{uploaded:28,pending:8,claimed:0,flagged:0}}],
+    models:[{model:LITE,dailyLimit:3,claimed:2,freeTierVerifiedToday:true,ready:true},
+      {model:FLASH,dailyLimit:3,claimed:1,freeTierVerifiedToday:true,ready:true}]};
+  assert.ok(valid(partial,{result:'pending-human-review',queue:[]},d));
+  assert.ok(!valid({...partial,queue:[{...partial.queue[0],
+    clips:{uploaded:28,pending:7,claimed:0,flagged:0}}]},
+    {result:'pending-human-review',queue:[]},d));
+  assert.ok(valid({...partial,models:partial.models.map((m,i)=>i===0?
+    {...m,dailyLimit:0,ready:false}:m)},{result:'pending-human-review',queue:[]},d));
+  assert.ok(!valid({...partial,models:partial.models.map((m,i)=>i===0?
+    {...m,dailyLimit:4}:m)},{result:'pending-human-review',queue:[]},d));
+
   const pilotStatus={...status,
     queue:[{id:'lsn-a97620b2c800',clips:{uploaded:26,pending:10,claimed:0,flagged:0}}],
     models:status.models.map(m=>({...m,
@@ -88,8 +104,9 @@ async function main() {
     console.log(JSON.stringify({result:'batch-dry-run',geminiCalls:0,writes:0,maxAttempts}));
     return;
   }
-  if(args.length!==1 || args[0]!=='--execute')throw Error('Only --execute, --self-test or --dry-run');
-  if(process.env.LISTENING_BATCH_APPROVED!=='true')
+  if(args.length!==1 || !['--execute','--inspect-live'].includes(args[0]))
+    throw Error('Only --execute, --inspect-live, --self-test or --dry-run');
+  if(args[0]==='--execute' && process.env.LISTENING_BATCH_APPROVED!=='true')
     throw Error('Batch flag disabled; no Gemini request');
   const token=process.env.TOEFL_MANUAL_TEST_TOKEN||'';
   const id=process.env.CF_ACCESS_CLIENT_ID||'';
@@ -110,6 +127,24 @@ async function main() {
     if(!res.ok)throw Error('Private '+endpoint+' returned HTTP '+res.status+'; STOP');
     return res.json();
   };
+  if(args.length===1 && args[0]==='--inspect-live'){
+    const status=await get('status'),staged=await get('staged');
+    const c=status?.queue?.find(q=>q.id==='lsn-a97620b2c800')?.clips||{};
+    const models=Array.isArray(status?.models)?status.models:[];
+    const remaining=models.map(m=>({model:m.model,claimed:m.claimed,
+      cap:m.dailyLimit,available:Math.max(0,Math.min(LIMIT,m.dailyLimit)-m.claimed),
+      confirmedToday:m.freeTierVerifiedToday===true}));
+    console.log(JSON.stringify({result:'live-batch-inspection',pacificDay:confirmedDay,
+      serverDay:status?.day,enabled:status?.enabled,r2Configured:status?.r2Configured,
+      approved:c.uploaded??null,pending:c.pending??null,claimed:c.claimed??null,
+      flagged:c.flagged??null,pendingReview:staged?.queue?.length??null,
+      models:remaining,geminiCalls:0,published:false}));
+    if(!valid(status,staged,confirmedDay))
+      throw Error('Live status or review ledger unsafe: verify enabled switch, current model caps <=3 and review counts; NO Gemini');
+    if(!models.some(m=>m.ready===true)||!(c.pending>0))
+      throw Error('No remaining D1-attested quota or unfinished audio; set today's permitted caps first; NO Gemini');
+    return;
+  }
   let completed=0;
   let initialClaims=null;
   while(completed<maxAttempts){
