@@ -88,7 +88,7 @@ function offlineTest(){
     {...m,dailyLimit:4}:m)},{result:'pending-human-review',queue:[]},d));
 
   const pilotStatus={...status,
-    queue:[{id:'lsn-a97620b2c800',clips:{uploaded:26,pending:10,claimed:0,flagged:0}}],
+    queue:[{id:'lsn-a97620b2c800',state:'rendering',clips:{uploaded:26,pending:10,claimed:0,flagged:0}}],
     models:status.models.map(m=>({...m,
       dailyLimit:m.claimed+1,remaining:1,ready:true}))};
   assert.ok(pilotReady(pilotStatus,{result:'pending-human-review',queue:[]},d,26));
