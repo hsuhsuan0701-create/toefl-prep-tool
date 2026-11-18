@@ -20,6 +20,7 @@ import { statsD1Api } from "./statsD1.js";
 import { handleListeningRefill, servePublishedR2Audio } from "./listeningRefill.js";
 import { handleReviewedAudioImport } from "./listeningReviewedImport.js";
 import { listeningRefillPage } from "./listeningRefillPage.js";
+import { releaseOneReservedListeningSet } from "./listeningReserve.js";
 
 interface Env {
   GEMINI_API_KEY?: string;
@@ -35,7 +36,7 @@ interface Env {
 const jsonHeaders = { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" };
 
 export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
+  async fetch(request: Request, env: Env, ctx?: ExecutionContext): Promise<Response> {
     const { pathname } = new URL(request.url);
 
     if (pathname === "/api/health" && request.method === "GET") {
@@ -228,7 +229,19 @@ export default {
         pathname === "/api/attempts" || pathname.startsWith("/api/attempts/") ||
         (pathname === "/api/cloud/reading-sets/import" || pathname === "/api/cloud/listening-sets/import")) {
       const readingResponse = await readingD1Api(request, env);
-      if (readingResponse) return readingResponse;
+      if (readingResponse) {
+        // This runs only after the attempt's score/complete transaction has succeeded.
+        // A completed Listening attempt can trigger a private reserve check, never TTS.
+        const completed=/^\/api\/attempts\/([A-Za-z0-9_-]{1,80})\/complete$/.exec(pathname);
+        if(completed && request.method==="POST" && readingResponse.ok && ctx?.waitUntil){
+          ctx.waitUntil((async()=>{
+            const row=await env.DB.prepare("SELECT kind FROM attempts WHERE id=?")
+              .bind(completed[1]).first<{kind:string}>();
+            if(row?.kind==="listening")await releaseOneReservedListeningSet(env);
+          })().catch(e=>console.error("Listening reserve check skipped:",e instanceof Error?e.message:"unknown")));
+        }
+        return readingResponse;
+      }
     }
 
     if (pathname.startsWith("/api/")) {
@@ -248,6 +261,9 @@ export default {
     ctx.waitUntil(refillReadingBank(env, controller.scheduledTime).then((outcome) => {
       console.log("Reading bank refill:", outcome.result);
     }));
+    ctx.waitUntil(releaseOneReservedListeningSet(env).then(outcome=>{
+      console.log("Listening reserve check:",outcome.result);
+    }).catch(e=>console.error("Listening reserve check failed:",e instanceof Error?e.message:"unknown")));
     if (env.AI_GENERATION_ENABLED === "true") {
       ctx.waitUntil(generateScheduledDraft(env, controller.scheduledTime).then(result => {
         console.log("Legacy academic draft result:", result);
