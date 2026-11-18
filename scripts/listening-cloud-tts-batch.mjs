@@ -1,5 +1,5 @@
 /**
- * Human-attested Free Tier Listening batch: up to 3 Lite + 3 Flash attempts.
+ * Human-attested Free Tier Listening batch: up to each model's verified daily D1 cap (max 10/model).
  * Does NOT approve, publish, retry failed requests or recreate old clips.
  * --self-test / --dry-run are fully offline and never access secrets.
  */
@@ -9,7 +9,7 @@ import assert from 'node:assert/strict';
 const ORIGIN='https://toefl-prep-private.ihsuan0701.workers.dev';
 const PREFIX='/api/cloud/listening-refill/';
 const LITE='gemini-3.8-flash-lite-tts', FLASH='gemini-3.8-flash-tts';
-const LIMIT=3, MAX_BATCH=6;
+const LIMIT=10, MAX_BATCH=20;
 const args=process.argv.slice(2);
 const PILOT=process.env.LISTENING_BATCH_PILOT==='true';
 const maxAttempts=process.env.LISTENING_BATCH_MAX_ATTEMPTS
@@ -71,7 +71,7 @@ function offlineTest(){
   const staged={result:'pending-human-review',queue:[{},{},{}]};
   assert.ok(valid(status,staged,d));
   assert.ok(!valid(status,{...staged,queue:[{},{}]},d));
-  assert.ok(!valid({...status,models:status.models.map(m=>({...m,dailyLimit:10}))},staged,d));
+  assert.ok(!valid({...status,models:status.models.map(m=>({...m,dailyLimit:11}))},staged,d));
   assert.ok(!valid({...status,day:'2026-11-16'},staged,d));
   assert.ok(!valid({...status,queue:[{clips:{...status.queue[0].clips,flagged:1}}]},staged,d));
   const partial={...status,queue:[{id:'lsn-a97620b2c800',state:'rendering',
@@ -85,7 +85,7 @@ function offlineTest(){
   assert.ok(valid({...partial,models:partial.models.map((m,i)=>i===0?
     {...m,dailyLimit:0,ready:false}:m)},{result:'pending-human-review',queue:[]},d));
   assert.ok(!valid({...partial,models:partial.models.map((m,i)=>i===0?
-    {...m,dailyLimit:4}:m)},{result:'pending-human-review',queue:[]},d));
+    {...m,dailyLimit:11}:m)},{result:'pending-human-review',queue:[]},d));
 
   const pilotStatus={...status,
     queue:[{id:'lsn-a97620b2c800',state:'rendering',clips:{uploaded:26,pending:10,claimed:0,flagged:0}}],
@@ -140,7 +140,7 @@ async function main() {
       flagged:c.flagged??null,pendingReview:staged?.queue?.length??null,
       models:remaining,geminiCalls:0,published:false}));
     if(!valid(status,staged,confirmedDay))
-      throw Error('Live status or review ledger unsafe: verify enabled switch, current model caps <=3 and review counts; NO Gemini');
+      throw Error('Live status or review ledger unsafe: verify enabled switch, current model caps <=10 and review counts; NO Gemini');
     if(!models.some(m=>m.ready===true)||!(c.pending>0))
       throw Error('No remaining D1-attested quota or unfinished audio; set current permitted caps first; NO Gemini');
     return;
