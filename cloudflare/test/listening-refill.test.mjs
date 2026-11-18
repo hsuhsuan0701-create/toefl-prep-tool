@@ -56,6 +56,77 @@ async function upload(env,setId,stimulusId){
  }),env);
  return {status:r.status,data:await r.json()};
 }
+test("an explicitly quarantined same-day Lite 429 permits Flash without refund or retry",async()=>{
+ const {sql,env,map}=fixture();
+ try{
+  assert.equal((await json(env,"/api/cloud/listening-refill/draft",original)).status,201);
+  await changeEnabled(env,true);
+  await approveModel(env,lite,1);
+  await approveModel(env,flash,2);
+  const first=await claim(env);
+  assert.equal(first.data.result,"claimed");
+  assert.equal(first.data.model,lite);
+  const setId=original.id,id=first.data.stimulusId;
+  assert.equal((await claim(env)).data.result,"awaiting-review-or-reconciliation");
+  const quarantinePath="/api/cloud/listening-refill/quarantine-failed-claim";
+  const body={setId,stimulusId:id,confirm:"I_CONFIRMED_GEMINI_429_DO_NOT_RETRY"};
+  assert.equal((await json(env,quarantinePath,body)).status,409,
+    "Must stop new claims before quarantining a known 429");
+  await changeEnabled(env,false);
+  sql.prepare("UPDATE listening_refill_clips SET claimed_at=datetime('now','-10 minutes') WHERE set_id=? AND stimulus_id=?")
+    .run(setId,id);
+  const quarantined=await json(env,quarantinePath,body);
+  assert.equal(quarantined.status,200,JSON.stringify(quarantined.data));
+  assert.equal(quarantined.data.result,"failed-claim-quarantined-no-retry");
+  assert.equal((await json(env,quarantinePath,body)).status,409);
+  let status=await handleListeningRefill(new Request(host+"/api/cloud/listening-refill/status",{
+    headers:{authorization:"Bearer "+token}}),env);
+  let state=await status.json();
+  assert.equal(state.verifiedQuarantinedClaims,1);
+  assert.equal(state.unresolvedUnquarantinedClaims,0);
+  assert.equal(state.queue[0].clips.claimed,1);
+  assert.equal(state.models.find(m=>m.model===lite).claimed,1);
+  await changeEnabled(env,true);
+  const next=await claim(env);
+  assert.equal(next.status,200,JSON.stringify(next.data));
+  assert.equal(next.data.result,"claimed");
+  assert.equal(next.data.model,flash);
+  assert.notEqual(next.data.stimulusId,id);
+  assert.equal((await upload(env,setId,next.data.stimulusId)).status,201);
+  status=await handleListeningRefill(new Request(host+"/api/cloud/listening-refill/status",{
+    headers:{authorization:"Bearer "+token}}),env);
+  state=await status.json();
+  assert.equal(state.queue[0].clips.claimed,1);
+  assert.equal(state.queue[0].clips.uploaded,1);
+  assert.equal(state.models.find(m=>m.model===lite).claimed,1);
+  assert.equal(state.models.find(m=>m.model===flash).claimed,1);
+  assert.equal(map.has("stimuli/"+setId+"/"+id+".mp3"),false);
+  assert.equal(sql.prepare("SELECT status FROM listening_refill_clips WHERE set_id=? AND stimulus_id=?")
+    .get(setId,id).status,"claimed");
+ }finally{sql.close();}
+});
+
+test("unverified quarantine is refused when orphaned MP3 exists in private R2",async()=>{
+ const {sql,env,map}=fixture();
+ try{
+  await json(env,"/api/cloud/listening-refill/draft",original);
+  await changeEnabled(env,true);
+  await approveModel(env,lite,1);await approveModel(env,flash,2);
+  const first=await claim(env),setId=original.id,id=first.data.stimulusId;
+  await changeEnabled(env,false);
+  sql.prepare("UPDATE listening_refill_clips SET claimed_at=datetime('now','-10 minutes') WHERE set_id=? AND stimulus_id=?")
+    .run(setId,id);
+  map.set("staging/"+setId+"/"+id+".mp3",new Uint8Array(2048));
+  const res=await json(env,"/api/cloud/listening-refill/quarantine-failed-claim",
+    {setId,stimulusId:id,confirm:"I_CONFIRMED_GEMINI_429_DO_NOT_RETRY"});
+  assert.equal(res.status,409);
+  const settings=sql.prepare("SELECT COUNT(*) n FROM settings WHERE key LIKE 'listening_tts_failed_quarantine_%'").get().n;
+  assert.equal(settings,0);
+  await changeEnabled(env,true);
+  assert.equal((await claim(env)).data.result,"awaiting-review-or-reconciliation");
+ }finally{sql.close();}
+});
+
 test("429 unresolved claim is retained today, and recovered manually next day without refunding quota",async()=>{
  const {sql,env,map}=fixture();
  try{
