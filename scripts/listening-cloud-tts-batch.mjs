@@ -142,7 +142,7 @@ async function main() {
     if(!valid(status,staged,confirmedDay))
       throw Error('Live status or review ledger unsafe: verify enabled switch, current model caps <=3 and review counts; NO Gemini');
     if(!models.some(m=>m.ready===true)||!(c.pending>0))
-      throw Error('No remaining D1-attested quota or unfinished audio; set today's permitted caps first; NO Gemini');
+      throw Error('No remaining D1-attested quota or unfinished audio; set current permitted caps first; NO Gemini');
     return;
   }
   let completed=0;
