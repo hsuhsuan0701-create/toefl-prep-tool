@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           # Pinned reviewed batch runner; main does not contain Worker sources.
-          ref: 0b8f7f355f36ac312f66edad3c829c8344bf4c79
+          ref: 095180daf571b6b53d8455bdb7921e8bcbfedc89
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
