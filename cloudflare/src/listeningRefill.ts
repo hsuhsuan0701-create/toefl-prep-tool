@@ -158,6 +158,29 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
     }catch{return reply({error:"Private Listening draft summaries unavailable"},503);}
   }
 
+  // Read-only: unresolved claims without a durable staging ledger. No Gemini.
+  if(path==="/api/cloud/listening-refill/unresolved-claims" && method==="GET"){
+    try{
+      const rows=await env.DB.prepare(
+        "SELECT c.set_id,c.stimulus_id,c.claim_day,d.state,a.model "+
+        "FROM listening_refill_clips c "+
+        "JOIN listening_refill_drafts d ON d.id=c.set_id "+
+        "JOIN listening_refill_model_attempts a ON a.day=c.claim_day "+
+        "AND a.set_id=c.set_id AND a.stimulus_id=c.stimulus_id "+
+        "LEFT JOIN listening_auto_review_staged s ON s.set_id=c.set_id AND s.stimulus_id=c.stimulus_id "+
+        "WHERE c.status='claimed' AND s.set_id IS NULL "+
+        "ORDER BY c.claimed_at ASC LIMIT 20"
+      ).all<{set_id:string;stimulus_id:string;claim_day:string;state:string;model:string}>();
+      const today=ttsQuotaDay();
+      return reply({pacificDay:today,claimSwitchEnabled:await listeningRefillEnabled(env.DB),
+        unresolved:rows.results.map(c=>({
+          setId:c.set_id,stimulusId:c.stimulus_id,claimDay:c.claim_day,
+          model:c.model,eligibleNextDay:c.claim_day<today,
+          noAudioConfirmed:false
+        })),geminiCalls:0});
+    }catch{return reply({error:"Unable to inspect unresolved claims"},503);}
+  }
+
   // Private staging/API audition is independently safe and never invokes Gemini.
   const stageResponse=await handleListeningStaging(req,env);
   if(stageResponse)return stageResponse;
@@ -167,6 +190,56 @@ export async function handleListeningRefill(req:Request,env:ListeningRefillEnv):
   if(path==="/api/cloud/listening-refill/upload" &&
       (req.headers.get("origin")!==url.origin || req.headers.get("content-type")?.split(";")[0].toLowerCase()!=="audio/mpeg"))
     return reply({error:"Same-origin audio/mpeg required"},403);
+
+  // Manual next-day recovery from an unstarted/failed Gemini request. The old
+  // daily ledger remains consumed; never refund/delete it or retry automatically.
+  if(path==="/api/cloud/listening-refill/reconcile-failed-claim"){
+    if(!env.LISTENING_AUDIO)return reply({error:"Private R2 unavailable"},503);
+    const body=await req.json().catch(()=>null) as
+      {setId?:unknown;stimulusId?:unknown;confirm?:unknown}|null;
+    if(body?.confirm!=="RECONCILE_FAILED_CLAIM_NEXT_DAY"||
+       typeof body.setId!=="string"||!SAFE.test(body.setId)||
+       typeof body.stimulusId!=="string"||!SAFE_STIMULUS.test(body.stimulusId))
+      return reply({error:"Explicit claim reconciliation required"},400);
+    try{
+      if(await listeningRefillEnabled(env.DB))
+        return reply({error:"Stop new Listening claims before reconciliation"},409);
+      const clip=await getClip(env.DB,body.setId,body.stimulusId);
+      if(clip?.status!=="claimed"||!clip.claim_day||clip.claim_day>=ttsQuotaDay()||
+         clip.object_key!==null)return reply({error:"Claim not eligible for next-day recovery"},409);
+      const draft=await getDraft(env.DB,body.setId);
+      if(!draft||draft.state!=="rendering")
+        return reply({error:"Draft is not in review-safe rendering state"},409);
+      const attempt=await env.DB.prepare(
+        "SELECT status FROM listening_refill_model_attempts WHERE day=? AND set_id=? AND stimulus_id=?"
+      ).bind(clip.claim_day,body.setId,body.stimulusId).first<{status:string}>();
+      if(attempt?.status!=="claimed")return reply({error:"Claim audit record inconsistent"},409);
+      const stage=await env.DB.prepare(
+        "SELECT status FROM listening_auto_review_staged WHERE set_id=? AND stimulus_id=?"
+      ).bind(body.setId,body.stimulusId).first<{status:string}>();
+      if(stage)return reply({error:"Staging ledger exists: do not reconcile automatically"},409);
+      const finalKey=objectKey(body.setId,body.stimulusId);
+      const stagedKey="staging/"+body.setId+"/"+body.stimulusId+".mp3";
+      if(await env.LISTENING_AUDIO.head(finalKey)||
+         await env.LISTENING_AUDIO.head(stagedKey))
+        return reply({error:"R2 object exists: manual object inspection required"},409);
+      const changed=await env.DB.prepare(
+        "UPDATE listening_refill_clips SET status='pending',claim_day=NULL,claimed_at=NULL "+
+        "WHERE set_id=? AND stimulus_id=? AND status='claimed' AND claim_day=? "+
+        "AND object_key IS NULL "+
+        "AND NOT EXISTS (SELECT 1 FROM listening_auto_review_staged s "+
+        "WHERE s.set_id=? AND s.stimulus_id=?) "+
+        "AND EXISTS (SELECT 1 FROM listening_refill_model_attempts a "+
+        "WHERE a.day=? AND a.set_id=? AND a.stimulus_id=? AND a.status='claimed')"
+      ).bind(body.setId,body.stimulusId,clip.claim_day,body.setId,body.stimulusId,
+        clip.claim_day,body.setId,body.stimulusId).run();
+      if(changed.meta.changes!==1)return reply({error:"Claim changed concurrently: stop"},409);
+      return reply({result:"pending-for-manual-next-day-generation",
+        setId:body.setId,stimulusId:body.stimulusId,
+        oldClaimDay:clip.claim_day,previousAttemptStillCounted:true,
+        geminiCalls:0,published:false});
+    }catch{return reply({error:"Unable to reconcile safely; no changes authorized"},503);}
+  }
 
   if(path==="/api/cloud/listening-refill/settings"){
     const body=await req.json().catch(()=>null) as {enabled?:unknown;confirm?:string}|null;
