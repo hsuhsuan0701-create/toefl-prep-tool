@@ -148,6 +148,7 @@ export function listeningRefillPage():Response{
  "    });",
  "   }",
  "   panel.appendChild(load);panel.appendChild(document.createTextNode(\" \"));panel.appendChild(download);",
+ "   panel.appendChild(player);panel.appendChild(playbackStatus);",
  "   panel.appendChild(note);panel.appendChild(approve);panel.appendChild(document.createTextNode(\" \"));",
  "   panel.appendChild(reject);target.appendChild(panel);",
  "  }",
