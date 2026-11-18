@@ -150,9 +150,13 @@ async function runOnce() {
   // review. A claimed clip without a matching staging record remains unsafe.
   const stagedQueue = await worker('staged', creds.headers);
   const claimedCount = status.queue?.reduce((n,q)=>n+Number(q.clips?.claimed||0),0);
+  const quarantined=status.verifiedQuarantinedClaims;
+  const unresolved=status.unresolvedUnquarantinedClaims;
   if (!Number.isSafeInteger(claimedCount) || !Array.isArray(stagedQueue?.queue) ||
       stagedQueue.result !== 'pending-human-review' ||
-      claimedCount !== stagedQueue.queue.length) {
+      !Number.isSafeInteger(quarantined) || quarantined<0 ||
+      !Number.isSafeInteger(unresolved) || unresolved!==0 ||
+      claimedCount !== stagedQueue.queue.length+quarantined) {
     console.log(JSON.stringify({ result: 'skipped-unreconciled-claim-or-staging',
       geminiCalls: 0 }));
     return;
