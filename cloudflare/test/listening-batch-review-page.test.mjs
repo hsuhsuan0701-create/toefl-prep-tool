@@ -23,9 +23,10 @@ test('consolidated private management page has valid browser JavaScript', async 
   assert.match(response.headers.get('content-security-policy'), /media-src 'self' blob:/);
   assert.match(html, /完整性驗證通過/);
   assert.match(html, /crypto\.subtle\.digest/);
-  assert.match(html, /heardCheck\.checked/);
   assert.match(html, /下載 MP3 本機驗收/);
   assert.match(html, /player\.addEventListener\("ended"/);
+  assert.doesNotMatch(html, /heardCheck|checkedLabel/);
+  assert.match(html, /heardInBrowser\|\|downloaded/);
   assert.doesNotMatch(html, /await player\.play\(\)/);
 });
 
