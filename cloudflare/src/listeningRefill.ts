@@ -112,7 +112,7 @@ async function unresolvedClaims(db:D1Database){
    "SELECT 1 FROM listening_auto_review_staged s WHERE s.set_id=c.set_id "+
    "AND s.stimulus_id=c.stimulus_id AND s.status='pending_review') "+
    "ORDER BY c.claimed_at ASC LIMIT 25"
- )).results as UnresolvedFailed[];
+ ).all<UnresolvedFailed>()).results;
 }
 async function quarantineVerified(env:ListeningRefillEnv,row:UnresolvedFailed){
  if(!env.LISTENING_AUDIO||!row.claim_day||!isTtsModel(row.model)||
